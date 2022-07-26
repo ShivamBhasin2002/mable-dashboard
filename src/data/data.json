@@ -18,7 +18,7 @@
     },
     "warningCenter": {
       "message": "Tracking Too Good",
-      "icon": "GoAlert"
+      "icon": "alert"
     },
     "marketing": {
       "current": "98%",
@@ -41,35 +41,35 @@
       "array": [
         {
           "name": "Nisi Mauris",
-          "number": "1561"
+          "number": 1561
         },
         {
           "name": "Nisi Mauris",
-          "number": "1561"
+          "number": 1561
         },
         {
           "name": "Nisi Mauris",
-          "number": "1561"
+          "number": 1561
         },
         {
           "name": "Nisi Mauris",
-          "number": "1561"
+          "number": 1561
         },
         {
           "name": "Nisi Mauris",
-          "number": "1561"
+          "number": 1561
         },
         {
           "name": "Nisi Mauris",
-          "number": "1561"
+          "number": 1561
         },
         {
           "name": "Nisi Mauris",
-          "number": "1561"
+          "number": 1561
         },
         {
           "name": "Nisi Mauris",
-          "number": "1561"
+          "number": 1561
         }
       ]
     },

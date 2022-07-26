@@ -1,13 +1,42 @@
-import {FC} from 'react';
+import { FC } from "react";
+import Icon from "../../data/icons";
 
-interface DashboardComponentWrapperProps {
+interface ComponentWrapperProps {
+  width?: number;
+  height?: number;
   children: React.ReactNode;
+  title: string;
+  titleIcon?: string;
+  color?: string;
+  textColor?: string;
 }
 
-const DashboardComponentWrapper:FC<DashboardComponentWrapperProps> = ({children}) => {
+const ComponentWrapper: FC<ComponentWrapperProps> = ({
+  width = 280,
+  height = 280,
+  children,
+  title,
+  titleIcon,
+  color = "bgPrimary",
+  textColor = "bgPrimary-dark",
+}) => {
   return (
-    <div className="min-w-[280px] min-h-[280px] bg-bgPrimary">
+    <article
+      className={`w-[${width}px] h-[${height}px] bg-${color} rounded-2xl p-8`}
+    >
+      <div
+        className={`font-bold text-lg text-${textColor} mb-[20px] flex items-center`}
+      >
+        {titleIcon ? (
+          <span className="w-[44px] h-[44px] rounded-lg bg-primary/25 flex justify-center items-center mr-8 text-3xl">
+            <Icon icon={titleIcon} />
+          </span>
+        ) : null}
+        {title}
+      </div>
       {children}
-    </div>
+    </article>
   );
-}
+};
+
+export default ComponentWrapper;

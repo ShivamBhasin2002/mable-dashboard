@@ -12,7 +12,7 @@ import { TbReportMoney } from "react-icons/tb";
 import { BiRefresh } from "react-icons/bi";
 
 interface iconProps {
-  icon: string;
+  icon?: string;
 }
 
 const Icon: React.FC<iconProps> = ({ icon }) => {
