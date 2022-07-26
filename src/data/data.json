@@ -1,0 +1,89 @@
+{
+  "dashboard": {
+    "dataQuality": {
+      "overAllQuality": {
+        "stats": 97,
+        "message": "Excellent"
+      },
+      "frontendTracking": {
+        "stats": 97,
+        "message": "Excellent"
+      },
+      "backendTracking": {
+        "stats": 97,
+        "message": "Excellent"
+      },
+      "plot1": [97, 99.8],
+      "plot2": [3.07]
+    },
+    "warningCenter": {
+      "message": "Tracking Too Good",
+      "icon": "GoAlert"
+    },
+    "marketing": {
+      "current": "98%",
+      "prev": "96%"
+    },
+    "investment": {
+      "current": "106M",
+      "prev": "98M"
+    },
+    "sales": {
+      "current": "83%",
+      "prev": "79%"
+    },
+    "profit": {
+      "current": "364M",
+      "prev": "205M"
+    },
+    "list": {
+      "title": "Nisi Mauris",
+      "array": [
+        {
+          "name": "Nisi Mauris",
+          "number": "1561"
+        },
+        {
+          "name": "Nisi Mauris",
+          "number": "1561"
+        },
+        {
+          "name": "Nisi Mauris",
+          "number": "1561"
+        },
+        {
+          "name": "Nisi Mauris",
+          "number": "1561"
+        },
+        {
+          "name": "Nisi Mauris",
+          "number": "1561"
+        },
+        {
+          "name": "Nisi Mauris",
+          "number": "1561"
+        },
+        {
+          "name": "Nisi Mauris",
+          "number": "1561"
+        },
+        {
+          "name": "Nisi Mauris",
+          "number": "1561"
+        }
+      ]
+    },
+    "barChart": {
+      "Page View": 300,
+      "Add to Cart": 300,
+      "Initiate Checkout ": 300,
+      "Add Payment Info": 300,
+      "Purchase": 300
+    },
+    "usersOnline": ["Emma", "Noah"]
+  },
+  "user": {
+    "name": "Shivam Bhasin",
+    "designation": "Intern"
+  }
+}
