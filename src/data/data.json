@@ -2,85 +2,120 @@
   "dashboard": {
     "dataQuality": {
       "overAllQuality": {
-        "stats": 97,
-        "message": "Excellent"
+        "stats": 94,
+        "message": "Great"
       },
       "frontendTracking": {
-        "stats": 97,
-        "message": "Excellent"
+        "stats": 90,
+        "message": "Decent"
       },
       "backendTracking": {
-        "stats": 97,
+        "stats": 99,
         "message": "Excellent"
       },
-      "plot1": [97, 99.8],
-      "plot2": [3.07]
-    },
-    "warningCenter": {
-      "message": "Tracking Too Good",
-      "icon": "alert"
-    },
-    "marketing": {
-      "current": "98%",
-      "prev": "96%"
-    },
-    "investment": {
-      "current": "106M",
-      "prev": "98M"
-    },
-    "sales": {
-      "current": "83%",
-      "prev": "79%"
-    },
-    "profit": {
-      "current": "364M",
-      "prev": "205M"
-    },
-    "list": {
-      "title": "Nisi Mauris",
-      "array": [
+      "plot": [
         {
-          "name": "Nisi Mauris",
-          "number": 1561
+          "date": "21 Jul",
+          "value": 100
         },
         {
-          "name": "Nisi Mauris",
-          "number": 1561
+          "date": "22 Jul",
+          "value": 89
         },
         {
-          "name": "Nisi Mauris",
-          "number": 1561
+          "date": "23 Jul",
+          "value": 60
         },
         {
-          "name": "Nisi Mauris",
-          "number": 1561
+          "date": "24 Jul",
+          "value": 75
         },
         {
-          "name": "Nisi Mauris",
-          "number": 1561
+          "date": "25 Jul",
+          "value": 97
         },
         {
-          "name": "Nisi Mauris",
-          "number": 1561
+          "date": "26 Jul",
+          "value": 60
         },
         {
-          "name": "Nisi Mauris",
-          "number": 1561
-        },
-        {
-          "name": "Nisi Mauris",
-          "number": 1561
+          "date": "27 Jul",
+          "value": 80
         }
       ]
     },
-    "barChart": {
-      "Page View": 300,
-      "Add to Cart": 300,
-      "Initiate Checkout ": 300,
-      "Add Payment Info": 300,
-      "Purchase": 300
+    "orderAnalysis": {
+      "shopifyOrders": "258",
+      "purchaseEventsInFB": "257",
+      "avgDeliveryTime": "8s"
     },
-    "usersOnline": ["Emma", "Noah"]
+    "eventQuality": [
+      { "event": "Purchase", "percentage": 99 },
+      { "event": "Add Payment Info", "percentage": 96 },
+      { "event": "Initiate Checkout", "percentage": 94 },
+      { "event": "Add To Cart", "percentage": 92 },
+      { "event": "Pay View", "percentage": 90 }
+    ],
+    "warningCenter": [
+      {
+        "level": "Error",
+        "message": "Facebook API not responding",
+        "time": "2h"
+      },
+      {
+        "level": "Warning",
+        "message": "Unusually low number of Add To Cart Events",
+        "time": "3d"
+      }
+    ],
+    "funnelAnalysis": {
+      "Page View": 153000,
+      "Add to Cart": 122000,
+      "Initiate Checkout ": 90000,
+      "Add Payment Info": 75000,
+      "Purchase": 8000
+    },
+    "pageSpeed": {
+      "avgLoadingTime": "200ms",
+      "pageSpeedShare": "2%"
+    },
+    "events": "155.2k",
+    "usersOnline": ["Emma", "Noah"],
+    "eventsPerDay": [
+      {
+        "title": "Add to Cart",
+        "data": [
+          {
+            "date": "21 Jul",
+            "value": 1200
+          },
+          {
+            "date": "22 Jul",
+            "value": 1000
+          },
+          {
+            "date": "23 Jul",
+            "value": 1300
+          },
+          {
+            "date": "24 Jul",
+            "value": 1100
+          },
+          {
+            "date": "25 Jul",
+            "value": 1200
+          },
+          {
+            "date": "26 Jul",
+            "value": 1100
+          },
+          {
+            "date": "27 Jul",
+            "value": 900
+          }
+        ]
+      }
+    ]
   },
   "user": {
     "name": "Shivam Bhasin",

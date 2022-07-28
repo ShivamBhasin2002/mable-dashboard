@@ -1,46 +1,49 @@
 import DashboardHeader from "../components/Dashboard/Header";
 import DataQuality from "../components/Dashboard/DataQuality";
-import Statistics from "../components/Dashboard/Statistics";
 import WarningCenter from "../components/Dashboard/WarningCenter";
-import List from "../components/Dashboard/LIst";
+import List from "../components/Dashboard/EventQuality";
 
 import data from "../data/data.json";
-import FundamentalAnalysis from "../components/Dashboard/FundamentalAnalysis";
+import FunnelAnalysis from "../components/Dashboard/FunnelAnalysis";
+import OrderAnalysis from "../components/Dashboard/OrderAnalysis";
+import PageSpeed from "../components/Dashboard/PageSpeed";
+import Events from "../components/Dashboard/Events";
+import EventsPerDay from "../components/Dashboard/EventsPerDay";
 const { dashboard } = data;
-const { usersOnline, dataQuality, marketing, investment, sales, profit, list, warningCenter, barChart } = dashboard;
+const {
+  usersOnline,
+  dataQuality,
+  orderAnalysis,
+  eventQuality,
+  warningCenter,
+  pageSpeed,
+  events,
+  funnelAnalysis,
+  eventsPerDay
+} = dashboard;
 
 const Dashboard = () => {
   return (
-    <div className="w-full h-min-screen bg-background flex flex-col">
+    <div className="w-full h-min-screen bg-background flex flex-col px-[32px] py-[30px]">
       <DashboardHeader usersOnline={usersOnline} />
-      <main className="flex flex-row p-[40px] gap-[40px] flex-grow flex-wrap">
-        <div className="flex flex-col w-[920px] gap-[40px]">
+      <main className="flex flex-row gap-[40px] flex-grow flex-wrap mt-[40px]">
+        <div className="flex flex-col w-[920px] gap-[40px] ">
           <DataQuality data={dataQuality} />
-          <div className="flex flex-row">
-            <div className="flex flex-row flex-wrap gap-[40px] w-[680px]">
-              <Statistics
-                data={marketing}
-                title="Marketing"
-                icon="speakerphone"
-              />
-              <Statistics
-                data={investment}
-                title="Investment"
-                icon="report-money"
-              />
-              <Statistics
-                data={sales}
-                title="Product Sales"
-                icon="bar-chart-line"
-              />
-              <Statistics data={profit} title="Target Profit" icon="target" />
+          <div className="flex flex-row flex-none">
+            <div className="flex flex-col gap-[40px] w-[640px]">
+              <OrderAnalysis data={orderAnalysis} />
+              <EventsPerDay data={eventsPerDay}/>
             </div>
-            <List data={list} />
+            <List data={eventQuality} />
           </div>
         </div>
-        <div className="flex flex-col flex-grow gap-[40px]">
+        <div className="flex flex-col flex-grow gap-[30px]">
           <WarningCenter data={warningCenter} />
-          <FundamentalAnalysis data={barChart} />
+          <FunnelAnalysis data={funnelAnalysis}/>
+          <div className="flex flex-row gap-[25px]">
+            <PageSpeed data={pageSpeed}/>
+            <Events data={events}/>
+          </div>
         </div>
       </main>
     </div>
