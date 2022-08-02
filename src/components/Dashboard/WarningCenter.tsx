@@ -16,8 +16,8 @@ const WarningCenter: FC<WarningCenterProps> = ({ data }) => {
       {data.map(({ level, message, time }, index) => (
         <div key={index} className="flex flex-row items-center p-[20px] bg-primary/[0.20] mb-2 rounded-[15px] gap-4 text-light">
           <span
-            className={`text-${
-              level === "Error" ? "error" : "average"
+            className={`${
+              level === "Error" ? "text-error" : "text-average"
             } text-3xl`}
           >
             <Icon icon="alert" />
