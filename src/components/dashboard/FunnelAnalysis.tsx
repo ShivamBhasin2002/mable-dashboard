@@ -59,7 +59,7 @@ const FunnelAnalysis: FC<FunnelAnalysisProps> = ({ data }) => {
       };
       setChartData(chartData);
     }
-  },[chart]);
+  },[chart, data]);
 
   const options = {
     layout: {

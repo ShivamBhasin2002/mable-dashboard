@@ -44,7 +44,7 @@ const EventsPerDay: FC<EventsPerDayProps> = ({ data }) => {
   }
 
   const chart = useRef<any>(null);
-  const [currentData, setCurrentData] = useState(data[0]);
+  const [currentData] = useState(data[0]);
   const [charData, setCharData] = useState<any>({ datasets: [] });
   useEffect(() => {
     setCharData({

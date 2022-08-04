@@ -10,7 +10,6 @@ import {
   Title,
   Tooltip,
   Filler,
-  ChartArea,
 } from "chart.js";
 
 // importing components
@@ -60,7 +59,7 @@ interface LineChartProps {
 
 const LineChart: FC<LineChartProps> = ({ data }) => {
   const chart = useRef<any>(null);
-  const [charData, setCharData] = useState<any>({ datasets: [] });
+  const [chartData, setChartData] = useState<any>({ datasets: [] });
   useEffect(() => {
     if (chart.current) {
       const chartData = {
@@ -87,9 +86,9 @@ const LineChart: FC<LineChartProps> = ({ data }) => {
           },
         ],
       };
-      setCharData(chartData);
+      setChartData(chartData);
     }
-  }, []);
+  }, [data,chartData]);
   return (
     <div>
       <Line
@@ -101,7 +100,7 @@ const LineChart: FC<LineChartProps> = ({ data }) => {
               beginAtZero: true,
               ticks: {
                 stepSize: 25,
-                callback(this, tickValue, index, ticks) {
+                callback(this, tickValue) {
                   return `${tickValue}%`;
                 },
               },
@@ -121,7 +120,7 @@ const LineChart: FC<LineChartProps> = ({ data }) => {
           },
         }}
         ref={chart}
-        data={charData}
+        data={chartData}
         width={560}
         height={250}
       />

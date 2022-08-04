@@ -23,16 +23,6 @@ ChartJS.register(
   ArcElement
 );
 
-interface DataContainerPerEventProps {
-  data: {
-    title: string[];
-    data: {
-      labels: string[];
-      datasets: [label: string, data: [], backgroundColor: string];
-    }[];
-  };
-}
-
 const DataContainerPerEvent: FC<any> = ({ data }) => {
   const barOptions = {
       maintainAspectRatio: false,
