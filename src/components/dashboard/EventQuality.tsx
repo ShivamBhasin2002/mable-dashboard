@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import Icon from "../../data/icons";
+import Icon from "../../utility/icons";
 import ComponentWrapper from "./ComponentWrapper";
 
 interface EventQualityProps {
@@ -22,7 +21,7 @@ const EventQuality: FC<EventQualityProps> = ({ data }) => {
         >
           <span className="text-light text-[14px] font-text">{event}</span>
           <span className="w-[53px] h-[53px]">
-            <CircularProgressbar
+            {/* <CircularProgressbar
               value={percentage}
               text={`${percentage}%`}
               styles={buildStyles({
@@ -31,7 +30,7 @@ const EventQuality: FC<EventQualityProps> = ({ data }) => {
                 pathColor: percentage <= 90 ? "#D99A43" : "#0DCE1C",
               })}
               counterClockwise
-            />
+            /> */}
           </span>
         </div>
       ))}

@@ -115,6 +115,40 @@
           }
         ]
       }
+    ],
+    "dataContainedPerEvent": [
+      {
+        "title": "Purchase",
+        "data": {
+          "labels": [
+            "21 Jul",
+            "22 Jul",
+            "23 Jul",
+            "24 Jul",
+            "25 Jul",
+            "26 Jul",
+            "27 Jul"
+          ],
+          "datasets": [
+            {
+              "label": "Dataset 1",
+              "data": [11, 12, 8, 11, 11, 9, 11, 11],
+              "backgroundColor": "rgba(132, 18, 167, 1)",
+              "datalabels": {
+                "display": false
+              }
+            },
+            {
+              "label": "Dataset 2",
+              "data": [11, 12, 8, 11, 11, 9, 11, 11],
+              "backgroundColor": "rgba(197, 120, 226, 1)",
+              "datalabels": {
+                "display": false
+              }
+            }
+          ]
+        }
+      }
     ]
   },
   "user": {

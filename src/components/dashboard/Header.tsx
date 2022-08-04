@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Icon from "../../data/icons";
+import Icon from "../../utility/icons";
 
 interface DashboardHeaderProps {
   usersOnline: string[];

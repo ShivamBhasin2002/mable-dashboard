@@ -10,12 +10,9 @@ interface PageSpeedProps {
 
 const PageSpeed: FC<PageSpeedProps> = ({ data }) => {
   return (
-    <ComponentWrapper
-      title="Page Speed"
-      width={395}
-    >
+    <ComponentWrapper title="Page Speed" width={560}>
       <div className="flex flex-row justify-center">
-        <div className="border-r-2 border-lines/[0.15] w-[150px]">
+        <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
             {data.avgLoadingTime}
           </div>
@@ -23,7 +20,15 @@ const PageSpeed: FC<PageSpeedProps> = ({ data }) => {
             Avg Loading Time
           </div>
         </div>
-        <div className="w-[150px]">
+        <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
+          <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
+            {data.avgLoadingTime}
+          </div>
+          <div className="text-primary text-center text-[14px]">
+            Avg Loading Time
+          </div>
+        </div>
+        <div className="min-w-[160px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
             {data.pageSpeedShare}
           </div>

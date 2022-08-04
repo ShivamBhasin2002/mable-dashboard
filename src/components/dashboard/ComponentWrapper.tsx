@@ -10,8 +10,8 @@ interface ComponentWrapperProps {
 }
 
 const ComponentWrapper: FC<ComponentWrapperProps> = ({
-  width = 280,
-  height = 280,
+  width,
+  height,
   children,
   title,
   nextComponent,
@@ -19,7 +19,7 @@ const ComponentWrapper: FC<ComponentWrapperProps> = ({
 }) => {
   return (
     <article
-      className={`w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainer-from to-bgContainer-to rounded-[30px] px-[40px] py-[30px] flex-grow-0 flex-shrink-0`}
+      className={`w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainer-from to-bgContainer-to rounded-[30px] px-[40px] py-[30px] flex-grow`}
     >
       <div
         className={` text-light mb-[20px] flex items-center font-heading text-[22px] font-bold justify-between ${

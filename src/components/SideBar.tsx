@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import Icon from "../data/icons";
+import Icon from "../utility/icons";
 
 interface SideBarProps {
   user: {

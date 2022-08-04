@@ -1,6 +1,6 @@
 import { FC } from "react";
 import ComponentWrapper from "./ComponentWrapper";
-import Icon from "../../data/icons";
+import Icon from "../../utility/icons";
 
 interface WarningCenterProps {
   data: {
