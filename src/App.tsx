@@ -1,19 +1,33 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 
 import SideBar from "./components/SideBar";
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 import data from "./utility/data.json";
+import Layout from "components/Layout";
 
 const App = () => {
   return (
     <ChakraProvider>
-      <div id="App" className="flex flex-row h-min-screen bg-background">
-        <SideBar user={data.user} />
-        <Dashboard />
-      </div>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout user={data.user}>
+                <Dashboard />
+              </Layout>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </Router>
     </ChakraProvider>
   );
-}
+};
 
 export default App;
