@@ -1,20 +1,12 @@
-import { useState } from 'react';
-import {
-  FormControl,
-  Input,
-  Button,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Checkbox
-} from '@chakra-ui/react';
-import Icon from 'utility/icons';
 import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+import Icon from 'utility/icons';
+import TextField from 'components/form/TextField';
+import CheckBox from 'components/form/CheckBox';
 
 const Login = () => {
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
-
   return (
     <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from">
       <main className="flex flex-col w-[50%] ml-auto justify-center items-center text-light gap-[50px]">
@@ -24,69 +16,79 @@ const Login = () => {
             Bring your analytics to the next level!
           </div>
         </header>
-        <form className="w-[600px] flex flex-col gap-6">
-          <div className="flex gap-[20px]">
-            <Input type="text" placeholder="First Name" size="lg" />
-            <Input type="text" placeholder="Last Name" size="lg" />
-          </div>
-          <FormControl>
-            <InputGroup>
-              <InputLeftElement className="!py-[23px]" pointerEvents="none">
-                <Icon icon="email" size="2rem" />
-              </InputLeftElement>
-              <Input type="email" placeholder="Email Address" size="lg" />
-            </InputGroup>
-          </FormControl>
-          <FormControl>
-            <InputGroup>
-              <InputLeftElement className="!py-[23px]" pointerEvents="none">
-                <Icon icon="password" size="2rem" />
-              </InputLeftElement>
-              <Input
-                pr="4.5rem"
-                size="lg"
-                type={show ? 'text' : 'password'}
-                placeholder="Password"
+        <Formik
+          initialValues={{
+            fname: '',
+            lname: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            acceptTermsAndConditions: false
+          }}
+          validationSchema={Yup.object({
+            fname: Yup.string().required('Please enter first name'),
+            lname: Yup.string().required('Please enter last name'),
+            email: Yup.string().required('Please enter email'),
+            password: Yup.string()
+              .required('Please enter password')
+              .min(8, 'Password should be at least 8 characters'),
+            confirmPassword: Yup.string()
+              .required('Please re-enter password')
+              .oneOf([Yup.ref('password')], 'Your passwords do not match'),
+            acceptTermsAndConditions: Yup.boolean().oneOf(
+              [true],
+              'Accept Terms and conditions is required'
+            )
+          })}
+          onSubmit={(values, actions) => {
+            alert(JSON.stringify(values, null, 2));
+            actions.resetForm();
+          }}
+        >
+          {(formik) => (
+            <form className="w-[600px] flex flex-col gap-6" onSubmit={formik.handleSubmit}>
+              <div className="flex gap-[20px]">
+                <TextField label="First Name" type="text" name="fname" />
+                <TextField label="Last Name" type="text" name="lname" />
+              </div>
+              <TextField
+                label="Email"
+                icon="email"
+                type="email"
+                name="email"
+                placeholder="Enter email"
               />
-              <InputRightElement width="4.5rem">
-                <Button h="full" color="black" mt="8px" size="sm" onClick={handleClick}>
-                  {show ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-          </FormControl>
-          <FormControl>
-            <InputGroup>
-              <InputLeftElement className="!py-[23px]" pointerEvents="none">
-                <Icon icon="password" size="2rem" />
-              </InputLeftElement>
-              <Input
-                pr="4.5rem"
-                size="lg"
-                type={show ? 'text' : 'password'}
-                placeholder="Confirm Password"
+              <TextField
+                label="Password"
+                icon="password"
+                type="password"
+                name="password"
+                placeholder="Enter password"
               />
-              <InputRightElement width="4.5rem">
-                <Button h="full" color="black" mt="8px" size="sm" onClick={handleClick}>
-                  {show ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-          </FormControl>
-          <div className="flex flex-row justify-between px-3">
-            <Checkbox
-              size="lg"
-              colorScheme="blue"
-              defaultChecked
-              className="rounded-[10ox] text-secondary"
-            >
-              I agree with MableAI Terms & Conditions
-            </Checkbox>
-          </div>
-          <div className="p-3 font-heading font-bold text-xl rounded-xl shadow-lg shadow-secondary/20 text-center bg-primary">
-            Register
-          </div>
-        </form>
+              <TextField
+                icon="password"
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm password"
+              />
+              <div className="px-3">
+                <CheckBox
+                  size="lg"
+                  colorScheme="blue"
+                  className="rounded-[10ox] text-secondary"
+                  name="acceptTermsAndConditions"
+                  message="I agree with MableAI Terms & Conditions"
+                />
+              </div>
+              <button
+                type="submit"
+                className="p-3 font-heading font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 text-center bg-primary hover:bg-primary/50"
+              >
+                Register
+              </button>
+            </form>
+          )}
+        </Formik>
         <div className="flex justify-between text-secondary w-[600px] items-center">
           <div>
             Already have an account?{' '}

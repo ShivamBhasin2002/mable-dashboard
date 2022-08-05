@@ -8,7 +8,9 @@ import {
   AiOutlineBell,
   AiFillCaretDown,
   AiOutlineArrowRight,
-  AiOutlineWarning
+  AiOutlineWarning,
+  AiFillEye,
+  AiFillEyeInvisible
 } from 'react-icons/ai';
 import { BsBarChartLine, BsBorderWidth } from 'react-icons/bs';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
@@ -58,6 +60,10 @@ const Icon: React.FC<iconProps> = ({ icon, size }) => {
       return <RiLock2Fill size={size} />;
     case 'copyright':
       return <FaRegCopyright size={size} />;
+    case 'showPassword':
+      return <AiFillEye size={size} />;
+    case 'hidePassword':
+      return <AiFillEyeInvisible size={size} />;
   }
   return null;
 };
