@@ -1,15 +1,15 @@
 // importing the Dashboard components
-import DashboardHeader from "components/dashboard/Header";
-import DataQuality from "components/dashboard/DataQuality";
-import WarningCenter from "components/dashboard/WarningCenter";
-import FunnelAnalysis from "components/dashboard/FunnelAnalysis";
-import PageSpeed from "components/dashboard/PageSpeed";
-import Events from "components/dashboard/Events";
-import EventsPerDay from "components/dashboard/EventsPerDay";
-import DataContainedPerEvent from "components/dashboard/DataContainedPerEvent";
+import DashboardHeader from 'components/dashboard/Header';
+import DataQuality from 'components/dashboard/DataQuality';
+import WarningCenter from 'components/dashboard/WarningCenter';
+import FunnelAnalysis from 'components/dashboard/FunnelAnalysis';
+import PageSpeed from 'components/dashboard/PageSpeed';
+import Events from 'components/dashboard/Events';
+import EventsPerDay from 'components/dashboard/EventsPerDay';
+import DataContainedPerEvent from 'components/dashboard/DataContainedPerEvent';
 
 // importing the data for the Dashboard
-import data from "utility/data.json";
+import data from 'utility/data.json';
 const { dashboard } = data;
 const {
   usersOnline,
@@ -19,7 +19,7 @@ const {
   events,
   funnelAnalysis,
   eventsPerDay,
-  dataContainedPerEvent,
+  dataContainedPerEvent
 } = dashboard;
 
 const Dashboard = () => {
@@ -33,7 +33,7 @@ const Dashboard = () => {
             <PageSpeed data={pageSpeed} />
             <Events data={events} />
           </div>
-            <DataContainedPerEvent data={dataContainedPerEvent} />
+          <DataContainedPerEvent data={dataContainedPerEvent} />
         </div>
         <div className="flex flex-col flex-grow gap-[30px]">
           <WarningCenter data={warningCenter} />

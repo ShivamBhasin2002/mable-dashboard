@@ -120,15 +120,7 @@
       {
         "title": "Purchase",
         "data": {
-          "labels": [
-            "21 Jul",
-            "22 Jul",
-            "23 Jul",
-            "24 Jul",
-            "25 Jul",
-            "26 Jul",
-            "27 Jul"
-          ],
+          "labels": ["21 Jul", "22 Jul", "23 Jul", "24 Jul", "25 Jul", "26 Jul", "27 Jul"],
           "datasets": [
             {
               "label": "Dataset 1",

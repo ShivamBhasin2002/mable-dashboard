@@ -1,36 +1,30 @@
-import { FC, useRef, useState, useEffect } from "react";
-import ComponentWrapper from "./ComponentWrapper";
+import { FC, useRef, useState, useEffect } from 'react';
+import ComponentWrapper from './ComponentWrapper';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
   Tooltip,
-  ChartArea,
-} from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Bar } from "react-chartjs-2";
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Tooltip,
-  ChartDataLabels
-);
+  ChartArea
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Bar } from 'react-chartjs-2';
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, ChartDataLabels);
 
 interface FunnelAnalysisProps {
   data: {
-    "Page View": number;
-    "Add to Cart": number;
-    "Initiate Checkout ": number;
-    "Add Payment Info": number;
+    'Page View': number;
+    'Add to Cart': number;
+    'Initiate Checkout ': number;
+    'Add Payment Info': number;
     Purchase: number;
   };
 }
 
 const FunnelAnalysis: FC<FunnelAnalysisProps> = ({ data }) => {
-  const chart = useRef<any>(null);
-  const [chartData, setChartData] = useState<any>({ datasets: [] });
+  const chart = useRef<any>(null); //eslint-disable-line
+  const [chartData, setChartData] = useState<any>({ datasets: [] }); //eslint-disable-line
 
   useEffect(() => {
     if (chart.current) {
@@ -38,62 +32,59 @@ const FunnelAnalysis: FC<FunnelAnalysisProps> = ({ data }) => {
         labels: Object.keys(data),
         datasets: [
           {
-            label: "Events",
+            label: 'Events',
             data: Object.values(data),
-            backgroundColor: createGradient(
-              chart.current.ctx,
-              chart.current.chartArea
-            ),
+            backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea),
             datalabels: {
-              color: "#ffffff",
+              color: '#ffffff',
               fontSize: 13,
-              anchor: "end",
-              align: "top",
+              anchor: 'end',
+              align: 'top',
               offset: 2,
-              formatter(value: number, context: any) {
+              formatter(value: number) {
                 return `${value / 1000}k`;
-              },
-            },
-          },
-        ],
+              }
+            }
+          }
+        ]
       };
       setChartData(chartData);
     }
-  },[chart, data]);
+  }, [chart, data]);
 
   const options = {
     layout: {
       padding: {
-        top: 10,
-      },
+        top: 10
+      }
     },
     elements: {
       bar: {
-        borderRadius: 10,
-      },
+        borderRadius: 10
+      }
     },
     scales: {
       y: {
         beginAtZero: true,
         display: false,
         grid: {
-          display: false,
-        },
+          display: false
+        }
       },
       x: {
         grid: {
-          display: false,
+          display: false
         },
         ticks: {
-          color: "#ffffff",
-        },
-      },
-    },
+          color: '#ffffff'
+        }
+      }
+    }
   };
 
   function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
-    const colorStart = "#285C6F";
-    const colorEnd = "#4FB7DD";
+    const colorStart = '#285C6F';
+    const colorEnd = '#4FB7DD';
     const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
     gradient.addColorStop(0, colorStart);
     gradient.addColorStop(1, colorEnd);
@@ -102,12 +93,7 @@ const FunnelAnalysis: FC<FunnelAnalysisProps> = ({ data }) => {
 
   return (
     <ComponentWrapper width={600} title="Funnel Analysis">
-      <Bar
-        ref={chart}
-        data={chartData}
-        width={520}
-        options={options}
-      />
+      <Bar ref={chart} data={chartData} width={520} options={options} />
     </ComponentWrapper>
   );
 };

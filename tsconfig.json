@@ -19,7 +19,7 @@
     "paths": {
       "components/*": ["components/*"],
       "utility/*": ["utility/*"],
-      "assets/*": ["assets/*"],
+      "assets/*": ["assets/*"]
     }
   },
   "include": ["src"],

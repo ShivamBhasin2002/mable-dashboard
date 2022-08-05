@@ -1,6 +1,6 @@
-import { FC, useState, useEffect, useRef } from "react";
-import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
-import { Line } from "react-chartjs-2";
+import { FC, useState, useEffect, useRef } from 'react';
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
+import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,25 +9,17 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Filler,
-} from "chart.js";
+  Filler
+} from 'chart.js';
 
 // importing components
-import ComponentWrapper from "components/dashboard/ComponentWrapper";
+import ComponentWrapper from 'components/dashboard/ComponentWrapper';
 
 // importing utility functions
-import { createGradient } from "utility/functions";
+import { createGradient } from 'utility/functions';
 
 // Registering all the react-chartjs-2 components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
 
 interface DataQualityProps {
   data: {
@@ -58,37 +50,33 @@ interface LineChartProps {
 }
 
 const LineChart: FC<LineChartProps> = ({ data }) => {
-  const chart = useRef<any>(null);
-  const [chartData, setChartData] = useState<any>({ datasets: [] });
+  const chart = useRef<any>(null); // eslint-disable-line
+  const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
     if (chart.current) {
       const chartData = {
         labels: data.map((item) => item.date),
         datasets: [
           {
-            label: "Data Quality",
+            label: 'Data Quality',
             data: data.map((item) => item.value),
-            backgroundColor: createGradient(
-              chart.current.ctx,
-              chart.current.chartArea,
-              [
-                { color: "transparent", stop: 0.2 },
-                { color: "rgba(13, 206, 28, 0.3)", stop: 1 },
-              ]
-            ),
-            borderColor: "#0DCE1C",
+            backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
+              { color: 'transparent', stop: 0.2 },
+              { color: 'rgba(13, 206, 28, 0.3)', stop: 1 }
+            ]),
+            borderColor: '#0DCE1C',
             borderWidth: 2,
             lineTension: 0.5,
             fill: true,
             datalabels: {
-              display: false,
-            },
-          },
-        ],
+              display: false
+            }
+          }
+        ]
       };
       setChartData(chartData);
     }
-  }, [data,chartData]);
+  }, [data, chartData]);
   return (
     <div>
       <Line
@@ -96,28 +84,28 @@ const LineChart: FC<LineChartProps> = ({ data }) => {
           maintainAspectRatio: false,
           scales: {
             y: {
-              position: "right",
+              position: 'right',
               beginAtZero: true,
               ticks: {
                 stepSize: 25,
                 callback(this, tickValue) {
                   return `${tickValue}%`;
-                },
+                }
               },
               grid: {
                 display: false,
-                borderColor: "rgba(127, 140, 160, 0.2)",
-                borderWidth: 3,
-              },
+                borderColor: 'rgba(127, 140, 160, 0.2)',
+                borderWidth: 3
+              }
             },
             x: {
               grid: {
                 display: false,
-                borderColor: "rgba(127, 140, 160, 0.2)",
-                borderWidth: 3,
-              },
-            },
-          },
+                borderColor: 'rgba(127, 140, 160, 0.2)',
+                borderWidth: 3
+              }
+            }
+          }
         }}
         ref={chart}
         data={chartData}
@@ -148,9 +136,7 @@ const DataQuality: FC<DataQualityProps> = ({ data }) => {
               </CircularProgressLabel>
             </CircularProgress>
             <div className="flex flex-col">
-              <span className="text-[14px] font-text text-light">
-                Quality Combine
-              </span>
+              <span className="text-[14px] font-text text-light">Quality Combine</span>
               <span className="text-[26px] font-heading font-bold text-primary h-[34px]">
                 {data.overAllQuality.message}
               </span>
@@ -161,18 +147,14 @@ const DataQuality: FC<DataQualityProps> = ({ data }) => {
               <div className=" text-[28px] leading-[34px] font-text text-center text-light">
                 257
               </div>
-              <div className="text-primary text-center text-[13px]">
-                Received by FB
-              </div>
+              <div className="text-primary text-center text-[13px]">Received by FB</div>
             </span>
             <span className="w-[2px] h-[50%] bg-lines rotate-12 mx-2" />
             <span>
               <div className=" text-[28px] leading-[34px] font-text text-center text-light">
                 258
               </div>
-              <div className="text-primary text-center text-[13px]">
-                Shopify Orders
-              </div>
+              <div className="text-primary text-center text-[13px]">Shopify Orders</div>
             </span>
           </div>
         </div>

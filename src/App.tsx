@@ -1,13 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
 
-import SideBar from "./components/SideBar";
-import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
-import data from "./utility/data.json";
-import Layout from "components/Layout";
+import data from './utility/data.json';
+import Layout from 'components/Layout';
 
 const App = () => {
   return (
@@ -15,7 +14,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route
-            path="/"
+            path="/dashboard"
             element={
               <Layout user={data.user}>
                 <Dashboard />

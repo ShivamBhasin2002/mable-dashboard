@@ -1,5 +1,4 @@
-import { FC } from "react";
-
+import { FC } from 'react';
 interface ComponentWrapperProps {
   width?: number;
   height?: number;
@@ -15,7 +14,7 @@ const ComponentWrapper: FC<ComponentWrapperProps> = ({
   children,
   title,
   nextComponent,
-  underlined = false,
+  underlined = false
 }) => {
   return (
     <article
@@ -23,7 +22,7 @@ const ComponentWrapper: FC<ComponentWrapperProps> = ({
     >
       <div
         className={` text-light mb-[20px] flex items-center font-heading text-[22px] font-bold justify-between ${
-          underlined ? "border-b-2 border-lines/[0.15]" : ""
+          underlined ? 'border-b-2 border-lines/[0.15]' : ''
         }`}
       >
         {title}

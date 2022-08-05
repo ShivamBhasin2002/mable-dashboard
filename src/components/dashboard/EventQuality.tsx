@@ -1,6 +1,6 @@
-import { FC } from "react";
-import Icon from "../../utility/icons";
-import ComponentWrapper from "./ComponentWrapper";
+import { FC } from 'react';
+import Icon from '../../utility/icons';
+import ComponentWrapper from './ComponentWrapper';
 
 interface EventQualityProps {
   data: {
@@ -12,11 +12,11 @@ interface EventQualityProps {
 const EventQuality: FC<EventQualityProps> = ({ data }) => {
   return (
     <ComponentWrapper title="Event Quality">
-      {data.map(({ event, percentage }, i) => (
+      {data.map(({ event }, i) => (
         <div
           key={i}
           className={`flex flex-row items-center justify-between h-[75px] ${
-            (i+1) !== data.length ? "border-b-2 border-lines/[0.15]" : ""
+            i + 1 !== data.length ? 'border-b-2 border-lines/[0.15]' : ''
           }`}
         >
           <span className="text-light text-[14px] font-text">{event}</span>

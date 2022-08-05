@@ -1,6 +1,6 @@
-import { FC } from "react";
-import Icon from "../../utility/icons";
-import ComponentWrapper from "./ComponentWrapper";
+import { FC } from 'react';
+import Icon from '../../utility/icons';
+import ComponentWrapper from './ComponentWrapper';
 
 interface OrderAnalysisProps {
   data: {
@@ -29,25 +29,19 @@ const OrderAnalysis: FC<OrderAnalysisProps> = ({ data }) => {
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
             {data.shopifyOrders}
           </div>
-          <div className="text-primary text-center text-[14px]">
-            Shopify Orders
-          </div>
+          <div className="text-primary text-center text-[14px]">Shopify Orders</div>
         </div>
         <div className="border-r-2 border-lines/[0.15] w-[179px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
             {data.purchaseEventsInFB}
           </div>
-          <div className="text-primary text-center text-[14px]">
-            Purchase Events in FB
-          </div>
+          <div className="text-primary text-center text-[14px]">Purchase Events in FB</div>
         </div>
         <div className="w-[179px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
             {data.avgDeliveryTime}
           </div>
-          <div className="text-primary text-center text-[14px]">
-            Avg Delivery Time
-          </div>
+          <div className="text-primary text-center text-[14px]">Avg Delivery Time</div>
         </div>
       </div>
     </ComponentWrapper>
