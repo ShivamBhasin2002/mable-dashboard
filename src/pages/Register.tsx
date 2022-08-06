@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { Button } from '@chakra-ui/react';
 
 import Icon from 'utility/icons';
 import TextField from 'components/form/TextField';
 import CheckBox from 'components/form/CheckBox';
+
+import { register } from 'utility/auth';
 
 const Login = () => {
   return (
@@ -18,16 +21,16 @@ const Login = () => {
         </header>
         <Formik
           initialValues={{
-            fname: '',
-            lname: '',
+            firstName: '',
+            lastName: '',
             email: '',
             password: '',
             confirmPassword: '',
             acceptTermsAndConditions: false
           }}
           validationSchema={Yup.object({
-            fname: Yup.string().required('Please enter first name'),
-            lname: Yup.string().required('Please enter last name'),
+            firstName: Yup.string().required('Please enter first name'),
+            lastName: Yup.string().required('Please enter last name'),
             email: Yup.string().required('Please enter email'),
             password: Yup.string()
               .required('Please enter password')
@@ -41,15 +44,14 @@ const Login = () => {
             )
           })}
           onSubmit={(values, actions) => {
-            alert(JSON.stringify(values, null, 2));
-            actions.resetForm();
+            register(values);
           }}
         >
           {(formik) => (
             <form className="w-[600px] flex flex-col gap-6" onSubmit={formik.handleSubmit}>
               <div className="flex gap-[20px]">
-                <TextField label="First Name" type="text" name="fname" />
-                <TextField label="Last Name" type="text" name="lname" />
+                <TextField label="First Name" type="text" name="firstName" />
+                <TextField label="Last Name" type="text" name="lastName" />
               </div>
               <TextField
                 label="Email"
@@ -80,12 +82,12 @@ const Login = () => {
                   message="I agree with MableAI Terms & Conditions"
                 />
               </div>
-              <button
+              <Button
                 type="submit"
                 className="p-3 font-heading font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 text-center bg-primary hover:bg-primary/50"
               >
                 Register
-              </button>
+              </Button>
             </form>
           )}
         </Formik>

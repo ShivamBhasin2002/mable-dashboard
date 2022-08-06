@@ -1,9 +1,8 @@
 import axios from 'axios';
-const API_URL = undefined;
 
 const login = async (email: string, password: string) => {
   try {
-    const response = await axios.post(`${API_URL || 'bff.dev.mable.ai'}/auth/login`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
       email,
       password
     });
@@ -11,8 +10,7 @@ const login = async (email: string, password: string) => {
     localStorage.setItem('token', response.data.token);
 
     // Call the auth me API and store the data in the local storage
-
-    const authMe = await axios.get(`${API_URL || 'bff.dev.mable.ai'}/auth/me`, {
+    const authMe = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
       headers: {
         Authorization: `${response.data.token}`
       }
@@ -40,9 +38,19 @@ const login = async (email: string, password: string) => {
   }
 };
 
-const register = async (email: string, password: string, firstName: string, lastName: string) => {
+const register = async ({
+  email,
+  password,
+  firstName,
+  lastName
+}: {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}) => {
   try {
-    const response = await axios.post(`${API_URL || 'bff.dev.mable.ai'}/auth/register`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
       email,
       password,
       firstName,
@@ -62,7 +70,7 @@ const register = async (email: string, password: string, firstName: string, last
 
 const isAuthenticated = async () => {
   try {
-    const response = await axios.get(`${API_URL || 'bff.dev.mable.ai'}/auth/me`, {
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
       headers: {
         Authorization: `${localStorage.getItem('token')}`
       }
