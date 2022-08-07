@@ -14,7 +14,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route
-            path="/dashboard"
+            path="/"
             element={
               <Layout user={data.user}>
                 <Dashboard />
