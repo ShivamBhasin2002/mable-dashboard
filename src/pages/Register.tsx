@@ -44,6 +44,7 @@ const Login = () => {
             )
           })}
           onSubmit={(values, actions) => {
+            console.log(actions);
             register(values);
           }}
         >
