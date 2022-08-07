@@ -1,0 +1,80 @@
+image: docker:19.03.12
+
+# Make sure the following variables are set on project level
+# ARTIFACT_NAME: "landing-page-docker"
+# ARTIFACT_PATH: "dist/landing-page"
+# INTEGRATION_URL: "https://"
+# PRODUCTION_URL: "https://"
+
+.deployment:
+  image: registry.gitlab.com/mableai/ci-base:3
+  before_script:
+    - aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME}
+
+variables:
+  DOCKER_IMAGE_TAG: '$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_IID'
+  NPM_TOKEN: ${CI_JOB_TOKEN}
+  ARTIFACT_NAME: 'mable-data-dashoard-build'
+  ARTIFACT_PATH: 'build/'
+
+services:
+  - docker:19.03.12-dind
+
+cache:
+  key: '$CI_COMMIT_REF_SLUG'
+  paths:
+    - node_modules
+    - .npm
+
+stages:
+  - build
+  - docker-image
+
+build:integration:
+  image: node:14.18.1-bullseye
+  stage: build
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - |
+      {
+        echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+        echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}"
+      } | tee -a .npmrc
+    - npm run build
+  only:
+    - develop
+  artifacts:
+    name: '$ARTIFACT_NAME'
+    paths:
+      - $ARTIFACT_PATH
+
+build:production:
+  image: node:14.18.1-bullseye
+  stage: build
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - |
+      {
+        echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+        echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}"
+      } | tee -a .npmrc
+    - npm run build -- --configuration production
+  only:
+    - master
+  artifacts:
+    name: '$ARTIFACT_NAME'
+    paths:
+      - $ARTIFACT_PATH
+
+docker:image:
+  stage: docker-image
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG .
+    - docker push $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG
+  dependencies:
+    - build:integration
+    - build:production
+  only:
+    - develop
+    - master
