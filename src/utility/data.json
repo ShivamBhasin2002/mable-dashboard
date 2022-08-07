@@ -1,0 +1,150 @@
+{
+  "dashboard": {
+    "dataQuality": {
+      "overAllQuality": {
+        "stats": 94,
+        "message": "Great"
+      },
+      "frontendTracking": {
+        "stats": 90,
+        "message": "Decent"
+      },
+      "backendTracking": {
+        "stats": 99,
+        "message": "Excellent"
+      },
+      "plot": [
+        {
+          "date": "21 Jul",
+          "value": 100
+        },
+        {
+          "date": "22 Jul",
+          "value": 89
+        },
+        {
+          "date": "23 Jul",
+          "value": 60
+        },
+        {
+          "date": "24 Jul",
+          "value": 75
+        },
+        {
+          "date": "25 Jul",
+          "value": 97
+        },
+        {
+          "date": "26 Jul",
+          "value": 60
+        },
+        {
+          "date": "27 Jul",
+          "value": 80
+        }
+      ]
+    },
+    "orderAnalysis": {
+      "shopifyOrders": "258",
+      "purchaseEventsInFB": "257",
+      "avgDeliveryTime": "8s"
+    },
+    "eventQuality": [
+      { "event": "Purchase", "percentage": 99 },
+      { "event": "Add Payment Info", "percentage": 96 },
+      { "event": "Initiate Checkout", "percentage": 94 },
+      { "event": "Add To Cart", "percentage": 92 },
+      { "event": "Pay View", "percentage": 90 }
+    ],
+    "warningCenter": [
+      {
+        "level": "Error",
+        "message": "Facebook API not responding",
+        "time": "2h"
+      },
+      {
+        "level": "Warning",
+        "message": "Unusually low number of Add To Cart Events",
+        "time": "3d"
+      }
+    ],
+    "funnelAnalysis": {
+      "Page View": 153000,
+      "Add to Cart": 122000,
+      "Initiate Checkout ": 90000,
+      "Add Payment Info": 75000,
+      "Purchase": 8000
+    },
+    "pageSpeed": {
+      "avgLoadingTime": "200ms",
+      "pageSpeedShare": "2%"
+    },
+    "events": "155.2k",
+    "usersOnline": ["Emma", "Noah"],
+    "eventsPerDay": [
+      {
+        "title": "Add to Cart",
+        "data": [
+          {
+            "date": "21 Jul",
+            "value": 1200
+          },
+          {
+            "date": "22 Jul",
+            "value": 1000
+          },
+          {
+            "date": "23 Jul",
+            "value": 1300
+          },
+          {
+            "date": "24 Jul",
+            "value": 1100
+          },
+          {
+            "date": "25 Jul",
+            "value": 1200
+          },
+          {
+            "date": "26 Jul",
+            "value": 1100
+          },
+          {
+            "date": "27 Jul",
+            "value": 900
+          }
+        ]
+      }
+    ],
+    "dataContainedPerEvent": [
+      {
+        "title": "Purchase",
+        "data": {
+          "labels": ["21 Jul", "22 Jul", "23 Jul", "24 Jul", "25 Jul", "26 Jul", "27 Jul"],
+          "datasets": [
+            {
+              "label": "Dataset 1",
+              "data": [11, 12, 8, 11, 11, 9, 11, 11],
+              "backgroundColor": "rgba(132, 18, 167, 1)",
+              "datalabels": {
+                "display": false
+              }
+            },
+            {
+              "label": "Dataset 2",
+              "data": [11, 12, 8, 11, 11, 9, 11, 11],
+              "backgroundColor": "rgba(197, 120, 226, 1)",
+              "datalabels": {
+                "display": false
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "user": {
+    "name": "Shivam Bhasin",
+    "designation": "Intern"
+  }
+}
