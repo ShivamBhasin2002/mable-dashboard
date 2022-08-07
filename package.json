@@ -77,8 +77,8 @@
   },
   "lint-staged": {
     "src/**/**/*.{js,jsx,ts,tsx}": [
-      "yarn lint:fix",
-      "yarn format"
+      "npm lint:fix",
+      "npm format"
     ]
   }
 }

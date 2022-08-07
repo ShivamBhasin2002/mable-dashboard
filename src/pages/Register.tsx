@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Button } from '@chakra-ui/react';
 
 import Icon from 'utility/icons';
 import TextField from 'components/form/TextField';
@@ -9,7 +8,8 @@ import CheckBox from 'components/form/CheckBox';
 
 import { register } from 'utility/auth';
 
-const Login = () => {
+const Register = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from">
       <main className="flex flex-col w-[50%] ml-auto justify-center items-center text-light gap-[50px]">
@@ -43,8 +43,10 @@ const Login = () => {
               'Accept Terms and conditions is required'
             )
           })}
-          onSubmit={(values, actions) => {
-            register(values);
+          onSubmit={async (values, actions) => {
+            const res = await register(values);
+            if (res) navigate('/login');
+            actions.resetForm();
           }}
         >
           {(formik) => (
@@ -82,12 +84,12 @@ const Login = () => {
                   message="I agree with MableAI Terms & Conditions"
                 />
               </div>
-              <Button
+              <button
                 type="submit"
                 className="p-3 font-heading font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 text-center bg-primary hover:bg-primary/50"
               >
                 Register
-              </Button>
+              </button>
             </form>
           )}
         </Formik>
@@ -108,4 +110,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

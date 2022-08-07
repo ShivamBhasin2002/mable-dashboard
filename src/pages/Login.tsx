@@ -1,12 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 import Icon from 'utility/icons';
 import TextField from 'components/form/TextField';
 import CheckBox from 'components/form/CheckBox';
+import { login } from 'utility/auth';
 
 const Login = () => {
+  const navigator = useNavigate();
   return (
     <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from">
       <main className="flex flex-col w-[50%] ml-auto justify-center items-center text-light gap-[50px]">
@@ -30,8 +32,9 @@ const Login = () => {
             confirmPassword: Yup.string(),
             rememberMe: Yup.boolean()
           })}
-          onSubmit={(values, actions) => {
-            alert(JSON.stringify(values, null, 2));
+          onSubmit={async (values, actions) => {
+            const res = await login(values);
+            if (res) navigator('/dashboard');
             actions.resetForm();
           }}
         >
