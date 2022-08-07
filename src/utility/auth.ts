@@ -1,13 +1,21 @@
 import axios from 'axios';
 
-const login = async (email: string, password: string) => {
+const login = async ({
+  email,
+  password,
+  rememberMe
+}: {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}) => {
   try {
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
       email,
       password
     });
     // saving the token in local storage
-    localStorage.setItem('token', response.data.token);
+    if (rememberMe) localStorage.setItem('token', response.data.token);
 
     // Call the auth me API and store the data in the local storage
     const authMe = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
@@ -17,8 +25,10 @@ const login = async (email: string, password: string) => {
     });
 
     //   Saving the userId in local storage
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userId', authMe.data.payload.userId);
+    if (rememberMe) {
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userId', authMe.data.payload.userId);
+    }
 
     // const shopDomain = await getShopDomain(authMe.data.payload.userId);
 
@@ -27,12 +37,8 @@ const login = async (email: string, password: string) => {
     // localStorage.setItem("domainPrefix", shopDomain.domainPrefix);
     // localStorage.setItem("shop", shopDomain.shop);
 
-    window.alert('You are logged in');
-    window.location.href = '/dashboard';
-
     return response.data;
   } catch (error) {
-    window.alert('Invalid credentials');
     console.log(error);
     return null;
   }
@@ -56,10 +62,6 @@ const register = async ({
       firstName,
       lastName
     });
-
-    // check the output from this query and update the window.alert
-    window.alert('You are signed up');
-    window.location.href = '/auth/login';
 
     return response.data;
   } catch (error) {
