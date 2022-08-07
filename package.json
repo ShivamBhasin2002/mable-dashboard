@@ -2,6 +2,7 @@
   "name": "mable-dashboard",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dashboard.dev.mable.ai",
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11.10.0",
