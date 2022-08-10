@@ -1,10 +1,13 @@
-import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { useDispatch as useReduxDispatch, useSelector as useReduxSelector, TypedUseSelectorHook } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import {
+  useDispatch as useReduxDispatch,
+  useSelector as useReduxSelector,
+  TypedUseSelectorHook
+} from 'react-redux';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import type {} from 'redux-thunk/extend-redux';
 
 import userSlice from 'redux/reducers/userSlice';
-import { Thunk } from 'yup/lib/util/types';
 
 export const store = configureStore({
   reducer: {
@@ -16,4 +19,4 @@ export const store = configureStore({
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export const useDispatch: ()=>AppDispatch = useReduxDispatch;
+export const useDispatch: () => AppDispatch = useReduxDispatch;

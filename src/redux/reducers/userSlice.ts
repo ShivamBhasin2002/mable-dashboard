@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { AppDispatch, useSelector } from 'redux/store';
+import { AppDispatch } from 'redux/store';
 
 export const loginAsync = createAsyncThunk<
-  userState,
+  string,
   {
     email: string;
     password: string;
@@ -28,7 +28,7 @@ export const loginAsync = createAsyncThunk<
 });
 
 export const registerAsync = createAsyncThunk<
-  userState,
+  { email: string; userId: string },
   {
     email: string;
     password: string;
@@ -40,17 +40,13 @@ export const registerAsync = createAsyncThunk<
     state: userState;
     rejectValue: string;
   }
->('user/register', async ({ email, password, firstName, lastName }, { rejectWithValue }) => {
+>('user/register', async (formData, { rejectWithValue }) => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
-      email,
-      password,
-      firstName,
-      lastName
-    });
-    return res.data;
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, formData);
+    if (res.data.userId) return { userId: res.data.userId, email: formData.email };
+    return rejectWithValue('Registration Failed');
   } catch (err) {
-    return rejectWithValue('Register Failed');
+    return rejectWithValue('Registration Failed');
   }
 });
 
@@ -76,6 +72,7 @@ export const authenticatedAsync = createAsyncThunk<
 });
 
 export interface userState {
+  email: string | undefined;
   userId: string | undefined;
   firstName: string | undefined;
   lastName: string | undefined;
@@ -89,6 +86,7 @@ export interface userState {
 }
 
 const initialState: userState = {
+  email: undefined,
   userId: undefined,
   firstName: undefined,
   lastName: undefined,
@@ -98,7 +96,7 @@ const initialState: userState = {
   isFetching: false,
   isError: false,
   isSuccess: false,
-  errorMessage: ''
+  errorMessage: undefined
 };
 
 export const userSlice = createSlice({
@@ -115,6 +113,7 @@ export const userSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.isFetching = false;
+      state.errorMessage = undefined;
       return state;
     }
   },
@@ -124,10 +123,10 @@ export const userSlice = createSlice({
         state.isFetching = true;
       })
       .addCase(registerAsync.fulfilled, (state, { payload }) => {
-        console.log('payload', payload);
         state.isFetching = false;
         state.isSuccess = true;
-        state.token = payload.token;
+        state.userId = payload.userId;
+        state.email = payload.email;
       })
       .addCase(registerAsync.rejected, (state, { payload }) => {
         state.isFetching = false;
@@ -140,9 +139,9 @@ export const userSlice = createSlice({
       .addCase(loginAsync.fulfilled, (state, { payload }) => {
         state.isFetching = false;
         state.isSuccess = true;
+        state.token = payload;
       })
       .addCase(loginAsync.rejected, (state, { payload }) => {
-        console.log('payload', payload);
         state.isFetching = false;
         state.isError = true;
         state.errorMessage = payload;
@@ -150,7 +149,7 @@ export const userSlice = createSlice({
       .addCase(authenticatedAsync.pending, (state) => {
         state.isFetching = true;
       })
-      .addCase(authenticatedAsync.fulfilled, (state, { payload }) => {
+      .addCase(authenticatedAsync.fulfilled, (state) => {
         state.isFetching = false;
         state.isSuccess = true;
       })
@@ -163,5 +162,5 @@ export const userSlice = createSlice({
   }
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, clearState } = userSlice.actions;
 export default userSlice.reducer;
