@@ -24,7 +24,6 @@ const App = () => {
       </Routes>
     </ChakraProvider>
   );
-  // return <>Page not developed yet</>;
 };
 
 export default App;

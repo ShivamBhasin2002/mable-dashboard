@@ -41,7 +41,7 @@ const SideBar = () => {
           })}
         </div>
       </section>
-      <section className="flex flex-col gap-[20px]">
+      <section className="flex flex-col gap-[10px]">
         <div className="text-[16px] text-light/[0.57] font-heading font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">
           <span className="w-[35px] h-[35px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">
