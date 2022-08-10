@@ -34,8 +34,8 @@ const Login = () => {
     }
   }, [isError, isSuccess]);
   return (
-    <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from">
-      <main className="flex flex-col w-[50%] ml-auto justify-center items-center text-light gap-[50px]">
+    <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from justify-evenly">
+      <main className="flex flex-col justify-center items-center text-light gap-[50px]">
         <header>
           <div className="text-center font-heading font-bold text-[60px]">Login</div>
           <div className="text-center font-text text-2xl">
@@ -61,7 +61,10 @@ const Login = () => {
           }}
         >
           {(formik) => (
-            <form className="w-[600px] flex flex-col gap-6" onSubmit={formik.handleSubmit}>
+            <form
+              className="w-[400px] md:w-[600px] flex flex-col gap-6"
+              onSubmit={formik.handleSubmit}
+            >
               <TextField
                 label="Email"
                 icon="email"
@@ -98,7 +101,7 @@ const Login = () => {
             </form>
           )}
         </Formik>
-        <div className="flex justify-between text-secondary w-[600px] items-center">
+        <div className="flex justify-between text-secondary w-[400px] md:w-[600px] items-center">
           <div>
             Don&apos;t have an account?{' '}
             <Link className="text-light" to="/register">
