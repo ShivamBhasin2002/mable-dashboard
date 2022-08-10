@@ -164,5 +164,4 @@ export const userSlice = createSlice({
 });
 
 export const { logout } = userSlice.actions;
-export const states = useSelector((state) => state.user);
 export default userSlice.reducer;
