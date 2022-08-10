@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import Dashboard from 'pages/Dashboard';
@@ -20,6 +20,7 @@ const App = () => {
             </Layout>
           }
         />
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </ChakraProvider>
   );

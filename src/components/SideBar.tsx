@@ -1,8 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Icon from '../utility/icons';
-import { useSelector } from 'redux/store';
+
+import { useSelector, useDispatch } from 'redux/store';
+import { logout } from 'redux/reducers/userSlice';
 
 const SideBar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { firstName, lastName } = useSelector((state) => state.user);
   const sideBarItems = [
     { title: 'Dashboard', icon: 'dashboard' },
@@ -52,8 +57,14 @@ const SideBar = () => {
             <Icon icon="dropdown" />
           </span>
         </div>
-        <div className="flex text-[14px] text-secondary font-heading font-bold">
-          <span className="mx-[25px] text-2xl">
+        <div className="flex text-[14px] text-secondary font-heading font-bold items-center">
+          <span
+            className="mx-[25px] text-2xl rounded-full hover:bg-secondary/20 p-2 cursor-pointer"
+            onClick={() => {
+              dispatch(logout());
+              navigate('/');
+            }}
+          >
             <Icon icon="logout" />
           </span>
           Logout
