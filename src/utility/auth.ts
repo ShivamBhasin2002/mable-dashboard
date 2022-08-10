@@ -16,27 +16,6 @@ const login = async ({
     });
     // saving the token in local storage
     if (rememberMe) localStorage.setItem('token', response.data.token);
-
-    // Call the auth me API and store the data in the local storage
-    const authMe = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
-      headers: {
-        Authorization: `${response.data.token}`
-      }
-    });
-
-    //   Saving the userId in local storage
-    if (rememberMe) {
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userId', authMe.data.payload.userId);
-    }
-
-    // const shopDomain = await getShopDomain(authMe.data.payload.userId);
-
-    //   Saving the details in the local storage
-    // localStorage.setItem("domain", shopDomain.domain);
-    // localStorage.setItem("domainPrefix", shopDomain.domainPrefix);
-    // localStorage.setItem("shop", shopDomain.shop);
-
     return response.data;
   } catch (error) {
     console.log(error);
@@ -70,15 +49,14 @@ const register = async ({
   }
 };
 
-const isAuthenticated = async () => {
+const isAuthenticated = async (token?: string) => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
       headers: {
-        Authorization: `${localStorage.getItem('token')}`
+        Authorization: `${token || localStorage.getItem('token')}`
       }
     });
-
-    return response.data.auth;
+    return response.data;
   } catch (error) {
     console.log(error);
     return false;

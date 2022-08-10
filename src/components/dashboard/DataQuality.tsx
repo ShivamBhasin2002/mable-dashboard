@@ -16,7 +16,7 @@ import {
 import ComponentWrapper from 'components/dashboard/ComponentWrapper';
 
 // importing utility functions
-import { createGradient } from 'utility/functions';
+import { createGradient } from 'utility/dashboard';
 
 // Registering all the react-chartjs-2 components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
@@ -76,7 +76,7 @@ const LineChart: FC<LineChartProps> = ({ data }) => {
       };
       setChartData(chartData);
     }
-  }, [data, chartData]);
+  }, []);
   return (
     <div>
       <Line
