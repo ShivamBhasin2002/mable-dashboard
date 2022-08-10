@@ -19,7 +19,8 @@
     "paths": {
       "components/*": ["components/*"],
       "utility/*": ["utility/*"],
-      "assets/*": ["assets/*"]
+      "assets/*": ["assets/*"],
+      "redux/*": ["redux/*"]
     }
   },
   "include": ["src"],

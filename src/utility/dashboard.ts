@@ -9,3 +9,17 @@ export const createGradient = (
   colors.forEach((color) => gradient.addColorStop(color.stop, color.color));
   return gradient;
 };
+
+// const dataQuality = () => {};
+
+// const pageSpeed = () => {};
+
+// const events = () => {};
+
+// const dataContainedPerEvent = () => {};
+
+// const warningCenter = () => {};
+
+// const funnelAnalysis = () => {};
+
+// const eventsPerDay = () => {};

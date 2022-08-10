@@ -1,14 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
 
 import Icon from 'utility/icons';
 import TextField from 'components/form/TextField';
 import CheckBox from 'components/form/CheckBox';
-import { login } from 'utility/auth';
+
+import { dispatch, useSelector } from 'redux/store';
+import { loginAsync, states } from 'redux/reducers/userSlice';
 
 const Login = () => {
+  const { isFetching, isError, isSuccess } = useSelector((state) => state.user);
   const navigator = useNavigate();
+
   return (
     <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from">
       <main className="flex flex-col w-[50%] ml-auto justify-center items-center text-light gap-[50px]">
@@ -32,10 +37,8 @@ const Login = () => {
             confirmPassword: Yup.string(),
             rememberMe: Yup.boolean()
           })}
-          onSubmit={async (values, actions) => {
-            const res = await login(values);
-            if (res) navigator('/dashboard');
-            actions.resetForm();
+          onSubmit={(values) => {
+            dispatch(loginAsync(values));
           }}
         >
           {(formik) => (
