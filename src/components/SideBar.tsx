@@ -1,8 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Icon from '../utility/icons';
-import { useSelector } from 'redux/store';
+
+import { useSelector, useDispatch } from 'redux/store';
+import { logout } from 'redux/reducers/userSlice';
 
 const SideBar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { firstName, lastName } = useSelector((state) => state.user);
   const sideBarItems = [
     { title: 'Dashboard', icon: 'dashboard' },
@@ -36,7 +41,7 @@ const SideBar = () => {
           })}
         </div>
       </section>
-      <section className="flex flex-col gap-[20px]">
+      <section className="flex flex-col gap-[10px]">
         <div className="text-[16px] text-light/[0.57] font-heading font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">
           <span className="w-[35px] h-[35px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">
@@ -52,8 +57,14 @@ const SideBar = () => {
             <Icon icon="dropdown" />
           </span>
         </div>
-        <div className="flex text-[14px] text-secondary font-heading font-bold">
-          <span className="mx-[25px] text-2xl">
+        <div className="flex text-[14px] text-secondary font-heading font-bold items-center">
+          <span
+            className="mx-[25px] text-2xl rounded-full hover:bg-secondary/20 p-2 cursor-pointer"
+            onClick={() => {
+              dispatch(logout());
+              navigate('/');
+            }}
+          >
             <Icon icon="logout" />
           </span>
           Logout
