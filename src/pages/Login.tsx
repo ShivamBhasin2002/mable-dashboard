@@ -13,11 +13,16 @@ import { useDispatch, useSelector } from 'redux/store';
 import { loginAsync, clearState } from 'redux/reducers/userSlice';
 
 const Login = () => {
+  const navigator = useNavigate();
+  const dispatch = useDispatch();
   const { isFetching, isError, isSuccess, errorMessage, email } = useSelector(
     (state) => state.user
   );
-  const navigator = useNavigate();
-  const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
   useEffect(() => {
     if (isError) {
       toast.error(errorMessage || '');

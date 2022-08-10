@@ -17,6 +17,11 @@ const Register = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+  useEffect(() => {
     if (isError) {
       toast.error(errorMessage || '');
       dispatch(clearState());

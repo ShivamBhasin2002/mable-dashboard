@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import Icon from '../utility/icons';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { useSelector } from 'redux/store';
 
 const SideBar = () => {
-  const user: any = useSelector<RootState>((state) => state.user); //eslint-disable-line
+  const { firstName, lastName } = useSelector((state) => state.user);
   const sideBarItems = [
     { title: 'Dashboard', icon: 'dashboard' },
     { title: 'Order Analysis', icon: 'order' },
@@ -41,15 +40,13 @@ const SideBar = () => {
         <div className="text-[16px] text-light/[0.57] font-heading font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">
           <span className="w-[35px] h-[35px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">
-            {user.firstName[0]}
+            {firstName !== undefined ? firstName[0] : 'U'}
           </span>
           <span className="inline-flex flex-col ">
             <span className="text-[16px] text-light font-heading font-bold h-[17px]">
-              {`${user.firstName} ${user.lastName}`}
+              {`${firstName || ''} ${lastName || ''}`}
             </span>
-            <span className="text-[13px] text-secondary font-heading ">
-              {user.designation || 'Mable User'}
-            </span>
+            <span className="text-[13px] text-secondary font-heading ">Mable User</span>
           </span>
           <span className="text-md text-secondary">
             <Icon icon="dropdown" />

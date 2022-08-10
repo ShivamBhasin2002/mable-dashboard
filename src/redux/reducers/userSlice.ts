@@ -50,22 +50,25 @@ export const registerAsync = createAsyncThunk<
   }
 });
 
-export const authenticatedAsync = createAsyncThunk<
+export const isAuthenticatedAsync = createAsyncThunk<
   userState,
-  string,
+  string | null | undefined,
   {
     dispatch: AppDispatch;
     state: userState;
     rejectValue: string;
   }
->('user/authenticate', async (token: string, { rejectWithValue }) => {
+>('user/authenticate', async (token, { rejectWithValue }) => {
   try {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
-      headers: {
-        Authorization: token
-      }
-    });
-    return res.data;
+    if (token) {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
+        headers: {
+          Authorization: token
+        }
+      });
+      if (res.data.auth) return res.data.payload;
+    }
+    return rejectWithValue('Authentication failed');
   } catch (err) {
     return rejectWithValue('Authentication failed');
   }
@@ -146,15 +149,19 @@ export const userSlice = createSlice({
         state.isError = true;
         state.errorMessage = payload;
       })
-      .addCase(authenticatedAsync.pending, (state) => {
+      .addCase(isAuthenticatedAsync.pending, (state) => {
         state.isFetching = true;
       })
-      .addCase(authenticatedAsync.fulfilled, (state) => {
+      .addCase(isAuthenticatedAsync.fulfilled, (state, { payload }) => {
         state.isFetching = false;
         state.isSuccess = true;
+        state.userId = payload.userId;
+        state.firstName = payload.firstName;
+        state.lastName = payload.lastName;
+        state.iat = payload.iat;
+        state.exp = payload.exp;
       })
-      .addCase(authenticatedAsync.rejected, (state, { payload }) => {
-        console.log('fetchUserBytoken');
+      .addCase(isAuthenticatedAsync.rejected, (state, { payload }) => {
         state.isFetching = false;
         state.isError = true;
         state.errorMessage = payload;
