@@ -1,14 +1,38 @@
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import toast from 'react-hot-toast';
+import { Spinner } from '@chakra-ui/react';
 
 import Icon from 'utility/icons';
 import TextField from 'components/form/TextField';
 import CheckBox from 'components/form/CheckBox';
-import { login } from 'utility/auth';
+
+import { useDispatch, useSelector } from 'redux/store';
+import { loginAsync, clearState } from 'redux/reducers/userSlice';
 
 const Login = () => {
   const navigator = useNavigate();
+  const dispatch = useDispatch();
+  const { isFetching, isError, isSuccess, errorMessage, email } = useSelector(
+    (state) => state.user
+  );
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+  useEffect(() => {
+    if (isError) {
+      toast.error(errorMessage || '');
+      dispatch(clearState());
+    }
+    if (isSuccess) {
+      dispatch(clearState());
+      navigator('/dashboard');
+    }
+  }, [isError, isSuccess]);
   return (
     <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from">
       <main className="flex flex-col w-[50%] ml-auto justify-center items-center text-light gap-[50px]">
@@ -20,7 +44,7 @@ const Login = () => {
         </header>
         <Formik
           initialValues={{
-            email: '',
+            email: email || '',
             password: '',
             rememberMe: false
           }}
@@ -32,10 +56,8 @@ const Login = () => {
             confirmPassword: Yup.string(),
             rememberMe: Yup.boolean()
           })}
-          onSubmit={async (values, actions) => {
-            const res = await login(values);
-            if (res) navigator('/dashboard');
-            actions.resetForm();
+          onSubmit={(values) => {
+            dispatch(loginAsync(values));
           }}
         >
           {(formik) => (
@@ -68,8 +90,9 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className="p-3 font-heading font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 text-center bg-primary hover:bg-primary/50"
+                className="p-3 font-heading font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 bg-primary hover:bg-primary/50 flex gap-4 justify-center items-center"
               >
+                {isFetching && <Spinner />}
                 Login
               </button>
             </form>

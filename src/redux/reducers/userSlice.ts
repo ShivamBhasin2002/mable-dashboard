@@ -1,0 +1,173 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { AppDispatch } from 'redux/store';
+
+export const loginAsync = createAsyncThunk<
+  string,
+  {
+    email: string;
+    password: string;
+    rememberMe: boolean;
+  },
+  {
+    dispatch: AppDispatch;
+    state: userState;
+    rejectValue: string;
+  }
+>('user/login', async ({ email, password, rememberMe }, thunkApi) => {
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+      email: email,
+      password: password
+    });
+    if (rememberMe) localStorage.setItem('token', res.data.token);
+    return res.data.token;
+  } catch (err) {
+    return thunkApi.rejectWithValue('Login Failed');
+  }
+});
+
+export const registerAsync = createAsyncThunk<
+  { email: string; userId: string },
+  {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+  },
+  {
+    dispatch: AppDispatch;
+    state: userState;
+    rejectValue: string;
+  }
+>('user/register', async (formData, { rejectWithValue }) => {
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, formData);
+    if (res.data.userId) return { userId: res.data.userId, email: formData.email };
+    return rejectWithValue('Registration Failed');
+  } catch (err) {
+    return rejectWithValue('Registration Failed');
+  }
+});
+
+export const isAuthenticatedAsync = createAsyncThunk<
+  userState,
+  string | null | undefined,
+  {
+    dispatch: AppDispatch;
+    state: userState;
+    rejectValue: string;
+  }
+>('user/authenticate', async (token, { rejectWithValue }) => {
+  try {
+    if (token) {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
+        headers: {
+          Authorization: token
+        }
+      });
+      if (res.data.auth) return res.data.payload;
+    }
+    return rejectWithValue('Authentication failed');
+  } catch (err) {
+    return rejectWithValue('Authentication failed');
+  }
+});
+
+export interface userState {
+  email: string | undefined;
+  userId: string | undefined;
+  firstName: string | undefined;
+  lastName: string | undefined;
+  iat: number | undefined;
+  exp: number | undefined;
+  token: string | undefined;
+  isFetching: boolean;
+  isError: boolean;
+  isSuccess: boolean;
+  errorMessage: string | undefined;
+}
+
+const initialState: userState = {
+  email: undefined,
+  userId: undefined,
+  firstName: undefined,
+  lastName: undefined,
+  iat: undefined,
+  exp: undefined,
+  token: localStorage.getItem('token') || undefined,
+  isFetching: false,
+  isError: false,
+  isSuccess: false,
+  errorMessage: undefined
+};
+
+export const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    logout: (state) => {
+      localStorage.removeItem('token');
+      state = initialState;
+      state.token = '';
+      return state;
+    },
+    clearState: (state) => {
+      state.isError = false;
+      state.isSuccess = false;
+      state.isFetching = false;
+      state.errorMessage = undefined;
+      return state;
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(registerAsync.pending, (state) => {
+        state.isFetching = true;
+      })
+      .addCase(registerAsync.fulfilled, (state, { payload }) => {
+        state.isFetching = false;
+        state.isSuccess = true;
+        state.userId = payload.userId;
+        state.email = payload.email;
+      })
+      .addCase(registerAsync.rejected, (state, { payload }) => {
+        state.isFetching = false;
+        state.isError = true;
+        state.errorMessage = payload;
+      })
+      .addCase(loginAsync.pending, (state) => {
+        state.isFetching = true;
+      })
+      .addCase(loginAsync.fulfilled, (state, { payload }) => {
+        state.isFetching = false;
+        state.isSuccess = true;
+        state.token = payload;
+      })
+      .addCase(loginAsync.rejected, (state, { payload }) => {
+        state.isFetching = false;
+        state.isError = true;
+        state.errorMessage = payload;
+      })
+      .addCase(isAuthenticatedAsync.pending, (state) => {
+        state.isFetching = true;
+      })
+      .addCase(isAuthenticatedAsync.fulfilled, (state, { payload }) => {
+        state.isFetching = false;
+        state.isSuccess = true;
+        state.userId = payload.userId;
+        state.firstName = payload.firstName;
+        state.lastName = payload.lastName;
+        state.iat = payload.iat;
+        state.exp = payload.exp;
+      })
+      .addCase(isAuthenticatedAsync.rejected, (state, { payload }) => {
+        state.isFetching = false;
+        state.isError = true;
+        state.errorMessage = payload;
+      });
+  }
+});
+
+export const { logout, clearState } = userSlice.actions;
+export default userSlice.reducer;
