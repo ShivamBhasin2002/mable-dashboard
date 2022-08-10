@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
+import type {} from 'redux-thunk/extend-redux';
 
 import Icon from 'utility/icons';
 import TextField from 'components/form/TextField';
