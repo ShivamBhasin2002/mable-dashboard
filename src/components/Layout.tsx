@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useToast, Spinner } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 
 import SideBar from 'components/SideBar';
 
@@ -28,7 +28,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     }
   }, [isError]);
   return isFetching ? (
-    <Loading/>
+    <Loading />
   ) : (
     <div className="flex flex-row h-min-screen bg-background">
       <SideBar />

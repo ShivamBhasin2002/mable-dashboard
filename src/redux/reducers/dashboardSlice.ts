@@ -55,7 +55,7 @@ export const dashboardSlice = createSlice({
     setShop: (state, { payload }) => {
       state.shop = payload;
     },
-    clearStatus: (state)=>{
+    clearStatus: (state) => {
       state.errorMsg = undefined;
       state.status = 'idle';
     }
