@@ -94,7 +94,7 @@ const DataContainerPerEvent: FC<any> = ({ data }) => {
     ];
   return (
     <ComponentWrapper title="Data Contained Per Event" width={560} height={335}>
-      <div className="flex flex-row  justify-center gap-[20px]">
+      <div className="flex flex-row flex-wrap  justify-center gap-[20px]">
         <div>
           <Bar data={data[0].data} width={450} height={80} options={barOptions} />
         </div>

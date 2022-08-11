@@ -4,11 +4,11 @@ import { AppDispatch } from 'redux/store';
 
 export const fetchShopAsync = createAsyncThunk<
   shop[],
-  { token: string },
+  string | undefined,
   { dispatch: AppDispatch; state: dashboardState; rejectValue: string }
->('dashboard/fetchShop', async ({ token }, { rejectWithValue }) => {
+>('dashboard/fetchShop', async (token, { rejectWithValue }) => {
   try {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/get-user-shops`, {
+    const res = await axios.get(`${process.env.REACT_APP_MA_URL}/get-user-shops`, {
       headers: { Authorization: `Token ${token}` }
     });
     if (res.data.shops.length > 0) return res.data.shops;
@@ -37,6 +37,10 @@ export interface dashboardState {
   errorMsg: string | undefined;
   start: Date;
   end: Date;
+  DQ_COM: number;
+  P_MDB: number;
+  P_SH: number;
+  dataQualityGrouped: { date: string; DQ_COM: number }[];
 }
 
 const initialState: dashboardState = {
@@ -45,7 +49,11 @@ const initialState: dashboardState = {
   status: 'idle',
   errorMsg: undefined,
   start: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-  end: new Date()
+  end: new Date(),
+  DQ_COM: 0,
+  P_MDB: 0,
+  P_SH: 0,
+  dataQualityGrouped: []
 };
 
 export const dashboardSlice = createSlice({
@@ -54,6 +62,12 @@ export const dashboardSlice = createSlice({
   reducers: {
     setShop: (state, { payload }) => {
       state.shop = payload;
+    },
+    setDataQuality: (state, { payload }) => {
+      state.DQ_COM = payload.DQ_COM;
+      state.P_MDB = payload.P_MDB;
+      state.P_SH = payload.P_SH;
+      state.dataQualityGrouped = payload.dataQualityGrouped;
     },
     clearStatus: (state) => {
       state.errorMsg = undefined;
@@ -77,5 +91,5 @@ export const dashboardSlice = createSlice({
   }
 });
 
-export const { setShop } = dashboardSlice.actions;
+export const { setShop, setDataQuality, clearStatus } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

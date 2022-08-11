@@ -10,16 +10,15 @@ export const createGradient = (
   return gradient;
 };
 
-// const dataQuality = () => {};
+export const getColor = (value: number) => {
+  if (value >= 0.9) return '#0DCE1C';
+  else if (value >= 0.8) return '#D99A43';
+  else return '#EF4E5C';
+};
 
-// const pageSpeed = () => {};
-
-// const events = () => {};
-
-// const dataContainedPerEvent = () => {};
-
-// const warningCenter = () => {};
-
-// const funnelAnalysis = () => {};
-
-// const eventsPerDay = () => {};
+export const getMessage = (value: number) => {
+  if (value >= 0.95) return 'Excellent';
+  if (value >= 0.9) return 'Great';
+  else if (value >= 0.8) return 'Decent';
+  else return 'Poor';
+};
