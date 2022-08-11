@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useToast } from '@chakra-ui/react';
 
 import SideBar from 'components/SideBar';
 
@@ -12,6 +12,7 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ children }) => {
+  const toast = useToast();
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const { isError, isFetching } = useSelector((state) => state.user);
@@ -21,7 +22,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   useEffect(() => {
     if (isError) {
       dispatch(clearState());
-      toast.error('Login Required');
+      toast({ title: 'Login Required', status: 'error', isClosable: true, position: 'top-right' });
       navigator('/login');
     }
   }, [isError]);

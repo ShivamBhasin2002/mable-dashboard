@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import toast from 'react-hot-toast';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, useToast } from '@chakra-ui/react';
 
 import Icon from 'utility/icons';
 import TextField from 'components/form/TextField';
@@ -13,6 +12,7 @@ import { useDispatch, useSelector } from 'redux/store';
 import { loginAsync, clearState } from 'redux/reducers/userSlice';
 
 const Login = () => {
+  const toast = useToast();
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const { isFetching, isError, isSuccess, errorMessage, email } = useSelector(
@@ -25,7 +25,12 @@ const Login = () => {
   }, []);
   useEffect(() => {
     if (isError) {
-      toast.error(errorMessage || '');
+      toast({
+        title: errorMessage,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
       dispatch(clearState());
     }
     if (isSuccess) {
