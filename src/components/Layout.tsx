@@ -1,11 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from '@chakra-ui/react';
+import { useToast, Spinner } from '@chakra-ui/react';
 
 import SideBar from 'components/SideBar';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/userSlice';
+import Loading from 'components/Loading';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -27,9 +28,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     }
   }, [isError]);
   return isFetching ? (
-    <div className="flex flex-row items-center justify-center h-min-screen bg-background h-screen">
-      lOADING
-    </div>
+    <Loading/>
   ) : (
     <div className="flex flex-row h-min-screen bg-background">
       <SideBar />
