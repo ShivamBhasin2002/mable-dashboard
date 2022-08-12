@@ -5,7 +5,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Bar } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, ChartDataLabels);
 
-import { createGradient } from 'utility/dashboard';
+import { createGradient } from 'utility/functions';
 import { useSelector } from 'redux/store';
 
 const FunnelAnalysis = () => {

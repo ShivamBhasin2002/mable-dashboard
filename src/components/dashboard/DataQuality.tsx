@@ -16,7 +16,7 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
 
 import ComponentWrapper from 'components/dashboard/ComponentWrapper';
-import { createGradient, getColor, getMessage } from 'utility/dashboard';
+import { createGradient, getColor, getMessage } from 'utility/functions';
 import { useSelector } from 'redux/store';
 
 const LineChart = () => {
