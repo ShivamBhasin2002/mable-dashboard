@@ -6,7 +6,10 @@ import Login from 'pages/Login';
 import Register from 'pages/Register';
 import Layout from 'components/Layout';
 
+import { useSelector } from 'redux/store';
+
 const App = () => {
+  const { screen } = useSelector((state) => state.general);
   return (
     <ChakraProvider>
       <Routes>
@@ -16,7 +19,11 @@ const App = () => {
           path="/dashboard"
           element={
             <Layout>
-              <Dashboard />
+              {screen === 'Dashboard' && <Dashboard />}
+              {screen === 'Order Analysis' && <Dashboard />}
+              {screen === 'Event Quality' && null}
+              {screen === 'Settings' && null}
+              {screen === 'Tutorial' && null}
             </Layout>
           }
         />

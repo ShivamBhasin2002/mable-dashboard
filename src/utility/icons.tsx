@@ -12,7 +12,7 @@ import {
   AiFillEye,
   AiFillEyeInvisible
 } from 'react-icons/ai';
-import { BsBarChartLine, BsBorderWidth } from 'react-icons/bs';
+import { BsBarChartLine, BsBorderWidth, BsQuestionCircle } from 'react-icons/bs';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { TbReportMoney } from 'react-icons/tb';
 import { BiRefresh, BiDoughnutChart } from 'react-icons/bi';
@@ -64,6 +64,8 @@ const Icon: React.FC<iconProps> = ({ icon, size }) => {
       return <AiFillEye size={size} />;
     case 'hidePassword':
       return <AiFillEyeInvisible size={size} />;
+    case 'tutorial':
+      return <BsQuestionCircle size={size} />;
   }
   return null;
 };

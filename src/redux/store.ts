@@ -9,11 +9,13 @@ import type {} from 'redux-thunk/extend-redux';
 
 import userSlice from 'redux/reducers/userSlice';
 import dashboardSlice from 'redux/reducers/dashboardSlice';
+import generalSlice from './reducers/generalSlice';
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
-    dashboard: dashboardSlice
+    dashboard: dashboardSlice,
+    general: generalSlice
   },
   middleware: [thunk as ThunkMiddleware]
 });

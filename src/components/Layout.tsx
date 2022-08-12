@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
 import SideBar from 'components/SideBar';
+import DashboardHeader from 'components/dashboard/Header';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/userSlice';
@@ -38,7 +39,10 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   ) : (
     <div className="flex flex-row h-min-screen bg-background">
       <SideBar />
-      {children}
+      <div className="w-full h-min-screen bg-background flex flex-col px-[30px] py-[30px]">
+        <DashboardHeader />
+        {children}
+      </div>
     </div>
   );
 };

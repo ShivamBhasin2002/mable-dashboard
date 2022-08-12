@@ -1,21 +1,22 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import Icon from 'utility/icons';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { logout } from 'redux/reducers/userSlice';
+import { setScreen } from 'redux/reducers/generalSlice';
 
 const SideBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { firstName, lastName } = useSelector((state) => state.user);
+  const { screen } = useSelector((state) => state.general);
   const sideBarItems = [
     { title: 'Dashboard', icon: 'dashboard' },
     { title: 'Order Analysis', icon: 'order' },
     { title: 'Event Quality', icon: 'eventQuality' },
-    { title: 'Settings', icon: 'settings' }
+    { title: 'Settings', icon: 'settings' },
+    { title: 'Tutorial', icon: 'tutorial' }
   ];
-  const [activeItem, setActiveItem] = useState(0);
   return (
     <aside
       id="side-bar"
@@ -25,14 +26,14 @@ const SideBar = () => {
       <section className="flex-grow">
         <div className="flex flex-col gap-[5px]">
           <div className=" ml-[9px] text-[16px] text-light/[0.57] font-heading font-bold">MENU</div>
-          {sideBarItems.map((item, i) => {
+          {sideBarItems.map((item) => {
             return (
               <div
-                key={i}
+                key={item.icon}
                 className={`w-[228px] flex flex-row items-center ${
-                  activeItem === i ? 'text-light bg-primary/[0.20] ' : 'text-secondary'
+                  screen === item.title ? 'text-light bg-primary/[0.20] ' : 'text-secondary'
                 } py-[18px] rounded-[8px] cursor-pointer text-[14px] font-heading font-bold`}
-                onClick={(): void => setActiveItem(i)}
+                onClick={() => dispatch(setScreen(item.title))}
               >
                 <span className="mx-[25px] text-2xl">{<Icon icon={item.icon} />}</span>
                 {item.title}

@@ -1,5 +1,4 @@
 // importing the Dashboard components
-import DashboardHeader from 'components/dashboard/Header';
 import DataQuality from 'components/dashboard/DataQuality';
 import WarningCenter from 'components/dashboard/WarningCenter';
 import FunnelAnalysis from 'components/dashboard/FunnelAnalysis';
@@ -31,28 +30,25 @@ const Dashboard = () => {
     }
   }, [status]);
   return status === 'success' ? (
-    <div className="w-full h-min-screen bg-background flex flex-col px-[30px] py-[30px]">
-      <DashboardHeader />
-      <main className="flex-grow">
-        <section className="flex flex-row justify-evenly gap-[30px] flex-wrap mt-[40px]">
-          <div className="flex flex-col w-[920px] gap-[40px] ">
-            <div>
-              <DataQuality />
-            </div>
-            <div className="flex flex-row gap-[30px] flex-wrap">
-              <PageSpeed />
-              <Events />
-            </div>
-            <DataContainedPerEvent />
+    <main className="flex-grow">
+      <section className="flex flex-row justify-evenly gap-[30px] flex-wrap mt-[40px]">
+        <div className="flex flex-col w-[920px] gap-[40px] ">
+          <div>
+            <DataQuality />
           </div>
-          <div className="flex flex-col gap-[30px]">
-            <WarningCenter />
-            <FunnelAnalysis />
-            <EventsPerDay />
+          <div className="flex flex-row gap-[30px] flex-wrap">
+            <PageSpeed />
+            <Events />
           </div>
-        </section>
-      </main>
-    </div>
+          <DataContainedPerEvent />
+        </div>
+        <div className="flex flex-col gap-[30px]">
+          <WarningCenter />
+          <FunnelAnalysis />
+          <EventsPerDay />
+        </div>
+      </section>
+    </main>
   ) : (
     <div className="w-full h-min-screen">
       <Loading message="Fetching Shops" />
