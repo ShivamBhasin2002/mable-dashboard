@@ -19,7 +19,7 @@ const SideBar = () => {
   return (
     <aside
       id="side-bar"
-      className="sticky top-0 left-0 w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[50px] flex flex-col gap-16 px-[25px]"
+      className="sticky top-0 left-0 w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[50px] lg:flex flex-col gap-16 px-[25px] hidden"
     >
       <header className="text-light text-center font-bold text-3xl">Mable</header>
       <section className="flex-grow">
@@ -59,7 +59,7 @@ const SideBar = () => {
         </div>
         <div className="flex text-[14px] text-secondary font-heading font-bold items-center">
           <span
-            className="mx-[25px] text-2xl rounded-full hover:bg-secondary/20 p-2 cursor-pointer"
+            className="mr-[25px] ml-[10px] text-2xl rounded-full hover:bg-secondary/20 p-2 cursor-pointer"
             onClick={() => {
               dispatch(logout());
               navigate('/');

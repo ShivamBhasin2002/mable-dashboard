@@ -16,7 +16,7 @@ import { useToast } from '@chakra-ui/react';
 import data from 'utility/data.json';
 import Loading from 'components/Loading';
 const { dashboard } = data;
-const { warningCenter, eventsPerDay, dataContainedPerEvent } = dashboard;
+const { warningCenter, eventsPerDay } = dashboard;
 import { clearStatus } from 'redux/reducers/dashboardSlice';
 
 const Dashboard = () => {
@@ -39,12 +39,14 @@ const Dashboard = () => {
       <main className="flex-grow">
         <section className="flex flex-row justify-evenly gap-[30px] flex-wrap mt-[40px]">
           <div className="flex flex-col w-[920px] gap-[40px] ">
-            <DataQuality />
+            <div>
+              <DataQuality />
+            </div>
             <div className="flex flex-row gap-[30px] flex-wrap">
               <PageSpeed />
               <Events />
             </div>
-            <DataContainedPerEvent data={dataContainedPerEvent} />
+            <DataContainedPerEvent />
           </div>
           <div className="flex flex-col gap-[30px]">
             <WarningCenter data={warningCenter} />

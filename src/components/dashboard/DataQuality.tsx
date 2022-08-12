@@ -92,7 +92,7 @@ const DataQuality = () => {
   // useEffect()
   return (
     <ComponentWrapper height={400} width={920} title="Data Quality">
-      <div className="flex flex-row justify-between flex-wrap">
+      <div className="flex flex-row justify-evenly flex-wrap">
         <div className="flex flex-col gap-4 w-[225px] justify-evenly">
           <div className="flex flex-row gap-4 items-center text-primary">
             <CircularProgress

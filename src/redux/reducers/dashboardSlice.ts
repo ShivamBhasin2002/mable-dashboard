@@ -53,6 +53,21 @@ export interface dashboardState {
     'Add Payment Info': number;
     Purchase: number;
   };
+  dataContainedPerEventBarChart: {
+    _id: string;
+    attribute_quality: string | undefined;
+    event_quality: string | undefined;
+  }[];
+  dataContaindedPerEventDoughnutChart: {
+    backend: number;
+    frontend: number;
+    mableEngine: number;
+    unavailable: number;
+  };
+  attribution: number;
+  event: number;
+  totatlAttribution: number;
+  totalEvent: number;
 }
 
 const initialState: dashboardState = {
@@ -77,7 +92,18 @@ const initialState: dashboardState = {
     'Initiate Checkout': 0,
     'Add Payment Info': 0,
     Purchase: 0
-  }
+  },
+  dataContainedPerEventBarChart: [],
+  dataContaindedPerEventDoughnutChart: {
+    backend: 0,
+    frontend: 0,
+    mableEngine: 0,
+    unavailable: 0
+  },
+  attribution: 0,
+  event: 0,
+  totalEvent: 0,
+  totatlAttribution: 0
 };
 
 export const dashboardSlice = createSlice({
