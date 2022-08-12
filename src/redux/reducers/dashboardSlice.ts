@@ -41,6 +41,9 @@ export interface dashboardState {
   P_MDB: number;
   P_SH: number;
   dataQualityGrouped: { date: string; DQ_COM: number }[];
+  T_M_AVG: number | string;
+  T_SH_AVG: number | string;
+  PS_M: number | string;
 }
 
 const initialState: dashboardState = {
@@ -53,7 +56,10 @@ const initialState: dashboardState = {
   DQ_COM: 0,
   P_MDB: 0,
   P_SH: 0,
-  dataQualityGrouped: []
+  dataQualityGrouped: [],
+  T_M_AVG: 0,
+  T_SH_AVG: 0,
+  PS_M: 0
 };
 
 export const dashboardSlice = createSlice({

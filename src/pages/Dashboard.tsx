@@ -16,7 +16,7 @@ import { useToast } from '@chakra-ui/react';
 import data from 'utility/data.json';
 import Loading from 'components/Loading';
 const { dashboard } = data;
-const { warningCenter, pageSpeed, events, funnelAnalysis, eventsPerDay, dataContainedPerEvent } =
+const { warningCenter, events, funnelAnalysis, eventsPerDay, dataContainedPerEvent } =
   dashboard;
 import { clearStatus } from 'redux/reducers/dashboardSlice';
 
@@ -42,7 +42,7 @@ const Dashboard = () => {
           <div className="flex flex-col w-[920px] gap-[40px] ">
             <DataQuality />
             <div className="flex flex-row gap-[30px] flex-wrap">
-              <PageSpeed data={pageSpeed} />
+              <PageSpeed/>
               <Events data={events} />
             </div>
             <DataContainedPerEvent data={dataContainedPerEvent} />
