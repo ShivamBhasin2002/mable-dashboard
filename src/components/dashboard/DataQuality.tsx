@@ -47,7 +47,7 @@ const LineChart = () => {
       };
       setChartData(chartData);
     }
-  }, []);
+  }, [dataQualityGrouped]);
   return (
     <div>
       <Line

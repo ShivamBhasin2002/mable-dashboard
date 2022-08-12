@@ -46,6 +46,13 @@ export interface dashboardState {
   T_SH_AVG: number | string;
   PS_M: number | string;
   N_Total: number | string;
+  total_events: {
+    'Page View': number;
+    'Add to Cart': number;
+    'Initiate Checkout': number;
+    'Add Payment Info': number;
+    Purchase: number;
+  };
 }
 
 const initialState: dashboardState = {
@@ -63,7 +70,14 @@ const initialState: dashboardState = {
   T_SH_AVG: 0,
   PS_M: 0,
   N_Total: 0,
-  AVG_T_DIFF: 0
+  AVG_T_DIFF: 0,
+  total_events: {
+    'Page View': 0,
+    'Add to Cart': 0,
+    'Initiate Checkout': 0,
+    'Add Payment Info': 0,
+    Purchase: 0
+  }
 };
 
 export const dashboardSlice = createSlice({
