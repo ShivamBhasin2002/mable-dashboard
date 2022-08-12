@@ -12,11 +12,8 @@ import { useEffect } from 'react';
 import { useSelector } from 'redux/store';
 import { useToast } from '@chakra-ui/react';
 
-// importing the data for the Dashboard
-import data from 'utility/data.json';
 import Loading from 'components/Loading';
-const { dashboard } = data;
-const { warningCenter, eventsPerDay } = dashboard;
+
 import { clearStatus } from 'redux/reducers/dashboardSlice';
 
 const Dashboard = () => {
@@ -49,9 +46,9 @@ const Dashboard = () => {
             <DataContainedPerEvent />
           </div>
           <div className="flex flex-col gap-[30px]">
-            <WarningCenter data={warningCenter} />
+            <WarningCenter />
             <FunnelAnalysis />
-            <EventsPerDay data={eventsPerDay} />
+            <EventsPerDay />
           </div>
         </section>
       </main>

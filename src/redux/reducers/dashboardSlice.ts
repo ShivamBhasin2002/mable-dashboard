@@ -68,6 +68,8 @@ export interface dashboardState {
   event: number;
   totatlAttribution: number;
   totalEvent: number;
+  warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
+  eventsPerDay: { date: string; value: string }[];
 }
 
 const initialState: dashboardState = {
@@ -103,7 +105,9 @@ const initialState: dashboardState = {
   attribution: 0,
   event: 0,
   totalEvent: 0,
-  totatlAttribution: 0
+  totatlAttribution: 0,
+  warnings: [],
+  eventsPerDay: []
 };
 
 export const dashboardSlice = createSlice({
