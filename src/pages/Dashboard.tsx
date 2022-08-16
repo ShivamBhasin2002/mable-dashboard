@@ -8,39 +8,54 @@ import Events from 'components/dashboard/Events';
 import EventsPerDay from 'components/dashboard/EventsPerDay';
 import DataContainedPerEvent from 'components/dashboard/DataContainedPerEvent';
 
-// importing the data for the Dashboard
-import data from 'utility/data.json';
-const { dashboard } = data;
-const {
-  usersOnline,
-  dataQuality,
-  warningCenter,
-  pageSpeed,
-  events,
-  funnelAnalysis,
-  eventsPerDay,
-  dataContainedPerEvent
-} = dashboard;
+import { useEffect } from 'react';
+import { useSelector } from 'redux/store';
+import { useToast } from '@chakra-ui/react';
+
+import Loading from 'components/Loading';
+
+import { clearStatus } from 'redux/reducers/dashboardSlice';
 
 const Dashboard = () => {
-  return (
+  const toast = useToast();
+  const { status, errorMsg } = useSelector((state) => state.dashboard);
+  useEffect(() => {
+    if (status === 'error') {
+      toast({
+        title: errorMsg,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
+      clearStatus();
+    }
+  }, [status]);
+  return status === 'success' ? (
     <div className="w-full h-min-screen bg-background flex flex-col px-[30px] py-[30px]">
-      <DashboardHeader usersOnline={usersOnline} />
-      <main className="flex flex-row gap-[30px] flex-grow flex-wrap mt-[40px]">
-        <div className="flex flex-col w-[920px] gap-[40px] ">
-          <DataQuality data={dataQuality} />
-          <div className="flex flex-row gap-[30px] flex-wrap">
-            <PageSpeed data={pageSpeed} />
-            <Events data={events} />
+      <DashboardHeader />
+      <main className="flex-grow">
+        <section className="flex flex-row justify-evenly gap-[30px] flex-wrap mt-[40px]">
+          <div className="flex flex-col w-[920px] gap-[40px] ">
+            <div>
+              <DataQuality />
+            </div>
+            <div className="flex flex-row gap-[30px] flex-wrap">
+              <PageSpeed />
+              <Events />
+            </div>
+            <DataContainedPerEvent />
           </div>
-          <DataContainedPerEvent data={dataContainedPerEvent} />
-        </div>
-        <div className="flex flex-col flex-grow gap-[30px]">
-          <WarningCenter data={warningCenter} />
-          <FunnelAnalysis data={funnelAnalysis} />
-          <EventsPerDay data={eventsPerDay} />
-        </div>
+          <div className="flex flex-col gap-[30px]">
+            <WarningCenter />
+            <FunnelAnalysis />
+            <EventsPerDay />
+          </div>
+        </section>
       </main>
+    </div>
+  ) : (
+    <div className="w-full h-min-screen">
+      <Loading message="Fetching Shops" />
     </div>
   );
 };

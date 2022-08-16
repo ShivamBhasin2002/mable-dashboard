@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,56 +7,43 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Filler,
-  ChartArea
+  Filler
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import ComponentWrapper from './ComponentWrapper';
-
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
 
-interface EventsPerDayProps {
-  data: {
-    title: string;
-    data: {
-      date: string;
-      value: number;
-    }[];
-  }[];
-}
+import { useSelector } from 'redux/store';
+import { createGradient } from 'utility/functions';
+import colors from 'utility/colors';
 
-const EventsPerDay: FC<EventsPerDayProps> = ({ data }) => {
-  function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
-    const colorStart = 'transparent';
-    const colorEnd = 'rgba(84, 183, 219, 0.6)';
-    const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-    gradient.addColorStop(0.2, colorStart);
-    gradient.addColorStop(1, colorEnd);
-    return gradient;
-  }
+const EventsPerDay = () => {
+  const { eventsPerDay } = useSelector((state) => state.dashboard);
 
   const chart = useRef<any>(null); // eslint-disable-line
-  const [currentData] = useState(data[0]);
   const [charData, setCharData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
     setCharData({
-      labels: currentData.data.map((item) => item.date),
+      labels: eventsPerDay.map((item) => item.date),
       datasets: [
         {
           label: 'Events',
-          backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea),
-          borderColor: '#54B7DB',
+          backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
+            { stop: 0.2, color: colors.transparent },
+            { stop: 1, color: colors.eventsPerDayLineArea }
+          ]),
+          borderColor: colors.eventsPerDayLineColor,
           borderWidth: 1,
           lineTension: 0.4,
           fill: true,
-          data: currentData.data.map((item) => item.value),
+          data: eventsPerDay.map((item) => item.value),
           datalabels: {
             display: false
           }
         }
       ]
     });
-  }, [currentData]);
+  }, [eventsPerDay]);
   return (
     <ComponentWrapper title="Events Per Day" width={600} height={250}>
       <div>
@@ -69,19 +56,20 @@ const EventsPerDay: FC<EventsPerDayProps> = ({ data }) => {
                 ticks: {
                   stepSize: 500,
                   callback(this, tickValue: string | number) {
-                    return `${parseInt(`${tickValue}`) / 1000}k`;
+                    if (tickValue >= 1000) return `${parseInt(`${tickValue}`) / 1000}k`;
+                    return tickValue;
                   }
                 },
                 grid: {
                   display: false,
-                  borderColor: 'rgba(127, 140, 160, 0.2)',
+                  borderColor: colors.lines,
                   borderWidth: 3
                 }
               },
               x: {
                 grid: {
                   display: false,
-                  borderColor: 'rgba(127, 140, 160, 0.2)',
+                  borderColor: colors.lines,
                   borderWidth: 3
                 }
               }

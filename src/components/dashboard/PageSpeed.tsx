@@ -1,32 +1,27 @@
-import { FC } from 'react';
 import ComponentWrapper from './ComponentWrapper';
 
-interface PageSpeedProps {
-  data: {
-    avgLoadingTime: string;
-    pageSpeedShare: string;
-  };
-}
+import { useSelector } from 'redux/store';
 
-const PageSpeed: FC<PageSpeedProps> = ({ data }) => {
+const PageSpeed = () => {
+  const { T_M_AVG, T_SH_AVG, PS_M } = useSelector((state) => state.dashboard);
   return (
     <ComponentWrapper title="Page Speed" width={560}>
       <div className="flex flex-row justify-center">
         <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
-            {data.avgLoadingTime}
+            {T_M_AVG}
           </div>
           <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
         </div>
         <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
-            {data.avgLoadingTime}
+            {T_SH_AVG}
           </div>
           <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
         </div>
         <div className="min-w-[160px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
-            {data.pageSpeedShare}
+            {PS_M}
           </div>
           <div className="text-primary text-center text-[14px]">Page Speed Share</div>
         </div>

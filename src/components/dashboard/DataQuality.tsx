@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -12,59 +12,31 @@ import {
   Filler
 } from 'chart.js';
 
-// importing components
-import ComponentWrapper from 'components/dashboard/ComponentWrapper';
-
-// importing utility functions
-import { createGradient } from 'utility/dashboard';
-
 // Registering all the react-chartjs-2 components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
 
-interface DataQualityProps {
-  data: {
-    overAllQuality: {
-      stats: number;
-      message: string;
-    };
-    frontendTracking: {
-      stats: number;
-      message: string;
-    };
-    backendTracking: {
-      stats: number;
-      message: string;
-    };
-    plot: {
-      date: string;
-      value: number;
-    }[];
-  };
-}
+import ComponentWrapper from 'components/dashboard/ComponentWrapper';
+import { createGradient, getColor, getMessage } from 'utility/functions';
+import { useSelector } from 'redux/store';
+import colors from 'utility/colors';
 
-interface LineChartProps {
-  data: {
-    date: string;
-    value: number;
-  }[];
-}
-
-const LineChart: FC<LineChartProps> = ({ data }) => {
+const LineChart = () => {
+  const { dataQualityGrouped } = useSelector((state) => state.dashboard);
   const chart = useRef<any>(null); // eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
     if (chart.current) {
       const chartData = {
-        labels: data.map((item) => item.date),
+        labels: dataQualityGrouped.map((data) => data.date),
         datasets: [
           {
             label: 'Data Quality',
-            data: data.map((item) => item.value),
+            data: dataQualityGrouped.map((data) => data.DQ_COM * 100),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
-              { color: 'transparent', stop: 0.2 },
-              { color: 'rgba(13, 206, 28, 0.3)', stop: 1 }
+              { color: colors.transparent, stop: 0.2 },
+              { color: colors.dataQualityChartArea, stop: 1 }
             ]),
-            borderColor: '#0DCE1C',
+            borderColor: colors.success,
             borderWidth: 2,
             lineTension: 0.5,
             fill: true,
@@ -76,7 +48,7 @@ const LineChart: FC<LineChartProps> = ({ data }) => {
       };
       setChartData(chartData);
     }
-  }, []);
+  }, [dataQualityGrouped]);
   return (
     <div>
       <Line
@@ -94,14 +66,14 @@ const LineChart: FC<LineChartProps> = ({ data }) => {
               },
               grid: {
                 display: false,
-                borderColor: 'rgba(127, 140, 160, 0.2)',
+                borderColor: colors.lines,
                 borderWidth: 3
               }
             },
             x: {
               grid: {
                 display: false,
-                borderColor: 'rgba(127, 140, 160, 0.2)',
+                borderColor: colors.lines,
                 borderWidth: 3
               }
             }
@@ -116,49 +88,51 @@ const LineChart: FC<LineChartProps> = ({ data }) => {
   );
 };
 
-const DataQuality: FC<DataQualityProps> = ({ data }) => {
+const DataQuality = () => {
+  const { DQ_COM, P_MDB, P_SH } = useSelector((state) => state.dashboard);
+  // useEffect()
   return (
     <ComponentWrapper height={400} width={920} title="Data Quality">
-      <div className="flex flex-row justify-between ">
+      <div className="flex flex-row justify-evenly flex-wrap">
         <div className="flex flex-col gap-4 w-[225px] justify-evenly">
           <div className="flex flex-row gap-4 items-center text-primary">
             <CircularProgress
-              value={data.overAllQuality.stats}
-              color="#0DCE1C"
+              value={DQ_COM * 100}
+              color={getColor(DQ_COM)}
               size="84px"
-              trackColor="#7F8C9F"
+              trackColor={colors.lines}
               capIsRound
               max={100}
               min={0}
             >
               <CircularProgressLabel className="font-bold text-light ">
-                {data.overAllQuality.stats}%
+                {DQ_COM}%
               </CircularProgressLabel>
             </CircularProgress>
             <div className="flex flex-col">
               <span className="text-[14px] font-text text-light">Quality Combine</span>
               <span className="text-[26px] font-heading font-bold text-primary h-[34px]">
-                {data.overAllQuality.message}
+                {getMessage(DQ_COM)}
               </span>
             </div>
           </div>
-          <div className="h-[105px] flex justify-between items-center bg-gradient-to-r to-bgContainer-from from-bgContainer-to p-2 rounded-[16px] shadow-2xl">
+          <div className="h-[105px] flex justify-between items-center bg-gradient-to-r to-bgContainerFrom from-bgContainerTo p-2 rounded-[16px] shadow-2xl">
             <span>
               <div className=" text-[28px] leading-[34px] font-text text-center text-light">
-                257
+                {P_SH}
               </div>
               <div className="text-primary text-center text-[13px]">Received by FB</div>
             </span>
             <span className="w-[2px] h-[50%] bg-lines rotate-12 mx-2" />
             <span>
               <div className=" text-[28px] leading-[34px] font-text text-center text-light">
-                258
+                {P_MDB}
               </div>
               <div className="text-primary text-center text-[13px]">Shopify Orders</div>
             </span>
           </div>
         </div>
-        <LineChart data={data.plot} />
+        <LineChart />
       </div>
     </ComponentWrapper>
   );

@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import toast from 'react-hot-toast';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, useToast } from '@chakra-ui/react';
 
 import Icon from 'utility/icons';
 import TextField from 'components/form/TextField';
@@ -13,6 +12,7 @@ import { useDispatch, useSelector } from 'redux/store';
 import { loginAsync, clearState } from 'redux/reducers/userSlice';
 
 const Login = () => {
+  const toast = useToast();
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const { isFetching, isError, isSuccess, errorMessage, email } = useSelector(
@@ -25,7 +25,12 @@ const Login = () => {
   }, []);
   useEffect(() => {
     if (isError) {
-      toast.error(errorMessage || '');
+      toast({
+        title: errorMessage,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
       dispatch(clearState());
     }
     if (isSuccess) {
@@ -34,7 +39,7 @@ const Login = () => {
     }
   }, [isError, isSuccess]);
   return (
-    <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from justify-evenly">
+    <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly">
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">
         <header>
           <div className="text-center font-heading font-bold text-[60px]">Login</div>

@@ -1,25 +1,23 @@
-import { FC } from 'react';
 import ComponentWrapper from './ComponentWrapper';
 
-interface EventsProps {
-  data: string;
-}
+import { useSelector } from 'redux/store';
 
-const Events: FC<EventsProps> = ({ data }) => {
+const Events = () => {
+  const { N_Total, AVG_T_DIFF } = useSelector((state) => state.dashboard);
   return (
     <ComponentWrapper title="Events" width={330}>
       <div className="flex flex-row justify-center">
         <div className="border-r-2 border-lines/[0.15] min-w-[125px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
-            {data}
+            {N_Total}
           </div>
-          <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
+          <div className="text-primary text-center text-[14px]">Total Events</div>
         </div>
         <div className="min-w-[125px]">
           <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
-            {data}
+            {AVG_T_DIFF}
           </div>
-          <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
+          <div className="text-primary text-center text-[14px]">Avg. Delivery Time</div>
         </div>
       </div>
     </ComponentWrapper>

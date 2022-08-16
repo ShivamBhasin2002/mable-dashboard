@@ -18,7 +18,7 @@ const ComponentWrapper: FC<ComponentWrapperProps> = ({
 }) => {
   return (
     <article
-      className={`w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainer-from to-bgContainer-to rounded-[30px] px-[40px] py-[30px] flex-grow`}
+      className={`lg:min-w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[40px] py-[30px] flex-grow`}
     >
       <div
         className={` text-light mb-[20px] flex items-center font-heading text-[22px] font-bold justify-between ${
