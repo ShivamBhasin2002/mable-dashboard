@@ -70,6 +70,10 @@ export interface dashboardState {
   totalEvent: number;
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
   eventsPerDay: { date: string; value: string }[];
+  shopifyOrders: number;
+  ordersWithCorrectCV: number;
+  recievedByFB: number;
+  avgDelieveryTime: number;
 }
 
 const initialState: dashboardState = {
@@ -107,7 +111,11 @@ const initialState: dashboardState = {
   totalEvent: 0,
   totatlAttribution: 0,
   warnings: [],
-  eventsPerDay: []
+  eventsPerDay: [],
+  shopifyOrders: 0,
+  ordersWithCorrectCV: 0,
+  recievedByFB: 0,
+  avgDelieveryTime: 0
 };
 
 export const dashboardSlice = createSlice({

@@ -7,7 +7,7 @@ import DashboardHeader from 'components/dashboard/Header';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/userSlice';
-import { fetchShopAsync, setShop, clearStatus } from 'redux/reducers/dashboardSlice';
+import { fetchShopAsync, clearStatus } from 'redux/reducers/dashboardSlice';
 import Loading from 'components/Loading';
 
 interface LayoutProps {
@@ -34,12 +34,11 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     }
     if (isSuccess) {
       dispatch(fetchShopAsync(token));
-      dispatch(setShop(shops ? shops[0] : undefined));
     }
   }, [isError, isSuccess]);
 
   //
-  const { shops, status, errorMsg } = useSelector((state) => state.dashboard);
+  const { status, errorMsg } = useSelector((state) => state.dashboard);
   useEffect(() => {
     if (status === 'error') {
       toast({

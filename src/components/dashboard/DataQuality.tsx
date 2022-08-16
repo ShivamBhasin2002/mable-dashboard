@@ -19,7 +19,7 @@ import ComponentWrapper from 'components/ComponentWrapper';
 import { createGradient, getColor, getMessage } from 'utility/functions';
 import { useSelector } from 'redux/store';
 
-export const LineChart = () => {
+export const LineChart = ({ width, height }: { width?: number; height?: number }) => {
   const { dataQualityGrouped } = useSelector((state) => state.dashboard);
   const chart = useRef<any>(null); // eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
@@ -80,14 +80,14 @@ export const LineChart = () => {
         }}
         ref={chart}
         data={chartData}
-        width={560}
-        height={250}
+        width={width || 'auto'}
+        height={height || 'auto'}
       />
     </div>
   );
 };
 
-const DataQualityCombined = () => {
+export const DataQualityCombined = () => {
   const { DQ_COM } = useSelector((state) => state.dashboard);
   return (
     <div className="flex flex-row gap-4 items-center text-primary">
@@ -135,7 +135,7 @@ const DataQuality = () => {
             </span>
           </div>
         </div>
-        <LineChart />
+        <LineChart width={560} height={250} />
       </div>
     </ComponentWrapper>
   );
