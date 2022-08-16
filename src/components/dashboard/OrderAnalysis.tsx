@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Icon from 'utility/icons';
-import ComponentWrapper from './ComponentWrapper';
+import ComponentWrapper from '../ComponentWrapper';
 
 interface OrderAnalysisProps {
   data: {

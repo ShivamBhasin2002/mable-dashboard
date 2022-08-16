@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import ComponentWrapper from './ComponentWrapper';
+import ComponentWrapper from '../ComponentWrapper';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Bar } from 'react-chartjs-2';

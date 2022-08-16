@@ -15,11 +15,11 @@ import {
 // Registering all the react-chartjs-2 components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
 
-import ComponentWrapper from 'components/dashboard/ComponentWrapper';
+import ComponentWrapper from 'components/ComponentWrapper';
 import { createGradient, getColor, getMessage } from 'utility/functions';
 import { useSelector } from 'redux/store';
 
-const LineChart = () => {
+export const LineChart = () => {
   const { dataQualityGrouped } = useSelector((state) => state.dashboard);
   const chart = useRef<any>(null); // eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
@@ -87,34 +87,38 @@ const LineChart = () => {
   );
 };
 
+const DataQualityCombined = () => {
+  const { DQ_COM } = useSelector((state) => state.dashboard);
+  return (
+    <div className="flex flex-row gap-4 items-center text-primary">
+      <CircularProgress
+        value={DQ_COM * 100}
+        color={getColor(DQ_COM)}
+        size="84px"
+        trackColor="#7F8C9F"
+        capIsRound
+        max={100}
+        min={0}
+      >
+        <CircularProgressLabel className="font-bold text-light ">{DQ_COM}%</CircularProgressLabel>
+      </CircularProgress>
+      <div className="flex flex-col">
+        <span className="text-[14px] font-text text-light">Quality Combine</span>
+        <span className="text-[26px] font-heading font-bold text-primary h-[34px]">
+          {getMessage(DQ_COM)}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const DataQuality = () => {
-  const { DQ_COM, P_MDB, P_SH } = useSelector((state) => state.dashboard);
-  // useEffect()
+  const { P_MDB, P_SH } = useSelector((state) => state.dashboard);
   return (
     <ComponentWrapper height={400} width={920} title="Data Quality">
       <div className="flex flex-row justify-evenly flex-wrap">
         <div className="flex flex-col gap-4 w-[225px] justify-evenly">
-          <div className="flex flex-row gap-4 items-center text-primary">
-            <CircularProgress
-              value={DQ_COM * 100}
-              color={getColor(DQ_COM)}
-              size="84px"
-              trackColor="#7F8C9F"
-              capIsRound
-              max={100}
-              min={0}
-            >
-              <CircularProgressLabel className="font-bold text-light ">
-                {DQ_COM}%
-              </CircularProgressLabel>
-            </CircularProgress>
-            <div className="flex flex-col">
-              <span className="text-[14px] font-text text-light">Quality Combine</span>
-              <span className="text-[26px] font-heading font-bold text-primary h-[34px]">
-                {getMessage(DQ_COM)}
-              </span>
-            </div>
-          </div>
+          <DataQualityCombined />
           <div className="h-[105px] flex justify-between items-center bg-gradient-to-r to-bgContainer-from from-bgContainer-to p-2 rounded-[16px] shadow-2xl">
             <span>
               <div className=" text-[28px] leading-[34px] font-text text-center text-light">

@@ -10,7 +10,7 @@ import {
   Filler
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import ComponentWrapper from './ComponentWrapper';
+import ComponentWrapper from '../ComponentWrapper';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
 
 import { createGradient } from 'utility/functions';

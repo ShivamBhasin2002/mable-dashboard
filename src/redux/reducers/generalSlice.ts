@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface dashboardState {
+export interface generalState {
   screen: 'Dashboard' | 'Order Analysis' | 'Event Quality' | 'Settings' | 'Tutorial';
 }
 
-const initialState: dashboardState = {
+const initialState: generalState = {
   screen: 'Dashboard'
 };
 
-export const dashboardSlice = createSlice({
+export const generalSlice = createSlice({
   name: 'general',
   initialState,
   reducers: {
@@ -18,5 +18,5 @@ export const dashboardSlice = createSlice({
   }
 });
 
-export const { setScreen } = dashboardSlice.actions;
-export default dashboardSlice.reducer;
+export const { setScreen } = generalSlice.actions;
+export default generalSlice.reducer;

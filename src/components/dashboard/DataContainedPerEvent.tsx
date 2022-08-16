@@ -10,7 +10,7 @@ import {
 import { Bar, Doughnut } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, ArcElement);
 
-import ComponentWrapper from 'components/dashboard/ComponentWrapper';
+import ComponentWrapper from 'components/ComponentWrapper';
 
 import { useSelector } from 'redux/store';
 

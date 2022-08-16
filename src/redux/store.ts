@@ -9,7 +9,7 @@ import type {} from 'redux-thunk/extend-redux';
 
 import userSlice from 'redux/reducers/userSlice';
 import dashboardSlice from 'redux/reducers/dashboardSlice';
-import generalSlice from './reducers/generalSlice';
+import generalSlice from 'redux/reducers/generalSlice';
 
 export const store = configureStore({
   reducer: {
