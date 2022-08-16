@@ -77,26 +77,21 @@ export const DataContainedPerEventSeperateParameters = () => {
   const data = useSelector((state) => state.dashboard.dataContaindedPerEventDoughnutChart);
   return (
     <div className="flex flex-col flex-grow text-[14px] justify-center gap-2">
-      <div className="flex flex-row gap-[10px] items-center">
-        <span className="bg-darkBlue w-[11px] h-[11px] rounded-full" />
-        <span className="text-primary text-sm">Backend</span>
-        <span className="text-light ml-auto font-bold">{data.backend}%</span>
-      </div>
-      <div className="flex flex-row gap-[10px] items-center">
-        <span className="bg-lightBlue w-[11px] h-[11px] rounded-full" />
-        <span className="text-primary text-sm">Frontend</span>
-        <span className="text-light ml-auto font-bold">{data.frontend}%</span>
-      </div>
-      <div className="flex flex-row gap-[10px] items-center">
-        <span className="bg-light w-[11px] h-[11px] rounded-full" />
-        <span className="text-primary text-sm">Mable Engine</span>
-        <span className="text-light ml-auto font-bold">{data.mableEngine}%</span>
-      </div>
-      <div className="flex flex-row gap-[10px] items-center">
-        <span className="border-light border-[1px] w-[10px] h-[10px] rounded-full" />
-        <span className="text-primary text-sm">Unavailable</span>
-        <span className="text-light ml-auto font-bold">{data.unavailable}%</span>
-      </div>
+      {[
+        { color: 'bg-darkBlue', name: 'Backend', value: data.backend },
+        { color: 'bg-lightBlue', name: 'Frontend', value: data.frontend },
+        { color: 'bg-light', name: 'Mable Engine', value: data.mableEngine },
+        { border: 'border-light border-[2px]', name: 'Unavailable', value: data.unavailable }
+      ].map((stats, i) => (
+        <div
+          className="flex flex-row gap-[10px] items-center"
+          key={`statsOfDataContainedPerEvent${i}`}
+        >
+          <span className={`${stats.color} ${stats.border} w-[11px] h-[11px] rounded-full`} />
+          <span className="text-primary text-sm">{stats.name}</span>
+          <span className="text-light ml-auto font-bold">{stats.value}%</span>
+        </div>
+      ))}
     </div>
   );
 };
