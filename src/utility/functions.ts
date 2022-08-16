@@ -1,4 +1,5 @@
 import { ChartArea } from 'chart.js';
+import colors from 'utility/colors';
 
 export const createGradient = (
   ctx: CanvasRenderingContext2D,
@@ -11,9 +12,9 @@ export const createGradient = (
 };
 
 export const getColor = (value: number) => {
-  if (value >= 0.9) return '#0DCE1C';
-  else if (value >= 0.8) return '#D99A43';
-  else return '#EF4E5C';
+  if (value >= 0.9) return colors.success;
+  else if (value >= 0.8) return colors.average;
+  else return colors.error;
 };
 
 export const getMessage = (value: number) => {

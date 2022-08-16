@@ -39,7 +39,7 @@ const Login = () => {
     }
   }, [isError, isSuccess]);
   return (
-    <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainer-to from-bgContainer-from justify-evenly">
+    <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly">
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">
         <header>
           <div className="text-center font-heading font-bold text-[60px]">Login</div>

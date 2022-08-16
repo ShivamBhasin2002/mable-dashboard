@@ -7,6 +7,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, ChartDataLabel
 
 import { createGradient } from 'utility/functions';
 import { useSelector } from 'redux/store';
+import colors from 'utility/colors';
 
 const FunnelAnalysis = () => {
   const { total_events } = useSelector((state) => state.dashboard);
@@ -22,11 +23,11 @@ const FunnelAnalysis = () => {
             label: 'Events',
             data: Object.values(total_events),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
-              { stop: 0, color: '#285C6F' },
-              { stop: 1, color: '#4FB7DD' }
+              { stop: 0, color: colors.dark },
+              { stop: 1, color: colors.primary }
             ]),
             datalabels: {
-              color: '#ffffff',
+              color: colors.light,
               fontSize: 13,
               anchor: 'end',
               align: 'top',
@@ -72,7 +73,7 @@ const FunnelAnalysis = () => {
                 display: false
               },
               ticks: {
-                color: '#ffffff'
+                color: colors.light
               }
             }
           }

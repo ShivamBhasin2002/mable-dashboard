@@ -18,6 +18,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 import ComponentWrapper from 'components/ComponentWrapper';
 import { createGradient, getColor, getMessage } from 'utility/functions';
 import { useSelector } from 'redux/store';
+import colors from 'utility/colors';
 
 export const LineChart = ({ width, height }: { width?: number; height?: number }) => {
   const { dataQualityGrouped } = useSelector((state) => state.dashboard);
@@ -32,10 +33,10 @@ export const LineChart = ({ width, height }: { width?: number; height?: number }
             label: 'Data Quality',
             data: dataQualityGrouped.map((data) => data.DQ_COM * 100),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
-              { color: 'transparent', stop: 0.2 },
-              { color: 'rgba(13, 206, 28, 0.3)', stop: 1 }
+              { color: colors.transparent, stop: 0.2 },
+              { color: colors.dataQualityChartArea, stop: 1 }
             ]),
-            borderColor: '#0DCE1C',
+            borderColor: colors.success,
             borderWidth: 2,
             lineTension: 0.5,
             fill: true,
@@ -65,14 +66,14 @@ export const LineChart = ({ width, height }: { width?: number; height?: number }
               },
               grid: {
                 display: false,
-                borderColor: 'rgba(127, 140, 160, 0.2)',
+                borderColor: colors.lines,
                 borderWidth: 3
               }
             },
             x: {
               grid: {
                 display: false,
-                borderColor: 'rgba(127, 140, 160, 0.2)',
+                borderColor: colors.lines,
                 borderWidth: 3
               }
             }

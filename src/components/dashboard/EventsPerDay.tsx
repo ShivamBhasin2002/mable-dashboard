@@ -13,9 +13,9 @@ import { Line } from 'react-chartjs-2';
 import ComponentWrapper from '../ComponentWrapper';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
 
-import { createGradient } from 'utility/functions';
-
 import { useSelector } from 'redux/store';
+import { createGradient } from 'utility/functions';
+import colors from 'utility/colors';
 
 const EventsPerDay = () => {
   const { eventsPerDay } = useSelector((state) => state.dashboard);
@@ -29,10 +29,10 @@ const EventsPerDay = () => {
         {
           label: 'Events',
           backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
-            { stop: 0.2, color: 'transparent' },
-            { stop: 1, color: 'rgba(84,183,219,0.6)' }
+            { stop: 0.2, color: colors.transparent },
+            { stop: 1, color: colors.eventsPerDayLineArea }
           ]),
-          borderColor: '#54B7DB',
+          borderColor: colors.eventsPerDayLineColor,
           borderWidth: 1,
           lineTension: 0.4,
           fill: true,
@@ -62,14 +62,14 @@ const EventsPerDay = () => {
                 },
                 grid: {
                   display: false,
-                  borderColor: 'rgba(127, 140, 160, 0.2)',
+                  borderColor: colors.lines,
                   borderWidth: 3
                 }
               },
               x: {
                 grid: {
                   display: false,
-                  borderColor: 'rgba(127, 140, 160, 0.2)',
+                  borderColor: colors.lines,
                   borderWidth: 3
                 }
               }
