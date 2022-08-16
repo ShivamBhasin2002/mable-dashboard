@@ -12,7 +12,7 @@ export const fetchShopAsync = createAsyncThunk<
       headers: { Authorization: `Token ${token}` }
     });
     if (res.data.shops.length > 0) return res.data.shops;
-    rejectWithValue('No shops exist.');
+    rejectWithValue('No shops found for this user');
   } catch (error) {
     rejectWithValue('Error occured while fetching shops.');
   }
