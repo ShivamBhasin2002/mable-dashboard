@@ -7,7 +7,7 @@ import DashboardHeader from 'components/dashboard/Header';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/userSlice';
-import { fetchShopAsync, setShop } from 'redux/reducers/dashboardSlice';
+import { fetchShopAsync, setShop, clearStatus } from 'redux/reducers/dashboardSlice';
 import Loading from 'components/Loading';
 
 interface LayoutProps {
@@ -18,11 +18,14 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   const toast = useToast();
   const dispatch = useDispatch();
   const navigator = useNavigate();
-  const { isError, isFetching, isSuccess, token } = useSelector((state) => state.user);
-  const { shops } = useSelector((state) => state.dashboard);
+
+  // dispatching authenticate me with the token stored in local storage
   useEffect(() => {
     dispatch(isAuthenticatedAsync(localStorage.getItem('token')));
   }, []);
+
+  // destructuring the parameters of user state required from the global state
+  const { isError, isFetching, isSuccess, token } = useSelector((state) => state.user);
   useEffect(() => {
     if (isError) {
       dispatch(clearState());
@@ -34,6 +37,21 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       dispatch(setShop(shops ? shops[0] : undefined));
     }
   }, [isError, isSuccess]);
+
+  //
+  const { shops, status, errorMsg } = useSelector((state) => state.dashboard);
+  useEffect(() => {
+    if (status === 'error') {
+      toast({
+        title: errorMsg,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
+      clearStatus();
+    }
+  }, [status]);
+
   return isFetching ? (
     <Loading />
   ) : (
@@ -41,7 +59,13 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <SideBar />
       <div className="w-full h-min-screen bg-background flex flex-col px-[30px] py-[30px]">
         <DashboardHeader />
-        {children}
+        {status === 'success' ? (
+          children
+        ) : (
+          <div className="w-full h-min-screen">
+            <Loading message="Fetching Shops" />
+          </div>
+        )}
       </div>
     </div>
   );

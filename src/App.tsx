@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import Dashboard from 'pages/Dashboard';
+import OrderAnalysis from 'pages/OrderAnalysis';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import Layout from 'components/Layout';
@@ -20,7 +21,7 @@ const App = () => {
           element={
             <Layout>
               {screen === 'Dashboard' && <Dashboard />}
-              {screen === 'Order Analysis' && <Dashboard />}
+              {screen === 'Order Analysis' && <OrderAnalysis />}
               {screen === 'Event Quality' && null}
               {screen === 'Settings' && null}
               {screen === 'Tutorial' && null}
