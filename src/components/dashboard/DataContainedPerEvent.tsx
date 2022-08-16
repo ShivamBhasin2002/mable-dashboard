@@ -14,6 +14,8 @@ import ComponentWrapper from 'components/dashboard/ComponentWrapper';
 
 import { useSelector } from 'redux/store';
 
+import colors from 'utility/colors';
+
 export const DataContainerPerEventDoughnutChart = () => {
   const data = useSelector((state) => state.dashboard.dataContaindedPerEventDoughnutChart);
   const doughnutData = {
@@ -21,12 +23,7 @@ export const DataContainerPerEventDoughnutChart = () => {
       datasets: [
         {
           data: [data.backend, data.frontend, data.mableEngine, data.unavailable],
-          backgroundColor: [
-            'rgba(26, 72, 148, 1)',
-            'rgba(32, 185, 173, 1)',
-            'rgba(222, 218, 218, 1)',
-            'rgba(0, 0, 0, 0)'
-          ],
+          backgroundColor: [colors.darkBlue, colors.lightBlue, colors.light, colors.transparent],
           datalabels: {
             display: false
           }
@@ -56,7 +53,7 @@ export const DataContainerPerEventDoughnutChart = () => {
           ctx.restore();
           ctx.font = '25px sans-serif';
           ctx.textBaseline = 'middle';
-          ctx.fillStyle = '#fff';
+          ctx.fillStyle = colors.light;
           const text = `${data.backend + data.frontend + data.mableEngine}%`,
             textX = Math.round((width - ctx.measureText(text).width) / 2),
             textY = height / 2 + 15;
@@ -81,22 +78,22 @@ export const DataContainedPerEventSeperateParameters = () => {
   return (
     <div className="flex flex-col flex-grow text-[14px] justify-center gap-2">
       <div className="flex flex-row gap-[10px] items-center">
-        <span className="bg-[#185BC6A0] w-[11px] h-[11px] rounded-full" />
+        <span className="bg-darkBlue w-[11px] h-[11px] rounded-full" />
         <span className="text-primary text-sm">Backend</span>
         <span className="text-light ml-auto font-bold">{data.backend}%</span>
       </div>
       <div className="flex flex-row gap-[10px] items-center">
-        <span className="bg-[#1FB6AA] w-[11px] h-[11px] rounded-full" />
+        <span className="bg-lightBlue w-[11px] h-[11px] rounded-full" />
         <span className="text-primary text-sm">Frontend</span>
         <span className="text-light ml-auto font-bold">{data.frontend}%</span>
       </div>
       <div className="flex flex-row gap-[10px] items-center">
-        <span className="bg-[#fff] w-[11px] h-[11px] rounded-full" />
+        <span className="bg-light w-[11px] h-[11px] rounded-full" />
         <span className="text-primary text-sm">Mable Engine</span>
         <span className="text-light ml-auto font-bold">{data.mableEngine}%</span>
       </div>
       <div className="flex flex-row gap-[10px] items-center">
-        <span className="border-[#fff] border-[1px] w-[10px] h-[10px] rounded-full" />
+        <span className="border-light border-[1px] w-[10px] h-[10px] rounded-full" />
         <span className="text-primary text-sm">Unavailable</span>
         <span className="text-light ml-auto font-bold">{data.unavailable}%</span>
       </div>
@@ -118,14 +115,14 @@ const DataQualityPerEventBarChart = () => {
         y: {
           grid: {
             display: false,
-            borderColor: 'rgba(127, 140, 160, 0.2)',
+            borderColor: colors.lines,
             borderWidth: 3
           }
         },
         x: {
           grid: {
             display: false,
-            borderColor: 'rgba(127, 140, 160, 0.2)',
+            borderColor: colors.lines,
             borderWidth: 3
           }
         }
@@ -137,7 +134,7 @@ const DataQualityPerEventBarChart = () => {
         {
           label: 'Attribute Parameters',
           data: dataContainedPerEventBarChart.map((data) => data.attribute_quality),
-          backgroundColor: 'rgba(132, 18, 167, 1)',
+          backgroundColor: colors.purple,
           datalabels: {
             display: false
           }
@@ -145,7 +142,7 @@ const DataQualityPerEventBarChart = () => {
         {
           label: 'Event Parameters',
           data: dataContainedPerEventBarChart.map((data) => data.event_quality),
-          backgroundColor: 'rgba(197, 120, 226, 1)',
+          backgroundColor: colors.lightPurple,
           datalabels: {
             display: false
           }
@@ -173,9 +170,9 @@ const DataContainerPerEvent = () => {
             <DataContainedPerEventSeperateParameters />
           </div>
           <div className="flex flex-row justify-evenly gap-[10px]">
-            <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainer-from from-bgContainer-to rounded-[16px] shadow-2xl">
+            <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainerFrom from-bgContainerTo rounded-[16px] shadow-2xl">
               <div className="flex flex-row gap-[5px] items-baseline">
-                <span className="bg-[#8412a7] w-[11px] h-[11px] rounded-full" />
+                <span className="bg-purple w-[11px] h-[11px] rounded-full" />
                 <div className=" text-[30px] leading-[34px] font-text text-center text-light">
                   {attribution}
                 </div>
@@ -185,9 +182,9 @@ const DataContainerPerEvent = () => {
                 Attribution Parameters
               </div>
             </div>
-            <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainer-from from-bgContainer-to rounded-[16px] shadow-2xl">
+            <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainerFrom from-bgContainerTo rounded-[16px] shadow-2xl">
               <div className="flex flex-row gap-[5px] items-baseline">
-                <span className="bg-[#c578e2] w-[11px] h-[11px] rounded-full" />
+                <span className="bg-lightPurple w-[11px] h-[11px] rounded-full" />
                 <div className=" text-[30px] leading-[34px] font-text text-center text-light">
                   {event}
                 </div>

@@ -18,6 +18,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 import ComponentWrapper from 'components/dashboard/ComponentWrapper';
 import { createGradient, getColor, getMessage } from 'utility/functions';
 import { useSelector } from 'redux/store';
+import colors from 'utility/colors';
 
 const LineChart = () => {
   const { dataQualityGrouped } = useSelector((state) => state.dashboard);
@@ -32,10 +33,10 @@ const LineChart = () => {
             label: 'Data Quality',
             data: dataQualityGrouped.map((data) => data.DQ_COM * 100),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
-              { color: 'transparent', stop: 0.2 },
-              { color: 'rgba(13, 206, 28, 0.3)', stop: 1 }
+              { color: colors.transparent, stop: 0.2 },
+              { color: colors.dataQualityChartArea, stop: 1 }
             ]),
-            borderColor: '#0DCE1C',
+            borderColor: colors.success,
             borderWidth: 2,
             lineTension: 0.5,
             fill: true,
@@ -65,14 +66,14 @@ const LineChart = () => {
               },
               grid: {
                 display: false,
-                borderColor: 'rgba(127, 140, 160, 0.2)',
+                borderColor: colors.lines,
                 borderWidth: 3
               }
             },
             x: {
               grid: {
                 display: false,
-                borderColor: 'rgba(127, 140, 160, 0.2)',
+                borderColor: colors.lines,
                 borderWidth: 3
               }
             }
@@ -99,7 +100,7 @@ const DataQuality = () => {
               value={DQ_COM * 100}
               color={getColor(DQ_COM)}
               size="84px"
-              trackColor="#7F8C9F"
+              trackColor={colors.lines}
               capIsRound
               max={100}
               min={0}
@@ -115,7 +116,7 @@ const DataQuality = () => {
               </span>
             </div>
           </div>
-          <div className="h-[105px] flex justify-between items-center bg-gradient-to-r to-bgContainer-from from-bgContainer-to p-2 rounded-[16px] shadow-2xl">
+          <div className="h-[105px] flex justify-between items-center bg-gradient-to-r to-bgContainerFrom from-bgContainerTo p-2 rounded-[16px] shadow-2xl">
             <span>
               <div className=" text-[28px] leading-[34px] font-text text-center text-light">
                 {P_SH}
