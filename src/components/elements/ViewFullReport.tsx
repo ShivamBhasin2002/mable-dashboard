@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'redux/store';
 import { setScreen } from 'redux/reducers/generalSlice';
 
 interface ViewFullReportProps {
-  screen: string;
+  screen: 'Dashboard' | 'Order Analysis' | 'Event Quality' | 'Settings' | 'Tutorial';
 }
 
 const ViewFullReport: FC<ViewFullReportProps> = ({ screen }) => {

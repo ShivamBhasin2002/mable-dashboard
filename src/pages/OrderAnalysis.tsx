@@ -1,5 +1,6 @@
 import ComponentWrapper from 'components/ComponentWrapper';
-import { LineChart, DataQualityCombined } from 'components/dashboard/DataQuality';
+import LineChart from 'components/elements/quality/LineChart';
+import QualityCombined from 'components/elements/quality/QualityCombined';
 import Stats from 'components/orderAnalysis/statistics';
 
 import { useSelector } from 'redux/store';
@@ -12,7 +13,7 @@ const OrderAnalysis = () => {
     <div className="flex-grow mt-[40px]">
       <ComponentWrapper>
         <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
-          <DataQualityCombined />
+          <QualityCombined />
           <LineChart width={520} height={140} />
           <Stats value={shopifyOrders} message="Shopify Orders" />
           <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />
