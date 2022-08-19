@@ -12,9 +12,13 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, ArcElem
 
 import ComponentWrapper from 'components/ComponentWrapper';
 
-import { useSelector } from 'redux/store';
+import { useDispatch, useSelector } from 'redux/store';
+import { setEventSelected } from 'redux/reducers/dashboardSlice';
 
 import colors from 'utility/colors';
+import Icon from 'utility/icons';
+import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import ViewFullReport from 'components/elements/ViewFullReport';
 
 export const DataContainerPerEventDoughnutChart = () => {
   const data = useSelector((state) => state.dashboard.dataContaindedPerEventDoughnutChart);
@@ -147,12 +151,102 @@ const DataQualityPerEventBarChart = () => {
   return <Bar data={barData} width={450} height={80} options={barOptions} />;
 };
 
-const DataContainerPerEvent = () => {
+export const DataContainedPerEventMetrics = () => {
   const { attribution, event, totalEvent, totatlAttribution } = useSelector(
     (state) => state.dashboard
   );
   return (
-    <ComponentWrapper title="Data Contained Per Event" width={560} height={335}>
+    <div className="flex flex-row justify-evenly gap-[10px]">
+      <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainerFrom from-bgContainerTo rounded-[16px] shadow-2xl">
+        <div className="flex flex-row gap-[5px] items-baseline">
+          <span className="bg-purple w-[11px] h-[11px] rounded-full" />
+          <div className=" text-[30px] leading-[34px] font-text text-center text-light">
+            {attribution}
+          </div>
+          <span className="text-[14px] text-light/[.41]">/ {totatlAttribution}</span>
+        </div>
+        <div className="text-primary text-center text-[13px] whitespace-nowrap">
+          Attribution Parameters
+        </div>
+      </div>
+      <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainerFrom from-bgContainerTo rounded-[16px] shadow-2xl">
+        <div className="flex flex-row gap-[5px] items-baseline">
+          <span className="bg-lightPurple w-[11px] h-[11px] rounded-full" />
+          <div className=" text-[30px] leading-[34px] font-text text-center text-light">
+            {event}
+          </div>
+          <span className="text-[14px] text-light/[.41]">/ {totalEvent}</span>
+        </div>
+        <div className="text-primary text-center text-[13px] whitespace-nowrap">
+          Event Parameters
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const DataContainedPerEventMenu = () => {
+  const dispatch = useDispatch();
+  const { eventSelected } = useSelector((state) => state.dashboard);
+  return (
+    <Menu gutter={0}>
+      <MenuButton
+        as={Button}
+        rightIcon={<Icon icon="dropdown" />}
+        background={colors.transparent}
+        borderColor={colors.lines}
+        border="1px"
+        h="30px"
+        w="170px"
+        fontSize="14px"
+        textAlign="left"
+        outline="none"
+        _hover={{ backgroundColor: 'transparent' }}
+        _active={{ backgroundColor: 'transparent', borderBottomRadius: 0, borderBottom: 0 }}
+      >
+        {eventSelected}
+      </MenuButton>
+      <MenuList
+        background={colors.bgContainerTo}
+        w={170}
+        minW={170}
+        borderTop={0}
+        borderTopRadius={0}
+      >
+        {['Purchase', 'Add Payment Info', 'Initiat Checkout', 'Add to Cart', 'Page View'].map(
+          (item) =>
+            item !== eventSelected && (
+              <MenuItem
+                key={item}
+                _hover={{ background: colors.bgContainerFrom }}
+                _active={{ background: colors.bgContainerFrom }}
+                _focus={{ background: colors.bgContainerFrom }}
+                fontSize="14px"
+                h="30px"
+                onClick={() => dispatch(setEventSelected(item))}
+              >
+                {item}
+              </MenuItem>
+            )
+        )}
+      </MenuList>
+    </Menu>
+  );
+};
+
+const DataContainerPerEvent = () => {
+  return (
+    <ComponentWrapper
+      title="Data Contained Per Event"
+      width={560}
+      height={335}
+      nextComponent={
+        <div className="flex-grow px-4 flex justify-between">
+          <DataContainedPerEventMenu />
+          <ViewFullReport screen="Event Quality" />
+        </div>
+      }
+    >
       <div className="flex flex-row flex-wrap  justify-center gap-[20px]">
         <div>
           <DataQualityPerEventBarChart />
@@ -164,32 +258,7 @@ const DataContainerPerEvent = () => {
             </div>
             <DataContainedPerEventSeperateParameters />
           </div>
-          <div className="flex flex-row justify-evenly gap-[10px]">
-            <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainerFrom from-bgContainerTo rounded-[16px] shadow-2xl">
-              <div className="flex flex-row gap-[5px] items-baseline">
-                <span className="bg-purple w-[11px] h-[11px] rounded-full" />
-                <div className=" text-[30px] leading-[34px] font-text text-center text-light">
-                  {attribution}
-                </div>
-                <span className="text-[14px] text-light/[.41]">/ {totatlAttribution}</span>
-              </div>
-              <div className="text-primary text-center text-[13px] whitespace-nowrap">
-                Attribution Parameters
-              </div>
-            </div>
-            <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainerFrom from-bgContainerTo rounded-[16px] shadow-2xl">
-              <div className="flex flex-row gap-[5px] items-baseline">
-                <span className="bg-lightPurple w-[11px] h-[11px] rounded-full" />
-                <div className=" text-[30px] leading-[34px] font-text text-center text-light">
-                  {event}
-                </div>
-                <span className="text-[14px] text-light/[.41]">/ {totalEvent}</span>
-              </div>
-              <div className="text-primary text-center text-[13px] whitespace-nowrap">
-                Event Parameters
-              </div>
-            </div>
-          </div>
+          <DataContainedPerEventMetrics />
         </div>
       </div>
     </ComponentWrapper>

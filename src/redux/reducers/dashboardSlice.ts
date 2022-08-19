@@ -74,6 +74,7 @@ export interface dashboardState {
   ordersWithCorrectCV: number;
   recievedByFB: number;
   avgDelieveryTime: number;
+  eventSelected: 'Purchase' | 'Add Payment Info' | 'Initiat Checkout' | 'Add to Cart' | 'Page View';
 }
 
 const initialState: dashboardState = {
@@ -108,14 +109,15 @@ const initialState: dashboardState = {
   },
   attribution: 0,
   event: 0,
-  totalEvent: 0,
-  totatlAttribution: 0,
+  totalEvent: 7,
+  totatlAttribution: 13,
   warnings: [],
   eventsPerDay: [],
   shopifyOrders: 0,
   ordersWithCorrectCV: 0,
   recievedByFB: 0,
-  avgDelieveryTime: 0
+  avgDelieveryTime: 0,
+  eventSelected: 'Purchase'
 };
 
 export const dashboardSlice = createSlice({
@@ -134,6 +136,9 @@ export const dashboardSlice = createSlice({
     clearStatus: (state) => {
       state.errorMsg = undefined;
       state.status = 'idle';
+    },
+    setEventSelected: (state, { payload }) => {
+      state.eventSelected = payload;
     }
   },
   extraReducers: (builder) => {
@@ -153,5 +158,5 @@ export const dashboardSlice = createSlice({
   }
 });
 
-export const { setShop, setDataQuality, clearStatus } = dashboardSlice.actions;
+export const { setShop, setDataQuality, clearStatus, setEventSelected } = dashboardSlice.actions;
 export default dashboardSlice.reducer;
