@@ -1,4 +1,4 @@
-import ComponentWrapper from 'components/ComponentWrapper';
+import ComponentWrapper from 'components/elements/ComponentWrapper';
 import LineChart from 'components/elements/quality/LineChart';
 import QualityCombined from 'components/elements/quality/QualityCombined';
 import Stats from 'components/orderAnalysis/statistics';

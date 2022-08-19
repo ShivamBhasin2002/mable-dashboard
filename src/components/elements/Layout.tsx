@@ -2,13 +2,13 @@ import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
-import SideBar from 'components/SideBar';
+import SideBar from 'components/elements/SideBar';
 import DashboardHeader from 'components/dashboard/Header';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/userSlice';
 import { fetchShopAsync, clearStatus } from 'redux/reducers/dashboardSlice';
-import Loading from 'components/Loading';
+import Loading from 'components/elements/Loading';
 
 interface LayoutProps {
   children: React.ReactNode;

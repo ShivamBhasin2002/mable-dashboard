@@ -1,4 +1,4 @@
-import ComponentWrapper from 'components/ComponentWrapper';
+import ComponentWrapper from 'components/elements/ComponentWrapper';
 import ViewFullReport from 'components/elements/ViewFullReport';
 import SelectorMenu from 'components/elements/event/SeleectorMenu';
 import Metrics from 'components/elements/event/Metrics';

@@ -1,4 +1,4 @@
-import ComponentWrapper from 'components/ComponentWrapper';
+import ComponentWrapper from 'components/elements/ComponentWrapper';
 import BarChart from 'components/elements/event/BarChart';
 import DoughnutChart from 'components/elements/event/DoughnutChart';
 import Metrics from 'components/elements/event/Metrics';
