@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,7 +15,12 @@ import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
 
-const BarChart = () => {
+interface BarChartProps {
+  width?: number;
+  height?: number;
+}
+
+const BarChart: FC<BarChartProps> = ({ width, height }) => {
   const { dataContainedPerEventBarChart } = useSelector((state) => state.dashboard);
   const barOptions = {
       maintainAspectRatio: false,
@@ -62,7 +68,7 @@ const BarChart = () => {
         }
       ]
     };
-  return <Bar data={barData} width={450} height={80} options={barOptions} />;
+  return <Bar data={barData} width={width} height={height} options={barOptions} />;
 };
 
 export default BarChart;

@@ -1,10 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Dashboard from 'pages/Dashboard';
-import OrderAnalysis from 'pages/OrderAnalysis';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
+import Dashboard from 'pages/Dashboard';
+import OrderAnalysis from 'pages/OrderAnalysis';
+import EventQuality from 'pages/EventQuality';
 import Layout from 'components/Layout';
 
 import { useSelector } from 'redux/store';
@@ -22,7 +23,7 @@ const App = () => {
             <Layout>
               {screen === 'Dashboard' && <Dashboard />}
               {screen === 'Order Analysis' && <OrderAnalysis />}
-              {screen === 'Event Quality' && null}
+              {screen === 'Event Quality' && <EventQuality />}
               {screen === 'Settings' && null}
               {screen === 'Tutorial' && null}
             </Layout>

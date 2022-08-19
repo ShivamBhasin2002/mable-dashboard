@@ -13,10 +13,10 @@ const SelectorMenu = () => {
     <Menu gutter={0}>
       <MenuButton
         as={Button}
-        rightIcon={<Icon icon="dropdown" />}
+        rightIcon={<Icon icon="dropdown" color="primary" />}
         background={colors.transparent}
-        borderColor={colors.lines}
-        border="1px"
+        className="!border-lines"
+        border="2px"
         h="30px"
         w="170px"
         fontSize="14px"
