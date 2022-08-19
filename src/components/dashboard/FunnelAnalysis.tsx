@@ -1,9 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
-import ComponentWrapper from '../ComponentWrapper';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Bar } from 'react-chartjs-2';
-ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, ChartDataLabels);
+
+import ComponentWrapper from '../ComponentWrapper';
 
 import { createGradient } from 'utility/functions';
 import { useSelector } from 'redux/store';

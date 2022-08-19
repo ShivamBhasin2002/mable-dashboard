@@ -1,14 +1,4 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  ArcElement
-} from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, ArcElement);
 
 import { useSelector } from 'redux/store';
 
