@@ -1,7 +1,7 @@
 import ComponentWrapper from 'components/elements/ComponentWrapper';
 import LineChart from 'components/elements/quality/LineChart';
 import QualityCombined from 'components/elements/quality/QualityCombined';
-import Stats from 'components/orderAnalysis/statistics';
+import Stats from 'components/orderAnalysis/Statistics';
 
 import { useSelector } from 'redux/store';
 
@@ -10,7 +10,7 @@ const OrderAnalysis = () => {
     (state) => state.dashboard
   );
   return (
-    <div className="flex-grow mt-[40px]">
+    <div className="flex-grow mt-[40px] gap-[40px]">
       <ComponentWrapper>
         <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
           <QualityCombined />
