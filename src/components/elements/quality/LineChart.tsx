@@ -6,7 +6,7 @@ import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 
 const LineChart = ({ width, height }: { width?: number; height?: number }) => {
-  const { dataQualityGrouped } = useSelector((state) => state.dashboard);
+  const { dataQualityGrouped } = useSelector((state) => state.dataQuality);
   const chart = useRef<any>(null); // eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {

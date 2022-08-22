@@ -21,6 +21,7 @@ const OrderAnalysis = () => {
           <Stats value={avgDelieveryTime} message="Avg. Delivery Time" />
         </div>
       </ComponentWrapper>
+      <ComponentWrapper>a</ComponentWrapper>
     </div>
   );
 };

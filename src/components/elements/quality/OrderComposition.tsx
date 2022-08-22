@@ -1,7 +1,7 @@
 import { useSelector } from 'redux/store';
 
 const OrderComposition = () => {
-  const { P_MDB, P_SH } = useSelector((state) => state.dashboard);
+  const { P_MDB, P_SH } = useSelector((state) => state.dataQuality);
   return (
     <div className="h-[105px] flex justify-between items-center bg-gradient-to-r to-bgContainer-from from-bgContainer-to p-2 rounded-[16px] shadow-2xl">
       <span>

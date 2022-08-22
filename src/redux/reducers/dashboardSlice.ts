@@ -35,12 +35,8 @@ export interface dashboardState {
   shop: shop | undefined;
   status: 'idle' | 'pending' | 'success' | 'error';
   errorMsg: string | undefined;
-  start: Date;
-  end: Date;
-  DQ_COM: number;
-  P_MDB: number;
-  P_SH: number;
-  dataQualityGrouped: { date: string; DQ_COM: number }[];
+  start: Date | string;
+  end: Date | string;
   AVG_T_DIFF: number;
   T_M_AVG: number | string;
   T_SH_AVG: number | string;
@@ -107,12 +103,8 @@ const initialState: dashboardState = {
   shop: undefined,
   status: 'idle',
   errorMsg: undefined,
-  start: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-  end: new Date(),
-  DQ_COM: 0,
-  P_MDB: 0,
-  P_SH: 0,
-  dataQualityGrouped: [],
+  start: '2022-07-19T00:00:00',
+  end: '2022-07-23T00:00:00',
   T_M_AVG: 0,
   T_SH_AVG: 0,
   PS_M: 0,
@@ -177,12 +169,6 @@ export const dashboardSlice = createSlice({
     setShop: (state, { payload }) => {
       state.shop = payload;
     },
-    setDataQuality: (state, { payload }) => {
-      state.DQ_COM = payload.DQ_COM;
-      state.P_MDB = payload.P_MDB;
-      state.P_SH = payload.P_SH;
-      state.dataQualityGrouped = payload.dataQualityGrouped;
-    },
     clearStatus: (state) => {
       state.errorMsg = undefined;
       state.status = 'idle';
@@ -208,5 +194,5 @@ export const dashboardSlice = createSlice({
   }
 });
 
-export const { setShop, setDataQuality, clearStatus, setEventSelected } = dashboardSlice.actions;
+export const { setShop, clearStatus, setEventSelected } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

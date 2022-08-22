@@ -1,11 +1,17 @@
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
-import { useSelector } from 'redux/store';
+import { useSelector, useDispatch } from 'redux/store';
+import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
 
 import { getColor, getMessage } from 'utility/functions';
 
 const QualityCombined = () => {
-  const { DQ_COM } = useSelector((state) => state.dashboard);
+  const dispatch = useDispatch();
+  const { DQ_COM, status } = useSelector((state) => state.dataQuality);
+  useEffect(() => {
+    if (status === 'idle') dispatch(dataQualityAsync());
+  });
   return (
     <div className="flex flex-row gap-4 items-center text-primary">
       <CircularProgress
