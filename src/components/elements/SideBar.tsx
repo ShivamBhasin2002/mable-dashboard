@@ -58,14 +58,14 @@ const SideBar = () => {
             <Icon icon="dropdown" />
           </span>
         </div>
-        <div className="flex text-[14px] text-secondary font-heading font-bold items-center">
-          <span
-            className="mr-[25px] ml-[10px] text-2xl rounded-full hover:bg-secondary/20 p-2 cursor-pointer"
-            onClick={() => {
-              dispatch(logout());
-              navigate('/');
-            }}
-          >
+        <div
+          className="flex text-[14px] text-secondary font-heading font-bold items-center cursor-pointer"
+          onClick={() => {
+            dispatch(logout());
+            navigate('/');
+          }}
+        >
+          <span className="mr-[25px] ml-[10px] text-2xl rounded-full hover:bg-secondary/20 p-2 ">
             <Icon icon="logout" />
           </span>
           Logout
