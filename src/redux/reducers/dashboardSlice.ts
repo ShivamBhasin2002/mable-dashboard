@@ -35,39 +35,8 @@ export interface dashboardState {
   shop: shop | undefined;
   status: 'idle' | 'pending' | 'success' | 'error';
   errorMsg: string | undefined;
-  start: Date;
-  end: Date;
-  DQ_COM: number;
-  P_MDB: number;
-  P_SH: number;
-  dataQualityGrouped: { date: string; DQ_COM: number }[];
-  AVG_T_DIFF: number;
-  T_M_AVG: number | string;
-  T_SH_AVG: number | string;
-  PS_M: number | string;
-  N_Total: number | string;
-  total_events: {
-    'Page View': number;
-    'Add to Cart': number;
-    'Initiate Checkout': number;
-    'Add Payment Info': number;
-    Purchase: number;
-  };
-  dataContainedPerEventBarChart: {
-    _id: string;
-    attribute_quality: string | undefined;
-    event_quality: string | undefined;
-  }[];
-  dataContaindedPerEventDoughnutChart: {
-    backend: number;
-    frontend: number;
-    mableEngine: number;
-    unavailable: number;
-  };
-  attribution: number;
-  event: number;
-  totatlAttribution: number;
-  totalEvent: number;
+  start: Date | string;
+  end: Date | string;
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
   eventsPerDay: { date: string; value: string }[];
 }
@@ -77,35 +46,8 @@ const initialState: dashboardState = {
   shop: undefined,
   status: 'idle',
   errorMsg: undefined,
-  start: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-  end: new Date(),
-  DQ_COM: 0,
-  P_MDB: 0,
-  P_SH: 0,
-  dataQualityGrouped: [],
-  T_M_AVG: 0,
-  T_SH_AVG: 0,
-  PS_M: 0,
-  N_Total: 0,
-  AVG_T_DIFF: 0,
-  total_events: {
-    'Page View': 0,
-    'Add to Cart': 0,
-    'Initiate Checkout': 0,
-    'Add Payment Info': 0,
-    Purchase: 0
-  },
-  dataContainedPerEventBarChart: [],
-  dataContaindedPerEventDoughnutChart: {
-    backend: 0,
-    frontend: 0,
-    mableEngine: 0,
-    unavailable: 0
-  },
-  attribution: 0,
-  event: 0,
-  totalEvent: 0,
-  totatlAttribution: 0,
+  start: '2022-07-19T00:00:00',
+  end: '2022-07-23T00:00:00',
   warnings: [],
   eventsPerDay: []
 };
@@ -116,12 +58,6 @@ export const dashboardSlice = createSlice({
   reducers: {
     setShop: (state, { payload }) => {
       state.shop = payload;
-    },
-    setDataQuality: (state, { payload }) => {
-      state.DQ_COM = payload.DQ_COM;
-      state.P_MDB = payload.P_MDB;
-      state.P_SH = payload.P_SH;
-      state.dataQualityGrouped = payload.dataQualityGrouped;
     },
     clearStatus: (state) => {
       state.errorMsg = undefined;
@@ -145,5 +81,5 @@ export const dashboardSlice = createSlice({
   }
 });
 
-export const { setShop, setDataQuality, clearStatus } = dashboardSlice.actions;
+export const { setShop, clearStatus } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

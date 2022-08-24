@@ -1,16 +1,14 @@
 import { useRef, useState, useEffect } from 'react';
-import ComponentWrapper from './ComponentWrapper';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Bar } from 'react-chartjs-2';
-ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, ChartDataLabels);
+
+import ComponentWrapper from '../elements/ComponentWrapper';
 
 import { createGradient } from 'utility/functions';
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 
 const FunnelAnalysis = () => {
-  const { total_events } = useSelector((state) => state.dashboard);
+  const { total_events } = useSelector((state) => state.funnelAnalysis);
   const chart = useRef<any>(null); //eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); //eslint-disable-line
 

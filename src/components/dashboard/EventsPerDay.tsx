@@ -1,17 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler
-} from 'chart.js';
+
 import { Line } from 'react-chartjs-2';
-import ComponentWrapper from './ComponentWrapper';
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
+import ComponentWrapper from '../elements/ComponentWrapper';
 
 import { useSelector } from 'redux/store';
 import { createGradient } from 'utility/functions';

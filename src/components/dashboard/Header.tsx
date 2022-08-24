@@ -8,6 +8,7 @@ import { setShop } from 'redux/reducers/dashboardSlice';
 const DashboardHeader = () => {
   const dispatch = useDispatch();
   const { shop, shops } = useSelector((state) => state.dashboard);
+  const { screen } = useSelector((state) => state.general);
   return (
     <header>
       <div className="flex flex-row-reverse">
@@ -43,7 +44,7 @@ const DashboardHeader = () => {
       <hr className="h-[2px] border-none my-[23px] bg-lines/[0.15] w-[600px] ml-auto" />
       <div className="flex justify-between items-center h-[45px]">
         <h1 className="text-bgPrimary-dark text-[42px] text-light font-heading font-bold relative top-[-16px]">
-          Dashboard
+          {screen}
         </h1>
         <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
           <span className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl">

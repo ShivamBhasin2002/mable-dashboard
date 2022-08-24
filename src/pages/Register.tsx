@@ -5,11 +5,11 @@ import * as Yup from 'yup';
 import { Spinner, useToast } from '@chakra-ui/react';
 
 import Icon from 'utility/icons';
-import TextField from 'components/form/TextField';
-import CheckBox from 'components/form/CheckBox';
+import TextField from 'components/elements/form/TextField';
+import CheckBox from 'components/elements/form/CheckBox';
 
 import { useDispatch, useSelector } from 'redux/store';
-import { registerAsync, clearState } from 'redux/reducers/userSlice';
+import { registerAsync, clearState } from 'redux/reducers/authSlice';
 
 const Register = () => {
   const toast = useToast();
