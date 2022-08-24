@@ -37,8 +37,7 @@ export interface dashboardState {
   errorMsg: string | undefined;
   start: Date | string;
   end: Date | string;
-  AVG_T_DIFF: number;
-  N_Total: number | string;
+
   total_events: {
     'Page View': number;
     'Add to Cart': number;
@@ -103,8 +102,6 @@ const initialState: dashboardState = {
   start: '2022-07-19T00:00:00',
   end: '2022-07-23T00:00:00',
 
-  N_Total: 0,
-  AVG_T_DIFF: 0,
   total_events: {
     'Page View': 0,
     'Add to Cart': 0,

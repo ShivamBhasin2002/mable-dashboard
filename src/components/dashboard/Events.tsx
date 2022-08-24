@@ -3,7 +3,7 @@ import ComponentWrapper from '../elements/ComponentWrapper';
 import { useSelector } from 'redux/store';
 
 const Events = () => {
-  const { N_Total, AVG_T_DIFF } = useSelector((state) => state.dashboard);
+  const { N_Total, AVG_T_DIFF } = useSelector((state) => state.events);
   return (
     <ComponentWrapper title="Events" width={330}>
       <div className="flex flex-row justify-center">

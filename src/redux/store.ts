@@ -12,6 +12,7 @@ import dashboardSlice from 'redux/reducers/dashboardSlice';
 import generalSlice from 'redux/reducers/generalSlice';
 import dataQualitySlice from './reducers/dataQualitySlice';
 import pageSpeedSlice from './reducers/pageSpeedSlice';
+import eventsSlice from './reducers/eventSlice';
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ export const store = configureStore({
     dashboard: dashboardSlice,
     general: generalSlice,
     dataQuality: dataQualitySlice,
-    pageSpeed: pageSpeedSlice
+    pageSpeed: pageSpeedSlice,
+    events: eventsSlice
   },
   middleware: [thunk as ThunkMiddleware]
 });
