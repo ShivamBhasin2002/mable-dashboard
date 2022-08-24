@@ -1,17 +1,14 @@
-import * as React from 'react';
-
-const SVGComponent = (props: { size?: string; className?: string }) => (
+const SvgComponent = (props: { size?: string; className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     width={24}
     height={24}
-    viewBox="0 0 24 24"
     {...props}
   >
     <defs>
       <pattern
-        id="pattern"
+        id="dashboardIcon"
         preserveAspectRatio="xMidYMid slice"
         width="100%"
         height="100%"
@@ -24,14 +21,8 @@ const SVGComponent = (props: { size?: string; className?: string }) => (
         />
       </pattern>
     </defs>
-    <rect
-      id="_002-dashboard"
-      data-name="002-dashboard"
-      width={24}
-      height={24}
-      fill="url(#pattern)"
-    />
+    <path data-name="002-dashboard" fill="url(#dashboardIcon)" d="M0 0h24v24H0z" />
   </svg>
 );
 
-export default SVGComponent;
+export default SvgComponent;

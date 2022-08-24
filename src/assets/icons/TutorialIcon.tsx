@@ -11,7 +11,7 @@ const SVGComponent = (props: { size?: string; className?: string }) => (
   >
     <defs>
       <pattern
-        id="pattern"
+        id="tutorialIcon"
         preserveAspectRatio="xMidYMid slice"
         width="100%"
         height="100%"
@@ -24,7 +24,13 @@ const SVGComponent = (props: { size?: string; className?: string }) => (
         />
       </pattern>
     </defs>
-    <rect id="_005-question" data-name="005-question" width={24} height={24} fill="url(#pattern)" />
+    <rect
+      id="_005-question"
+      data-name="005-question"
+      width={24}
+      height={24}
+      fill="url(#tutorialIcon)"
+    />
   </svg>
 );
 

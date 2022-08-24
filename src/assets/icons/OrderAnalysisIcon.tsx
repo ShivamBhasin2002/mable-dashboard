@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 const SVGComponent = (props: { size?: string; className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +9,7 @@ const SVGComponent = (props: { size?: string; className?: string }) => (
   >
     <defs>
       <pattern
-        id="pattern"
+        id="orderAnalysisIcon"
         preserveAspectRatio="xMidYMid slice"
         width="100%"
         height="100%"
@@ -24,7 +22,13 @@ const SVGComponent = (props: { size?: string; className?: string }) => (
         />
       </pattern>
     </defs>
-    <rect id="_003-graph" data-name="003-graph" width={24} height={24} fill="url(#pattern)" />
+    <rect
+      id="_003-graph"
+      data-name="003-graph"
+      width={24}
+      height={24}
+      fill="url(#orderAnalysisIcon)"
+    />
   </svg>
 );
 

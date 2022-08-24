@@ -1,17 +1,18 @@
-import * as React from 'react';
-
-const SVGComponent = (props: { size?: string; className?: string }) => (
+const SVGComponent = (props: {
+  size?: string;
+  className?: string;
+  width?: number;
+  height?: number;
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    width={24}
-    height={24}
     viewBox="0 0 24 24"
     {...props}
   >
     <defs>
       <pattern
-        id="pattern"
+        id="EventQualityIcon"
         preserveAspectRatio="xMidYMid slice"
         width="100%"
         height="100%"
@@ -27,9 +28,8 @@ const SVGComponent = (props: { size?: string; className?: string }) => (
     <rect
       id="_001-data-management"
       data-name="001-data-management"
-      width={24}
-      height={24}
-      fill="url(#pattern)"
+      fill="url(#EventQualityIcon)"
+      {...props}
     />
   </svg>
 );

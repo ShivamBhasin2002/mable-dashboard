@@ -19,85 +19,94 @@ import { BiRefresh } from 'react-icons/bi';
 
 import Dashboard from 'assets/icons/DashboardIcon';
 import EventQuality from 'assets/icons/EventQualityIcon';
-import MableLogo from 'assets/icons/MableLogoIcon';
+import MableLogoIcon from 'assets/icons/MableLogoIcon';
 import OrderAnalysis from 'assets/icons/OrderAnalysisIcon';
 import Settings from 'assets/icons/SettingsIcon';
-// import Shop from 'assets/icons/ShopIcon'
+import Shop from 'assets/icons/ShopIcon';
 import Tutorial from 'assets/icons/TutorialIcon';
+import MableLogo from 'assets/icons/MableLogo';
 
 interface iconProps {
   icon?: string;
   size?: string;
   color?: string;
+  width?: number;
+  height?: number;
 }
 
-const Icon: React.FC<iconProps> = ({ icon, size, color }) => {
+const Icon: React.FC<iconProps> = ({ icon, color, ...props }) => {
   switch (icon) {
     case 'alert':
-      return <AiOutlineWarning size={size} className={color && `text-${color}`} />;
+      return <AiOutlineWarning className={color && `text-${color}`} {...props} />;
       break;
     case 'bar-chart':
-      return <RiBarChart2Line size={size} className={color && `text-${color}`} />;
+      return <RiBarChart2Line className={color && `text-${color}`} {...props} />;
       break;
     case 'dashboard':
-      return <Dashboard size={size} className={color && `text-${color}`} />;
+      return <Dashboard className={color && `text-${color}`} {...props} />;
       break;
     case 'settings':
-      return <Settings size={size} className={color && `text-${color}`} />;
+      return <Settings className={color && `text-${color}`} {...props} />;
       break;
     case 'target':
-      return <FiTarget size={size} className={color && `text-${color}`} />;
+      return <FiTarget className={color && `text-${color}`} {...props} />;
       break;
     case 'bell':
-      return <AiOutlineBell size={size} className={color && `text-${color}`} />;
+      return <AiOutlineBell className={color && `text-${color}`} {...props} />;
       break;
     case 'bar-chart-line':
-      return <BsBarChartLine size={size} className={color && `text-${color}`} />;
+      return <BsBarChartLine className={color && `text-${color}`} {...props} />;
       break;
     case 'speakerphone':
-      return <HiOutlineSpeakerphone size={size} className={color && `text-${color}`} />;
+      return <HiOutlineSpeakerphone className={color && `text-${color}`} {...props} />;
       break;
     case 'report-money':
-      return <TbReportMoney size={size} className={color && `text-${color}`} />;
+      return <TbReportMoney className={color && `text-${color}`} {...props} />;
       break;
     case 'refresh':
-      return <BiRefresh size={size} className={color && `text-${color}`} />;
+      return <BiRefresh className={color && `text-${color}`} {...props} />;
       break;
     case 'orderAnalysis':
-      return <OrderAnalysis size={size} className={color && `text-${color}`} />;
+      return <OrderAnalysis className={color && `text-${color}`} {...props} />;
       break;
     case 'eventQuality':
-      return <EventQuality size={size} className={color && `text-${color}`} />;
+      return <EventQuality className={color && `text-${color}`} {...props} />;
       break;
     case 'logout':
-      return <FiLogOut size={size} className={color && `text-${color}`} />;
+      return <FiLogOut className={color && `text-${color}`} {...props} />;
       break;
     case 'dropdown':
-      return <AiFillCaretDown size={size} className={color && `text-${color}`} />;
+      return <AiFillCaretDown className={color && `text-${color}`} {...props} />;
       break;
     case 'next':
-      return <AiOutlineArrowRight size={size} className={color && `text-${color}`} />;
+      return <AiOutlineArrowRight className={color && `text-${color}`} {...props} />;
       break;
     case 'email':
-      return <MdMail size={size} className={color && `text-${color}`} />;
+      return <MdMail className={color && `text-${color}`} {...props} />;
       break;
     case 'password':
-      return <RiLock2Fill size={size} className={color && `text-${color}`} />;
+      return <RiLock2Fill className={color && `text-${color}`} {...props} />;
       break;
     case 'copyright':
-      return <FaRegCopyright size={size} className={color && `text-${color}`} />;
+      return <FaRegCopyright className={color && `text-${color}`} {...props} />;
       break;
     case 'showPassword':
-      return <AiFillEye size={size} className={color && `text-${color}`} />;
+      return <AiFillEye className={color && `text-${color}`} {...props} />;
       break;
     case 'hidePassword':
-      return <AiFillEyeInvisible size={size} className={color && `text-${color}`} />;
+      return <AiFillEyeInvisible className={color && `text-${color}`} {...props} />;
       break;
     case 'tutorial':
-      return <Tutorial size={size} className={color && `text-${color}`} />;
+      return <Tutorial className={color && `text-${color}`} {...props} />;
       break;
     case 'mableIcon':
-      return <MableLogo size={size} className={color && `text-${color}`} />;
+      return <MableLogoIcon className={color && `text-${color}`} {...props} />;
+      break;
+    case 'shopIcon':
+      return <Shop className={color && `text-${color}`} {...props} />;
+      break;
+    case 'mableLogo':
+      return <MableLogo className={color && `text-${color}`} {...props} />;
       break;
   }
   return null;
