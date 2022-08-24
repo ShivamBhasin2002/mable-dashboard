@@ -10,18 +10,20 @@ import type {} from 'redux-thunk/extend-redux';
 import userSlice from 'redux/reducers/authSlice';
 import dashboardSlice from 'redux/reducers/dashboardSlice';
 import generalSlice from 'redux/reducers/generalSlice';
-import dataQualitySlice from './reducers/dataQualitySlice';
-import pageSpeedSlice from './reducers/pageSpeedSlice';
-import eventsSlice from './reducers/eventSlice';
+import dataQualityReducer from './reducers/dataQualitySlice';
+import pageSpeedReducer from './reducers/pageSpeedSlice';
+import eventsReducer from './reducers/eventSlice';
+import funnelAnalysisReducer from './reducers/funnelAnalysis';
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
     dashboard: dashboardSlice,
     general: generalSlice,
-    dataQuality: dataQualitySlice,
-    pageSpeed: pageSpeedSlice,
-    events: eventsSlice
+    dataQuality: dataQualityReducer,
+    pageSpeed: pageSpeedReducer,
+    events: eventsReducer,
+    funnelAnalysis: funnelAnalysisReducer
   },
   middleware: [thunk as ThunkMiddleware]
 });

@@ -38,13 +38,6 @@ export interface dashboardState {
   start: Date | string;
   end: Date | string;
 
-  total_events: {
-    'Page View': number;
-    'Add to Cart': number;
-    'Initiate Checkout': number;
-    'Add Payment Info': number;
-    Purchase: number;
-  };
   dataContainedPerEventBarChart: {
     _id: string;
     attribute_quality: string | undefined;
@@ -102,13 +95,6 @@ const initialState: dashboardState = {
   start: '2022-07-19T00:00:00',
   end: '2022-07-23T00:00:00',
 
-  total_events: {
-    'Page View': 0,
-    'Add to Cart': 0,
-    'Initiate Checkout': 0,
-    'Add Payment Info': 0,
-    Purchase: 0
-  },
   dataContainedPerEventBarChart: [],
   dataContaindedPerEventDoughnutChart: {
     backend: 0,

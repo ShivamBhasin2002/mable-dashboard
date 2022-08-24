@@ -8,7 +8,7 @@ import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 
 const FunnelAnalysis = () => {
-  const { total_events } = useSelector((state) => state.dashboard);
+  const { total_events } = useSelector((state) => state.funnelAnalysis);
   const chart = useRef<any>(null); //eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); //eslint-disable-line
 
