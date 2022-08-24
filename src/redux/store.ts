@@ -7,17 +7,19 @@ import {
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import type {} from 'redux-thunk/extend-redux';
 
-import userSlice from 'redux/reducers/userSlice';
+import userSlice from 'redux/reducers/authSlice';
 import dashboardSlice from 'redux/reducers/dashboardSlice';
 import generalSlice from 'redux/reducers/generalSlice';
 import dataQualitySlice from './reducers/dataQualitySlice';
+import pageSpeedSlice from './reducers/pageSpeedSlice';
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
     dashboard: dashboardSlice,
     general: generalSlice,
-    dataQuality: dataQualitySlice
+    dataQuality: dataQualitySlice,
+    pageSpeed: pageSpeedSlice
   },
   middleware: [thunk as ThunkMiddleware]
 });

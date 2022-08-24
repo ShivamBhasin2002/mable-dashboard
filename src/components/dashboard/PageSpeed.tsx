@@ -3,7 +3,7 @@ import ComponentWrapper from '../elements/ComponentWrapper';
 import { useSelector } from 'redux/store';
 
 const PageSpeed = () => {
-  const { T_M_AVG, T_SH_AVG, PS_M } = useSelector((state) => state.dashboard);
+  const { T_M_AVG, T_SH_AVG, PS_M } = useSelector((state) => state.pageSpeed);
   return (
     <ComponentWrapper title="Page Speed" width={560}>
       <div className="flex flex-row justify-center">

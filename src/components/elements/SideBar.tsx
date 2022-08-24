@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Icon from 'utility/icons';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { logout } from 'redux/reducers/userSlice';
+import { logout } from 'redux/reducers/authSlice';
 import { setScreen } from 'redux/reducers/generalSlice';
 
 const SideBar = () => {

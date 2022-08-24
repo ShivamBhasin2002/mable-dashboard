@@ -6,7 +6,7 @@ import SideBar from 'components/elements/SideBar';
 import DashboardHeader from 'components/dashboard/Header';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { isAuthenticatedAsync, clearState } from 'redux/reducers/userSlice';
+import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
 import { fetchShopAsync, clearStatus } from 'redux/reducers/dashboardSlice';
 import Loading from 'components/elements/Loading';
 

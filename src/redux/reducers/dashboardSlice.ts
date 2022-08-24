@@ -38,9 +38,6 @@ export interface dashboardState {
   start: Date | string;
   end: Date | string;
   AVG_T_DIFF: number;
-  T_M_AVG: number | string;
-  T_SH_AVG: number | string;
-  PS_M: number | string;
   N_Total: number | string;
   total_events: {
     'Page View': number;
@@ -105,9 +102,7 @@ const initialState: dashboardState = {
   errorMsg: undefined,
   start: '2022-07-19T00:00:00',
   end: '2022-07-23T00:00:00',
-  T_M_AVG: 0,
-  T_SH_AVG: 0,
-  PS_M: 0,
+
   N_Total: 0,
   AVG_T_DIFF: 0,
   total_events: {

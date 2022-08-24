@@ -9,7 +9,7 @@ import TextField from 'components/elements/form/TextField';
 import CheckBox from 'components/elements/form/CheckBox';
 
 import { useDispatch, useSelector } from 'redux/store';
-import { loginAsync, clearState } from 'redux/reducers/userSlice';
+import { loginAsync, clearState } from 'redux/reducers/authSlice';
 
 const Login = () => {
   const toast = useToast();
