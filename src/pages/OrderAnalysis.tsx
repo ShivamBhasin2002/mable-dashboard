@@ -12,7 +12,7 @@ import { useSelector } from 'redux/store';
 
 const OrderAnalysis = () => {
   const { shopifyOrders, ordersWithCorrectCV, recievedByFB, avgDelieveryTime } = useSelector(
-    (state) => state.dashboard
+    (state) => state.dataQuality
   );
   return (
     <div className="flex flex-col mt-[40px] gap-[40px]">

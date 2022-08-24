@@ -9,7 +9,7 @@ import ParameterStat from 'components/orderAnalysis/ParameterStat';
 import { useSelector } from 'redux/store';
 
 const EventQuality = () => {
-  const { AttributionParameters } = useSelector((state) => state.dashboard);
+  const { AttributionParameters } = useSelector((state) => state.dataPerEvent);
   return (
     <div className="flex flex-col flex-grow mt-[40px] gap-[40px]">
       <ComponentWrapper nextComponent={<SelectorMenu />} height={400} className="flex-grow-0">

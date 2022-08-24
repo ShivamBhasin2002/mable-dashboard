@@ -5,7 +5,7 @@ import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 
 const DoughnutChart = () => {
-  const data = useSelector((state) => state.dashboard.dataContaindedPerEventDoughnutChart);
+  const data = useSelector((state) => state.dataPerEvent.dataContaindedPerEventDoughnutChart);
   const doughnutData = {
       labels: ['Backend', 'Frontend', 'Mobile Engine', 'Unavailable'],
       datasets: [

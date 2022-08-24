@@ -4,11 +4,11 @@ import colors from 'utility/colors';
 import Icon from 'utility/icons';
 
 import { useDispatch, useSelector } from 'redux/store';
-import { setEventSelected } from 'redux/reducers/dashboardSlice';
+import { setEventSelected } from 'redux/reducers/dataPerEventSlice';
 
 const SelectorMenu = () => {
   const dispatch = useDispatch();
-  const { eventSelected } = useSelector((state) => state.dashboard);
+  const { eventSelected } = useSelector((state) => state.dataPerEvent);
   return (
     <Menu gutter={0}>
       <MenuButton

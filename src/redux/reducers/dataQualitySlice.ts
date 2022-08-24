@@ -49,6 +49,10 @@ export interface dataQualityState {
   P_MDB: number;
   P_SH: number;
   dataQualityGrouped: { date: string; DQ_COM: number }[];
+  shopifyOrders: number;
+  ordersWithCorrectCV: number;
+  recievedByFB: number;
+  avgDelieveryTime: number;
   status?: 'idle' | 'fetching' | 'success' | 'error';
   errorMsg?: string;
 }
@@ -58,6 +62,10 @@ const initialState: dataQualityState = {
   P_MDB: 0,
   P_SH: 0,
   dataQualityGrouped: [],
+  shopifyOrders: 0,
+  ordersWithCorrectCV: 0,
+  recievedByFB: 0,
+  avgDelieveryTime: 0,
   status: 'idle',
   errorMsg: undefined
 };

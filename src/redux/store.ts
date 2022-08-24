@@ -14,6 +14,7 @@ import dataQualityReducer from './reducers/dataQualitySlice';
 import pageSpeedReducer from './reducers/pageSpeedSlice';
 import eventsReducer from './reducers/eventSlice';
 import funnelAnalysisReducer from './reducers/funnelAnalysis';
+import dataPerEventSlice from './reducers/dataPerEventSlice';
 
 export const store = configureStore({
   reducer: {
@@ -23,7 +24,8 @@ export const store = configureStore({
     dataQuality: dataQualityReducer,
     pageSpeed: pageSpeedReducer,
     events: eventsReducer,
-    funnelAnalysis: funnelAnalysisReducer
+    funnelAnalysis: funnelAnalysisReducer,
+    dataPerEvent: dataPerEventSlice
   },
   middleware: [thunk as ThunkMiddleware]
 });

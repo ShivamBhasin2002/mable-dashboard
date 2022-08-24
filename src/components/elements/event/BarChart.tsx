@@ -11,7 +11,7 @@ interface BarChartProps {
 }
 
 const BarChart: FC<BarChartProps> = ({ width, height }) => {
-  const { dataContainedPerEventBarChart } = useSelector((state) => state.dashboard);
+  const { dataContainedPerEventBarChart } = useSelector((state) => state.dataPerEvent);
   const barOptions = {
       maintainAspectRatio: false,
       barPercentage: 0.7,

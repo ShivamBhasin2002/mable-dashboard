@@ -2,7 +2,7 @@ import { useSelector } from 'redux/store';
 
 const Metrics = () => {
   const { attribution, event, totalEvent, totatlAttribution } = useSelector(
-    (state) => state.dashboard
+    (state) => state.dataPerEvent
   );
   return (
     <div className="flex flex-row justify-evenly gap-[10px]">
