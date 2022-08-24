@@ -12,7 +12,7 @@ const SideBar = () => {
   const { screen } = useSelector((state) => state.general);
   const sideBarItems = [
     { title: 'Dashboard', icon: 'dashboard' },
-    { title: 'Order Analysis', icon: 'order' },
+    { title: 'Order Analysis', icon: 'orderAnalysis' },
     { title: 'Event Quality', icon: 'eventQuality' },
     { title: 'Settings', icon: 'settings' },
     { title: 'Tutorial', icon: 'tutorial' }
@@ -22,7 +22,10 @@ const SideBar = () => {
       id="side-bar"
       className="sticky top-0 left-0 w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[50px] lg:flex flex-col gap-16 px-[25px] hidden"
     >
-      <header className="text-light text-center font-bold text-3xl">Mable</header>
+      <header className="text-light text-center font-bold text-3xl flex gap-2 jus">
+        <Icon icon="mableIcon" />
+        Mable
+      </header>
       <section className="flex-grow">
         <div className="flex flex-col gap-[5px]">
           <div className=" ml-[9px] text-[16px] text-light/[0.57] font-heading font-bold">MENU</div>
