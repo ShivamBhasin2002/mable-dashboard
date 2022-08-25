@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Spinner, useToast } from '@chakra-ui/react';
 
-import Icon from 'utility/icons';
+import Icon from 'assets/icons/index';
 import TextField from 'components/elements/form/TextField';
 import CheckBox from 'components/elements/form/CheckBox';
 

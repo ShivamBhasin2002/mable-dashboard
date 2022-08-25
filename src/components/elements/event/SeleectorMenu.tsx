@@ -1,7 +1,7 @@
 import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
 import colors from 'utility/colors';
-import Icon from 'utility/icons';
+import Icon from 'assets/icons/index';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { setEventSelected } from 'redux/reducers/dataPerEventSlice';

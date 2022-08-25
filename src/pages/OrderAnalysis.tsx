@@ -5,7 +5,7 @@ import LineChart from 'components/elements/quality/LineChart';
 import QualityCombined from 'components/elements/quality/QualityCombined';
 import Stats from 'components/orderAnalysis/Statistics';
 
-import Icon from 'utility/icons';
+import Icon from 'assets/icons/index';
 import colors from 'utility/colors';
 
 import { useSelector } from 'redux/store';

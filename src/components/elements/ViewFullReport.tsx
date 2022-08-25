@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import Icon from 'utility/icons';
+import Icon from 'assets/icons/index';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { setScreen } from 'redux/reducers/generalSlice';

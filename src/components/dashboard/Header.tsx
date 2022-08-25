@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
-import Icon from 'utility/icons';
+import Icon from 'assets/icons/index';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { setShop } from 'redux/reducers/dashboardSlice';
