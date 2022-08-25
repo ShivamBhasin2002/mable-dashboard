@@ -8,7 +8,7 @@ import {
   InputRightElement,
   FormErrorMessage
 } from '@chakra-ui/react';
-import Icon from 'assets/icons/index';
+import Icon from 'assets/icons';
 import { Field, useField } from 'formik';
 
 interface TextFieldProps {

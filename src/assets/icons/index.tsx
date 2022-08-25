@@ -1,4 +1,4 @@
-import React from 'react';
+import { IconType } from 'utility/typeDefinitions/IconType';
 
 import { RiBarChart2Line, RiLock2Fill } from 'react-icons/ri';
 import { MdMail } from 'react-icons/md';
@@ -26,87 +26,109 @@ import Shop from 'assets/icons/ShopIcon';
 import Tutorial from 'assets/icons/TutorialIcon';
 import MableLogo from 'assets/icons/MableLogo';
 
-interface iconProps {
-  icon?: string;
-  size?: string;
-  color?: string;
-  width?: number;
-  height?: number;
-}
-
-const Icon: React.FC<iconProps> = ({ icon, color, ...props }) => {
+const Icon = ({ icon, color, className, ...props }: IconType) => {
   switch (icon) {
     case 'alert':
-      return <AiOutlineWarning className={color && `text-${color}`} {...props} />;
+      return (
+        <AiOutlineWarning className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'bar-chart':
-      return <RiBarChart2Line className={color && `text-${color}`} {...props} />;
+      return (
+        <RiBarChart2Line className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'dashboard':
-      return <Dashboard className={color && `text-${color}`} {...props} />;
+      return <Dashboard className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'settings':
-      return <Settings className={color && `text-${color}`} {...props} />;
+      return <Settings className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'target':
-      return <FiTarget className={color && `text-${color}`} {...props} />;
+      return <FiTarget className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'bell':
-      return <AiOutlineBell className={color && `text-${color}`} {...props} />;
+      return (
+        <AiOutlineBell className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'bar-chart-line':
-      return <BsBarChartLine className={color && `text-${color}`} {...props} />;
+      return (
+        <BsBarChartLine className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'speakerphone':
-      return <HiOutlineSpeakerphone className={color && `text-${color}`} {...props} />;
+      return (
+        <HiOutlineSpeakerphone
+          className={`${color ? `text-${color}` : ''} ${className}`}
+          {...props}
+        />
+      );
       break;
     case 'report-money':
-      return <TbReportMoney className={color && `text-${color}`} {...props} />;
+      return (
+        <TbReportMoney className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'refresh':
-      return <BiRefresh className={color && `text-${color}`} {...props} />;
+      return <BiRefresh className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'orderAnalysis':
-      return <OrderAnalysis className={color && `text-${color}`} {...props} />;
+      return (
+        <OrderAnalysis className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'eventQuality':
-      return <EventQuality className={color && `text-${color}`} {...props} />;
+      return <EventQuality className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'logout':
-      return <FiLogOut className={color && `text-${color}`} {...props} />;
+      return <FiLogOut className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'dropdown':
-      return <AiFillCaretDown className={color && `text-${color}`} {...props} />;
+      return (
+        <AiFillCaretDown className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'next':
-      return <AiOutlineArrowRight className={color && `text-${color}`} {...props} />;
+      return (
+        <AiOutlineArrowRight
+          className={`${color ? `text-${color}` : ''} ${className}`}
+          {...props}
+        />
+      );
       break;
     case 'email':
-      return <MdMail className={color && `text-${color}`} {...props} />;
+      return <MdMail className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'password':
-      return <RiLock2Fill className={color && `text-${color}`} {...props} />;
+      return <RiLock2Fill className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'copyright':
-      return <FaRegCopyright className={color && `text-${color}`} {...props} />;
+      return (
+        <FaRegCopyright className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'showPassword':
-      return <AiFillEye className={color && `text-${color}`} {...props} />;
+      return <AiFillEye className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'hidePassword':
-      return <AiFillEyeInvisible className={color && `text-${color}`} {...props} />;
+      return (
+        <AiFillEyeInvisible className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'tutorial':
-      return <Tutorial className={color && `text-${color}`} {...props} />;
+      return <Tutorial className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'mableIcon':
-      return <MableLogoIcon className={color && `text-${color}`} {...props} />;
+      return (
+        <MableLogoIcon className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
       break;
     case 'shopIcon':
-      return <Shop className={color && `text-${color}`} {...props} />;
+      return <Shop className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
     case 'mableLogo':
-      return <MableLogo className={color && `text-${color}`} {...props} />;
+      return <MableLogo className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
       break;
   }
   return null;

@@ -4,9 +4,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Spinner, useToast } from '@chakra-ui/react';
 
-import Icon from 'assets/icons/index';
-import TextField from 'components/elements/form/TextField';
-import CheckBox from 'components/elements/form/CheckBox';
+import Icon from 'assets/icons';
+import { TextField, CheckBox } from 'components/elements/form';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { registerAsync, clearState } from 'redux/reducers/authSlice';

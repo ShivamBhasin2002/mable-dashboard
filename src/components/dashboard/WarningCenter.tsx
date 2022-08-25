@@ -1,5 +1,5 @@
-import ComponentWrapper from '../elements/ComponentWrapper';
-import Icon from 'assets/icons/index';
+import { ComponentWrapper } from 'components/elements';
+import Icon from 'assets/icons';
 
 import { useSelector } from 'redux/store';
 

@@ -1,4 +1,4 @@
-import ComponentWrapper from '../elements/ComponentWrapper';
+import { ComponentWrapper } from 'components/elements';
 
 import { useSelector } from 'redux/store';
 

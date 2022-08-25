@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Icon from 'assets/icons/index';
+import Icon from 'assets/icons';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { logout } from 'redux/reducers/authSlice';

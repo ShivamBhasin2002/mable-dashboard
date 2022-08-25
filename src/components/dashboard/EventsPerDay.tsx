@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
+import { ComponentWrapper } from 'components/elements';
 import { Line } from 'react-chartjs-2';
-import ComponentWrapper from '../elements/ComponentWrapper';
 
 import { useSelector } from 'redux/store';
 import { createGradient } from 'utility/functions';
