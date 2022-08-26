@@ -35,7 +35,7 @@ const EventsPerDay = () => {
     });
   }, [eventsPerDay]);
   return (
-    <ComponentWrapper title="Events Per Day" width={600} height={250}>
+    <ComponentWrapper title="Events Per Day" width={600} height={250} className="flex-grow-0">
       <div>
         <Line
           options={{

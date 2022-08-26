@@ -28,11 +28,11 @@ export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
 
 const initialState: funnelAnalysisState = {
   total_events: {
-    'Page View': 0,
-    'Add to Cart': 0,
-    'Initiate Checkout': 0,
-    'Add Payment Info': 0,
-    Purchase: 0
+    'Page View': 3000,
+    'Add to Cart': 20000,
+    'Initiate Checkout': 5000,
+    'Add Payment Info': 3000,
+    Purchase: 300
   },
   status: 'idle',
   errorMsg: undefined

@@ -42,15 +42,20 @@ const FunnelAnalysis = () => {
     }
   }, []);
   return (
-    <ComponentWrapper width={600} title="Funnel Analysis">
+    <ComponentWrapper
+      width={600}
+      title="Funnel Analysis"
+      className="flex flex-col justify-between flex-grow-0"
+    >
       <Bar
+        className="flex-grow-0"
         ref={chart}
         data={chartData}
         width={520}
         options={{
           layout: {
             padding: {
-              top: 10
+              top: 20
             }
           },
           elements: {
