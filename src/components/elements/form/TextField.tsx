@@ -28,7 +28,7 @@ const TextField: FC<TextFieldProps> = ({ label, icon, type, ...props }) => {
       {label && <FormLabel>{label}</FormLabel>}
       <InputGroup>
         {icon && (
-          <InputLeftElement className="!py-[23px]" pointerEvents="none">
+          <InputLeftElement className="!py-[23px] !ml-[5px]" pointerEvents="none">
             <Icon icon={icon} size="2rem" />
           </InputLeftElement>
         )}
@@ -38,6 +38,7 @@ const TextField: FC<TextFieldProps> = ({ label, icon, type, ...props }) => {
           pr={type === 'password' ? '4.5rem' : '20px'}
           size="lg"
           type={type === 'password' ? (show ? 'text' : 'password') : type}
+          autocomplete="off"
           {...field}
           {...props}
         />

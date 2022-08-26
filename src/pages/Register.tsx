@@ -31,12 +31,18 @@ const Register = () => {
       dispatch(clearState());
     }
     if (isSuccess) {
+      toast({
+        title: 'Registrations Successfull. Please check your mail.',
+        status: 'success',
+        isClosable: true,
+        position: 'top-right'
+      });
       dispatch(clearState());
       navigator('/login');
     }
   }, [isError, isSuccess]);
   return (
-    <div className="flex flex-row min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly">
+    <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">
         <header>
           <div className="text-center font-heading font-bold text-[60px]">Register</div>
@@ -140,6 +146,7 @@ const Register = () => {
           </div>
         </div>
       </main>
+      <Icon icon="mableLogo" />
     </div>
   );
 };
