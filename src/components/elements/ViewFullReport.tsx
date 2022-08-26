@@ -1,15 +1,11 @@
-import { FC } from 'react';
-
 import Icon from 'assets/icons';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { setScreen } from 'redux/reducers/generalSlice';
 
-interface ViewFullReportProps {
-  screen: 'Dashboard' | 'Order Analysis' | 'Event Quality' | 'Settings' | 'Tutorial';
-}
+import { ViewFullReportProps } from 'utility/typeDefinitions/componentTypes';
 
-const ViewFullReport: FC<ViewFullReportProps> = ({ screen }) => {
+const ViewFullReport = ({ screen }: ViewFullReportProps) => {
   const dispatch = useDispatch();
   const currScreen = useSelector((state) => state.general.screen);
   return (

@@ -1,13 +1,9 @@
-import { FC } from 'react';
-
 import { Spinner } from '@chakra-ui/react';
 import colors from 'utility/colors';
 
-interface LoadingProps {
-  message?: string;
-}
+import { LoadingProps } from 'utility/typeDefinitions/componentTypes';
 
-const Loading: FC<LoadingProps> = ({ message = 'Loading' }) => {
+const Loading = ({ message = 'Loading' }: LoadingProps) => {
   return (
     <div className="flex flex-col items-center justify-center gap-4 bg-background h-screen">
       <div>

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -11,15 +11,9 @@ import {
 import Icon from 'assets/icons';
 import { Field, useField } from 'formik';
 
-interface TextFieldProps {
-  label?: string;
-  icon?: string;
-  type: string;
-  name: string;
-  placeholder?: string;
-}
+import { TextFieldProps } from 'utility/typeDefinitions/componentTypes';
 
-const TextField: FC<TextFieldProps> = ({ label, icon, type, ...props }) => {
+const TextField = ({ label, icon, type, ...props }: TextFieldProps) => {
   const [field, meta] = useField({ type, ...props });
   const [show, setShow] = useState(false);
   const handleClick = () => setShow((prevState) => !prevState);

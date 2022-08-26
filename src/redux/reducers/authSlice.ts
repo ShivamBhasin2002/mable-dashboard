@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { AppDispatch } from 'redux/store';
+
+import { thunkOptions, userState } from 'utility/typeDefinitions/reduxTypes';
 
 export const loginAsync = createAsyncThunk<
   string,
@@ -9,11 +10,7 @@ export const loginAsync = createAsyncThunk<
     password: string;
     rememberMe: boolean;
   },
-  {
-    dispatch: AppDispatch;
-    state: userState;
-    rejectValue: string;
-  }
+  thunkOptions
 >('user/login', async ({ email, password, rememberMe }, thunkApi) => {
   try {
     const res = await axios.post(`${process.env.REACT_APP_BFF_URL}/auth/login`, {
@@ -35,11 +32,7 @@ export const registerAsync = createAsyncThunk<
     firstName: string;
     lastName: string;
   },
-  {
-    dispatch: AppDispatch;
-    state: userState;
-    rejectValue: string;
-  }
+  thunkOptions
 >('user/register', async (formData, { rejectWithValue }) => {
   try {
     const res = await axios.post(`${process.env.REACT_APP_BFF_URL}/auth/register`, formData);
@@ -53,11 +46,7 @@ export const registerAsync = createAsyncThunk<
 export const isAuthenticatedAsync = createAsyncThunk<
   userState,
   string | null | undefined,
-  {
-    dispatch: AppDispatch;
-    state: userState;
-    rejectValue: string;
-  }
+  thunkOptions
 >('user/authenticate', async (token, { rejectWithValue }) => {
   try {
     if (token) {
@@ -73,20 +62,6 @@ export const isAuthenticatedAsync = createAsyncThunk<
     return rejectWithValue('Authentication failed');
   }
 });
-
-export interface userState {
-  email: string | undefined;
-  userId: string | undefined;
-  firstName: string | undefined;
-  lastName: string | undefined;
-  iat: number | undefined;
-  exp: number | undefined;
-  token: string | undefined;
-  isFetching: boolean;
-  isError: boolean;
-  isSuccess: boolean;
-  errorMessage: string | undefined;
-}
 
 const initialState: userState = {
   email: undefined,
