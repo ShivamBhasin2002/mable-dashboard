@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 
-import ComponentWrapper from '../elements/ComponentWrapper';
+import { ComponentWrapper } from 'components/elements';
 
 import { createGradient } from 'utility/functions';
 import { useSelector } from 'redux/store';
@@ -42,15 +42,20 @@ const FunnelAnalysis = () => {
     }
   }, []);
   return (
-    <ComponentWrapper width={600} title="Funnel Analysis">
+    <ComponentWrapper
+      width={600}
+      title="Funnel Analysis"
+      className="flex flex-col justify-between flex-grow-0"
+    >
       <Bar
+        className="flex-grow-0"
         ref={chart}
         data={chartData}
         width={520}
         options={{
           layout: {
             padding: {
-              top: 10
+              top: 20
             }
           },
           elements: {

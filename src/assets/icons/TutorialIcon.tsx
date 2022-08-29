@@ -1,6 +1,6 @@
-import * as React from 'react';
+import { IconType } from 'utility/typeDefinitions/componentTypes';
 
-const SVGComponent = (props: { size?: string; className?: string }) => (
+const SVGComponent = (props: IconType) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"

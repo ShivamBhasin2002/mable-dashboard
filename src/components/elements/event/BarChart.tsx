@@ -4,6 +4,7 @@ import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
+import fonts from 'utility/fonts';
 
 interface BarChartProps {
   width?: number;
@@ -26,9 +27,20 @@ const BarChart: FC<BarChartProps> = ({ width, height }) => {
             display: false,
             borderColor: colors.lines,
             borderWidth: 3
+          },
+          ticks: {
+            stepSize: 4,
+            font: {
+              family: fonts.text
+            }
           }
         },
         x: {
+          ticks: {
+            font: {
+              family: fonts.text
+            }
+          },
           grid: {
             display: false,
             borderColor: colors.lines,

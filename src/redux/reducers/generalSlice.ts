@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface generalState {
-  screen: 'Dashboard' | 'Order Analysis' | 'Event Quality' | 'Settings' | 'Tutorial';
-}
+import { generalState } from 'utility/typeDefinitions/reduxTypes';
+import { generalInitialState } from 'utility/constants/initialStates';
 
 const initialState: generalState = {
-  screen: 'Dashboard'
+  ...generalInitialState
 };
 
 export const generalSlice = createSlice({

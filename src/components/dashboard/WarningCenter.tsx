@@ -1,5 +1,5 @@
-import ComponentWrapper from '../elements/ComponentWrapper';
-import Icon from 'utility/icons';
+import { ComponentWrapper } from 'components/elements';
+import Icon from 'assets/icons';
 
 import { useSelector } from 'redux/store';
 
@@ -21,7 +21,7 @@ const WarningCenter = () => {
           </span>
           <span className="flex flex-col  flex-grow">
             <span className="text-[12px] leading-[15px] font-heading">{type}</span>
-            <span className="text-[16px] leading-[19px] font-heading font-bold">{message}</span>
+            <span className="text-[16px] leading-[19px] font-heading font-semibold">{message}</span>
           </span>
           <span className="text-[12px] leading-[19px] font-heading font-bold">{time}</span>
         </div>

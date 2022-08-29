@@ -18,12 +18,14 @@ const QualityCombined = () => {
         value={DQ_COM * 100}
         color={getColor(DQ_COM)}
         size="84px"
-        trackColor="#7F8C9F"
+        trackColor="#7F8C9F40"
         capIsRound
         max={100}
         min={0}
       >
-        <CircularProgressLabel className="font-bold text-light ">{DQ_COM}%</CircularProgressLabel>
+        <CircularProgressLabel className={`font-text text-[30px] text-[${getColor(DQ_COM)}]`}>
+          {DQ_COM * 100} %
+        </CircularProgressLabel>
       </CircularProgress>
       <div className="flex flex-col">
         <span className="text-[14px] font-text text-light">Quality Combine</span>

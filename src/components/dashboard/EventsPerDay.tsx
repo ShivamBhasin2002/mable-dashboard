@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 
+import { ComponentWrapper } from 'components/elements';
 import { Line } from 'react-chartjs-2';
-import ComponentWrapper from '../elements/ComponentWrapper';
 
 import { useSelector } from 'redux/store';
 import { createGradient } from 'utility/functions';
 import colors from 'utility/colors';
+import fonts from 'utility/fonts';
 
 const EventsPerDay = () => {
   const { eventsPerDay } = useSelector((state) => state.dashboard);
@@ -35,7 +36,7 @@ const EventsPerDay = () => {
     });
   }, [eventsPerDay]);
   return (
-    <ComponentWrapper title="Events Per Day" width={600} height={250}>
+    <ComponentWrapper title="Events Per Day" width={600} height={250} className="flex-grow-0">
       <div>
         <Line
           options={{
@@ -44,6 +45,9 @@ const EventsPerDay = () => {
               y: {
                 beginAtZero: true,
                 ticks: {
+                  font: {
+                    family: fonts.text
+                  },
                   stepSize: 500,
                   callback(this, tickValue: string | number) {
                     if (tickValue >= 1000) return `${parseInt(`${tickValue}`) / 1000}k`;
@@ -57,6 +61,11 @@ const EventsPerDay = () => {
                 }
               },
               x: {
+                ticks: {
+                  font: {
+                    family: fonts.text
+                  }
+                },
                 grid: {
                   display: false,
                   borderColor: colors.lines,

@@ -1,12 +1,13 @@
-import ComponentWrapper from 'components/elements/ComponentWrapper';
-import ViewFullReport from 'components/elements/ViewFullReport';
-import SelectorMenu from 'components/elements/event/SeleectorMenu';
-import Metrics from 'components/elements/event/Metrics';
-import DoughnutChart from 'components/elements/event/DoughnutChart';
-import ParameterComposition from 'components/elements/event/ParameterComposition';
-import BarChart from 'components/elements/event/BarChart';
+import { ComponentWrapper, ViewFullReport } from 'components/elements';
+import {
+  SelectorMenu,
+  Metrics,
+  DoughnutChart,
+  ParameterComposition,
+  BarChart
+} from 'components/elements/event';
 
-const DataContainerPerEvent = () => {
+const DataContainedPerEvent = () => {
   return (
     <ComponentWrapper
       title="Data Contained Per Event"
@@ -36,4 +37,4 @@ const DataContainerPerEvent = () => {
     </ComponentWrapper>
   );
 };
-export default DataContainerPerEvent;
+export default DataContainedPerEvent;

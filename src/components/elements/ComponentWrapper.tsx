@@ -1,15 +1,6 @@
-import { FC } from 'react';
-interface ComponentWrapperProps {
-  width?: number | undefined;
-  height?: number | undefined;
-  children: React.ReactNode;
-  title?: string | undefined;
-  nextComponent?: React.ReactNode | undefined;
-  underlined?: boolean | undefined;
-  className?: string | undefined;
-}
+import { ComponentWrapperProps } from 'utility/typeDefinitions/componentTypes';
 
-const ComponentWrapper: FC<ComponentWrapperProps> = ({
+const ComponentWrapper = ({
   width,
   height,
   children,
@@ -17,7 +8,7 @@ const ComponentWrapper: FC<ComponentWrapperProps> = ({
   nextComponent,
   underlined = false,
   className
-}) => {
+}: ComponentWrapperProps) => {
   return (
     <article
       className={`lg:min-w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[40px] py-[30px] flex-grow ${className}`}

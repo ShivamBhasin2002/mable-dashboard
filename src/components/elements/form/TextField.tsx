@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -8,18 +8,12 @@ import {
   InputRightElement,
   FormErrorMessage
 } from '@chakra-ui/react';
-import Icon from 'utility/icons';
+import Icon from 'assets/icons';
 import { Field, useField } from 'formik';
 
-interface TextFieldProps {
-  label?: string;
-  icon?: string;
-  type: string;
-  name: string;
-  placeholder?: string;
-}
+import { TextFieldProps } from 'utility/typeDefinitions/componentTypes';
 
-const TextField: FC<TextFieldProps> = ({ label, icon, type, ...props }) => {
+const TextField = ({ label, icon, type, ...props }: TextFieldProps) => {
   const [field, meta] = useField({ type, ...props });
   const [show, setShow] = useState(false);
   const handleClick = () => setShow((prevState) => !prevState);
@@ -28,7 +22,7 @@ const TextField: FC<TextFieldProps> = ({ label, icon, type, ...props }) => {
       {label && <FormLabel>{label}</FormLabel>}
       <InputGroup>
         {icon && (
-          <InputLeftElement className="!py-[23px]" pointerEvents="none">
+          <InputLeftElement className="!py-[23px] !ml-[5px]" pointerEvents="none">
             <Icon icon={icon} size="2rem" />
           </InputLeftElement>
         )}
@@ -38,6 +32,7 @@ const TextField: FC<TextFieldProps> = ({ label, icon, type, ...props }) => {
           pr={type === 'password' ? '4.5rem' : '20px'}
           size="lg"
           type={type === 'password' ? (show ? 'text' : 'password') : type}
+          autoComplete="off"
           {...field}
           {...props}
         />

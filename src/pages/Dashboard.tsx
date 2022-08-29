@@ -1,11 +1,13 @@
 // importing the Dashboard components
-import DataQuality from 'components/dashboard/DataQuality';
-import WarningCenter from 'components/dashboard/WarningCenter';
-import FunnelAnalysis from 'components/dashboard/FunnelAnalysis';
-import PageSpeed from 'components/dashboard/PageSpeed';
-import Events from 'components/dashboard/Events';
-import EventsPerDay from 'components/dashboard/EventsPerDay';
-import DataContainedPerEvent from 'components/dashboard/DataContainedPerEvent';
+import {
+  DataQuality,
+  WarningCenter,
+  FunnelAnalysis,
+  PageSpeed,
+  Events,
+  EventsPerDay,
+  DataContainedPerEvent
+} from 'components/dashboard';
 
 const Dashboard = () => {
   return (
