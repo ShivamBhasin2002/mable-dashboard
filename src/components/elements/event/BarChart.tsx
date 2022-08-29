@@ -26,9 +26,20 @@ const BarChart: FC<BarChartProps> = ({ width, height }) => {
             display: false,
             borderColor: colors.lines,
             borderWidth: 3
+          },
+          ticks: {
+            stepSize: 4,
+            font: {
+              family: 'Lato'
+            }
           }
         },
         x: {
+          ticks: {
+            font: {
+              family: 'Lato'
+            }
+          },
           grid: {
             display: false,
             borderColor: colors.lines,

@@ -21,9 +21,9 @@ export type userState = {
 };
 
 export type pageSpeedState = {
-  T_M_AVG: number | string;
-  T_SH_AVG: number | string;
-  PS_M: number | string;
+  T_M_AVG: number;
+  T_SH_AVG: number;
+  PS_M: number;
   status?: 'idle' | 'fetching' | 'success' | 'error';
   errorMsg?: string;
 };
@@ -48,14 +48,14 @@ export type dashboardState = {
   start: Date | string;
   end: Date | string;
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
-  eventsPerDay: { date: string; value: string }[];
+  eventsPerDay: { date: string; value: number }[];
 };
 
 export type dataPerEventState = {
   dataContainedPerEventBarChart: {
     _id: string;
-    attribute_quality: string | undefined;
-    event_quality: string | undefined;
+    attribute_quality: number | undefined;
+    event_quality: number | undefined;
   }[];
   dataContaindedPerEventDoughnutChart: {
     backend: number;
@@ -112,7 +112,7 @@ export type dataQualityState = {
 
 export type eventsState = {
   AVG_T_DIFF: number;
-  N_Total: number | string;
+  N_Total: number;
   status?: 'idle' | 'fetching' | 'success' | 'error';
   errorMsg?: string;
 };

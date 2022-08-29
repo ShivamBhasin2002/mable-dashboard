@@ -44,6 +44,9 @@ const EventsPerDay = () => {
               y: {
                 beginAtZero: true,
                 ticks: {
+                  font: {
+                    family: 'Lato'
+                  },
                   stepSize: 500,
                   callback(this, tickValue: string | number) {
                     if (tickValue >= 1000) return `${parseInt(`${tickValue}`) / 1000}k`;
@@ -57,6 +60,11 @@ const EventsPerDay = () => {
                 }
               },
               x: {
+                ticks: {
+                  font: {
+                    family: 'Lato'
+                  }
+                },
                 grid: {
                   display: false,
                   borderColor: colors.lines,

@@ -42,20 +42,40 @@ export const dashboardInitialState: dashboardState = {
   errorMsg: undefined,
   start: '2022-07-19T00:00:00',
   end: '2022-07-23T00:00:00',
-  warnings: [],
-  eventsPerDay: []
+  warnings: [
+    { type: 'error', message: 'Facebook API not Responding', time: '2h' },
+    { type: 'warning', message: 'Unusually low number of Add to Cart Events', time: '3d' },
+    { type: 'info', message: 'Deployed successfully', time: '3d' }
+  ],
+  eventsPerDay: [
+    { value: 800, date: '19Jul' },
+    { value: 1000, date: '20Jul' },
+    { value: 700, date: '21Jul' },
+    { value: 1300, date: '22Jul' },
+    { value: 1100, date: '23Jul' },
+    { value: 500, date: '24Jul' },
+    { value: 1000, date: '25Jul' }
+  ]
 };
 
 export const dataPerEventsInitialState: dataPerEventState = {
-  dataContainedPerEventBarChart: [],
+  dataContainedPerEventBarChart: [
+    { attribute_quality: 12, event_quality: 6, _id: '19Jul' },
+    { attribute_quality: 13, event_quality: 5, _id: '20Jul' },
+    { attribute_quality: 9, event_quality: 7, _id: '21Jul' },
+    { attribute_quality: 11, event_quality: 5, _id: '22Jul' },
+    { attribute_quality: 12, event_quality: 6, _id: '23Jul' },
+    { attribute_quality: 11, event_quality: 6, _id: '24Jul' },
+    { attribute_quality: 9, event_quality: 6.2, _id: '25Jul' }
+  ],
   dataContaindedPerEventDoughnutChart: {
-    backend: 0,
-    frontend: 0,
-    mableEngine: 0,
-    unavailable: 0
+    backend: 72,
+    frontend: 21,
+    mableEngine: 5,
+    unavailable: 2
   },
-  attribution: 0,
-  event: 0,
+  attribution: 12.1,
+  event: 6.7,
   totalEvent: 7,
   totatlAttribution: 13,
   eventSelected: 'Purchase',
@@ -89,10 +109,18 @@ export const dataPerEventsInitialState: dataPerEventState = {
 };
 
 export const dataQualityInitialState: dataQualityState = {
-  DQ_COM: 0,
-  P_MDB: 0,
-  P_SH: 0,
-  dataQualityGrouped: [],
+  DQ_COM: 0.94,
+  P_MDB: 258,
+  P_SH: 257,
+  dataQualityGrouped: [
+    { date: '19 Jul', DQ_COM: 0.94 },
+    { date: '20 Jul', DQ_COM: 0.96 },
+    { date: '21 Jul', DQ_COM: 0.9 },
+    { date: '22 Jul', DQ_COM: 0.84 },
+    { date: '23 Jul', DQ_COM: 0.89 },
+    { date: '24 Jul', DQ_COM: 0.87 },
+    { date: '25 Jul', DQ_COM: 0.9 }
+  ],
   shopifyOrders: 0,
   ordersWithCorrectCV: 0,
   recievedByFB: 0,
@@ -102,8 +130,8 @@ export const dataQualityInitialState: dataQualityState = {
 };
 
 export const eventsInitialState: eventsState = {
-  N_Total: 0,
-  AVG_T_DIFF: 0,
+  N_Total: 155200,
+  AVG_T_DIFF: 8300,
   status: 'idle',
   errorMsg: undefined
 };
@@ -124,8 +152,8 @@ export const generalInitialState: generalState = { screen: 'Dashboard' };
 
 export const pageSpeedInitialState: pageSpeedState = {
   T_M_AVG: 200,
-  T_SH_AVG: 0,
-  PS_M: 0,
+  T_SH_AVG: 3400,
+  PS_M: 2,
   status: 'idle',
   errorMsg: undefined
 };

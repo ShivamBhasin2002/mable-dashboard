@@ -16,7 +16,7 @@ const ParameterComposition = () => {
         >
           <span className={`${stats.color} ${stats.border} w-[11px] h-[11px] rounded-full`} />
           <span className="text-primary text-sm">{stats.name}</span>
-          <span className="text-light ml-auto font-bold">{stats.value}%</span>
+          <span className="text-light ml-auto">{stats.value}%</span>
         </div>
       ))}
     </div>

@@ -38,12 +38,19 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
     <div>
       <Line
         options={{
+          // plugins: { : { labels: { font: { family: 'Lato' } } } },
           maintainAspectRatio: false,
+          elements: {
+            point: {
+              radius: 0
+            }
+          },
           scales: {
             y: {
               position: 'right',
               beginAtZero: true,
               ticks: {
+                font: { family: 'Lato' },
                 stepSize: 25,
                 callback(this, tickValue) {
                   return `${tickValue}%`;
@@ -56,6 +63,9 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
               }
             },
             x: {
+              ticks: {
+                font: { family: 'Lato' }
+              },
               grid: {
                 display: false,
                 borderColor: colors.lines,
