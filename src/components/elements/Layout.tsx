@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
@@ -10,11 +10,9 @@ import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
 import { fetchShopAsync, clearStatus } from 'redux/reducers/dashboardSlice';
 import Loading from 'components/elements/Loading';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
+import { LayoutProps } from 'utility/typeDefinitions/componentTypes';
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
   const dispatch = useDispatch();
   const navigator = useNavigate();

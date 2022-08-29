@@ -4,6 +4,7 @@ import { Line } from 'react-chartjs-2';
 import { createGradient } from 'utility/functions';
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
+import fonts from 'utility/fonts';
 
 const LineChart = ({ width, height }: { width?: number; height?: number }) => {
   const { dataQualityGrouped } = useSelector((state) => state.dataQuality);
@@ -39,11 +40,17 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
       <Line
         options={{
           maintainAspectRatio: false,
+          elements: {
+            point: {
+              radius: 0
+            }
+          },
           scales: {
             y: {
               position: 'right',
               beginAtZero: true,
               ticks: {
+                font: { family: fonts.text },
                 stepSize: 25,
                 callback(this, tickValue) {
                   return `${tickValue}%`;
@@ -56,6 +63,9 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
               }
             },
             x: {
+              ticks: {
+                font: { family: fonts.text }
+              },
               grid: {
                 display: false,
                 borderColor: colors.lines,

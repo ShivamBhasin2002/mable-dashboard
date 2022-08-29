@@ -1,11 +1,10 @@
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
-import ComponentWrapper from 'components/elements/ComponentWrapper';
-import LineChart from 'components/elements/quality/LineChart';
-import QualityCombined from 'components/elements/quality/QualityCombined';
-import Stats from 'components/orderAnalysis/Statistics';
+import { ComponentWrapper } from 'components/elements';
+import { LineChart, QualityCombined } from 'components/elements/quality';
+import { Stats } from 'components/orderAnalysis';
 
-import Icon from 'utility/icons';
+import Icon from 'assets/icons';
 import colors from 'utility/colors';
 
 import { useSelector } from 'redux/store';

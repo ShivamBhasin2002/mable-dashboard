@@ -1,6 +1,8 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { AppDispatch, RootState } from 'redux/store';
+
+import { thunkOptions, dataQualityState } from 'utility/typeDefinitions/reduxTypes';
+import { dataQualityInitialState } from 'utility/constants/initialStates';
 
 export const dataQualityAsync = createAsyncThunk<
   {
@@ -19,11 +21,7 @@ export const dataQualityAsync = createAsyncThunk<
     average_time_difference: number;
   },
   void,
-  {
-    dispatch: AppDispatch;
-    state: RootState;
-    rejectValue: string;
-  }
+  thunkOptions
 >('dataQuality/fetch', async (temp, { rejectWithValue, getState }) => {
   const state = getState();
   try {
@@ -44,30 +42,8 @@ export const dataQualityAsync = createAsyncThunk<
   }
 });
 
-export interface dataQualityState {
-  DQ_COM: number;
-  P_MDB: number;
-  P_SH: number;
-  dataQualityGrouped: { date: string; DQ_COM: number }[];
-  shopifyOrders: number;
-  ordersWithCorrectCV: number;
-  recievedByFB: number;
-  avgDelieveryTime: number;
-  status?: 'idle' | 'fetching' | 'success' | 'error';
-  errorMsg?: string;
-}
-
 const initialState: dataQualityState = {
-  DQ_COM: 0,
-  P_MDB: 0,
-  P_SH: 0,
-  dataQualityGrouped: [],
-  shopifyOrders: 0,
-  ordersWithCorrectCV: 0,
-  recievedByFB: 0,
-  avgDelieveryTime: 0,
-  status: 'idle',
-  errorMsg: undefined
+  ...dataQualityInitialState
 };
 
 export const dataQualityReducer = createReducer(initialState, (builder) => {

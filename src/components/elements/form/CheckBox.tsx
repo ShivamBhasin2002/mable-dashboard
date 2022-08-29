@@ -1,16 +1,9 @@
-import { FC } from 'react';
 import { FormControl, Checkbox, FormErrorMessage } from '@chakra-ui/react';
 import { useField } from 'formik';
 
-interface CheckBoxProps {
-  size: string;
-  colorScheme: string;
-  className: string;
-  name: string;
-  message?: string;
-}
+import { CheckBoxProps } from 'utility/typeDefinitions/componentTypes';
 
-const CheckBox: FC<CheckBoxProps> = ({ message, ...props }) => {
+const CheckBox = ({ message, ...props }: CheckBoxProps) => {
   const [field, meta] = useField({ ...props });
   return (
     <FormControl className="!w-max" isInvalid={meta.error && meta.touched ? true : false}>

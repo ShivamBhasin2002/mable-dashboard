@@ -1,10 +1,12 @@
-import ComponentWrapper from 'components/elements/ComponentWrapper';
-import BarChart from 'components/elements/event/BarChart';
-import DoughnutChart from 'components/elements/event/DoughnutChart';
-import Metrics from 'components/elements/event/Metrics';
-import ParameterComposition from 'components/elements/event/ParameterComposition';
-import SelectorMenu from 'components/elements/event/SeleectorMenu';
-import ParameterStat from 'components/orderAnalysis/ParameterStat';
+import { ComponentWrapper } from 'components/elements';
+import {
+  BarChart,
+  DoughnutChart,
+  Metrics,
+  ParameterComposition,
+  SelectorMenu
+} from 'components/elements/event';
+import { ParameterStat } from 'components/orderAnalysis';
 
 import { useSelector } from 'redux/store';
 

@@ -1,8 +1,5 @@
-import ComponentWrapper from 'components/elements/ComponentWrapper';
-import QualityCombined from 'components/elements/quality/QualityCombined';
-import LineChart from 'components/elements/quality/LineChart';
-import OrderComposition from 'components/elements/quality/OrderComposition';
-import ViewFullReport from 'components/elements/ViewFullReport';
+import { ComponentWrapper, ViewFullReport } from 'components/elements';
+import { QualityCombined, LineChart, OrderComposition } from 'components/elements/quality';
 
 const DataQuality = () => {
   return (
