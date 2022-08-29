@@ -6,6 +6,7 @@ import { Line } from 'react-chartjs-2';
 import { useSelector } from 'redux/store';
 import { createGradient } from 'utility/functions';
 import colors from 'utility/colors';
+import fonts from 'utility/fonts';
 
 const EventsPerDay = () => {
   const { eventsPerDay } = useSelector((state) => state.dashboard);
@@ -45,7 +46,7 @@ const EventsPerDay = () => {
                 beginAtZero: true,
                 ticks: {
                   font: {
-                    family: 'Lato'
+                    family: fonts.text
                   },
                   stepSize: 500,
                   callback(this, tickValue: string | number) {
@@ -62,7 +63,7 @@ const EventsPerDay = () => {
               x: {
                 ticks: {
                   font: {
-                    family: 'Lato'
+                    family: fonts.text
                   }
                 },
                 grid: {
