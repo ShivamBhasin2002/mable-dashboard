@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { userInitialState } from 'utility/constants/initialStates';
 
 import { thunkOptions, userState } from 'utility/typeDefinitions/reduxTypes';
 
@@ -64,17 +65,7 @@ export const isAuthenticatedAsync = createAsyncThunk<
 });
 
 const initialState: userState = {
-  email: undefined,
-  userId: undefined,
-  firstName: undefined,
-  lastName: undefined,
-  iat: undefined,
-  exp: undefined,
-  token: localStorage.getItem('token') || undefined,
-  isFetching: false,
-  isError: false,
-  isSuccess: false,
-  errorMessage: undefined
+  ...userInitialState
 };
 
 export const userSlice = createSlice({

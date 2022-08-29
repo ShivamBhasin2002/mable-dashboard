@@ -2,6 +2,7 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions, funnelAnalysisState } from 'utility/typeDefinitions/reduxTypes';
+import { funnelAnalysisInitialState } from 'utility/constants/initialStates';
 
 export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
   'funnelAnalysis/fetch',
@@ -27,15 +28,7 @@ export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
 );
 
 const initialState: funnelAnalysisState = {
-  total_events: {
-    'Page View': 3000,
-    'Add to Cart': 20000,
-    'Initiate Checkout': 5000,
-    'Add Payment Info': 3000,
-    Purchase: 300
-  },
-  status: 'idle',
-  errorMsg: undefined
+  ...funnelAnalysisInitialState
 };
 
 export const funnelAnalysisReducer = createReducer(initialState, (builder) => {

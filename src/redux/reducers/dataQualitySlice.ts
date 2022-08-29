@@ -2,6 +2,7 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions, dataQualityState } from 'utility/typeDefinitions/reduxTypes';
+import { dataQualityInitialState } from 'utility/constants/initialStates';
 
 export const dataQualityAsync = createAsyncThunk<
   {
@@ -42,16 +43,7 @@ export const dataQualityAsync = createAsyncThunk<
 });
 
 const initialState: dataQualityState = {
-  DQ_COM: 0,
-  P_MDB: 0,
-  P_SH: 0,
-  dataQualityGrouped: [],
-  shopifyOrders: 0,
-  ordersWithCorrectCV: 0,
-  recievedByFB: 0,
-  avgDelieveryTime: 0,
-  status: 'idle',
-  errorMsg: undefined
+  ...dataQualityInitialState
 };
 
 export const dataQualityReducer = createReducer(initialState, (builder) => {

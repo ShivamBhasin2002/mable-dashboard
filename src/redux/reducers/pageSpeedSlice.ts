@@ -2,6 +2,7 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions, pageSpeedState } from 'utility/typeDefinitions/reduxTypes';
+import { pageSpeedInitialState } from 'utility/constants/initialStates';
 
 export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
   'pageSpeed/fetch',
@@ -27,11 +28,7 @@ export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
 );
 
 const initialState: pageSpeedState = {
-  T_M_AVG: 200,
-  T_SH_AVG: 0,
-  PS_M: 0,
-  status: 'idle',
-  errorMsg: undefined
+  ...pageSpeedInitialState
 };
 
 export const pageSpeedReducer = createReducer(initialState, (builder) => {

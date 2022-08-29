@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions, shop, dashboardState } from 'utility/typeDefinitions/reduxTypes';
+import { dashboardInitialState } from 'utility/constants/initialStates';
 
 export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunkOptions>(
   'dashboard/fetchShop',
@@ -19,14 +20,7 @@ export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunk
 );
 
 const initialState: dashboardState = {
-  shops: undefined,
-  shop: undefined,
-  status: 'idle',
-  errorMsg: undefined,
-  start: '2022-07-19T00:00:00',
-  end: '2022-07-23T00:00:00',
-  warnings: [],
-  eventsPerDay: []
+  ...dashboardInitialState
 };
 
 export const dashboardSlice = createSlice({
