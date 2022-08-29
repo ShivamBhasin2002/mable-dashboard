@@ -1,6 +1,7 @@
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
 import Icon from 'assets/icons';
+import colors from 'utility/colors';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { setShop } from 'redux/reducers/dashboardSlice';
@@ -11,7 +12,7 @@ const DashboardHeader = () => {
   const { screen } = useSelector((state) => state.general);
   return (
     <header>
-      <div className="flex flex-row-reverse">
+      <div className="flex flex-row-reverse mb-3">
         <Menu isLazy>
           <MenuButton>
             <div className="p-[20px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[55px] w-min rounded-xl flex flex-row items-center justify-evenly text-light gap-3">
@@ -21,7 +22,7 @@ const DashboardHeader = () => {
             </div>
           </MenuButton>
           {shops && shops?.length > 1 && (
-            <MenuList className="!p-[20px] !bg-gradient-to-r !from-bgContainerFrom !to-bgContainerTo !h-[55px] !w-min !rounded-xl !flex !flex-row !items-center !justify-evenly !text-light !gap-3">
+            <MenuList background={colors.bgContainerTo} textColor={colors.light} border="none">
               {shops
                 ?.filter((thisShop) => {
                   if (thisShop._id.$oid !== shop?._id.$oid) return thisShop;
@@ -29,7 +30,9 @@ const DashboardHeader = () => {
                 .map((shop) => (
                   <MenuItem
                     key={shop._id.$oid}
-                    className="!p-[20px] !bg-gradient-to-r !from-bgContainerFrom !to-bgContainerTo !h-[55px] !w-min !rounded-xl !flex !flex-row !items-center !justify-evenly !text-light !gap-3"
+                    _hover={{ background: colors.bgContainerFrom }}
+                    _active={{ background: colors.bgContainerFrom }}
+                    _focus={{ background: colors.bgContainerFrom }}
                     onClick={() => {
                       dispatch(setShop(shop));
                     }}
@@ -41,7 +44,7 @@ const DashboardHeader = () => {
           )}
         </Menu>
       </div>
-      <hr className="h-[2px] border-none my-[23px] bg-lines/[0.15] w-[600px] ml-auto" />
+      {/* <hr className="h-[2px] border-none my-[23px] bg-lines/[0.15] w-[600px] ml-auto" /> */}
       <div className="flex justify-between items-center h-[45px]">
         <h1 className="text-bgPrimary-dark text-[42px] text-light font-heading font-bold relative top-[-16px]">
           {screen}

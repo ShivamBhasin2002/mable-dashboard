@@ -24,7 +24,19 @@ export const userInitialState: userState = {
 };
 
 export const dashboardInitialState: dashboardState = {
-  shops: undefined,
+  shops: [
+    {
+      _id: {
+        $oid: 'test'
+      },
+      shop: 'test',
+      __v: 0,
+      domain: 'test',
+      domainPrefix: 'test',
+      isActive: true,
+      userId: 'test'
+    }
+  ],
   shop: undefined,
   status: 'idle',
   errorMsg: undefined,

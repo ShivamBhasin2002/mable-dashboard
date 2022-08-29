@@ -42,7 +42,8 @@ export const dashboardSlice = createSlice({
       })
       .addCase(fetchShopAsync.fulfilled, (state, { payload }) => {
         state.status = 'success';
-        state.shops = payload;
+        if (state.shops) state.shops = [...state.shops, ...payload];
+        else state.shops = payload;
         state.shop = payload[0];
       })
       .addCase(fetchShopAsync.rejected, (state, { payload }) => {
