@@ -32,7 +32,7 @@ const TextField = ({ label, icon, type, ...props }: TextFieldProps) => {
           pr={type === 'password' ? '4.5rem' : '20px'}
           size="lg"
           type={type === 'password' ? (show ? 'text' : 'password') : type}
-          autocomplete="off"
+          autoComplete="off"
           {...field}
           {...props}
         />

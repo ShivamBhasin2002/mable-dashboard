@@ -27,7 +27,7 @@ export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
 );
 
 const initialState: pageSpeedState = {
-  T_M_AVG: 0,
+  T_M_AVG: 200,
   T_SH_AVG: 0,
   PS_M: 0,
   status: 'idle',
