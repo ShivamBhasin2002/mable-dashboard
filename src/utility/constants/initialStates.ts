@@ -60,13 +60,13 @@ export const dashboardInitialState: dashboardState = {
 
 export const dataPerEventsInitialState: dataPerEventState = {
   dataContainedPerEventBarChart: [
-    { attribute_quality: 12, event_quality: 6, _id: '19Jul' },
-    { attribute_quality: 13, event_quality: 5, _id: '20Jul' },
-    { attribute_quality: 9, event_quality: 7, _id: '21Jul' },
-    { attribute_quality: 11, event_quality: 5, _id: '22Jul' },
-    { attribute_quality: 12, event_quality: 6, _id: '23Jul' },
-    { attribute_quality: 11, event_quality: 6, _id: '24Jul' },
-    { attribute_quality: 9, event_quality: 6.2, _id: '25Jul' }
+    { attribution_quality: 12, event_quality: 6, _id: '19Jul' },
+    { attribution_quality: 13, event_quality: 5, _id: '20Jul' },
+    { attribution_quality: 9, event_quality: 7, _id: '21Jul' },
+    { attribution_quality: 11, event_quality: 5, _id: '22Jul' },
+    { attribution_quality: 12, event_quality: 6, _id: '23Jul' },
+    { attribution_quality: 11, event_quality: 6, _id: '24Jul' },
+    { attribution_quality: 9, event_quality: 6.2, _id: '25Jul' }
   ],
   dataContaindedPerEventDoughnutChart: {
     backend: 72,

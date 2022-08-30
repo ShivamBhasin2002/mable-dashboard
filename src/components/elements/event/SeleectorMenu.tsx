@@ -34,7 +34,7 @@ const SelectorMenu = () => {
         borderTop={0}
         borderTopRadius={0}
       >
-        {['Purchase', 'Add Payment Info', 'Initiat Checkout', 'Add to Cart', 'Page View'].map(
+        {['Purchase', 'Add Payment Info', 'Initiate Checkout', 'Add to Cart', 'Page View'].map(
           (item) =>
             item !== eventSelected && (
               <MenuItem

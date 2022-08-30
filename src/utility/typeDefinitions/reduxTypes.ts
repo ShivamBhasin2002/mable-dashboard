@@ -54,7 +54,7 @@ export type dashboardState = {
 export type dataPerEventState = {
   dataContainedPerEventBarChart: {
     _id: string;
-    attribute_quality: number | undefined;
+    attribution_quality: number | undefined;
     event_quality: number | undefined;
   }[];
   dataContaindedPerEventDoughnutChart: {
@@ -67,7 +67,12 @@ export type dataPerEventState = {
   event: number;
   totatlAttribution: number;
   totalEvent: number;
-  eventSelected: 'Purchase' | 'Add Payment Info' | 'Initiat Checkout' | 'Add to Cart' | 'Page View';
+  eventSelected:
+    | 'Purchase'
+    | 'Add Payment Info'
+    | 'Initiate Checkout'
+    | 'Add to Cart'
+    | 'Page View';
   AttributionParameters: {
     'User IP': number;
     'User Agent': number;

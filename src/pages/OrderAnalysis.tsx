@@ -22,7 +22,7 @@ const OrderAnalysis = () => {
           <Stats value={shopifyOrders} message="Shopify Orders" />
           <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />
           <Stats value={recievedByFB} message="Received by FB" />
-          <Stats value={avgDelieveryTime} message="Avg. Delivery Time" />
+          <Stats value={avgDelieveryTime} message="AVG. Delivery Time" />
         </div>
       </ComponentWrapper>
       <ComponentWrapper>

@@ -7,7 +7,7 @@ import colors from 'utility/colors';
 const DoughnutChart = () => {
   const data = useSelector((state) => state.dataPerEvent.dataContaindedPerEventDoughnutChart);
   const doughnutData = {
-      labels: ['Backend', 'Frontend', 'Mobile Engine', 'Unavailable'],
+      labels: ['Backend', 'Frontend', 'Mable Engine', 'Unavailable'],
       datasets: [
         {
           data: [data.backend, data.frontend, data.mableEngine, data.unavailable],

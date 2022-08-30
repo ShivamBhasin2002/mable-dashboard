@@ -19,7 +19,7 @@ const Events = () => {
             {AVG_T_DIFF >= 1000 ? AVG_T_DIFF / 1000 : AVG_T_DIFF}
             <span className="text-[20px]">{AVG_T_DIFF >= 1000 ? 's' : 'ms'}</span>
           </div>
-          <div className="text-primary text-center text-[14px]">Avg. Delivery Time</div>
+          <div className="text-primary text-center text-[14px]">AVG. Delivery Time</div>
         </div>
       </div>
     </ComponentWrapper>

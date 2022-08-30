@@ -53,8 +53,8 @@ const BarChart: FC<BarChartProps> = ({ width, height }) => {
       labels: dataContainedPerEventBarChart.map((data) => data._id),
       datasets: [
         {
-          label: 'Attribute Parameters',
-          data: dataContainedPerEventBarChart.map((data) => data.attribute_quality),
+          label: 'Attribution Parameters',
+          data: dataContainedPerEventBarChart.map((data) => data.attribution_quality),
           backgroundColor: colors.purple,
           datalabels: {
             display: false
