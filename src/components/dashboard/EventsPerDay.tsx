@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-import { ComponentWrapper } from 'components/elements';
+import { ComponentWrapper } from 'components/elements/common';
 import { Line } from 'react-chartjs-2';
 
 import { useSelector } from 'redux/store';

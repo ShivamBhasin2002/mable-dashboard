@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
-import { ComponentWrapper } from 'components/elements';
+import { ComponentWrapper } from 'components/elements/common';
 import { LineChart, QualityCombined } from 'components/elements/quality';
 import { Stats } from 'components/orderAnalysis';
 

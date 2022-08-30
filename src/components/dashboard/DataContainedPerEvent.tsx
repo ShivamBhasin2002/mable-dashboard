@@ -1,4 +1,4 @@
-import { ComponentWrapper, ViewFullReport } from 'components/elements';
+import { ComponentWrapper, ViewFullReport } from 'components/elements/common';
 import {
   SelectorMenu,
   Metrics,
