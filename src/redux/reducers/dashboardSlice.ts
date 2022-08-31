@@ -33,6 +33,9 @@ export const dashboardSlice = createSlice({
     clearStatus: (state) => {
       state.errorMsg = undefined;
       state.status = 'idle';
+    },
+    setDates: (state, { payload }) => {
+      state.dateRange = payload;
     }
   },
   extraReducers: (builder) => {
@@ -53,5 +56,5 @@ export const dashboardSlice = createSlice({
   }
 });
 
-export const { setShop, clearStatus } = dashboardSlice.actions;
+export const { setShop, clearStatus, setDates } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

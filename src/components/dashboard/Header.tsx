@@ -1,14 +1,24 @@
-import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Popover,
+  PopoverTrigger,
+  PopoverContent
+} from '@chakra-ui/react';
+import moment from 'moment';
 
 import Icon from 'assets/icons';
 import colors from 'utility/colors';
+import { ComponentWrapper } from 'components/elements/common';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { setShop } from 'redux/reducers/dashboardSlice';
 
 const DashboardHeader = () => {
   const dispatch = useDispatch();
-  const { shop, shops } = useSelector((state) => state.dashboard);
+  const { shop, shops, dateRange } = useSelector((state) => state.dashboard);
   const { screen } = useSelector((state) => state.general);
   return (
     <header>
@@ -53,10 +63,21 @@ const DashboardHeader = () => {
           <span className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl">
             <Icon icon="refresh" />
           </span>
-          <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo w-[220px] h-[45px] rounded-[10px] flex flex-row justify-evenly items-center text-[16px] font-text text-light">
-            15.07.22 to 29.07.22
-            <Icon icon="dropdown" />
-          </span>
+          <Popover gutter={10} autoFocus={false} placement="bottom-end">
+            <PopoverTrigger>
+              <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[20px] justify-evenly items-center text-[16px] font-text text-light cursor-pointer">
+                {moment(dateRange[0]).format('DD.MM.YY')} to{' '}
+                {moment(dateRange[dateRange.length - 1]).format('DD.MM.YY')}
+                <Icon icon="dropdown" />
+              </span>
+            </PopoverTrigger>
+            <PopoverContent bg="transparent" border="none" w={1000}>
+              <ComponentWrapper
+                width={1000}
+                className="!rounded-[10px] shadow-xl shadow-background flex"
+              ></ComponentWrapper>
+            </PopoverContent>
+          </Popover>
         </span>
       </div>
     </header>

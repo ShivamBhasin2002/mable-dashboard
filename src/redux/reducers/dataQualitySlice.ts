@@ -29,8 +29,8 @@ export const dataQualityAsync = createAsyncThunk<
       headers: { Authorization: `Token ${state.user.token}` },
       params: {
         shop: state.dashboard.shop?.shop,
-        start_date: state.dashboard.start,
-        end_date: state.dashboard.end
+        start_date: state.dashboard.dateRange[0],
+        end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
       }
     });
     if (data) {

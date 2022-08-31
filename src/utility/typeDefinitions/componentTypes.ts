@@ -18,7 +18,7 @@ export type CheckBoxProps = {
 export type ComponentWrapperProps = {
   width?: number | undefined;
   height?: number | undefined;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   title?: string | undefined;
   nextComponent?: React.ReactNode | undefined;
   underlined?: boolean | undefined;

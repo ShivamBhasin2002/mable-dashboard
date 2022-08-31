@@ -45,8 +45,7 @@ export type dashboardState = {
   shop: shop | undefined;
   status: 'idle' | 'pending' | 'success' | 'error';
   errorMsg: string | undefined;
-  start: Date | string;
-  end: Date | string;
+  dateRange: Date[];
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
   eventsPerDay: { date: string; value: number }[];
 };
