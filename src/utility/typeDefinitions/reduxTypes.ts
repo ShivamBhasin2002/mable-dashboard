@@ -1,3 +1,4 @@
+import { Moment } from 'moment';
 import { AppDispatch, RootState } from 'redux/store';
 
 export type thunkOptions = {
@@ -45,7 +46,7 @@ export type dashboardState = {
   shop: shop | undefined;
   status: 'idle' | 'pending' | 'success' | 'error';
   errorMsg: string | undefined;
-  dateRange: Date[];
+  dateRange: Moment[];
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
   eventsPerDay: { date: string; value: number }[];
 };

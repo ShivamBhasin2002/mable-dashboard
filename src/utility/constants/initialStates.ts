@@ -8,6 +8,7 @@ import {
   pageSpeedState,
   userState
 } from 'utility/typeDefinitions/reduxTypes';
+import moment from 'moment';
 
 export const userInitialState: userState = {
   email: undefined,
@@ -40,7 +41,7 @@ export const dashboardInitialState: dashboardState = {
   shop: undefined,
   status: 'idle',
   errorMsg: undefined,
-  dateRange: [new Date('2022-07-19T00:00:00'), new Date('2022-07-23T00:00:00')],
+  dateRange: [moment('2022-07-19T00:00:00'), moment('2022-07-23T00:00:00')],
   warnings: [
     { type: 'error', message: 'Facebook API not Responding', time: '2h' },
     { type: 'warning', message: 'Unusually low number of Add to Cart Events', time: '3d' },
