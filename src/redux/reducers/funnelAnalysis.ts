@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, funnelAnalysisState } from 'utility/typeDefinitions/reduxTypes';
 import { funnelAnalysisInitialState } from 'utility/constants/initialStates';
+import { statusType } from 'utility/constants/general';
 
 export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
   'funnelAnalysis/fetch',
@@ -34,13 +35,13 @@ const initialState: funnelAnalysisState = {
 export const funnelAnalysisReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(funnelAnalysisAsync.pending, (state) => {
-      state.status = 'fetching';
+      state.status = statusType.Fetching;
     })
     .addCase(funnelAnalysisAsync.fulfilled, (state) => {
-      state.status = 'success';
+      state.status = statusType.Success;
     })
     .addCase(funnelAnalysisAsync.rejected, (state) => {
-      state.status = 'error';
+      state.status = statusType.Error;
     });
 });
 

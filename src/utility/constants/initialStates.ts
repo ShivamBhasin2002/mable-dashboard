@@ -8,7 +8,9 @@ import {
   pageSpeedState,
   userState
 } from 'utility/typeDefinitions/reduxTypes';
+import { statusType, screenType } from './general';
 import moment from 'moment';
+import { eventSelectedType } from './general';
 
 export const userInitialState: userState = {
   email: undefined,
@@ -39,7 +41,7 @@ export const dashboardInitialState: dashboardState = {
     }
   ],
   shop: undefined,
-  status: 'idle',
+  status: statusType.Idle,
   errorMsg: undefined,
   dateRange: [moment('2022-07-19T00:00:00'), moment('2022-07-23T00:00:00')],
   warnings: [
@@ -78,7 +80,7 @@ export const dataPerEventsInitialState: dataPerEventState = {
   event: 6.7,
   totalEvent: 7,
   totatlAttribution: 13,
-  eventSelected: 'Purchase',
+  eventSelected: eventSelectedType.purchase,
   AttributionParameters: {
     'User IP': 0,
     'User Agent': 0,
@@ -104,7 +106,7 @@ export const dataPerEventsInitialState: dataPerEventState = {
     example6: 0,
     example7: 0
   },
-  status: 'idle',
+  status: statusType.Idle,
   errorMsg: undefined
 };
 
@@ -125,14 +127,14 @@ export const dataQualityInitialState: dataQualityState = {
   ordersWithCorrectCV: 0,
   recievedByFB: 0,
   avgDelieveryTime: 0,
-  status: 'idle',
+  status: statusType.Idle,
   errorMsg: undefined
 };
 
 export const eventsInitialState: eventsState = {
   N_Total: 155200,
   AVG_T_DIFF: 8300,
-  status: 'idle',
+  status: statusType.Idle,
   errorMsg: undefined
 };
 
@@ -144,16 +146,16 @@ export const funnelAnalysisInitialState: funnelAnalysisState = {
     'Add Payment Info': 3000,
     Purchase: 300
   },
-  status: 'idle',
+  status: statusType.Idle,
   errorMsg: undefined
 };
 
-export const generalInitialState: generalState = { screen: 'Dashboard' };
+export const generalInitialState: generalState = { screen: screenType.dashboard };
 
 export const pageSpeedInitialState: pageSpeedState = {
   T_M_AVG: 200,
   T_SH_AVG: 3400,
   PS_M: 2,
-  status: 'idle',
+  status: statusType.Idle,
   errorMsg: undefined
 };

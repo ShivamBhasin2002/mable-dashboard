@@ -11,7 +11,7 @@ import {
 import moment from 'moment';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
+import 'assets/styles/datePicker.css';
 
 import Icon from 'assets/icons';
 import colors from 'utility/colors';
@@ -79,7 +79,7 @@ const DashboardHeader = () => {
             <PopoverContent bg="transparent" border="none" w={1000}>
               <ComponentWrapper
                 width={1000}
-                className="!rounded-[10px] shadow-xl shadow-background flex !h-[513px]"
+                className="!rounded-[10px] shadow-xl shadow-background !h-[513px]"
               >
                 <DateRangePicker
                   startDate={dateRange[0]}

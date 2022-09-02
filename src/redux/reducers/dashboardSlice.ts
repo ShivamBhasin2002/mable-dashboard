@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, shop, dashboardState } from 'utility/typeDefinitions/reduxTypes';
 import { dashboardInitialState } from 'utility/constants/initialStates';
+import { statusType } from 'utility/constants/general';
 
 export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunkOptions>(
   'dashboard/fetchShop',
@@ -32,7 +33,7 @@ export const dashboardSlice = createSlice({
     },
     clearStatus: (state) => {
       state.errorMsg = undefined;
-      state.status = 'idle';
+      state.status = statusType.Idle;
     },
     setDates: (state, { payload }) => {
       state.dateRange = payload;
@@ -41,16 +42,16 @@ export const dashboardSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchShopAsync.pending, (state) => {
-        state.status = 'pending';
+        state.status = statusType.Fetching;
       })
       .addCase(fetchShopAsync.fulfilled, (state, { payload }) => {
-        state.status = 'success';
+        state.status = statusType.Success;
         if (state.shops) state.shops = [...state.shops, ...payload];
         else state.shops = payload;
         state.shop = payload[0];
       })
       .addCase(fetchShopAsync.rejected, (state, { payload }) => {
-        state.status = 'error';
+        state.status = statusType.Error;
         state.errorMsg = payload;
       });
   }

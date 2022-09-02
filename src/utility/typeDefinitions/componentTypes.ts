@@ -16,13 +16,13 @@ export type CheckBoxProps = {
 };
 
 export type ComponentWrapperProps = {
-  width?: number | undefined;
-  height?: number | undefined;
+  width?: number;
+  height?: number;
   children?: React.ReactNode;
-  title?: string | undefined;
-  nextComponent?: React.ReactNode | undefined;
-  underlined?: boolean | undefined;
-  className?: string | undefined;
+  title?: string;
+  nextComponent?: React.ReactNode;
+  underlined?: boolean;
+  className?: string;
 };
 
 export type TextFieldProps = {

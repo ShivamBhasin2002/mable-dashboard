@@ -5,6 +5,7 @@ import Icon from 'assets/icons';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { setEventSelected } from 'redux/reducers/dataPerEventSlice';
+import { parameterSelector } from 'utility/constants/general';
 
 const SelectorMenu = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const SelectorMenu = () => {
         borderTop={0}
         borderTopRadius={0}
       >
-        {['Purchase', 'Add Payment Info', 'Initiate Checkout', 'Add to Cart', 'Page View'].map(
+        {parameterSelector.map(
           (item) =>
             item !== eventSelected && (
               <MenuItem

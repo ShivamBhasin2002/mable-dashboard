@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, dataQualityState } from 'utility/typeDefinitions/reduxTypes';
 import { dataQualityInitialState } from 'utility/constants/initialStates';
+import { statusType } from 'utility/constants/general';
 
 export const dataQualityAsync = createAsyncThunk<
   {
@@ -49,17 +50,17 @@ const initialState: dataQualityState = {
 export const dataQualityReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(dataQualityAsync.pending, (state) => {
-      state.status = 'fetching';
+      state.status = statusType.Fetching;
     })
     .addCase(dataQualityAsync.fulfilled, (state, { payload }) => {
       state.DQ_COM = payload.data_quality.DQ_FB * 100;
       state.P_MDB = payload.purchases_db;
       state.P_SH = payload.purchases_shopify;
       state.dataQualityGrouped = payload.data_quality.data_quality_grouped;
-      state.status = 'success';
+      state.status = statusType.Success;
     })
     .addCase(dataQualityAsync.rejected, (state) => {
-      state.status = 'error';
+      state.status = statusType.Error;
     });
 });
 

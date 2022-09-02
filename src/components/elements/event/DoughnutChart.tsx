@@ -3,11 +3,12 @@ import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
+import { dataEventLables } from 'utility/constants/general';
 
 const DoughnutChart = () => {
   const data = useSelector((state) => state.dataPerEvent.dataContaindedPerEventDoughnutChart);
   const doughnutData = {
-      labels: ['Backend', 'Frontend', 'Mable Engine', 'Unavailable'],
+      labels: dataEventLables,
       datasets: [
         {
           data: [data.backend, data.frontend, data.mableEngine, data.unavailable],

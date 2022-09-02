@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, dataPerEventState } from 'utility/typeDefinitions/reduxTypes';
 import { dataPerEventsInitialState } from 'utility/constants/initialStates';
+import { statusType } from 'utility/constants/general';
 
 export const dataPerEventAsync = createAsyncThunk<null, void, thunkOptions>(
   'dataPerEvent/fetch',
@@ -42,13 +43,13 @@ export const dataPerEvent = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(dataPerEventAsync.pending, (state) => {
-        state.status = 'fetching';
+        state.status = statusType.Fetching;
       })
       .addCase(dataPerEventAsync.fulfilled, (state) => {
-        state.status = 'success';
+        state.status = statusType.Success;
       })
       .addCase(dataPerEventAsync.rejected, (state) => {
-        state.status = 'error';
+        state.status = statusType.Error;
       });
   }
 });
