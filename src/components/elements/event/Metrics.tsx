@@ -9,7 +9,7 @@ const Metrics = () => {
       <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainerFrom from-bgContainerTo rounded-[16px] shadow-2xl">
         <div className="flex flex-row gap-[5px] items-baseline">
           <span className="bg-purple w-[11px] h-[11px] rounded-full" />
-          <div className=" text-[30px] leading-[34px] font-text text-center text-light">
+          <div className=" text-[30px] leading-[34px] font-lato text-center text-light">
             {attribution}
           </div>
           <span className="text-[14px] text-light/[.41]">/ {totatlAttribution}</span>
@@ -21,7 +21,7 @@ const Metrics = () => {
       <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-r to-bgContainerFrom from-bgContainerTo rounded-[16px] shadow-2xl">
         <div className="flex flex-row gap-[5px] items-baseline">
           <span className="bg-lightPurple w-[11px] h-[11px] rounded-full" />
-          <div className=" text-[30px] leading-[34px] font-text text-center text-light">
+          <div className=" text-[30px] leading-[34px] font-lato text-center text-light">
             {event}
           </div>
           <span className="text-[14px] text-light/[.41]">/ {totalEvent}</span>

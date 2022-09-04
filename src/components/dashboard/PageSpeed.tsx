@@ -8,21 +8,21 @@ const PageSpeed = () => {
     <ComponentWrapper title="Page Speed" width={560}>
       <div className="flex flex-row justify-center">
         <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
-          <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
+          <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
             {T_M_AVG >= 1000 ? T_M_AVG / 1000 : T_M_AVG}
             <span className="text-[20px]">{T_M_AVG >= 1000 ? 's' : 'ms'}</span>
           </div>
           <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
         </div>
         <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
-          <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
+          <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
             {T_SH_AVG >= 1000 ? T_SH_AVG / 1000 : T_SH_AVG}
             <span className="text-[20px]">{T_SH_AVG >= 1000 ? 's' : 'ms'}</span>
           </div>
           <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
         </div>
         <div className="min-w-[160px]">
-          <div className=" text-[35px] h-[42px] font-text text-center text-light mb-[8px]">
+          <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
             {PS_M}
             <span className="text-[20px]">%</span>
           </div>

@@ -4,8 +4,8 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontFamily: {
-      heading: 'Montserrat',
-      text: 'Lato'
+      montserrat: 'Montserrat',
+      lato: 'Lato'
     },
     colors: {
       bgContainerTo: '#182336',

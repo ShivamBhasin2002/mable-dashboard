@@ -16,7 +16,7 @@ const ComponentWrapper = ({
       <div
         className={` text-light ${
           title && 'mb-[20px]'
-        } flex items-center font-heading text-[22px] font-bold justify-between ${
+        } flex items-center font-montserrat text-[22px] font-bold justify-between ${
           underlined ? 'border-b-2 border-lines/[0.15]' : ''
         }`}
       >

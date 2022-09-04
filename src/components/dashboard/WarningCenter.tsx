@@ -20,10 +20,12 @@ const WarningCenter = () => {
             <Icon icon="alert" />
           </span>
           <span className="flex flex-col  flex-grow">
-            <span className="text-[12px] leading-[15px] font-heading">{type}</span>
-            <span className="text-[16px] leading-[19px] font-heading font-semibold">{message}</span>
+            <span className="text-[12px] leading-[15px] font-montserrat">{type}</span>
+            <span className="text-[16px] leading-[19px] font-montserrat font-semibold">
+              {message}
+            </span>
           </span>
-          <span className="text-[12px] leading-[19px] font-heading font-bold">{time}</span>
+          <span className="text-[12px] leading-[19px] font-montserrat font-bold">{time}</span>
         </div>
       ))}
     </ComponentWrapper>

@@ -61,7 +61,7 @@ const DashboardHeader = () => {
       </div>
       {/* <hr className="h-[2px] border-none my-[23px] bg-lines/[0.15] w-[600px] ml-auto" /> */}
       <div className="flex justify-between items-center h-[45px]">
-        <h1 className="text-bgPrimary-dark text-[42px] text-light font-heading font-bold relative top-[-16px]">
+        <h1 className="text-bgPrimary-dark text-[42px] text-light font-montserrat font-bold relative top-[-16px]">
           {screen}
         </h1>
         <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
@@ -70,7 +70,7 @@ const DashboardHeader = () => {
           </span>
           <Popover gutter={10} autoFocus={false} placement="bottom-end" closeOnBlur={false}>
             <PopoverTrigger>
-              <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[20px] justify-evenly items-center text-[16px] font-text text-light cursor-pointer">
+              <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[20px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer">
                 {moment(dateRange[0]).format('DD.MM.YY')} to{' '}
                 {moment(dateRange[1]).format('DD.MM.YY')}
                 <Icon icon="dropdown" />
