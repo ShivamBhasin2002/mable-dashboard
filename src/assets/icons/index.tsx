@@ -7,7 +7,6 @@ import { FaRegCopyright } from 'react-icons/fa';
 import {
   AiOutlineBell,
   AiFillCaretDown,
-  AiOutlineArrowRight,
   AiOutlineWarning,
   AiFillEye,
   AiFillEyeInvisible
@@ -25,6 +24,7 @@ import Settings from 'assets/icons/SettingsIcon';
 import Shop from 'assets/icons/ShopIcon';
 import Tutorial from 'assets/icons/TutorialIcon';
 import MableLogo from 'assets/icons/MableLogo';
+import ViewFullReport from 'assets/icons/ViewFullReportIcon';
 
 const Icon = ({ icon, color, className, ...props }: IconType) => {
   switch (icon) {
@@ -91,10 +91,7 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
       break;
     case 'next':
       return (
-        <AiOutlineArrowRight
-          className={`${color ? `text-${color}` : ''} ${className}`}
-          {...props}
-        />
+        <ViewFullReport className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
       );
       break;
     case 'email':

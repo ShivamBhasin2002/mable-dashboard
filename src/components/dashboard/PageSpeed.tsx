@@ -6,7 +6,7 @@ const PageSpeed = () => {
   const { T_M_AVG, T_SH_AVG, PS_M } = useSelector((state) => state.pageSpeed);
   return (
     <ComponentWrapper title="Page Speed" width={560}>
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-center pb-[10px]">
         <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
             {T_M_AVG >= 1000 ? T_M_AVG / 1000 : T_M_AVG}

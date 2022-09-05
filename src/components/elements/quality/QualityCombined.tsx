@@ -28,7 +28,7 @@ const QualityCombined = () => {
         </CircularProgressLabel>
       </CircularProgress>
       <div className="flex flex-col">
-        <span className="text-[14px] font-lato text-light">Quality Combined</span>
+        <span className="text-[14px] font-lato text-light font-bold">Quality Combined</span>
         <span className="text-[26px] font-montserrat font-bold text-primary h-[34px]">
           {getMessage(DQ_COM)}
         </span>
