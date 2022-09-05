@@ -397,9 +397,10 @@
   line-height: 24px;
   color: #fff;
   background-color: transparent;
-  width: 300px;
+  width: 290px;
   padding: 10px 10px 10px;
-  border: 1px #667183 !important;
+  border: 1px #667183 solid !important;
+  border-radius: 5px !important;
 }
 .DateInput_input__focused {
   outline: 0;
@@ -429,10 +430,12 @@
   color: #fff;
 }
 .DateRangePickerInput_arrow_svg {
+  position: absolute;
+  left: 18px;
   vertical-align: middle;
   fill: #fff;
   height: 5px;
-  width: 24px;
+  width: 5px;
 }
 .DateRangePicker {
   position: relative;
@@ -486,4 +489,7 @@
   height: 15px;
   width: 15px;
   fill: #cacccd;
+}
+.CalendarMonthGrid {
+  height: 340px !important;
 }

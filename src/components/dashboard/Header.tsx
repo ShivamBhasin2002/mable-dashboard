@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import {
   Menu,
   MenuButton,
@@ -9,22 +9,23 @@ import {
   PopoverContent
 } from '@chakra-ui/react';
 import moment from 'moment';
-import { DateRangePicker } from 'react-dates';
-import 'react-dates/initialize';
-import 'assets/styles/datePicker.css';
 
 import Icon from 'assets/icons';
 import colors from 'utility/colors';
-import { ComponentWrapper } from 'components/elements/common';
+import DatePicker from 'components/elements/common/DatePicker';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { setDates, setShop } from 'redux/reducers/dashboardSlice';
+import { setShop } from 'redux/reducers/dashboardSlice';
 
 const DashboardHeader = () => {
   const dispatch = useDispatch();
   const { shop, shops, dateRange } = useSelector((state) => state.dashboard);
   const { screen } = useSelector((state) => state.general);
-  const [focusedInput, setFocusedInput] = useState<any>(null); //eslint-disable-line
+
+  useEffect(() => {
+    document.getElementById('startDateIdentifier')?.click();
+  });
+
   return (
     <header>
       <div className="flex flex-row-reverse mb-3">
@@ -68,7 +69,16 @@ const DashboardHeader = () => {
           <span className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl">
             <Icon icon="refresh" />
           </span>
-          <Popover gutter={10} autoFocus={false} placement="bottom-end" closeOnBlur={false}>
+          <Popover
+            gutter={10}
+            autoFocus={false}
+            placement="bottom-end"
+            closeOnBlur={false}
+            onOpen={() => {
+              const target = document.getElementById('startDateIdentifier');
+              if (target) target.focus();
+            }}
+          >
             <PopoverTrigger>
               <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[20px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer">
                 {moment(dateRange[0]).format('DD.MM.YY')} to{' '}
@@ -77,28 +87,7 @@ const DashboardHeader = () => {
               </span>
             </PopoverTrigger>
             <PopoverContent bg="transparent" border="none" w={1000}>
-              <ComponentWrapper
-                width={1000}
-                className="!rounded-[10px] shadow-xl shadow-background !h-[513px]"
-              >
-                <DateRangePicker
-                  startDate={dateRange[0]}
-                  endDate={dateRange[1]}
-                  startDateId="startDateIdentifier"
-                  endDateId="endDateIdentifier"
-                  onDatesChange={({ startDate, endDate }) => {
-                    dispatch(setDates([startDate, endDate]));
-                  }}
-                  focusedInput={focusedInput}
-                  onFocusChange={(focusedInput) => {
-                    if (!focusedInput) return;
-                    setFocusedInput(focusedInput);
-                  }}
-                  displayFormat="DD.MM.YY"
-                  isOutsideRange={() => false}
-                  keepOpenOnDateSelect
-                />
-              </ComponentWrapper>
+              <DatePicker />
             </PopoverContent>
           </Popover>
         </span>

@@ -30,3 +30,16 @@ export enum eventSelectedType {
   addToCart = 'Add to Cart',
   pageView = 'Page View'
 }
+
+export enum DatePickerPresets {
+  maximum = 'Maximum',
+  today = 'Today',
+  yesterday = 'Yesterday',
+  prevSevenDays = 'Last 7 Days',
+  prevForteenDays = 'Last 14 Days',
+  prevThirtyDays = 'Last 30 Days',
+  currWeek = 'This Week',
+  prevWeek = 'Last Week',
+  currMonth = 'This Month',
+  prevMonth = 'Last Month'
+}
