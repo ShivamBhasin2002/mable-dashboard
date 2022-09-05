@@ -10,7 +10,7 @@ const WarningCenter = () => {
       {warnings.map(({ type, message, time }, index) => (
         <div
           key={index}
-          className="flex flex-row items-center p-[20px] bg-primary/[0.20] mb-2 rounded-[15px] gap-4 text-light"
+          className="flex flex-row items-center p-[20px] bg-primary/[0.15] mb-2 rounded-[15px] gap-4 text-light"
         >
           <span
             className={`${

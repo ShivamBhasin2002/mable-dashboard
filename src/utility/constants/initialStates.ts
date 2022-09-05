@@ -140,11 +140,11 @@ export const eventsInitialState: eventsState = {
 
 export const funnelAnalysisInitialState: funnelAnalysisState = {
   total_events: {
-    'Page View': 3000,
-    'Add to Cart': 20000,
-    'Initiate Checkout': 5000,
-    'Add Payment Info': 3000,
-    Purchase: 300
+    'Page View': 153000,
+    'Add to Cart': 122000,
+    'Initiate Checkout': 90000,
+    'Add Payment Info': 75000,
+    Purchase: 8000
   },
   status: statusType.Idle,
   errorMsg: undefined

@@ -13,6 +13,7 @@ const DoughnutChart = () => {
         {
           data: [data.backend, data.frontend, data.mableEngine, data.unavailable],
           backgroundColor: [colors.darkBlue, colors.lightBlue, colors.light, colors.transparent],
+
           datalabels: {
             display: false
           }
