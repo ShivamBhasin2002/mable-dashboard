@@ -30,7 +30,7 @@ stages:
   - build
   - docker-image
 
-build:integration:
+build:development:
   image: node:16.16.0-bullseye
   stage: build
   script:
@@ -43,6 +43,24 @@ build:integration:
     - npm run build
   only:
     - develop
+  artifacts:
+    name: '$ARTIFACT_NAME'
+    paths:
+      - $ARTIFACT_PATH
+
+build:integration:
+  image: node:16.16.0-bullseye
+  stage: build
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - |
+      {
+        echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+        echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}"
+      } | tee -a .npmrc
+    - npm run build -- --configuration production
+  only:
+    - integration
   artifacts:
     name: '$ARTIFACT_NAME'
     paths:
@@ -73,8 +91,10 @@ docker:image:
     - docker build -t $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG .
     - docker push $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG
   dependencies:
+    - build:development
     - build:integration
     - build:production
   only:
     - develop
+    - integration
     - master
