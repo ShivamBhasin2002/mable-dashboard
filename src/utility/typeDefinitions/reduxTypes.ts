@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
 import { AppDispatch, RootState } from 'redux/store';
 
-import { statusType, screenType, eventSelectedType } from 'utility/constants/general';
+import { STATUSt_TYPE, screenType, eventSelectedType } from 'utility/constants/general';
 
 export type thunkOptions = {
   dispatch: AppDispatch;
@@ -27,7 +27,7 @@ export type pageSpeedState = {
   T_M_AVG: number;
   T_SH_AVG: number;
   PS_M: number;
-  status?: statusType;
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
@@ -46,7 +46,7 @@ export type shop = {
 export type dashboardState = {
   shops?: shop[];
   shop?: shop;
-  status: statusType;
+  status: STATUSt_TYPE;
   errorMsg?: string;
   dateRange: Moment[];
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
@@ -95,7 +95,7 @@ export type dataPerEventState = {
     example6: number;
     example7: number;
   };
-  status?: statusType;
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
@@ -108,14 +108,14 @@ export type dataQualityState = {
   ordersWithCorrectCV: number;
   recievedByFB: number;
   avgDelieveryTime: number;
-  status?: statusType;
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
 export type eventsState = {
   AVG_T_DIFF: number;
   N_Total: number;
-  status?: statusType;
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
@@ -127,7 +127,7 @@ export type funnelAnalysisState = {
     'Add Payment Info': number;
     Purchase: number;
   };
-  status?: statusType;
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 

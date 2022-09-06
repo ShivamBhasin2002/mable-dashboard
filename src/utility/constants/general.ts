@@ -8,11 +8,11 @@ export const parameterSelector = [
   'Page View'
 ];
 
-export enum statusType {
-  Idle = 'idle',
-  Fetching = 'fetching',
-  Success = 'success',
-  Error = 'error'
+export enum STATUSt_TYPE {
+  IDLE = 'idle',
+  FETCHING = 'fetching',
+  SUCCESS = 'success',
+  ERROR = 'error'
 }
 
 export enum screenType {
