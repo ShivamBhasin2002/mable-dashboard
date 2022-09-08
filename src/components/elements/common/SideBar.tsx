@@ -41,7 +41,7 @@ const SideBar = () => {
                 onClick={() => dispatch(setScreen(item.title))}
               >
                 <span className="mr-[12px] ml-[20px] my-auto text-2xl">
-                  {<Icon icon={item.icon} width={24} height={24} />}
+                  {<Icon icon={item.icon} width={24} height={24} active={screen === item.title} />}
                 </span>
                 <span className="mt-[14px]">{item.title}</span>
               </div>

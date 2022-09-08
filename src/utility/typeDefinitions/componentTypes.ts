@@ -5,6 +5,7 @@ export type IconType = {
   width?: number;
   height?: number;
   className?: string;
+  active?: boolean;
 };
 
 export type CheckBoxProps = {
