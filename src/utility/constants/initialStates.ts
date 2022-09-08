@@ -8,6 +8,9 @@ import {
   pageSpeedState,
   userState
 } from 'utility/typeDefinitions/reduxTypes';
+import { STATUSt_TYPE, screenType } from './general';
+import moment from 'moment';
+import { eventSelectedType } from './general';
 
 export const userInitialState: userState = {
   email: undefined,
@@ -38,10 +41,9 @@ export const dashboardInitialState: dashboardState = {
     }
   ],
   shop: undefined,
-  status: 'idle',
+  status: STATUSt_TYPE.IDLE,
   errorMsg: undefined,
-  start: '2022-07-19T00:00:00',
-  end: '2022-07-23T00:00:00',
+  dateRange: [moment('2022-07-19T00:00:00'), moment('2022-07-23T00:00:00')],
   warnings: [
     { type: 'error', message: 'Facebook API not Responding', time: '2h' },
     { type: 'warning', message: 'Unusually low number of Add to Cart Events', time: '3d' },
@@ -60,13 +62,13 @@ export const dashboardInitialState: dashboardState = {
 
 export const dataPerEventsInitialState: dataPerEventState = {
   dataContainedPerEventBarChart: [
-    { attribute_quality: 12, event_quality: 6, _id: '19Jul' },
-    { attribute_quality: 13, event_quality: 5, _id: '20Jul' },
-    { attribute_quality: 9, event_quality: 7, _id: '21Jul' },
-    { attribute_quality: 11, event_quality: 5, _id: '22Jul' },
-    { attribute_quality: 12, event_quality: 6, _id: '23Jul' },
-    { attribute_quality: 11, event_quality: 6, _id: '24Jul' },
-    { attribute_quality: 9, event_quality: 6.2, _id: '25Jul' }
+    { attribution_quality: 12, event_quality: 6, _id: '19Jul' },
+    { attribution_quality: 13, event_quality: 5, _id: '20Jul' },
+    { attribution_quality: 9, event_quality: 7, _id: '21Jul' },
+    { attribution_quality: 11, event_quality: 5, _id: '22Jul' },
+    { attribution_quality: 12, event_quality: 6, _id: '23Jul' },
+    { attribution_quality: 11, event_quality: 6, _id: '24Jul' },
+    { attribution_quality: 9, event_quality: 6.2, _id: '25Jul' }
   ],
   dataContaindedPerEventDoughnutChart: {
     backend: 72,
@@ -78,7 +80,7 @@ export const dataPerEventsInitialState: dataPerEventState = {
   event: 6.7,
   totalEvent: 7,
   totatlAttribution: 13,
-  eventSelected: 'Purchase',
+  eventSelected: eventSelectedType.purchase,
   AttributionParameters: {
     'User IP': 0,
     'User Agent': 0,
@@ -104,7 +106,7 @@ export const dataPerEventsInitialState: dataPerEventState = {
     example6: 0,
     example7: 0
   },
-  status: 'idle',
+  status: STATUSt_TYPE.IDLE,
   errorMsg: undefined
 };
 
@@ -125,35 +127,35 @@ export const dataQualityInitialState: dataQualityState = {
   ordersWithCorrectCV: 0,
   recievedByFB: 0,
   avgDelieveryTime: 0,
-  status: 'idle',
+  status: STATUSt_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const eventsInitialState: eventsState = {
   N_Total: 155200,
   AVG_T_DIFF: 8300,
-  status: 'idle',
+  status: STATUSt_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const funnelAnalysisInitialState: funnelAnalysisState = {
   total_events: {
-    'Page View': 3000,
-    'Add to Cart': 20000,
-    'Initiate Checkout': 5000,
-    'Add Payment Info': 3000,
-    Purchase: 300
+    'Page View': 153000,
+    'Add to Cart': 122000,
+    'Initiate Checkout': 90000,
+    'Add Payment Info': 75000,
+    Purchase: 8000
   },
-  status: 'idle',
+  status: STATUSt_TYPE.IDLE,
   errorMsg: undefined
 };
 
-export const generalInitialState: generalState = { screen: 'Dashboard' };
+export const generalInitialState: generalState = { screen: screenType.dashboard };
 
 export const pageSpeedInitialState: pageSpeedState = {
   T_M_AVG: 200,
   T_SH_AVG: 3400,
   PS_M: 2,
-  status: 'idle',
+  status: STATUSt_TYPE.IDLE,
   errorMsg: undefined
 };

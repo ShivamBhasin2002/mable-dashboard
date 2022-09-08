@@ -1,4 +1,4 @@
-import { ComponentWrapper } from 'components/elements';
+import { ComponentWrapper } from 'components/elements/common';
 import Icon from 'assets/icons';
 
 import { useSelector } from 'redux/store';
@@ -10,7 +10,7 @@ const WarningCenter = () => {
       {warnings.map(({ type, message, time }, index) => (
         <div
           key={index}
-          className="flex flex-row items-center p-[20px] bg-primary/[0.20] mb-2 rounded-[15px] gap-4 text-light"
+          className="flex flex-row items-center p-[20px] bg-primary/[0.15] mb-2 rounded-[15px] gap-4 text-light"
         >
           <span
             className={`${
@@ -20,10 +20,12 @@ const WarningCenter = () => {
             <Icon icon="alert" />
           </span>
           <span className="flex flex-col  flex-grow">
-            <span className="text-[12px] leading-[15px] font-heading">{type}</span>
-            <span className="text-[16px] leading-[19px] font-heading font-semibold">{message}</span>
+            <span className="text-[12px] leading-[15px] font-montserrat">{type}</span>
+            <span className="text-[16px] leading-[19px] font-montserrat font-semibold">
+              {message}
+            </span>
           </span>
-          <span className="text-[12px] leading-[19px] font-heading font-bold">{time}</span>
+          <span className="text-[12px] leading-[19px] font-montserrat font-bold">{time}</span>
         </div>
       ))}
     </ComponentWrapper>

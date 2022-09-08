@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, funnelAnalysisState } from 'utility/typeDefinitions/reduxTypes';
 import { funnelAnalysisInitialState } from 'utility/constants/initialStates';
+import { STATUSt_TYPE } from 'utility/constants/general';
 
 export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
   'funnelAnalysis/fetch',
@@ -13,8 +14,8 @@ export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
           shop: state.dashboard.shop?.shop,
-          start_date: state.dashboard.start,
-          end_date: state.dashboard.end
+          start_date: state.dashboard.dateRange[0],
+          end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
         }
       });
       if (data) {
@@ -34,13 +35,13 @@ const initialState: funnelAnalysisState = {
 export const funnelAnalysisReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(funnelAnalysisAsync.pending, (state) => {
-      state.status = 'fetching';
+      state.status = STATUSt_TYPE.FETCHING;
     })
     .addCase(funnelAnalysisAsync.fulfilled, (state) => {
-      state.status = 'success';
+      state.status = STATUSt_TYPE.SUCCESS;
     })
     .addCase(funnelAnalysisAsync.rejected, (state) => {
-      state.status = 'error';
+      state.status = STATUSt_TYPE.ERROR;
     });
 });
 

@@ -5,6 +5,7 @@ export type IconType = {
   width?: number;
   height?: number;
   className?: string;
+  active?: boolean;
 };
 
 export type CheckBoxProps = {
@@ -16,13 +17,13 @@ export type CheckBoxProps = {
 };
 
 export type ComponentWrapperProps = {
-  width?: number | undefined;
-  height?: number | undefined;
-  children: React.ReactNode;
-  title?: string | undefined;
-  nextComponent?: React.ReactNode | undefined;
-  underlined?: boolean | undefined;
-  className?: string | undefined;
+  width?: number;
+  height?: number;
+  children?: React.ReactNode;
+  title?: string;
+  nextComponent?: React.ReactNode;
+  underlined?: boolean;
+  className?: string;
 };
 
 export type TextFieldProps = {

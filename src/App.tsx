@@ -6,7 +6,7 @@ import Register from 'pages/Register';
 import Dashboard from 'pages/Dashboard';
 import OrderAnalysis from 'pages/OrderAnalysis';
 import EventQuality from 'pages/EventQuality';
-import Layout from 'components/elements/Layout';
+import Layout from 'components/elements/common/Layout';
 
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';

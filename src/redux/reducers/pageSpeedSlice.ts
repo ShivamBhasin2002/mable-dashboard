@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, pageSpeedState } from 'utility/typeDefinitions/reduxTypes';
 import { pageSpeedInitialState } from 'utility/constants/initialStates';
+import { STATUSt_TYPE } from 'utility/constants/general';
 
 export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
   'pageSpeed/fetch',
@@ -13,8 +14,8 @@ export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
           shop: state.dashboard.shop?.shop,
-          start_date: state.dashboard.start,
-          end_date: state.dashboard.end
+          start_date: state.dashboard.dateRange[0],
+          end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
         }
       });
       if (data) {
@@ -34,13 +35,13 @@ const initialState: pageSpeedState = {
 export const pageSpeedReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(pageSpeedAsync.pending, (state) => {
-      state.status = 'fetching';
+      state.status = STATUSt_TYPE.FETCHING;
     })
     .addCase(pageSpeedAsync.fulfilled, (state) => {
-      state.status = 'success';
+      state.status = STATUSt_TYPE.SUCCESS;
     })
     .addCase(pageSpeedAsync.rejected, (state) => {
-      state.status = 'error';
+      state.status = STATUSt_TYPE.ERROR;
     });
 });
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, dataQualityState } from 'utility/typeDefinitions/reduxTypes';
 import { dataQualityInitialState } from 'utility/constants/initialStates';
+import { STATUSt_TYPE } from 'utility/constants/general';
 
 export const dataQualityAsync = createAsyncThunk<
   {
@@ -29,8 +30,8 @@ export const dataQualityAsync = createAsyncThunk<
       headers: { Authorization: `Token ${state.user.token}` },
       params: {
         shop: state.dashboard.shop?.shop,
-        start_date: state.dashboard.start,
-        end_date: state.dashboard.end
+        start_date: state.dashboard.dateRange[0],
+        end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
       }
     });
     if (data) {
@@ -49,17 +50,17 @@ const initialState: dataQualityState = {
 export const dataQualityReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(dataQualityAsync.pending, (state) => {
-      state.status = 'fetching';
+      state.status = STATUSt_TYPE.FETCHING;
     })
     .addCase(dataQualityAsync.fulfilled, (state, { payload }) => {
       state.DQ_COM = payload.data_quality.DQ_FB * 100;
       state.P_MDB = payload.purchases_db;
       state.P_SH = payload.purchases_shopify;
       state.dataQualityGrouped = payload.data_quality.data_quality_grouped;
-      state.status = 'success';
+      state.status = STATUSt_TYPE.SUCCESS;
     })
     .addCase(dataQualityAsync.rejected, (state) => {
-      state.status = 'error';
+      state.status = STATUSt_TYPE.ERROR;
     });
 });
 

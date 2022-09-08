@@ -45,8 +45,8 @@ const Register = () => {
     <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">
         <header>
-          <div className="text-center font-heading font-bold text-[60px]">Register</div>
-          <div className="text-center font-text text-2xl">
+          <div className="text-center font-montserrat font-bold text-[60px]">Register</div>
+          <div className="text-center font-lato text-2xl">
             Bring your analytics to the next level!
           </div>
         </header>
@@ -125,7 +125,7 @@ const Register = () => {
               </div>
               <button
                 type="submit"
-                className="p-3 font-heading font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 bg-primary hover:bg-primary/50 flex gap-4 justify-center items-center"
+                className="p-3 font-montserrat font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 bg-primary hover:bg-primary/50 flex gap-4 justify-center items-center"
               >
                 {isFetching && <Spinner />}
                 Register

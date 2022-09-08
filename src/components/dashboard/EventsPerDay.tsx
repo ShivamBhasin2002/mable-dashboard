@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-import { ComponentWrapper } from 'components/elements';
+import { ComponentWrapper } from 'components/elements/common';
 import { Line } from 'react-chartjs-2';
 
 import { useSelector } from 'redux/store';
@@ -40,7 +40,16 @@ const EventsPerDay = () => {
       <div>
         <Line
           options={{
+            hover: {
+              intersect: false,
+              mode: 'nearest'
+            },
             maintainAspectRatio: false,
+            elements: {
+              point: {
+                radius: 0
+              }
+            },
             scales: {
               y: {
                 beginAtZero: true,
@@ -56,7 +65,7 @@ const EventsPerDay = () => {
                 },
                 grid: {
                   display: false,
-                  borderColor: colors.lines,
+                  borderColor: `${colors.lines}20`,
                   borderWidth: 3
                 }
               },
@@ -68,7 +77,7 @@ const EventsPerDay = () => {
                 },
                 grid: {
                   display: false,
-                  borderColor: colors.lines,
+                  borderColor: `${colors.lines}20`,
                   borderWidth: 3
                 }
               }

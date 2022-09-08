@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
-import { ComponentWrapper } from 'components/elements';
+import { ComponentWrapper } from 'components/elements/common';
 import { LineChart, QualityCombined } from 'components/elements/quality';
 import { Stats } from 'components/orderAnalysis';
 
@@ -22,7 +22,7 @@ const OrderAnalysis = () => {
           <Stats value={shopifyOrders} message="Shopify Orders" />
           <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />
           <Stats value={recievedByFB} message="Received by FB" />
-          <Stats value={avgDelieveryTime} message="Avg. Delivery Time" />
+          <Stats value={avgDelieveryTime} message="AVG. Delivery Time" />
         </div>
       </ComponentWrapper>
       <ComponentWrapper>

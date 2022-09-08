@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, eventsState } from 'utility/typeDefinitions/reduxTypes';
 import { eventsInitialState } from 'utility/constants/initialStates';
+import { STATUSt_TYPE } from 'utility/constants/general';
 
 export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
   'events/fetch',
@@ -13,8 +14,8 @@ export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
           shop: state.dashboard.shop?.shop,
-          start_date: state.dashboard.start,
-          end_date: state.dashboard.end
+          start_date: state.dashboard.dateRange[0],
+          end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
         }
       });
       if (data) {
@@ -34,13 +35,13 @@ const initialState: eventsState = {
 export const eventsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(eventsAsync.pending, (state) => {
-      state.status = 'fetching';
+      state.status = STATUSt_TYPE.FETCHING;
     })
     .addCase(eventsAsync.fulfilled, (state) => {
-      state.status = 'success';
+      state.status = STATUSt_TYPE.SUCCESS;
     })
     .addCase(eventsAsync.rejected, (state) => {
-      state.status = 'error';
+      state.status = STATUSt_TYPE.ERROR;
     });
 });
 

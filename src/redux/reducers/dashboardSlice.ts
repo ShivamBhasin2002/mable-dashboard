@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, shop, dashboardState } from 'utility/typeDefinitions/reduxTypes';
 import { dashboardInitialState } from 'utility/constants/initialStates';
+import { STATUSt_TYPE } from 'utility/constants/general';
 
 export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunkOptions>(
   'dashboard/fetchShop',
@@ -32,26 +33,29 @@ export const dashboardSlice = createSlice({
     },
     clearStatus: (state) => {
       state.errorMsg = undefined;
-      state.status = 'idle';
+      state.status = STATUSt_TYPE.IDLE;
+    },
+    setDates: (state, { payload }) => {
+      state.dateRange = payload;
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchShopAsync.pending, (state) => {
-        state.status = 'pending';
+        state.status = STATUSt_TYPE.FETCHING;
       })
       .addCase(fetchShopAsync.fulfilled, (state, { payload }) => {
-        state.status = 'success';
+        state.status = STATUSt_TYPE.SUCCESS;
         if (state.shops) state.shops = [...state.shops, ...payload];
         else state.shops = payload;
         state.shop = payload[0];
       })
       .addCase(fetchShopAsync.rejected, (state, { payload }) => {
-        state.status = 'error';
+        state.status = STATUSt_TYPE.ERROR;
         state.errorMsg = payload;
       });
   }
 });
 
-export const { setShop, clearStatus } = dashboardSlice.actions;
+export const { setShop, clearStatus, setDates } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

@@ -27,34 +27,36 @@ const SideBar = () => {
         <Icon icon="mableLogo" width={140} />
       </header>
       <section className="flex-grow">
+        <div className=" ml-[9px] text-[16px] text-light/[0.57] font-montserrat font-bold mb-[15px]">
+          MENU
+        </div>
         <div className="flex flex-col gap-[5px]">
-          <div className=" ml-[9px] text-[16px] text-light/[0.57] font-heading font-bold">MENU</div>
           {sideBarItems.map((item) => {
             return (
               <div
                 key={item.icon}
-                className={`w-[228px] flex flex-row items-center ${
-                  screen === item.title ? 'text-light bg-primary/[0.20] ' : 'text-secondary'
-                } py-[18px] rounded-[8px] cursor-pointer text-[14px] font-heading font-bold`}
+                className={`w-[228px] flex flex-row ${
+                  screen === item.title ? 'text-light bg-primary/[0.1] ' : 'text-secondary'
+                } h-[50px] rounded-[8px] cursor-pointer text-[14px] font-montserrat font-bold`}
                 onClick={() => dispatch(setScreen(item.title))}
               >
-                <span className="mx-[25px] text-2xl">
-                  {<Icon icon={item.icon} width={24} height={24} />}
+                <span className="mr-[12px] ml-[20px] my-auto text-2xl">
+                  {<Icon icon={item.icon} width={24} height={24} active={screen === item.title} />}
                 </span>
-                {item.title}
+                <span className="mt-[14px]">{item.title}</span>
               </div>
             );
           })}
         </div>
       </section>
       <section className="flex flex-col gap-[10px]">
-        <div className="text-[16px] text-light/[0.57] font-heading font-bold">PROFILE</div>
+        <div className="text-[16px] text-light/[0.57] font-montserrat font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">
           <span className="w-[35px] h-[35px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">
             {firstName !== undefined ? firstName[0] : 'U'}
           </span>
           <span className="inline-flex flex-col justify-center">
-            <span className="text-[16px] text-light font-heading font-bold">
+            <span className="text-[16px] text-light font-montserrat font-bold">
               {`${firstName || ''} ${lastName || ''}`}
             </span>
           </span>
@@ -63,7 +65,7 @@ const SideBar = () => {
           </span>
         </div>
         <div
-          className="flex text-[14px] text-secondary font-heading font-bold items-center cursor-pointer"
+          className="flex text-[14px] text-secondary font-montserrat font-bold items-center cursor-pointer"
           onClick={() => {
             dispatch(logout());
             navigate('/');

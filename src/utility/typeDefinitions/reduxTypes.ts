@@ -1,4 +1,7 @@
+import { Moment } from 'moment';
 import { AppDispatch, RootState } from 'redux/store';
+
+import { STATUSt_TYPE, screenType, eventSelectedType } from 'utility/constants/general';
 
 export type thunkOptions = {
   dispatch: AppDispatch;
@@ -7,24 +10,24 @@ export type thunkOptions = {
 };
 
 export type userState = {
-  email: string | undefined;
-  userId: string | undefined;
-  firstName: string | undefined;
-  lastName: string | undefined;
-  iat: number | undefined;
-  exp: number | undefined;
-  token: string | undefined;
+  email?: string;
+  userId?: string;
+  firstName?: string;
+  lastName?: string;
+  iat?: number;
+  exp?: number;
+  token?: string;
   isFetching: boolean;
   isError: boolean;
   isSuccess: boolean;
-  errorMessage: string | undefined;
+  errorMessage?: string;
 };
 
 export type pageSpeedState = {
   T_M_AVG: number;
   T_SH_AVG: number;
   PS_M: number;
-  status?: 'idle' | 'fetching' | 'success' | 'error';
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
@@ -41,12 +44,11 @@ export type shop = {
 };
 
 export type dashboardState = {
-  shops: shop[] | undefined;
-  shop: shop | undefined;
-  status: 'idle' | 'pending' | 'success' | 'error';
-  errorMsg: string | undefined;
-  start: Date | string;
-  end: Date | string;
+  shops?: shop[];
+  shop?: shop;
+  status: STATUSt_TYPE;
+  errorMsg?: string;
+  dateRange: Moment[];
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
   eventsPerDay: { date: string; value: number }[];
 };
@@ -54,8 +56,8 @@ export type dashboardState = {
 export type dataPerEventState = {
   dataContainedPerEventBarChart: {
     _id: string;
-    attribute_quality: number | undefined;
-    event_quality: number | undefined;
+    attribution_quality?: number;
+    event_quality?: number;
   }[];
   dataContaindedPerEventDoughnutChart: {
     backend: number;
@@ -67,7 +69,7 @@ export type dataPerEventState = {
   event: number;
   totatlAttribution: number;
   totalEvent: number;
-  eventSelected: 'Purchase' | 'Add Payment Info' | 'Initiat Checkout' | 'Add to Cart' | 'Page View';
+  eventSelected: eventSelectedType;
   AttributionParameters: {
     'User IP': number;
     'User Agent': number;
@@ -93,7 +95,7 @@ export type dataPerEventState = {
     example6: number;
     example7: number;
   };
-  status?: 'idle' | 'fetching' | 'success' | 'error';
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
@@ -106,14 +108,14 @@ export type dataQualityState = {
   ordersWithCorrectCV: number;
   recievedByFB: number;
   avgDelieveryTime: number;
-  status?: 'idle' | 'fetching' | 'success' | 'error';
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
 export type eventsState = {
   AVG_T_DIFF: number;
   N_Total: number;
-  status?: 'idle' | 'fetching' | 'success' | 'error';
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
@@ -125,10 +127,10 @@ export type funnelAnalysisState = {
     'Add Payment Info': number;
     Purchase: number;
   };
-  status?: 'idle' | 'fetching' | 'success' | 'error';
+  status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
 export interface generalState {
-  screen: 'Dashboard' | 'Order Analysis' | 'Event Quality' | 'Settings' | 'Tutorial';
+  screen: screenType;
 }

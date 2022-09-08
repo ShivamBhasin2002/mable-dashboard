@@ -9,7 +9,7 @@ const Loading = ({ message = 'Loading' }: LoadingProps) => {
       <div>
         <Spinner color={colors.light} size="xl" />
       </div>
-      <div className="text-3xl font-heading font-bold text-light">{message}</div>
+      <div className="text-3xl font-montserrat font-bold text-light">{message}</div>
     </div>
   );
 };

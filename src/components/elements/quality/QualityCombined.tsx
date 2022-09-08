@@ -23,13 +23,13 @@ const QualityCombined = () => {
         max={100}
         min={0}
       >
-        <CircularProgressLabel className={`font-text text-[30px] text-[${getColor(DQ_COM)}]`}>
+        <CircularProgressLabel className={`font-lato text-[30px] text-[${getColor(DQ_COM)}]`}>
           {DQ_COM * 100} %
         </CircularProgressLabel>
       </CircularProgress>
       <div className="flex flex-col">
-        <span className="text-[14px] font-text text-light">Quality Combine</span>
-        <span className="text-[26px] font-heading font-bold text-primary h-[34px]">
+        <span className="text-[14px] font-lato text-light font-bold">Quality Combined</span>
+        <span className="text-[26px] font-montserrat font-bold text-primary h-[34px]">
           {getMessage(DQ_COM)}
         </span>
       </div>

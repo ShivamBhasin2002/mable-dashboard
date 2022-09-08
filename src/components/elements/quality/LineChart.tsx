@@ -23,7 +23,7 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
               { color: colors.dataQualityChartArea, stop: 1 }
             ]),
             borderColor: colors.success,
-            borderWidth: 2,
+            borderWidth: 3,
             lineTension: 0.5,
             fill: true,
             datalabels: {
@@ -39,6 +39,10 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
     <div>
       <Line
         options={{
+          hover: {
+            intersect: false,
+            mode: 'nearest'
+          },
           maintainAspectRatio: false,
           elements: {
             point: {
@@ -58,7 +62,7 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
               },
               grid: {
                 display: false,
-                borderColor: colors.lines,
+                borderColor: `${colors.lines}20`,
                 borderWidth: 3
               }
             },
@@ -68,7 +72,7 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
               },
               grid: {
                 display: false,
-                borderColor: colors.lines,
+                borderColor: `${colors.lines}20`,
                 borderWidth: 3
               }
             }
