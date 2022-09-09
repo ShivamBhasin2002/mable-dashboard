@@ -6,14 +6,13 @@ import 'assets/styles/datePicker.css';
 import { ComponentWrapper } from 'components/elements/common';
 
 import { useDispatch, useSelector } from 'redux/store';
-import { setDates } from 'redux/reducers/dashboardSlice';
+import { setDates, setPreset } from 'redux/reducers/dashboardSlice';
 
 import { DatePickerPresets } from 'utility/constants/general';
-import { setPreset } from 'utility/functions';
 
 const DatePicker = () => {
   const dispatch = useDispatch();
-  const { dateRange } = useSelector((state) => state.dashboard);
+  const { dateRange, datePreset } = useSelector((state) => state.dashboard);
   const [focusedInput, setFocusedInput] = useState<any>('startDate'); //eslint-disable-line
   return (
     <ComponentWrapper
@@ -45,9 +44,11 @@ const DatePicker = () => {
         {Object.values(DatePickerPresets).map((preset, i) => (
           <div
             key={`${i}${preset}`}
-            className="font-lato text-secondary hover:text-primary/[0.7] cursor-pointer"
+            className={`font-lato ${
+              preset === datePreset ? 'text-primary' : 'text-secondary hover:text-primary/[0.7]'
+            } cursor-pointer`}
             onClick={() => {
-              dispatch(setDates(setPreset(preset)));
+              dispatch(setPreset(preset));
             }}
           >
             {preset}

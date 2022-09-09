@@ -27,7 +27,7 @@ export const getMessage = (value: number) => {
   else return 'Poor';
 };
 
-export const setPreset = (preset: string) => {
+export const presetsToDateRange = (preset: string) => {
   switch (preset) {
     case presets.maximum:
       return [moment(), moment()];
