@@ -51,6 +51,7 @@ export type dashboardState = {
   dateRange: Moment[];
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
   eventsPerDay: { date: string; value: number }[];
+  datePreset?: string;
 };
 
 export type dataPerEventState = {

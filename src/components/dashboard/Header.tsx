@@ -19,7 +19,7 @@ import { setShop } from 'redux/reducers/dashboardSlice';
 
 const DashboardHeader = () => {
   const dispatch = useDispatch();
-  const { shop, shops, dateRange } = useSelector((state) => state.dashboard);
+  const { shop, shops, dateRange, datePreset } = useSelector((state) => state.dashboard);
   const { screen } = useSelector((state) => state.general);
 
   useEffect(() => {
@@ -80,9 +80,10 @@ const DashboardHeader = () => {
             }}
           >
             <PopoverTrigger>
-              <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[20px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer">
-                {moment(dateRange[0]).format('DD.MM.YY')} to{' '}
-                {moment(dateRange[1]).format('DD.MM.YY')}
+              <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[10px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer whitespace-nowrap">
+                {datePreset && <span className="text-primary w-min">{datePreset}: </span>}
+                {dateRange[0] && moment(dateRange[0]).format('DD.MM.YY')} to{' '}
+                {dateRange[1] && moment(dateRange[1]).format('DD.MM.YY')}
                 <Icon icon="dropdown" />
               </span>
             </PopoverTrigger>
