@@ -8,7 +8,7 @@ import {
   pageSpeedState,
   userState
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUSt_TYPE, screenType, DatePickerPresets } from './general';
+import { STATUSt_TYPE, screenType } from './general';
 import moment from 'moment';
 import { eventSelectedType } from './general';
 
@@ -57,8 +57,7 @@ export const dashboardInitialState: dashboardState = {
     { value: 1100, date: '23Jul' },
     { value: 500, date: '24Jul' },
     { value: 1000, date: '25Jul' }
-  ],
-  datePreset: DatePickerPresets.today
+  ]
 };
 
 export const dataPerEventsInitialState: dataPerEventState = {
