@@ -13,7 +13,7 @@ const Dashboard = () => {
   return (
     <main className="flex-grow">
       <section className="flex flex-row justify-evenly gap-[30px] flex-wrap mt-[40px]">
-        <div className="flex flex-col w-[920px] gap-[40px] ">
+        <div className="flex flex-col min-w-[920px] gap-[40px] flex-grow">
           <div>
             <DataQuality />
           </div>
