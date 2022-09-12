@@ -13,7 +13,7 @@ const Dashboard = () => {
   return (
     <main className="flex-grow">
       <section className="flex flex-row justify-evenly gap-[30px] flex-wrap mt-[40px]">
-        <div className="flex flex-col min-w-[920px] gap-[40px] flex-grow">
+        <div className="flex flex-col gap-[40px] flex-grow">
           <div>
             <DataQuality />
           </div>
@@ -23,7 +23,7 @@ const Dashboard = () => {
           </div>
           <DataContainedPerEvent />
         </div>
-        <div className="flex flex-col gap-[30px]">
+        <div className="flex flex-grow  flex-row lg:flex-col flex-wrap gap-[30px]">
           <WarningCenter />
           <FunnelAnalysis />
           <EventsPerDay />

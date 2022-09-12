@@ -21,7 +21,7 @@ const SideBar = () => {
   return (
     <aside
       id="side-bar"
-      className="sticky top-0 left-0 w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[50px] lg:flex flex-col gap-16 px-[25px] hidden"
+      className="lg:sticky lg:top-0 lg:left-0 w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[50px] lg:flex flex-col gap-16 px-[25px] hidden"
     >
       <header className="flex justify-center">
         <Icon icon="mableLogo" width={140} />

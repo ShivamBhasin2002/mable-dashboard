@@ -47,7 +47,7 @@ const FunnelAnalysis = () => {
     <ComponentWrapper
       width={600}
       title="Funnel Analysis"
-      className="flex flex-col justify-between flex-grow-0"
+      className="flex flex-col justify-between flex-grow"
     >
       <Bar
         className="flex-grow-0"

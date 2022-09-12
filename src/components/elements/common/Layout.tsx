@@ -52,9 +52,11 @@ const Layout = ({ children }: LayoutProps) => {
   return isFetching ? (
     <Loading />
   ) : (
-    <div className="flex flex-row h-min-screen bg-background">
-      <SideBar />
-      <div className="w-full h-min-screen bg-background flex flex-col px-[30px] py-[30px]">
+    <div className="bg-background flex justify-around">
+      <div className="">
+        <SideBar />
+      </div>
+      <div className="flex-grow p-[30px]">
         <DashboardHeader />
         {status === 'success' ? (
           children
