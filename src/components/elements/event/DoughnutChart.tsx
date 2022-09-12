@@ -8,7 +8,7 @@ import { dataEventLables } from 'utility/constants/general';
 const DoughnutChart = () => {
   const data = useSelector((state) => state.dataPerEvent.dataContaindedPerEventDoughnutChart);
   const doughnutData = {
-      labels: dataEventLables,
+      labels: Object.values(dataEventLables),
       datasets: [
         {
           data: [data.backend, 0.5, data.frontend, 0.5, data.mableEngine, data.unavailable],

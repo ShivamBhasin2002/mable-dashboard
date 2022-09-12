@@ -1,7 +1,7 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { thunkOptions, dataQualityState } from 'utility/typeDefinitions/reduxTypes';
+import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataQualityInitialState } from 'utility/constants/initialStates';
 import { STATUSt_TYPE } from 'utility/constants/general';
 
@@ -43,11 +43,7 @@ export const dataQualityAsync = createAsyncThunk<
   }
 });
 
-const initialState: dataQualityState = {
-  ...dataQualityInitialState
-};
-
-export const dataQualityReducer = createReducer(initialState, (builder) => {
+export const dataQualityReducer = createReducer(dataQualityInitialState, (builder) => {
   builder
     .addCase(dataQualityAsync.pending, (state) => {
       state.status = STATUSt_TYPE.FETCHING;

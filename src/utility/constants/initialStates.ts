@@ -1,18 +1,19 @@
 import {
-  dashboardState,
-  dataPerEventState,
-  dataQualityState,
-  eventsState,
-  funnelAnalysisState,
-  generalState,
-  pageSpeedState,
-  userState
+  dashboardStateType,
+  dataPerEventStateType,
+  dataQualityStateType,
+  eventsStateType,
+  funnelAnalysisStateType,
+  generalStateType,
+  pageSpeedStateType,
+  userStateType,
+  orderAnalysisStateType
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUSt_TYPE, screenType } from './general';
+import { STATUSt_TYPE, screenType, statusSelector } from './general';
 import moment from 'moment';
 import { eventSelectedType } from './general';
 
-export const userInitialState: userState = {
+export const userInitialState: userStateType = {
   email: undefined,
   userId: undefined,
   firstName: undefined,
@@ -26,7 +27,7 @@ export const userInitialState: userState = {
   errorMessage: undefined
 };
 
-export const dashboardInitialState: dashboardState = {
+export const dashboardInitialState: dashboardStateType = {
   shops: [
     {
       _id: {
@@ -60,7 +61,7 @@ export const dashboardInitialState: dashboardState = {
   ]
 };
 
-export const dataPerEventsInitialState: dataPerEventState = {
+export const dataPerEventsInitialState: dataPerEventStateType = {
   dataContainedPerEventBarChart: [
     { attribution_quality: 12, event_quality: 6, _id: '19Jul' },
     { attribution_quality: 13, event_quality: 5, _id: '20Jul' },
@@ -110,7 +111,11 @@ export const dataPerEventsInitialState: dataPerEventState = {
   errorMsg: undefined
 };
 
-export const dataQualityInitialState: dataQualityState = {
+export const orderAnalysisInitialState: orderAnalysisStateType = {
+  statuSelected: statusSelector.all
+};
+
+export const dataQualityInitialState: dataQualityStateType = {
   DQ_COM: 0.94,
   P_MDB: 258,
   P_SH: 257,
@@ -131,14 +136,14 @@ export const dataQualityInitialState: dataQualityState = {
   errorMsg: undefined
 };
 
-export const eventsInitialState: eventsState = {
+export const eventsInitialState: eventsStateType = {
   N_Total: 155200,
   AVG_T_DIFF: 8300,
   status: STATUSt_TYPE.IDLE,
   errorMsg: undefined
 };
 
-export const funnelAnalysisInitialState: funnelAnalysisState = {
+export const funnelAnalysisInitialState: funnelAnalysisStateType = {
   total_events: {
     'Page View': 153000,
     'Add to Cart': 122000,
@@ -150,9 +155,9 @@ export const funnelAnalysisInitialState: funnelAnalysisState = {
   errorMsg: undefined
 };
 
-export const generalInitialState: generalState = { screen: screenType.dashboard };
+export const generalInitialState: generalStateType = { screen: screenType.dashboard };
 
-export const pageSpeedInitialState: pageSpeedState = {
+export const pageSpeedInitialState: pageSpeedStateType = {
   T_M_AVG: 200,
   T_SH_AVG: 3400,
   PS_M: 2,

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { thunkOptions, eventsState } from 'utility/typeDefinitions/reduxTypes';
+import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { eventsInitialState } from 'utility/constants/initialStates';
 import { STATUSt_TYPE } from 'utility/constants/general';
 
@@ -28,11 +28,7 @@ export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
   }
 );
 
-const initialState: eventsState = {
-  ...eventsInitialState
-};
-
-export const eventsReducer = createReducer(initialState, (builder) => {
+export const eventsReducer = createReducer(eventsInitialState, (builder) => {
   builder
     .addCase(eventsAsync.pending, (state) => {
       state.status = STATUSt_TYPE.FETCHING;

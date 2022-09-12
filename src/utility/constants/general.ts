@@ -1,12 +1,16 @@
-export const dataEventLables = ['Backend', 'Frontend', 'Mable Engine', 'Unavailable'];
+export enum dataEventLables {
+  backend = 'Backend',
+  frontend = 'Frontend',
+  mableEngine = 'Mable Engine',
+  unavailable = 'Unavailable'
+}
 
-export const parameterSelector = [
-  'Purchase',
-  'Add Payment Info',
-  'Initiate Checkout',
-  'Add to Cart',
-  'Page View'
-];
+export enum statusSelector {
+  all = 'All',
+  pending = 'Pending',
+  success = 'Success',
+  delayed = 'Delayed'
+}
 
 export enum STATUSt_TYPE {
   IDLE = 'idle',

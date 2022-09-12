@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { thunkOptions, shop, dashboardState } from 'utility/typeDefinitions/reduxTypes';
+import { thunkOptions, shop } from 'utility/typeDefinitions/reduxTypes';
 import { dashboardInitialState } from 'utility/constants/initialStates';
 import { STATUSt_TYPE } from 'utility/constants/general';
 import { presetsToDateRange } from 'utility/functions';
@@ -21,13 +21,9 @@ export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunk
   }
 );
 
-const initialState: dashboardState = {
-  ...dashboardInitialState
-};
-
 export const dashboardSlice = createSlice({
   name: 'dashboard',
-  initialState,
+  initialState: dashboardInitialState,
   reducers: {
     setShop: (state, { payload }) => {
       state.shop = payload;

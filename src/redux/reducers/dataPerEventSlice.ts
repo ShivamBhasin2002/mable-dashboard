@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { thunkOptions, dataPerEventState } from 'utility/typeDefinitions/reduxTypes';
+import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataPerEventsInitialState } from 'utility/constants/initialStates';
 import { STATUSt_TYPE } from 'utility/constants/general';
 
@@ -28,13 +28,9 @@ export const dataPerEventAsync = createAsyncThunk<null, void, thunkOptions>(
   }
 );
 
-const initialState: dataPerEventState = {
-  ...dataPerEventsInitialState
-};
-
 export const dataPerEvent = createSlice({
   name: 'dataPerEvent',
-  initialState,
+  initialState: dataPerEventsInitialState,
   reducers: {
     setEventSelected: (state, { payload }) => {
       state.eventSelected = payload;

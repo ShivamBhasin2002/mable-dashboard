@@ -1,7 +1,12 @@
 import { Moment } from 'moment';
 import { AppDispatch, RootState } from 'redux/store';
 
-import { STATUSt_TYPE, screenType, eventSelectedType } from 'utility/constants/general';
+import {
+  STATUSt_TYPE,
+  screenType,
+  eventSelectedType,
+  statusSelector
+} from 'utility/constants/general';
 
 export type thunkOptions = {
   dispatch: AppDispatch;
@@ -9,7 +14,7 @@ export type thunkOptions = {
   rejectValue: string;
 };
 
-export type userState = {
+export type userStateType = {
   email?: string;
   userId?: string;
   firstName?: string;
@@ -23,7 +28,7 @@ export type userState = {
   errorMessage?: string;
 };
 
-export type pageSpeedState = {
+export type pageSpeedStateType = {
   T_M_AVG: number;
   T_SH_AVG: number;
   PS_M: number;
@@ -43,7 +48,7 @@ export type shop = {
   userId: string;
 };
 
-export type dashboardState = {
+export type dashboardStateType = {
   shops?: shop[];
   shop?: shop;
   status: STATUSt_TYPE;
@@ -54,7 +59,7 @@ export type dashboardState = {
   datePreset?: string;
 };
 
-export type dataPerEventState = {
+export type dataPerEventStateType = {
   dataContainedPerEventBarChart: {
     _id: string;
     attribution_quality?: number;
@@ -100,7 +105,7 @@ export type dataPerEventState = {
   errorMsg?: string;
 };
 
-export type dataQualityState = {
+export type dataQualityStateType = {
   DQ_COM: number;
   P_MDB: number;
   P_SH: number;
@@ -113,14 +118,14 @@ export type dataQualityState = {
   errorMsg?: string;
 };
 
-export type eventsState = {
+export type eventsStateType = {
   AVG_T_DIFF: number;
   N_Total: number;
   status?: STATUSt_TYPE;
   errorMsg?: string;
 };
 
-export type funnelAnalysisState = {
+export type funnelAnalysisStateType = {
   total_events: {
     'Page View': number;
     'Add to Cart': number;
@@ -132,6 +137,10 @@ export type funnelAnalysisState = {
   errorMsg?: string;
 };
 
-export interface generalState {
+export type generalStateType = {
   screen: screenType;
-}
+};
+
+export type orderAnalysisStateType = {
+  statuSelected: statusSelector;
+};

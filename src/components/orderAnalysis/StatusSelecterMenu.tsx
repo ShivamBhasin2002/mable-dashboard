@@ -4,12 +4,12 @@ import colors from 'utility/colors';
 import Icon from 'assets/icons';
 
 import { useDispatch, useSelector } from 'redux/store';
-import { setEventSelected } from 'redux/reducers/dataPerEventSlice';
-import { eventSelectedType } from 'utility/constants/general';
+import { statusSelector } from 'utility/constants/general';
+import { setStatusSelected } from 'redux/reducers/orderAnalysisSlice';
 
-const SelectorMenu = () => {
+const StatusSelectorMenu = () => {
   const dispatch = useDispatch();
-  const { eventSelected } = useSelector((state) => state.dataPerEvent);
+  const { statuSelected } = useSelector((state) => state.orderAnalysis);
   return (
     <Menu gutter={0} isLazy>
       <MenuButton
@@ -26,7 +26,7 @@ const SelectorMenu = () => {
         _hover={{ backgroundColor: 'transparent' }}
         _active={{ backgroundColor: 'transparent', borderBottomRadius: 0, borderBottom: 0 }}
       >
-        {eventSelected}
+        Status: {statuSelected}
       </MenuButton>
       <MenuList
         background={colors.bgContainerTo}
@@ -36,9 +36,9 @@ const SelectorMenu = () => {
         borderTopRadius={0}
         borderColor={`${colors.lines}20`}
       >
-        {Object.values(eventSelectedType).map(
+        {Object.values(statusSelector).map(
           (item) =>
-            item !== eventSelected && (
+            item !== statuSelected && (
               <MenuItem
                 key={item}
                 _hover={{ background: colors.bgContainerFrom }}
@@ -46,7 +46,7 @@ const SelectorMenu = () => {
                 _focus={{ background: colors.bgContainerFrom }}
                 fontSize="14px"
                 h="30px"
-                onClick={() => dispatch(setEventSelected(item))}
+                onClick={() => dispatch(setStatusSelected(item))}
               >
                 {item}
               </MenuItem>
@@ -57,4 +57,4 @@ const SelectorMenu = () => {
   );
 };
 
-export default SelectorMenu;
+export default StatusSelectorMenu;

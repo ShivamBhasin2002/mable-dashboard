@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { userInitialState } from 'utility/constants/initialStates';
 
-import { thunkOptions, userState } from 'utility/typeDefinitions/reduxTypes';
+import { thunkOptions, userStateType } from 'utility/typeDefinitions/reduxTypes';
+import { userInitialState } from 'utility/constants/initialStates';
 
 export const loginAsync = createAsyncThunk<
   string,
@@ -45,7 +45,7 @@ export const registerAsync = createAsyncThunk<
 });
 
 export const isAuthenticatedAsync = createAsyncThunk<
-  userState,
+  userStateType,
   string | null | undefined,
   thunkOptions
 >('user/authenticate', async (token, { rejectWithValue }) => {
@@ -64,17 +64,13 @@ export const isAuthenticatedAsync = createAsyncThunk<
   }
 });
 
-const initialState: userState = {
-  ...userInitialState
-};
-
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: userInitialState,
   reducers: {
     logout: (state) => {
       localStorage.removeItem('token');
-      state = initialState;
+      state = userInitialState;
       return state;
     },
     clearState: (state) => {
