@@ -2,7 +2,7 @@ import { Moment } from 'moment';
 import { AppDispatch, RootState } from 'redux/store';
 
 import {
-  STATUSt_TYPE,
+  STATUS_TYPE,
   screenType,
   eventSelectedType,
   statusSelector
@@ -32,7 +32,7 @@ export type pageSpeedStateType = {
   T_M_AVG: number;
   T_SH_AVG: number;
   PS_M: number;
-  status?: STATUSt_TYPE;
+  status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
@@ -51,7 +51,7 @@ export type shop = {
 export type dashboardStateType = {
   shops?: shop[];
   shop?: shop;
-  status: STATUSt_TYPE;
+  status: STATUS_TYPE;
   errorMsg?: string;
   dateRange: Moment[];
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
@@ -73,8 +73,6 @@ export type dataPerEventStateType = {
   };
   attribution: number;
   event: number;
-  totatlAttribution: number;
-  totalEvent: number;
   eventSelected: eventSelectedType;
   AttributionParameters: {
     'User IP': number;
@@ -101,7 +99,7 @@ export type dataPerEventStateType = {
     example6: number;
     example7: number;
   };
-  status?: STATUSt_TYPE;
+  status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
@@ -114,14 +112,14 @@ export type dataQualityStateType = {
   ordersWithCorrectCV: number;
   recievedByFB: number;
   avgDelieveryTime: number;
-  status?: STATUSt_TYPE;
+  status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
 export type eventsStateType = {
   AVG_T_DIFF: number;
   N_Total: number;
-  status?: STATUSt_TYPE;
+  status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
@@ -133,7 +131,7 @@ export type funnelAnalysisStateType = {
     'Add Payment Info': number;
     Purchase: number;
   };
-  status?: STATUSt_TYPE;
+  status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
@@ -143,4 +141,15 @@ export type generalStateType = {
 
 export type orderAnalysisStateType = {
   statuSelected: statusSelector;
+  tableData: {
+    id: number;
+    date: Moment;
+    customer: string;
+    total: number;
+    cv: number;
+    eventParametersPresent: number;
+    attributionParametersPresent: number;
+    deliveryTime: number;
+    status: string;
+  }[];
 };

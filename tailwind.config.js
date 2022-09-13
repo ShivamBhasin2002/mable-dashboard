@@ -26,7 +26,8 @@ module.exports = {
       dataQualityChartArea: 'rgba(13, 206, 28, 0.3)',
       eventsPerDayLineColor: '#54B7DB',
       eventsPerDayLineArea: 'rgba(84,183,219,0.6)',
-      transparent: 'rgba(0,0,0,0)'
+      transparent: 'rgba(0,0,0,0)',
+      tableStrips: '#293A57'
     }
   },
   plugins: []

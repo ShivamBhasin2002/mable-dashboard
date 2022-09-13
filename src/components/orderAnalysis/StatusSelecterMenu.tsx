@@ -16,7 +16,7 @@ const StatusSelectorMenu = () => {
         as={Button}
         rightIcon={<Icon icon="dropdown" color="lines/[0.20]" />}
         background={colors.transparent}
-        className="!border-lines/[0.20]"
+        className="!border-lines/[0.20] !flex !justify-evenly"
         border="1px"
         h="30px"
         w="170px"
@@ -26,7 +26,7 @@ const StatusSelectorMenu = () => {
         _hover={{ backgroundColor: 'transparent' }}
         _active={{ backgroundColor: 'transparent', borderBottomRadius: 0, borderBottom: 0 }}
       >
-        Status: {statuSelected}
+        <span>Status:</span> <span>{statuSelected}</span>
       </MenuButton>
       <MenuList
         background={colors.bgContainerTo}

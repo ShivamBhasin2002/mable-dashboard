@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { pageSpeedInitialState } from 'utility/constants/initialStates';
-import { STATUSt_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
   'pageSpeed/fetch',
@@ -31,13 +31,13 @@ export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
 export const pageSpeedReducer = createReducer(pageSpeedInitialState, (builder) => {
   builder
     .addCase(pageSpeedAsync.pending, (state) => {
-      state.status = STATUSt_TYPE.FETCHING;
+      state.status = STATUS_TYPE.FETCHING;
     })
     .addCase(pageSpeedAsync.fulfilled, (state) => {
-      state.status = STATUSt_TYPE.SUCCESS;
+      state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(pageSpeedAsync.rejected, (state) => {
-      state.status = STATUSt_TYPE.ERROR;
+      state.status = STATUS_TYPE.ERROR;
     });
 });
 

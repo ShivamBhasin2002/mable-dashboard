@@ -1,9 +1,8 @@
 import { useSelector } from 'redux/store';
+import { totalEvents, totatlAttributions } from 'utility/constants/general';
 
 const Metrics = () => {
-  const { attribution, event, totalEvent, totatlAttribution } = useSelector(
-    (state) => state.dataPerEvent
-  );
+  const { attribution, event } = useSelector((state) => state.dataPerEvent);
   return (
     <div className="flex flex-row justify-evenly gap-[10px]">
       <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom rounded-[16px] drop-shadow-xl">
@@ -12,7 +11,7 @@ const Metrics = () => {
           <div className=" text-[30px] leading-[34px] font-lato text-center text-light">
             {attribution}
           </div>
-          <span className="text-[14px] text-light/[.41]">/ {totatlAttribution}</span>
+          <span className="text-[14px] text-light/[.41]">/ {totatlAttributions}</span>
         </div>
         <div className="text-primary text-center text-[13px] whitespace-nowrap">
           Attribution Parameters
@@ -24,7 +23,7 @@ const Metrics = () => {
           <div className=" text-[30px] leading-[34px] font-lato text-center text-light">
             {event}
           </div>
-          <span className="text-[14px] text-light/[.41]">/ {totalEvent}</span>
+          <span className="text-[14px] text-light/[.41]">/ {totalEvents}</span>
         </div>
         <div className="text-primary text-center text-[13px] whitespace-nowrap">
           Event Parameters

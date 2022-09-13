@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { eventsInitialState } from 'utility/constants/initialStates';
-import { STATUSt_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
   'events/fetch',
@@ -31,13 +31,13 @@ export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
 export const eventsReducer = createReducer(eventsInitialState, (builder) => {
   builder
     .addCase(eventsAsync.pending, (state) => {
-      state.status = STATUSt_TYPE.FETCHING;
+      state.status = STATUS_TYPE.FETCHING;
     })
     .addCase(eventsAsync.fulfilled, (state) => {
-      state.status = STATUSt_TYPE.SUCCESS;
+      state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(eventsAsync.rejected, (state) => {
-      state.status = STATUSt_TYPE.ERROR;
+      state.status = STATUS_TYPE.ERROR;
     });
 });
 

@@ -6,7 +6,7 @@ import { useSelector } from 'redux/store';
 const WarningCenter = () => {
   const { warnings } = useSelector((state) => state.dashboard);
   return (
-    <ComponentWrapper title="Warning Center" width={600} underlined>
+    <ComponentWrapper title="Warning Center" width={600} underlined className="flex-grow">
       {warnings.map(({ type, message, time }, index) => (
         <div
           key={index}
@@ -21,7 +21,7 @@ const WarningCenter = () => {
           </span>
           <span className="flex flex-col  flex-grow">
             <span className="text-[12px] leading-[15px] font-montserrat">{type}</span>
-            <span className="text-[16px] leading-[19px] font-montserrat font-semibold">
+            <span className="text-[16px] leading-[19px] font-montserrat font-semibold whitespace-nowrap">
               {message}
             </span>
           </span>

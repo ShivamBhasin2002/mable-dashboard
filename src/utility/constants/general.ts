@@ -12,7 +12,7 @@ export enum statusSelector {
   delayed = 'Delayed'
 }
 
-export enum STATUSt_TYPE {
+export enum STATUS_TYPE {
   IDLE = 'idle',
   FETCHING = 'fetching',
   SUCCESS = 'success',
@@ -47,3 +47,7 @@ export enum DatePickerPresets {
   currMonth = 'This Month',
   prevMonth = 'Last Month'
 }
+
+export const totalEvents = 7;
+
+export const totatlAttributions = 13;

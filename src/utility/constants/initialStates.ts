@@ -9,7 +9,7 @@ import {
   userStateType,
   orderAnalysisStateType
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUSt_TYPE, screenType, statusSelector } from './general';
+import { STATUS_TYPE, screenType, statusSelector } from './general';
 import moment from 'moment';
 import { eventSelectedType } from './general';
 
@@ -42,7 +42,7 @@ export const dashboardInitialState: dashboardStateType = {
     }
   ],
   shop: undefined,
-  status: STATUSt_TYPE.IDLE,
+  status: STATUS_TYPE.IDLE,
   errorMsg: undefined,
   dateRange: [moment('2022-07-19T00:00:00'), moment('2022-07-23T00:00:00')],
   warnings: [
@@ -79,8 +79,6 @@ export const dataPerEventsInitialState: dataPerEventStateType = {
   },
   attribution: 12.1,
   event: 6.7,
-  totalEvent: 7,
-  totatlAttribution: 13,
   eventSelected: eventSelectedType.purchase,
   AttributionParameters: {
     'User IP': 0,
@@ -107,12 +105,36 @@ export const dataPerEventsInitialState: dataPerEventStateType = {
     example6: 0,
     example7: 0
   },
-  status: STATUSt_TYPE.IDLE,
+  status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const orderAnalysisInitialState: orderAnalysisStateType = {
-  statuSelected: statusSelector.all
+  statuSelected: statusSelector.all,
+  tableData: [
+    {
+      id: 635978,
+      date: moment(),
+      customer: 'Carolin Geibel',
+      total: 13800,
+      cv: 13800,
+      eventParametersPresent: 10,
+      attributionParametersPresent: 12,
+      deliveryTime: 12,
+      status: 'Pending'
+    },
+    {
+      id: 635978,
+      date: moment(),
+      customer: 'Carolin Geibel',
+      total: 13800,
+      cv: 13800,
+      eventParametersPresent: 10,
+      attributionParametersPresent: 12,
+      deliveryTime: 12,
+      status: 'Pending'
+    }
+  ]
 };
 
 export const dataQualityInitialState: dataQualityStateType = {
@@ -132,14 +154,14 @@ export const dataQualityInitialState: dataQualityStateType = {
   ordersWithCorrectCV: 0,
   recievedByFB: 0,
   avgDelieveryTime: 0,
-  status: STATUSt_TYPE.IDLE,
+  status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const eventsInitialState: eventsStateType = {
   N_Total: 155200,
   AVG_T_DIFF: 8300,
-  status: STATUSt_TYPE.IDLE,
+  status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
@@ -151,7 +173,7 @@ export const funnelAnalysisInitialState: funnelAnalysisStateType = {
     'Add Payment Info': 75000,
     Purchase: 8000
   },
-  status: STATUSt_TYPE.IDLE,
+  status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
@@ -161,6 +183,6 @@ export const pageSpeedInitialState: pageSpeedStateType = {
   T_M_AVG: 200,
   T_SH_AVG: 3400,
   PS_M: 2,
-  status: STATUSt_TYPE.IDLE,
+  status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };

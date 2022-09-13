@@ -4,6 +4,7 @@ import { Stats } from 'components/orderAnalysis';
 
 import { useSelector } from 'redux/store';
 import StatusSelectorMenu from 'components/orderAnalysis/StatusSelecterMenu';
+import OrderAnalysisTable from 'components/orderAnalysis/OrderAnalysisTable';
 
 const OrderAnalysis = () => {
   const { shopifyOrders, ordersWithCorrectCV, recievedByFB, avgDelieveryTime } = useSelector(
@@ -25,6 +26,7 @@ const OrderAnalysis = () => {
       </ComponentWrapper>
       <ComponentWrapper className="text-light">
         <StatusSelectorMenu />
+        <OrderAnalysisTable />
       </ComponentWrapper>
     </div>
   );
