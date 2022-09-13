@@ -6,6 +6,7 @@ import {
   ParameterComposition,
   BarChart
 } from 'components/elements/event';
+import { screenType } from 'utility/constants/general';
 
 const DataContainedPerEvent = () => {
   return (
@@ -16,7 +17,7 @@ const DataContainedPerEvent = () => {
       nextComponent={
         <div className="flex-grow px-4 flex justify-between gap-4">
           <SelectorMenu />
-          <ViewFullReport screen="Event Quality" />
+          <ViewFullReport screen={screenType.eventQuality} />
         </div>
       }
     >

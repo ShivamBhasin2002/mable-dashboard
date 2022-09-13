@@ -36,11 +36,13 @@ const SideBar = () => {
               <div
                 key={item.icon}
                 className={`w-[228px] flex flex-row ${
-                  screen === item.title ? 'text-light bg-primary/[0.1] ' : 'text-secondary'
-                } h-[50px] rounded-[8px] cursor-pointer text-[14px] font-montserrat font-bold`}
+                  screen === item.title
+                    ? 'text-light bg-primary/[0.1] font-bold '
+                    : 'text-secondary font-medium'
+                } h-[50px] rounded-[8px] cursor-pointer text-[14px] font-montserrat `}
                 onClick={() => dispatch(setScreen(item.title))}
               >
-                <span className="mr-[12px] ml-[20px] my-auto text-2xl">
+                <span className="mr-[15px] ml-[20px] my-auto text-2xl">
                   {<Icon icon={item.icon} width={24} height={24} active={screen === item.title} />}
                 </span>
                 <span className="mt-[14px]">{item.title}</span>

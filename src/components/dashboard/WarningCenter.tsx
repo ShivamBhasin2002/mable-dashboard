@@ -12,15 +12,14 @@ const WarningCenter = () => {
           key={index}
           className="flex flex-row items-center p-[20px] bg-primary/[0.15] mb-2 rounded-[15px] gap-4 text-light"
         >
-          <span
-            className={`${
-              type === 'error' ? 'text-error' : type === 'warning' ? 'text-average' : 'text-success'
-            } text-3xl`}
-          >
-            <Icon icon="alert" />
+          <span className="px-[5px] flex items-center">
+            <Icon icon={type} size="xl" />
           </span>
           <span className="flex flex-col  flex-grow">
-            <span className="text-[12px] leading-[15px] font-montserrat">{type}</span>
+            <span className="text-[12px] leading-[15px] font-montserrat">
+              {type.charAt(0).toLocaleUpperCase()}
+              {type.slice(1)}
+            </span>
             <span className="text-[16px] leading-[19px] font-montserrat font-semibold whitespace-nowrap">
               {message}
             </span>

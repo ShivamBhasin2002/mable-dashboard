@@ -4,7 +4,6 @@ import axios from 'axios';
 import { thunkOptions, shop } from 'utility/typeDefinitions/reduxTypes';
 import { dashboardInitialState } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/general';
-import { presetsToDateRange } from 'utility/functions';
 
 export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunkOptions>(
   'dashboard/fetchShop',
@@ -37,7 +36,6 @@ export const dashboardSlice = createSlice({
     },
     setPreset: (state, { payload }) => {
       state.datePreset = payload;
-      state.dateRange = presetsToDateRange(payload);
     }
   },
   extraReducers: (builder) => {
