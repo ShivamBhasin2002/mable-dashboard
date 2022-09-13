@@ -5,6 +5,7 @@ import { Stats } from 'components/orderAnalysis';
 import { useSelector } from 'redux/store';
 import StatusSelectorMenu from 'components/orderAnalysis/StatusSelecterMenu';
 import OrderAnalysisTable from 'components/orderAnalysis/OrderAnalysisTable';
+import colors from 'utility/colors';
 
 const OrderAnalysis = () => {
   const { shopifyOrders, ordersWithCorrectCV, recievedByFB, avgDelieveryTime } = useSelector(
@@ -15,7 +16,7 @@ const OrderAnalysis = () => {
       <ComponentWrapper>
         <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
           <QualityCombined />
-          <LineChart width={520} height={140} />
+          <LineChart width={520} height={140} color={colors.lineGraphStart} />
           <div className="flex flex-row gap-[20px]">
             <Stats value={shopifyOrders} message="Shopify Orders" />
             <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />

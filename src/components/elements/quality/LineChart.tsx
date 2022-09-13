@@ -6,7 +6,15 @@ import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 
-const LineChart = ({ width, height }: { width?: number; height?: number }) => {
+const LineChart = ({
+  width,
+  height,
+  color = colors.dataQualityChartArea
+}: {
+  width?: number;
+  height?: number;
+  color?: string;
+}) => {
   const { dataQualityGrouped } = useSelector((state) => state.dataQuality);
   const chart = useRef<any>(null); // eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
@@ -19,8 +27,8 @@ const LineChart = ({ width, height }: { width?: number; height?: number }) => {
             label: 'Data Quality',
             data: dataQualityGrouped.map((data) => data.DQ_COM * 100),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
-              { color: colors.transparent, stop: 0.2 },
-              { color: colors.dataQualityChartArea, stop: 1 }
+              { color: colors.transparent, stop: 0.1 },
+              { color: color, stop: 1 }
             ]),
             borderColor: colors.success,
             borderWidth: 3,
