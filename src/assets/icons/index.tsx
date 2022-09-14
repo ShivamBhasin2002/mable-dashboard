@@ -22,15 +22,33 @@ import ViewFullReport from 'assets/icons/ViewFullReportIcon';
 import Info from 'assets/icons/Info';
 import Error from 'assets/icons/Error';
 import Warning from 'assets/icons/Warning';
+import Delayed from 'assets/icons/Delayed';
+import Pending from 'assets/icons/Pending';
+import Tick from 'assets/icons/Tick';
+import Cross from 'assets/icons/Cross';
 
 const Icon = ({ icon, color, className, ...props }: IconType) => {
   switch (icon) {
     case 'error':
       return <Error className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
     case 'warning':
       return <Warning className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
     case 'info':
       return <Info className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'delayed':
+      return <Delayed className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'pending':
+      return <Pending className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'tick':
+      return <Tick className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'cross':
+      return <Cross className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
     case 'bar-chart':
       return (

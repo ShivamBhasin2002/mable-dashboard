@@ -15,10 +15,10 @@ const EventQuality = () => {
   return (
     <div className="flex flex-col flex-grow mt-[40px] gap-[40px]">
       <ComponentWrapper nextComponent={<SelectorMenu />} height={400} className="flex-grow-0">
-        <div className="flex items-center justify-between mr-8">
+        <div className="flex items-center justify-evenly mr-8 mt-5 flex-wrap gap-[40px]">
           <Metrics />
-          <div>
-            <BarChart width={470} height={150} />
+          <div className="flex-grow">
+            <BarChart height={150} />
           </div>
           <div className="flex gap-8">
             <div className="w-[250px] ">
@@ -28,10 +28,10 @@ const EventQuality = () => {
           </div>
         </div>
       </ComponentWrapper>
-      <div className="flex flex-grow gap-[40px]">
+      <div className="flex flex-grow gap-[40px] flex-wrap">
         <ComponentWrapper title="Attribution Parameters" className="flex-grow-[2] h-min">
           <div className="flex flex-wrap justify-evenly gap-[10px]">
-            <div className="flex flex-col flex-wrap gap-[15px]">
+            <div className="flex flex-col flex-grow gap-[15px]">
               <ParameterStat name={'User IP'} value={AttributionParameters['User IP']} />
               <ParameterStat name={'User Agent'} value={AttributionParameters['User Agent']} />
               <ParameterStat name={'Email'} value={AttributionParameters['Email']} />
@@ -43,7 +43,7 @@ const EventQuality = () => {
                 value={AttributionParameters['Date Of Birth']}
               />
             </div>
-            <div className="flex flex-col flex-wrap gap-[15px]">
+            <div className="flex flex-col flex-grow gap-[15px]">
               <ParameterStat name={'State'} value={AttributionParameters['State']} />
               <ParameterStat name={'Country'} value={AttributionParameters['Country']} />
               <ParameterStat name={'City'} value={AttributionParameters['City']} />

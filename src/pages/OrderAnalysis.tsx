@@ -16,7 +16,9 @@ const OrderAnalysis = () => {
       <ComponentWrapper>
         <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
           <QualityCombined />
-          <LineChart width={520} height={140} color={colors.lineGraphStart} />
+          <div className="flex-grow">
+            <LineChart height={140} color={colors.lineGraphStart} />
+          </div>
           <div className="flex flex-row gap-[20px]">
             <Stats value={shopifyOrders} message="Shopify Orders" />
             <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />

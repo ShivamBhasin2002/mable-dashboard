@@ -1,7 +1,9 @@
+import Icon from 'assets/icons';
 import moment from 'moment';
 
 import { useSelector } from 'redux/store';
-import { totalEvents, totatlAttributions } from 'utility/constants/general';
+import { statusSelector, totalEvents, totatlAttributions } from 'utility/constants/general';
+import { statusTypeColors } from 'utility/functions';
 
 const OrderAnalysisTable = () => {
   const { tableData } = useSelector((state) => state.orderAnalysis);
@@ -19,7 +21,7 @@ const OrderAnalysisTable = () => {
           <td></td>
           <td></td>
         </tr>
-        <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[30px] [&>*]:whitespace-nowrap">
+        <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
           <td className="bg-primary rounded-tl-[10px]">Order</td>
           <td className="bg-primary">Date</td>
           <td className="bg-primary">Customer</td>
@@ -35,7 +37,7 @@ const OrderAnalysisTable = () => {
         {tableData.map((data, idx) => (
           <tr
             key={data.id}
-            className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[30px] ${
+            className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
               !(idx & 1) && 'bg-tableStrips/[0.5]'
             }`}
           >
@@ -52,7 +54,16 @@ const OrderAnalysisTable = () => {
             </td>
             <td>{data.deliveryTime}s</td>
             <td>
-              <span className="">{data.status}</span>
+              <span
+                className={`px-[20px] py-[5px] ${statusTypeColors(
+                  data.status
+                )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
+              >
+                {data.status === statusSelector.pending && <Icon icon="pending" />}
+                {data.status === statusSelector.success && <Icon icon="tick" />}
+                {data.status === statusSelector.failed && <Icon icon="cross" />}
+                {data.status === statusSelector.delayed && <Icon icon="delayed" />} {data.status}
+              </span>
             </td>
           </tr>
         ))}

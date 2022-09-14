@@ -81,7 +81,7 @@ export const dataPerEventsInitialState: dataPerEventStateType = {
   event: 6.7,
   eventSelected: eventSelectedType.purchase,
   AttributionParameters: {
-    'User IP': 0,
+    'User IP': 0.18,
     'User Agent': 0,
     Email: 0,
     Phone: 0,
@@ -121,7 +121,7 @@ export const orderAnalysisInitialState: orderAnalysisStateType = {
       eventParametersPresent: 10,
       attributionParametersPresent: 12,
       deliveryTime: 12,
-      status: 'Pending'
+      status: 'Failed'
     },
     {
       id: 635978,
@@ -132,7 +132,7 @@ export const orderAnalysisInitialState: orderAnalysisStateType = {
       eventParametersPresent: 10,
       attributionParametersPresent: 12,
       deliveryTime: 12,
-      status: 'Pending'
+      status: 'Delayed'
     }
   ]
 };

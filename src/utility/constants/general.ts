@@ -9,7 +9,8 @@ export enum statusSelector {
   all = 'All',
   pending = 'Pending',
   success = 'Success',
-  delayed = 'Delayed'
+  delayed = 'Delayed',
+  failed = 'Failed'
 }
 
 export enum STATUS_TYPE {

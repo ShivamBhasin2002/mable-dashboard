@@ -2,7 +2,7 @@ import moment from 'moment';
 import { ChartArea } from 'chart.js';
 
 import colors from 'utility/colors';
-import { DatePickerPresets as presets } from './constants/general';
+import { DatePickerPresets as presets, statusSelector } from './constants/general';
 
 export const createGradient = (
   ctx: CanvasRenderingContext2D,
@@ -57,4 +57,17 @@ export const presetsToDateRange = (preset: string) => {
       ];
   }
   return [];
+};
+
+export const statusTypeColors = (status: string) => {
+  switch (status) {
+    case statusSelector.failed:
+      return 'bg-failed';
+    case statusSelector.delayed:
+      return 'bg-delayed';
+    case statusSelector.pending:
+      return 'bg-purple';
+    case statusSelector.success:
+      return 'bg-success';
+  }
 };

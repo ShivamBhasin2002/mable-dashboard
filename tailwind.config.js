@@ -28,7 +28,9 @@ module.exports = {
       eventsPerDayLineArea: 'rgba(84,183,219,0.6)',
       transparent: 'rgba(0,0,0,0)',
       tableStrips: '#293A57',
-      lineGraphStart: '#27CC95'
+      lineGraphStart: '#27CC95',
+      failed: '#D90D19',
+      delayed: '#E6992E'
     }
   },
   plugins: []
