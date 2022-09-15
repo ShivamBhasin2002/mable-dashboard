@@ -46,7 +46,7 @@ const QualityCombined = () => {
             height = chart.height,
             ctx = chart.ctx;
           ctx.restore();
-          ctx.font = '25px sans-serif';
+          ctx.font = '25px lato';
           ctx.textBaseline = 'middle';
           ctx.fillStyle = getColor(DQ_COM);
           const text = `${DQ_COM * 100}%`,
