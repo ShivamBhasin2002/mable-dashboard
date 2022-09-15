@@ -9,7 +9,7 @@
   top: -22px;
 }
 .CalendarMonthGrid {
-  padding-right: 20px;
+  width: 620px !important;
 }
 .DayPickerKeyboardShortcuts_buttonReset {
   display: none;
@@ -358,8 +358,10 @@
 .DayPicker_transitionContainer {
   position: relative;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 10px;
   padding: auto;
+  border: none;
+  min-height: 330px !important;
 }
 .DayPicker_transitionContainer__horizontal {
   -webkit-transition: height 0.2s ease-in-out;

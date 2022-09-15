@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   Menu,
   MenuButton,
@@ -6,7 +6,9 @@ import {
   MenuItem,
   Popover,
   PopoverTrigger,
-  PopoverContent
+  PopoverContent,
+  useDisclosure,
+  useOutsideClick
 } from '@chakra-ui/react';
 import moment from 'moment';
 
@@ -18,10 +20,12 @@ import { useSelector, useDispatch } from 'redux/store';
 import { setShop } from 'redux/reducers/dashboardSlice';
 
 const DashboardHeader = () => {
+  const datePickerRef = useRef<any>(); //eslint-disable-line
   const dispatch = useDispatch();
   const { shop, shops, dateRange, datePreset } = useSelector((state) => state.dashboard);
   const { screen } = useSelector((state) => state.general);
-
+  const { onClose, onOpen, isOpen } = useDisclosure();
+  useOutsideClick({ ref: datePickerRef, handler: onClose });
   useEffect(() => {
     document.getElementById('startDateIdentifier')?.click();
   });
@@ -60,7 +64,6 @@ const DashboardHeader = () => {
           )}
         </Menu>
       </div>
-      {/* <hr className="h-[2px] border-none my-[23px] bg-lines/[0.15] w-[600px] ml-auto" /> */}
       <div className="flex justify-between items-center h-[45px]">
         <h1 className="text-bgPrimary-dark text-[42px] text-light font-montserrat font-bold relative top-[-16px]">
           {screen}
@@ -73,11 +76,10 @@ const DashboardHeader = () => {
             gutter={10}
             autoFocus={false}
             placement="bottom-end"
+            onClose={onClose}
+            isOpen={isOpen}
             closeOnBlur={false}
-            onOpen={() => {
-              const target = document.getElementById('startDateIdentifier');
-              if (target) target.focus();
-            }}
+            onOpen={onOpen}
           >
             <PopoverTrigger>
               <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[10px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer whitespace-nowrap">
@@ -87,8 +89,8 @@ const DashboardHeader = () => {
                 <Icon icon="dropdown" />
               </span>
             </PopoverTrigger>
-            <PopoverContent bg="transparent" border="none" w={1000}>
-              <DatePicker />
+            <PopoverContent bg="transparent" border="none" w={1000} ref={datePickerRef}>
+              <DatePicker close={onClose} isOpen={isOpen} />
             </PopoverContent>
           </Popover>
         </span>

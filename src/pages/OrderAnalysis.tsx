@@ -1,13 +1,11 @@
-import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
-
 import { ComponentWrapper } from 'components/elements/common';
 import { LineChart, QualityCombined } from 'components/elements/quality';
 import { Stats } from 'components/orderAnalysis';
 
-import Icon from 'assets/icons';
-import colors from 'utility/colors';
-
 import { useSelector } from 'redux/store';
+import StatusSelectorMenu from 'components/orderAnalysis/StatusSelecterMenu';
+import OrderAnalysisTable from 'components/orderAnalysis/OrderAnalysisTable';
+import colors from 'utility/colors';
 
 const OrderAnalysis = () => {
   const { shopifyOrders, ordersWithCorrectCV, recievedByFB, avgDelieveryTime } = useSelector(
@@ -18,36 +16,20 @@ const OrderAnalysis = () => {
       <ComponentWrapper>
         <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
           <QualityCombined />
-          <LineChart width={520} height={140} />
-          <Stats value={shopifyOrders} message="Shopify Orders" />
-          <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />
-          <Stats value={recievedByFB} message="Received by FB" />
-          <Stats value={avgDelieveryTime} message="AVG. Delivery Time" />
+          <div className="flex-grow">
+            <LineChart height={140} color={colors.lineGraphStart} />
+          </div>
+          <div className="flex flex-row gap-[20px]">
+            <Stats value={shopifyOrders} message="Shopify Orders" />
+            <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />
+            <Stats value={recievedByFB} message="Received by FB" />
+            <Stats value={avgDelieveryTime} message="AVG. Delivery Time" />
+          </div>
         </div>
       </ComponentWrapper>
-      <ComponentWrapper>
-        <Menu isLazy>
-          <MenuButton>
-            <div className="p-[20px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[55px] w-max rounded-xl flex flex-row items-center justify-evenly text-light gap-3 border-[1px] border-lines">
-              <span className="h-[10px] w-[10px] bg-success rounded-full" />
-              Status: All
-              <Icon icon="dropdown" />
-            </div>
-          </MenuButton>
-          <MenuList className="!p-[20px] !bg-gradient-to-r !from-bgContainerFrom !to-bgContainerTo !w-min !rounded-xl !text-light border-lines">
-            {['All', 'Pending', 'Success', 'Delayed', 'All'].map((stat) => (
-              <MenuItem
-                key={`stat${stat}`}
-                className="!p-[5px] !w-full !rounded-xl !text-light !gap-3"
-                _hover={{ background: colors.background }}
-                _active={{ background: colors.transparent }}
-                _focus={{ background: colors.transparent }}
-              >
-                {stat}
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
+      <ComponentWrapper className="text-light">
+        <StatusSelectorMenu />
+        <OrderAnalysisTable />
       </ComponentWrapper>
     </div>
   );

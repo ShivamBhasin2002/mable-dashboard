@@ -1,12 +1,11 @@
-import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
-import { pageSpeedInitialState } from 'utility/constants/initialStates';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { orderAnalysisInitialState } from 'utility/constants/initialStates';
 
-export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
-  'pageSpeed/fetch',
+export const orderAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
+  'orderAnalysis/fetch',
   async (temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
@@ -28,17 +27,15 @@ export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
   }
 );
 
-export const pageSpeedReducer = createReducer(pageSpeedInitialState, (builder) => {
-  builder
-    .addCase(pageSpeedAsync.pending, (state) => {
-      state.status = STATUS_TYPE.FETCHING;
-    })
-    .addCase(pageSpeedAsync.fulfilled, (state) => {
-      state.status = STATUS_TYPE.SUCCESS;
-    })
-    .addCase(pageSpeedAsync.rejected, (state) => {
-      state.status = STATUS_TYPE.ERROR;
-    });
+export const orderAnalysis = createSlice({
+  name: 'orderAnalysis',
+  initialState: orderAnalysisInitialState,
+  reducers: {
+    setStatusSelected: (state, { payload }) => {
+      state.statuSelected = payload;
+    }
+  }
 });
 
-export default pageSpeedReducer;
+export const { setStatusSelected } = orderAnalysis.actions;
+export default orderAnalysis.reducer;

@@ -15,6 +15,7 @@ import pageSpeedReducer from './reducers/pageSpeedSlice';
 import eventsReducer from './reducers/eventSlice';
 import funnelAnalysisReducer from './reducers/funnelAnalysis';
 import dataPerEventSlice from './reducers/dataPerEventSlice';
+import orderAnalysisSlice from './reducers/orderAnalysisSlice';
 
 export const store = configureStore({
   reducer: {
@@ -25,7 +26,8 @@ export const store = configureStore({
     pageSpeed: pageSpeedReducer,
     events: eventsReducer,
     funnelAnalysis: funnelAnalysisReducer,
-    dataPerEvent: dataPerEventSlice
+    dataPerEvent: dataPerEventSlice,
+    orderAnalysis: orderAnalysisSlice
   },
   middleware: [thunk as ThunkMiddleware]
 });

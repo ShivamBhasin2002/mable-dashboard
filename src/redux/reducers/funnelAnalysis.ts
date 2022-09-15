@@ -1,9 +1,9 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { thunkOptions, funnelAnalysisState } from 'utility/typeDefinitions/reduxTypes';
+import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { funnelAnalysisInitialState } from 'utility/constants/initialStates';
-import { STATUSt_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
   'funnelAnalysis/fetch',
@@ -27,21 +27,16 @@ export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
     }
   }
 );
-
-const initialState: funnelAnalysisState = {
-  ...funnelAnalysisInitialState
-};
-
-export const funnelAnalysisReducer = createReducer(initialState, (builder) => {
+export const funnelAnalysisReducer = createReducer(funnelAnalysisInitialState, (builder) => {
   builder
     .addCase(funnelAnalysisAsync.pending, (state) => {
-      state.status = STATUSt_TYPE.FETCHING;
+      state.status = STATUS_TYPE.FETCHING;
     })
     .addCase(funnelAnalysisAsync.fulfilled, (state) => {
-      state.status = STATUSt_TYPE.SUCCESS;
+      state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(funnelAnalysisAsync.rejected, (state) => {
-      state.status = STATUSt_TYPE.ERROR;
+      state.status = STATUS_TYPE.ERROR;
     });
 });
 

@@ -36,7 +36,7 @@ const EventsPerDay = () => {
     });
   }, [eventsPerDay]);
   return (
-    <ComponentWrapper title="Events Per Day" width={600} height={250} className="flex-grow-0">
+    <ComponentWrapper title="Events Per Day" width={600} height={250} className="flex-grow">
       <div>
         <Line
           options={{
@@ -83,6 +83,28 @@ const EventsPerDay = () => {
               }
             }
           }}
+          plugins={[
+            {
+              id: 'lines',
+              afterDraw(chart) {
+                if (chart.tooltip?.getActiveElements().length) {
+                  const x = chart.tooltip.getActiveElements()[0].element.x;
+                  const y = chart.tooltip.getActiveElements()[0].element.y;
+                  const yAxis = chart.scales.y;
+                  const ctx = chart.ctx;
+                  ctx.save();
+                  ctx.beginPath();
+                  ctx.setLineDash([10, 15]);
+                  ctx.moveTo(x, y);
+                  ctx.lineTo(x, yAxis.bottom);
+                  ctx.lineWidth = 2;
+                  ctx.strokeStyle = `${colors.lines}40`;
+                  ctx.stroke();
+                  ctx.restore();
+                }
+              }
+            }
+          ]}
           data={charData}
           height={216}
           ref={chart}

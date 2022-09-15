@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { thunkOptions, shop, dashboardState } from 'utility/typeDefinitions/reduxTypes';
+import { thunkOptions, shop } from 'utility/typeDefinitions/reduxTypes';
 import { dashboardInitialState } from 'utility/constants/initialStates';
-import { STATUSt_TYPE } from 'utility/constants/general';
-import { presetsToDateRange } from 'utility/functions';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunkOptions>(
   'dashboard/fetchShop',
@@ -21,42 +20,37 @@ export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunk
   }
 );
 
-const initialState: dashboardState = {
-  ...dashboardInitialState
-};
-
 export const dashboardSlice = createSlice({
   name: 'dashboard',
-  initialState,
+  initialState: dashboardInitialState,
   reducers: {
     setShop: (state, { payload }) => {
       state.shop = payload;
     },
     clearStatus: (state) => {
       state.errorMsg = undefined;
-      state.status = STATUSt_TYPE.IDLE;
+      state.status = STATUS_TYPE.IDLE;
     },
     setDates: (state, { payload }) => {
       state.dateRange = payload;
     },
     setPreset: (state, { payload }) => {
       state.datePreset = payload;
-      state.dateRange = presetsToDateRange(payload);
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchShopAsync.pending, (state) => {
-        state.status = STATUSt_TYPE.FETCHING;
+        state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(fetchShopAsync.fulfilled, (state, { payload }) => {
-        state.status = STATUSt_TYPE.SUCCESS;
+        state.status = STATUS_TYPE.SUCCESS;
         if (state.shops) state.shops = [...state.shops, ...payload];
         else state.shops = payload;
         state.shop = payload[0];
       })
       .addCase(fetchShopAsync.rejected, (state, { payload }) => {
-        state.status = STATUSt_TYPE.ERROR;
+        state.status = STATUS_TYPE.ERROR;
         state.errorMsg = payload;
       });
   }

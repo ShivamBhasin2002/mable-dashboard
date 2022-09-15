@@ -1,20 +1,21 @@
 import { ComponentWrapper, ViewFullReport } from 'components/elements/common';
 import { QualityCombined, LineChart, OrderComposition } from 'components/elements/quality';
+import { screenType } from 'utility/constants/general';
 
 const DataQuality = () => {
   return (
     <ComponentWrapper
-      height={400}
-      width={920}
       title="Data Quality"
-      nextComponent={<ViewFullReport screen="Order Analysis" />}
+      nextComponent={<ViewFullReport screen={screenType.orderAnalysis} />}
     >
-      <div className="flex flex-row justify-evenly flex-wrap">
-        <div className="flex flex-col gap-4 w-[225px] justify-evenly">
+      <div className="flex flex-row justify-evenly flex-wrap gap-8">
+        <div className="flex flex-col gap-4 justify-evenly">
           <QualityCombined />
           <OrderComposition />
         </div>
-        <LineChart width={560} height={250} />
+        <div className="flex-grow box-border">
+          <LineChart height={250} />
+        </div>
       </div>
     </ComponentWrapper>
   );

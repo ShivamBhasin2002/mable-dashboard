@@ -1,15 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { generalState } from 'utility/typeDefinitions/reduxTypes';
 import { generalInitialState } from 'utility/constants/initialStates';
-
-const initialState: generalState = {
-  ...generalInitialState
-};
 
 export const generalSlice = createSlice({
   name: 'general',
-  initialState,
+  initialState: generalInitialState,
   reducers: {
     setScreen: (state, { payload }) => {
       state.screen = payload;

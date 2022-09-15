@@ -1,14 +1,19 @@
-export const dataEventLables = ['Backend', 'Frontend', 'Mable Engine', 'Unavailable'];
+export enum dataEventLables {
+  backend = 'Backend',
+  frontend = 'Frontend',
+  mableEngine = 'Mable Engine',
+  unavailable = 'Unavailable'
+}
 
-export const parameterSelector = [
-  'Purchase',
-  'Add Payment Info',
-  'Initiate Checkout',
-  'Add to Cart',
-  'Page View'
-];
+export enum statusSelector {
+  all = 'All',
+  pending = 'Pending',
+  success = 'Success',
+  delayed = 'Delayed',
+  failed = 'Failed'
+}
 
-export enum STATUSt_TYPE {
+export enum STATUS_TYPE {
   IDLE = 'idle',
   FETCHING = 'fetching',
   SUCCESS = 'success',
@@ -43,3 +48,7 @@ export enum DatePickerPresets {
   currMonth = 'This Month',
   prevMonth = 'Last Month'
 }
+
+export const totalEvents = 7;
+
+export const totatlAttributions = 13;

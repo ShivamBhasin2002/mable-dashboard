@@ -1,3 +1,5 @@
+import { screenType } from 'utility/constants/general';
+
 export type IconType = {
   icon?: string;
   size?: string;
@@ -43,5 +45,10 @@ export type LoadingProps = {
 };
 
 export type ViewFullReportProps = {
-  screen: 'Dashboard' | 'Order Analysis' | 'Event Quality' | 'Settings' | 'Tutorial';
+  screen: screenType;
+};
+
+export type datePickerProps = {
+  close: () => void;
+  isOpen: boolean;
 };
