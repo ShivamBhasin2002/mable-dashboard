@@ -9,7 +9,7 @@ export const orderAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
   async (temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/data_quality`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/data_quality`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
           shop: state.dashboard.shop?.shop,
