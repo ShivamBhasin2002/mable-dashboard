@@ -48,8 +48,8 @@ const LineChart = ({
       <Line
         options={{
           hover: {
-            intersect: true,
-            mode: 'nearest'
+            intersect: false,
+            mode: 'index'
           },
           maintainAspectRatio: false,
           elements: {
