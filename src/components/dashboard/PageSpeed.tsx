@@ -15,7 +15,7 @@ const PageSpeed = () => {
   } = useSelector((state) => state.pageSpeed);
   useEffect(() => {
     if (status === 'idle') dispatch(pageSpeedAsync());
-  }, []);
+  }, [status]);
   return (
     <ComponentWrapper title="Page Speed" width={560}>
       <div className="flex flex-row justify-center pb-[10px]">

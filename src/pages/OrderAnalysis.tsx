@@ -1,19 +1,28 @@
+import { useEffect } from 'react';
+
 import { ComponentWrapper } from 'components/elements/common';
 import { LineChart, QualityCombined } from 'components/elements/quality';
 import { Stats } from 'components/orderAnalysis';
-
-import { useSelector } from 'redux/store';
 import StatusSelectorMenu from 'components/orderAnalysis/StatusSelecterMenu';
 import OrderAnalysisTable from 'components/orderAnalysis/OrderAnalysisTable';
+
 import colors from 'utility/colors';
 
+import { useSelector, useDispatch } from 'redux/store';
+import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
+
 const OrderAnalysis = () => {
+  const dispatch = useDispatch();
   const {
     ordersWithCorrectCV,
     avgDelieveryTime,
     TOTAL_SHOPIFY_ORDERS,
-    TOTAL_DATA_QUALITY_FACEBOOK
+    TOTAL_DATA_QUALITY_FACEBOOK,
+    status
   } = useSelector((state) => state.dataQuality);
+  useEffect(() => {
+    if (status === 'idle') dispatch(dataQualityAsync());
+  }, [status]);
   return (
     <div className="flex flex-col mt-[40px] gap-[40px]">
       <ComponentWrapper>

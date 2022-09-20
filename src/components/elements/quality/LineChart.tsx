@@ -67,6 +67,7 @@ const LineChart = ({
               ticks: {
                 font: { family: fonts.text },
                 stepSize: 25,
+                autoSkip: true,
                 callback(this, tickValue) {
                   return `${tickValue}%`;
                 }

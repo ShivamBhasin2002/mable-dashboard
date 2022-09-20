@@ -3,23 +3,23 @@ import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { orderAnalysisInitialState } from 'utility/constants/initialStates';
+import { STATUS_TYPE } from 'utility/constants/general';
 
-export const orderAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
+// eslint-disable-next-line
+export const orderAnalysisAsync = createAsyncThunk<any, void, thunkOptions>(
   'orderAnalysis/fetch',
   async (temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/data_quality`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/order-analysis`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
-          shop: state.dashboard.shop?.shop,
+          source_id: state.dashboard.shop?.source_id,
           start_date: state.dashboard.dateRange[0],
           end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
         }
       });
-      if (data) {
-        return data;
-      }
+      if (data) return data;
       rejectWithValue('Data not found');
     } catch (error) {
       rejectWithValue('Data not found');
@@ -34,6 +34,19 @@ export const orderAnalysis = createSlice({
     setStatusSelected: (state, { payload }) => {
       state.statuSelected = payload;
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(orderAnalysisAsync.pending, (state) => {
+        state.status = STATUS_TYPE.FETCHING;
+      })
+      .addCase(orderAnalysisAsync.fulfilled, (state, { payload }) => {
+        state.tableData = payload.table_orders;
+        state.status = STATUS_TYPE.SUCCESS;
+      })
+      .addCase(orderAnalysisAsync.rejected, (state) => {
+        state.status = STATUS_TYPE.ERROR;
+      });
   }
 });
 

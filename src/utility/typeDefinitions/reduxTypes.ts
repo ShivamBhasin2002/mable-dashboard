@@ -141,14 +141,16 @@ export type generalStateType = {
 export type orderAnalysisStateType = {
   statuSelected: statusSelector;
   tableData: {
-    id: number;
-    date: Moment;
+    order_id: number | null;
+    date: Moment | null;
     customer: string;
-    total: number;
-    cv: number;
-    eventParametersPresent: number;
-    attributionParametersPresent: number;
-    deliveryTime: number;
+    total_value: number | null;
+    conversion_value: number | null;
     status: string;
+    delivery_time: number | null;
+    evt_params_present: number | null;
+    attr_params_present: number | null;
   }[];
+  status: STATUS_TYPE;
+  errorMsg: string | undefined;
 };

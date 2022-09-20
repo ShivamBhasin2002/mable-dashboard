@@ -99,30 +99,9 @@ export const dataPerEventsInitialState: dataPerEventStateType = {
 
 export const orderAnalysisInitialState: orderAnalysisStateType = {
   statuSelected: statusSelector.all,
-  tableData: [
-    {
-      id: 635978,
-      date: moment(),
-      customer: 'Carolin Geibel',
-      total: 13800,
-      cv: 13800,
-      eventParametersPresent: 10,
-      attributionParametersPresent: 12,
-      deliveryTime: 12,
-      status: 'Failed'
-    },
-    {
-      id: 635978,
-      date: moment(),
-      customer: 'Carolin Geibel',
-      total: 13800,
-      cv: 13800,
-      eventParametersPresent: 10,
-      attributionParametersPresent: 12,
-      deliveryTime: 12,
-      status: 'Delayed'
-    }
-  ]
+  tableData: [],
+  status: STATUS_TYPE.IDLE,
+  errorMsg: undefined
 };
 
 export const dataQualityInitialState: dataQualityStateType = {

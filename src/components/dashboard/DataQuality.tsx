@@ -12,7 +12,7 @@ const DataQuality = () => {
   const { status } = useSelector((state) => state.dataQuality);
   useEffect(() => {
     if (status === 'idle') dispatch(dataQualityAsync());
-  });
+  }, [status]);
   return (
     <ComponentWrapper
       title="Data Quality"

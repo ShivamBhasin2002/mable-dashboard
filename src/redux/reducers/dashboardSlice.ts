@@ -14,7 +14,7 @@ export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunk
         headers: { Authorization: `Token ${token}` }
       });
       if (res.data.shops.length > 0) {
-        res.data.shops[0].source_id = 43;
+        res.data.shops[0].source_id = 53;
         return res.data.shops;
       }
       rejectWithValue('No shops found for this user');
