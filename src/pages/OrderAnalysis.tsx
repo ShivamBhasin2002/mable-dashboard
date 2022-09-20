@@ -26,7 +26,7 @@ const OrderAnalysis = () => {
   return (
     <div className="flex flex-col mt-[40px] gap-[40px]">
       <ComponentWrapper>
-        <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
+        <div className="flex flex-row flex-wrap lg:flex-nowrap gap-[40px] justify-evenly">
           <QualityCombined />
           <div className="flex-grow">
             <LineChart height={140} color={colors.lineGraphStart} />
