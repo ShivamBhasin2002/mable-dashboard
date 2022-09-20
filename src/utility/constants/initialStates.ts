@@ -158,9 +158,9 @@ export const funnelAnalysisInitialState: funnelAnalysisStateType = {
 export const generalInitialState: generalStateType = { screen: screenType.dashboard };
 
 export const pageSpeedInitialState: pageSpeedStateType = {
-  T_M_AVG: 200,
-  T_SH_AVG: 3400,
-  PS_M: 2,
+  AVG_LOADING_TIME_PAGE: 0,
+  AVG_LOADING_TIME_MABLE_SCRIPT: 0,
+  AVG_CONTRIBUTION_TIME_MABLE_SCRIPT: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };

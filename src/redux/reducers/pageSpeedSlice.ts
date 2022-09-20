@@ -5,22 +5,21 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { pageSpeedInitialState } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/general';
 
-export const pageSpeedAsync = createAsyncThunk<null, void, thunkOptions>(
+// eslint-disable-next-line
+export const pageSpeedAsync = createAsyncThunk<any, void, thunkOptions>(
   'pageSpeed/fetch',
   async (temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/data_quality`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/page-speed`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
-          shop: state.dashboard.shop?.shop,
+          source_id: state.dashboard.shop?.source_id,
           start_date: state.dashboard.dateRange[0],
           end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
         }
       });
-      if (data) {
-        return data;
-      }
+      if (data) return data;
       rejectWithValue('Data not found');
     } catch (error) {
       rejectWithValue('Data not found');
@@ -33,11 +32,15 @@ export const pageSpeedReducer = createReducer(pageSpeedInitialState, (builder) =
     .addCase(pageSpeedAsync.pending, (state) => {
       state.status = STATUS_TYPE.FETCHING;
     })
-    .addCase(pageSpeedAsync.fulfilled, (state) => {
+    .addCase(pageSpeedAsync.fulfilled, (state, { payload }) => {
+      state.AVG_LOADING_TIME_PAGE = payload.avg_loading_time_page;
+      state.AVG_LOADING_TIME_MABLE_SCRIPT = payload.avg_loading_time_mable_script;
+      state.AVG_CONTRIBUTION_TIME_MABLE_SCRIPT = payload.avg_contribution_time_mable_script * 100;
       state.status = STATUS_TYPE.SUCCESS;
     })
-    .addCase(pageSpeedAsync.rejected, (state) => {
+    .addCase(pageSpeedAsync.rejected, (state, { payload }) => {
       state.status = STATUS_TYPE.ERROR;
+      state.errorMsg = payload;
     });
 });
 

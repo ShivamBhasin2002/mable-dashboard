@@ -29,9 +29,9 @@ export type userStateType = {
 };
 
 export type pageSpeedStateType = {
-  T_M_AVG: number;
-  T_SH_AVG: number;
-  PS_M: number;
+  AVG_LOADING_TIME_PAGE: number;
+  AVG_LOADING_TIME_MABLE_SCRIPT: number;
+  AVG_CONTRIBUTION_TIME_MABLE_SCRIPT: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
