@@ -15,15 +15,15 @@ export const createGradient = (
 };
 
 export const getColor = (value: number) => {
-  if (value >= 0.9) return colors.success;
-  else if (value >= 0.8) return colors.average;
+  if (value >= 90) return colors.success;
+  else if (value >= 80) return colors.average;
   else return colors.error;
 };
 
 export const getMessage = (value: number) => {
-  if (value >= 0.95) return 'Excellent';
-  if (value >= 0.9) return 'Great';
-  else if (value >= 0.8) return 'Decent';
+  if (value >= 95) return 'Excellent';
+  if (value >= 90) return 'Great';
+  else if (value >= 80) return 'Decent';
   else return 'Poor';
 };
 

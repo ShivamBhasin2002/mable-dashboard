@@ -8,9 +8,12 @@ import OrderAnalysisTable from 'components/orderAnalysis/OrderAnalysisTable';
 import colors from 'utility/colors';
 
 const OrderAnalysis = () => {
-  const { shopifyOrders, ordersWithCorrectCV, recievedByFB, avgDelieveryTime } = useSelector(
-    (state) => state.dataQuality
-  );
+  const {
+    ordersWithCorrectCV,
+    avgDelieveryTime,
+    TOTAL_SHOPIFY_ORDERS,
+    TOTAL_DATA_QUALITY_FACEBOOK
+  } = useSelector((state) => state.dataQuality);
   return (
     <div className="flex flex-col mt-[40px] gap-[40px]">
       <ComponentWrapper>
@@ -20,9 +23,9 @@ const OrderAnalysis = () => {
             <LineChart height={140} color={colors.lineGraphStart} />
           </div>
           <div className="flex flex-row gap-[20px]">
-            <Stats value={shopifyOrders} message="Shopify Orders" />
+            <Stats value={TOTAL_SHOPIFY_ORDERS} message="Shopify Orders" />
             <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />
-            <Stats value={recievedByFB} message="Received by FB" />
+            <Stats value={TOTAL_DATA_QUALITY_FACEBOOK} message="Received by FB" />
             <Stats value={avgDelieveryTime} message="AVG. Delivery Time" />
           </div>
         </div>

@@ -15,17 +15,18 @@ const LineChart = ({
   height?: number;
   color?: string;
 }) => {
-  const { dataQualityGrouped } = useSelector((state) => state.dataQuality);
+  const { DATA_QUALITY_BY_DATE } = useSelector((state) => state.dataQuality);
+
   const chart = useRef<any>(null); // eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
     if (chart.current) {
       const chartData = {
-        labels: dataQualityGrouped.map((data) => data.date),
+        labels: DATA_QUALITY_BY_DATE.map((data) => data.date),
         datasets: [
           {
             label: 'Data Quality',
-            data: dataQualityGrouped.map((data) => data.DQ_COM * 100),
+            data: DATA_QUALITY_BY_DATE.map((data) => data.data_quality * 100),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
               { color: colors.transparent, stop: 0.1 },
               { color: color, stop: 1 }
@@ -42,7 +43,7 @@ const LineChart = ({
       };
       setChartData(chartData);
     }
-  }, [dataQualityGrouped]);
+  }, [DATA_QUALITY_BY_DATE]);
   return (
     <div>
       <Line
@@ -60,6 +61,8 @@ const LineChart = ({
           scales: {
             y: {
               position: 'right',
+              suggestedMax: 100,
+              suggestedMin: 0,
               beginAtZero: true,
               ticks: {
                 font: { family: fonts.text },

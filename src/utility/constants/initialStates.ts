@@ -32,7 +32,7 @@ export const dashboardInitialState: dashboardStateType = {
   shop: undefined,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined,
-  dateRange: [moment('2022-07-19T00:00:00'), moment('2022-07-23T00:00:00')],
+  dateRange: [moment('2022-08-01'), moment('2022-08-31')],
   warnings: [
     { type: 'error', message: 'Facebook API not Responding', time: '2h' },
     { type: 'warning', message: 'Unusually low number of Add to Cart Events', time: '3d' },
@@ -126,21 +126,11 @@ export const orderAnalysisInitialState: orderAnalysisStateType = {
 };
 
 export const dataQualityInitialState: dataQualityStateType = {
-  DQ_COM: 0.94,
-  P_MDB: 258,
-  P_SH: 257,
-  dataQualityGrouped: [
-    { date: '19 Jul', DQ_COM: 0.94 },
-    { date: '20 Jul', DQ_COM: 0.96 },
-    { date: '21 Jul', DQ_COM: 0.9 },
-    { date: '22 Jul', DQ_COM: 0.84 },
-    { date: '23 Jul', DQ_COM: 0.89 },
-    { date: '24 Jul', DQ_COM: 0.87 },
-    { date: '25 Jul', DQ_COM: 0.9 }
-  ],
-  shopifyOrders: 0,
+  TOTAL_DATA_QUALITY_FACEBOOK: 0,
+  TOTAL_SHOPIFY_ORDERS: 0,
+  FACEBOOK_SUCCESS_DELIVERED_ORDERS: 0,
+  DATA_QUALITY_BY_DATE: [],
   ordersWithCorrectCV: 0,
-  recievedByFB: 0,
   avgDelieveryTime: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined

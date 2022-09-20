@@ -105,13 +105,11 @@ export type dataPerEventStateType = {
 };
 
 export type dataQualityStateType = {
-  DQ_COM: number;
-  P_MDB: number;
-  P_SH: number;
-  dataQualityGrouped: { date: string; DQ_COM: number }[];
-  shopifyOrders: number;
+  TOTAL_DATA_QUALITY_FACEBOOK: number;
+  TOTAL_SHOPIFY_ORDERS: number;
+  FACEBOOK_SUCCESS_DELIVERED_ORDERS: number;
+  DATA_QUALITY_BY_DATE: { date: string; data_quality: number }[];
   ordersWithCorrectCV: number;
-  recievedByFB: number;
   avgDelieveryTime: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
