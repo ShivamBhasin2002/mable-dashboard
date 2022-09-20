@@ -3,19 +3,21 @@ import { useState, useEffect, useRef } from 'react';
 import { ComponentWrapper } from 'components/elements/common';
 import { Line } from 'react-chartjs-2';
 
-import { useSelector } from 'redux/store';
 import { createGradient } from 'utility/functions';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 
-const EventsPerDay = () => {
-  const { eventsPerDay } = useSelector((state) => state.dashboard);
+import { useSelector, useDispatch } from 'redux/store';
+import { funnelAnalysisAsync } from 'redux/reducers/funnelAnalysisSlice';
 
+const EventsPerDay = () => {
+  const dispatch = useDispatch();
+  const { byDate, status } = useSelector((state) => state.funnelAnalysis);
   const chart = useRef<any>(null); // eslint-disable-line
   const [charData, setCharData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
     setCharData({
-      labels: eventsPerDay.map((item) => item.date),
+      labels: byDate.map((item) => item.date),
       datasets: [
         {
           label: 'Events',
@@ -27,14 +29,17 @@ const EventsPerDay = () => {
           borderWidth: 1,
           lineTension: 0.4,
           fill: true,
-          data: eventsPerDay.map((item) => item.value),
+          data: byDate.map((item) => item.total_page_view),
           datalabels: {
             display: false
           }
         }
       ]
     });
-  }, [eventsPerDay]);
+  }, [status]);
+  useEffect(() => {
+    if (status === 'idle') dispatch(funnelAnalysisAsync());
+  }, [status]);
   return (
     <ComponentWrapper title="Events Per Day" width={600} height={250} className="flex-grow">
       <div>

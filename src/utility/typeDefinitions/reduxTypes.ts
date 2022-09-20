@@ -56,7 +56,6 @@ export type dashboardStateType = {
   errorMsg?: string;
   dateRange: Moment[];
   warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
-  eventsPerDay: { date: string; value: number }[];
   datePreset?: string;
 };
 
@@ -130,6 +129,14 @@ export type funnelAnalysisStateType = {
     total_add_to_cart: number;
     total_page_view: number;
   };
+  byDate: {
+    date: Moment;
+    total_purchases: number;
+    total_add_payment_info: number;
+    total_intitate_checkout: number;
+    total_add_to_cart: number;
+    total_page_view: number;
+  }[];
   status?: STATUS_TYPE;
   errorMsg?: string;
 };

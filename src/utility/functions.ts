@@ -2,7 +2,11 @@ import moment from 'moment';
 import { ChartArea } from 'chart.js';
 
 import colors from 'utility/colors';
-import { DatePickerPresets as presets, statusSelector } from './constants/general';
+import {
+  DatePickerPresets as presets,
+  eventSelectedType,
+  statusSelector
+} from './constants/general';
 
 export const createGradient = (
   ctx: CanvasRenderingContext2D,
@@ -75,14 +79,14 @@ export const statusTypeColors = (status: string) => {
 export const getEventDisplayName = (event: string) => {
   switch (event) {
     case 'total_purchases':
-      return 'Purchase';
+      return eventSelectedType.purchase;
     case 'total_add_payment_info':
-      return 'Add Payment Info';
+      return eventSelectedType.addPaymentInfo;
     case 'total_intitate_checkout':
-      return 'Initiate Checkout';
+      return eventSelectedType.initiateCheckout;
     case 'total_add_to_cart':
-      return 'Add To Cart';
+      return eventSelectedType.addToCart;
     case 'total_page_view':
-      return 'Page View';
+      return eventSelectedType.pageView;
   }
 };

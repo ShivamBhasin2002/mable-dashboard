@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -19,7 +20,7 @@ export const funnelAnalysisAsync = createAsyncThunk<any, void, thunkOptions>(
           end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
         }
       });
-      if (data) return data.result_total_events;
+      if (data) return data;
       rejectWithValue('Data not found');
     } catch (error) {
       rejectWithValue('Data not found');
@@ -32,7 +33,12 @@ export const funnelAnalysisReducer = createReducer(funnelAnalysisInitialState, (
       state.status = STATUS_TYPE.FETCHING;
     })
     .addCase(funnelAnalysisAsync.fulfilled, (state, { payload }) => {
-      state.total_events = payload;
+      state.total_events = payload.result_total_events;
+      // eslint-disable-next-line
+      state.byDate = payload.bydate.map((events: any) => ({
+        ...events,
+        date: moment(events.date).format('d. MMM')
+      }));
       state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(funnelAnalysisAsync.rejected, (state) => {

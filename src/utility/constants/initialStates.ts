@@ -37,15 +37,6 @@ export const dashboardInitialState: dashboardStateType = {
     { type: 'error', message: 'Facebook API not Responding', time: '2h' },
     { type: 'warning', message: 'Unusually low number of Add to Cart Events', time: '3d' },
     { type: 'info', message: 'Deployed successfully', time: '3d' }
-  ],
-  eventsPerDay: [
-    { value: 800, date: '19Jul' },
-    { value: 1000, date: '20Jul' },
-    { value: 700, date: '21Jul' },
-    { value: 1300, date: '22Jul' },
-    { value: 1100, date: '23Jul' },
-    { value: 500, date: '24Jul' },
-    { value: 1000, date: '25Jul' }
   ]
 };
 
@@ -130,6 +121,7 @@ export const funnelAnalysisInitialState: funnelAnalysisStateType = {
     total_add_to_cart: 0,
     total_page_view: 0
   },
+  byDate: [],
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
