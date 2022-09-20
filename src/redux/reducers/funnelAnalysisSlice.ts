@@ -5,22 +5,21 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { funnelAnalysisInitialState } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/general';
 
-export const funnelAnalysisAsync = createAsyncThunk<null, void, thunkOptions>(
+// eslint-disable-next-line
+export const funnelAnalysisAsync = createAsyncThunk<any, void, thunkOptions>(
   'funnelAnalysis/fetch',
   async (temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/data_quality`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/events`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
-          shop: state.dashboard.shop?.shop,
+          source_id: state.dashboard.shop?.source_id,
           start_date: state.dashboard.dateRange[0],
           end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
         }
       });
-      if (data) {
-        return data;
-      }
+      if (data) return data.result_total_events;
       rejectWithValue('Data not found');
     } catch (error) {
       rejectWithValue('Data not found');
@@ -32,7 +31,8 @@ export const funnelAnalysisReducer = createReducer(funnelAnalysisInitialState, (
     .addCase(funnelAnalysisAsync.pending, (state) => {
       state.status = STATUS_TYPE.FETCHING;
     })
-    .addCase(funnelAnalysisAsync.fulfilled, (state) => {
+    .addCase(funnelAnalysisAsync.fulfilled, (state, { payload }) => {
+      state.total_events = payload;
       state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(funnelAnalysisAsync.rejected, (state) => {

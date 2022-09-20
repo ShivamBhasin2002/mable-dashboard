@@ -124,11 +124,11 @@ export type eventsStateType = {
 
 export type funnelAnalysisStateType = {
   total_events: {
-    'Page View': number;
-    'Add to Cart': number;
-    'Initiate Checkout': number;
-    'Add Payment Info': number;
-    Purchase: number;
+    total_purchases: number;
+    total_add_payment_info: number;
+    total_intitate_checkout: number;
+    total_add_to_cart: number;
+    total_page_view: number;
   };
   status?: STATUS_TYPE;
   errorMsg?: string;

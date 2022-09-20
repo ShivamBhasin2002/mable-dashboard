@@ -13,7 +13,7 @@ import generalSlice from 'redux/reducers/generalSlice';
 import dataQualityReducer from './reducers/dataQualitySlice';
 import pageSpeedReducer from './reducers/pageSpeedSlice';
 import eventsReducer from './reducers/eventSlice';
-import funnelAnalysisReducer from './reducers/funnelAnalysis';
+import funnelAnalysisReducer from './reducers/funnelAnalysisSlice';
 import dataPerEventSlice from './reducers/dataPerEventSlice';
 import orderAnalysisSlice from './reducers/orderAnalysisSlice';
 

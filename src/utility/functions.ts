@@ -71,3 +71,18 @@ export const statusTypeColors = (status: string) => {
       return 'bg-success';
   }
 };
+
+export const getEventDisplayName = (event: string) => {
+  switch (event) {
+    case 'total_purchases':
+      return 'Purchase';
+    case 'total_add_payment_info':
+      return 'Add Payment Info';
+    case 'total_intitate_checkout':
+      return 'Initiate Checkout';
+    case 'total_add_to_cart':
+      return 'Add To Cart';
+    case 'total_page_view':
+      return 'Page View';
+  }
+};

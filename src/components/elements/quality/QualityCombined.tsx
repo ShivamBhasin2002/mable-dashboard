@@ -30,7 +30,7 @@ const QualityCombined = () => {
       cutout: 32,
       rotation: 10 * Math.PI,
       borderRadius: [20, 0],
-      TOTAL_DATA_QUALITY_FACEBOOK
+      value: TOTAL_DATA_QUALITY_FACEBOOK
     },
     doughnutPlugins = [
       {
@@ -43,8 +43,8 @@ const QualityCombined = () => {
           ctx.restore();
           ctx.font = '25px lato';
           ctx.textBaseline = 'middle';
-          ctx.fillStyle = getColor(TOTAL_DATA_QUALITY_FACEBOOK);
-          const text = `${chart.config.options.TOTAL_DATA_QUALITY_FACEBOOK}%`,
+          ctx.fillStyle = getColor(chart.config.options.value);
+          const text = `${chart.config.options.value}%`,
             textX = Math.round((width - ctx.measureText(text).width) / 2),
             textY = height / 2;
           ctx.fillText(text, textX, textY);

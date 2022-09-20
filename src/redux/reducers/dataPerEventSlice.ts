@@ -10,17 +10,15 @@ export const dataPerEventAsync = createAsyncThunk<null, void, thunkOptions>(
   async (temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/data_quality`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/events`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
-          shop: state.dashboard.shop?.shop,
+          source_id: state.dashboard.shop?.source_id,
           start_date: state.dashboard.dateRange[0],
           end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
         }
       });
-      if (data) {
-        return data;
-      }
+      if (data) return data;
       rejectWithValue('Data not found');
     } catch (error) {
       rejectWithValue('Data not found');

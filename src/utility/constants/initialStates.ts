@@ -124,11 +124,11 @@ export const eventsInitialState: eventsStateType = {
 
 export const funnelAnalysisInitialState: funnelAnalysisStateType = {
   total_events: {
-    'Page View': 153000,
-    'Add to Cart': 122000,
-    'Initiate Checkout': 90000,
-    'Add Payment Info': 75000,
-    Purchase: 8000
+    total_purchases: 0,
+    total_add_payment_info: 0,
+    total_intitate_checkout: 0,
+    total_add_to_cart: 0,
+    total_page_view: 0
   },
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
