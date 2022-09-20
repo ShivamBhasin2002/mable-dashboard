@@ -28,19 +28,7 @@ export const userInitialState: userStateType = {
 };
 
 export const dashboardInitialState: dashboardStateType = {
-  shops: [
-    {
-      _id: {
-        $oid: 'test'
-      },
-      shop: 'test',
-      __v: 0,
-      domain: 'test',
-      domainPrefix: 'test',
-      isActive: true,
-      userId: 'test'
-    }
-  ],
+  shops: [],
   shop: undefined,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined,

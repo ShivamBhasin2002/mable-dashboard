@@ -46,6 +46,7 @@ export type shop = {
   domainPrefix: string;
   isActive: true;
   userId: string;
+  source_id: number;
 };
 
 export type dashboardStateType = {

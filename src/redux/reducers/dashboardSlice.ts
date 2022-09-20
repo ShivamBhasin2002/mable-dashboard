@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, shop } from 'utility/typeDefinitions/reduxTypes';
 import { dashboardInitialState } from 'utility/constants/initialStates';
+
 import { STATUS_TYPE } from 'utility/constants/general';
 
 export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunkOptions>(
@@ -12,7 +13,10 @@ export const fetchShopAsync = createAsyncThunk<shop[], string | undefined, thunk
       const res = await axios.get(`${process.env.REACT_APP_MA_URL}/get-user-shops`, {
         headers: { Authorization: `Token ${token}` }
       });
-      if (res.data.shops.length > 0) return res.data.shops;
+      if (res.data.shops.length > 0) {
+        res.data.shops[0].source_id = 43;
+        return res.data.shops;
+      }
       rejectWithValue('No shops found for this user');
     } catch (error) {
       rejectWithValue('Error occured while fetching shops.');
@@ -45,8 +49,7 @@ export const dashboardSlice = createSlice({
       })
       .addCase(fetchShopAsync.fulfilled, (state, { payload }) => {
         state.status = STATUS_TYPE.SUCCESS;
-        if (state.shops) state.shops = [...state.shops, ...payload];
-        else state.shops = payload;
+        state.shops = payload;
         state.shop = payload[0];
       })
       .addCase(fetchShopAsync.rejected, (state, { payload }) => {
