@@ -33,7 +33,7 @@ const EventsPerDay = () => {
             (item) =>
               item.total_purchases ??
               0 + item.total_page_view ??
-              0 + item.total_initiate_checkout ??
+              0 + item.total_intitate_checkout ??
               0 + item.total_add_to_cart ??
               0 + item.total_add_payment_info ??
               0

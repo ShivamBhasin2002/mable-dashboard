@@ -31,7 +31,7 @@ export enum screenType {
 export enum eventSelectedType {
   purchase = 'Purchase',
   addPaymentInfo = 'Add Payment Info',
-  initiateCheckout = 'Initiate Checkout',
+  intitateCheckout = 'intitate Checkout',
   addToCart = 'Add to Cart',
   pageView = 'Page View'
 }

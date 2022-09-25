@@ -38,7 +38,7 @@ export const funnelAnalysisReducer = createReducer(funnelAnalysisInitialState, (
       state.byDate = payload.bydate.map((events: any) => ({
         total_purchases: events.count_purchase,
         total_add_payment_info: events.count_add_payment_info,
-        total_initiate_checkout: events.count_initiate_checkout,
+        total_intitate_checkout: events.count_intitate_checkout,
         total_add_to_cart: events.count_add_to_cart,
         total_page_view: events.count_page_view,
         date: moment(events.date, 'YYYY-MM-DD').format('D. MMM')
