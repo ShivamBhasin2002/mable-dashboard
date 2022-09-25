@@ -16,6 +16,7 @@ import eventsReducer from './reducers/eventSlice';
 import funnelAnalysisReducer from './reducers/funnelAnalysis';
 import dataPerEventSlice from './reducers/dataPerEventSlice';
 import orderAnalysisSlice from './reducers/orderAnalysisSlice';
+import analyticsReducer from './reducers/analytics';
 
 export const store = configureStore({
   reducer: {
@@ -27,7 +28,8 @@ export const store = configureStore({
     events: eventsReducer,
     funnelAnalysis: funnelAnalysisReducer,
     dataPerEvent: dataPerEventSlice,
-    orderAnalysis: orderAnalysisSlice
+    orderAnalysis: orderAnalysisSlice,
+    analytics: analyticsReducer
   },
   middleware: [thunk as ThunkMiddleware]
 });

@@ -123,14 +123,23 @@ export type eventsStateType = {
   errorMsg?: string;
 };
 
+export type AnalyticsStateType = {
+    PageView: boolean;
+    AddToCart: boolean;
+    InitiateCheckout: boolean;
+    AddPaymentInfo: boolean;
+    Purchase : boolean;
+  };
+
 export type funnelAnalysisStateType = {
   total_events: {
     'Page View': number;
     'Add to Cart': number;
     'Initiate Checkout': number;
     'Add Payment Info': number;
-    Purchase: number;
+    'Purchase' : number;
   };
+
   status?: STATUS_TYPE;
   errorMsg?: string;
 };

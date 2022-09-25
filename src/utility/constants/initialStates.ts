@@ -7,7 +7,8 @@ import {
   generalStateType,
   pageSpeedStateType,
   userStateType,
-  orderAnalysisStateType
+  orderAnalysisStateType,
+  AnalyticsStateType
 } from 'utility/typeDefinitions/reduxTypes';
 import { STATUS_TYPE, screenType, statusSelector } from './general';
 import moment from 'moment';
@@ -185,4 +186,12 @@ export const pageSpeedInitialState: pageSpeedStateType = {
   PS_M: 2,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
+};
+
+export const filterOptionInitialState: AnalyticsStateType = {
+  PageView: true,
+  AddToCart: false,
+  InitiateCheckout: false,
+  AddPaymentInfo: false,
+  Purchase: false
 };

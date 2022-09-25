@@ -10,6 +10,7 @@ import Layout from 'components/elements/common/Layout';
 
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
+import Analytics from 'pages/Analytics';
 
 const App = () => {
   const { screen } = useSelector((state) => state.general);
@@ -36,6 +37,7 @@ const App = () => {
               {screen === 'Dashboard' && <Dashboard />}
               {screen === 'Order Analysis' && <OrderAnalysis />}
               {screen === 'Event Quality' && <EventQuality />}
+              {screen === 'Analytics' && <Analytics />}
               {screen === 'Settings' && null}
               {screen === 'Tutorial' && null}
             </Layout>
