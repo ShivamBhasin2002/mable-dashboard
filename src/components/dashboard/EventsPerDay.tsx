@@ -29,7 +29,7 @@ const EventsPerDay = () => {
           borderWidth: 1,
           lineTension: 0.4,
           fill: true,
-          data: byDate.map((item) => item.total_page_view),
+          data: byDate.map((item) => item.total_purchases),
           datalabels: {
             display: false
           }

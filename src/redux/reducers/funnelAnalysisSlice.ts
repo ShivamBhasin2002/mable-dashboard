@@ -36,8 +36,12 @@ export const funnelAnalysisReducer = createReducer(funnelAnalysisInitialState, (
       state.total_events = payload.result_total_events;
       // eslint-disable-next-line
       state.byDate = payload.bydate.map((events: any) => ({
-        ...events,
-        date: moment(events.date).format('d. MMM')
+        total_purchases: events.count_purchase,
+        total_add_payment_info: events.count_add_payment_info,
+        total_intitate_checkout: events.count_intitate_checkout,
+        total_add_to_cart: events.count_add_to_cart,
+        total_page_view: events.count_page_view,
+        date: moment(events.date, 'YYYY-MM-DD').format('D. MMM')
       }));
       state.status = STATUS_TYPE.SUCCESS;
     })
