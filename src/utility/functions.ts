@@ -82,7 +82,7 @@ export const getEventDisplayName = (event: string) => {
       return eventSelectedType.purchase;
     case 'total_add_payment_info':
       return eventSelectedType.addPaymentInfo;
-    case 'total_intitate_checkout':
+    case 'total_initiate_checkout':
       return eventSelectedType.initiateCheckout;
     case 'total_add_to_cart':
       return eventSelectedType.addToCart;

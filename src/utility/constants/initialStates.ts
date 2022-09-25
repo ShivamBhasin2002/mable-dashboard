@@ -117,7 +117,7 @@ export const funnelAnalysisInitialState: funnelAnalysisStateType = {
   total_events: {
     total_purchases: 0,
     total_add_payment_info: 0,
-    total_intitate_checkout: 0,
+    total_initiate_checkout: 0,
     total_add_to_cart: 0,
     total_page_view: 0
   },

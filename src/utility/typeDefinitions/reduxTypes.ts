@@ -125,7 +125,7 @@ export type funnelAnalysisStateType = {
   total_events: {
     total_purchases: number;
     total_add_payment_info: number;
-    total_intitate_checkout: number;
+    total_initiate_checkout: number;
     total_add_to_cart: number;
     total_page_view: number;
   };
@@ -133,7 +133,7 @@ export type funnelAnalysisStateType = {
     date: Moment;
     total_purchases: number;
     total_add_payment_info: number;
-    total_intitate_checkout: number;
+    total_initiate_checkout: number;
     total_add_to_cart: number;
     total_page_view: number;
   }[];
