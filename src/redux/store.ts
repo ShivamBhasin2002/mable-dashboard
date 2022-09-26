@@ -16,7 +16,7 @@ import eventsReducer from './reducers/eventSlice';
 import funnelAnalysisReducer from './reducers/funnelAnalysis';
 import dataPerEventSlice from './reducers/dataPerEventSlice';
 import orderAnalysisSlice from './reducers/orderAnalysisSlice';
-import analyticsReducer from './reducers/analytics';
+import analyticsReducer from './reducers/analyticsSlice';
 
 export const store = configureStore({
   reducer: {
