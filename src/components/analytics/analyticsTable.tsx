@@ -20,7 +20,7 @@ const AnalyticsTable = () => {
   });
 
   if(analyticData.status==='fetching'){
-    return(<Loading message="Fetching Shops" />)
+    return(<Loading message="Fetching Analytic Report" />)
   }else if(analyticData.status==='error'){
     return(<div>Error Message</div>);
   }else if(analyticData.status==='success'){
@@ -53,19 +53,19 @@ const AnalyticsTable = () => {
           )}
 
           {analyticData.PageView ? (
-            <td>{analyticData.analyticReport.result_total_events.total_page_view}</td>
+            <td>{analyticData.analyticReport.result_total_events.total_page_view.toLocaleString("en-US")}</td>
           ) : null}
           {analyticData.AddToCart ? (
-            <td>{analyticData.analyticReport.result_total_events.total_add_to_cart}</td>
+            <td>{analyticData.analyticReport.result_total_events.total_add_to_cart.toLocaleString("en-US")}</td>
           ) : null}
           {analyticData.InitiateCheckout ? (
-            <td>{analyticData.analyticReport.result_total_events.total_intitate_checkout}</td>
+            <td>{analyticData.analyticReport.result_total_events.total_intitate_checkout.toLocaleString("en-US")}</td>
           ) : null}
           {analyticData.AddPaymentInfo ? (
-            <td>{analyticData.analyticReport.result_total_events.total_add_payment_info}</td>
+            <td>{analyticData.analyticReport.result_total_events.total_add_payment_info.toLocaleString("en-US")}</td>
           ) : null}
           {analyticData.Purchase ? (
-            <td>{analyticData.analyticReport.result_total_events.total_purchases}</td>
+            <td>{analyticData.analyticReport.result_total_events.total_purchases.toLocaleString("en-US")}</td>
           ) : null}
         </tr>
         {Object.values(analyticData.analyticReport.bydate).map((item, i) => {
@@ -77,11 +77,11 @@ const AnalyticsTable = () => {
               }`}
             >
               <td>{item.date}</td>
-              {analyticData.PageView ? <td>{item.count_page_view}</td> : null}
-              {analyticData.AddToCart ? <td>{item.count_add_to_cart}</td> : null}
-              {analyticData.InitiateCheckout ? <td>{item.count_intitate_checkout}</td> : null}
-              {analyticData.AddPaymentInfo ? <td>{item.count_add_payment_info}</td> : null}
-              {analyticData.Purchase ? <td>{item.count_purchase}</td> : null}
+              {analyticData.PageView ? <td>{item.count_page_view.toLocaleString("en-US")}</td> : null}
+              {analyticData.AddToCart ? <td>{item.count_add_to_cart.toLocaleString("en-US")}</td> : null}
+              {analyticData.InitiateCheckout ? <td>{item.count_intitate_checkout.toLocaleString("en-US")}</td> : null}
+              {analyticData.AddPaymentInfo ? <td>{item.count_add_payment_info.toLocaleString("en-US")}</td> : null}
+              {analyticData.Purchase ? <td>{item.count_purchase.toLocaleString("en-US")}</td> : null}
             </tr>
           );
         })}
