@@ -124,30 +124,30 @@ export type eventsStateType = {
 };
 
 export type AnalyticsStateType = {
-    PageView: boolean;
-    AddToCart: boolean;
-    InitiateCheckout: boolean;
-    AddPaymentInfo: boolean;
-    Purchase : boolean;
-    status: string;
-    analyticReport: {
-      result_total_events: {
-        total_purchases: number,
-        total_add_payment_info: number,
-        total_intitate_checkout: number,
-        total_add_to_cart: number,
-        total_page_view: number
+  PageView: boolean;
+  AddToCart: boolean;
+  InitiateCheckout: boolean;
+  AddPaymentInfo: boolean;
+  Purchase: boolean;
+  status: string;
+  analyticReport: {
+    result_total_events: {
+      total_purchases: number;
+      total_add_payment_info: number;
+      total_intitate_checkout: number;
+      total_add_to_cart: number;
+      total_page_view: number;
     };
-      bydate:Array<{
-        date: string,
-            count_purchase: number,
-            count_add_payment_info: number,
-            count_intitate_checkout: number,
-            count_add_to_cart: number,
-            count_page_view: number
-      }>;
-    };
+    bydate: Array<{
+      date: string;
+      count_purchase: number;
+      count_add_payment_info: number;
+      count_intitate_checkout: number;
+      count_add_to_cart: number;
+      count_page_view: number;
+    }>;
   };
+};
 
 export type funnelAnalysisStateType = {
   total_events: {
@@ -155,7 +155,7 @@ export type funnelAnalysisStateType = {
     'Add to Cart': number;
     'Initiate Checkout': number;
     'Add Payment Info': number;
-    'Purchase' : number;
+    Purchase: number;
   };
 
   status?: STATUS_TYPE;

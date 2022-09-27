@@ -10,14 +10,11 @@ const AnalyticsTable = () => {
   const { dateRange, datePreset } = useSelector((state) => state.dashboard);
 
   useEffect(() => {
-    if (analyticData.status === 'idle') {
+    if (analyticData.status !== 'fetching') {
       dispatch(analyticsAsync());
+      console.log('analyticsAsync');
     }
   }, [datePreset, dateRange, dispatch]);
-
-  analyticData.analyticReport.bydate.map((item) => {
-    console.log(item.date);
-  });
 
   if(analyticData.status==='fetching'){
     return(<Loading message="Fetching Analytic Report" />)

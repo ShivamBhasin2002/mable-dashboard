@@ -30,10 +30,10 @@ export const analyticsAsync = createAsyncThunk<
     const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/events`, {
       headers: { Authorization: `Token ${state.user.token}` },
       params: {
-        start_date: '2022-04-01',
-        // state.dashboard.dateRange[0].format('YYYY-MM-DD'),
-        end_date: '2022-09-19',
-        // state.dashboard.dateRange[state.dashboard.dateRange.length - 1].format('YYYY-MM-DD'),
+        // start_date: '2022-04-01',
+        start_date:state.dashboard.dateRange[0].format('YYYY-MM-DD'),
+        // end_date: '2022-09-19',
+        end_date:state.dashboard.dateRange[state.dashboard.dateRange.length - 1].format('YYYY-MM-DD'),
         source_id: 43
       }
     });
