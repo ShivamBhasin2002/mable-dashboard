@@ -3,7 +3,7 @@ import Icon from 'assets/icons';
 import moment from 'moment';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { statusSelector, totalEvents, totatlAttributions } from 'utility/constants/general';
+import { statusSelector, totalEvents, totalAttributions } from 'utility/constants/general';
 import { statusTypeColors } from 'utility/functions';
 import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';
 
@@ -57,7 +57,7 @@ const OrderAnalysisTable = () => {
                 {data.evt_params_present ?? 0}/{totalEvents}
               </td>
               <td>
-                {data.attr_params_present ?? 0}/{totatlAttributions}
+                {data.attr_params_present ?? 0}/{totalAttributions}
               </td>
               <td>{data.delivery_time ? `${data.delivery_time}s` : '-'}</td>
               <td>

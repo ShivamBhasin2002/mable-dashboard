@@ -41,7 +41,7 @@ export const presetsToDateRange = (preset: string) => {
       return [moment().subtract(1, 'day'), moment().subtract(1, 'day')];
     case presets.prevSevenDays:
       return [moment().subtract(7, 'days'), moment()];
-    case presets.prevForteenDays:
+    case presets.prevFourteenDays:
       return [moment().subtract(14, 'days'), moment()];
     case presets.prevThirtyDays:
       return [moment().subtract(30, 'days'), moment()];

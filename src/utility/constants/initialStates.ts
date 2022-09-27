@@ -50,46 +50,23 @@ export const dataPerEventsInitialState: dataPerEventStateType = {
     { attribution_quality: 11, event_quality: 6, _id: '24Jul' },
     { attribution_quality: 9, event_quality: 6.2, _id: '25Jul' }
   ],
-  dataContaindedPerEventDoughnutChart: {
+  dataContainedPerEventDoughnutChart: {
     backend: 72,
     frontend: 21,
     mableEngine: 5,
     unavailable: 2
   },
-  attribution: 12.1,
-  event: 6.7,
+  attribution: 0,
+  event: 0,
+  AttributionParameters: {},
+  EventParameters: {},
   eventSelected: eventSelectedType.purchase,
-  AttributionParameters: {
-    'User IP': 0.18,
-    'User Agent': 0,
-    Email: 0,
-    Phone: 0,
-    'First Name': 0,
-    'Last Name': 0,
-    'Date Of Birth': 0,
-    State: 0,
-    Country: 0,
-    City: 0,
-    'Zip Code': 0,
-    Currency: 0,
-    'Total Price': 0,
-    'Order Id': 0
-  },
-  EventParameters: {
-    example1: 0,
-    example2: 0,
-    example3: 0,
-    example4: 0,
-    example5: 0,
-    example6: 0,
-    example7: 0
-  },
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const orderAnalysisInitialState: orderAnalysisStateType = {
-  statuSelected: statusSelector.all,
+  statusSelected: statusSelector.all,
   tableData: [],
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
@@ -101,7 +78,7 @@ export const dataQualityInitialState: dataQualityStateType = {
   FACEBOOK_SUCCESS_DELIVERED_ORDERS: 0,
   DATA_QUALITY_BY_DATE: [],
   ordersWithCorrectCV: 0,
-  avgDelieveryTime: 0,
+  avgDeliveryTime: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };

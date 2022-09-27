@@ -32,7 +32,7 @@ export const orderAnalysis = createSlice({
   initialState: orderAnalysisInitialState,
   reducers: {
     setStatusSelected: (state, { payload }) => {
-      state.statuSelected = payload;
+      state.statusSelected = payload;
     }
   },
   extraReducers: (builder) => {

@@ -65,7 +65,7 @@ export type dataPerEventStateType = {
     attribution_quality?: number;
     event_quality?: number;
   }[];
-  dataContaindedPerEventDoughnutChart: {
+  dataContainedPerEventDoughnutChart: {
     backend: number;
     frontend: number;
     mableEngine: number;
@@ -75,29 +75,24 @@ export type dataPerEventStateType = {
   event: number;
   eventSelected: eventSelectedType;
   AttributionParameters: {
-    'User IP': number;
-    'User Agent': number;
-    Email: number;
-    Phone: number;
-    'First Name': number;
-    'Last Name': number;
-    'Date Of Birth': number;
-    State: number;
-    Country: number;
-    City: number;
-    'Zip Code': number;
-    Currency: number;
-    'Total Price': number;
-    'Order Id': number;
+    user_id?: number;
+    user_agent?: number;
+    customer_data_email?: number;
+    customer_data_first_name?: number;
+    customer_data_last_name?: number;
+    customer_data_phone?: number;
+    customer_data_date_of_birth?: number;
+    location_state?: number;
+    location_country_name?: number;
+    location_city?: number;
+    location_zip_code?: number;
+    clid_fbclid?: number;
+    external_ids?: number;
   };
   EventParameters: {
-    example1: number;
-    example2: number;
-    example3: number;
-    example4: number;
-    example5: number;
-    example6: number;
-    example7: number;
+    shopping_data_total_amount?: number;
+    shopping_data_currency?: number;
+    custom_data_order_id?: number;
   };
   status?: STATUS_TYPE;
   errorMsg?: string;
@@ -109,7 +104,7 @@ export type dataQualityStateType = {
   FACEBOOK_SUCCESS_DELIVERED_ORDERS: number;
   DATA_QUALITY_BY_DATE: { date: string; data_quality: number }[];
   ordersWithCorrectCV: number;
-  avgDelieveryTime: number;
+  avgDeliveryTime: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
@@ -146,7 +141,7 @@ export type generalStateType = {
 };
 
 export type orderAnalysisStateType = {
-  statuSelected: statusSelector;
+  statusSelected: statusSelector;
   tableData: {
     order_id: number | null;
     date: Moment | null;

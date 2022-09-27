@@ -15,7 +15,7 @@ const OrderAnalysis = () => {
   const dispatch = useDispatch();
   const {
     ordersWithCorrectCV,
-    avgDelieveryTime,
+    avgDeliveryTime,
     TOTAL_SHOPIFY_ORDERS,
     TOTAL_DATA_QUALITY_FACEBOOK,
     status
@@ -35,7 +35,7 @@ const OrderAnalysis = () => {
             <Stats value={TOTAL_SHOPIFY_ORDERS} message="Shopify Orders" />
             <Stats value={ordersWithCorrectCV} message="Orders with correct CV" />
             <Stats value={TOTAL_DATA_QUALITY_FACEBOOK} message="Received by FB" />
-            <Stats value={avgDelieveryTime} message="AVG. Delivery Time" />
+            <Stats value={avgDeliveryTime} message="AVG. Delivery Time" />
           </div>
         </div>
       </ComponentWrapper>

@@ -1,4 +1,4 @@
-.DateRangePickerInput_arrow {
+e.DateRangePickerInput_arrow {
   position: absolute;
   top: 18px !important;
   left: 280px !important;
@@ -7,6 +7,9 @@
   position: absolute;
   left: 180px !important;
   top: -22px;
+}
+#endDateIdentifier {
+  color: #fff !important;
 }
 .CalendarMonthGrid {
   width: 620px !important;

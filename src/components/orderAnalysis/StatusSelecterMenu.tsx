@@ -9,7 +9,7 @@ import { setStatusSelected } from 'redux/reducers/orderAnalysisSlice';
 
 const StatusSelectorMenu = () => {
   const dispatch = useDispatch();
-  const { statuSelected } = useSelector((state) => state.orderAnalysis);
+  const { statusSelected } = useSelector((state) => state.orderAnalysis);
   return (
     <Menu gutter={0} isLazy>
       <MenuButton
@@ -26,7 +26,7 @@ const StatusSelectorMenu = () => {
         _hover={{ backgroundColor: 'transparent' }}
         _active={{ backgroundColor: 'transparent', borderBottomRadius: 0, borderBottom: 0 }}
       >
-        <span>Status:</span> <span>{statuSelected}</span>
+        <span>Status:</span> <span>{statusSelected}</span>
       </MenuButton>
       <MenuList
         background={colors.bgContainerTo}
@@ -38,7 +38,7 @@ const StatusSelectorMenu = () => {
       >
         {Object.values(statusSelector).map(
           (item) =>
-            item !== statuSelected && (
+            item !== statusSelected && (
               <MenuItem
                 key={item}
                 _hover={{ background: colors.bgContainerFrom }}

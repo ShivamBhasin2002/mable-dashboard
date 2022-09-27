@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Moment } from 'moment';
 import { DateRangePicker } from 'react-dates';
+import moment from 'moment'
 import 'react-dates/initialize';
 import 'assets/styles/datePicker.css';
 
@@ -32,6 +33,7 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
     >
       <div className="flex-grow flex flex-col justify-between">
         <DateRangePicker
+          maxDate={moment()}
           startDate={selectedDateRange[0]}
           endDate={selectedDateRange[1]}
           startDateId="startDateIdentifier"

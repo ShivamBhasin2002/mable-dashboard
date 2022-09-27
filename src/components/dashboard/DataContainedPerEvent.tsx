@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { ComponentWrapper, ViewFullReport } from 'components/elements/common';
 import {
   SelectorMenu,
@@ -8,7 +10,15 @@ import {
 } from 'components/elements/event';
 import { screenType } from 'utility/constants/general';
 
+import { useSelector, useDispatch } from 'redux/store';
+import { dataPerEventAsync } from 'redux/reducers/dataPerEventSlice';
+
 const DataContainedPerEvent = () => {
+  const dispatch = useDispatch();
+  const { status } = useSelector((state) => state.dataPerEvent);
+  useEffect(() => {
+    if (status === 'idle') dispatch(dataPerEventAsync());
+  }, [status]);
   return (
     <ComponentWrapper
       title="Data Contained Per Event"

@@ -1,4 +1,4 @@
-export enum dataEventLables {
+export enum dataEventLabels {
   backend = 'Backend',
   frontend = 'Frontend',
   mableEngine = 'Mable Engine',
@@ -24,7 +24,7 @@ export enum screenType {
   dashboard = 'Dashboard',
   orderAnalysis = 'Order Analysis',
   eventQuality = 'Event Quality',
-  setttings = 'Settings',
+  settings = 'Settings',
   tutorial = 'Tutorial'
 }
 
@@ -41,7 +41,7 @@ export enum DatePickerPresets {
   today = 'Today',
   yesterday = 'Yesterday',
   prevSevenDays = 'Last 7 Days',
-  prevForteenDays = 'Last 14 Days',
+  prevFourteenDays = 'Last 14 Days',
   prevThirtyDays = 'Last 30 Days',
   currWeek = 'This Week',
   prevWeek = 'Last Week',
@@ -51,4 +51,4 @@ export enum DatePickerPresets {
 
 export const totalEvents = 7;
 
-export const totatlAttributions = 13;
+export const totalAttributions = 13;
