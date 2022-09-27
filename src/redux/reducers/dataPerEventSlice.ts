@@ -42,7 +42,7 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
       data.EventParameters = eventParamsData.data.overall_events_percentage ?? {};
       data.attribution = eventAttributionData.data.total_overall_attribution_percentage ?? 0;
       data.event = eventParamsData.data.total_overall_events_percentage ?? 0;
-      if (eventAttributionData&& eventParamsData) return data;
+      if (eventAttributionData && eventParamsData) return data;
       rejectWithValue('Data not found');
     } catch (error) {
       rejectWithValue('Data not found');
@@ -63,9 +63,9 @@ export const dataPerEvent = createSlice({
       .addCase(dataPerEventAsync.pending, (state) => {
         state.status = STATUS_TYPE.FETCHING;
       })
-      .addCase(dataPerEventAsync.fulfilled, (state, {payload}) => {
+      .addCase(dataPerEventAsync.fulfilled, (state, { payload }) => {
         state.status = STATUS_TYPE.SUCCESS;
-        state = {...state, ...payload}
+        state = { ...state, ...payload };
       })
       .addCase(dataPerEventAsync.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
