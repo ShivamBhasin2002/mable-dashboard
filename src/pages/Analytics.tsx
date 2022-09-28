@@ -9,30 +9,29 @@ const Analytics = () => {
   const csv = [] as Array<object>;
   const header=[] as Array<string>;
   const analyticData = useSelector((state) => state.analytics);
-  const { dateRange, datePreset } = useSelector((state) => state.dashboard);
+  const { dateRange } = useSelector((state) => state.dashboard);
 
   header.push('Dates');
 
-  if (analyticData.PageView) {
+  if (analyticData.events.PageView) {
     header.push('Page View');
   }
 
-  if (analyticData.AddToCart) {
+  if (analyticData.events.AddToCart) {
     header.push('Add To Cart');
   }
 
-  if (analyticData.InitiateCheckout) {
+  if (analyticData.events.InitiateCheckout) {
     header.push('Initiate Checkout');
   }
 
-  if (analyticData.AddPaymentInfo) {
+  if (analyticData.events.AddPaymentInfo) {
     header.push('Payment Info');
   }
 
-  if (analyticData.Purchase) {
+  if (analyticData.events.Purchase) {
     header.push('Purchase');
   }
-
 
   analyticData.analyticReport.bydate.map(
     ({
@@ -46,23 +45,23 @@ const Analytics = () => {
       const obj = {} as csv;
       obj['date'] = date;
 
-      if (analyticData.PageView) {
+      if (analyticData.events.PageView) {
         obj['count_page_view'] = count_page_view;
       }
 
-      if (analyticData.AddToCart) {
+      if (analyticData.events.AddToCart) {
         obj['count_add_to_cart'] = count_add_to_cart;
       }
 
-      if (analyticData.InitiateCheckout) {
+      if (analyticData.events.InitiateCheckout) {
         obj['count_intitate_checkout'] = count_intitate_checkout;
       }
 
-      if (analyticData.AddPaymentInfo) {
+      if (analyticData.events.AddPaymentInfo) {
         obj['count_add_payment_info'] = count_add_payment_info;
       }
 
-      if (analyticData.Purchase) {
+      if (analyticData.events.Purchase) {
         obj['count_purchase'] = count_purchase;
       }
 

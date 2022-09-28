@@ -53,19 +53,19 @@ export const Analytics = createSlice({
     setColumnSelected: (state, { payload }) => {
       switch (payload) {
         case 'AddPaymentInfo':
-          state.AddPaymentInfo = !state.AddPaymentInfo;
+          state.events.AddPaymentInfo = !state.events.AddPaymentInfo;
           break;
         case 'AddToCart':
-          state.AddToCart = !state.AddToCart;
+          state.events.AddToCart = !state.events.AddToCart;
           break;
         case 'InitiateCheckout':
-          state.InitiateCheckout = !state.InitiateCheckout;
+          state.events.InitiateCheckout = !state.events.InitiateCheckout;
           break;
         case 'PageView':
-          state.PageView = !state.PageView;
+          state.events.PageView = !state.events.PageView;
           break;
         case 'Purchase':
-          state.Purchase = !state.Purchase;
+          state.events.Purchase = !state.events.Purchase;
           break;
       }
     }

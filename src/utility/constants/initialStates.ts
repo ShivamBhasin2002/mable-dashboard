@@ -189,20 +189,22 @@ export const pageSpeedInitialState: pageSpeedStateType = {
 };
 
 export const filterOptionInitialState: AnalyticsStateType = {
-  PageView: true,
-  AddToCart: false,
-  InitiateCheckout: false,
-  AddPaymentInfo: false,
-  Purchase: false,
-  status : "idle",
+  status: 'idle',
+  events: {
+    PageView: true,
+    AddToCart: false,
+    InitiateCheckout: false,
+    AddPaymentInfo: false,
+    Purchase: false
+  },
   analyticReport: {
-    "result_total_events": {
-        "total_purchases": 0,
-        "total_add_payment_info": 0,
-        "total_intitate_checkout": 0,
-        "total_add_to_cart": 0,
-        "total_page_view": 0
+    result_total_events: {
+      total_purchases: 0,
+      total_add_payment_info: 0,
+      total_intitate_checkout: 0,
+      total_add_to_cart: 0,
+      total_page_view: 0
     },
-    "bydate": []
-}
+    bydate: []
+  }
 };

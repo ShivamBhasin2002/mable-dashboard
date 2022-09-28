@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'redux/store';
 import { useEffect } from 'react';
 import { analyticsAsync } from 'redux/reducers/analyticsSlice';
 import Loading from 'components/elements/common/Loading';
+import { filterType } from 'utility/constants/general';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
@@ -26,11 +27,18 @@ const AnalyticsTable = () => {
       <thead>
         <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
           <td className="bg-primary rounded-tl-[10px]">Day</td>
-          {analyticData.PageView ? <td className="bg-primary">Page View</td> : null}
+          {Object.entries(filterType).map((item,i)=>{
+            if((analyticData.events as any)[item[0]]){
+              return(
+                <td key={i} className="bg-primary">{item[1]}</td>
+              );
+            }
+          })}
+          {/* {analyticData.PageView ? <td className="bg-primary">Page View</td> : null}
           {analyticData.AddToCart ? <td className="bg-primary">Add to Cart</td> : null}
           {analyticData.InitiateCheckout ? <td className="bg-primary">Initiate Checkout</td> : null}
           {analyticData.AddPaymentInfo ? <td className="bg-primary">Payment Info</td> : null}
-          {analyticData.Purchase ? <td className="bg-primary">Purchase</td> : null}
+          {analyticData.Purchase ? <td className="bg-primary">Purchase</td> : null} */}
         </tr>
       </thead>
       <tbody className="last-of:rounded-b-[10px]">
@@ -49,19 +57,19 @@ const AnalyticsTable = () => {
             </td>
           )}
 
-          {analyticData.PageView ? (
+          {analyticData.events.PageView ? (
             <td>{analyticData.analyticReport.result_total_events.total_page_view.toLocaleString("en-US")}</td>
           ) : null}
-          {analyticData.AddToCart ? (
+          {analyticData.events.AddToCart ? (
             <td>{analyticData.analyticReport.result_total_events.total_add_to_cart.toLocaleString("en-US")}</td>
           ) : null}
-          {analyticData.InitiateCheckout ? (
+          {analyticData.events.InitiateCheckout ? (
             <td>{analyticData.analyticReport.result_total_events.total_intitate_checkout.toLocaleString("en-US")}</td>
           ) : null}
-          {analyticData.AddPaymentInfo ? (
+          {analyticData.events.AddPaymentInfo ? (
             <td>{analyticData.analyticReport.result_total_events.total_add_payment_info.toLocaleString("en-US")}</td>
           ) : null}
-          {analyticData.Purchase ? (
+          {analyticData.events.Purchase ? (
             <td>{analyticData.analyticReport.result_total_events.total_purchases.toLocaleString("en-US")}</td>
           ) : null}
         </tr>
@@ -74,11 +82,11 @@ const AnalyticsTable = () => {
               }`}
             >
               <td>{item.date}</td>
-              {analyticData.PageView ? <td>{item.count_page_view.toLocaleString("en-US")}</td> : null}
-              {analyticData.AddToCart ? <td>{item.count_add_to_cart.toLocaleString("en-US")}</td> : null}
-              {analyticData.InitiateCheckout ? <td>{item.count_intitate_checkout.toLocaleString("en-US")}</td> : null}
-              {analyticData.AddPaymentInfo ? <td>{item.count_add_payment_info.toLocaleString("en-US")}</td> : null}
-              {analyticData.Purchase ? <td>{item.count_purchase.toLocaleString("en-US")}</td> : null}
+              {analyticData.events.PageView ? <td>{item.count_page_view.toLocaleString("en-US")}</td> : null}
+              {analyticData.events.AddToCart ? <td>{item.count_add_to_cart.toLocaleString("en-US")}</td> : null}
+              {analyticData.events.InitiateCheckout ? <td>{item.count_intitate_checkout.toLocaleString("en-US")}</td> : null}
+              {analyticData.events.AddPaymentInfo ? <td>{item.count_add_payment_info.toLocaleString("en-US")}</td> : null}
+              {analyticData.events.Purchase ? <td>{item.count_purchase.toLocaleString("en-US")}</td> : null}
             </tr>
           );
         })}

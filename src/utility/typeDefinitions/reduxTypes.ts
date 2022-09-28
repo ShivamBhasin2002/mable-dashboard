@@ -124,12 +124,14 @@ export type eventsStateType = {
 };
 
 export type AnalyticsStateType = {
-  PageView: boolean;
-  AddToCart: boolean;
-  InitiateCheckout: boolean;
-  AddPaymentInfo: boolean;
-  Purchase: boolean;
   status: string;
+  events: {
+    PageView: boolean;
+    AddToCart: boolean;
+    InitiateCheckout: boolean;
+    AddPaymentInfo: boolean;
+    Purchase: boolean;
+  };
   analyticReport: {
     result_total_events: {
       total_purchases: number;
