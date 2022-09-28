@@ -119,22 +119,13 @@ export type AnalyticsStateType = {
     Purchase: boolean;
   };
   analyticReport: {
-    result_total_events: {
-      total_purchases: number;
-      total_add_payment_info: number;
-      total_intitate_checkout: number;
-      total_add_to_cart: number;
-      total_page_view: number;
-    };
-    bydate: Array<{
-      date: string;
-      count_purchase: number;
-      count_add_payment_info: number;
-      count_intitate_checkout: number;
-      count_add_to_cart: number;
-      count_page_view: number;
-    }>;
-  };
+    date: string;
+    total_count_purchase: number;
+    total_count_add_payment_info: number;
+    total_count_intitate_checkout: number;
+    total_count_add_to_cart: number;
+    total_count_page_view: number;
+  }[];
 };
 
 export type eventsDataStateType = {

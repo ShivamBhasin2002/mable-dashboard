@@ -37,6 +37,7 @@ const App = () => {
               {activeScreen === 'Dashboard' && <Dashboard />}
               {activeScreen === 'Order Analysis' && <OrderAnalysis />}
               {activeScreen === 'Event Quality' && <EventQuality />}
+              {activeScreen === 'Reports' && <Analytics />}
               {/* {screen === 'Settings' && null}
               {screen === 'Tutorial' && null} */}
             </Layout>

@@ -5,23 +5,14 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
 
 export const analyticsAsync = createAsyncThunk<
-  {
-    result_total_events: {
-      total_purchases: number;
-      total_add_payment_info: number;
-      total_intitate_checkout: number;
-      total_add_to_cart: number;
-      total_page_view: number;
-    };
-    bydate: Array<{
+  Array<{
       date: string;
-      count_purchase: number;
-      count_add_payment_info: number;
-      count_intitate_checkout: number;
-      count_add_to_cart: number;
-      count_page_view: number;
-    }>;
-  },
+      total_count_purchase: number;
+      total_count_add_payment_info: number;
+      total_count_intitate_checkout: number;
+      total_count_add_to_cart: number;
+      total_count_page_view: number;
+    }>,
   void,
   thunkOptions
 >('analytics/fetch', async (temp, { rejectWithValue, getState }) => {
@@ -31,9 +22,9 @@ export const analyticsAsync = createAsyncThunk<
       headers: { Authorization: `Token ${state.user.token}` },
       params: {
         // start_date: '2022-04-01',
-        start_date:state.dashboard.dateRange[0].format('YYYY-MM-DD'),
+        start_date: state.dates.dateRange[0].format('YYYY-MM-DD'),
         // end_date: '2022-09-19',
-        end_date:state.dashboard.dateRange[state.dashboard.dateRange.length - 1].format('YYYY-MM-DD'),
+        end_date: state.dates.dateRange[state.dates.dateRange.length - 1].format('YYYY-MM-DD'),
         source_id: 43
       }
     });
@@ -79,8 +70,7 @@ export const Analytics = createSlice({
         state.status = STATUS_TYPE.SUCCESS;
         // console.log('this is payload');
         // console.log(payload);
-        state.analyticReport.bydate = payload.bydate;
-        state.analyticReport.result_total_events = payload.result_total_events;
+        state.analyticReport = payload;
       })
       .addCase(analyticsAsync.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;

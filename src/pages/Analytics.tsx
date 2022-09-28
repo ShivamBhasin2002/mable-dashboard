@@ -4,13 +4,15 @@ import { ComponentWrapper } from 'components/elements/common';
 import { useSelector } from 'redux/store';
 import { csv } from 'utility/typeDefinitions/componentTypes';
 import { ExportToCsv } from 'export-to-csv';
+import moment from 'moment';
 
 const Analytics = () => {
   const csv = [] as Array<object>;
   const header=[] as Array<string>;
   const analyticData = useSelector((state) => state.analytics);
-  const { dateRange } = useSelector((state) => state.dashboard);
+  const { dateRange } = useSelector((state) => state.dates);
 
+  header.push('Day');
   header.push('Dates');
 
   if (analyticData.events.PageView) {
@@ -33,36 +35,37 @@ const Analytics = () => {
     header.push('Purchase');
   }
 
-  analyticData.analyticReport.bydate.map(
+  analyticData.analyticReport.map(
     ({
-      count_add_payment_info,
-      count_add_to_cart,
-      count_intitate_checkout,
-      count_page_view,
-      count_purchase,
+      total_count_add_payment_info,
+      total_count_add_to_cart,
+      total_count_intitate_checkout,
+      total_count_page_view,
+      total_count_purchase,
       date
     }) => {
       const obj = {} as csv;
+      obj['day'] = moment(date).format('ddd');
       obj['date'] = date;
 
       if (analyticData.events.PageView) {
-        obj['count_page_view'] = count_page_view;
+        obj['count_page_view'] = total_count_page_view;
       }
 
       if (analyticData.events.AddToCart) {
-        obj['count_add_to_cart'] = count_add_to_cart;
+        obj['count_add_to_cart'] = total_count_add_to_cart;
       }
 
       if (analyticData.events.InitiateCheckout) {
-        obj['count_intitate_checkout'] = count_intitate_checkout;
+        obj['count_intitate_checkout'] = total_count_intitate_checkout;
       }
 
       if (analyticData.events.AddPaymentInfo) {
-        obj['count_add_payment_info'] = count_add_payment_info;
+        obj['count_add_payment_info'] = total_count_add_payment_info;
       }
 
       if (analyticData.events.Purchase) {
-        obj['count_purchase'] = count_purchase;
+        obj['count_purchase'] = total_count_purchase;
       }
 
       csv.push(obj);
@@ -90,7 +93,7 @@ const Analytics = () => {
     <ComponentWrapper className="text-light mt-[40px]">
       <div className=" flex flex-row justify-between align-middle">
         <ColumnSelectorMenu />
-        <button onClick={()=>{csvExporter.generateCsv(csv);}} className=" bg-success px-2 py-1 rounded-md font-semibold">Export Csv</button>
+        <button onClick={()=>{csvExporter.generateCsv(csv);}} className=" !border-lines/[0.20]  h-[30px] border-2 px-2 rounded-md font-medium">Export Csv</button>
       </div>
       <AnalyticsTable />
     </ComponentWrapper>

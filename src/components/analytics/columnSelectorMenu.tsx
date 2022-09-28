@@ -41,7 +41,7 @@ const ColumnSelectorMenu = () => {
         <Stack spacing={[1]} direction={['column']}>
           {Object.entries(filterType).map((item) => (
             <Checkbox
-              isChecked={(ob1 as any)[item[0]]}
+              isChecked={(ob1.events as any)[item[0]]}
               key={item[0]}
               className=" pl-3"
               size="md"

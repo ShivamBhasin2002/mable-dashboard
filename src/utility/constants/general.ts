@@ -24,17 +24,17 @@ export enum screenType {
   dashboard = 'Dashboard',
   orderAnalysis = 'Order Analysis',
   eventQuality = 'Event Quality',
-  analytics = 'Analytics',
+  analytics = 'Reports',
   settings = 'Settings',
   tutorial = 'Tutorial'
 }
 
 export enum filterType {
-  AddPaymentInfo = 'Add Payment Info',
-  AddToCart = 'Add To Cart',
-  InitiateCheckout = 'Initiate Checkout',
   PageView = 'Page View',
-  Purchase = 'Purchase'
+    AddToCart = 'Add To Cart',
+    InitiateCheckout = 'InitiateCheckout',
+    AddPaymentInfo = 'Add Payment Info',
+    Purchase = 'Purchase'
 }
 
 export enum eventSelectedType {
