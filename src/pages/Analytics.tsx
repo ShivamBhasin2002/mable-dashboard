@@ -93,7 +93,7 @@ const Analytics = () => {
     <ComponentWrapper className="text-light mt-[40px]">
       <div className=" flex flex-row justify-between align-middle">
         <ColumnSelectorMenu />
-        <button onClick={()=>{csvExporter.generateCsv(csv);}} className=" !border-lines/[0.20]  h-[30px] border-2 px-2 rounded-md font-medium">Export Csv</button>
+        <button onClick={()=>{csvExporter.generateCsv(csv);}} className=" !border-lines/[0.20]  h-[30px] px-2 rounded-md font-medium">Export Csv</button>
       </div>
       <AnalyticsTable />
     </ComponentWrapper>
