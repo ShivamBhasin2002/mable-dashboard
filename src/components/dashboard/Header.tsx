@@ -36,7 +36,7 @@ const DashboardHeader = () => {
       <div className="flex flex-row-reverse mb-3">
         <Menu isLazy>
           <MenuButton>
-            <div className="p-[20px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[55px] w-min rounded-xl flex flex-row items-center justify-evenly text-light gap-3">
+            <div className="p-[20px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[55px] w-min rounded-xl flex flex-row items-center justify-evenly text-light gap-3 whitespace-nowrap">
               <span className="h-[10px] w-[10px] bg-success rounded-full" />
               {active?.name}
               <Icon icon="dropdown" />
