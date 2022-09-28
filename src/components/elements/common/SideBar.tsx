@@ -3,20 +3,20 @@ import Icon from 'assets/icons';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { logout } from 'redux/reducers/authSlice';
-import { setScreen } from 'redux/reducers/generalSlice';
+import { setScreen } from 'redux/reducers/screenSlice';
 
 const SideBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { firstName, lastName } = useSelector((state) => state.user);
-  const { screen } = useSelector((state) => state.general);
+  const { activeScreen } = useSelector((state) => state.screen);
   const sideBarItems = [
     { title: 'Dashboard', icon: 'dashboard' },
     { title: 'Order Analysis', icon: 'orderAnalysis' },
-    { title: 'Event Quality', icon: 'eventQuality' },
-    { title: 'Store', icon: 'shopIcon' },
-    { title: 'Settings', icon: 'settings' },
-    { title: 'Tutorial', icon: 'tutorial' }
+    { title: 'Event Quality', icon: 'eventQuality' }
+    // { title: 'Store', icon: 'shopIcon' },
+    // { title: 'Settings', icon: 'settings' },
+    // { title: 'Tutorial', icon: 'tutorial' }
   ];
   return (
     <aside
@@ -36,14 +36,21 @@ const SideBar = () => {
               <div
                 key={item.icon}
                 className={`w-[228px] flex flex-row ${
-                  screen === item.title
+                  activeScreen === item.title
                     ? 'text-light bg-primary/[0.1] font-bold '
                     : 'text-secondary font-medium'
                 } h-[50px] rounded-[8px] cursor-pointer text-[14px] font-montserrat `}
                 onClick={() => dispatch(setScreen(item.title))}
               >
                 <span className="mr-[15px] ml-[20px] my-auto text-2xl">
-                  {<Icon icon={item.icon} width={24} height={24} active={screen === item.title} />}
+                  {
+                    <Icon
+                      icon={item.icon}
+                      width={24}
+                      height={24}
+                      active={activeScreen === item.title}
+                    />
+                  }
                 </span>
                 <span className="mt-[14px]">{item.title}</span>
               </div>

@@ -11,7 +11,7 @@ const ComponentWrapper = ({
 }: ComponentWrapperProps) => {
   return (
     <article
-      className={`lg:min-w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[40px] py-[30px] flex-grow ${className}`}
+      className={`lg:min-w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[40px] py-[30px] ${className}`}
     >
       <div
         className={` text-light ${

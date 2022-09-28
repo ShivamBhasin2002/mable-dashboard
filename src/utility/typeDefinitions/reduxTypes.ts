@@ -22,41 +22,34 @@ export type userStateType = {
   iat?: number;
   exp?: number;
   token?: string;
-  isFetching: boolean;
-  isError: boolean;
-  isSuccess: boolean;
-  errorMessage?: string;
-};
-
-export type pageSpeedStateType = {
-  T_M_AVG: number;
-  T_SH_AVG: number;
-  PS_M: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
-export type shop = {
-  _id: {
-    $oid: string;
-  };
-  shop: string;
-  __v: number;
-  domain: string;
-  domainPrefix: string;
-  isActive: true;
-  userId: string;
+export type pageSpeedStateType = {
+  AVG_LOADING_TIME_PAGE: number;
+  AVG_LOADING_TIME_MABLE_SCRIPT: number;
+  AVG_CONTRIBUTION_TIME_MABLE_SCRIPT: number;
+  status?: STATUS_TYPE;
+  errorMsg?: string;
 };
 
-export type dashboardStateType = {
-  shops?: shop[];
-  shop?: shop;
-  status: STATUS_TYPE;
+export type shopStateType = {
+  active?: { apiKey?: string; id?: number; name?: string };
+  shops: { apiKey?: string; id?: number; name?: string }[];
+  status?: STATUS_TYPE;
   errorMsg?: string;
+};
+
+export type datesStateType = {
   dateRange: Moment[];
-  warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
-  eventsPerDay: { date: string; value: number }[];
   datePreset?: string;
+};
+
+export type warningStateType = {
+  active: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
+  status?: STATUS_TYPE;
+  errorMsg?: string;
 };
 
 export type dataPerEventStateType = {
@@ -65,7 +58,7 @@ export type dataPerEventStateType = {
     attribution_quality?: number;
     event_quality?: number;
   }[];
-  dataContaindedPerEventDoughnutChart: {
+  dataContainedPerEventDoughnutChart: {
     backend: number;
     frontend: number;
     mableEngine: number;
@@ -75,43 +68,36 @@ export type dataPerEventStateType = {
   event: number;
   eventSelected: eventSelectedType;
   AttributionParameters: {
-    'User IP': number;
-    'User Agent': number;
-    Email: number;
-    Phone: number;
-    'First Name': number;
-    'Last Name': number;
-    'Date Of Birth': number;
-    State: number;
-    Country: number;
-    City: number;
-    'Zip Code': number;
-    Currency: number;
-    'Total Price': number;
-    'Order Id': number;
+    user_id?: number;
+    user_agent?: number;
+    customer_data_email?: number;
+    customer_data_first_name?: number;
+    customer_data_last_name?: number;
+    customer_data_phone?: number;
+    customer_data_date_of_birth?: number;
+    location_state?: number;
+    location_country_name?: number;
+    location_city?: number;
+    location_zip_code?: number;
+    clid_fbclid?: number;
+    external_ids?: number;
   };
   EventParameters: {
-    example1: number;
-    example2: number;
-    example3: number;
-    example4: number;
-    example5: number;
-    example6: number;
-    example7: number;
+    shopping_data_total_amount?: number;
+    shopping_data_currency?: number;
+    custom_data_order_id?: number;
   };
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
 export type dataQualityStateType = {
-  DQ_COM: number;
-  P_MDB: number;
-  P_SH: number;
-  dataQualityGrouped: { date: string; DQ_COM: number }[];
-  shopifyOrders: number;
+  TOTAL_DATA_QUALITY_FACEBOOK: number;
+  TOTAL_SHOPIFY_ORDERS: number;
+  FACEBOOK_SUCCESS_DELIVERED_ORDERS: number;
+  DATA_QUALITY_BY_DATE: { date: string; data_quality: number }[];
   ordersWithCorrectCV: number;
-  recievedByFB: number;
-  avgDelieveryTime: number;
+  avgDeliveryTime: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
@@ -123,33 +109,44 @@ export type eventsStateType = {
   errorMsg?: string;
 };
 
-export type funnelAnalysisStateType = {
+export type eventsDataStateType = {
   total_events: {
-    'Page View': number;
-    'Add to Cart': number;
-    'Initiate Checkout': number;
-    'Add Payment Info': number;
-    Purchase: number;
+    purchases: number;
+    add_payment_info: number;
+    intitate_checkout: number;
+    add_to_cart: number;
+    page_view: number;
   };
+  byDate: {
+    date: Moment;
+    purchases: number;
+    add_payment_info: number;
+    intitate_checkout: number;
+    add_to_cart: number;
+    page_view: number;
+  }[];
+  eventSelected: eventSelectedType;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
-export type generalStateType = {
-  screen: screenType;
+export type screenStateType = {
+  activeScreen: screenType;
 };
 
 export type orderAnalysisStateType = {
-  statuSelected: statusSelector;
+  statusSelected: statusSelector;
   tableData: {
-    id: number;
-    date: Moment;
+    order_id: number | null;
+    date: Moment | null;
     customer: string;
-    total: number;
-    cv: number;
-    eventParametersPresent: number;
-    attributionParametersPresent: number;
-    deliveryTime: number;
+    total_value: number | null;
+    conversion_value: number | null;
     status: string;
+    delivery_time: number | null;
+    evt_params_present: number | null;
+    attr_params_present: number | null;
   }[];
+  status: STATUS_TYPE;
+  errorMsg: string | undefined;
 };

@@ -12,7 +12,7 @@ import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 
 const App = () => {
-  const { screen } = useSelector((state) => state.general);
+  const { activeScreen } = useSelector((state) => state.screen);
   const theme = extendTheme({
     components: {
       Progress: {
@@ -33,11 +33,11 @@ const App = () => {
           path="/dashboard"
           element={
             <Layout>
-              {screen === 'Dashboard' && <Dashboard />}
-              {screen === 'Order Analysis' && <OrderAnalysis />}
-              {screen === 'Event Quality' && <EventQuality />}
-              {screen === 'Settings' && null}
-              {screen === 'Tutorial' && null}
+              {activeScreen === 'Dashboard' && <Dashboard />}
+              {activeScreen === 'Order Analysis' && <OrderAnalysis />}
+              {activeScreen === 'Event Quality' && <EventQuality />}
+              {/* {screen === 'Settings' && null}
+              {screen === 'Tutorial' && null} */}
             </Layout>
           }
         />

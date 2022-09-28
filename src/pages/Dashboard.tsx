@@ -1,4 +1,3 @@
-// importing the Dashboard components
 import {
   DataQuality,
   WarningCenter,

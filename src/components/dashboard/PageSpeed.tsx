@@ -1,29 +1,45 @@
+import { useEffect } from 'react';
+
 import { ComponentWrapper } from 'components/elements/common';
 
-import { useSelector } from 'redux/store';
+import { useSelector, useDispatch } from 'redux/store';
+import { pageSpeedAsync } from 'redux/reducers/pageSpeedSlice';
 
 const PageSpeed = () => {
-  const { T_M_AVG, T_SH_AVG, PS_M } = useSelector((state) => state.pageSpeed);
+  const dispatch = useDispatch();
+  const {
+    AVG_LOADING_TIME_PAGE,
+    AVG_LOADING_TIME_MABLE_SCRIPT,
+    AVG_CONTRIBUTION_TIME_MABLE_SCRIPT,
+    status
+  } = useSelector((state) => state.pageSpeed);
+  useEffect(() => {
+    if (status === 'idle') dispatch(pageSpeedAsync());
+  }, [status]);
   return (
-    <ComponentWrapper title="Page Speed" width={560}>
+    <ComponentWrapper title="Page Speed" width={560} className="flex-grow">
       <div className="flex flex-row justify-center pb-[10px]">
-        <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
+        <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {T_M_AVG >= 1000 ? T_M_AVG / 1000 : T_M_AVG}
-            <span className="text-[20px]">{T_M_AVG >= 1000 ? 's' : 'ms'}</span>
+            {AVG_LOADING_TIME_PAGE >= 1000 ? AVG_LOADING_TIME_PAGE / 1000 : AVG_LOADING_TIME_PAGE}
+            <span className="text-[20px]">{AVG_LOADING_TIME_PAGE >= 1000 ? 's' : 'ms'}</span>
           </div>
           <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
         </div>
-        <div className="border-r-2 border-lines/[0.15] min-w-[160px]">
+        <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {T_SH_AVG >= 1000 ? T_SH_AVG / 1000 : T_SH_AVG}
-            <span className="text-[20px]">{T_SH_AVG >= 1000 ? 's' : 'ms'}</span>
+            {AVG_LOADING_TIME_MABLE_SCRIPT >= 1000
+              ? AVG_LOADING_TIME_MABLE_SCRIPT / 1000
+              : AVG_LOADING_TIME_MABLE_SCRIPT}
+            <span className="text-[20px]">
+              {AVG_LOADING_TIME_MABLE_SCRIPT >= 1000 ? 's' : 'ms'}
+            </span>
           </div>
           <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
         </div>
-        <div className="min-w-[160px]">
+        <div className="min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {PS_M}
+            {AVG_CONTRIBUTION_TIME_MABLE_SCRIPT}
             <span className="text-[20px]">%</span>
           </div>
           <div className="text-primary text-center text-[14px]">Page Speed Share</div>

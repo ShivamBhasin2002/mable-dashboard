@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { ComponentWrapper, ViewFullReport } from 'components/elements/common';
 import {
   SelectorMenu,
@@ -6,9 +8,17 @@ import {
   ParameterComposition,
   BarChart
 } from 'components/elements/event';
-import { screenType } from 'utility/constants/general';
+import { eventSelectedType, screenType } from 'utility/constants/general';
+
+import { useSelector, useDispatch } from 'redux/store';
+import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataPerEventSlice';
 
 const DataContainedPerEvent = () => {
+  const dispatch = useDispatch();
+  const { status, eventSelected } = useSelector((state) => state.dataPerEvent);
+  useEffect(() => {
+    if (status === 'idle') dispatch(dataPerEventAsync());
+  }, [status]);
   return (
     <ComponentWrapper
       title="Data Contained Per Event"
@@ -16,7 +26,11 @@ const DataContainedPerEvent = () => {
       height={335}
       nextComponent={
         <div className="flex-grow px-4 flex justify-between gap-4">
-          <SelectorMenu />
+          <SelectorMenu
+            active={eventSelected}
+            onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
+          />
+
           <ViewFullReport screen={screenType.eventQuality} />
         </div>
       }

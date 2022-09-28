@@ -9,10 +9,11 @@ import { TextField, CheckBox } from 'components/elements/form';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { registerAsync, clearState } from 'redux/reducers/authSlice';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 const Register = () => {
   const toast = useToast();
-  const { isFetching, isError, isSuccess, errorMessage } = useSelector((state) => state.user);
+  const { status, errorMsg } = useSelector((state) => state.user);
   const navigator = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,16 +22,16 @@ const Register = () => {
     };
   }, []);
   useEffect(() => {
-    if (isError) {
+    if (status === STATUS_TYPE.ERROR) {
       toast({
-        title: errorMessage,
+        title: errorMsg,
         status: 'error',
         isClosable: true,
         position: 'top-right'
       });
       dispatch(clearState());
     }
-    if (isSuccess) {
+    if (status === STATUS_TYPE.SUCCESS) {
       toast({
         title: 'Registrations Successfull. Please check your mail.',
         status: 'success',
@@ -40,7 +41,7 @@ const Register = () => {
       dispatch(clearState());
       navigator('/login');
     }
-  }, [isError, isSuccess]);
+  }, [status]);
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">
@@ -127,7 +128,7 @@ const Register = () => {
                 type="submit"
                 className="p-3 font-montserrat font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 bg-primary hover:bg-primary/50 flex gap-4 justify-center items-center"
               >
-                {isFetching && <Spinner />}
+                {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Register
               </button>
             </form>
