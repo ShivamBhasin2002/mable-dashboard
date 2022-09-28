@@ -10,7 +10,7 @@ export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/data_quality`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/data_quality`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
           source_id: state.shop.active?.id,
