@@ -9,34 +9,33 @@ import { TextField, CheckBox } from 'components/elements/form';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { loginAsync, clearState } from 'redux/reducers/authSlice';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 const Login = () => {
   const toast = useToast();
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  const { isFetching, isError, isSuccess, errorMessage, email } = useSelector(
-    (state) => state.user
-  );
+  const { status, errorMsg, email } = useSelector((state) => state.user);
   useEffect(() => {
     return () => {
       dispatch(clearState());
     };
   }, []);
   useEffect(() => {
-    if (isError) {
+    if (status === STATUS_TYPE.ERROR) {
       toast({
-        title: errorMessage,
+        title: errorMsg,
         status: 'error',
         isClosable: true,
         position: 'top-right'
       });
       dispatch(clearState());
     }
-    if (isSuccess) {
+    if (status === STATUS_TYPE.SUCCESS) {
       dispatch(clearState());
       navigator('/dashboard');
     }
-  }, [isError, isSuccess]);
+  }, [status]);
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">
@@ -99,7 +98,7 @@ const Login = () => {
                 type="submit"
                 className="p-3 font-montserrat font-bold text-xl rounded-xl shadow-lg shadow-secondary/40 bg-primary hover:bg-primary/50 flex gap-4 justify-center items-center"
               >
-                {isFetching && <Spinner />}
+                {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Login
               </button>
             </form>

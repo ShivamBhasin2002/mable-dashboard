@@ -78,15 +78,15 @@ export const statusTypeColors = (status: string) => {
 
 export const getEventDisplayName = (event: string) => {
   switch (event) {
-    case 'total_purchases':
+    case 'purchases':
       return eventSelectedType.purchase;
-    case 'total_add_payment_info':
+    case 'add_payment_info':
       return eventSelectedType.addPaymentInfo;
-    case 'total_intitate_checkout':
+    case 'intitate_checkout':
       return eventSelectedType.intitateCheckout;
-    case 'total_add_to_cart':
+    case 'add_to_cart':
       return eventSelectedType.addToCart;
-    case 'total_page_view':
+    case 'page_view':
       return eventSelectedType.pageView;
   }
 };

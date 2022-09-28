@@ -7,15 +7,15 @@ import { STATUS_TYPE } from 'utility/constants/general';
 
 export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
   'events/fetch',
-  async (temp, { rejectWithValue, getState }) => {
+  async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
       const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/data_quality`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
-          shop: state.dashboard.shop?.shop,
-          start_date: state.dashboard.dateRange[0],
-          end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
+          source_id: state.shop.active?.id,
+          start_date: state.dates.dateRange[0],
+          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
         }
       });
       if (data) {

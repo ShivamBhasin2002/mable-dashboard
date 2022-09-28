@@ -8,7 +8,7 @@ import { STATUS_TYPE } from 'utility/constants/general';
 // eslint-disable-next-line
 export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
   'dataPerEvent/fetch',
-  async (temp, { rejectWithValue, getState }) => {
+  async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
       const data = { AttributionParameters: {}, EventParameters: {}, attribution: 0, event: 0 };
@@ -17,9 +17,9 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         {
           headers: { Authorization: `Token ${state.user.token}` },
           params: {
-            source_id: state.dashboard.shop?.source_id,
-            start_date: state.dashboard.dateRange[0],
-            end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
+            source_id: state.shop.active?.id,
+            start_date: state.dates.dateRange[0],
+            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
           }
         }
       );
@@ -28,9 +28,9 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         {
           headers: { Authorization: `Token ${state.user.token}` },
           params: {
-            source_id: state.dashboard.shop?.source_id,
-            start_date: state.dashboard.dateRange[0],
-            end_date: state.dashboard.dateRange[state.dashboard.dateRange.length - 1]
+            source_id: state.shop.active?.id,
+            start_date: state.dates.dateRange[0],
+            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
           }
         }
       );

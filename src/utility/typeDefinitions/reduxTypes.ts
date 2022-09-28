@@ -22,10 +22,8 @@ export type userStateType = {
   iat?: number;
   exp?: number;
   token?: string;
-  isFetching: boolean;
-  isError: boolean;
-  isSuccess: boolean;
-  errorMessage?: string;
+  status?: STATUS_TYPE;
+  errorMsg?: string;
 };
 
 export type pageSpeedStateType = {
@@ -36,27 +34,22 @@ export type pageSpeedStateType = {
   errorMsg?: string;
 };
 
-export type shop = {
-  _id: {
-    $oid: string;
-  };
-  shop: string;
-  __v: number;
-  domain: string;
-  domainPrefix: string;
-  isActive: true;
-  userId: string;
-  source_id: number;
+export type shopStateType = {
+  active?: { apiKey?: string; id?: number; name?: string };
+  shops: { apiKey?: string; id?: number; name?: string }[];
+  status?: STATUS_TYPE;
+  errorMsg?: string;
 };
 
-export type dashboardStateType = {
-  shops?: shop[];
-  shop?: shop;
-  status: STATUS_TYPE;
-  errorMsg?: string;
+export type datesStateType = {
   dateRange: Moment[];
-  warnings: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
   datePreset?: string;
+};
+
+export type warningStateType = {
+  active: { type: 'info' | 'warning' | 'error'; message: string; time: string }[];
+  status?: STATUS_TYPE;
+  errorMsg?: string;
 };
 
 export type dataPerEventStateType = {
@@ -118,26 +111,26 @@ export type eventsStateType = {
 
 export type funnelAnalysisStateType = {
   total_events: {
-    total_purchases: number;
-    total_add_payment_info: number;
-    total_intitate_checkout: number;
-    total_add_to_cart: number;
-    total_page_view: number;
+    purchases: number;
+    add_payment_info: number;
+    intitate_checkout: number;
+    add_to_cart: number;
+    page_view: number;
   };
   byDate: {
     date: Moment;
-    total_purchases: number;
-    total_add_payment_info: number;
-    total_intitate_checkout: number;
-    total_add_to_cart: number;
-    total_page_view: number;
+    purchases: number;
+    add_payment_info: number;
+    intitate_checkout: number;
+    add_to_cart: number;
+    page_view: number;
   }[];
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
-export type generalStateType = {
-  screen: screenType;
+export type screenStateType = {
+  activeScreen: screenType;
 };
 
 export type orderAnalysisStateType = {

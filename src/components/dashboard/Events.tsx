@@ -5,7 +5,7 @@ import { useSelector } from 'redux/store';
 const Events = () => {
   const { N_Total, AVG_T_DIFF } = useSelector((state) => state.events);
   return (
-    <ComponentWrapper title="Events" width={330} className="!px-[20px]">
+    <ComponentWrapper title="Events" width={330} className="!px-[20px] flex-grow">
       <div className="flex flex-row justify-center pb-[10px]">
         <div className="border-r-2 border-lines/[0.15] min-w-[125px] pr-6 flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px] ">

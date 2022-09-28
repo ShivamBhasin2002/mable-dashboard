@@ -17,13 +17,14 @@ import colors from 'utility/colors';
 import DatePicker from 'components/elements/common/DatePicker';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { setShop } from 'redux/reducers/dashboardSlice';
+import { setShop } from 'redux/reducers/shopSlice';
 
 const DashboardHeader = () => {
   const datePickerRef = useRef<any>(); //eslint-disable-line
   const dispatch = useDispatch();
-  const { shop, shops, dateRange, datePreset } = useSelector((state) => state.dashboard);
-  const { screen } = useSelector((state) => state.general);
+  const { dateRange, datePreset } = useSelector((state) => state.dates);
+  const { active, shops } = useSelector((state) => state.shop);
+  const { activeScreen } = useSelector((state) => state.screen);
   const { onClose, onOpen, isOpen } = useDisclosure();
   useOutsideClick({ ref: datePickerRef, handler: onClose });
   useEffect(() => {
@@ -37,7 +38,7 @@ const DashboardHeader = () => {
           <MenuButton>
             <div className="p-[20px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[55px] w-min rounded-xl flex flex-row items-center justify-evenly text-light gap-3">
               <span className="h-[10px] w-[10px] bg-success rounded-full" />
-              {shop?.shop}
+              {active?.name}
               <Icon icon="dropdown" />
             </div>
           </MenuButton>
@@ -45,11 +46,11 @@ const DashboardHeader = () => {
             <MenuList background={colors.bgContainerTo} textColor={colors.light} border="none">
               {shops
                 ?.filter((thisShop) => {
-                  if (thisShop._id.$oid !== shop?._id.$oid) return thisShop;
+                  if (thisShop.id !== active?.id) return thisShop;
                 })
                 .map((shop) => (
                   <MenuItem
-                    key={shop._id.$oid}
+                    key={shop.id}
                     _hover={{ background: colors.bgContainerFrom }}
                     _active={{ background: colors.bgContainerFrom }}
                     _focus={{ background: colors.bgContainerFrom }}
@@ -57,7 +58,7 @@ const DashboardHeader = () => {
                       dispatch(setShop(shop));
                     }}
                   >
-                    {shop.shop}
+                    {shop.name}
                   </MenuItem>
                 ))}
             </MenuList>
@@ -66,7 +67,7 @@ const DashboardHeader = () => {
       </div>
       <div className="flex justify-between items-center h-[45px]">
         <h1 className="text-bgPrimary-dark text-[42px] text-light font-montserrat font-bold relative top-[-16px]">
-          {screen}
+          {activeScreen}
         </h1>
         <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
           <span className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl">

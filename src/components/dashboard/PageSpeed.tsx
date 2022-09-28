@@ -17,7 +17,7 @@ const PageSpeed = () => {
     if (status === 'idle') dispatch(pageSpeedAsync());
   }, [status]);
   return (
-    <ComponentWrapper title="Page Speed" width={560}>
+    <ComponentWrapper title="Page Speed" width={560} className="flex-grow">
       <div className="flex flex-row justify-center pb-[10px]">
         <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">

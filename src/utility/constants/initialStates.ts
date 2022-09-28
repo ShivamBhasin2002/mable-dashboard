@@ -1,13 +1,15 @@
 import {
-  dashboardStateType,
+  datesStateType,
   dataPerEventStateType,
   dataQualityStateType,
   eventsStateType,
   funnelAnalysisStateType,
-  generalStateType,
+  screenStateType,
   pageSpeedStateType,
   userStateType,
-  orderAnalysisStateType
+  orderAnalysisStateType,
+  shopStateType,
+  warningStateType
 } from 'utility/typeDefinitions/reduxTypes';
 import { STATUS_TYPE, screenType, statusSelector } from './general';
 import moment from 'moment';
@@ -21,23 +23,25 @@ export const userInitialState: userStateType = {
   iat: undefined,
   exp: undefined,
   token: localStorage.getItem('token') || undefined,
-  isFetching: false,
-  isError: false,
-  isSuccess: false,
-  errorMessage: undefined
+  status: STATUS_TYPE.IDLE,
+  errorMsg: undefined
 };
 
-export const dashboardInitialState: dashboardStateType = {
+export const shopInitialState: shopStateType = {
+  active: undefined,
   shops: [],
-  shop: undefined,
   status: STATUS_TYPE.IDLE,
-  errorMsg: undefined,
-  dateRange: [moment('2022-08-01'), moment('2022-08-31')],
-  warnings: [
-    { type: 'error', message: 'Facebook API not Responding', time: '2h' },
-    { type: 'warning', message: 'Unusually low number of Add to Cart Events', time: '3d' },
-    { type: 'info', message: 'Deployed successfully', time: '3d' }
-  ]
+  errorMsg: undefined
+};
+
+export const datesInitialState: datesStateType = {
+  dateRange: [moment('2022-08-01'), moment('2022-08-31')]
+};
+
+export const warningInitialState: warningStateType = {
+  active: [],
+  status: STATUS_TYPE.IDLE,
+  errorMsg: undefined
 };
 
 export const dataPerEventsInitialState: dataPerEventStateType = {
@@ -92,18 +96,18 @@ export const eventsInitialState: eventsStateType = {
 
 export const funnelAnalysisInitialState: funnelAnalysisStateType = {
   total_events: {
-    total_purchases: 0,
-    total_add_payment_info: 0,
-    total_intitate_checkout: 0,
-    total_add_to_cart: 0,
-    total_page_view: 0
+    purchases: 0,
+    add_payment_info: 0,
+    intitate_checkout: 0,
+    add_to_cart: 0,
+    page_view: 0
   },
   byDate: [],
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
-export const generalInitialState: generalStateType = { screen: screenType.dashboard };
+export const screenInitialState: screenStateType = { activeScreen: screenType.dashboard };
 
 export const pageSpeedInitialState: pageSpeedStateType = {
   AVG_LOADING_TIME_PAGE: 0,

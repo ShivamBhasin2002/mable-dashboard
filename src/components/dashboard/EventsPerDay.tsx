@@ -31,11 +31,11 @@ const EventsPerDay = () => {
           fill: true,
           data: byDate.map(
             (item) =>
-              item.total_purchases ??
-              0 + item.total_page_view ??
-              0 + item.total_intitate_checkout ??
-              0 + item.total_add_to_cart ??
-              0 + item.total_add_payment_info ??
+              item.purchases ??
+              0 + item.page_view ??
+              0 + item.intitate_checkout ??
+              0 + item.add_to_cart ??
+              0 + item.add_payment_info ??
               0
           ),
           datalabels: {
@@ -49,7 +49,7 @@ const EventsPerDay = () => {
     if (status === 'idle') dispatch(funnelAnalysisAsync());
   }, [status]);
   return (
-    <ComponentWrapper title="Events Per Day" width={600} height={250} className="flex-grow">
+    <ComponentWrapper title="Events Per Day" width={600}>
       <div>
         <Line
           options={{
