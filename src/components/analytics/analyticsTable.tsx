@@ -34,11 +34,6 @@ const AnalyticsTable = () => {
               );
             }
           })}
-          {/* {analyticData.PageView ? <td className="bg-primary">Page View</td> : null}
-          {analyticData.AddToCart ? <td className="bg-primary">Add to Cart</td> : null}
-          {analyticData.InitiateCheckout ? <td className="bg-primary">Initiate Checkout</td> : null}
-          {analyticData.AddPaymentInfo ? <td className="bg-primary">Payment Info</td> : null}
-          {analyticData.Purchase ? <td className="bg-primary">Purchase</td> : null} */}
         </tr>
       </thead>
       <tbody className="last-of:rounded-b-[10px]">
