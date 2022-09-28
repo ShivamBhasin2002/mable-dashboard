@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Moment } from 'moment';
 import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
 import 'react-dates/initialize';
 import 'assets/styles/datePicker.css';
 
 import { ComponentWrapper } from 'components/elements/common';
 
 import { useDispatch, useSelector } from 'redux/store';
-import { setDates, setPreset } from 'redux/reducers/dashboardSlice';
+import { setDates, setPreset } from 'redux/reducers/datesSlice';
 
 import { presetsToDateRange } from 'utility/functions';
 import { DatePickerPresets } from 'utility/constants/general';
@@ -15,7 +16,7 @@ import { datePickerProps } from 'utility/typeDefinitions/componentTypes';
 
 const DatePicker = ({ close, isOpen }: datePickerProps) => {
   const dispatch = useDispatch();
-  const { dateRange, datePreset } = useSelector((state) => state.dashboard);
+  const { dateRange, datePreset } = useSelector((state) => state.dates);
   const [focusedInput, setFocusedInput] = useState<any>('startDate'); //eslint-disable-line
   const [selectedDateRange, setSelectedDateRange] = useState<(Moment | null)[]>(dateRange);
   const [selectedPreset, setSelectedPreset] = useState<string | undefined>(datePreset);
@@ -32,6 +33,7 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
     >
       <div className="flex-grow flex flex-col justify-between">
         <DateRangePicker
+          maxDate={moment()}
           startDate={selectedDateRange[0]}
           endDate={selectedDateRange[1]}
           startDateId="startDateIdentifier"

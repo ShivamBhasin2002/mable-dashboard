@@ -1,23 +1,17 @@
-import { useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
-import { useSelector, useDispatch } from 'redux/store';
-import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
+import { useSelector } from 'redux/store';
 
 import { getColor, getMessage } from 'utility/functions';
 import colors from 'utility/colors';
 
 const QualityCombined = () => {
-  const dispatch = useDispatch();
-  const { DQ_COM, status } = useSelector((state) => state.dataQuality);
-  useEffect(() => {
-    if (status === 'idle') dispatch(dataQualityAsync());
-  });
+  const { TOTAL_DATA_QUALITY_FACEBOOK } = useSelector((state) => state.dataQuality);
   const doughnutData = {
       datasets: [
         {
-          data: [DQ_COM * 100, (1 - DQ_COM) * 100],
-          backgroundColor: [getColor(DQ_COM), `${colors.lines}40`],
+          data: [TOTAL_DATA_QUALITY_FACEBOOK, 100 - TOTAL_DATA_QUALITY_FACEBOOK],
+          backgroundColor: [getColor(TOTAL_DATA_QUALITY_FACEBOOK), `${colors.lines}40`],
           borderColor: colors.transparent,
           datalabels: {
             display: false
@@ -35,7 +29,8 @@ const QualityCombined = () => {
       },
       cutout: 32,
       rotation: 10 * Math.PI,
-      borderRadius: [20, 0]
+      borderRadius: [20, 0],
+      value: TOTAL_DATA_QUALITY_FACEBOOK
     },
     doughnutPlugins = [
       {
@@ -48,8 +43,8 @@ const QualityCombined = () => {
           ctx.restore();
           ctx.font = '25px lato';
           ctx.textBaseline = 'middle';
-          ctx.fillStyle = getColor(DQ_COM);
-          const text = `${DQ_COM * 100}%`,
+          ctx.fillStyle = getColor(chart.config.options.value);
+          const text = `${chart.config.options.value}%`,
             textX = Math.round((width - ctx.measureText(text).width) / 2),
             textY = height / 2;
           ctx.fillText(text, textX, textY);
@@ -60,19 +55,6 @@ const QualityCombined = () => {
 
   return (
     <div className="flex flex-row gap-4 items-center text-primary">
-      {/* <CircularProgress
-        value={DQ_COM * 100}
-        color={getColor(DQ_COM)}
-        size="84px"
-        trackColor="#7F8C9F40"
-        capIsRound
-        max={100}
-        min={0}
-      >
-        <CircularProgressLabel className={`font-lato text-[30px] text-[${getColor(DQ_COM)}]`}>
-          {DQ_COM * 100} %
-        </CircularProgressLabel>
-      </CircularProgress> */}
       <div>
         <Doughnut
           id="doughnut"
@@ -85,7 +67,7 @@ const QualityCombined = () => {
       <div className="flex flex-col">
         <span className="text-[14px] font-lato text-light font-bold">Quality Combined</span>
         <span className="text-[26px] font-montserrat font-bold text-primary h-[34px]">
-          {getMessage(DQ_COM)}
+          {getMessage(TOTAL_DATA_QUALITY_FACEBOOK)}
         </span>
       </div>
     </div>

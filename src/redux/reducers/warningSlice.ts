@@ -2,15 +2,16 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
-import { eventsInitialState } from 'utility/constants/initialStates';
+import { warningInitialState } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/general';
 
-export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
-  'events/fetch',
+// eslint-disable-next-line
+export const warningAsync = createAsyncThunk<any, void, thunkOptions>(
+  'warning/fetch',
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/data_quality`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/data-quality`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
           source_id: state.shop.active?.id,
@@ -18,9 +19,7 @@ export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
           end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
         }
       });
-      if (data) {
-        return data;
-      }
+      if (data) return data;
       rejectWithValue('Data not found');
     } catch (error) {
       rejectWithValue('Data not found');
@@ -28,17 +27,17 @@ export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
   }
 );
 
-export const eventsReducer = createReducer(eventsInitialState, (builder) => {
+export const warningReducer = createReducer(warningInitialState, (builder) => {
   builder
-    .addCase(eventsAsync.pending, (state) => {
+    .addCase(warningAsync.pending, (state) => {
       state.status = STATUS_TYPE.FETCHING;
     })
-    .addCase(eventsAsync.fulfilled, (state) => {
+    .addCase(warningAsync.fulfilled, (state) => {
       state.status = STATUS_TYPE.SUCCESS;
     })
-    .addCase(eventsAsync.rejected, (state) => {
+    .addCase(warningAsync.rejected, (state) => {
       state.status = STATUS_TYPE.ERROR;
     });
 });
 
-export default eventsReducer;
+export default warningReducer;

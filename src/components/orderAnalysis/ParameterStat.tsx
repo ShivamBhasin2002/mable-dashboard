@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 interface ParameterStatProps {
   name: string;
-  value: number;
+  value?: number;
 }
 
 const ParameterStat: FC<ParameterStatProps> = ({ name, value }) => {
@@ -11,10 +11,10 @@ const ParameterStat: FC<ParameterStatProps> = ({ name, value }) => {
       {name}
       <span className="flex gap-[20px] text-[20px] items-center flex-grow max-w-[230px]">
         <div className="h-[25px] flex-grow border-[1px] border-[#667183] bg-secondary/[0.3] rounded-[5px] min-w-[120px]">
-          <div className={`h-full w-[${value * 100}%] bg-success`} />
+          <div className={`h-full w-[${value ?? 0 * 100}%] bg-success`} />
         </div>
         <div>
-          <span className="font-semibold">{value * 100}</span>
+          <span className="font-semibold">{value ?? 0 * 100}</span>
           <span className="text-[16px]">%</span>
         </div>
       </span>

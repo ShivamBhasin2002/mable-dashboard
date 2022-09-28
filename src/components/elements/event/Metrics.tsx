@@ -1,5 +1,5 @@
 import { useSelector } from 'redux/store';
-import { totalEvents, totatlAttributions } from 'utility/constants/general';
+import { totalEvents, totalAttributions } from 'utility/constants/general';
 
 const Metrics = () => {
   const { attribution, event } = useSelector((state) => state.dataPerEvent);
@@ -11,7 +11,7 @@ const Metrics = () => {
           <div className=" text-[30px] leading-[34px] font-lato text-center text-light">
             {attribution}
           </div>
-          <span className="text-[14px] text-light/[.41]">/ {totatlAttributions}</span>
+          <span className="text-[14px] text-light/[.41]">/ {totalAttributions}</span>
         </div>
         <div className="text-primary text-center text-[13px] whitespace-nowrap">
           Attribution Parameters

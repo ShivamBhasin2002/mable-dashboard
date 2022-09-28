@@ -1,18 +1,18 @@
 import Icon from 'assets/icons';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { setScreen } from 'redux/reducers/generalSlice';
+import { setScreen } from 'redux/reducers/screenSlice';
 
 import { ViewFullReportProps } from 'utility/typeDefinitions/componentTypes';
 
 const ViewFullReport = ({ screen }: ViewFullReportProps) => {
   const dispatch = useDispatch();
-  const currScreen = useSelector((state) => state.general.screen);
+  const { activeScreen } = useSelector((state) => state.screen);
   return (
     <div
       className="text-[13px] flex items-center gap-[10px] cursor-pointer text-lines whitespace-nowrap"
       onClick={() => {
-        if (currScreen !== screen) dispatch(setScreen(screen));
+        if (activeScreen !== screen) dispatch(setScreen(screen));
       }}
     >
       View Full Report <Icon icon="next" size="1.2rem" />

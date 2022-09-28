@@ -8,6 +8,9 @@
   left: 180px !important;
   top: -22px;
 }
+#endDateIdentifier {
+  color: #fff !important;
+}
 .CalendarMonthGrid {
   width: 620px !important;
 }
@@ -394,7 +397,7 @@
   width: 97px;
 }
 .DateInput_input {
-  font-weight: 200;
+  font-weight: 500;
   font-size: 19px;
   line-height: 24px;
   color: #fff;

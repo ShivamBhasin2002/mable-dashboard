@@ -8,28 +8,32 @@ import thunk, { ThunkMiddleware } from 'redux-thunk';
 import type {} from 'redux-thunk/extend-redux';
 
 import userSlice from 'redux/reducers/authSlice';
-import dashboardSlice from 'redux/reducers/dashboardSlice';
-import generalSlice from 'redux/reducers/generalSlice';
+import datesSlice from 'redux/reducers/datesSlice';
+import screenSlice from 'redux/reducers/screenSlice';
 import dataQualityReducer from './reducers/dataQualitySlice';
 import pageSpeedReducer from './reducers/pageSpeedSlice';
 import eventsReducer from './reducers/eventSlice';
-import funnelAnalysisReducer from './reducers/funnelAnalysis';
+import funnelAnalysisReducer from './reducers/eventsDataSlice';
 import dataPerEventSlice from './reducers/dataPerEventSlice';
 import orderAnalysisSlice from './reducers/orderAnalysisSlice';
 import analyticsReducer from './reducers/analyticsSlice';
+import shopSlice from './reducers/shopSlice';
+import warningSlice from './reducers/warningSlice';
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
-    dashboard: dashboardSlice,
-    general: generalSlice,
+    dates: datesSlice,
+    screen: screenSlice,
     dataQuality: dataQualityReducer,
     pageSpeed: pageSpeedReducer,
     events: eventsReducer,
-    funnelAnalysis: funnelAnalysisReducer,
+    eventsData: funnelAnalysisReducer,
     dataPerEvent: dataPerEventSlice,
     orderAnalysis: orderAnalysisSlice,
-    analytics: analyticsReducer
+    analytics: analyticsReducer,
+    shop: shopSlice,
+    warnings: warningSlice
   },
   middleware: [thunk as ThunkMiddleware]
 });

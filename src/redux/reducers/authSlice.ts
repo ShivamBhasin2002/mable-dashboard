@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions, userStateType } from 'utility/typeDefinitions/reduxTypes';
 import { userInitialState } from 'utility/constants/initialStates';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 export const loginAsync = createAsyncThunk<
   string,
@@ -74,48 +75,40 @@ export const userSlice = createSlice({
       return state;
     },
     clearState: (state) => {
-      state.isError = false;
-      state.isSuccess = false;
-      state.isFetching = false;
-      state.errorMessage = undefined;
+      state.status = STATUS_TYPE.IDLE;
       return state;
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(registerAsync.pending, (state) => {
-        state.isFetching = true;
+        state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(registerAsync.fulfilled, (state, { payload }) => {
-        state.isFetching = false;
-        state.isSuccess = true;
+        state.status = STATUS_TYPE.SUCCESS;
         state.userId = payload.userId;
         state.email = payload.email;
       })
       .addCase(registerAsync.rejected, (state, { payload }) => {
-        state.isFetching = false;
-        state.isError = true;
-        state.errorMessage = payload;
+        state.status = STATUS_TYPE.ERROR;
+        state.errorMsg = payload;
       })
       .addCase(loginAsync.pending, (state) => {
-        state.isFetching = true;
+        state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(loginAsync.fulfilled, (state, { payload }) => {
-        state.isFetching = false;
-        state.isSuccess = true;
+        state.status = STATUS_TYPE.SUCCESS;
         state.token = payload;
       })
       .addCase(loginAsync.rejected, (state, { payload }) => {
-        state.isFetching = false;
-        state.isError = true;
-        state.errorMessage = payload;
+        state.status = STATUS_TYPE.ERROR;
+        state.errorMsg = payload;
       })
       .addCase(isAuthenticatedAsync.pending, (state) => {
-        state.isFetching = true;
+        state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(isAuthenticatedAsync.fulfilled, (state, { payload }) => {
-        state.isFetching = false;
-        state.isSuccess = true;
+        state.status = STATUS_TYPE.SUCCESS;
         state.userId = payload.userId;
         state.firstName = payload.firstName;
         state.lastName = payload.lastName;
@@ -123,9 +116,8 @@ export const userSlice = createSlice({
         state.exp = payload.exp;
       })
       .addCase(isAuthenticatedAsync.rejected, (state, { payload }) => {
-        state.isFetching = false;
-        state.isError = true;
-        state.errorMessage = payload;
+        state.status = STATUS_TYPE.ERROR;
+        state.errorMsg = payload;
       });
   }
 });

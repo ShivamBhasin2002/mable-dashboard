@@ -7,10 +7,11 @@ import DashboardHeader from 'components/dashboard/Header';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
-import { fetchShopAsync, clearStatus } from 'redux/reducers/dashboardSlice';
-import Loading from 'components/elements/common/Loading';
+import { shopAsync } from 'redux/reducers/shopSlice';
 
+import Loading from 'components/elements/common/Loading';
 import { LayoutProps } from 'utility/typeDefinitions/componentTypes';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
@@ -23,20 +24,20 @@ const Layout = ({ children }: LayoutProps) => {
   }, []);
 
   // destructuring the parameters of user state required from the global state
-  const { isError, isFetching, isSuccess, token } = useSelector((state) => state.user);
+  const { status } = useSelector((state) => state.user);
   useEffect(() => {
-    if (isError) {
+    if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
       toast({ title: 'Login Required', status: 'error', isClosable: true, position: 'top-right' });
       navigator('/login');
     }
-    if (isSuccess) {
-      dispatch(fetchShopAsync(token));
+    if (status === STATUS_TYPE.SUCCESS) {
+      dispatch(shopAsync());
     }
-  }, [isError, isSuccess]);
+  }, [status]);
 
   //
-  const { status, errorMsg } = useSelector((state) => state.dashboard);
+  const { status: shopStatus, errorMsg } = useSelector((state) => state.shop);
   useEffect(() => {
     if (status === 'error') {
       toast({
@@ -45,11 +46,10 @@ const Layout = ({ children }: LayoutProps) => {
         isClosable: true,
         position: 'top-right'
       });
-      clearStatus();
     }
-  }, [status]);
+  }, [shopStatus, status]);
 
-  return isFetching ? (
+  return shopStatus === STATUS_TYPE.FETCHING || shopStatus === STATUS_TYPE.IDLE ? (
     <Loading />
   ) : (
     <div className="bg-background flex justify-around">

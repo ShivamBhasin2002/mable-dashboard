@@ -1,17 +1,17 @@
 import { useSelector } from 'redux/store';
-import { dataEventLables } from 'utility/constants/general';
+import { dataEventLabels } from 'utility/constants/general';
 
 const ParameterComposition = () => {
-  const data = useSelector((state) => state.dataPerEvent.dataContaindedPerEventDoughnutChart);
+  const data = useSelector((state) => state.dataPerEvent.dataContainedPerEventDoughnutChart);
   return (
     <div className="flex flex-col flex-grow text-[14px] justify-center gap-2">
       {[
-        { color: 'bg-darkBlue', name: dataEventLables.backend, value: data.backend },
-        { color: 'bg-lightBlue', name: dataEventLables.frontend, value: data.frontend },
-        { color: 'bg-light', name: dataEventLables.mableEngine, value: data.mableEngine },
+        { color: 'bg-darkBlue', name: dataEventLabels.backend, value: data.backend },
+        { color: 'bg-lightBlue', name: dataEventLabels.frontend, value: data.frontend },
+        { color: 'bg-light', name: dataEventLabels.mableEngine, value: data.mableEngine },
         {
           border: 'border-light border-[2px]',
-          name: dataEventLables.unavailable,
+          name: dataEventLabels.unavailable,
           value: data.unavailable
         }
       ].map((stats, i) => (
