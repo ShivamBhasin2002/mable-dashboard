@@ -84,7 +84,7 @@ const Analytics = () => {
     useBom: true,
     useKeysAsHeaders: false,
     headers: header 
-  };
+  ;
 
   const csvExporter = new ExportToCsv(options);
   
