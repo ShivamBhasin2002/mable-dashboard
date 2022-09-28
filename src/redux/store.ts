@@ -13,7 +13,7 @@ import screenSlice from 'redux/reducers/screenSlice';
 import dataQualityReducer from './reducers/dataQualitySlice';
 import pageSpeedReducer from './reducers/pageSpeedSlice';
 import eventsReducer from './reducers/eventSlice';
-import funnelAnalysisReducer from './reducers/funnelAnalysisSlice';
+import funnelAnalysisReducer from './reducers/eventsDataSlice';
 import dataPerEventSlice from './reducers/dataPerEventSlice';
 import orderAnalysisSlice from './reducers/orderAnalysisSlice';
 import shopSlice from './reducers/shopSlice';
@@ -27,7 +27,7 @@ export const store = configureStore({
     dataQuality: dataQualityReducer,
     pageSpeed: pageSpeedReducer,
     events: eventsReducer,
-    funnelAnalysis: funnelAnalysisReducer,
+    eventsData: funnelAnalysisReducer,
     dataPerEvent: dataPerEventSlice,
     orderAnalysis: orderAnalysisSlice,
     shop: shopSlice,

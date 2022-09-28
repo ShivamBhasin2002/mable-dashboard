@@ -8,11 +8,13 @@ import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { funnelAnalysisAsync } from 'redux/reducers/funnelAnalysisSlice';
+import { eventsDataAsync, setEventSelected } from 'redux/reducers/eventsDataSlice';
+import { eventSelectedType } from 'utility/constants/general';
+import { SelectorMenu } from 'components/elements/event';
 
 const EventsPerDay = () => {
   const dispatch = useDispatch();
-  const { byDate, status } = useSelector((state) => state.funnelAnalysis);
+  const { byDate, status, eventSelected } = useSelector((state) => state.eventsData);
   const chart = useRef<any>(null); // eslint-disable-line
   const [charData, setCharData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
@@ -46,10 +48,19 @@ const EventsPerDay = () => {
     });
   }, [status]);
   useEffect(() => {
-    if (status === 'idle') dispatch(funnelAnalysisAsync());
+    if (status === 'idle') dispatch(eventsDataAsync());
   }, [status]);
   return (
-    <ComponentWrapper title="Events Per Day" width={600}>
+    <ComponentWrapper
+      title="Events Per Day"
+      width={600}
+      nextComponent={
+        <SelectorMenu
+          active={eventSelected}
+          onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
+        />
+      }
+    >
       <div>
         <Line
           options={{

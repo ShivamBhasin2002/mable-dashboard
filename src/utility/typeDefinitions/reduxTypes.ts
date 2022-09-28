@@ -109,7 +109,7 @@ export type eventsStateType = {
   errorMsg?: string;
 };
 
-export type funnelAnalysisStateType = {
+export type eventsDataStateType = {
   total_events: {
     purchases: number;
     add_payment_info: number;
@@ -125,6 +125,7 @@ export type funnelAnalysisStateType = {
     add_to_cart: number;
     page_view: number;
   }[];
+  eventSelected: eventSelectedType;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };

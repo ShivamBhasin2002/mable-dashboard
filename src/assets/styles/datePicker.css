@@ -1,4 +1,4 @@
-e.DateRangePickerInput_arrow {
+.DateRangePickerInput_arrow {
   position: absolute;
   top: 18px !important;
   left: 280px !important;
@@ -397,7 +397,7 @@ e.DateRangePickerInput_arrow {
   width: 97px;
 }
 .DateInput_input {
-  font-weight: 200;
+  font-weight: 500;
   font-size: 19px;
   line-height: 24px;
   color: #fff;

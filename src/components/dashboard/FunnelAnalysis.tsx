@@ -4,19 +4,19 @@ import { Bar } from 'react-chartjs-2';
 import { ComponentWrapper } from 'components/elements/common';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { funnelAnalysisAsync } from 'redux/reducers/funnelAnalysisSlice';
+import { eventsDataAsync } from 'redux/reducers/eventsDataSlice';
 
 import { createGradient, getEventDisplayName } from 'utility/functions';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 
-const FunnelAnalysis = () => {
+const eventsData = () => {
   const dispatch = useDispatch();
-  const { total_events, status } = useSelector((state) => state.funnelAnalysis);
+  const { total_events, status } = useSelector((state) => state.eventsData);
   const chart = useRef<any>(null); //eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); //eslint-disable-line
   useEffect(() => {
-    if (status === 'idle') dispatch(funnelAnalysisAsync());
+    if (status === 'idle') dispatch(eventsDataAsync());
   }, [status]);
   useEffect(() => {
     if (chart.current) {
@@ -91,4 +91,4 @@ const FunnelAnalysis = () => {
   );
 };
 
-export default FunnelAnalysis;
+export default eventsData;

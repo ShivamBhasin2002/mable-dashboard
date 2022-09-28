@@ -8,13 +8,28 @@ import {
 } from 'components/elements/event';
 import { ParameterStat } from 'components/orderAnalysis';
 
-import { useSelector } from 'redux/store';
+import { useSelector, useDispatch } from 'redux/store';
+import { setEventSelected } from 'redux/reducers/dataPerEventSlice';
+
+import { eventSelectedType } from 'utility/constants/general';
 
 const EventQuality = () => {
-  const { AttributionParameters, EventParameters } = useSelector((state) => state.dataPerEvent);
+  const dispatch = useDispatch();
+  const { AttributionParameters, EventParameters, eventSelected } = useSelector(
+    (state) => state.dataPerEvent
+  );
   return (
     <div className="flex flex-col flex-grow mt-[40px] gap-[40px]">
-      <ComponentWrapper nextComponent={<SelectorMenu />} height={400} className="flex-grow-0">
+      <ComponentWrapper
+        nextComponent={
+          <SelectorMenu
+            active={eventSelected}
+            onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
+          />
+        }
+        height={400}
+        className="flex-grow-0"
+      >
         <div className="flex items-center justify-evenly mr-8 mt-5 flex-wrap gap-[40px]">
           <Metrics />
           <div className="flex-grow">

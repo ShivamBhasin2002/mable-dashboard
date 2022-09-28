@@ -3,13 +3,15 @@ import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import colors from 'utility/colors';
 import Icon from 'assets/icons';
 
-import { useDispatch, useSelector } from 'redux/store';
-import { setEventSelected } from 'redux/reducers/dataPerEventSlice';
 import { eventSelectedType } from 'utility/constants/general';
 
-const SelectorMenu = () => {
-  const dispatch = useDispatch();
-  const { eventSelected } = useSelector((state) => state.dataPerEvent);
+const SelectorMenu = ({
+  active,
+  onChange
+}: {
+  active: eventSelectedType;
+  onChange: (item: eventSelectedType) => void;
+}) => {
   return (
     <Menu gutter={0} isLazy>
       <MenuButton
@@ -26,7 +28,7 @@ const SelectorMenu = () => {
         _hover={{ backgroundColor: 'transparent' }}
         _active={{ backgroundColor: 'transparent', borderBottomRadius: 0, borderBottom: 0 }}
       >
-        {eventSelected}
+        {active}
       </MenuButton>
       <MenuList
         background={colors.bgContainerTo}
@@ -38,7 +40,7 @@ const SelectorMenu = () => {
       >
         {Object.values(eventSelectedType).map(
           (item) =>
-            item !== eventSelected && (
+            item !== active && (
               <MenuItem
                 key={item}
                 _hover={{ background: colors.bgContainerFrom }}
@@ -46,7 +48,7 @@ const SelectorMenu = () => {
                 _focus={{ background: colors.bgContainerFrom }}
                 fontSize="14px"
                 h="30px"
-                onClick={() => dispatch(setEventSelected(item))}
+                onClick={() => onChange(item)}
               >
                 {item}
               </MenuItem>

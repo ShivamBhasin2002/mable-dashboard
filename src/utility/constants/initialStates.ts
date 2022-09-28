@@ -3,7 +3,7 @@ import {
   dataPerEventStateType,
   dataQualityStateType,
   eventsStateType,
-  funnelAnalysisStateType,
+  eventsDataStateType,
   screenStateType,
   pageSpeedStateType,
   userStateType,
@@ -94,7 +94,7 @@ export const eventsInitialState: eventsStateType = {
   errorMsg: undefined
 };
 
-export const funnelAnalysisInitialState: funnelAnalysisStateType = {
+export const eventsDataInitialState: eventsDataStateType = {
   total_events: {
     purchases: 0,
     add_payment_info: 0,
@@ -102,6 +102,7 @@ export const funnelAnalysisInitialState: funnelAnalysisStateType = {
     add_to_cart: 0,
     page_view: 0
   },
+  eventSelected: eventSelectedType.purchase,
   byDate: [],
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
