@@ -4,6 +4,7 @@ import { ComponentWrapper } from 'components/elements/common';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { pageSpeedAsync } from 'redux/reducers/pageSpeedSlice';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 const PageSpeed = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const PageSpeed = () => {
     status
   } = useSelector((state) => state.pageSpeed);
   useEffect(() => {
-    if (status === 'idle') dispatch(pageSpeedAsync());
+    if (status === STATUS_TYPE.IDLE) dispatch(pageSpeedAsync());
   }, [status]);
   return (
     <ComponentWrapper title="Page Speed" width={560} className="flex-grow">

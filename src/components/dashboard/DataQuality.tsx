@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { ComponentWrapper, ViewFullReport } from 'components/elements/common';
 import { QualityCombined, LineChart, OrderComposition } from 'components/elements/quality';
-import { screenType } from 'utility/constants/general';
+import { screenType, STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
@@ -11,7 +11,7 @@ const DataQuality = () => {
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.dataQuality);
   useEffect(() => {
-    if (status === 'idle') dispatch(dataQualityAsync());
+    if (status === STATUS_TYPE.IDLE) dispatch(dataQualityAsync());
   }, [status]);
   return (
     <ComponentWrapper

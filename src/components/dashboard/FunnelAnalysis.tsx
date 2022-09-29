@@ -9,6 +9,7 @@ import { eventsDataAsync } from 'redux/reducers/eventsDataSlice';
 import { createGradient, getEventDisplayName } from 'utility/functions';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 const eventsData = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const eventsData = () => {
   const chart = useRef<any>(null); //eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); //eslint-disable-line
   useEffect(() => {
-    if (status === 'idle') dispatch(eventsDataAsync());
+    if (status === STATUS_TYPE.IDLE) dispatch(eventsDataAsync());
   }, [status]);
   useEffect(() => {
     if (chart.current) {

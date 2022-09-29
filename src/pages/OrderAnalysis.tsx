@@ -10,6 +10,7 @@ import colors from 'utility/colors';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 const OrderAnalysis = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const OrderAnalysis = () => {
     status
   } = useSelector((state) => state.dataQuality);
   useEffect(() => {
-    if (status === 'idle') dispatch(dataQualityAsync());
+    if (status === STATUS_TYPE.IDLE) dispatch(dataQualityAsync());
   }, [status]);
   return (
     <div className="flex flex-col mt-[40px] gap-[40px]">

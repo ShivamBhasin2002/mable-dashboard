@@ -3,7 +3,12 @@ import Icon from 'assets/icons';
 import moment from 'moment';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { statusSelector, totalEvents, totalAttributions } from 'utility/constants/general';
+import {
+  statusSelector,
+  totalEvents,
+  totalAttributions,
+  STATUS_TYPE
+} from 'utility/constants/general';
 import { statusTypeColors } from 'utility/functions';
 import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';
 
@@ -11,7 +16,7 @@ const OrderAnalysisTable = () => {
   const dispatch = useDispatch();
   const { tableData, status } = useSelector((state) => state.orderAnalysis);
   useEffect(() => {
-    if (status === 'idle') dispatch(orderAnalysisAsync());
+    if (status === STATUS_TYPE.IDLE) dispatch(orderAnalysisAsync());
   }, [status]);
   return (
     <table className="w-full table-auto my-[10px]">

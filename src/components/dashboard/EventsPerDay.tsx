@@ -9,7 +9,7 @@ import fonts from 'utility/fonts';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { eventsDataAsync, setEventSelected } from 'redux/reducers/eventsDataSlice';
-import { eventSelectedType } from 'utility/constants/general';
+import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
 import { SelectorMenu } from 'components/elements/event';
 
 const EventsPerDay = () => {
@@ -48,7 +48,7 @@ const EventsPerDay = () => {
     });
   }, [status]);
   useEffect(() => {
-    if (status === 'idle') dispatch(eventsDataAsync());
+    if (status === STATUS_TYPE.IDLE) dispatch(eventsDataAsync());
   }, [status]);
   return (
     <ComponentWrapper

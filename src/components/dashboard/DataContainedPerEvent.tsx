@@ -8,7 +8,7 @@ import {
   ParameterComposition,
   BarChart
 } from 'components/elements/event';
-import { eventSelectedType, screenType } from 'utility/constants/general';
+import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataPerEventSlice';
@@ -17,7 +17,7 @@ const DataContainedPerEvent = () => {
   const dispatch = useDispatch();
   const { status, eventSelected } = useSelector((state) => state.dataPerEvent);
   useEffect(() => {
-    if (status === 'idle') dispatch(dataPerEventAsync());
+    if (status === STATUS_TYPE.IDLE) dispatch(dataPerEventAsync());
   }, [status]);
   return (
     <ComponentWrapper
