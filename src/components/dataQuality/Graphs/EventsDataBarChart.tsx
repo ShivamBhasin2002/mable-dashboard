@@ -6,7 +6,7 @@ import { ComponentWrapper } from 'components/common';
 import { useSelector, useDispatch } from 'redux/store';
 import { eventsDataAsync } from 'redux/reducers/eventsDataSlice';
 
-import { createGradient, getEventDisplayName } from 'utility/functions';
+import { createGradient, getEventDisplayName, numberFormatter } from 'utility/functions';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 import { STATUS_TYPE } from 'utility/constants/general';
@@ -38,10 +38,7 @@ const EventsDataBarChart = () => {
               anchor: 'end',
               align: 'top',
               offset: 2,
-              formatter(value: number) {
-                if (value >= 1000) return `${(value / 1000).toFixed(2)}k`;
-                else return value;
-              }
+              formatter: numberFormatter
             }
           }
         ]

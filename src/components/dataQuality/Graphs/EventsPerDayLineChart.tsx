@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 
-import { createGradient } from 'utility/functions';
+import { createGradient, getSelectedEventData, numberFormatter } from 'utility/functions';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 
 import { useSelector } from 'redux/store';
 
 const EventsPerDayLineChart = () => {
-  const { byDate, status } = useSelector((state) => state.eventsData);
+  const { byDate, status, eventSelected } = useSelector((state) => state.eventsData);
   const chart = useRef<any>(null); // eslint-disable-line
   const [charData, setCharData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
@@ -25,22 +25,14 @@ const EventsPerDayLineChart = () => {
           borderWidth: 1,
           lineTension: 0.4,
           fill: true,
-          data: byDate.map(
-            (item) =>
-              item.purchases ??
-              0 + item.page_view ??
-              0 + item.intitate_checkout ??
-              0 + item.add_to_cart ??
-              0 + item.add_payment_info ??
-              0
-          ),
+          data: byDate.map((item) => getSelectedEventData(item, eventSelected)),
           datalabels: {
             display: false
           }
         }
       ]
     });
-  }, [status]);
+  }, [status, eventSelected]);
   return (
     <div>
       <Line
@@ -64,8 +56,7 @@ const EventsPerDayLineChart = () => {
                 },
                 stepSize: 500,
                 callback(this, tickValue: string | number) {
-                  if (tickValue >= 1000) return `${parseInt(`${tickValue}`) / 1000}k`;
-                  return tickValue;
+                  return numberFormatter(tickValue);
                 }
               },
               grid: {
