@@ -1,56 +1,53 @@
-import { useRef, useEffect, useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 
 import { createGradient } from 'utility/functions';
-import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 
-const LineChart = ({
-  width,
-  height,
-  color = colors.dataQualityChartArea
-}: {
-  width?: number;
-  height?: number;
-  color?: string;
-}) => {
-  const { DATA_QUALITY_BY_DATE } = useSelector((state) => state.dataQuality);
+import { useSelector } from 'redux/store';
 
+const EventsPerDayLineChart = () => {
+  const { byDate, status } = useSelector((state) => state.eventsData);
   const chart = useRef<any>(null); // eslint-disable-line
-  const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
+  const [charData, setCharData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
-    if (chart.current) {
-      const chartData = {
-        labels: DATA_QUALITY_BY_DATE.map((data) => data.date),
-        datasets: [
-          {
-            label: 'Data Quality',
-            data: DATA_QUALITY_BY_DATE.map((data) => data.data_quality * 100),
-            backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
-              { color: colors.transparent, stop: 0.1 },
-              { color: color, stop: 1 }
-            ]),
-            borderColor: colors.success,
-            borderWidth: 3,
-            lineTension: 0.5,
-            fill: true,
-            datalabels: {
-              display: false
-            }
+    setCharData({
+      labels: byDate.map((item) => item.date),
+      datasets: [
+        {
+          label: 'Events',
+          backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
+            { stop: 0.2, color: colors.transparent },
+            { stop: 1, color: colors.eventsPerDayLineArea }
+          ]),
+          borderColor: colors.eventsPerDayLineColor,
+          borderWidth: 1,
+          lineTension: 0.4,
+          fill: true,
+          data: byDate.map(
+            (item) =>
+              item.purchases ??
+              0 + item.page_view ??
+              0 + item.intitate_checkout ??
+              0 + item.add_to_cart ??
+              0 + item.add_payment_info ??
+              0
+          ),
+          datalabels: {
+            display: false
           }
-        ]
-      };
-      setChartData(chartData);
-    }
-  }, [DATA_QUALITY_BY_DATE]);
+        }
+      ]
+    });
+  }, [status]);
   return (
     <div>
       <Line
         options={{
           hover: {
             intersect: false,
-            mode: 'index'
+            mode: 'nearest'
           },
           maintainAspectRatio: false,
           elements: {
@@ -60,16 +57,15 @@ const LineChart = ({
           },
           scales: {
             y: {
-              position: 'right',
-              suggestedMax: 100,
-              suggestedMin: 0,
               beginAtZero: true,
               ticks: {
-                font: { family: fonts.text },
-                stepSize: 25,
-                autoSkip: true,
-                callback(this, tickValue) {
-                  return `${tickValue}%`;
+                font: {
+                  family: fonts.text
+                },
+                stepSize: 500,
+                callback(this, tickValue: string | number) {
+                  if (tickValue >= 1000) return `${parseInt(`${tickValue}`) / 1000}k`;
+                  return tickValue;
                 }
               },
               grid: {
@@ -80,7 +76,9 @@ const LineChart = ({
             },
             x: {
               ticks: {
-                font: { family: fonts.text }
+                font: {
+                  family: fonts.text
+                }
               },
               grid: {
                 display: false,
@@ -112,13 +110,12 @@ const LineChart = ({
             }
           }
         ]}
+        data={charData}
+        height={216}
         ref={chart}
-        data={chartData}
-        width={width || 'auto'}
-        height={height || 'auto'}
       />
     </div>
   );
 };
 
-export default LineChart;
+export default EventsPerDayLineChart;

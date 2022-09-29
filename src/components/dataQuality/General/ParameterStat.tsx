@@ -1,11 +1,9 @@
-import { FC } from 'react';
-
-interface ParameterStatProps {
+type ParameterStatProps = {
   name: string;
   value?: number;
-}
+};
 
-const ParameterStat: FC<ParameterStatProps> = ({ name, value }) => {
+const ParameterStat = ({ name, value }: ParameterStatProps) => {
   return (
     <div className="h-[60px] flex-grow flex-shrink-0 flex items-center justify-between bg-gradient-to-r from-[#1C2B43] to-bgContainerFrom rounded-[10px] border-[1px] border-light/10 text-light px-8 font-medium gap-[20px]">
       {name}

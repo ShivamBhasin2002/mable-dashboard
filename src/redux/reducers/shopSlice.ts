@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { shopStateType, thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { shopInitialState } from 'utility/constants/initialStates';
+
 import { STATUS_TYPE } from 'utility/constants/general';
 
 export const shopAsync = createAsyncThunk<shopStateType | undefined, void, thunkOptions>(

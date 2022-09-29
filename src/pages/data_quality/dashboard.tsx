@@ -1,12 +1,12 @@
 import {
-  DataQuality,
-  WarningCenter,
-  FunnelAnalysis,
-  PageSpeed,
-  Events,
-  EventsPerDay,
-  DataContainedPerEvent
+  DataQualityCard,
+  WarningCenterCard,
+  EventsCard,
+  PageSpeedCard,
+  EventsPerDayCard,
+  DataContainedPerEventCard
 } from 'components/dataQuality/Cards/dashboard';
+import { EventsDataBarChart } from 'components/dataQuality/Graphs';
 
 const Dashboard = () => {
   return (
@@ -14,18 +14,18 @@ const Dashboard = () => {
       <section className="flex flex-row justify-evenly gap-[30px] flex-wrap mt-[40px]">
         <div className="flex flex-col gap-[40px] xl:flex-grow-[1]">
           <div>
-            <DataQuality />
+            <DataQualityCard />
           </div>
           <div className="flex flex-row flex-wrap gap-[30px]">
-            <PageSpeed />
-            <Events />
+            <PageSpeedCard />
+            <EventsCard />
           </div>
-          <DataContainedPerEvent />
+          <DataContainedPerEventCard />
         </div>
         <div className="flex flex-row flex-wrap 2xl:flex-col 2xl:flex-grow-[0.5] gap-[30px]">
-          <WarningCenter />
-          <FunnelAnalysis />
-          <EventsPerDay />
+          <WarningCenterCard />
+          <EventsDataBarChart />
+          <EventsPerDayCard />
         </div>
       </section>
     </main>

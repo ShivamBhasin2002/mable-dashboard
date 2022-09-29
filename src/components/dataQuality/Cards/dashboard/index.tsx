@@ -1,17 +1,15 @@
-import DataContainedPerEvent from './DataContainedPerEventCard';
-import DataQuality from './DataQualityCard';
-import Events from './EventsCard';
-import EventsPerDay from './EventsPerDayCard';
-import FunnelAnalysis from './FunnelAnalysisCard';
-import PageSpeed from './PageSpeedCard';
-import WarningCenter from './WarningCenterCard';
+import DataContainedPerEventCard from './DataContainedPerEventCard';
+import DataQualityCard from './DataQualityCard';
+import EventsCard from './EventsCard';
+import EventsPerDayCard from './EventsPerDayCard';
+import PageSpeedCard from './PageSpeedCard';
+import WarningCenterCard from './WarningCenterCard';
 
 export {
-  DataContainedPerEvent,
-  DataQuality,
-  Events,
-  EventsPerDay,
-  FunnelAnalysis,
-  PageSpeed,
-  WarningCenter
+  DataContainedPerEventCard,
+  DataQualityCard,
+  EventsCard,
+  EventsPerDayCard,
+  PageSpeedCard,
+  WarningCenterCard
 };

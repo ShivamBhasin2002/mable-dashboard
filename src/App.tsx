@@ -3,10 +3,10 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 import Login from 'pages/auth/login';
 import Register from 'pages/auth/register';
-import Dashboard from 'pages/data-quality/dashboard';
-import OrderAnalysis from 'pages/data-quality/order_analysis';
-import EventQuality from 'pages/data-quality/event_quality';
-import Layout from 'components/elements/common/Layout';
+import Dashboard from 'pages/data_quality/dashboard';
+import OrderAnalysis from 'pages/data_quality/order_analysis';
+import EventQuality from 'pages/data_quality/event_quality';
+import Layout from 'components/common/Layout';
 
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';

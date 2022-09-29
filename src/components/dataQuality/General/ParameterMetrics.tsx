@@ -1,7 +1,8 @@
-import { useSelector } from 'redux/store';
 import { totalEvents, totalAttributions } from 'utility/constants/general';
 
-const Metrics = () => {
+import { useSelector } from 'redux/store';
+
+const ParameterMetrics = () => {
   const { attribution, event } = useSelector((state) => state.dataPerEvent);
   return (
     <div className="flex flex-row justify-evenly gap-[10px]">
@@ -33,4 +34,4 @@ const Metrics = () => {
   );
 };
 
-export default Metrics;
+export default ParameterMetrics;

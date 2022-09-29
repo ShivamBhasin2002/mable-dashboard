@@ -1,7 +1,7 @@
 import { useSelector } from 'redux/store';
 import { dataEventLabels } from 'utility/constants/general';
 
-const ParameterComposition = () => {
+const DataPerEventDoughnutChartLabels = () => {
   const data = useSelector((state) => state.dataPerEvent.dataContainedPerEventDoughnutChart);
   return (
     <div className="flex flex-col flex-grow text-[14px] justify-center gap-2">
@@ -28,4 +28,4 @@ const ParameterComposition = () => {
   );
 };
 
-export default ParameterComposition;
+export default DataPerEventDoughnutChartLabels;

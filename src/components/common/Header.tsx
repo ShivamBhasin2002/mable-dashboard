@@ -14,7 +14,8 @@ import moment from 'moment';
 
 import Icon from 'assets/icons';
 import colors from 'utility/colors';
-import DatePicker from 'components/elements/common/DatePicker';
+
+import DatePicker from 'components/common/DatePicker';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { setShop } from 'redux/reducers/shopSlice';

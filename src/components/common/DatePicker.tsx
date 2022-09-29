@@ -5,7 +5,7 @@ import moment from 'moment';
 import 'react-dates/initialize';
 import 'assets/styles/datePicker.css';
 
-import { ComponentWrapper } from 'components/elements/common';
+import { ComponentWrapper } from 'components/common';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { setDates, setPreset } from 'redux/reducers/datesSlice';

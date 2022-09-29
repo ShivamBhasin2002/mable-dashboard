@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 
-import { ComponentWrapper } from 'components/elements/common';
+import { ComponentWrapper } from 'components/common';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { eventsDataAsync } from 'redux/reducers/eventsDataSlice';
@@ -11,7 +11,7 @@ import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 import { STATUS_TYPE } from 'utility/constants/general';
 
-const eventsData = () => {
+const EventsDataBarChart = () => {
   const dispatch = useDispatch();
   const { total_events, status } = useSelector((state) => state.eventsData);
   const chart = useRef<any>(null); //eslint-disable-line
@@ -92,4 +92,4 @@ const eventsData = () => {
   );
 };
 
-export default eventsData;
+export default EventsDataBarChart;

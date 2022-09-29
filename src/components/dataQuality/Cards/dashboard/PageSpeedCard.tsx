@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 
-import { ComponentWrapper } from 'components/elements/common';
+import { ComponentWrapper } from 'components/common';
+
+import { STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { pageSpeedAsync } from 'redux/reducers/pageSpeedSlice';
-import { STATUS_TYPE } from 'utility/constants/general';
 
-const PageSpeed = () => {
+const PageSpeedCard = () => {
   const dispatch = useDispatch();
   const {
     AVG_LOADING_TIME_PAGE,
@@ -45,4 +46,4 @@ const PageSpeed = () => {
     </ComponentWrapper>
   );
 };
-export default PageSpeed;
+export default PageSpeedCard;

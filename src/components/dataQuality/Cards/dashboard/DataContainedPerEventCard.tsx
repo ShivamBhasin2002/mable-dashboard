@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 
-import { ComponentWrapper, ViewFullReport } from 'components/elements/common';
+import { ComponentWrapper, ViewFullReport } from 'components/common';
 import {
-  SelectorMenu,
-  Metrics,
-  DoughnutChart,
-  ParameterComposition,
-  BarChart
-} from 'components/elements/event';
+  DataPerEventDoughnutChart,
+  DataPerEventDoughnutChartLabels,
+  AttributionEventBarChart
+} from 'components/dataQuality/Graphs';
+import { SelectorMenu } from 'components/dataQuality/Common';
+import { ParameterMetrics } from 'components/dataQuality/General';
 import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataPerEventSlice';
 
-const DataContainedPerEvent = () => {
+const DataContainedPerEventCard = () => {
   const dispatch = useDispatch();
   const { status, eventSelected } = useSelector((state) => state.dataPerEvent);
   useEffect(() => {
@@ -37,19 +37,19 @@ const DataContainedPerEvent = () => {
     >
       <div className="flex flex-row flex-wrap justify-center gap-[20px]">
         <div className="flex-grow">
-          <BarChart height={80} />
+          <AttributionEventBarChart height={80} />
         </div>
         <div className="flex flex-col w-[350]">
           <div className="flex gap-[20px]">
             <div className="w-[170px] ">
-              <DoughnutChart />
+              <DataPerEventDoughnutChart />
             </div>
-            <ParameterComposition />
+            <DataPerEventDoughnutChartLabels />
           </div>
-          <Metrics />
+          <ParameterMetrics />
         </div>
       </div>
     </ComponentWrapper>
   );
 };
-export default DataContainedPerEvent;
+export default DataContainedPerEventCard;

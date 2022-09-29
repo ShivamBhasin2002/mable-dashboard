@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import { ComponentWrapper } from 'components/elements/common';
-import StatusSelectorMenu from 'components/orderAnalysis/StatusSelecterMenu';
-import OrderAnalysisTable from 'components/orderAnalysis/OrderAnalysisTable';
+import { ComponentWrapper } from 'components/common';
+import StatusSelectorMenu from 'components/dataQuality/General/StatusSelecterMenu';
+import OrderAnalysisTable from 'components/dataQuality/Cards/orderAnalysis/OrderAnalysisTable';
 import OrderDataAnalysisCard from 'components/dataQuality/Cards/orderAnalysis/OrderDataAnalysisCard';
 
 import { useSelector, useDispatch } from 'redux/store';

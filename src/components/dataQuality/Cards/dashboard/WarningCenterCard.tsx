@@ -1,9 +1,9 @@
-import { ComponentWrapper } from 'components/elements/common';
+import { ComponentWrapper } from 'components/common';
 import Icon from 'assets/icons';
 
 import { useSelector } from 'redux/store';
 
-const WarningCenter = () => {
+const WarningCenterCard = () => {
   const { active } = useSelector((state) => state.warnings);
   return (
     <ComponentWrapper title="Warning Center" width={600} underlined className="flex-grow">
@@ -30,4 +30,4 @@ const WarningCenter = () => {
     </ComponentWrapper>
   );
 };
-export default WarningCenter;
+export default WarningCenterCard;

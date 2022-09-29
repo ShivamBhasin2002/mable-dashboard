@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 
-import { ComponentWrapper, ViewFullReport } from 'components/elements/common';
-import { QualityCombined, LineChart, OrderComposition } from 'components/elements/quality';
+import { ComponentWrapper, ViewFullReport } from 'components/common';
+import { QualityCombined, OrderComposition } from 'components/dataQuality/General';
+import { DataQualityLineChart } from 'components/dataQuality/Graphs';
 import { screenType, STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
 
-const DataQuality = () => {
+const DataQualityCard = () => {
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.dataQuality);
   useEffect(() => {
@@ -24,10 +25,10 @@ const DataQuality = () => {
           <OrderComposition />
         </div>
         <div className="flex-grow box-border">
-          <LineChart height={250} />
+          <DataQualityLineChart height={250} />
         </div>
       </div>
     </ComponentWrapper>
   );
 };
-export default DataQuality;
+export default DataQualityCard;

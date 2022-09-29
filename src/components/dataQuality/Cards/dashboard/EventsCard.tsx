@@ -1,8 +1,8 @@
-import { ComponentWrapper } from 'components/elements/common';
+import { ComponentWrapper } from 'components/common';
 
 import { useSelector } from 'redux/store';
 
-const Events = () => {
+const EventsCard = () => {
   const { totalEventCount, avgTimeDifference } = useSelector((state) => state.events);
   return (
     <ComponentWrapper title="Events" width={330} className="!px-[20px] flex-grow">
@@ -25,4 +25,4 @@ const Events = () => {
     </ComponentWrapper>
   );
 };
-export default Events;
+export default EventsCard;

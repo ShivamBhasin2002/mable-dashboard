@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import Icon from 'assets/icons';
 import moment from 'moment';
 
-import { useSelector, useDispatch } from 'redux/store';
 import {
   statusSelector,
   totalEvents,
@@ -10,6 +9,8 @@ import {
   STATUS_TYPE
 } from 'utility/constants/general';
 import { statusTypeColors } from 'utility/functions';
+
+import { useSelector, useDispatch } from 'redux/store';
 import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';
 
 const OrderAnalysisTable = () => {

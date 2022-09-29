@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
-import SideBar from 'components/elements/common/SideBar';
-import DashboardHeader from 'components/elements/common/Header';
+import SideBar from 'components/common/SideBar';
+import DashboardHeader from 'components/common/Header';
+import Loading from 'components/common/Loading';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
 import { shopAsync } from 'redux/reducers/shopSlice';
 
-import Loading from 'components/elements/common/Loading';
 import { LayoutProps } from 'utility/typeDefinitions/componentTypes';
 import { STATUS_TYPE } from 'utility/constants/general';
 

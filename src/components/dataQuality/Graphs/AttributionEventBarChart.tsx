@@ -11,7 +11,7 @@ interface BarChartProps {
   height?: number;
 }
 
-const BarChart: FC<BarChartProps> = ({ width, height }) => {
+const AttributionEventBarChart: FC<BarChartProps> = ({ width, height }) => {
   const { dataContainedPerEventBarChart } = useSelector((state) => state.dataPerEvent);
   const barOptions = {
       responsive: true,
@@ -74,4 +74,4 @@ const BarChart: FC<BarChartProps> = ({ width, height }) => {
   return <Bar data={barData} width={width} height={height} options={barOptions} />;
 };
 
-export default BarChart;
+export default AttributionEventBarChart;

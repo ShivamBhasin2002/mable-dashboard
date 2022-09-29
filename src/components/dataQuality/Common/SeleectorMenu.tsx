@@ -2,7 +2,6 @@ import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
 import colors from 'utility/colors';
 import Icon from 'assets/icons';
-
 import { eventSelectedType } from 'utility/constants/general';
 
 const SelectorMenu = ({

@@ -5,7 +5,7 @@ import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 import { dataEventLabels } from 'utility/constants/general';
 
-const DoughnutChart = () => {
+const DataPerEventDoughnutChart = () => {
   const data = useSelector((state) => state.dataPerEvent.dataContainedPerEventDoughnutChart);
   const doughnutData = {
       labels: Object.values(dataEventLabels),
@@ -77,4 +77,4 @@ const DoughnutChart = () => {
   );
 };
 
-export default DoughnutChart;
+export default DataPerEventDoughnutChart;
