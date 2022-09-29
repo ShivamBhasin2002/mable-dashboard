@@ -7,6 +7,7 @@ import {
   eventSelectedType,
   statusSelector
 } from './constants/general';
+import { AnalyticsStateType } from './typeDefinitions/reduxTypes';
 
 export const createGradient = (
   ctx: CanvasRenderingContext2D,
@@ -91,22 +92,22 @@ export const getEventDisplayName = (event: string) => {
   }
 };
 
-// export const updateEvents = (state: AnalyticsStateType,payload: string)=>{
-//   switch (payload) {
-//     case 'AddPaymentInfo':
-//       state.selected_events.AddPaymentInfo = !state.selected_events.AddPaymentInfo;
-//       break;
-//     case 'AddToCart':
-//       state.selected_events.AddToCart = !state.selected_events.AddToCart;
-//       break;
-//     case 'InitiateCheckout':
-//       state.selected_events.InitiateCheckout = !state.selected_events.InitiateCheckout;
-//       break;
-//     case 'PageView':
-//       state.selected_events.PageView = !state.selected_events.PageView;
-//       break;
-//     case 'Purchase':
-//       state.selected_events.Purchase = !state.selected_events.Purchase;
-//       break;
-//   }
-// }
+export const updateEvents = (state: AnalyticsStateType, payload: string) => {
+  switch (payload) {
+    case 'AddPaymentInfo':
+      state.selected_events.AddPaymentInfo = !state.selected_events.AddPaymentInfo;
+      break;
+    case 'AddToCart':
+      state.selected_events.AddToCart = !state.selected_events.AddToCart;
+      break;
+    case 'InitiateCheckout':
+      state.selected_events.InitiateCheckout = !state.selected_events.InitiateCheckout;
+      break;
+    case 'PageView':
+      state.selected_events.PageView = !state.selected_events.PageView;
+      break;
+    case 'Purchase':
+      state.selected_events.Purchase = !state.selected_events.Purchase;
+      break;
+  }
+};
