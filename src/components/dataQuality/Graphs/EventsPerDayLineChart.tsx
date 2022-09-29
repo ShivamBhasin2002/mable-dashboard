@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
+import moment from 'moment';
 
 import { createGradient, getSelectedEventData, numberFormatter } from 'utility/functions';
 import colors from 'utility/colors';
@@ -13,7 +14,7 @@ const EventsPerDayLineChart = () => {
   const [charData, setCharData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
     setCharData({
-      labels: byDate.map((item) => item.date),
+      labels: byDate.map((item) => moment(item.date).format('D. MMM')),
       datasets: [
         {
           label: 'Events',

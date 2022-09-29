@@ -12,7 +12,7 @@ interface BarChartProps {
 }
 
 const AttributionEventBarChart: FC<BarChartProps> = ({ width, height }) => {
-  const { dataContainedPerEventBarChart } = useSelector((state) => state.dataPerEvent);
+  const { byDate } = useSelector((state) => state.dataPerEvent);
   const barOptions = {
       responsive: true,
       maintainAspectRatio: false,
@@ -51,11 +51,11 @@ const AttributionEventBarChart: FC<BarChartProps> = ({ width, height }) => {
       }
     },
     barData = {
-      labels: dataContainedPerEventBarChart.map((data) => data._id),
+      labels: byDate.map((data) => data.date),
       datasets: [
         {
           label: 'Attribution Parameters',
-          data: dataContainedPerEventBarChart.map((data) => data.attribution_quality),
+          data: byDate.map((data) => data.attribution_params_quality),
           backgroundColor: colors.purple,
           datalabels: {
             display: false
@@ -63,7 +63,7 @@ const AttributionEventBarChart: FC<BarChartProps> = ({ width, height }) => {
         },
         {
           label: 'Event Parameters',
-          data: dataContainedPerEventBarChart.map((data) => data.event_quality),
+          data: byDate.map((data) => data.events_quality),
           backgroundColor: colors.lightPurple,
           datalabels: {
             display: false

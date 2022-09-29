@@ -53,10 +53,10 @@ export type warningStateType = {
 };
 
 export type dataPerEventStateType = {
-  dataContainedPerEventBarChart: {
-    _id: string;
-    attribution_quality?: number;
-    event_quality?: number;
+  byDate: {
+    date: string;
+    attribution_params_quality?: number;
+    events_quality?: number;
   }[];
   dataContainedPerEventDoughnutChart: {
     backend: number;
