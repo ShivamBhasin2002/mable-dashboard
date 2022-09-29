@@ -88,8 +88,8 @@ export const dataQualityInitialState: dataQualityStateType = {
 };
 
 export const eventsInitialState: eventsStateType = {
-  N_Total: 155200,
-  AVG_T_DIFF: 8300,
+  totalEventCount: 155200,
+  avgTimeDifference: 8300,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };

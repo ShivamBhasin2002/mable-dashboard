@@ -103,8 +103,8 @@ export type dataQualityStateType = {
 };
 
 export type eventsStateType = {
-  AVG_T_DIFF: number;
-  N_Total: number;
+  avgTimeDifference: number;
+  totalEventCount: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
