@@ -111,7 +111,7 @@ export type eventsStateType = {
 
 export type AnalyticsStateType = {
   status: string;
-  events: {
+  selected_events: {
     PageView: boolean;
     AddToCart: boolean;
     InitiateCheckout: boolean;
@@ -119,13 +119,22 @@ export type AnalyticsStateType = {
     Purchase: boolean;
   };
   analyticReport: {
-    date: string;
-    total_count_purchase: number;
-    total_count_add_payment_info: number;
-    total_count_intitate_checkout: number;
-    total_count_add_to_cart: number;
-    total_count_page_view: number;
-  }[];
+    total_events: {
+      purchase: number;
+      add_payment_info: number;
+      intitate_checkout: number;
+      add_to_cart: number;
+      page_view: number;
+    };
+    by_date: {
+      date: string;
+      purchase: number;
+      add_payment_info: number;
+      intitate_checkout: number;
+      add_to_cart: number;
+      page_view: number;
+    }[]; 
+  };
 };
 
 export type eventsDataStateType = {

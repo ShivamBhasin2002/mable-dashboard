@@ -54,7 +54,7 @@ export type datePickerProps = {
 };
 
 export type csv = {
-  day:string,
+  day: string;
   date: string;
   count_purchase: number;
   count_add_payment_info: number;

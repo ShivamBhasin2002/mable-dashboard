@@ -120,13 +120,31 @@ export const pageSpeedInitialState: pageSpeedStateType = {
 };
 
 export const filterOptionInitialState: AnalyticsStateType = {
-  status: 'idle',
-  events: {
+  status: 'success',
+  selected_events: {
     PageView: true,
     AddToCart: false,
     InitiateCheckout: false,
     AddPaymentInfo: false,
     Purchase: false
   },
-  analyticReport: []
+  analyticReport: {
+    total_events: {
+      purchase: 226,
+      add_payment_info: 0,
+      intitate_checkout: 747,
+      add_to_cart: 1680,
+      page_view: 47160
+    },
+    by_date: [
+      {
+        date: '2022-08-16',
+        purchase: 20,
+        add_payment_info: 0,
+        intitate_checkout: 202,
+        add_to_cart: 209,
+        page_view: 7461
+      }
+    ]
+  }
 };

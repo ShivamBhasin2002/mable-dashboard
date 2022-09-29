@@ -90,3 +90,23 @@ export const getEventDisplayName = (event: string) => {
       return eventSelectedType.pageView;
   }
 };
+
+// export const updateEvents = (state: AnalyticsStateType,payload: string)=>{
+//   switch (payload) {
+//     case 'AddPaymentInfo':
+//       state.selected_events.AddPaymentInfo = !state.selected_events.AddPaymentInfo;
+//       break;
+//     case 'AddToCart':
+//       state.selected_events.AddToCart = !state.selected_events.AddToCart;
+//       break;
+//     case 'InitiateCheckout':
+//       state.selected_events.InitiateCheckout = !state.selected_events.InitiateCheckout;
+//       break;
+//     case 'PageView':
+//       state.selected_events.PageView = !state.selected_events.PageView;
+//       break;
+//     case 'Purchase':
+//       state.selected_events.Purchase = !state.selected_events.Purchase;
+//       break;
+//   }
+// }

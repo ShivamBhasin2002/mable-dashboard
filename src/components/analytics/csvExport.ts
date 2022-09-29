@@ -11,74 +11,87 @@ export const generateCSV = () => {
   header.push('Day');
   header.push('Dates');
 
-  if (analyticData.events.PageView) {
+  if (analyticData.selected_events.PageView) {
     header.push('Page View');
   }
 
-  if (analyticData.events.AddToCart) {
+  if (analyticData.selected_events.AddToCart) {
     header.push('Add To Cart');
   }
 
-  if (analyticData.events.InitiateCheckout) {
+  if (analyticData.selected_events.InitiateCheckout) {
     header.push('Initiate Checkout');
   }
 
-  if (analyticData.events.AddPaymentInfo) {
+  if (analyticData.selected_events.AddPaymentInfo) {
     header.push('Payment Info');
   }
 
-  if (analyticData.events.Purchase) {
+  if (analyticData.selected_events.Purchase) {
     header.push('Purchase');
   }
 
-  analyticData.analyticReport.map(
+  const obj= {} as csv; 
+  obj['day'] = moment(dateRange[0]).format('ddd')+' to '+moment(dateRange[1]).format('ddd');
+  obj['date'] = moment(dateRange[0]).format('YYYY-MM-DD')+' to '+moment(dateRange[1]).format('YYYY-MM-DD');
+  obj['count_page_view'] = analyticData.analyticReport.total_events.page_view;
+  obj['count_add_to_cart'] = analyticData.analyticReport.total_events.add_to_cart;
+  obj['count_intitate_checkout'] = analyticData.analyticReport.total_events.intitate_checkout;
+  obj['count_add_payment_info'] = analyticData.analyticReport.total_events.add_payment_info;
+  obj['count_purchase'] = analyticData.analyticReport.total_events.purchase;
+
+  csvData.push(obj);
+
+  analyticData.analyticReport.by_date.map(
     ({
-      total_count_add_payment_info,
-      total_count_add_to_cart,
-      total_count_intitate_checkout,
-      total_count_page_view,
-      total_count_purchase,
-      date
+      date,
+      purchase,
+      add_payment_info,
+      add_to_cart,
+      intitate_checkout,
+      page_view
     }) => {
       const obj = {} as csv;
       obj['day'] = moment(date).format('ddd');
       obj['date'] = date;
 
-      if (analyticData.events.PageView) {
-        obj['count_page_view'] = total_count_page_view;
+      if (analyticData.selected_events.PageView) {
+        obj['count_page_view'] = page_view;
       }
 
-      if (analyticData.events.AddToCart) {
-        obj['count_add_to_cart'] = total_count_add_to_cart;
+      if (analyticData.selected_events.AddToCart) {
+        obj['count_add_to_cart'] = add_to_cart;
       }
 
-      if (analyticData.events.InitiateCheckout) {
-        obj['count_intitate_checkout'] = total_count_intitate_checkout;
+      if (analyticData.selected_events.InitiateCheckout) {
+        obj['count_intitate_checkout'] = intitate_checkout;
       }
 
-      if (analyticData.events.AddPaymentInfo) {
-        obj['count_add_payment_info'] = total_count_add_payment_info;
+      if (analyticData.selected_events.AddPaymentInfo) {
+        obj['count_add_payment_info'] = add_payment_info;
       }
 
-      if (analyticData.events.Purchase) {
-        obj['count_purchase'] = total_count_purchase;
+      if (analyticData.selected_events.Purchase) {
+        obj['count_purchase'] = purchase;
       }
 
       csvData.push(obj);
     }
   );
-  const options = { 
+  const options = {
     fieldSeparator: ',',
     quoteStrings: '"',
     decimalSeparator: '.',
-    showLabels: true, 
+    showLabels: true,
     showTitle: true,
-    title: `Report from ${(dateRange[0]).format('MMM-DD-YYYY')} to ${(dateRange[1]).format('MMM-DD-YYYY')}`,
+    title: `Report from ${dateRange[0].format('MMM-DD-YYYY')} to ${dateRange[1].format(
+      'MMM-DD-YYYY'
+    )}`,
     useTextFile: false,
     useBom: true,
     useKeysAsHeaders: false,
-    headers: header 
+    headers: header
   };
 
-  return {options,csvData}
+  return { options, csvData };
 };

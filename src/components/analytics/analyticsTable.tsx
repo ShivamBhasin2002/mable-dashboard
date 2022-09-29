@@ -1,15 +1,19 @@
+import moment from 'moment';
+import Loading from 'components/elements/common/Loading';
 import { useSelector, useDispatch } from 'redux/store';
 import { useEffect } from 'react';
-import moment from 'moment';
 import { analyticsAsync } from 'redux/reducers/analyticsSlice';
-import Loading from 'components/elements/common/Loading';
 import { filterType } from 'utility/constants/general';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
-  const analyticData = useSelector((state) => state.analytics);
 
+  const analyticData = useSelector((state) => state.analytics);
   const { dateRange, datePreset } = useSelector((state) => state.dates);
+
+  const totalEvents = analyticData.analyticReport.total_events;
+  const byDate = analyticData.analyticReport.by_date;
+  const selectedEvents = analyticData.selected_events;
 
   useEffect(() => {
     if (analyticData.status !== 'fetching') {
@@ -28,7 +32,7 @@ const AnalyticsTable = () => {
           <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
             <td className="bg-primary rounded-tl-[10px]">Day</td>
             {Object.entries(filterType).map((item, i) => {
-              if ((analyticData.events as any)[item[0]]) {
+              if ((selectedEvents as any)[item[0]]) {
                 return (
                   <td key={i} className="bg-primary">
                     {item[1]}
@@ -39,7 +43,30 @@ const AnalyticsTable = () => {
           </tr>
         </thead>
         <tbody className="last-of:rounded-b-[10px]">
-          {Object.values(analyticData.analyticReport).map((item, i) => {
+          <tr
+            className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px]
+                }`}
+          >
+            <td>
+              {dateRange[0].format('YYYY-MM-DD')} to {dateRange[1].format('YYYY-MM-DD')}
+            </td>
+            {selectedEvents.PageView ? (
+              <td>{totalEvents.page_view.toLocaleString('en-US')}</td>
+            ) : null}
+            {selectedEvents.AddToCart ? (
+              <td>{totalEvents.add_to_cart.toLocaleString('en-US')}</td>
+            ) : null}
+            {selectedEvents.InitiateCheckout ? (
+              <td>{totalEvents.intitate_checkout.toLocaleString('en-US')}</td>
+            ) : null}
+            {selectedEvents.AddPaymentInfo ? (
+              <td>{totalEvents.add_payment_info.toLocaleString('en-US')}</td>
+            ) : null}
+            {selectedEvents.Purchase ? (
+              <td>{totalEvents.purchase.toLocaleString('en-US')}</td>
+            ) : null}
+          </tr>
+          {Object.values(byDate).map((item, i) => {
             return (
               <tr
                 key={i}
@@ -52,20 +79,20 @@ const AnalyticsTable = () => {
                   <br />
                   {item.date}
                 </td>
-                {analyticData.events.PageView ? (
-                  <td>{item.total_count_page_view.toLocaleString('en-US')}</td>
+                {analyticData.selected_events.PageView ? (
+                  <td>{item.page_view.toLocaleString('en-US')}</td>
                 ) : null}
-                {analyticData.events.AddToCart ? (
-                  <td>{item.total_count_add_to_cart.toLocaleString('en-US')}</td>
+                {analyticData.selected_events.AddToCart ? (
+                  <td>{item.add_to_cart.toLocaleString('en-US')}</td>
                 ) : null}
-                {analyticData.events.InitiateCheckout ? (
-                  <td>{item.total_count_intitate_checkout.toLocaleString('en-US')}</td>
+                {analyticData.selected_events.InitiateCheckout ? (
+                  <td>{item.intitate_checkout.toLocaleString('en-US')}</td>
                 ) : null}
-                {analyticData.events.AddPaymentInfo ? (
-                  <td>{item.total_count_add_payment_info.toLocaleString('en-US')}</td>
+                {analyticData.selected_events.AddPaymentInfo ? (
+                  <td>{item.add_payment_info.toLocaleString('en-US')}</td>
                 ) : null}
-                {analyticData.events.Purchase ? (
-                  <td>{item.total_count_purchase.toLocaleString('en-US')}</td>
+                {analyticData.selected_events.Purchase ? (
+                  <td>{item.purchase.toLocaleString('en-US')}</td>
                 ) : null}
               </tr>
             );

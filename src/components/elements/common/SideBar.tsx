@@ -14,7 +14,7 @@ const SideBar = () => {
     { title: 'Dashboard', icon: 'dashboard' },
     { title: 'Order Analysis', icon: 'orderAnalysis' },
     { title: 'Event Quality', icon: 'eventQuality' },
-    {title : 'Reports', icon: 'analytics'}
+    { title: 'Reports', icon: 'analytics' }
     // { title: 'Store', icon: 'shopIcon' },
     // { title: 'Settings', icon: 'settings' },
     // { title: 'Tutorial', icon: 'tutorial' }

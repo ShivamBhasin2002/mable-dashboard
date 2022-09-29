@@ -16,6 +16,4 @@ const SVGComponent = (props: IconType) => (
   </svg>
 );
 
-
-
 export default SVGComponent;
