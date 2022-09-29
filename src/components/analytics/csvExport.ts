@@ -31,9 +31,10 @@ export const generateCSV = () => {
     header.push('Purchase');
   }
 
-  const obj= {} as csv; 
-  obj['day'] = moment(dateRange[0]).format('ddd')+' to '+moment(dateRange[1]).format('ddd');
-  obj['date'] = moment(dateRange[0]).format('YYYY-MM-DD')+' to '+moment(dateRange[1]).format('YYYY-MM-DD');
+  const obj = {} as csv;
+  obj['day'] = moment(dateRange[0]).format('ddd') + ' to ' + moment(dateRange[1]).format('ddd');
+  obj['date'] =
+    moment(dateRange[0]).format('YYYY-MM-DD') + ' to ' + moment(dateRange[1]).format('YYYY-MM-DD');
   obj['count_page_view'] = analyticData.analyticReport.total_events.page_view;
   obj['count_add_to_cart'] = analyticData.analyticReport.total_events.add_to_cart;
   obj['count_intitate_checkout'] = analyticData.analyticReport.total_events.intitate_checkout;
@@ -43,14 +44,7 @@ export const generateCSV = () => {
   csvData.push(obj);
 
   analyticData.analyticReport.by_date.map(
-    ({
-      date,
-      purchase,
-      add_payment_info,
-      add_to_cart,
-      intitate_checkout,
-      page_view
-    }) => {
+    ({ date, purchase, add_payment_info, add_to_cart, intitate_checkout, page_view }) => {
       const obj = {} as csv;
       obj['day'] = moment(date).format('ddd');
       obj['date'] = date;

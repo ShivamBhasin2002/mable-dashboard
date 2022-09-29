@@ -133,7 +133,7 @@ export type AnalyticsStateType = {
       intitate_checkout: number;
       add_to_cart: number;
       page_view: number;
-    }[]; 
+    }[];
   };
 };
 

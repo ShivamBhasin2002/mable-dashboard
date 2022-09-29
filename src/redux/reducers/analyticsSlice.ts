@@ -4,23 +4,24 @@ import { STATUS_TYPE } from 'utility/constants/general';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
 
-export const analyticsAsync = createAsyncThunk<{
-  total_events: {
-    purchase: number;
-    add_payment_info: number;
-    intitate_checkout: number;
-    add_to_cart: number;
-    page_view: number;
-  };
-  by_date: {
-    date: string;
-    purchase: number;
-    add_payment_info: number;
-    intitate_checkout: number;
-    add_to_cart: number;
-    page_view: number;
-  }[]; 
-},
+export const analyticsAsync = createAsyncThunk<
+  {
+    total_events: {
+      purchase: number;
+      add_payment_info: number;
+      intitate_checkout: number;
+      add_to_cart: number;
+      page_view: number;
+    };
+    by_date: {
+      date: string;
+      purchase: number;
+      add_payment_info: number;
+      intitate_checkout: number;
+      add_to_cart: number;
+      page_view: number;
+    }[];
+  },
   void,
   thunkOptions
 >('analytics/fetch', async (temp, { rejectWithValue, getState }) => {
@@ -47,7 +48,7 @@ export const Analytics = createSlice({
   name: 'Analytics',
   initialState: filterOptionInitialState,
   reducers: {
-    setColumnSelected: (state, {payload}) => {
+    setColumnSelected: (state, { payload }) => {
       switch (payload) {
         case 'AddPaymentInfo':
           state.selected_events.AddPaymentInfo = !state.selected_events.AddPaymentInfo;
