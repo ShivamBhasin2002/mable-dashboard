@@ -14,9 +14,7 @@ export const pageSpeedAsync = createAsyncThunk<any, void, thunkOptions>(
       const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/page-speed`, {
         headers: { Authorization: `Token ${state.user.token}` },
         params: {
-          source_id: state.shop.active?.id,
-          start_date: state.dates.dateRange[0],
-          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
+          source_id: state.shop.active?.id
         }
       });
       if (data) return data;
@@ -33,9 +31,10 @@ export const pageSpeedReducer = createReducer(pageSpeedInitialState, (builder) =
       state.status = STATUS_TYPE.FETCHING;
     })
     .addCase(pageSpeedAsync.fulfilled, (state, { payload }) => {
-      state.AVG_LOADING_TIME_PAGE = payload.avg_loading_time_page;
-      state.AVG_LOADING_TIME_MABLE_SCRIPT = payload.avg_loading_time_mable_script;
-      state.AVG_CONTRIBUTION_TIME_MABLE_SCRIPT = payload.avg_contribution_time_mable_script * 100;
+      state.AVG_LOADING_TIME_PAGE = payload.avg_loading_time_page_in_seconds;
+      state.AVG_LOADING_TIME_MABLE_SCRIPT = payload.avg_loading_time_mable_script_in_seconds;
+      state.AVG_CONTRIBUTION_TIME_MABLE_SCRIPT =
+        payload.avg_contribution_time_mable_script_in_seconds * 100;
       state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(pageSpeedAsync.rejected, (state, { payload }) => {

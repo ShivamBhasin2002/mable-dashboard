@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
 import SideBar from 'components/elements/common/SideBar';
-import DashboardHeader from 'components/dashboard/Header';
+import DashboardHeader from 'components/elements/common/Header';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';

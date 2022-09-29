@@ -6,7 +6,7 @@ import {
   Events,
   EventsPerDay,
   DataContainedPerEvent
-} from 'components/dashboard';
+} from 'components/dataQuality/Cards/dashboard';
 
 const Dashboard = () => {
   return (
