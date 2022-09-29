@@ -55,10 +55,10 @@ export const dataPerEventsInitialState: dataPerEventStateType = {
     { attribution_quality: 9, event_quality: 6.2, _id: '25Jul' }
   ],
   dataContainedPerEventDoughnutChart: {
-    backend: 72,
-    frontend: 21,
-    mableEngine: 5,
-    unavailable: 2
+    backend: 0,
+    frontend: 0,
+    mableEngine: 0,
+    unavailable: 0
   },
   attribution: 0,
   event: 0,
@@ -88,8 +88,8 @@ export const dataQualityInitialState: dataQualityStateType = {
 };
 
 export const eventsInitialState: eventsStateType = {
-  totalEventCount: 155200,
-  avgTimeDifference: 8300,
+  totalEventCount: 0,
+  avgTimeDifference: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
