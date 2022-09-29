@@ -63,7 +63,7 @@ const OrderAnalysisTable = () => {
               <td>
                 {data.status ? (
                   <span
-                    className={`px-[20px] py-[5px] w-[40px] ${statusTypeColors(
+                    className={`px-[20px] py-[5px] w-max ${statusTypeColors(
                       data.status
                     )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
                   >
