@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import { analyticsAsync } from 'redux/reducers/analyticsSlice';
 import Loading from 'components/elements/common/Loading';
-import { filterType } from 'utility/constants/general';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
@@ -14,14 +13,13 @@ const AnalyticsTable = () => {
   useEffect(() => {
     if (analyticData.status !== 'fetching') {
       dispatch(analyticsAsync());
-      console.log('analyticsAsync');
     }
   }, [datePreset, dateRange, dispatch]);
 
   if (analyticData.status === 'fetching') {
     return <Loading message="Fetching Analytic Report" />;
   } else if (analyticData.status === 'error') {
-    return <div>Error Message</div>;
+    return <div>oops ! some error occured</div>;
   } else if (analyticData.status === 'success') {
     return (
       <table className="w-full table-auto my-[10px]">
