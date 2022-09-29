@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import { analyticsAsync } from 'redux/reducers/analyticsSlice';
 import Loading from 'components/elements/common/Loading';
+import { filterType } from 'utility/constants/general';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
@@ -26,62 +27,18 @@ const AnalyticsTable = () => {
         <thead>
           <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
             <td className="bg-primary rounded-tl-[10px]">Day</td>
-            {/* {Object.entries(filterType).map((item,i)=>{
-            if((analyticData.events as any)[item[0]]){
-              return(
-                <td key={i} className="bg-primary">{item[1]}</td>
-              );
-            }
-          })} */}
-            {analyticData.events.PageView ? (
-              <td className="bg-primary">Page View</td>
-            ) : null}
-            {analyticData.events.AddToCart ? (
-              <td className="bg-primary">Add To Cart</td>
-            ) : null}
-            {analyticData.events.InitiateCheckout ? (
-              <td className="bg-primary">Initiate Checkout</td>
-            ) : null}
-            {analyticData.events.AddPaymentInfo ? (
-              <td className="bg-primary">Add Payment Info</td>
-            ) : null}
-            {analyticData.events.Purchase ? (
-              <td className="bg-primary">Purchase</td>
-            ) : null}
+            {Object.entries(filterType).map((item, i) => {
+              if ((analyticData.events as any)[item[0]]) {
+                return (
+                  <td key={i} className="bg-primary">
+                    {item[1]}
+                  </td>
+                );
+              }
+            })}
           </tr>
         </thead>
         <tbody className="last-of:rounded-b-[10px]">
-          {/* <tr
-          className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px]`}
-        >
-          {datePreset ? (
-            <td>
-              {(dateRange[0] as any).format('MMM-DD-YYYY')} to{' '}
-              {(dateRange[1] as any).format('MMM-DD-YYYY')}
-            </td>
-          ) : (
-            <td>
-              {(dateRange[0] as any).format('MMM-DD-YYYY')} to{' '}
-              {(dateRange[1] as any).format('MMM-DD-YYYY')}
-            </td>
-          )}
-
-          {analyticData.events.PageView ? (
-            <td>{analyticData.analyticReport.result_total_events.total_page_view.toLocaleString("en-US")}</td>
-          ) : null}
-          {analyticData.events.AddToCart ? (
-            <td>{analyticData.analyticReport.result_total_events.total_add_to_cart.toLocaleString("en-US")}</td>
-          ) : null}
-          {analyticData.events.InitiateCheckout ? (
-            <td>{analyticData.analyticReport.result_total_events.total_intitate_checkout.toLocaleString("en-US")}</td>
-          ) : null}
-          {analyticData.events.AddPaymentInfo ? (
-            <td>{analyticData.analyticReport.result_total_events.total_add_payment_info.toLocaleString("en-US")}</td>
-          ) : null}
-          {analyticData.events.Purchase ? (
-            <td>{analyticData.analyticReport.result_total_events.total_purchases.toLocaleString("en-US")}</td>
-          ) : null}
-        </tr> */}
           {Object.values(analyticData.analyticReport).map((item, i) => {
             return (
               <tr
