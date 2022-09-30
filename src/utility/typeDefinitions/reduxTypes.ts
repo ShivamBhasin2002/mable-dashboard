@@ -179,3 +179,11 @@ export type orderAnalysisStateType = {
   status: STATUS_TYPE;
   errorMsg: string | undefined;
 };
+
+export type SelectedEventsType = {
+  PageView: boolean;
+  AddToCart: boolean;
+  InitiateCheckout: boolean;
+  AddPaymentInfo: boolean;
+  Purchase: boolean;
+};

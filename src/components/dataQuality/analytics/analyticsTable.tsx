@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'redux/store';
 import { useEffect } from 'react';
 import { analyticsAsync } from 'redux/reducers/analyticsSlice';
 import { filterType } from 'utility/constants/general';
+import { SelectedEventsType } from 'utility/typeDefinitions/reduxTypes';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const AnalyticsTable = () => {
           <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
             <td className="bg-primary rounded-tl-[10px]">Day</td>
             {Object.entries(filterType).map((item, i) => {
-              if ((selectedEvents as any)[item[0]]) {
+              if (selectedEvents[item[0] as keyof SelectedEventsType]) {
                 return (
                   <td key={i} className="bg-primary">
                     {item[1]}
