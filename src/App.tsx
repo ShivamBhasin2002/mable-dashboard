@@ -1,12 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
-import Login from 'pages/Login';
-import Register from 'pages/Register';
-import Dashboard from 'pages/Dashboard';
-import OrderAnalysis from 'pages/OrderAnalysis';
-import EventQuality from 'pages/EventQuality';
-import Layout from 'components/elements/common/Layout';
+import Login from 'pages/auth/login';
+import Register from 'pages/auth/register';
+import Dashboard from 'pages/data_quality/dashboard';
+import OrderAnalysis from 'pages/data_quality/order_analysis';
+import EventQuality from 'pages/data_quality/event_quality';
+import Layout from 'components/common/Layout';
 
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';

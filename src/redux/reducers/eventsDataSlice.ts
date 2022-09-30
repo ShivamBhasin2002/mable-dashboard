@@ -1,9 +1,9 @@
-import moment from 'moment';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { eventsDataInitialState } from 'utility/constants/initialStates';
+
 import { STATUS_TYPE } from 'utility/constants/general';
 
 // eslint-disable-next-line
@@ -41,16 +41,8 @@ export const eventsDataReducer = createSlice({
         state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(eventsDataAsync.fulfilled, (state, { payload }) => {
-        state.total_events = payload.result_total_events;
-        // eslint-disable-next-line
-        state.byDate = payload.bydate.map((events: any) => ({
-          total_purchases: events.count_purchase,
-          total_add_payment_info: events.count_add_payment_info,
-          total_intitate_checkout: events.count_intitate_checkout,
-          total_add_to_cart: events.count_add_to_cart,
-          total_page_view: events.count_page_view,
-          date: moment(events.date, 'YYYY-MM-DD').format('D. MMM')
-        }));
+        state.total_events = payload.total_events;
+        state.byDate = payload.by_date;
         state.status = STATUS_TYPE.SUCCESS;
       })
       .addCase(eventsDataAsync.rejected, (state) => {

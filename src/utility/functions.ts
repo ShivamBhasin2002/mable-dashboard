@@ -80,13 +80,44 @@ export const getEventDisplayName = (event: string) => {
   switch (event) {
     case 'purchases':
       return eventSelectedType.purchase;
+    case 'purchase':
+      return eventSelectedType.purchase;
     case 'add_payment_info':
-      return eventSelectedType.addPaymentInfo;
+      return eventSelectedType.add_payment_info;
     case 'intitate_checkout':
-      return eventSelectedType.intitateCheckout;
+      return eventSelectedType.intitate_checkout;
     case 'add_to_cart':
-      return eventSelectedType.addToCart;
+      return eventSelectedType.add_to_cart;
     case 'page_view':
-      return eventSelectedType.pageView;
+      return eventSelectedType.page_view;
   }
+};
+
+// eslint-disable-next-line
+export const getSelectedEventData = (item: any, event: string) => {
+  switch (event) {
+    case eventSelectedType.purchase:
+      return item.purchase;
+    case eventSelectedType.add_payment_info:
+      return item.add_payment_info;
+    case eventSelectedType.intitate_checkout:
+      return item.intitate_checkout;
+    case eventSelectedType.add_to_cart:
+      return item.add_to_cart;
+    case eventSelectedType.page_view:
+      return item.page_view;
+  }
+};
+
+export const getSelectedEventSnakeCase = (event: string) => {
+  return event
+    .split('')
+    .map((e) => (e === ' ' ? '_' : e.toLowerCase()))
+    .join('');
+};
+
+export const numberFormatter = (num: string | number) => {
+  num = typeof num === 'string' ? parseInt(num) : num;
+  const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+  return formatter.format(num);
 };

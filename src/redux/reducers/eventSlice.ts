@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { eventsInitialState } from 'utility/constants/initialStates';
+
 import { STATUS_TYPE } from 'utility/constants/general';
 
 export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
