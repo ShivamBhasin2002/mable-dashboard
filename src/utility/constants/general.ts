@@ -24,8 +24,25 @@ export enum screenType {
   dashboard = 'Dashboard',
   orderAnalysis = 'Order Analysis',
   eventQuality = 'Event Quality',
+  analytics = 'Reports',
   settings = 'Settings',
   tutorial = 'Tutorial'
+}
+
+export enum filterType {
+  PageView = 'Page View',
+  AddToCart = 'Add To Cart',
+  InitiateCheckout = 'InitiateCheckout',
+  AddPaymentInfo = 'Add Payment Info',
+  Purchase = 'Purchase'
+}
+
+export enum byDate {
+  total_count_page_view = 'PageView',
+  total_count_add_to_cart = 'AddToCart',
+  total_count_intitate_checkout = 'InitiateCheckout',
+  total_count_add_payment_info = 'AddPaymentInfo',
+  total_count_purchase = 'Purchase'
 }
 
 export enum eventSelectedType {

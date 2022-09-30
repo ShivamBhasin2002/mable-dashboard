@@ -7,6 +7,7 @@ import {
   eventSelectedType,
   statusSelector
 } from './constants/general';
+import { AnalyticsStateType } from './typeDefinitions/reduxTypes';
 
 export const createGradient = (
   ctx: CanvasRenderingContext2D,
@@ -106,6 +107,26 @@ export const getSelectedEventData = (item: any, event: string) => {
       return item.add_to_cart;
     case eventSelectedType.page_view:
       return item.page_view;
+  }
+};
+
+export const updateEvents = (state: AnalyticsStateType, payload: string) => {
+  switch (payload) {
+    case 'AddPaymentInfo':
+      state.selected_events.AddPaymentInfo = !state.selected_events.AddPaymentInfo;
+      break;
+    case 'AddToCart':
+      state.selected_events.AddToCart = !state.selected_events.AddToCart;
+      break;
+    case 'InitiateCheckout':
+      state.selected_events.InitiateCheckout = !state.selected_events.InitiateCheckout;
+      break;
+    case 'PageView':
+      state.selected_events.PageView = !state.selected_events.PageView;
+      break;
+    case 'Purchase':
+      state.selected_events.Purchase = !state.selected_events.Purchase;
+      break;
   }
 };
 

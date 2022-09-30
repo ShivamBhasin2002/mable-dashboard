@@ -110,6 +110,34 @@ export type eventsStateType = {
   errorMsg?: string;
 };
 
+export type AnalyticsStateType = {
+  status: string;
+  selected_events: {
+    PageView: boolean;
+    AddToCart: boolean;
+    InitiateCheckout: boolean;
+    AddPaymentInfo: boolean;
+    Purchase: boolean;
+  };
+  analyticReport: {
+    total_events: {
+      purchase: number;
+      add_payment_info: number;
+      intitate_checkout: number;
+      add_to_cart: number;
+      page_view: number;
+    };
+    by_date: {
+      date: string;
+      purchase: number;
+      add_payment_info: number;
+      intitate_checkout: number;
+      add_to_cart: number;
+      page_view: number;
+    }[];
+  };
+};
+
 export type eventsDataStateType = {
   total_events: {
     purchases: number;
@@ -118,6 +146,7 @@ export type eventsDataStateType = {
     add_to_cart: number;
     page_view: number;
   };
+
   byDate: {
     date: Moment;
     purchases: number;
@@ -150,4 +179,12 @@ export type orderAnalysisStateType = {
   }[];
   status: STATUS_TYPE;
   errorMsg: string | undefined;
+};
+
+export type SelectedEventsType = {
+  PageView: boolean;
+  AddToCart: boolean;
+  InitiateCheckout: boolean;
+  AddPaymentInfo: boolean;
+  Purchase: boolean;
 };

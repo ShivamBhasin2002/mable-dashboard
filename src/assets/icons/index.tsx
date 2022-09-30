@@ -12,6 +12,7 @@ import { BiRefresh } from 'react-icons/bi';
 
 import Dashboard from 'assets/icons/DashboardIcon';
 import EventQuality from 'assets/icons/EventQualityIcon';
+import Analytics from 'assets/icons/Analytics';
 import MableLogoIcon from 'assets/icons/MableLogoIcon';
 import OrderAnalysis from 'assets/icons/OrderAnalysisIcon';
 import Settings from 'assets/icons/SettingsIcon';
@@ -97,6 +98,9 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
 
     case 'eventQuality':
       return <EventQuality className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'analytics':
+      return <Analytics className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
     case 'logout':
       return <FiLogOut className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
