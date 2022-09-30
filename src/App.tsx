@@ -6,6 +6,7 @@ import Register from 'pages/auth/register';
 import Dashboard from 'pages/data_quality/dashboard';
 import OrderAnalysis from 'pages/data_quality/order_analysis';
 import EventQuality from 'pages/data_quality/event_quality';
+import Analytics from 'pages/data_quality/analytics_report';
 import Layout from 'components/common/Layout';
 
 import { useSelector } from 'redux/store';
@@ -36,6 +37,7 @@ const App = () => {
               {activeScreen === 'Dashboard' && <Dashboard />}
               {activeScreen === 'Order Analysis' && <OrderAnalysis />}
               {activeScreen === 'Event Quality' && <EventQuality />}
+              {activeScreen === 'Reports' && <Analytics />}
               {/* {screen === 'Settings' && null}
               {screen === 'Tutorial' && null} */}
             </Layout>

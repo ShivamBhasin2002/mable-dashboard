@@ -52,3 +52,13 @@ export type datePickerProps = {
   close: () => void;
   isOpen: boolean;
 };
+
+export type csv = {
+  day: string;
+  date: string;
+  count_purchase: number;
+  count_add_payment_info: number;
+  count_intitate_checkout: number;
+  count_add_to_cart: number;
+  count_page_view: number;
+};
