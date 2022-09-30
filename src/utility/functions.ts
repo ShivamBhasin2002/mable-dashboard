@@ -128,17 +128,17 @@ export const updateEvents = (state: AnalyticsStateType, payload: string) => {
       state.selected_events.Purchase = !state.selected_events.Purchase;
       break;
   }
-}
+};
 
-  export const getSelectedEventSnakeCase = (event: string) => {
-    return event
-      .split('')
-      .map((e) => (e === ' ' ? '_' : e.toLowerCase()))
-      .join('');
-  };
+export const getSelectedEventSnakeCase = (event: string) => {
+  return event
+    .split('')
+    .map((e) => (e === ' ' ? '_' : e.toLowerCase()))
+    .join('');
+};
 
-  export const numberFormatter = (num: string | number) => {
-    num = typeof num === 'string' ? parseInt(num) : num;
-    const formatter = Intl.NumberFormat('en', { notation: 'compact' });
-    return formatter.format(num);
-  };
+export const numberFormatter = (num: string | number) => {
+  num = typeof num === 'string' ? parseInt(num) : num;
+  const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+  return formatter.format(num);
+};

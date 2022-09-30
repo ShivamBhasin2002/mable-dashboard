@@ -1,9 +1,9 @@
-import AnalyticsTable from 'components/analytics/analyticsTable';
-import ColumnSelectorMenu from 'components/analytics/columnSelectorMenu';
-import { ComponentWrapper } from 'components/elements/common';
+import AnalyticsTable from 'components/dataQuality/analytics/analyticsTable';
+import ColumnSelectorMenu from 'components/dataQuality/analytics/columnSelectorMenu';
+import { ComponentWrapper } from 'components/common';
 
 import { ExportToCsv } from 'export-to-csv';
-import { generateCSV } from 'components/analytics/csvExport';
+import { generateCSV } from 'components/dataQuality/analytics/csvExport';
 
 const Analytics = () => {
   const { options, csvData } = generateCSV();

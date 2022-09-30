@@ -6,11 +6,11 @@ import Register from 'pages/auth/register';
 import Dashboard from 'pages/data_quality/dashboard';
 import OrderAnalysis from 'pages/data_quality/order_analysis';
 import EventQuality from 'pages/data_quality/event_quality';
+import Analytics from 'pages/data_quality/analytics_report';
 import Layout from 'components/common/Layout';
 
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
-import Analytics from 'pages/Analytics';
 
 const App = () => {
   const { activeScreen } = useSelector((state) => state.screen);

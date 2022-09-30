@@ -1,5 +1,5 @@
 import moment from 'moment';
-import Loading from 'components/elements/common/Loading';
+import { Loading } from 'components/common';
 import { useSelector, useDispatch } from 'redux/store';
 import { useEffect } from 'react';
 import { analyticsAsync } from 'redux/reducers/analyticsSlice';
