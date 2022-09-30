@@ -1,7 +1,7 @@
 import { FormControl, Checkbox, FormErrorMessage } from '@chakra-ui/react';
 import { useField } from 'formik';
 
-import { CheckBoxProps } from 'utility/typeDefinitions/componentTypes';
+import { CheckBoxProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const CheckBox = ({ message, ...props }: CheckBoxProps) => {
   const [field, meta] = useField({ ...props });

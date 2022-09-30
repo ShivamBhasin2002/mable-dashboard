@@ -12,7 +12,7 @@ import { setDates, setPreset } from 'redux/reducers/datesSlice';
 
 import { presetsToDateRange } from 'utility/functions';
 import { DatePickerPresets } from 'utility/constants/general';
-import { datePickerProps } from 'utility/typeDefinitions/componentTypes';
+import { datePickerProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const DatePicker = ({ close, isOpen }: datePickerProps) => {
   const dispatch = useDispatch();

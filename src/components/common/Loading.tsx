@@ -1,7 +1,7 @@
 import { Spinner } from '@chakra-ui/react';
 import colors from 'utility/colors';
 
-import { LoadingProps } from 'utility/typeDefinitions/componentTypes';
+import { LoadingProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const Loading = ({ message = 'Loading' }: LoadingProps) => {
   return (

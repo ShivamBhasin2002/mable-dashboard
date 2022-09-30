@@ -1,4 +1,4 @@
-import { ComponentWrapperProps } from 'utility/typeDefinitions/componentTypes';
+import { ComponentWrapperProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const ComponentWrapper = ({
   width,

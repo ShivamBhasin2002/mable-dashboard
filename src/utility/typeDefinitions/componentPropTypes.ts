@@ -1,4 +1,4 @@
-import { screenType } from 'utility/constants/general';
+import { eventSelectedType, screenType } from 'utility/constants/general';
 
 export type IconType = {
   icon?: string;
@@ -51,4 +51,22 @@ export type ViewFullReportProps = {
 export type datePickerProps = {
   close: () => void;
   isOpen: boolean;
+};
+
+export type SelectorMenuProps = {
+  active: eventSelectedType;
+  onChange: (item: eventSelectedType) => void;
+};
+
+export type StatisticPropTypes = { value?: string | number; message?: string };
+
+export type AttributionEventBarChartProps = {
+  width?: number;
+  height?: number;
+};
+
+export type DataQualityLineChartProps = {
+  width?: number;
+  height?: number;
+  color?: string;
 };

@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
 import { shopAsync } from 'redux/reducers/shopSlice';
 
-import { LayoutProps } from 'utility/typeDefinitions/componentTypes';
+import { LayoutProps } from 'utility/typeDefinitions/componentPropTypes';
 import { STATUS_TYPE } from 'utility/constants/general';
 
 const Layout = ({ children }: LayoutProps) => {

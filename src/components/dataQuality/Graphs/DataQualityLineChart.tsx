@@ -5,16 +5,13 @@ import { createGradient } from 'utility/functions';
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
+import { DataQualityLineChartProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const DataQualityLineChart = ({
   width,
   height,
   color = colors.dataQualityChartArea
-}: {
-  width?: number;
-  height?: number;
-  color?: string;
-}) => {
+}: DataQualityLineChartProps) => {
   const { DATA_QUALITY_BY_DATE } = useSelector((state) => state.dataQuality);
 
   const chart = useRef<any>(null); // eslint-disable-line
