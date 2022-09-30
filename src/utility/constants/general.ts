@@ -47,10 +47,10 @@ export enum byDate {
 
 export enum eventSelectedType {
   purchase = 'Purchase',
-  addPaymentInfo = 'Add Payment Info',
-  intitateCheckout = 'Intitate Checkout',
-  addToCart = 'Add to Cart',
-  pageView = 'Page View'
+  add_payment_info = 'Add Payment Info',
+  intitate_checkout = 'Intitate Checkout',
+  add_to_cart = 'Add to Cart',
+  page_view = 'Page View'
 }
 
 export enum DatePickerPresets {

@@ -46,20 +46,12 @@ export const warningInitialState: warningStateType = {
 };
 
 export const dataPerEventsInitialState: dataPerEventStateType = {
-  dataContainedPerEventBarChart: [
-    { attribution_quality: 12, event_quality: 6, _id: '19Jul' },
-    { attribution_quality: 13, event_quality: 5, _id: '20Jul' },
-    { attribution_quality: 9, event_quality: 7, _id: '21Jul' },
-    { attribution_quality: 11, event_quality: 5, _id: '22Jul' },
-    { attribution_quality: 12, event_quality: 6, _id: '23Jul' },
-    { attribution_quality: 11, event_quality: 6, _id: '24Jul' },
-    { attribution_quality: 9, event_quality: 6.2, _id: '25Jul' }
-  ],
+  byDate: [],
   dataContainedPerEventDoughnutChart: {
-    backend: 72,
-    frontend: 21,
-    mableEngine: 5,
-    unavailable: 2
+    backend: 0,
+    frontend: 0,
+    mableEngine: 0,
+    unavailable: 0
   },
   attribution: 0,
   event: 0,
@@ -89,8 +81,8 @@ export const dataQualityInitialState: dataQualityStateType = {
 };
 
 export const eventsInitialState: eventsStateType = {
-  N_Total: 155200,
-  AVG_T_DIFF: 8300,
+  totalEventCount: 0,
+  avgTimeDifference: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };

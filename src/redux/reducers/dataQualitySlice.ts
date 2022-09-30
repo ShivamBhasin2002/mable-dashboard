@@ -1,10 +1,11 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import moment from 'moment';
 import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataQualityInitialState } from 'utility/constants/initialStates';
+
 import { STATUS_TYPE } from 'utility/constants/general';
-import moment from 'moment';
 
 // eslint-disable-next-line
 export const dataQualityAsync = createAsyncThunk<any, void, thunkOptions>(

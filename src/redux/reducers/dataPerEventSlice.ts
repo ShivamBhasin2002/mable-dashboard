@@ -3,7 +3,9 @@ import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataPerEventsInitialState } from 'utility/constants/initialStates';
+
 import { STATUS_TYPE } from 'utility/constants/general';
+import { getSelectedEventSnakeCase } from 'utility/functions';
 
 // eslint-disable-next-line
 export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -11,9 +13,17 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const data = { AttributionParameters: {}, EventParameters: {}, attribution: 0, event: 0 };
+      const data = {
+        AttributionParameters: {},
+        EventParameters: {},
+        attribution: 0,
+        event: 0,
+        byDate: []
+      };
       const eventAttributionCall = axios.get(
-        `${process.env.REACT_APP_MA_URL}/v2/events-attribution-quality`,
+        `${process.env.REACT_APP_MA_URL}/v2/attribution-params-quality/${getSelectedEventSnakeCase(
+          state.dataPerEvent.eventSelected
+        )}`,
         {
           headers: { Authorization: `Token ${state.user.token}` },
           params: {
@@ -24,7 +34,9 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         }
       );
       const eventParamsCall = axios.get(
-        `${process.env.REACT_APP_MA_URL}/v2/events-params-quality`,
+        `${process.env.REACT_APP_MA_URL}/v2/events-params-quality/${getSelectedEventSnakeCase(
+          state.dataPerEvent.eventSelected
+        )}`,
         {
           headers: { Authorization: `Token ${state.user.token}` },
           params: {
@@ -42,6 +54,13 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
       data.EventParameters = eventParamsData.data.overall_events_percentage ?? {};
       data.attribution = eventAttributionData.data.total_overall_attribution_percentage ?? 0;
       data.event = eventParamsData.data.total_overall_events_percentage ?? 0;
+      data.byDate = eventAttributionData.data.grouped_attribution_percentage.map(
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        (date: Object, idx: number) => ({
+          ...date,
+          events_quality: eventParamsData.data.grouped_events_percentage[idx].events_quality
+        })
+      );
       if (eventAttributionData && eventParamsData) return data;
       rejectWithValue('Data not found');
     } catch (error) {
