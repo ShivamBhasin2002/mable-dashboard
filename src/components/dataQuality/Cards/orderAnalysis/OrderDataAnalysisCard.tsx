@@ -19,9 +19,10 @@ const OrderDataAnalysisCard = () => {
     TOTAL_DATA_QUALITY_FACEBOOK,
     status
   } = useSelector((state) => state.dataQuality);
+  const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
-    if (status === STATUS_TYPE.IDLE) dispatch(dataQualityAsync());
-  }, [status]);
+    if (status !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
+  }, [refresh]);
   return (
     <ComponentWrapper>
       <div className="flex flex-row flex-wrap lg:flex-nowrap gap-[40px] justify-evenly">

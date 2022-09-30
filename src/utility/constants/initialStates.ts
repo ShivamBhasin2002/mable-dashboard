@@ -35,7 +35,8 @@ export const shopInitialState: shopStateType = {
 };
 
 export const datesInitialState: datesStateType = {
-  dateRange: [moment('2022-08-01'), moment('2022-08-31')]
+  dateRange: [moment('2022-08-01'), moment('2022-08-31')],
+  refresh: false
 };
 
 export const warningInitialState: warningStateType = {

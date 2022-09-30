@@ -50,7 +50,7 @@ const Layout = ({ children }: LayoutProps) => {
   }, [shopStatus, status]);
 
   return shopStatus === STATUS_TYPE.FETCHING || shopStatus === STATUS_TYPE.IDLE ? (
-    <Loading />
+    <Loading className="h-screen" />
   ) : (
     <div className="bg-background flex justify-around">
       <div className="">
@@ -62,7 +62,7 @@ const Layout = ({ children }: LayoutProps) => {
           children
         ) : (
           <div className="w-full h-min-screen">
-            <Loading message="Fetching Shops" />
+            <Loading message="Fetching Shops" className="h-screen" />
           </div>
         )}
       </div>

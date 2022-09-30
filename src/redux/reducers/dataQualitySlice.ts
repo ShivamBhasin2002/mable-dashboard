@@ -6,7 +6,6 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataQualityInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
-
 // eslint-disable-next-line
 export const dataQualityAsync = createAsyncThunk<any, void, thunkOptions>(
   'dataQuality/fetch',
@@ -35,15 +34,17 @@ export const dataQualityReducer = createReducer(dataQualityInitialState, (builde
       state.status = STATUS_TYPE.FETCHING;
     })
     .addCase(dataQualityAsync.fulfilled, (state, { payload }) => {
-      state.TOTAL_DATA_QUALITY_FACEBOOK = Math.round(payload.total_data_quality_facebook * 100);
-      state.FACEBOOK_SUCCESS_DELIVERED_ORDERS = payload.facebook_success_delivered_orders;
-      state.TOTAL_SHOPIFY_ORDERS = payload.total_shopify_orders;
-      state.DATA_QUALITY_BY_DATE = payload.bydate.map(
-        (element: { date: string; data_quality: number }) => ({
-          ...element,
-          date: moment(element.date).format('D. MMM')
-        })
-      );
+      state.TOTAL_DATA_QUALITY_FACEBOOK = payload.total_data_quality_facebook
+        ? Math.round(payload.total_data_quality_facebook * 100)
+        : 0;
+      state.FACEBOOK_SUCCESS_DELIVERED_ORDERS = payload.facebook_success_delivered_orders ?? 0;
+      state.TOTAL_SHOPIFY_ORDERS = payload.total_shopify_orders ?? 0;
+      state.DATA_QUALITY_BY_DATE = payload.bydate
+        ? payload.bydate.map((element: { date: string; data_quality: number }) => ({
+            ...element,
+            date: moment(element.date).format('D. MMM')
+          }))
+        : [];
       state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(dataQualityAsync.rejected, (state) => {

@@ -13,7 +13,6 @@ const DataQualityLineChart = ({
   color = colors.dataQualityChartArea
 }: DataQualityLineChartProps) => {
   const { DATA_QUALITY_BY_DATE } = useSelector((state) => state.dataQuality);
-
   const chart = useRef<any>(null); // eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {

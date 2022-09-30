@@ -44,6 +44,7 @@ export type shopStateType = {
 export type datesStateType = {
   dateRange: Moment[];
   datePreset?: string;
+  refresh: boolean;
 };
 
 export type warningStateType = {

@@ -1,4 +1,4 @@
-import { eventSelectedType, screenType } from 'utility/constants/general';
+import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
 
 export type IconType = {
   icon?: string;
@@ -26,6 +26,7 @@ export type ComponentWrapperProps = {
   nextComponent?: React.ReactNode;
   underlined?: boolean;
   className?: string;
+  status?: STATUS_TYPE;
 };
 
 export type TextFieldProps = {
@@ -42,6 +43,7 @@ export type LayoutProps = {
 
 export type LoadingProps = {
   message?: string;
+  className?: string;
 };
 
 export type ViewFullReportProps = {

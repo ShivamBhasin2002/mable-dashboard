@@ -19,6 +19,7 @@ import DatePicker from 'components/common/DatePicker';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { setShop } from 'redux/reducers/shopSlice';
+import { refresh } from 'redux/reducers/datesSlice';
 
 const DashboardHeader = () => {
   const datePickerRef = useRef<any>(); //eslint-disable-line
@@ -71,7 +72,12 @@ const DashboardHeader = () => {
           {activeScreen}
         </h1>
         <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
-          <span className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl">
+          <span
+            className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
+            onClick={() => {
+              dispatch(refresh());
+            }}
+          >
             <Icon icon="refresh" />
           </span>
           <Popover
