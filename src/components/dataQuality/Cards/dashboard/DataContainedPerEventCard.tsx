@@ -16,9 +16,10 @@ import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataPerEvent
 const DataContainedPerEventCard = () => {
   const dispatch = useDispatch();
   const { status, eventSelected } = useSelector((state) => state.dataPerEvent);
+  const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
-    if (status === STATUS_TYPE.IDLE) dispatch(dataPerEventAsync());
-  }, [status]);
+    if (status !== STATUS_TYPE.FETCHING) dispatch(dataPerEventAsync());
+  }, [refresh]);
   return (
     <ComponentWrapper
       title="Data Contained Per Event"

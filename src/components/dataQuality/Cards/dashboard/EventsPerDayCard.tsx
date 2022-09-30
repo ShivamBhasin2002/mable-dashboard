@@ -12,9 +12,10 @@ import { eventsDataAsync, setEventSelected } from 'redux/reducers/eventsDataSlic
 const EventsPerDayCard = () => {
   const dispatch = useDispatch();
   const { status, eventSelected } = useSelector((state) => state.eventsData);
+  const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
-    if (status === STATUS_TYPE.IDLE) dispatch(eventsDataAsync());
-  }, [status]);
+    if (status !== STATUS_TYPE.FETCHING) dispatch(eventsDataAsync());
+  }, [refresh]);
   return (
     <ComponentWrapper
       title="Events Per Day"

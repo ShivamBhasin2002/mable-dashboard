@@ -14,11 +14,12 @@ import { STATUS_TYPE } from 'utility/constants/general';
 const EventsDataBarChart = () => {
   const dispatch = useDispatch();
   const { total_events, status } = useSelector((state) => state.eventsData);
+  const refresh = useSelector((state) => state.dates.refresh);
   const chart = useRef<any>(null); //eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); //eslint-disable-line
   useEffect(() => {
-    if (status === STATUS_TYPE.IDLE) dispatch(eventsDataAsync());
-  }, [status]);
+    if (status !== STATUS_TYPE.FETCHING) dispatch(eventsDataAsync());
+  }, [refresh]);
   useEffect(() => {
     if (chart.current) {
       const chartData = {
@@ -45,7 +46,7 @@ const EventsDataBarChart = () => {
       };
       setChartData(chartData);
     }
-  }, [status]);
+  }, [refresh]);
   return (
     <ComponentWrapper width={600} title="Funnel Analysis" className="flex flex-col justify-between">
       <Bar

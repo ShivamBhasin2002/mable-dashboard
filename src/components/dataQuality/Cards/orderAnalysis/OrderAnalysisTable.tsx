@@ -16,9 +16,10 @@ import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';
 const OrderAnalysisTable = () => {
   const dispatch = useDispatch();
   const { tableData, status } = useSelector((state) => state.orderAnalysis);
+  const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
-    if (status === STATUS_TYPE.IDLE) dispatch(orderAnalysisAsync());
-  }, [status]);
+    if (status !== STATUS_TYPE.FETCHING) dispatch(orderAnalysisAsync());
+  }, [refresh]);
   return (
     <table className="w-full table-auto my-[10px]">
       <thead>
