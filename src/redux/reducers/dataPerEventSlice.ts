@@ -50,11 +50,19 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         eventAttributionCall,
         eventParamsCall
       ]);
-      data.AttributionParameters = eventAttributionData.data.overall_attribution_percentage ?? {};
-      data.EventParameters = eventParamsData.data.overall_events_percentage ?? {};
-      data.attribution = eventAttributionData.data.total_overall_attribution_percentage ?? 0;
-      data.event = eventParamsData.data.total_overall_events_percentage ?? 0;
-      data.byDate = eventAttributionData.data.grouped_attribution_percentage.map(
+      data.AttributionParameters =
+        eventAttributionData.data.overall_attribution_percentage ??
+        dataPerEventsInitialState.AttributionParameters;
+      data.EventParameters =
+        eventParamsData.data.overall_events_percentage ?? dataPerEventsInitialState.EventParameters;
+      data.attribution =
+        eventAttributionData.data.total_overall_attribution_percentage ??
+        dataPerEventsInitialState.attribution;
+      data.event =
+        eventParamsData.data.total_overall_events_percentage ?? dataPerEventsInitialState.event;
+      data.byDate = (
+        eventAttributionData.data.grouped_attribution_percentage ?? dataPerEventsInitialState.byDate
+      ).map(
         // eslint-disable-next-line @typescript-eslint/ban-types
         (date: Object, idx: number) => ({
           ...date,

@@ -41,8 +41,8 @@ export const eventsDataReducer = createSlice({
         state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(eventsDataAsync.fulfilled, (state, { payload }) => {
-        state.total_events = payload.total_events;
-        state.byDate = payload.by_date;
+        state.total_events = payload?.total_events ?? eventsDataInitialState.total_events;
+        state.byDate = payload?.by_date ?? eventsDataInitialState.byDate;
         state.status = STATUS_TYPE.SUCCESS;
       })
       .addCase(eventsDataAsync.rejected, (state) => {
