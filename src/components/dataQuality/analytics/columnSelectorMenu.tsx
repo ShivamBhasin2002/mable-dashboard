@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setColumnSelected } from 'redux/reducers/analyticsSlice';
 import { filterType } from 'utility/constants/general';
 import { useSelector } from 'redux/store';
+import { SelectedEventsType } from 'utility/typeDefinitions/reduxTypes';
 
 const ColumnSelectorMenu = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const ColumnSelectorMenu = () => {
         <Stack spacing={[1]} direction={['column']}>
           {Object.entries(filterType).map((item) => (
             <Checkbox
-              isChecked={(selectedEvents as any)[item[0]]}
+              isChecked={selectedEvents[item[0] as keyof SelectedEventsType]}
               key={item[0]}
               className=" pl-3"
               size="md"
