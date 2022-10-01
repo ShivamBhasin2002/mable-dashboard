@@ -11,6 +11,7 @@ import Layout from 'components/common/Layout';
 
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
+import Settings from 'pages/settings/settings';
 
 const App = () => {
   const { activeScreen } = useSelector((state) => state.screen);
@@ -38,8 +39,8 @@ const App = () => {
               {activeScreen === 'Order Analysis' && <OrderAnalysis />}
               {activeScreen === 'Event Quality' && <EventQuality />}
               {activeScreen === 'Reports' && <Analytics />}
-              {/* {screen === 'Settings' && null}
-              {screen === 'Tutorial' && null} */}
+              {activeScreen === 'Settings' && <Settings />}
+              {/* {screen === 'Tutorial' && null} */}
             </Layout>
           }
         />
