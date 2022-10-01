@@ -4,7 +4,7 @@ import { ComponentWrapper } from 'components/common';
 
 const EmailChange = () => {
   return (
-    <ComponentWrapper className="w-fit mt-[20px] text-light h-fit">
+    <ComponentWrapper className="w-full mt-[20px] text-light h-fit">
       <h1 className=" text-lg font-semibold">Contact Info</h1>
       <p className=" font-light opacity-60">
         Access your Loom workspaces with any email address, or

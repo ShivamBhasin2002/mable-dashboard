@@ -1,5 +1,6 @@
 import { Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
+import Icon from 'assets/icons';
 import { ComponentWrapper } from 'components/common';
 import { useState } from 'react';
 
@@ -84,6 +85,23 @@ const PasswordChange = () => {
         <Button colorScheme="linkedin" variant="outline" className="ml-6">
           Cancel
         </Button>
+      </div>
+      <div className="mt-[35px]">
+        <h1 className="font-semibold">Reset Password</h1>
+        <p className=" opacity-50">
+          If you just forgot your password, don&apos;t worry we got you.
+        </p>
+        <p className="mt-3 flex flex-row opacity-50">
+          <Icon className="mr-3" icon="dashboard" width={24} height={24} /> Reset Password
+        </p>
+        <div className="mt-[30px]">
+          <Button disabled colorScheme="linkedin" variant="solid">
+            Save
+          </Button>
+          <Button disabled colorScheme="linkedin" variant="outline" className="ml-6">
+            Cancel
+          </Button>
+        </div>
       </div>
     </ComponentWrapper>
   );
