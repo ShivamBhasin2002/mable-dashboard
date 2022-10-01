@@ -4,11 +4,13 @@ import PasswordChange from 'components/settings/password';
 
 const Settings = () => {
   return (
-    <div className="flex flex-row flex-wrap gap-[20px]">
-      <NameChange />
+    <>
+      <div className="flex flex-row justify-start gap-[15px]">
+        <NameChange />
+        <PasswordChange />
+      </div>
       <EmailChange />
-      <PasswordChange />
-    </div>
+    </>
   );
 };
 

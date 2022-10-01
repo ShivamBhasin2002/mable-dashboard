@@ -5,7 +5,7 @@ import { ComponentWrapper } from 'components/common';
 
 const NameChange = () => {
   return (
-    <ComponentWrapper className="w-fit mt-[40px] text-light">
+    <ComponentWrapper className="w-1/2 mt-[20px] text-light">
       <h1 className=" text-lg font-semibold">Name and Photos</h1>
       <p className=" font-light opacity-60">
         Changing your name below will update your name on your profile

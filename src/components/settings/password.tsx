@@ -21,11 +21,10 @@ const PasswordChange = () => {
     }
   };
   return (
-    <ComponentWrapper className="mt-[20px] text-light h-fit">
+    <ComponentWrapper className="w-1/2 mt-[20px] text-light">
       <h1 className=" text-lg font-semibold">Password</h1>
       <p className=" font-light opacity-60">
         Note that if you signed in with a connected account,you are using that account login
-        <br />
         information and we cannot change or reset those passwords here.
       </p>
       <div className="mt-[30px]">
@@ -44,7 +43,7 @@ const PasswordChange = () => {
           </InputRightElement>
         </InputGroup>
       </div>
-      <div className=" flex flex-row gap-2">
+      <div className=" flex flex-col gap-2">
         <div className="mt-[30px]">
           <Text mb="8px">New Password</Text>
           <InputGroup size="md" width="20rem">
