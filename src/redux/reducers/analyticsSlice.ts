@@ -3,7 +3,7 @@ import { filterOptionInitialState } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
-import { updateEvents } from 'utility/functions';
+import { updateEvents } from 'utility/functions/mappingFunctions';
 
 export const analyticsAsync = createAsyncThunk<
   {

@@ -1,7 +1,7 @@
 import { ComponentWrapper } from 'components/common';
 
 import { useSelector } from 'redux/store';
-import { numberFormatter } from 'utility/functions';
+import { numberFormatter } from 'utility/functions/formattingFunctions';
 
 const EventsCard = () => {
   const { totalEventCount, avgTimeDifference } = useSelector((state) => state.events);

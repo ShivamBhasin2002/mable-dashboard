@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
-import { createGradient } from 'utility/functions';
+import { createGradient } from 'utility/functions/colorSelector';
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';

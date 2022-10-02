@@ -8,7 +8,7 @@ import {
   totalAttributions,
   STATUS_TYPE
 } from 'utility/constants/general';
-import { statusTypeColors } from 'utility/functions';
+import { statusTypeColors } from 'utility/functions/colorSelector';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';

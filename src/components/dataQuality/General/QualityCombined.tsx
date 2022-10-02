@@ -2,7 +2,8 @@ import { Doughnut } from 'react-chartjs-2';
 
 import { useSelector } from 'redux/store';
 
-import { getColor, getMessage } from 'utility/functions';
+import { getMessage } from 'utility/functions/mappingFunctions';
+import { getColor } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
 
 const QualityCombined = () => {

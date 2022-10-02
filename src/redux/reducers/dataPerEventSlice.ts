@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataPerEventsInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
-import { getSelectedEventSnakeCase } from 'utility/functions';
+import { titleCaseToSnakeCaseFormatter } from 'utility/functions/formattingFunctions';
+import { makeGetRequest } from 'utility/functions/apiCalls';
 
 // eslint-disable-next-line
 export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -20,53 +20,45 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         event: 0,
         byDate: []
       };
-      const eventAttributionCall = axios.get(
-        `${process.env.REACT_APP_MA_URL}/v2/attribution-params-quality/${getSelectedEventSnakeCase(
+      const { data: eventAttributionData } = await makeGetRequest({
+        path: `/v2/attribution-params-quality/${titleCaseToSnakeCaseFormatter(
           state.dataPerEvent.eventSelected
         )}`,
-        {
-          headers: { Authorization: `Token ${state.user.token}` },
-          params: {
-            source_id: state.shop.active?.id,
-            start_date: state.dates.dateRange[0],
-            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
-          }
+        token: state.user.token,
+        params: {
+          source_id: state.shop.active?.id,
+          start_date: state.dates.dateRange[0],
+          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
         }
-      );
-      const eventParamsCall = axios.get(
-        `${process.env.REACT_APP_MA_URL}/v2/events-params-quality/${getSelectedEventSnakeCase(
+      });
+      const { data: eventParamsData } = await makeGetRequest({
+        path: `/v2/events-params-quality/${titleCaseToSnakeCaseFormatter(
           state.dataPerEvent.eventSelected
         )}`,
-        {
-          headers: { Authorization: `Token ${state.user.token}` },
-          params: {
-            source_id: state.shop.active?.id,
-            start_date: state.dates.dateRange[0],
-            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
-          }
+        token: state.user.token,
+        params: {
+          source_id: state.shop.active?.id,
+          start_date: state.dates.dateRange[0],
+          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
         }
-      );
-      const [eventAttributionData, eventParamsData] = await Promise.all([
-        eventAttributionCall,
-        eventParamsCall
-      ]);
+      });
       data.AttributionParameters =
-        eventAttributionData.data.overall_attribution_percentage ??
+        eventAttributionData.overall_attribution_percentage ??
         dataPerEventsInitialState.AttributionParameters;
       data.EventParameters =
-        eventParamsData.data.overall_events_percentage ?? dataPerEventsInitialState.EventParameters;
+        eventParamsData.overall_events_percentage ?? dataPerEventsInitialState.EventParameters;
       data.attribution =
-        eventAttributionData.data.total_overall_attribution_percentage ??
+        eventAttributionData.total_overall_attribution_percentage ??
         dataPerEventsInitialState.attribution;
       data.event =
-        eventParamsData.data.total_overall_events_percentage ?? dataPerEventsInitialState.event;
+        eventParamsData.total_overall_events_percentage ?? dataPerEventsInitialState.event;
       data.byDate = (
-        eventAttributionData.data.grouped_attribution_percentage ?? dataPerEventsInitialState.byDate
+        eventAttributionData.grouped_attribution_percentage ?? dataPerEventsInitialState.byDate
       ).map(
         // eslint-disable-next-line @typescript-eslint/ban-types
         (date: Object, idx: number) => ({
           ...date,
-          events_quality: eventParamsData.data.grouped_events_percentage[idx].events_quality
+          events_quality: eventParamsData.grouped_events_percentage[idx].events_quality
         })
       );
       if (eventAttributionData && eventParamsData) return data;

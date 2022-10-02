@@ -10,7 +10,7 @@ import { ComponentWrapper } from 'components/common';
 import { useDispatch, useSelector } from 'redux/store';
 import { refresh, setDates, setPreset } from 'redux/reducers/datesSlice';
 
-import { presetsToDateRange } from 'utility/functions';
+import { presetsToDateRange } from 'utility/functions/mappingFunctions';
 import { DatePickerPresets } from 'utility/constants/general';
 import { datePickerProps } from 'utility/typeDefinitions/componentPropTypes';
 
