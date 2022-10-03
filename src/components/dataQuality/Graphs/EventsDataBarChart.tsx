@@ -48,7 +48,7 @@ const EventsDataBarChart = () => {
       };
       setChartData(chartData);
     }
-  }, [refresh]);
+  }, [refresh, total_events]);
   return (
     <ComponentWrapper width={600} title="Funnel Analysis" className="flex flex-col justify-between">
       <Bar

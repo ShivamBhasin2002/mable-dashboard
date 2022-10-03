@@ -9,14 +9,23 @@ const EventParametersCard = () => {
   return (
     <ComponentWrapper title="Event Parameters" className="flex-grow-[1]">
       <div className="flex flex-col flex-wrap gap-[15px]">
-        {EventParameters.shopping_data_total_amount && (
-          <ParameterStat name={'Total Amount'} value={EventParameters.shopping_data_total_amount} />
+        {EventParameters.total_count_shopping_data_total_amount && (
+          <ParameterStat
+            name={'Total Amount'}
+            value={EventParameters.total_count_shopping_data_total_amount}
+          />
         )}
-        {EventParameters.shopping_data_currency && (
-          <ParameterStat name={'Currency'} value={EventParameters.shopping_data_currency} />
+        {EventParameters.total_count_shopping_data_currency && (
+          <ParameterStat
+            name={'Currency'}
+            value={EventParameters.total_count_shopping_data_currency}
+          />
         )}
-        {EventParameters.custom_data_order_id && (
-          <ParameterStat name={'Order ID'} value={EventParameters.custom_data_order_id} />
+        {EventParameters.total_count_custom_data_order_id && (
+          <ParameterStat
+            name={'Order ID'}
+            value={EventParameters.total_count_custom_data_order_id}
+          />
         )}
       </div>
     </ComponentWrapper>

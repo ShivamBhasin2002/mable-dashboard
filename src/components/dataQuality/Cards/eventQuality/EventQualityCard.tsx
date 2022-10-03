@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { ComponentWrapper } from 'components/common';
 
 import {
@@ -8,14 +10,18 @@ import {
 import { ParameterMetrics } from 'components/dataQuality/General';
 import { SelectorMenu } from 'components/dataQuality/Common';
 
-import { eventSelectedType } from 'utility/constants/general';
+import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { setEventSelected } from 'redux/reducers/dataPerEventSlice';
+import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataPerEventSlice';
 
 const EventQualityCard = () => {
   const dispatch = useDispatch();
-  const { eventSelected } = useSelector((state) => state.dataPerEvent);
+  const { eventSelected, status } = useSelector((state) => state.dataPerEvent);
+  const refresh = useSelector((state) => state.dates.refresh);
+  useEffect(() => {
+    if (status !== STATUS_TYPE.FETCHING) dispatch(dataPerEventAsync());
+  }, [refresh]);
   return (
     <ComponentWrapper
       nextComponent={
