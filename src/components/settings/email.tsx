@@ -7,7 +7,7 @@ const EmailChange = () => {
     <ComponentWrapper className="w-full mt-[20px] text-light h-fit">
       <h1 className=" text-lg font-semibold">Contact Info</h1>
       <p className=" font-light opacity-60">
-        Access your Loom workspaces with any email address, or
+        Access your Mable workspaces with any email address, or
       </p>
       <div className="mt-[30px]">
         <Text mb="8px">E-mail</Text>
