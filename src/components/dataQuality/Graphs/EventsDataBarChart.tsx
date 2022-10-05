@@ -50,7 +50,11 @@ const EventsDataBarChart = () => {
     }
   }, [refresh, total_events]);
   return (
-    <ComponentWrapper width={600} title="Funnel Analysis" className="flex flex-col justify-between">
+    <ComponentWrapper
+      width={600}
+      title="Funnel Analysis"
+      className="flex flex-col justify-between flex-grow 2xl:flex-grow-0"
+    >
       <Bar
         className="flex-grow-0"
         ref={chart}

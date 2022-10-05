@@ -1,6 +1,10 @@
 import moment from 'moment';
 
-import { DatePickerPresets as presets, eventSelectedType } from 'utility/constants/general';
+import {
+  DatePickerPresets as presets,
+  eventSelectedType,
+  screenType
+} from 'utility/constants/general';
 
 import { AnalyticsStateType } from 'utility/typeDefinitions/reduxTypes';
 
@@ -93,5 +97,16 @@ export const updateEvents = (state: AnalyticsStateType, payload: string) => {
     case 'Purchase':
       state.selected_events.Purchase = !state.selected_events.Purchase;
       break;
+  }
+};
+
+export const screenToURL = (screen: screenType): string | undefined => {
+  switch (screen) {
+    case screenType.dashboard:
+      return 'data_quality/dashboard';
+    case screenType.orderAnalysis:
+      return 'data_quality/order_analysis';
+    case screenType.eventQuality:
+      return 'data_quality/event_quality';
   }
 };

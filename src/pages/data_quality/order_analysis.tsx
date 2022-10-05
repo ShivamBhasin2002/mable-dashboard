@@ -7,7 +7,7 @@ const OrderAnalysis = () => {
   return (
     <div className="flex flex-col mt-[40px] gap-[40px]">
       <OrderDataAnalysisCard />
-      <ComponentWrapper className="text-light">
+      <ComponentWrapper className="text-light flex-grow-0">
         <StatusSelectorMenu />
         <OrderAnalysisTable />
       </ComponentWrapper>

@@ -26,6 +26,7 @@ const EventsPerDayCard = () => {
           onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
         />
       }
+      className="flex-grow 2xl:flex-grow-0"
     >
       <EventsPerDayLineChart />
     </ComponentWrapper>

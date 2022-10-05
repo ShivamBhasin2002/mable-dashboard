@@ -33,7 +33,7 @@ const Login = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(clearState());
-      navigator('/dashboard');
+      navigator('/data_quality/dashboard');
     }
   }, [status]);
   return (
@@ -107,7 +107,7 @@ const Login = () => {
         <div className="flex justify-between text-secondary w-[400px] md:w-[600px] items-center">
           <div>
             Don&apos;t have an account?{' '}
-            <Link className="text-light" to="/register">
+            <Link className="text-light" to="/auth/register">
               Register Now!
             </Link>
           </div>

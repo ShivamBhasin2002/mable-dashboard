@@ -29,7 +29,7 @@ const Layout = ({ children }: LayoutProps) => {
     if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
       toast({ title: 'Login Required', status: 'error', isClosable: true, position: 'top-right' });
-      navigator('/login');
+      navigator('/auth/login');
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(shopAsync());
