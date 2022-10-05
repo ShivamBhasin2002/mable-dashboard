@@ -11,7 +11,6 @@ const AnalyticsTable = () => {
 
   const analyticData = useSelector((state) => state.analytics);
   const { dateRange, datePreset } = useSelector((state) => state.dates);
-  console.log(moment(dateRange[0]).hours());
   const totalEvents = analyticData.analyticReport.total_events;
   const byDate = analyticData.analyticReport.by_date;
   const selectedEvents = analyticData.selected_events;
@@ -25,7 +24,14 @@ const AnalyticsTable = () => {
   if (analyticData.status === 'fetching') {
     return <Loading message="Fetching Analytic Report" />;
   } else if (analyticData.status === 'error') {
-    return <div>oops ! some error occured</div>;
+    return (
+      <div className="mt-[20px] text-error text-4xl">
+        oops ! some error occured
+        <div className="mt-[20px] text-error text-xl p-4 rounded-md bg-background">
+          {analyticData.error}
+        </div>
+      </div>
+    );
   } else if (analyticData.status === 'success') {
     return (
       <table className="w-full table-auto my-[10px]">

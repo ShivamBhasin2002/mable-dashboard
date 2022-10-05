@@ -111,6 +111,7 @@ export type eventsStateType = {
 
 export type AnalyticsStateType = {
   status: string;
+  error?: string;
   selected_events: {
     PageView: boolean;
     AddToCart: boolean;
