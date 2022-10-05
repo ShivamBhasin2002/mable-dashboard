@@ -31,9 +31,9 @@ export const analyticsAsync = createAsyncThunk<
     const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/events`, {
       headers: { Authorization: `Token ${state.user.token}` },
       params: {
-        start_date: state.dates.dateRange[0].format('YYYY-MM-DD'),
-        end_date: state.dates.dateRange[state.dates.dateRange.length - 1].format('YYYY-MM-DD'),
-        source_id: 43
+        start_date: state.dates.dateRange[0],
+        end_date: state.dates.dateRange[state.dates.dateRange.length - 1],
+        source_id: state.shop.active?.id
       }
     });
     if (data) {

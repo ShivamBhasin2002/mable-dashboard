@@ -11,7 +11,7 @@ const AnalyticsTable = () => {
 
   const analyticData = useSelector((state) => state.analytics);
   const { dateRange, datePreset } = useSelector((state) => state.dates);
-
+  console.log(moment(dateRange[0]).hours());
   const totalEvents = analyticData.analyticReport.total_events;
   const byDate = analyticData.analyticReport.by_date;
   const selectedEvents = analyticData.selected_events;
