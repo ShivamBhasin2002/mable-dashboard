@@ -1,17 +1,12 @@
-import { FC } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
+import { AttributionEventBarChartProps } from 'utility/typeDefinitions/componentPropTypes';
 
-interface BarChartProps {
-  width?: number;
-  height?: number;
-}
-
-const AttributionEventBarChart: FC<BarChartProps> = ({ width, height }) => {
+const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartProps) => {
   const { byDate } = useSelector((state) => state.dataPerEvent);
   const barOptions = {
       responsive: true,

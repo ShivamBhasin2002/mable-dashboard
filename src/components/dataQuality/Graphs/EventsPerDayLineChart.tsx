@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
-import { createGradient, getSelectedEventData, numberFormatter } from 'utility/functions';
+import { numberFormatter } from 'utility/functions/formattingFunctions';
+import { getSelectedEventData } from 'utility/functions/mappingFunctions';
+import { createGradient } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 

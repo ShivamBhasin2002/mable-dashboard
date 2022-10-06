@@ -1,6 +1,6 @@
 import Icon from 'assets/icons';
 
-import { ViewFullReportProps } from 'utility/typeDefinitions/componentTypes';
+import { ViewFullReportProps } from 'utility/typeDefinitions/componentPropTypes';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { setScreen } from 'redux/reducers/screenSlice';

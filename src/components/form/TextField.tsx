@@ -11,7 +11,7 @@ import {
 import Icon from 'assets/icons';
 import { Field, useField } from 'formik';
 
-import { TextFieldProps } from 'utility/typeDefinitions/componentTypes';
+import { TextFieldProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const TextField = ({ label, icon, type, ...props }: TextFieldProps) => {
   const [field, meta] = useField({ type, ...props });

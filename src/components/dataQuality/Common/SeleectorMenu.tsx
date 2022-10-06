@@ -3,14 +3,9 @@ import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import colors from 'utility/colors';
 import Icon from 'assets/icons';
 import { eventSelectedType } from 'utility/constants/general';
+import { SelectorMenuProps } from 'utility/typeDefinitions/componentPropTypes';
 
-const SelectorMenu = ({
-  active,
-  onChange
-}: {
-  active: eventSelectedType;
-  onChange: (item: eventSelectedType) => void;
-}) => {
+const SelectorMenu = ({ active, onChange }: SelectorMenuProps) => {
   return (
     <Menu gutter={0} isLazy>
       <MenuButton

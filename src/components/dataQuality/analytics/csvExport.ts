@@ -1,5 +1,5 @@
 import { useSelector } from 'redux/store';
-import { csv } from 'utility/typeDefinitions/componentTypes';
+import { csv } from 'utility/typeDefinitions/componentPropTypes';
 import moment from 'moment';
 
 export const generateCSV = () => {

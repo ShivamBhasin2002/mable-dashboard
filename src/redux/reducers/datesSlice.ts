@@ -11,9 +11,12 @@ export const datesSlice = createSlice({
     },
     setPreset: (state, { payload }) => {
       state.datePreset = payload;
+    },
+    refresh: (state) => {
+      state.refresh = !state.refresh;
     }
   }
 });
 
-export const { setDates, setPreset } = datesSlice.actions;
+export const { setDates, setPreset, refresh } = datesSlice.actions;
 export default datesSlice.reducer;

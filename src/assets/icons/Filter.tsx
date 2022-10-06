@@ -1,4 +1,4 @@
-import { IconType } from 'utility/typeDefinitions/componentTypes';
+import { IconType } from 'utility/typeDefinitions/componentPropTypes';
 
 const SVGComponent = (props: IconType) => (
   <svg

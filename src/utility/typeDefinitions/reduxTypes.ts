@@ -44,6 +44,7 @@ export type shopStateType = {
 export type datesStateType = {
   dateRange: Moment[];
   datePreset?: string;
+  refresh: boolean;
 };
 
 export type warningStateType = {
@@ -68,24 +69,24 @@ export type dataPerEventStateType = {
   event: number;
   eventSelected: eventSelectedType;
   AttributionParameters: {
-    user_id?: number;
-    user_agent?: number;
-    customer_data_email?: number;
-    customer_data_first_name?: number;
-    customer_data_last_name?: number;
-    customer_data_phone?: number;
-    customer_data_date_of_birth?: number;
-    location_state?: number;
-    location_country_name?: number;
-    location_city?: number;
-    location_zip_code?: number;
-    clid_fbclid?: number;
-    external_ids?: number;
+    total_count_user_id?: number;
+    total_count_user_agent?: number;
+    total_count_customer_data_email?: number;
+    total_count_customer_data_first_name?: number;
+    total_count_customer_data_last_name?: number;
+    total_count_customer_data_phone?: number;
+    total_count_customer_data_date_of_birth?: number;
+    total_count_location_state?: number;
+    total_count_location_country_name?: number;
+    total_count_location_city?: number;
+    total_count_location_zip_code?: number;
+    total_count_clid_fbclid?: number;
+    total_count_external_ids?: number;
   };
   EventParameters: {
-    shopping_data_total_amount?: number;
-    shopping_data_currency?: number;
-    custom_data_order_id?: number;
+    total_count_shopping_data_total_amount?: number;
+    total_count_shopping_data_currency?: number;
+    total_count_custom_data_order_id?: number;
   };
   status?: STATUS_TYPE;
   errorMsg?: string;

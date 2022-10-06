@@ -39,7 +39,7 @@ const Register = () => {
         position: 'top-right'
       });
       dispatch(clearState());
-      navigator('/login');
+      navigator('/auth/login');
     }
   }, [status]);
   return (
@@ -137,7 +137,7 @@ const Register = () => {
         <div className="flex justify-between text-secondary w-[400px] md:w-[600px] items-center">
           <div>
             Already have an account?{' '}
-            <Link className="text-light" to="/login">
+            <Link className="text-light" to="/auth/login">
               Login Now!
             </Link>
           </div>

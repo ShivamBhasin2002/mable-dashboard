@@ -15,9 +15,10 @@ const PageSpeedCard = () => {
     AVG_CONTRIBUTION_TIME_MABLE_SCRIPT,
     status
   } = useSelector((state) => state.pageSpeed);
+  const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
-    if (status === STATUS_TYPE.IDLE) dispatch(pageSpeedAsync());
-  }, [status]);
+    if (status !== STATUS_TYPE.FETCHING) dispatch(pageSpeedAsync());
+  }, [refresh]);
   return (
     <ComponentWrapper title="Page Speed" width={560} className="flex-grow">
       <div className="flex flex-row justify-center pb-[10px]">
