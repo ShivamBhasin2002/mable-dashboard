@@ -8,11 +8,11 @@ import 'assets/styles/datePicker.css';
 import { ComponentWrapper } from 'components/common';
 
 import { useDispatch, useSelector } from 'redux/store';
-import { setDates, setPreset } from 'redux/reducers/datesSlice';
+import { refresh, setDates, setPreset } from 'redux/reducers/datesSlice';
 
-import { presetsToDateRange } from 'utility/functions';
+import { presetsToDateRange } from 'utility/functions/mappingFunctions';
 import { DatePickerPresets } from 'utility/constants/general';
-import { datePickerProps } from 'utility/typeDefinitions/componentTypes';
+import { datePickerProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const DatePicker = ({ close, isOpen }: datePickerProps) => {
   const dispatch = useDispatch();
@@ -68,6 +68,7 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
             onClick={() => {
               dispatch(setPreset(selectedPreset));
               dispatch(setDates(selectedDateRange));
+              dispatch(refresh());
               close();
             }}
           >

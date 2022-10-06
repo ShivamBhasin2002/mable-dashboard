@@ -66,6 +66,6 @@ export enum DatePickerPresets {
   prevMonth = 'Last Month'
 }
 
-export const totalEvents = 7;
+export const totalEvents = 3;
 
 export const totalAttributions = 13;

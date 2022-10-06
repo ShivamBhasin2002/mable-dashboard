@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataPerEventsInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
-import { getSelectedEventSnakeCase } from 'utility/functions';
+import { titleCaseToSnakeCaseFormatter } from 'utility/functions/formattingFunctions';
+import { makeGetRequest } from 'utility/functions/apiCalls';
+import moment from 'moment';
 
 // eslint-disable-next-line
 export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -20,47 +21,62 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         event: 0,
         byDate: []
       };
-      const eventAttributionCall = axios.get(
-        `${process.env.REACT_APP_MA_URL}/v2/attribution-params-quality/${getSelectedEventSnakeCase(
+      const { data: eventAttributionData } = await makeGetRequest({
+        path: `/v2/attribution-params-quality/${titleCaseToSnakeCaseFormatter(
           state.dataPerEvent.eventSelected
         )}`,
-        {
-          headers: { Authorization: `Token ${state.user.token}` },
-          params: {
-            source_id: state.shop.active?.id,
-            start_date: state.dates.dateRange[0],
-            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
-          }
+        token: state.user.token,
+        params: {
+          source_id: state.shop.active?.id,
+          start_date: state.dates.dateRange[0],
+          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
         }
-      );
-      const eventParamsCall = axios.get(
-        `${process.env.REACT_APP_MA_URL}/v2/events-params-quality/${getSelectedEventSnakeCase(
+      });
+      const { data: eventParamsData } = await makeGetRequest({
+        path: `/v2/events-params-quality/${titleCaseToSnakeCaseFormatter(
           state.dataPerEvent.eventSelected
         )}`,
-        {
-          headers: { Authorization: `Token ${state.user.token}` },
-          params: {
-            source_id: state.shop.active?.id,
-            start_date: state.dates.dateRange[0],
-            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
-          }
+        token: state.user.token,
+        params: {
+          source_id: state.shop.active?.id,
+          start_date: state.dates.dateRange[0],
+          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
         }
-      );
-      const [eventAttributionData, eventParamsData] = await Promise.all([
-        eventAttributionCall,
-        eventParamsCall
-      ]);
-      data.AttributionParameters = eventAttributionData.data.overall_attribution_percentage ?? {};
-      data.EventParameters = eventParamsData.data.overall_events_percentage ?? {};
-      data.attribution = eventAttributionData.data.total_overall_attribution_percentage ?? 0;
-      data.event = eventParamsData.data.total_overall_events_percentage ?? 0;
-      data.byDate = eventAttributionData.data.grouped_attribution_percentage.map(
-        // eslint-disable-next-line @typescript-eslint/ban-types
-        (date: Object, idx: number) => ({
-          ...date,
-          events_quality: eventParamsData.data.grouped_events_percentage[idx].events_quality
-        })
-      );
+      });
+      data.AttributionParameters =
+        eventAttributionData.overall_attribution_percentage ??
+        dataPerEventsInitialState.AttributionParameters;
+      data.EventParameters =
+        eventParamsData.overall_events_percentage ?? dataPerEventsInitialState.EventParameters;
+      data.attribution =
+        eventAttributionData.total_overall_attribution_percentage ??
+        dataPerEventsInitialState.attribution;
+      data.event =
+        eventParamsData.total_overall_events_percentage ?? dataPerEventsInitialState.event;
+      data.byDate = (
+        eventAttributionData.grouped_attribution_percentage ?? dataPerEventsInitialState.byDate
+      )
+        .map(
+          (
+            {
+              date,
+              attribution_params_quality
+            }: { date: string; attribution_params_quality: number },
+            idx: number
+          ) => {
+            if (
+              attribution_params_quality === 0 &&
+              eventParamsData.grouped_events_percentage[idx].events_quality === 0
+            )
+              return null;
+            return {
+              date: moment(date).format('D. MMM'),
+              attribution_params_quality,
+              events_quality: eventParamsData.grouped_events_percentage[idx].events_quality
+            };
+          }
+        )
+        .filter((data: unknown | null) => data !== null);
       if (eventAttributionData && eventParamsData) return data;
       rejectWithValue('Data not found');
     } catch (error) {
@@ -83,8 +99,7 @@ export const dataPerEvent = createSlice({
         state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(dataPerEventAsync.fulfilled, (state, { payload }) => {
-        state.status = STATUS_TYPE.SUCCESS;
-        state = { ...state, ...payload };
+        return { ...state, ...payload, status: STATUS_TYPE.SUCCESS };
       })
       .addCase(dataPerEventAsync.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { eventsDataInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
+import { makeGetRequest } from 'utility/functions/apiCalls';
 
 // eslint-disable-next-line
 export const eventsDataAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -12,8 +12,9 @@ export const eventsDataAsync = createAsyncThunk<any, void, thunkOptions>(
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/events`, {
-        headers: { Authorization: `Token ${state.user.token}` },
+      const { data } = await makeGetRequest({
+        path: '/v2/events',
+        token: state.user.token,
         params: {
           source_id: state.shop.active?.id,
           start_date: state.dates.dateRange[0],
@@ -41,8 +42,8 @@ export const eventsDataReducer = createSlice({
         state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(eventsDataAsync.fulfilled, (state, { payload }) => {
-        state.total_events = payload.total_events;
-        state.byDate = payload.by_date;
+        state.total_events = payload?.total_events ?? eventsDataInitialState.total_events;
+        state.byDate = payload?.by_date ?? eventsDataInitialState.byDate;
         state.status = STATUS_TYPE.SUCCESS;
       })
       .addCase(eventsDataAsync.rejected, (state) => {

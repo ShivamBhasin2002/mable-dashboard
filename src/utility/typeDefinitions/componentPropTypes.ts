@@ -1,4 +1,4 @@
-import { screenType } from 'utility/constants/general';
+import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
 
 export type IconType = {
   icon?: string;
@@ -26,6 +26,7 @@ export type ComponentWrapperProps = {
   nextComponent?: React.ReactNode;
   underlined?: boolean;
   className?: string;
+  status?: STATUS_TYPE;
 };
 
 export type TextFieldProps = {
@@ -42,6 +43,7 @@ export type LayoutProps = {
 
 export type LoadingProps = {
   message?: string;
+  className?: string;
 };
 
 export type ViewFullReportProps = {
@@ -53,6 +55,23 @@ export type datePickerProps = {
   isOpen: boolean;
 };
 
+export type SelectorMenuProps = {
+  active: eventSelectedType;
+  onChange: (item: eventSelectedType) => void;
+};
+
+export type StatisticPropTypes = { value?: string | number; message?: string };
+
+export type AttributionEventBarChartProps = {
+  width?: number;
+  height?: number;
+};
+
+export type DataQualityLineChartProps = {
+  width?: number;
+  height?: number;
+  color?: string;
+};
 export type csv = {
   day: string;
   date: string;

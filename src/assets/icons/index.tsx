@@ -1,4 +1,4 @@
-import { IconType } from 'utility/typeDefinitions/componentTypes';
+import { IconType } from 'utility/typeDefinitions/componentPropTypes';
 
 import { RiBarChart2Line, RiLock2Fill } from 'react-icons/ri';
 import { MdMail } from 'react-icons/md';

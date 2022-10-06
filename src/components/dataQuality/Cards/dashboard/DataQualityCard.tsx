@@ -11,13 +11,15 @@ import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
 const DataQualityCard = () => {
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.dataQuality);
+  const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
-    if (status === STATUS_TYPE.IDLE) dispatch(dataQualityAsync());
-  }, [status]);
+    if (status !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
+  }, [refresh]);
   return (
     <ComponentWrapper
       title="Data Quality"
       nextComponent={<ViewFullReport screen={screenType.orderAnalysis} />}
+      status={status}
     >
       <div className="flex flex-row justify-evenly flex-wrap gap-8">
         <div className="flex flex-col gap-4 justify-evenly">

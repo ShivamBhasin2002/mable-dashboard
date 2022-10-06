@@ -1,29 +1,12 @@
 import moment from 'moment';
-import { ChartArea } from 'chart.js';
 
-import colors from 'utility/colors';
 import {
   DatePickerPresets as presets,
   eventSelectedType,
-  statusSelector
-} from './constants/general';
-import { AnalyticsStateType } from './typeDefinitions/reduxTypes';
+  screenType
+} from 'utility/constants/general';
 
-export const createGradient = (
-  ctx: CanvasRenderingContext2D,
-  area: ChartArea,
-  colors: { stop: number; color: string }[]
-) => {
-  const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-  colors.forEach((color) => gradient.addColorStop(color.stop, color.color));
-  return gradient;
-};
-
-export const getColor = (value: number) => {
-  if (value >= 90) return colors.success;
-  else if (value >= 80) return colors.average;
-  else return colors.error;
-};
+import { AnalyticsStateType } from 'utility/typeDefinitions/reduxTypes';
 
 export const getMessage = (value: number) => {
   if (value >= 95) return 'Excellent';
@@ -62,19 +45,6 @@ export const presetsToDateRange = (preset: string) => {
       ];
   }
   return [];
-};
-
-export const statusTypeColors = (status: string) => {
-  switch (status) {
-    case statusSelector.failed:
-      return 'bg-failed';
-    case statusSelector.delayed:
-      return 'bg-delayed';
-    case statusSelector.pending:
-      return 'bg-purple';
-    case statusSelector.success:
-      return 'bg-success';
-  }
 };
 
 export const getEventDisplayName = (event: string) => {
@@ -130,15 +100,13 @@ export const updateEvents = (state: AnalyticsStateType, payload: string) => {
   }
 };
 
-export const getSelectedEventSnakeCase = (event: string) => {
-  return event
-    .split('')
-    .map((e) => (e === ' ' ? '_' : e.toLowerCase()))
-    .join('');
-};
-
-export const numberFormatter = (num: string | number) => {
-  num = typeof num === 'string' ? parseInt(num) : num;
-  const formatter = Intl.NumberFormat('en', { notation: 'compact' });
-  return formatter.format(num);
+export const screenToURL = (screen: screenType): string | undefined => {
+  switch (screen) {
+    case screenType.dashboard:
+      return 'data_quality/dashboard';
+    case screenType.orderAnalysis:
+      return 'data_quality/order_analysis';
+    case screenType.eventQuality:
+      return 'data_quality/event_quality';
+  }
 };

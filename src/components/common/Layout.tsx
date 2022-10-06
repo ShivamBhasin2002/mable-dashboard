@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
 import { shopAsync } from 'redux/reducers/shopSlice';
 
-import { LayoutProps } from 'utility/typeDefinitions/componentTypes';
+import { LayoutProps } from 'utility/typeDefinitions/componentPropTypes';
 import { STATUS_TYPE } from 'utility/constants/general';
 
 const Layout = ({ children }: LayoutProps) => {
@@ -29,7 +29,7 @@ const Layout = ({ children }: LayoutProps) => {
     if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
       toast({ title: 'Login Required', status: 'error', isClosable: true, position: 'top-right' });
-      navigator('/login');
+      navigator('/auth/login');
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(shopAsync());
@@ -50,7 +50,7 @@ const Layout = ({ children }: LayoutProps) => {
   }, [shopStatus, status]);
 
   return shopStatus === STATUS_TYPE.FETCHING || shopStatus === STATUS_TYPE.IDLE ? (
-    <Loading />
+    <Loading className="h-screen" />
   ) : (
     <div className="bg-background flex justify-around">
       <div className="">
@@ -62,7 +62,7 @@ const Layout = ({ children }: LayoutProps) => {
           children
         ) : (
           <div className="w-full h-min-screen">
-            <Loading message="Fetching Shops" />
+            <Loading message="Fetching Shops" className="h-screen" />
           </div>
         )}
       </div>

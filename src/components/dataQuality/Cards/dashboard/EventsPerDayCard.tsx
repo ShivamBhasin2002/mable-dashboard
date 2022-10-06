@@ -12,9 +12,10 @@ import { eventsDataAsync, setEventSelected } from 'redux/reducers/eventsDataSlic
 const EventsPerDayCard = () => {
   const dispatch = useDispatch();
   const { status, eventSelected } = useSelector((state) => state.eventsData);
+  const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
-    if (status === STATUS_TYPE.IDLE) dispatch(eventsDataAsync());
-  }, [status]);
+    if (status !== STATUS_TYPE.FETCHING) dispatch(eventsDataAsync());
+  }, [refresh]);
   return (
     <ComponentWrapper
       title="Events Per Day"
@@ -25,6 +26,7 @@ const EventsPerDayCard = () => {
           onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
         />
       }
+      className="flex-grow 2xl:flex-grow-0"
     >
       <EventsPerDayLineChart />
     </ComponentWrapper>
