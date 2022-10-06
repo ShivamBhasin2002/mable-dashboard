@@ -42,8 +42,11 @@ export const analyticsAsync = createAsyncThunk<
     if (data) {
       return data;
     }
-  } catch (error: any) {
-    return rejectWithValue(error.response.data.message);
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
   }
 });
 
