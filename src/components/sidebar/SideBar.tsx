@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Icon from 'assets/icons';
+import SideBarItem from './items/generalSidebarItemCard';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { logout } from 'redux/reducers/authSlice';
@@ -10,12 +11,14 @@ const SideBar = () => {
   const dispatch = useDispatch();
   const { firstName, lastName } = useSelector((state) => state.user);
   const { activeScreen } = useSelector((state) => state.screen);
-  const sideBarItems = [
-    { title: 'Dashboard', icon: 'dashboard' },
-    { title: 'Order Analysis', icon: 'orderAnalysis' },
-    { title: 'Event Quality', icon: 'eventQuality' },
-    { title: 'Reports', icon: 'analytics' }
-  ];
+  const sideBar = {
+    'Data Quality': [
+      { title: 'Dashboard', icon: 'dashboard' },
+      { title: 'Order Analysis', icon: 'orderAnalysis' },
+      { title: 'Event Quality', icon: 'eventQuality' }
+    ],
+    Analytics: [{ title: 'Reports', icon: 'analytics' }]
+  };
   return (
     <aside
       id="side-bar"
@@ -29,29 +32,24 @@ const SideBar = () => {
           MENU
         </div>
         <div className="flex flex-col gap-[5px]">
-          {sideBarItems.map((item) => {
+          {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
             return (
-              <div
-                key={item.icon}
-                className={`w-[228px] flex flex-row ${
-                  activeScreen === item.title
-                    ? 'text-light bg-primary/[0.1] font-bold '
-                    : 'text-secondary font-medium'
-                } h-[50px] rounded-[8px] cursor-pointer text-[14px] font-montserrat `}
-                onClick={() => dispatch(setScreen(item.title))}
-              >
-                <span className="mr-[15px] ml-[20px] my-auto text-2xl">
-                  {
-                    <Icon
-                      icon={item.icon}
-                      width={24}
-                      height={24}
-                      active={activeScreen === item.title}
-                    />
-                  }
-                </span>
-                <span className="mt-[14px]">{item.title}</span>
-              </div>
+              <>
+                <div
+                  key={sidebarCategory}
+                  className="ml-[20px] text-[14px] text-light/[0.8] font-montserrat font-semibold mt-[6px] mb-[3px]"
+                >
+                  {sidebarCategory}
+                </div>
+                {sidebarItems.map((item) => (
+                  <SideBarItem
+                    {...item}
+                    key={item.icon}
+                    clickHandle={() => dispatch(setScreen(item.title))}
+                    isActive={activeScreen === item.title}
+                  />
+                ))}
+              </>
             );
           })}
         </div>

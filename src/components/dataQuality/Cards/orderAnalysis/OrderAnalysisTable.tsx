@@ -15,7 +15,7 @@ import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';
 
 const OrderAnalysisTable = () => {
   const dispatch = useDispatch();
-  const { tableData, status } = useSelector((state) => state.orderAnalysis);
+  const { tableData, status, statusSelected } = useSelector((state) => state.orderAnalysis);
   const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(orderAnalysisAsync());
@@ -49,44 +49,48 @@ const OrderAnalysisTable = () => {
         </thead>
         <tbody className="last-of:rounded-b-[10px]">
           {tableData &&
-            tableData.map((data, idx) => (
-              <tr
-                key={data.order_id}
-                className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
-                  !(idx & 1) && 'bg-tableStrips/[0.5]'
-                }`}
-              >
-                <td>{data.order_id ?? '-'}</td>
-                <td>{data.date ? moment(data.date).format('hh.mm - DD.MM.YY') : '-'}</td>
-                <td>{data.customer ?? '-'}</td>
-                <td>{data.total_value ?? '-'}</td>
-                <td>{data.conversion_value ?? '-'}</td>
-                <td>
-                  {data.evt_params_present ?? 0}/{totalEvents}
-                </td>
-                <td>
-                  {data.attr_params_present ?? 0}/{totalAttributions}
-                </td>
-                <td>{data.delivery_time ? `${data.delivery_time}s` : '-'}</td>
-                <td>
-                  {data.status ? (
-                    <span
-                      className={`px-[20px] py-[5px] w-max ${statusTypeColors(
-                        data.status
-                      )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
-                    >
-                      {data.status === statusSelector.pending && <Icon icon="pending" />}
-                      {data.status === statusSelector.success && <Icon icon="tick" />}
-                      {data.status === statusSelector.failed && <Icon icon="cross" />}
-                      {data.status === statusSelector.delayed && <Icon icon="delayed" />}{' '}
-                      {data.status}
-                    </span>
-                  ) : (
-                    '-'
-                  )}
-                </td>
-              </tr>
-            ))}
+            tableData
+              .filter(
+                ({ status }) => statusSelected === statusSelector.all || status === statusSelected
+              )
+              .map((data, idx) => (
+                <tr
+                  key={data.order_id}
+                  className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
+                    !(idx & 1) && 'bg-tableStrips/[0.5]'
+                  }`}
+                >
+                  <td>{data.order_id ?? '-'}</td>
+                  <td>{data.date ? moment(data.date).format('hh.mm - DD.MM.YY') : '-'}</td>
+                  <td>{data.customer ?? '-'}</td>
+                  <td>{data.total_value ?? '-'}</td>
+                  <td>{data.conversion_value ?? '-'}</td>
+                  <td>
+                    {data.evt_params_present ?? 0}/{totalEvents}
+                  </td>
+                  <td>
+                    {data.attr_params_present ?? 0}/{totalAttributions}
+                  </td>
+                  <td>{data.delivery_time ? `${data.delivery_time}s` : '-'}</td>
+                  <td>
+                    {data.status ? (
+                      <span
+                        className={`px-[20px] py-[5px] w-max ${statusTypeColors(
+                          data.status
+                        )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
+                      >
+                        {data.status === statusSelector.pending && <Icon icon="pending" />}
+                        {data.status === statusSelector.success && <Icon icon="tick" />}
+                        {data.status === statusSelector.failed && <Icon icon="cross" />}
+                        {data.status === statusSelector.delayed && <Icon icon="delayed" />}{' '}
+                        {data.status}
+                      </span>
+                    ) : (
+                      '-'
+                    )}
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </table>
     </div>
