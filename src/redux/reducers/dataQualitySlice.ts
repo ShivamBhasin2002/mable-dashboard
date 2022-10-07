@@ -1,19 +1,21 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import moment from 'moment';
-import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataQualityInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
+import { makeGetRequest } from 'utility/functions/apiCalls';
+
 // eslint-disable-next-line
 export const dataQualityAsync = createAsyncThunk<any, void, thunkOptions>(
   'dataQuality/fetch',
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/data-quality`, {
-        headers: { Authorization: `Token ${state.user.token}` },
+      const { data } = await makeGetRequest({
+        path: '/v2/data-quality',
+        token: state.user.token,
         params: {
           source_id: state.shop.active?.id,
           start_date: state.dates.dateRange[0],
