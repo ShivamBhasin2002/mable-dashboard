@@ -71,7 +71,7 @@ const App = () => {
           }
         />
         <Route
-          path="/dashboard"
+          path="/analytics/reports"
           element={
             <Layout>
               <Analytics />
