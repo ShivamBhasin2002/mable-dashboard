@@ -2,11 +2,7 @@ import { useEffect } from 'react';
 
 import { ComponentWrapper } from 'components/common';
 
-import {
-  AttributionEventBarChart,
-  DataPerEventDoughnutChart,
-  DataPerEventDoughnutChartLabels
-} from 'components/dataQuality/Graphs';
+import { AttributionEventBarChart } from 'components/dataQuality/Graphs';
 import { ParameterMetrics } from 'components/dataQuality/General';
 import { SelectorMenu } from 'components/dataQuality/Common';
 
@@ -37,12 +33,6 @@ const EventQualityCard = () => {
         <ParameterMetrics />
         <div className="flex-grow">
           <AttributionEventBarChart height={150} />
-        </div>
-        <div className="flex gap-8">
-          <div className="w-[250px] ">
-            <DataPerEventDoughnutChart />
-          </div>
-          <DataPerEventDoughnutChartLabels />
         </div>
       </div>
     </ComponentWrapper>
