@@ -68,4 +68,4 @@ export enum DatePickerPresets {
 
 export const totalEvents = 3;
 
-export const totalAttributions = 13;
+export const totalAttributions = 12;

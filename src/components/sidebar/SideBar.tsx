@@ -34,11 +34,8 @@ const SideBar = () => {
         <div className="flex flex-col gap-[5px]">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
             return (
-              <>
-                <div
-                  key={sidebarCategory}
-                  className="ml-[20px] text-[14px] text-light/[0.8] font-montserrat font-semibold mt-[6px] mb-[3px]"
-                >
+              <div key={sidebarCategory}>
+                <div className="ml-[20px] text-[14px] text-light/[0.8] font-montserrat font-semibold mt-[6px] mb-[3px]">
                   {sidebarCategory}
                 </div>
                 {sidebarItems.map((item) => (
@@ -49,7 +46,7 @@ const SideBar = () => {
                     isActive={activeScreen === item.title}
                   />
                 ))}
-              </>
+              </div>
             );
           })}
         </div>

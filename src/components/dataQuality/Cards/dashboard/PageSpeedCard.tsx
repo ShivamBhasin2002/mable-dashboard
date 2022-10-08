@@ -34,7 +34,7 @@ const PageSpeedCard = () => {
             {AVG_LOADING_TIME_MABLE_SCRIPT}
             <span className="text-[20px]">s</span>
           </div>
-          <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
+          <div className="text-primary text-center text-[14px]">Avg Loading Time Mable Script</div>
         </div>
         <div className="min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">

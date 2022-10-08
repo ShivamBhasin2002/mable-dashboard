@@ -8,9 +8,12 @@ export const datesSlice = createSlice({
   reducers: {
     setDates: (state, { payload }) => {
       state.dateRange = payload;
+      localStorage.setItem('dateRange', JSON.stringify(payload));
+      if (!state.datePreset) localStorage.removeItem('datePreset');
     },
     setPreset: (state, { payload }) => {
       state.datePreset = payload;
+      if (state.datePreset) localStorage.setItem('datePreset', state.datePreset);
     },
     refresh: (state) => {
       state.refresh = !state.refresh;

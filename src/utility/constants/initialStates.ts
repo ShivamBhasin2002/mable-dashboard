@@ -36,7 +36,10 @@ export const shopInitialState: shopStateType = {
 };
 
 export const datesInitialState: datesStateType = {
-  dateRange: [moment('2022-08-01'), moment('2022-08-31')],
+  dateRange: localStorage.getItem('dateRange')
+    ? JSON.parse(localStorage.getItem('dateRange') ?? '[]')?.map((date: any) => moment(date) ?? '') // eslint-disable-line
+    : [moment(), moment()],
+  datePreset: localStorage.getItem('datePreset') ?? undefined,
   refresh: false
 };
 
@@ -49,10 +52,10 @@ export const warningInitialState: warningStateType = {
 export const dataPerEventsInitialState: dataPerEventStateType = {
   byDate: [],
   dataContainedPerEventDoughnutChart: {
-    backend: 0,
-    frontend: 0,
-    mableEngine: 0,
-    unavailable: 0
+    backend: 73,
+    frontend: 21,
+    mableEngine: 5,
+    unavailable: 2
   },
   attribution: 0,
   event: 0,
