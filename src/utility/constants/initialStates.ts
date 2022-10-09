@@ -80,7 +80,7 @@ export const dataQualityInitialState: dataQualityStateType = {
   DATA_QUALITY_BY_DATE: [],
   ordersWithCorrectCV: 0,
   avgDeliveryTime: 0,
-  status: STATUS_TYPE.IDLE,
+  status: STATUS_TYPE.ERROR,
   errorMsg: undefined
 };
 
