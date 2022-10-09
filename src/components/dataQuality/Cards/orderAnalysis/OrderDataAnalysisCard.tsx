@@ -24,7 +24,7 @@ const OrderDataAnalysisCard = () => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
   }, [refresh]);
   return (
-    <ComponentWrapper>
+    <ComponentWrapper status={status}>
       <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
         <QualityCombined />
         <div className="flex-grow">

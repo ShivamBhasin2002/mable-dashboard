@@ -5,9 +5,13 @@ import { ParameterStat } from 'components/dataQuality/General';
 import { useSelector } from 'redux/store';
 
 const AttributionParametersCard = () => {
-  const { AttributionParameters } = useSelector((state) => state.dataPerEvent);
+  const { AttributionParameters, status } = useSelector((state) => state.dataPerEvent);
   return (
-    <ComponentWrapper title="Attribution Parameters" className="flex-grow-[2] h-min">
+    <ComponentWrapper
+      title="Attribution Parameters"
+      className="flex-grow-[2] h-min"
+      status={status}
+    >
       <div className="flex flex-wrap justify-evenly gap-[10px]">
         <div className="flex flex-col flex-grow gap-[15px]">
           {AttributionParameters.total_count_user_id && (

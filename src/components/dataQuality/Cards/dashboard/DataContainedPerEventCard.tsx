@@ -25,6 +25,7 @@ const DataContainedPerEventCard = () => {
       title="Data Contained Per Event"
       width={560}
       height={335}
+      status={status}
       nextComponent={
         <div className="flex-grow px-4 flex justify-between gap-4">
           <SelectorMenu

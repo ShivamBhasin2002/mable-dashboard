@@ -20,14 +20,15 @@ const EventQualityCard = () => {
   }, [refresh]);
   return (
     <ComponentWrapper
+      status={status}
+      height={400}
+      className="flex-grow-0"
       nextComponent={
         <SelectorMenu
           active={eventSelected}
           onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
         />
       }
-      height={400}
-      className="flex-grow-0"
     >
       <div className="flex items-center justify-evenly mr-8 mt-5 flex-wrap gap-[40px]">
         <ParameterMetrics />
