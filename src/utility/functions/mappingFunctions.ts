@@ -108,5 +108,7 @@ export const screenToURL = (screen: screenType): string | undefined => {
       return 'data_quality/order_analysis';
     case screenType.eventQuality:
       return 'data_quality/event_quality';
+    case screenType.analytics:
+      return 'analytics/reports';
   }
 };

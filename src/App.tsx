@@ -72,7 +72,7 @@ const App = () => {
           }
         />
         <Route
-          path="/data_quality/analytics_report"
+          path="/data_quality/analytics/reports"
           element={
             <Layout>
               <Analytics />
