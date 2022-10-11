@@ -24,10 +24,10 @@ const PasswordChange = () => {
   return (
     <ComponentWrapper className="w-1/2 mt-[20px] text-light">
       <h1 className=" text-lg font-semibold">Password</h1>
-      <p className=" font-light opacity-60">
+      {/* <p className=" font-light opacity-60">
         Note that if you signed in with a connected account,you are using that account login
         information and we cannot change or reset those passwords here.
-      </p>
+      </p> */}
       <div className="mt-[30px]">
         <Text mb="8px">Current Password</Text>
         <InputGroup size="md" width="20rem">
@@ -62,7 +62,7 @@ const PasswordChange = () => {
           </InputGroup>
         </div>
         <div className="mt-[30px]">
-          <Text mb="8px">Coinfirm Password</Text>
+          <Text mb="8px">Confirm Password</Text>
           <InputGroup size="md" width="20rem">
             <Input pr="4.5rem" type={CoinfirmPass ? 'text' : 'password'} />
             <InputRightElement width="4.5rem">
@@ -91,9 +91,9 @@ const PasswordChange = () => {
         <p className=" opacity-50">
           If you just forgot your password, don&apos;t worry we got you.
         </p>
-        <p className="mt-3 flex flex-row opacity-50">
+        {/* <p className="mt-3 flex flex-row opacity-50">
           <Icon className="mr-3" icon="dashboard" width={24} height={24} /> Reset Password
-        </p>
+        </p> */}
         <div className="mt-[30px]">
           <Button disabled colorScheme="linkedin" variant="solid">
             Save
