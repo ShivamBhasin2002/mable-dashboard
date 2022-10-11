@@ -190,7 +190,8 @@ export type SelectedEventsType = {
   Purchase: boolean;
 };
 
-export type updateNameType = {
+export type AccountSettings = {
   status: string;
-  message: string;
+  message?: string;
+  errorKey?: string;
 };

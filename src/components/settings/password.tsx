@@ -24,22 +24,17 @@ const PasswordChange = () => {
           newPassword: ''
         }}
         validationSchema={Yup.object({
-          password: Yup.string()
-            .required('Please enter password')
-            .min(8, 'Password should be at least 8 characters'),
-          newPassword: Yup.string()
-            .required('Please enter password')
-            .min(8, 'Password should be at least 8 characters')
+          password: Yup.string().min(8, 'Password should be at least 8 characters'),
+          newPassword: Yup.string().min(8, 'Password should be at least 8 characters')
         })}
         onSubmit={(values) => {
           dispatch(updatePassword(values));
-          console.log(values);
         }}
       >
         {(formik) => (
           <form className=" mt-5 flex flex-col gap-6" onSubmit={formik.handleSubmit}>
             <TextField label="Current Password" type="password" name="password" />
-            <TextField label="New Password" type="password" name="newpassword" />
+            <TextField label="New Password" type="password" name="newPassword" />
             <div className="mt-[30px]">
               <Button type="submit" colorScheme="linkedin" variant="solid">
                 {status === STATUS_TYPE.FETCHING && <Spinner />}

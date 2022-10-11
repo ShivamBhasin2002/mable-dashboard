@@ -21,7 +21,6 @@ const App = () => {
   const navigator = useNavigate();
   useEffect(() => {
     const path = screenToURL(activeScreen);
-    console.log(path);
     if (path) navigator(path);
   }, [activeScreen]);
   const theme = extendTheme({

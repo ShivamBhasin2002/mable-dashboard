@@ -11,7 +11,7 @@ import {
   AnalyticsStateType,
   shopStateType,
   warningStateType,
-  updateNameType
+  AccountSettings
 } from 'utility/typeDefinitions/reduxTypes';
 import { STATUS_TYPE, screenType, statusSelector } from './general';
 import moment from 'moment';
@@ -29,9 +29,10 @@ export const userInitialState: userStateType = {
   errorMsg: undefined
 };
 
-export const updateUserNameMessage: updateNameType = {
-  status: 'idle',
-  message: ''
+export const AccountSettingUpdate: AccountSettings = {
+  status: '',
+  message: '',
+  errorKey: ''
 };
 
 export const shopInitialState: shopStateType = {

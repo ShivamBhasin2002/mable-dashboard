@@ -38,7 +38,6 @@ const NameChange = () => {
         })}
         onSubmit={(values) => {
           dispatch(updateUsername(values));
-          console.log(values);
         }}
       >
         {(formik) => (

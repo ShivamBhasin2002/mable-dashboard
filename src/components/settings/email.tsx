@@ -28,7 +28,6 @@ const EmailChange = () => {
         })}
         onSubmit={(values) => {
           dispatch(updateEmail(values));
-          console.log(values);
         }}
       >
         {(formik) => (
