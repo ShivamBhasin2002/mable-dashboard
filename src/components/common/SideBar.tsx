@@ -15,7 +15,7 @@ const SideBar = () => {
     { title: 'Order Analysis', icon: 'orderAnalysis' },
     { title: 'Event Quality', icon: 'eventQuality' },
     { title: 'Reports', icon: 'analytics' },
-    { title: 'Settings', icon: 'orderAnalysis' }
+    { title: 'Settings', icon: 'settings' }
   ];
   return (
     <aside
@@ -25,6 +25,7 @@ const SideBar = () => {
       <header className="flex justify-center">
         <Icon icon="mableLogo" width={140} />
       </header>
+
       <section className="flex-grow">
         <div className=" ml-[9px] text-[16px] text-light/[0.57] font-montserrat font-bold mb-[15px]">
           MENU
@@ -57,6 +58,7 @@ const SideBar = () => {
           })}
         </div>
       </section>
+
       <section className="flex flex-col gap-[10px]">
         <div className="text-[16px] text-light/[0.57] font-montserrat font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">

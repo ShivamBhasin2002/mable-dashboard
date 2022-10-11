@@ -21,6 +21,7 @@ const App = () => {
   const navigator = useNavigate();
   useEffect(() => {
     const path = screenToURL(activeScreen);
+    console.log(path);
     if (path) navigator(path);
   }, [activeScreen]);
   const theme = extendTheme({
@@ -72,14 +73,21 @@ const App = () => {
           }
         />
         <Route
-          path="/data_quality/analytics/reports"
+          path="/analytics/reports"
           element={
             <Layout>
               <Analytics />
             </Layout>
           }
         />
-        <Route path="/settings" element={<Settings />} />
+        <Route
+          path="/settings"
+          element={
+            <Layout>
+              <Settings />
+            </Layout>
+          }
+        />
         <Route path="*" element={<Navigate to="/auth/login" />} />
       </Routes>
     </ChakraProvider>
