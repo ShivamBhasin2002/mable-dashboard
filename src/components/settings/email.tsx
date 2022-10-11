@@ -1,14 +1,16 @@
 import { Spinner } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
-import { useSelector } from 'redux/store';
+import { useDispatch, useSelector } from 'redux/store';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { TextField } from 'components/form';
+import { updateEmail } from 'redux/reducers/updateAccountInfoSlice';
 
 const EmailChange = () => {
-  const { email, status } = useSelector((state) => state.user);
+  const { status, userId } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   return (
     <ComponentWrapper className="w-full mt-[20px] text-light h-fit">
@@ -18,25 +20,20 @@ const EmailChange = () => {
       </p> */}
       <Formik
         initialValues={{
-          email: email || ''
+          userId: userId,
+          email: ''
         }}
         validationSchema={Yup.object({
           email: Yup.string()
         })}
         onSubmit={(values) => {
-          // dispatch(loginAsync(values));
+          dispatch(updateEmail(values));
           console.log(values);
         }}
       >
         {(formik) => (
           <form className="" onSubmit={formik.handleSubmit}>
-            <TextField
-              label="Email"
-              icon="email"
-              type="email"
-              name="email"
-              placeholder={`${email}`}
-            />
+            <TextField label="Email" icon="email" type="email" name="email" placeholder={`Email`} />
             <div className="mt-[30px]">
               <Button type="submit" colorScheme="linkedin" variant="solid">
                 {status === STATUS_TYPE.FETCHING && <Spinner />}

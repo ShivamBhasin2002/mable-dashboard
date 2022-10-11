@@ -1,26 +1,16 @@
-import { Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
-import Icon from 'assets/icons';
 import { ComponentWrapper } from 'components/common';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'redux/store';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { Spinner } from '@chakra-ui/react';
+import { TextField } from 'components/form';
+import { STATUS_TYPE } from 'utility/constants/general';
+import { updatePassword } from 'redux/reducers/updateAccountInfoSlice';
 
 const PasswordChange = () => {
-  const [NewPass, setNewPass] = useState(false);
-  const [currentPass, setCurrentPass] = useState(false);
-  const [CoinfirmPass, setCoinfirmPass] = useState(false);
-  const handleClick = (field: string) => {
-    switch (field) {
-      case 'CurrentPass':
-        setCurrentPass(!currentPass);
-        break;
-      case 'NewPass':
-        setNewPass(!NewPass);
-        break;
-      case 'CoinfirmPass':
-        setCoinfirmPass(!CoinfirmPass);
-        break;
-    }
-  };
+  const dispatch = useDispatch();
+  const { status } = useSelector((state) => state.user);
   return (
     <ComponentWrapper className="w-1/2 mt-[20px] text-light">
       <h1 className=" text-lg font-semibold">Password</h1>
@@ -28,64 +18,41 @@ const PasswordChange = () => {
         Note that if you signed in with a connected account,you are using that account login
         information and we cannot change or reset those passwords here.
       </p> */}
-      <div className="mt-[30px]">
-        <Text mb="8px">Current Password</Text>
-        <InputGroup size="md" width="20rem">
-          <Input type={currentPass ? 'text' : 'password'} />
-          <InputRightElement width="4.5rem">
-            <Button
-              h="1.75rem"
-              size="sm"
-              onClick={() => handleClick('CurrentPass')}
-              colorScheme="blue"
-            >
-              {currentPass ? 'Hide' : 'Show'}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </div>
-      <div className=" flex flex-col gap-2">
-        <div className="mt-[30px]">
-          <Text mb="8px">New Password</Text>
-          <InputGroup size="md" width="20rem">
-            <Input pr="4.5rem" type={NewPass ? 'text' : 'password'} />
-            <InputRightElement width="4.5rem">
-              <Button
-                h="1.75rem"
-                size="sm"
-                onClick={() => handleClick('NewPass')}
-                colorScheme="blue"
-              >
-                {NewPass ? 'Hide' : 'Show'}
+      <Formik
+        initialValues={{
+          password: '',
+          newPassword: ''
+        }}
+        validationSchema={Yup.object({
+          password: Yup.string()
+            .required('Please enter password')
+            .min(8, 'Password should be at least 8 characters'),
+          newPassword: Yup.string()
+            .required('Please enter password')
+            .min(8, 'Password should be at least 8 characters')
+        })}
+        onSubmit={(values) => {
+          dispatch(updatePassword(values));
+          console.log(values);
+        }}
+      >
+        {(formik) => (
+          <form className=" mt-5 flex flex-col gap-6" onSubmit={formik.handleSubmit}>
+            <TextField label="Current Password" type="password" name="password" />
+            <TextField label="New Password" type="password" name="newpassword" />
+            <div className="mt-[30px]">
+              <Button type="submit" colorScheme="linkedin" variant="solid">
+                {status === STATUS_TYPE.FETCHING && <Spinner />}
+                Save
               </Button>
-            </InputRightElement>
-          </InputGroup>
-        </div>
-        <div className="mt-[30px]">
-          <Text mb="8px">Confirm Password</Text>
-          <InputGroup size="md" width="20rem">
-            <Input pr="4.5rem" type={CoinfirmPass ? 'text' : 'password'} />
-            <InputRightElement width="4.5rem">
-              <Button
-                h="1.75rem"
-                size="sm"
-                onClick={() => handleClick('CoinfirmPass')}
-                colorScheme="blue"
-              >
-                {CoinfirmPass ? 'Hide' : 'Show'}
+              <Button colorScheme="linkedin" variant="outline" className="ml-6">
+                Cancel
               </Button>
-            </InputRightElement>
-          </InputGroup>
-        </div>
-      </div>
-      <div className="mt-[30px]">
-        <Button colorScheme="linkedin" variant="solid">
-          Save
-        </Button>
-        <Button colorScheme="linkedin" variant="outline" className="ml-6">
-          Cancel
-        </Button>
-      </div>
+            </div>
+          </form>
+        )}
+      </Formik>
+
       <div className="mt-[35px]">
         <h1 className="font-semibold">Reset Password</h1>
         <p className=" opacity-50">

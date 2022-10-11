@@ -10,7 +10,8 @@ import {
   orderAnalysisStateType,
   AnalyticsStateType,
   shopStateType,
-  warningStateType
+  warningStateType,
+  updateNameType
 } from 'utility/typeDefinitions/reduxTypes';
 import { STATUS_TYPE, screenType, statusSelector } from './general';
 import moment from 'moment';
@@ -26,6 +27,11 @@ export const userInitialState: userStateType = {
   token: localStorage.getItem('token') || undefined,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
+};
+
+export const updateUserNameMessage: updateNameType = {
+  status: 'idle',
+  message: ''
 };
 
 export const shopInitialState: shopStateType = {
