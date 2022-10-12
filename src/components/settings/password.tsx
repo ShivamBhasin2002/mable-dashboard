@@ -12,13 +12,13 @@ import { useEffect } from 'react';
 const PasswordChange = () => {
   const dispatch = useDispatch();
   const toast = useToast();
-  const { status, errorMsg } = useSelector((state) => state.accountSetting);
+  const { status, message } = useSelector((state) => state.accountSetting.updatePasswordReducer);
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
-      toast({ title: `${errorMsg}`, status: 'error', isClosable: true, position: 'top-right' });
+      toast({ title: `${message}`, status: 'error', isClosable: true, position: 'top-right' });
     }
     if (status === STATUS_TYPE.SUCCESS) {
-      toast({ title: `${errorMsg}`, status: 'success', isClosable: true, position: 'top-right' });
+      toast({ title: `${message}`, status: 'success', isClosable: true, position: 'top-right' });
     }
   }, [status]);
   return (
