@@ -1,4 +1,4 @@
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, useToast } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
 import { useDispatch, useSelector } from 'redux/store';
@@ -7,10 +7,21 @@ import * as Yup from 'yup';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { TextField } from 'components/form';
 import { updateEmail } from 'redux/reducers/updateAccountInfoSlice';
+import { useEffect } from 'react';
 
 const EmailChange = () => {
-  const { status, userId } = useSelector((state) => state.user);
+  const { userId } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const toast = useToast();
+  const { status, errorMsg } = useSelector((state) => state.accountSetting);
+  useEffect(() => {
+    if (status === STATUS_TYPE.ERROR) {
+      toast({ title: `${errorMsg}`, status: 'error', isClosable: true, position: 'top-right' });
+    }
+    if (status === STATUS_TYPE.SUCCESS) {
+      toast({ title: `${errorMsg}`, status: 'success', isClosable: true, position: 'top-right' });
+    }
+  }, [status]);
 
   return (
     <ComponentWrapper className="w-full mt-[20px] text-light h-fit">

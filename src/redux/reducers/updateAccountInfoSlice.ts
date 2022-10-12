@@ -1,9 +1,11 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
+import { userInitialState } from 'utility/constants/initialStates';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 export const updateUsername = createAsyncThunk<
-  string,
+  { message: string },
   {
     userId: string | undefined;
     firstName: string;
@@ -35,7 +37,7 @@ export const updateUsername = createAsyncThunk<
 });
 
 export const updateEmail = createAsyncThunk<
-  string,
+  { errorKey: string; message: string },
   {
     userId: string | undefined;
     email: string;
@@ -65,7 +67,7 @@ export const updateEmail = createAsyncThunk<
 });
 
 export const updatePassword = createAsyncThunk<
-  string,
+  { errorKey: string; message: string },
   {
     password: string;
     newPassword: string;
@@ -94,23 +96,41 @@ export const updatePassword = createAsyncThunk<
   }
 });
 
-//   name: 'AccountSetting',
-//   initialState: updateUserNameMessage,
-//   reducers: {
+export const accountSettingReducer = createReducer(userInitialState, (builder) => {
+  builder
+    .addCase(updateUsername.pending, (state) => {
+      state.status = STATUS_TYPE.FETCHING;
+    })
+    .addCase(updateUsername.fulfilled, (state, { payload }) => {
+      state.status = STATUS_TYPE.SUCCESS;
+      state.errorMsg = payload.message;
+    })
+    .addCase(updateUsername.rejected, (state, { error }) => {
+      state.status = STATUS_TYPE.ERROR;
+      state.errorMsg = error.message;
+    })
+    .addCase(updateEmail.pending, (state) => {
+      state.status = STATUS_TYPE.FETCHING;
+    })
+    .addCase(updateEmail.fulfilled, (state, { payload }) => {
+      state.status = STATUS_TYPE.SUCCESS;
+      state.errorMsg = payload.message;
+    })
+    .addCase(updateEmail.rejected, (state, { error }) => {
+      state.status = STATUS_TYPE.ERROR;
+      state.errorMsg = error.message;
+    })
+    .addCase(updatePassword.pending, (state) => {
+      state.status = STATUS_TYPE.FETCHING;
+    })
+    .addCase(updatePassword.fulfilled, (state, { payload }) => {
+      state.status = STATUS_TYPE.SUCCESS;
+      state.errorMsg = payload.message;
+    })
+    .addCase(updatePassword.rejected, (state, { error }) => {
+      state.status = STATUS_TYPE.ERROR;
+      state.errorMsg = error.message;
+    });
+});
 
-//   },
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(updateUsername.pending, (state) => {
-//         state.status = STATUS_TYPE.FETCHING;
-//       })
-//       .addCase(updateUsername.fulfilled, (state, { payload }) => {
-//         state.status = STATUS_TYPE.SUCCESS;
-//         state.message = payload;
-//       })
-//       .addCase(updateUsername.rejected, (state) => {
-//         state.status = STATUS_TYPE.ERROR;
-//       });
-//   }
-// });
-// export default AccountSetting.reducer;
+export default accountSettingReducer;

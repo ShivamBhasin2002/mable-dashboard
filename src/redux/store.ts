@@ -19,6 +19,7 @@ import orderAnalysisSlice from './reducers/orderAnalysisSlice';
 import analyticsReducer from './reducers/analyticsSlice';
 import shopSlice from './reducers/shopSlice';
 import warningSlice from './reducers/warningSlice';
+import accountSettingReducer from './reducers/updateAccountInfoSlice';
 
 export const store = configureStore({
   reducer: {
@@ -33,7 +34,8 @@ export const store = configureStore({
     orderAnalysis: orderAnalysisSlice,
     analytics: analyticsReducer,
     shop: shopSlice,
-    warnings: warningSlice
+    warnings: warningSlice,
+    accountSetting: accountSettingReducer
   },
   middleware: [thunk as ThunkMiddleware]
 });

@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react';
+import { Button, useToast } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
 import { useDispatch, useSelector } from 'redux/store';
 import { Formik } from 'formik';
@@ -7,10 +7,20 @@ import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { updatePassword } from 'redux/reducers/updateAccountInfoSlice';
+import { useEffect } from 'react';
 
 const PasswordChange = () => {
   const dispatch = useDispatch();
-  const { status } = useSelector((state) => state.user);
+  const toast = useToast();
+  const { status, errorMsg } = useSelector((state) => state.accountSetting);
+  useEffect(() => {
+    if (status === STATUS_TYPE.ERROR) {
+      toast({ title: `${errorMsg}`, status: 'error', isClosable: true, position: 'top-right' });
+    }
+    if (status === STATUS_TYPE.SUCCESS) {
+      toast({ title: `${errorMsg}`, status: 'success', isClosable: true, position: 'top-right' });
+    }
+  }, [status]);
   return (
     <ComponentWrapper className="w-1/2 mt-[20px] text-light">
       <h1 className=" text-lg font-semibold">Password</h1>

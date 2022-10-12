@@ -8,11 +8,24 @@ import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { updateUsername } from 'redux/reducers/updateAccountInfoSlice';
+import { useEffect } from 'react';
+import { useToast } from '@chakra-ui/react';
 
 const NameChange = () => {
   const dispatch = useDispatch();
+  const toast = useToast();
+  const { status, errorMsg } = useSelector((state) => state.accountSetting);
 
-  const { status, firstName, lastName, userId } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (status === STATUS_TYPE.ERROR) {
+      toast({ title: `${errorMsg}`, status: 'error', isClosable: true, position: 'top-right' });
+    }
+    if (status === STATUS_TYPE.SUCCESS) {
+      toast({ title: `${errorMsg}`, status: 'success', isClosable: true, position: 'top-right' });
+    }
+  }, [status]);
+
+  const { firstName, lastName, userId } = useSelector((state) => state.user);
   return (
     <ComponentWrapper className="w-full mt-[20px] text-light h-fit">
       <h1 className=" text-lg font-semibold">Name</h1>
