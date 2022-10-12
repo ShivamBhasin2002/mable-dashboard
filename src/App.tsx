@@ -82,7 +82,7 @@ const App = () => {
         <Route
           path="/settings"
           element={
-            <Layout settings={true}>
+            <Layout>
               <Settings />
             </Layout>
           }

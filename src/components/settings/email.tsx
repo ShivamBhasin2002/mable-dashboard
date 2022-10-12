@@ -6,8 +6,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { TextField } from 'components/form';
-import { updateEmail, updateUserEmailState } from 'redux/reducers/updateAccountInfoSlice';
+import { updateEmail } from 'redux/reducers/updateAccountInfoSlice';
 import { useEffect, useState } from 'react';
+import { updateUserEmailState } from 'redux/reducers/authSlice';
 
 const EmailChange = () => {
   const { userId, email } = useSelector((state) => state.user);
@@ -23,6 +24,7 @@ const EmailChange = () => {
     if (status === STATUS_TYPE.SUCCESS) {
       toast({ title: `${message}`, status: 'success', isClosable: true, position: 'top-right' });
       dispatch(updateUserEmailState(emailId));
+      console.log('yahhaa');
     }
   }, [status]);
 

@@ -13,7 +13,7 @@ import { shopAsync } from 'redux/reducers/shopSlice';
 import { LayoutProps } from 'utility/typeDefinitions/componentPropTypes';
 import { STATUS_TYPE } from 'utility/constants/general';
 
-const Layout = ({ children, settings }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
   const dispatch = useDispatch();
   const navigator = useNavigate();
@@ -59,7 +59,7 @@ const Layout = ({ children, settings }: LayoutProps) => {
         <SideBar />
       </div>
       <div className="flex-grow p-[30px]">
-        <DashboardHeader IsSettings={settings} />
+        <DashboardHeader />
         {status === 'success' ? (
           children
         ) : (

@@ -20,9 +20,9 @@ import DatePicker from 'components/common/DatePicker';
 import { useSelector, useDispatch } from 'redux/store';
 import { setShop } from 'redux/reducers/shopSlice';
 import { refresh } from 'redux/reducers/datesSlice';
-import { DashBoardTypeProps } from 'utility/typeDefinitions/componentPropTypes';
+import { showDatePicker, showReload } from 'utility/functions/helper';
 
-const DashboardHeader = ({ IsSettings }: DashBoardTypeProps) => {
+const DashboardHeader = () => {
   const datePickerRef = useRef<any>(); //eslint-disable-line
   const dispatch = useDispatch();
   const { dateRange, datePreset } = useSelector((state) => state.dates);
@@ -72,8 +72,8 @@ const DashboardHeader = ({ IsSettings }: DashBoardTypeProps) => {
         <h1 className="text-bgPrimary-dark text-[42px] text-light font-montserrat font-bold relative top-[-16px]">
           {activeScreen}
         </h1>
-        {IsSettings ? null : (
-          <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
+        <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
+          {showReload(activeScreen) && (
             <span
               className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
               onClick={() => {
@@ -82,6 +82,9 @@ const DashboardHeader = ({ IsSettings }: DashBoardTypeProps) => {
             >
               <Icon icon="refresh" />
             </span>
+          )}
+
+          {showDatePicker(activeScreen) && (
             <Popover
               gutter={10}
               autoFocus={false}
@@ -103,8 +106,8 @@ const DashboardHeader = ({ IsSettings }: DashBoardTypeProps) => {
                 <DatePicker close={onClose} isOpen={isOpen} />
               </PopoverContent>
             </Popover>
-          </span>
-        )}
+          )}
+        </span>
       </div>
     </header>
   );

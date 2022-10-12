@@ -78,6 +78,14 @@ export const userSlice = createSlice({
     clearState: (state) => {
       state.status = STATUS_TYPE.IDLE;
       return state;
+    },
+    updateUserEmailState: (state, { payload }) => {
+      state.email = payload;
+      console.log('pdateUserEmailStat');
+    },
+    updateUserNameState: (state, { payload }) => {
+      state.firstName = payload.nameFirst;
+      state.lastName = payload.nameLast;
     }
   },
   extraReducers: (builder) => {
@@ -124,5 +132,5 @@ export const userSlice = createSlice({
   }
 });
 
-export const { logout, clearState } = userSlice.actions;
+export const { logout, clearState, updateUserEmailState, updateUserNameState } = userSlice.actions;
 export default userSlice.reducer;
