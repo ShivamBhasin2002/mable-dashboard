@@ -192,5 +192,5 @@ export type SelectedEventsType = {
 
 export type AccountUpdateType = {
   status: string;
-  message: string;
+  message: string | undefined;
 };

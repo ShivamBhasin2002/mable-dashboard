@@ -36,11 +36,11 @@ export const userNameUpdateInitialState: AccountUpdateType = {
 
 export const emailUpdateInitialState: AccountUpdateType = {
   status: STATUS_TYPE.IDLE,
-  message: ''
+  message: undefined
 };
 export const passwordUpdateInitialState: AccountUpdateType = {
   status: STATUS_TYPE.IDLE,
-  message: ''
+  message: undefined
 };
 
 export const shopInitialState: shopStateType = {

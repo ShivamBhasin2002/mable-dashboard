@@ -94,9 +94,10 @@ export const updatePassword = createAsyncThunk<
       return data;
     }
   } catch (error) {
-    let message;
-    if (error instanceof Error) message = error.message;
-    else message = String(message);
+    let message = '';
+    if (axios.isAxiosError(error) && error.response) {
+      message = error.message;
+    } else message = String(error);
     return thunkApi.rejectWithValue(message);
   }
 });
@@ -110,8 +111,9 @@ export const updateUserNameReducer = createReducer(userNameUpdateInitialState, (
       state.status = STATUS_TYPE.SUCCESS;
       state.message = payload.message;
     })
-    .addCase(updateUsername.rejected, (state) => {
+    .addCase(updateUsername.rejected, (state, { error }) => {
       state.status = STATUS_TYPE.ERROR;
+      state.message = error.message;
     });
 });
 
@@ -120,13 +122,11 @@ export const userStateUpdate = createSlice({
   initialState: userInitialState,
   reducers: {
     updateUserEmailState: (state, { payload }) => {
-      console.log('ghus-gya');
       state.email = payload;
     },
     updateUserNameState: (state, { payload }) => {
       state.firstName = payload.nameFirst;
       state.lastName = payload.nameLast;
-      console.log('hua');
     }
   }
 });
@@ -140,8 +140,9 @@ export const updateEmailReducer = createReducer(emailUpdateInitialState, (builde
       state.status = STATUS_TYPE.SUCCESS;
       state.message = payload.message;
     })
-    .addCase(updateEmail.rejected, (state) => {
+    .addCase(updateEmail.rejected, (state, { error }) => {
       state.status = STATUS_TYPE.ERROR;
+      state.message = error.message;
     });
 });
 
@@ -154,8 +155,9 @@ export const updatePasswordReducer = createReducer(passwordUpdateInitialState, (
       state.status = STATUS_TYPE.SUCCESS;
       state.message = payload.message;
     })
-    .addCase(updatePassword.rejected, (state) => {
+    .addCase(updatePassword.rejected, (state, { error }) => {
       state.status = STATUS_TYPE.ERROR;
+      state.message = error.message;
     });
 });
 
