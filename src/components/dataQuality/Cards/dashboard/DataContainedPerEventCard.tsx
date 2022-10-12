@@ -19,12 +19,13 @@ const DataContainedPerEventCard = () => {
   const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(dataPerEventAsync());
-  }, [refresh]);
+  }, [refresh, eventSelected]);
   return (
     <ComponentWrapper
       title="Data Contained Per Event"
       width={560}
       height={335}
+      status={status}
       nextComponent={
         <div className="flex-grow px-4 flex justify-between gap-4">
           <SelectorMenu

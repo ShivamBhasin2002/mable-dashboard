@@ -1,6 +1,7 @@
 import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
 
 export type IconType = {
+  id?: string;
   icon?: string;
   size?: string;
   color?: string;
@@ -72,6 +73,7 @@ export type DataQualityLineChartProps = {
   height?: number;
   color?: string;
 };
+
 export type csv = {
   day: string;
   date: string;
@@ -80,4 +82,11 @@ export type csv = {
   count_intitate_checkout: number;
   count_add_to_cart: number;
   count_page_view: number;
+};
+
+export type SideBarItemProps = {
+  icon: string;
+  title: string;
+  clickHandle: () => void;
+  isActive: boolean;
 };

@@ -2,11 +2,7 @@ import { useEffect } from 'react';
 
 import { ComponentWrapper } from 'components/common';
 
-import {
-  AttributionEventBarChart,
-  DataPerEventDoughnutChart,
-  DataPerEventDoughnutChartLabels
-} from 'components/dataQuality/Graphs';
+import { AttributionEventBarChart } from 'components/dataQuality/Graphs';
 import { ParameterMetrics } from 'components/dataQuality/General';
 import { SelectorMenu } from 'components/dataQuality/Common';
 
@@ -21,28 +17,23 @@ const EventQualityCard = () => {
   const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(dataPerEventAsync());
-  }, [refresh]);
+  }, [refresh, eventSelected]);
   return (
     <ComponentWrapper
+      status={status}
+      height={400}
+      className="flex-grow-0"
       nextComponent={
         <SelectorMenu
           active={eventSelected}
           onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
         />
       }
-      height={400}
-      className="flex-grow-0"
     >
       <div className="flex items-center justify-evenly mr-8 mt-5 flex-wrap gap-[40px]">
         <ParameterMetrics />
         <div className="flex-grow">
           <AttributionEventBarChart height={150} />
-        </div>
-        <div className="flex gap-8">
-          <div className="w-[250px] ">
-            <DataPerEventDoughnutChart />
-          </div>
-          <DataPerEventDoughnutChartLabels />
         </div>
       </div>
     </ComponentWrapper>

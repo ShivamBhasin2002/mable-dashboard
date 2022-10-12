@@ -4,9 +4,15 @@ import Icon from 'assets/icons';
 import { useSelector } from 'redux/store';
 
 const WarningCenterCard = () => {
-  const { active } = useSelector((state) => state.warnings);
+  const { active, status } = useSelector((state) => state.warnings);
   return (
-    <ComponentWrapper title="Warning Center" width={600} underlined className="flex-grow">
+    <ComponentWrapper
+      title="Warning Center"
+      width={600}
+      underlined
+      className="flex-grow"
+      status={status}
+    >
       {active.map(({ type, message, time }, index) => (
         <div
           key={index}
