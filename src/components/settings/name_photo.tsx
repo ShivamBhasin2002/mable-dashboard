@@ -7,12 +7,14 @@ import * as Yup from 'yup';
 import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
 import { STATUS_TYPE } from 'utility/constants/general';
-import { updateUsername } from 'redux/reducers/updateAccountInfoSlice';
-import { useEffect } from 'react';
+import { updateUserEmailState, updateUsername } from 'redux/reducers/updateAccountInfoSlice';
+import { useEffect, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 
 const NameChange = () => {
   const dispatch = useDispatch();
+  const [nameFirst, setFirstName] = useState<string>();
+  const [nameLast, setLastName] = useState<string>();
   const toast = useToast();
   const { status, message } = useSelector((state) => state.accountSetting.updateUserNameReducer);
 
@@ -22,6 +24,7 @@ const NameChange = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({ title: `${message}`, status: 'success', isClosable: true, position: 'top-right' });
+      dispatch(updateUserEmailState({ nameFirst, nameLast }));
     }
   }, [status]);
 
@@ -50,6 +53,8 @@ const NameChange = () => {
           lastName: Yup.string()
         })}
         onSubmit={(values) => {
+          setFirstName(values.firstName);
+          setLastName(values.lastName);
           dispatch(updateUsername(values));
         }}
       >

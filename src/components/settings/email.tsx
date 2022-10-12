@@ -6,11 +6,12 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { TextField } from 'components/form';
-import { updateEmail } from 'redux/reducers/updateAccountInfoSlice';
-import { useEffect } from 'react';
+import { updateEmail, updateUserEmailState } from 'redux/reducers/updateAccountInfoSlice';
+import { useEffect, useState } from 'react';
 
 const EmailChange = () => {
-  const { userId } = useSelector((state) => state.user);
+  const { userId, email } = useSelector((state) => state.user);
+  const [emailId, setEmailId] = useState<string>('');
   const dispatch = useDispatch();
   const toast = useToast();
   const { status, message } = useSelector((state) => state.accountSetting.updateEmailReducer);
@@ -20,6 +21,7 @@ const EmailChange = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({ title: `${message}`, status: 'success', isClosable: true, position: 'top-right' });
+      updateUserEmailState(emailId);
     }
   }, [status]);
 
@@ -38,12 +40,19 @@ const EmailChange = () => {
           email: Yup.string()
         })}
         onSubmit={(values) => {
+          setEmailId(values.email);
           dispatch(updateEmail(values));
         }}
       >
         {(formik) => (
           <form className="" onSubmit={formik.handleSubmit}>
-            <TextField label="Email" icon="email" type="email" name="email" placeholder={`Email`} />
+            <TextField
+              label="Email"
+              icon="email"
+              type="email"
+              name="email"
+              placeholder={`${email ? email : `Email`}`}
+            />
             <div className="mt-[30px]">
               <Button type="submit" colorScheme="linkedin" variant="solid">
                 {status === STATUS_TYPE.FETCHING && <Spinner />}

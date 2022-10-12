@@ -1,10 +1,11 @@
-import { combineReducers, createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import { combineReducers, createAsyncThunk, createReducer, createSlice } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
 import {
   emailUpdateInitialState,
   passwordUpdateInitialState,
-  userNameUpdateInitialState
+  userNameUpdateInitialState,
+  userInitialState
 } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/general';
 
@@ -114,6 +115,20 @@ export const updateUserNameReducer = createReducer(userNameUpdateInitialState, (
     });
 });
 
+export const userStateUpdate = createSlice({
+  name: 'userStateUpdate',
+  initialState: userInitialState,
+  reducers: {
+    updateUserEmailState: (state, { payload }) => {
+      state.email = payload;
+    },
+    updateUserNameState: (state, { payload }) => {
+      state.firstName = payload.nameFirst;
+      state.lastName = payload.nameLast;
+    }
+  }
+});
+
 export const updateEmailReducer = createReducer(emailUpdateInitialState, (builder) => {
   builder
     .addCase(updateEmail.pending, (state) => {
@@ -148,4 +163,5 @@ export const accountRootReducer = combineReducers({
   updateUserNameReducer
 });
 
+export const { updateUserEmailState } = userStateUpdate.actions;
 export default accountRootReducer;
