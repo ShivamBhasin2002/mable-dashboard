@@ -7,7 +7,7 @@ import { userInitialState } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/general';
 
 export const loginAsync = createAsyncThunk<
-  string,
+  { token: string; email: string },
   {
     email: string;
     password: string;
@@ -21,7 +21,7 @@ export const loginAsync = createAsyncThunk<
       password: password
     });
     if (rememberMe) localStorage.setItem('token', res.data.token);
-    return res.data.token;
+    return res.data;
   } catch (err) {
     return thunkApi.rejectWithValue('Login Failed');
   }
@@ -99,7 +99,8 @@ export const userSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, { payload }) => {
         state.status = STATUS_TYPE.SUCCESS;
-        state.token = payload;
+        state.token = payload.token;
+        state.email = payload.email;
       })
       .addCase(loginAsync.rejected, (state, { payload }) => {
         state.status = STATUS_TYPE.ERROR;

@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 const EmailChange = () => {
   const { userId, email } = useSelector((state) => state.user);
   const [emailId, setEmailId] = useState<string>('');
+  const emailOriginal = { userId: userId, email: email };
   const dispatch = useDispatch();
   const toast = useToast();
   const { status, message } = useSelector((state) => state.accountSetting.updateEmailReducer);
@@ -21,7 +22,7 @@ const EmailChange = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({ title: `${message}`, status: 'success', isClosable: true, position: 'top-right' });
-      updateUserEmailState(emailId);
+      dispatch(updateUserEmailState(emailId));
     }
   }, [status]);
 
@@ -58,8 +59,13 @@ const EmailChange = () => {
                 {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Save
               </Button>
-              <Button colorScheme="linkedin" variant="outline" className="ml-6">
-                Cancel
+              <Button
+                colorScheme="linkedin"
+                variant="outline"
+                className="ml-6"
+                onClick={() => dispatch(updateEmail(emailOriginal))}
+              >
+                Reset
               </Button>
             </div>
           </form>

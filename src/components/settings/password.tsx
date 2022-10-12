@@ -50,9 +50,6 @@ const PasswordChange = () => {
                 {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Save
               </Button>
-              <Button colorScheme="linkedin" variant="outline" className="ml-6">
-                Cancel
-              </Button>
             </div>
           </form>
         )}
@@ -71,7 +68,7 @@ const PasswordChange = () => {
             Save
           </Button>
           <Button disabled colorScheme="linkedin" variant="outline" className="ml-6">
-            Cancel
+            Reset
           </Button>
         </div>
       </div>

@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
 import { STATUS_TYPE } from 'utility/constants/general';
-import { updateUserEmailState, updateUsername } from 'redux/reducers/updateAccountInfoSlice';
+import { updateUsername, updateUserNameState } from 'redux/reducers/updateAccountInfoSlice';
 import { useEffect, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 
@@ -24,11 +24,16 @@ const NameChange = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({ title: `${message}`, status: 'success', isClosable: true, position: 'top-right' });
-      dispatch(updateUserEmailState({ nameFirst, nameLast }));
+      dispatch(updateUserNameState({ nameFirst, nameLast }));
     }
   }, [status]);
 
   const { firstName, lastName, userId } = useSelector((state) => state.user);
+  const UsernameOringinal = {
+    userId: userId,
+    firstName: firstName,
+    lastName: lastName
+  };
   return (
     <ComponentWrapper className="w-full mt-[20px] text-light h-fit">
       <h1 className=" text-lg font-semibold">Name</h1>
@@ -72,8 +77,13 @@ const NameChange = () => {
                 {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Save
               </Button>
-              <Button colorScheme="linkedin" variant="outline" className="ml-6">
-                Cancel
+              <Button
+                colorScheme="linkedin"
+                variant="outline"
+                className="ml-6"
+                onClick={() => dispatch(updateUsername(UsernameOringinal))}
+              >
+                Reset
               </Button>
             </div>
           </form>

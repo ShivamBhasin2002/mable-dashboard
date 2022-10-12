@@ -38,7 +38,12 @@ export type TextFieldProps = {
 };
 
 export type LayoutProps = {
+  settings?: boolean;
   children: React.ReactNode;
+};
+
+export type DashBoardTypeProps = {
+  IsSettings?: boolean;
 };
 
 export type LoadingProps = {

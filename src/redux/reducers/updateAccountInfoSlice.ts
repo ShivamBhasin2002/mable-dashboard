@@ -13,8 +13,8 @@ export const updateUsername = createAsyncThunk<
   { message: string },
   {
     userId: string | undefined;
-    firstName: string;
-    lastName: string;
+    firstName: string | undefined;
+    lastName: string | undefined;
   },
   thunkOptions
 >('accountsetting/update/name', async ({ userId, firstName, lastName }, thunkApi) => {
@@ -45,7 +45,7 @@ export const updateEmail = createAsyncThunk<
   { errorKey: string; message: string },
   {
     userId: string | undefined;
-    email: string;
+    email: string | undefined;
   },
   thunkOptions
 >('accountsetting/update/email', async ({ userId, email }, thunkApi) => {
@@ -120,11 +120,13 @@ export const userStateUpdate = createSlice({
   initialState: userInitialState,
   reducers: {
     updateUserEmailState: (state, { payload }) => {
+      console.log('ghus-gya');
       state.email = payload;
     },
     updateUserNameState: (state, { payload }) => {
       state.firstName = payload.nameFirst;
       state.lastName = payload.nameLast;
+      console.log('hua');
     }
   }
 });
@@ -163,5 +165,5 @@ export const accountRootReducer = combineReducers({
   updateUserNameReducer
 });
 
-export const { updateUserEmailState } = userStateUpdate.actions;
+export const { updateUserEmailState, updateUserNameState } = userStateUpdate.actions;
 export default accountRootReducer;
