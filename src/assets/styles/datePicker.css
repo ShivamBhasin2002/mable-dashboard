@@ -153,10 +153,10 @@
 .CalendarMonthGrid {
   background: transparent;
   text-align: left;
-  z-index: 0;
+  z-index: 10;
 }
 .CalendarMonthGrid__animating {
-  z-index: 1;
+  z-index: 11;
 }
 .CalendarMonthGrid__horizontal {
   position: absolute;
@@ -173,7 +173,7 @@
 }
 .CalendarMonthGrid_month__hideForAnimation {
   position: absolute;
-  z-index: -1;
+  z-index: 9;
   opacity: 0;
   pointer-events: none;
 }
@@ -182,13 +182,13 @@
 }
 .DayPickerNavigation {
   position: relative;
-  z-index: 2;
+  z-index: 12;
 }
 .DayPickerNavigation__horizontal {
   height: 0;
 }
 .DayPickerNavigation__verticalScrollable_prevNav {
-  z-index: 1;
+  z-index: 11;
 }
 .DayPickerNavigation__verticalDefault {
   position: absolute;
@@ -331,7 +331,7 @@
   color: #757575;
   position: absolute;
   top: 62px;
-  z-index: 2;
+  z-index: 12;
   text-align: left;
 }
 .DayPicker_weekHeader__vertical {
@@ -447,7 +447,7 @@
   display: block;
 }
 .DateRangePicker_picker {
-  z-index: 1;
+  z-index: 11;
   background-color: transparent;
   position: absolute;
 }
@@ -483,7 +483,7 @@
   top: 0;
   right: 0;
   padding: 15px;
-  z-index: 2;
+  z-index: 12;
 }
 .DateRangePicker_closeButton:focus,
 .DateRangePicker_closeButton:hover {

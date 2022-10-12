@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import moment from 'moment';
 
 import { datesInitialState } from 'utility/constants/initialStates';
 
@@ -15,8 +16,15 @@ export const datesSlice = createSlice({
       state.datePreset = payload;
       if (state.datePreset) localStorage.setItem('datePreset', state.datePreset);
     },
-    refresh: (state) => {
-      state.refresh = !state.refresh;
+    refresh: (state, { payload }) => {
+      if (
+        payload ||
+        moment().isBetween(
+          moment(state.dateRange[0]).subtract(1),
+          moment(state.dateRange[1]).add(1)
+        )
+      )
+        state.refresh = !state.refresh;
     }
   }
 });

@@ -66,9 +66,9 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
           <button
             className="px-[56px] py-[13px] rounded-[8px] font-lato text-[16px] font-bold bg-primary text-light"
             onClick={() => {
-              dispatch(setPreset(selectedPreset));
-              dispatch(setDates(selectedDateRange));
-              dispatch(refresh());
+              if (datePreset !== selectedPreset) dispatch(setPreset(selectedPreset));
+              if (dateRange !== selectedDateRange) dispatch(setDates(selectedDateRange));
+              dispatch(refresh(true));
               close();
             }}
           >

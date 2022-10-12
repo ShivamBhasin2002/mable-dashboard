@@ -19,7 +19,7 @@ const DataContainedPerEventCard = () => {
   const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(dataPerEventAsync());
-  }, [refresh]);
+  }, [refresh, eventSelected]);
   return (
     <ComponentWrapper
       title="Data Contained Per Event"

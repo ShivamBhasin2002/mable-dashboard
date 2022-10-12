@@ -20,7 +20,7 @@ const ComponentWrapper = ({
     >
       {status === STATUS_TYPE.FETCHING && (
         <div
-          className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-10 bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
+          className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
         >
           <Spinner w={100} h={100} thickness="7px" color={colors.light} />
           <span className="text-light flex items-center font-montserrat text-[22px] font-bold `">
@@ -30,7 +30,7 @@ const ComponentWrapper = ({
       )}
       {status === STATUS_TYPE.ERROR && (
         <div
-          className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-10 bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
+          className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
         >
           <Icon
             size="100px"

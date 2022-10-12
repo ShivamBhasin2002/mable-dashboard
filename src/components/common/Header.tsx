@@ -75,10 +75,15 @@ const DashboardHeader = () => {
           <span
             className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
             onClick={() => {
-              dispatch(refresh());
+              dispatch(refresh(false));
+              document.getElementById('refreshIcon')?.classList.add('animate-spin');
+              setTimeout(
+                () => document.getElementById('refreshIcon')?.classList.remove('animate-spin'),
+                3000
+              );
             }}
           >
-            <Icon icon="refresh" />
+            <Icon id="refreshIcon" icon="refresh" />
           </span>
           <Popover
             gutter={10}

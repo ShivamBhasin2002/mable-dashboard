@@ -1,6 +1,7 @@
 import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
 
 export type IconType = {
+  id?: string;
   icon?: string;
   size?: string;
   color?: string;
