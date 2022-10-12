@@ -28,14 +28,11 @@ const SideBar = () => {
         <Icon icon="mableLogo" width={140} />
       </header>
       <section className="flex-grow">
-        <div className=" ml-[9px] text-[16px] text-light/[0.57] font-montserrat font-bold mb-[15px]">
-          MENU
-        </div>
         <div className="flex flex-col gap-[5px]">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
             return (
               <div key={sidebarCategory}>
-                <div className="ml-[20px] text-[14px] text-light/[0.8] font-montserrat font-semibold mt-[6px] mb-[3px]">
+                <div className="ml-[9px] text-[16px] text-light/[0.57] font-montserrat font-bold mb-[15px]">
                   {sidebarCategory}
                 </div>
                 {sidebarItems.map((item) => (

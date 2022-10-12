@@ -15,6 +15,7 @@ import { statusTypeColors } from 'utility/functions/colorSelector';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';
+import { getOrderAnalysisTableIcon } from 'utility/functions/mappingFunctions';
 
 const OrderAnalysisTable = () => {
   const dispatch = useDispatch();
@@ -84,10 +85,7 @@ const OrderAnalysisTable = () => {
                             data.status
                           )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
                         >
-                          {data.status === statusSelector.pending && <Icon icon="pending" />}
-                          {data.status === statusSelector.success && <Icon icon="tick" />}
-                          {data.status === statusSelector.failed && <Icon icon="cross" />}
-                          {data.status === statusSelector.delayed && <Icon icon="delayed" />}{' '}
+                          <Icon icon={getOrderAnalysisTableIcon(data.status)} />
                           {data.status}
                         </span>
                       ) : (
