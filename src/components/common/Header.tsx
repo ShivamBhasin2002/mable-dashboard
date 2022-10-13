@@ -77,7 +77,7 @@ const DashboardHeader = () => {
             <span
               className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
               onClick={() => {
-                dispatch(refresh());
+                dispatch(refresh(false));
               }}
             >
               <Icon icon="refresh" />

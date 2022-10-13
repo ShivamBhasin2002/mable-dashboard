@@ -8,7 +8,7 @@ import { AiOutlineBell, AiFillCaretDown, AiFillEye, AiFillEyeInvisible } from 'r
 import { BsBarChartLine } from 'react-icons/bs';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { TbReportMoney } from 'react-icons/tb';
-import { BiRefresh } from 'react-icons/bi';
+import { BiRefresh, BiError } from 'react-icons/bi';
 
 import Dashboard from 'assets/icons/DashboardIcon';
 import EventQuality from 'assets/icons/EventQualityIcon';
@@ -147,6 +147,8 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
 
     case 'mableLogo':
       return <MableLogo className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+    case 'errorTriangular':
+      return <BiError className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
   }
   return null;
 };

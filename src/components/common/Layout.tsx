@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
-import SideBar from 'components/common/SideBar';
+import SideBar from 'components/sidebar/SideBar';
 import DashboardHeader from 'components/common/Header';
 import Loading from 'components/common/Loading';
 

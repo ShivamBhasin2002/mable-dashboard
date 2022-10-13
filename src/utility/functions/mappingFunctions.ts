@@ -3,7 +3,8 @@ import moment from 'moment';
 import {
   DatePickerPresets as presets,
   eventSelectedType,
-  screenType
+  screenType,
+  statusSelector
 } from 'utility/constants/general';
 
 import { AnalyticsStateType } from 'utility/typeDefinitions/reduxTypes';
@@ -112,5 +113,18 @@ export const screenToURL = (screen: screenType): string | undefined => {
       return 'analytics/reports';
     case screenType.settings:
       return 'settings';
+  }
+};
+
+export const getOrderAnalysisTableIcon = (status: statusSelector | string) => {
+  switch (status) {
+    case statusSelector.pending:
+      return 'pending';
+    case statusSelector.success:
+      return 'tick';
+    case statusSelector.failed:
+      return 'cross';
+    case statusSelector.delayed:
+      return 'delayed';
   }
 };
