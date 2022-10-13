@@ -18,19 +18,22 @@ const SideBar = () => {
       { title: 'Event Quality', icon: 'eventQuality' }
     ],
     Analytics: [{ title: 'Reports', icon: 'analytics' }],
-    Settings: [{ title: 'Account Settings', icon: 'settings' }]
+    Settings: [
+      { title: 'Account Settings', icon: 'settings' },
+      { title: 'Privacy Cockpit', icon: 'settings' }
+    ]
   };
   return (
     <aside
       id="side-bar"
-      className="lg:sticky lg:top-0 lg:left-0 w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[50px] lg:flex flex-col gap-16 px-[25px] hidden"
+      className="lg:sticky lg:top-0 lg:left-0 w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] lg:flex flex-col  px-[25px] hidden"
     >
-      <header className="flex justify-center">
+      <header className="flex justify-center h-10 ">
         <Icon icon="mableLogo" width={140} />
       </header>
 
-      <section className="flex-grow">
-        <div className="flex flex-col gap-[5px]">
+      <section className="flex-grow h-10 overflow-hidden h-70 ">
+        <div className="flex flex-col gap-[5px]  h-full justify-center">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
             return (
               <div key={sidebarCategory}>
@@ -51,7 +54,7 @@ const SideBar = () => {
         </div>
       </section>
 
-      <section className="flex flex-col gap-[10px]">
+      <section className="flex flex-col gap-[10px] h-20 items justify-center">
         <div className="text-[16px] text-light/[0.57] font-montserrat font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">
           <span className="w-[35px] h-[35px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">

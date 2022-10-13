@@ -25,7 +25,8 @@ export enum screenType {
   orderAnalysis = 'Order Analysis',
   eventQuality = 'Event Quality',
   analytics = 'Reports',
-  settings = 'Account Settings',
+  accountSettings = 'Account Settings',
+  privacyCockpit = 'Privacy Cockpit',
   tutorial = 'Tutorial'
 }
 

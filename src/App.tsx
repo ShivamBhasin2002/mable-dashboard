@@ -11,7 +11,8 @@ import Analytics from 'pages/data_quality/analytics_report';
 import Layout from 'components/common/Layout';
 
 import colors from 'utility/colors';
-import Settings from 'pages/settings/settings';
+import AccountSettings from 'pages/settings/accountSettings';
+import PrivacyCockpit from 'pages/settings/privacyCockpit';
 import { screenToURL } from 'utility/functions/mappingFunctions';
 
 import { useSelector } from 'redux/store';
@@ -80,10 +81,18 @@ const App = () => {
           }
         />
         <Route
-          path="/settings"
+          path="/settings/account_settings"
           element={
             <Layout>
-              <Settings />
+              <AccountSettings />
+            </Layout>
+          }
+        />
+        <Route
+          path="/settings/privacy_cockpit"
+          element={
+            <Layout>
+              <PrivacyCockpit />
             </Layout>
           }
         />
