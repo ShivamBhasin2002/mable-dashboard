@@ -5,6 +5,7 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { pageSpeedInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
+import moment from 'moment';
 
 // eslint-disable-next-line
 export const pageSpeedAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -32,14 +33,16 @@ export const pageSpeedReducer = createReducer(pageSpeedInitialState, (builder) =
       state.status = STATUS_TYPE.FETCHING;
     })
     .addCase(pageSpeedAsync.fulfilled, (state, { payload }) => {
-      state.AVG_LOADING_TIME_PAGE =
-        payload.avg_loading_time_page_in_seconds ?? pageSpeedInitialState.AVG_LOADING_TIME_PAGE;
-      state.AVG_LOADING_TIME_MABLE_SCRIPT =
-        payload.avg_loading_time_mable_script_in_seconds ??
-        pageSpeedInitialState.AVG_LOADING_TIME_MABLE_SCRIPT;
-      state.AVG_CONTRIBUTION_TIME_MABLE_SCRIPT =
-        (payload.avg_contribution_time_mable_script_in_seconds ??
-          pageSpeedInitialState.AVG_CONTRIBUTION_TIME_MABLE_SCRIPT) * 100;
+      state.avg_loading_time_page =
+        payload.avg_loading_time_page ?? pageSpeedInitialState.avg_loading_time_page;
+      state.avg_loading_time_mable_script =
+        payload.avg_loading_time_mable_script ??
+        pageSpeedInitialState.avg_loading_time_mable_script;
+      state.avg_contribution_time_mable_script =
+        (payload.avg_contribution_time_mable_script ??
+          pageSpeedInitialState.avg_contribution_time_mable_script) * 100;
+      state.script_tag_found = payload.script_tag_found;
+      state.script_tag_last_found = moment().diff(moment(payload.script_tag_last_found), 'h');
       state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(pageSpeedAsync.rejected, (state, { payload }) => {

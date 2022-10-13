@@ -10,9 +10,9 @@ import { pageSpeedAsync } from 'redux/reducers/pageSpeedSlice';
 const PageSpeedCard = () => {
   const dispatch = useDispatch();
   const {
-    AVG_LOADING_TIME_PAGE,
-    AVG_LOADING_TIME_MABLE_SCRIPT,
-    AVG_CONTRIBUTION_TIME_MABLE_SCRIPT,
+    avg_loading_time_page,
+    avg_loading_time_mable_script,
+    avg_contribution_time_mable_script,
     status
   } = useSelector((state) => state.pageSpeed);
   const refresh = useSelector((state) => state.dates.refresh);
@@ -24,21 +24,21 @@ const PageSpeedCard = () => {
       <div className="flex flex-row justify-center pb-[10px]">
         <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {AVG_LOADING_TIME_PAGE}
+            {avg_loading_time_page}
             <span className="text-[20px]">s</span>
           </div>
           <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
         </div>
         <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {AVG_LOADING_TIME_MABLE_SCRIPT}
+            {avg_loading_time_mable_script}
             <span className="text-[20px]">s</span>
           </div>
           <div className="text-primary text-center text-[14px]">Avg Loading Time Mable Script</div>
         </div>
         <div className="min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {AVG_CONTRIBUTION_TIME_MABLE_SCRIPT}
+            {avg_contribution_time_mable_script}
             <span className="text-[20px]">%</span>
           </div>
           <div className="text-primary text-center text-[14px]">Page Speed Share</div>

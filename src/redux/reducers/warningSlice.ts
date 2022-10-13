@@ -1,4 +1,4 @@
-import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
@@ -28,17 +28,27 @@ export const warningAsync = createAsyncThunk<any, void, thunkOptions>(
   }
 );
 
-export const warningReducer = createReducer(warningInitialState, (builder) => {
-  builder
-    .addCase(warningAsync.pending, (state) => {
-      state.status = STATUS_TYPE.FETCHING;
-    })
-    .addCase(warningAsync.fulfilled, (state) => {
-      state.status = STATUS_TYPE.SUCCESS;
-    })
-    .addCase(warningAsync.rejected, (state) => {
-      state.status = STATUS_TYPE.ERROR;
-    });
+export const warningSlice = createSlice({
+  name: 'warning',
+  initialState: warningInitialState,
+  reducers: {
+    push: (state, { payload }) => {
+      state.active = [...state.active, payload];
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(warningAsync.pending, (state) => {
+        state.status = STATUS_TYPE.FETCHING;
+      })
+      .addCase(warningAsync.fulfilled, (state) => {
+        state.status = STATUS_TYPE.SUCCESS;
+      })
+      .addCase(warningAsync.rejected, (state) => {
+        state.status = STATUS_TYPE.ERROR;
+      });
+  }
 });
 
-export default warningReducer;
+export const { push } = warningSlice.actions;
+export default warningSlice.reducer;
