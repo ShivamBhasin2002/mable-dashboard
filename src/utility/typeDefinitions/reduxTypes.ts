@@ -189,3 +189,8 @@ export type SelectedEventsType = {
   AddPaymentInfo: boolean;
   Purchase: boolean;
 };
+
+export type AccountUpdateType = {
+  status: string;
+  message: string | undefined;
+};

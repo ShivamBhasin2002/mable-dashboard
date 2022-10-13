@@ -11,6 +11,7 @@ import Analytics from 'pages/data_quality/analytics_report';
 import Layout from 'components/common/Layout';
 
 import colors from 'utility/colors';
+import Settings from 'pages/settings/settings';
 import { screenToURL } from 'utility/functions/mappingFunctions';
 
 import { useSelector } from 'redux/store';
@@ -75,6 +76,14 @@ const App = () => {
           element={
             <Layout>
               <Analytics />
+            </Layout>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <Layout>
+              <Settings />
             </Layout>
           }
         />

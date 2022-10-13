@@ -17,7 +17,8 @@ const SideBar = () => {
       { title: 'Order Analysis', icon: 'orderAnalysis' },
       { title: 'Event Quality', icon: 'eventQuality' }
     ],
-    Analytics: [{ title: 'Reports', icon: 'analytics' }]
+    Analytics: [{ title: 'Reports', icon: 'analytics' }],
+    Settings: [{ title: 'Account Settings', icon: 'settings' }]
   };
   return (
     <aside
@@ -27,6 +28,7 @@ const SideBar = () => {
       <header className="flex justify-center">
         <Icon icon="mableLogo" width={140} />
       </header>
+
       <section className="flex-grow">
         <div className="flex flex-col gap-[5px]">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
@@ -48,6 +50,7 @@ const SideBar = () => {
           })}
         </div>
       </section>
+
       <section className="flex flex-col gap-[10px]">
         <div className="text-[16px] text-light/[0.57] font-montserrat font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">
