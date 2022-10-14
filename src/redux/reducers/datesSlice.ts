@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import moment from 'moment';
 
 import { datesInitialState } from 'utility/constants/initialStates';
+import { containsToday } from 'utility/functions/helper';
 
 export const datesSlice = createSlice({
   name: 'dates',
@@ -17,14 +17,7 @@ export const datesSlice = createSlice({
       if (state.datePreset) localStorage.setItem('datePreset', state.datePreset);
     },
     refresh: (state, { payload }) => {
-      if (
-        payload ||
-        moment().isBetween(
-          moment(state.dateRange[0]).subtract(1),
-          moment(state.dateRange[1]).add(1)
-        )
-      )
-        state.refresh = !state.refresh;
+      if (payload || containsToday(state.dateRange)) state.refresh = !state.refresh;
     }
   }
 });
