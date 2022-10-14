@@ -90,3 +90,13 @@ export type SideBarItemProps = {
   clickHandle: () => void;
   isActive: boolean;
 };
+
+export type toggletypeProps = {
+  value: boolean;
+  setState?: any;
+  dataSaved?: any;
+  on?: string;
+  off?: string;
+  name?: string;
+  setdataSaved?: any;
+};

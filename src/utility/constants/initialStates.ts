@@ -11,7 +11,8 @@ import {
   AnalyticsStateType,
   shopStateType,
   warningStateType,
-  AccountUpdateType
+  AccountUpdateType,
+  privacyCockpitType
 } from 'utility/typeDefinitions/reduxTypes';
 import { STATUS_TYPE, screenType, statusSelector } from './general';
 import moment from 'moment';
@@ -158,4 +159,31 @@ export const filterOptionInitialState: AnalyticsStateType = {
       }
     ]
   }
+};
+
+export const privacyCockpit: privacyCockpitType = {
+  data_collection_destinations: [
+    {
+      value: 'database',
+      label: 'Your Database',
+      available: true
+    },
+    {
+      value: 'tiktok',
+      label: 'Tik Tok',
+      available: false
+    }
+  ],
+  data_collection_settings: [
+    {
+      value: 'email',
+      category: 'personalData',
+      label: 'E-Mail'
+    },
+    {
+      value: 'email',
+      category: 'personalData',
+      label: 'E-Mail'
+    }
+  ]
 };

@@ -194,3 +194,30 @@ export type AccountUpdateType = {
   status: string;
   message: string | undefined;
 };
+
+export type privacyCockpitType = {
+  data_collection_destinations: [
+    {
+      value: string;
+      label: string;
+      available: boolean;
+    },
+    {
+      value: string;
+      label: string;
+      available: boolean;
+    }
+  ];
+  data_collection_settings: [
+    {
+      value: string;
+      category: string;
+      label: string;
+    },
+    {
+      value: string;
+      category: string;
+      label: string;
+    }
+  ];
+};
