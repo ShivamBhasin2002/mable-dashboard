@@ -20,6 +20,7 @@ import DatePicker from 'components/common/DatePicker';
 import { useSelector, useDispatch } from 'redux/store';
 import { setShop } from 'redux/reducers/shopSlice';
 import { refresh } from 'redux/reducers/datesSlice';
+import { showDatePicker, showReload } from 'utility/functions/helper';
 
 const DashboardHeader = () => {
   const datePickerRef = useRef<any>(); //eslint-disable-line
@@ -72,40 +73,40 @@ const DashboardHeader = () => {
           {activeScreen}
         </h1>
         <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
-          <span
-            className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
-            onClick={() => {
-              dispatch(refresh(false));
-              document.getElementById('refreshIcon')?.classList.add('animate-spin');
-              setTimeout(
-                () => document.getElementById('refreshIcon')?.classList.remove('animate-spin'),
-                3000
-              );
-            }}
-          >
-            <Icon id="refreshIcon" icon="refresh" />
-          </span>
-          <Popover
-            gutter={10}
-            autoFocus={false}
-            placement="bottom-end"
-            onClose={onClose}
-            isOpen={isOpen}
-            closeOnBlur={false}
-            onOpen={onOpen}
-          >
-            <PopoverTrigger>
-              <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[10px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer whitespace-nowrap">
-                {datePreset && <span className="text-primary w-min">{datePreset}: </span>}
-                {dateRange[0] && moment(dateRange[0]).format('DD.MM.YY')} to{' '}
-                {dateRange[1] && moment(dateRange[1]).format('DD.MM.YY')}
-                <Icon icon="dropdown" />
-              </span>
-            </PopoverTrigger>
-            <PopoverContent bg="transparent" border="none" w={1000} ref={datePickerRef}>
-              <DatePicker close={onClose} isOpen={isOpen} />
-            </PopoverContent>
-          </Popover>
+          {showReload(activeScreen) && (
+            <span
+              className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
+              onClick={() => {
+                dispatch(refresh(false));
+              }}
+            >
+              <Icon icon="refresh" />
+            </span>
+          )}
+
+          {showDatePicker(activeScreen) && (
+            <Popover
+              gutter={10}
+              autoFocus={false}
+              placement="bottom-end"
+              onClose={onClose}
+              isOpen={isOpen}
+              closeOnBlur={false}
+              onOpen={onOpen}
+            >
+              <PopoverTrigger>
+                <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[10px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer whitespace-nowrap">
+                  {datePreset && <span className="text-primary w-min">{datePreset}: </span>}
+                  {dateRange[0] && moment(dateRange[0]).format('DD.MM.YY')} to{' '}
+                  {dateRange[1] && moment(dateRange[1]).format('DD.MM.YY')}
+                  <Icon icon="dropdown" />
+                </span>
+              </PopoverTrigger>
+              <PopoverContent bg="transparent" border="none" w={1000} ref={datePickerRef}>
+                <DatePicker close={onClose} isOpen={isOpen} />
+              </PopoverContent>
+            </Popover>
+          )}
         </span>
       </div>
     </header>

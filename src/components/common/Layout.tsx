@@ -18,13 +18,14 @@ const Layout = ({ children }: LayoutProps) => {
   const dispatch = useDispatch();
   const navigator = useNavigate();
 
+  // destructuring the parameters of user state required from the global state
+  const { status, token } = useSelector((state) => state.user);
+
   // dispatching authenticate me with the token stored in local storage
   useEffect(() => {
-    dispatch(isAuthenticatedAsync(localStorage.getItem('token')));
+    dispatch(isAuthenticatedAsync(token));
   }, []);
 
-  // destructuring the parameters of user state required from the global state
-  const { status } = useSelector((state) => state.user);
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
@@ -38,6 +39,7 @@ const Layout = ({ children }: LayoutProps) => {
 
   //
   const { status: shopStatus, errorMsg } = useSelector((state) => state.shop);
+
   useEffect(() => {
     if (status === 'error') {
       toast({
