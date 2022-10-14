@@ -1,11 +1,11 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { pageSpeedInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
 import moment from 'moment';
+import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 
 // eslint-disable-next-line
 export const pageSpeedAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -13,12 +13,16 @@ export const pageSpeedAsync = createAsyncThunk<any, void, thunkOptions>(
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/page-speed`, {
-        headers: { Authorization: `Token ${state.user.token}` },
-        params: {
-          source_id: state.shop.active?.id
-        }
-      });
+      const { data } = await dashboardDataFetchCall(
+        {
+          path: `/v2/page-speed`,
+          token: state.user.token,
+          params: {
+            source_id: state.shop.active?.id
+          }
+        },
+        true
+      );
       if (data) return data;
       rejectWithValue('Data not found');
     } catch (error) {
