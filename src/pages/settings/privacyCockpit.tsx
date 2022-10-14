@@ -30,7 +30,7 @@ function privacyCockpit() {
       <ComponentWrapper className="flex flex-col">
         <div className="active_all flex justify-end items-center">
           <p className="text-light mx-2">Active Everything </p>
-          <ToggleBtn value={true} />
+          <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
         <div className="header w-full grid grid-cols-12 gap-0  content-center">
           <div className="header_title  text-light  text-[2em] font-[700] text-primary col-span-3  ">

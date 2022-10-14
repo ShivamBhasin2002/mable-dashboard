@@ -9,33 +9,33 @@ function toggle_table() {
       <div className="dataTable flex text-light grid grid-cols-12 gap-0">
         <div className="keyValue col-span-3 my-auto">Email</div>
         <div className="toggle1   col-span-3 m-auto">
-          <ToggleBtn value={true} />
+          <ToggleBtn value={true} on={'on'} off={'off'} />
         </div>
         <div className="toggle2  col-span-3 m-auto">
-          <ToggleBtn value={false} />
+          <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
         <div className="toggle3  col-span-3 m-auto">
-          <ToggleBtn value={false} />
+          <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
         <div className="keyValue col-span-3 my-auto">Vorname</div>
         <div className="toggle1   col-span-3 m-auto">
-          <ToggleBtn value={false} />
+          <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
         <div className="toggle2  col-span-3 m-auto">
-          <ToggleBtn value={true} />
+          <ToggleBtn value={true} on={'on'} off={'off'} />
         </div>
         <div className="toggle3  col-span-3 m-auto">
-          <ToggleBtn value={false} />
+          <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
         <div className="keyValue col-span-3 my-auto">Nachname</div>
         <div className="toggle1   col-span-3 m-auto">
-          <ToggleBtn value={false} />
+          <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
         <div className="toggle2  col-span-3 m-auto">
-          <ToggleBtn value={false} />
+          <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
         <div className="toggle3  col-span-3 m-auto">
-          <ToggleBtn value={false} />
+          <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
       </div>
     </div>
