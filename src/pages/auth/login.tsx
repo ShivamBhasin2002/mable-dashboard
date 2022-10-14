@@ -12,6 +12,7 @@ import { loginAsync, clearState } from 'redux/reducers/authSlice';
 import { STATUS_TYPE } from 'utility/constants/general';
 
 const Login = () => {
+  const disable = true;
   const toast = useToast();
   const navigator = useNavigate();
   const dispatch = useDispatch();
@@ -105,11 +106,15 @@ const Login = () => {
           )}
         </Formik>
         <div className="flex justify-between text-secondary w-[400px] md:w-[600px] items-center">
-          <div>
-            Don&apos;t have an account?{' '}
-            <Link className="text-light" to="/auth/register">
-              Register Now!
-            </Link>
+          <div className="flex gap-1">
+            Don&apos;t have an account?
+            {disable ? (
+              <div className=" text-zinc-400">Register Now!</div>
+            ) : (
+              <Link className="text-light" to="/auth/register">
+                Register Now!
+              </Link>
+            )}
           </div>
           <div className="flex items-center">
             <Icon icon="copyright" size="0.8rem" />
