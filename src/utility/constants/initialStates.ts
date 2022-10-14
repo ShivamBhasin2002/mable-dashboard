@@ -123,11 +123,13 @@ export const eventsDataInitialState: eventsDataStateType = {
 export const screenInitialState: screenStateType = { activeScreen: screenType.dashboard };
 
 export const pageSpeedInitialState: pageSpeedStateType = {
-  AVG_LOADING_TIME_PAGE: 0,
-  AVG_LOADING_TIME_MABLE_SCRIPT: 0,
-  AVG_CONTRIBUTION_TIME_MABLE_SCRIPT: 0,
+  avg_loading_time_page: 0,
+  avg_loading_time_mable_script: 0,
+  avg_contribution_time_mable_script: 0,
   status: STATUS_TYPE.IDLE,
-  errorMsg: undefined
+  errorMsg: undefined,
+  script_tag_found: true,
+  script_tag_last_found: undefined
 };
 
 export const filterOptionInitialState: AnalyticsStateType = {

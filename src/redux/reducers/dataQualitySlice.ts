@@ -5,7 +5,8 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataQualityInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
-import { makeGetRequest } from 'utility/functions/apiCalls';
+import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
+import { containsToday } from 'utility/functions/helper';
 
 // eslint-disable-next-line
 export const dataQualityAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -13,15 +14,18 @@ export const dataQualityAsync = createAsyncThunk<any, void, thunkOptions>(
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await makeGetRequest({
-        path: '/v2/data-quality',
-        token: state.user.token,
-        params: {
-          source_id: state.shop.active?.id,
-          start_date: state.dates.dateRange[0],
-          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
-        }
-      });
+      const { data } = await dashboardDataFetchCall(
+        {
+          path: '/v2/data-quality',
+          token: state.user.token,
+          params: {
+            source_id: state.shop.active?.id,
+            start_date: state.dates.dateRange[0],
+            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
+          }
+        },
+        !containsToday(state.dates.dateRange)
+      );
       if (data) return data;
       rejectWithValue('Data not found');
     } catch (error) {

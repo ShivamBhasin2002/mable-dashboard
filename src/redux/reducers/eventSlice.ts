@@ -4,22 +4,26 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { eventsInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
-import { makeGetRequest } from 'utility/functions/apiCalls';
+import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
+import { containsToday } from 'utility/functions/helper';
 
 export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
   'events/fetch',
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await makeGetRequest({
-        path: '',
-        token: state.user.token,
-        params: {
-          source_id: state.shop.active?.id,
-          start_date: state.dates.dateRange[0],
-          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
-        }
-      });
+      const { data } = await dashboardDataFetchCall(
+        {
+          path: '',
+          token: state.user.token,
+          params: {
+            source_id: state.shop.active?.id,
+            start_date: state.dates.dateRange[0],
+            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
+          }
+        },
+        !containsToday(state.dates.dateRange)
+      );
       if (data) {
         return data;
       }

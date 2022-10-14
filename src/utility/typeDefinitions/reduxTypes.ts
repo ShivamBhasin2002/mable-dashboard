@@ -27,9 +27,11 @@ export type userStateType = {
 };
 
 export type pageSpeedStateType = {
-  AVG_LOADING_TIME_PAGE: number;
-  AVG_LOADING_TIME_MABLE_SCRIPT: number;
-  AVG_CONTRIBUTION_TIME_MABLE_SCRIPT: number;
+  avg_loading_time_page: number;
+  avg_loading_time_mable_script: number;
+  avg_contribution_time_mable_script: number;
+  script_tag_found: boolean;
+  script_tag_last_found?: string | number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
