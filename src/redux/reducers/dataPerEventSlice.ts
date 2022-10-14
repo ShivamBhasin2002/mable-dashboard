@@ -5,8 +5,9 @@ import { dataPerEventsInitialState } from 'utility/constants/initialStates';
 
 import { STATUS_TYPE } from 'utility/constants/general';
 import { titleCaseToSnakeCaseFormatter } from 'utility/functions/formattingFunctions';
-import { makeGetRequest } from 'utility/functions/apiCalls';
+import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 import moment from 'moment';
+import { containsToday } from 'utility/functions/helper';
 
 // eslint-disable-next-line
 export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -21,28 +22,34 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         event: 0,
         byDate: []
       };
-      const { data: eventAttributionData } = await makeGetRequest({
-        path: `/v2/attribution-params-quality/${titleCaseToSnakeCaseFormatter(
-          state.dataPerEvent.eventSelected
-        )}`,
-        token: state.user.token,
-        params: {
-          source_id: state.shop.active?.id,
-          start_date: state.dates.dateRange[0],
-          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
-        }
-      });
-      const { data: eventParamsData } = await makeGetRequest({
-        path: `/v2/events-params-quality/${titleCaseToSnakeCaseFormatter(
-          state.dataPerEvent.eventSelected
-        )}`,
-        token: state.user.token,
-        params: {
-          source_id: state.shop.active?.id,
-          start_date: state.dates.dateRange[0],
-          end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
-        }
-      });
+      const { data: eventAttributionData } = await dashboardDataFetchCall(
+        {
+          path: `/v2/attribution-params-quality/${titleCaseToSnakeCaseFormatter(
+            state.dataPerEvent.eventSelected
+          )}`,
+          token: state.user.token,
+          params: {
+            source_id: state.shop.active?.id,
+            start_date: state.dates.dateRange[0],
+            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
+          }
+        },
+        !containsToday(state.dates.dateRange)
+      );
+      const { data: eventParamsData } = await dashboardDataFetchCall(
+        {
+          path: `/v2/events-params-quality/${titleCaseToSnakeCaseFormatter(
+            state.dataPerEvent.eventSelected
+          )}`,
+          token: state.user.token,
+          params: {
+            source_id: state.shop.active?.id,
+            start_date: state.dates.dateRange[0],
+            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
+          }
+        },
+        !containsToday(state.dates.dateRange)
+      );
       data.AttributionParameters =
         eventAttributionData.overall_attribution_percentage ??
         dataPerEventsInitialState.AttributionParameters;
