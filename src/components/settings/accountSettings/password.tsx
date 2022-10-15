@@ -22,7 +22,7 @@ const PasswordChange = () => {
     }
   }, [status]);
   return (
-    <ComponentWrapper className="w-1/2 mt-[20px] text-light" title="Password">
+    <ComponentWrapper className="w-[30rem] mt-[20px] text-light" title="Password">
       <Formik
         initialValues={{
           password: '',
