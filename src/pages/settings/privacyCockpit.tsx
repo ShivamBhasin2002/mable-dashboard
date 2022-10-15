@@ -1,8 +1,9 @@
 import { ComponentWrapper } from 'components/common';
 import React from 'react';
-import ToggleTable from 'components/settings/toggle_table';
+import ToggleTable from 'components/settings/privacyCockpit/toggle_table';
 import ToggleBtn from 'components/common/ToggleBtn/Togglebtn';
 import { Divider } from '@chakra-ui/react';
+
 const data_collection_destinations: {
   value: string;
   label: string;
@@ -33,7 +34,7 @@ function privacyCockpit() {
           <ToggleBtn value={false} on={'on'} off={'off'} />
         </div>
         <div className="header w-full grid grid-cols-12 gap-0  content-center">
-          <div className="header_title  text-light  text-[2em] font-[700] text-primary col-span-3  ">
+          <div className="header_title text-[2em] font-[700] text-primary col-span-3  ">
             Parameter Settings
           </div>
 

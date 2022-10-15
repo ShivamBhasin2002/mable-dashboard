@@ -1,6 +1,6 @@
-import EmailChange from 'components/settings/email';
-import NameChange from 'components/settings/name_photo';
-import PasswordChange from 'components/settings/password';
+import EmailChange from 'components/settings/accountSettings/email';
+import NameChange from 'components/settings/accountSettings/name_photo';
+import PasswordChange from 'components/settings/accountSettings/password';
 
 const Settings = () => {
   return (
