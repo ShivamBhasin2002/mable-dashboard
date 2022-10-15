@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import { Toast } from '@chakra-ui/react';
 import { thunkOptions, userStateType } from 'utility/typeDefinitions/reduxTypes';
 import { dataProcessingInitialState } from '../../utility/constants/initialStates';
 
@@ -22,7 +22,8 @@ export const fetchDataProcessSettings = createAsyncThunk<any, any>(
 
 export const updateDataProcessSettings = createAsyncThunk<
   {
-    settings: {
+    ok: boolean;
+    settings_changed: {
       settingKey: string;
       settingValue: string;
     }[];
@@ -67,7 +68,7 @@ export const userSlice = createSlice({
         state.status = STATUS_TYPE.SUCCESS;
         state.settings = payload;
       })
-      .addCase(fetchDataProcessSettings.rejected, (state, { payload }) => {
+      .addCase(fetchDataProcessSettings.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
       })
       .addCase(updateDataProcessSettings.pending, (state) => {
@@ -75,8 +76,15 @@ export const userSlice = createSlice({
       })
       .addCase(updateDataProcessSettings.fulfilled, (state, { payload }) => {
         state.status = STATUS_TYPE.SUCCESS;
+        console.log(state);
+        state.settings.filter((elm, idx) => {
+          if (payload.settings_changed[0].settingKey === elm.settingKey) {
+            state.settings[idx].settingValue = payload.settings_changed[0].settingValue;
+            state.settings[idx].settingValue = 'true';
+          }
+        });
       })
-      .addCase(updateDataProcessSettings.rejected, (state, { payload }) => {
+      .addCase(updateDataProcessSettings.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
       });
   }

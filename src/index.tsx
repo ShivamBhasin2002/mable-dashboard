@@ -19,7 +19,6 @@ import {
   ArcElement
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { fetchDataProcessSettings } from 'redux/reducers/dataProcessingSlice';
 ChartJS.register(
   CategoryScale,
   LinearScale,

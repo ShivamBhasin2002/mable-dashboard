@@ -16,9 +16,14 @@ import PrivacyCockpit from 'pages/settings/privacyCockpit';
 import DataProcessingSettings from 'pages/settings/data_processing_settings';
 import { screenToURL } from 'utility/functions/mappingFunctions';
 
-import { useSelector } from 'redux/store';
+import { useSelector, useDispatch } from 'redux/store';
+import { fetchDataProcessSettings } from 'redux/reducers/dataProcessingSlice';
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDataProcessSettings({}));
+  }, []);
   const { activeScreen } = useSelector((state) => state.screen);
   const navigator = useNavigate();
   useEffect(() => {

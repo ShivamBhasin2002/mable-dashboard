@@ -11,9 +11,10 @@ const Togglebtn = ({
   setdataSaved
 }: toggletypeProps) => {
   const triggerToggle = () => {
+    console.log(value);
     setState({
-      name: name,
-      value: !value
+      settingKey: name,
+      settingValue: `${!value}`
     });
     // setdataSaved({ ...dataSaved, [name]: false });
   };

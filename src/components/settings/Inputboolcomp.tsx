@@ -11,12 +11,12 @@ export default function Inputboolcomp({
 }: any) {
   const handelSave = () => {
     setState({
-      name: name,
-      value: value
+      settingKey: name,
+      settingValue: `${!value}`
     });
     setdataSaved({ ...dataSaved, [name]: false });
   };
-
+  console.log('Bool check' + typeof value);
   return (
     <div className="flex flex-row text-light w-100  rounded-md p-3 my-2">
       <div className="content w-11/12  p-2 flex flex-col">
