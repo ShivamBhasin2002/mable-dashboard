@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/styles/index.css';
 import App from './App';
@@ -20,6 +19,7 @@ import {
   ArcElement
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { fetchDataProcessSettings } from 'redux/reducers/dataProcessingSlice';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -34,6 +34,7 @@ ChartJS.register(
 );
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
   // <React.StrictMode>
   <Router>

@@ -13,6 +13,7 @@ import Layout from 'components/common/Layout';
 import colors from 'utility/colors';
 import AccountSettings from 'pages/settings/accountSettings';
 import PrivacyCockpit from 'pages/settings/privacyCockpit';
+import DataProcessingSettings from 'pages/settings/data_processing_settings';
 import { screenToURL } from 'utility/functions/mappingFunctions';
 
 import { useSelector } from 'redux/store';
@@ -93,6 +94,14 @@ const App = () => {
           element={
             <Layout>
               <PrivacyCockpit />
+            </Layout>
+          }
+        />
+        <Route
+          path="/settings/data_processing"
+          element={
+            <Layout>
+              <DataProcessingSettings />
             </Layout>
           }
         />

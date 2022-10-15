@@ -20,7 +20,8 @@ const SideBar = () => {
     Analytics: [{ title: 'Reports', icon: 'analytics' }],
     Settings: [
       { title: 'Account Settings', icon: 'settings' },
-      { title: 'Privacy Cockpit', icon: 'settings' }
+      { title: 'Privacy Cockpit', icon: 'settings' },
+      { title: 'Data Processing', icon: 'settings' }
     ]
   };
   return (

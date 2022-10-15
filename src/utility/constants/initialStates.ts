@@ -189,3 +189,8 @@ export const privacyCockpit: privacyCockpitType = {
     }
   ]
 };
+
+export const dataProcessingInitialState = {
+  status: '',
+  settings: []
+};

@@ -115,6 +115,8 @@ export const screenToURL = (screen: screenType): string | undefined => {
       return 'settings/account_settings';
     case screenType.privacyCockpit:
       return 'settings/privacy_cockpit';
+    case screenType.dataProcessing:
+      return 'settings/data_processing';
   }
 };
 

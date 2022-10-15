@@ -27,6 +27,7 @@ export enum screenType {
   analytics = 'Reports',
   accountSettings = 'Account Settings',
   privacyCockpit = 'Privacy Cockpit',
+  dataProcessing = 'Data Processing',
   tutorial = 'Tutorial'
 }
 
