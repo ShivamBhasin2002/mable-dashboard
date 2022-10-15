@@ -3,6 +3,8 @@ import React from 'react';
 import ToggleTable from 'components/settings/privacyCockpit/toggle_table';
 import ToggleBtn from 'components/common/ToggleBtn/Togglebtn';
 import { Divider } from '@chakra-ui/react';
+import PrivacySettings from 'components/settings/privacyCockpit/privacySettings';
+import DeleteUserData from 'components/settings/privacyCockpit/deleteUserData';
 
 const data_collection_destinations: {
   value: string;
@@ -58,6 +60,8 @@ function privacyCockpit() {
           <ToggleTable />
         </div>
       </ComponentWrapper>
+      <PrivacySettings />
+      <DeleteUserData />
     </>
   );
 }

@@ -26,3 +26,7 @@ export const showDatePicker = (screen: screenType) => {
       return true;
   }
 };
+
+export const submitLink = () => {
+  console.log('submitted');
+};

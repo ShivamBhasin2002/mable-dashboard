@@ -29,11 +29,7 @@ const EmailChange = () => {
   }, [status]);
 
   return (
-    <ComponentWrapper className="w-full mt-[20px] text-light h-fit">
-      <h1 className=" text-lg font-semibold">Contact Info</h1>
-      {/* <p className=" font-light opacity-60">
-        Access your Mable workspaces with any email address, or
-      </p> */}
+    <ComponentWrapper className="w-full mt-[20px] text-light h-fit" title="Contact Info">
       <Formik
         initialValues={{
           userId: userId,

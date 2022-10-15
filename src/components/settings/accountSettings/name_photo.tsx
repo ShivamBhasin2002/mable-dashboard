@@ -36,11 +36,10 @@ const NameChange = () => {
     lastName: lastName
   };
   return (
-    <ComponentWrapper className="w-full mt-[20px] text-light h-fit">
-      <h1 className=" text-lg font-semibold">Name</h1>
-      <p className=" font-light opacity-60">
+    <ComponentWrapper title="Name" className="w-full mt-[20px] text-light h-fit">
+      <div className="font-light opacity-60">
         Changing your name below will update your name on your profile
-      </p>
+      </div>
       {/* <div className="mt-[40px] flex flex-row justify-start">
         <div className="h-[100px] w-[100px] rounded-full border-2 border-lightBlue"></div>
         <div className="ml-[30px] h-[100px] w-[100px] rounded-full border-2 border-lightBlue flex flex-row justify-center items-center">

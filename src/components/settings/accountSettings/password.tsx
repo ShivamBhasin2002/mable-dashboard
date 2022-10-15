@@ -22,12 +22,7 @@ const PasswordChange = () => {
     }
   }, [status]);
   return (
-    <ComponentWrapper className="w-1/2 mt-[20px] text-light">
-      <h1 className=" text-lg font-semibold">Password</h1>
-      {/* <p className=" font-light opacity-60">
-        Note that if you signed in with a connected account,you are using that account login
-        information and we cannot change or reset those passwords here.
-      </p> */}
+    <ComponentWrapper className="w-1/2 mt-[20px] text-light" title="Password">
       <Formik
         initialValues={{
           password: '',
