@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Toast } from '@chakra-ui/react';
 import { thunkOptions, userStateType } from 'utility/typeDefinitions/reduxTypes';
 import { dataProcessingInitialState } from '../../utility/constants/initialStates';
-
+import { current } from '@reduxjs/toolkit';
 import { STATUS_TYPE } from 'utility/constants/general';
 
 export const fetchDataProcessSettings = createAsyncThunk<any, any>(
@@ -76,11 +76,9 @@ export const userSlice = createSlice({
       })
       .addCase(updateDataProcessSettings.fulfilled, (state, { payload }) => {
         state.status = STATUS_TYPE.SUCCESS;
-        console.log(state);
-        state.settings.filter((elm, idx) => {
-          if (payload.settings_changed[0].settingKey === elm.settingKey) {
-            state.settings[idx].settingValue = payload.settings_changed[0].settingValue;
-            state.settings[idx].settingValue = 'true';
+        state.settings.forEach((elm, idx) => {
+          if (payload.settings_changed[0].settingKey === elm.setting_key) {
+            state.settings[idx].setting_value = payload.settings_changed[0].settingValue;
           }
         });
       })

@@ -9,16 +9,11 @@ export default function DataProcessingSettings() {
   const toast = useToast();
   const dispatch = useDispatch();
 
-  const dataprocessingSettings = useSelector((state) => state.dataProcessing.settings);
+  const dataprocessingSettings = useSelector((state) => state.dataProcessing);
   //for getting save status of the setting field --- working of save button
   const [isSaved, setisSaved] = useState({
-    userTrackingConcent: true,
-    anonymizeIp: true,
-    usersFirstName: true,
-    usersLastName: true,
-    usersPhoneNo: true,
-    usersAddress: true,
-    usersPostalCode: true
+    key: '',
+    status: ''
   });
 
   const [UpdateSetting, setUpdateSetting] = useState({
@@ -28,13 +23,6 @@ export default function DataProcessingSettings() {
 
   //updating the changes made by user and saving it to the server
   useEffect(() => {
-    console.log(UpdateSetting.settingKey);
-    console.log(UpdateSetting.settingValue);
-    const settingdata = new Object({
-      settingKey: UpdateSetting.settingKey,
-      settingValue: String(UpdateSetting.settingValue)
-    });
-    console.log(settingdata);
     dispatch(
       updateDataProcessSettings({
         settings: [UpdateSetting]
@@ -42,26 +30,24 @@ export default function DataProcessingSettings() {
     );
   }, [UpdateSetting]);
 
-  //for updating the local state for changes made by user ---- using for- user dont need to fetch the big object array everytime it changes
-  // function updateCurrData(name: string, updatedData: boolean) {
-  //   const Arr = [...Storesettings];
-  //   Storesettings.filter((elm, idx) => {
-  //     if (name === elm.name) {
-  //       Arr[idx].value = updatedData;
-  //       setStoresettings(Arr);
-  //     }
-  //   });
-  // }
+  useEffect(() => {
+    setisSaved({
+      key: UpdateSetting.settingKey,
+      status: dataprocessingSettings.status
+    });
+  }, [dataprocessingSettings]);
 
+  function getname(settingkey: string) {
+    return settingkey.replaceAll('_', ' ');
+  }
   return (
     <div className="text-light">
-      {dataprocessingSettings.length === 0 ? (
+      {dataprocessingSettings.settings.length === 0 ? (
         <Loading />
       ) : (
-        dataprocessingSettings.map((data: any) => {
+        dataprocessingSettings.settings.map((data: any) => {
           return (
             <>
-              <p>{data.setting_value}</p>
               <Inputboolcomp
                 key={data.setting_key}
                 title={data.setting_key}

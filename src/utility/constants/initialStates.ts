@@ -194,8 +194,8 @@ export const dataProcessingInitialState = {
   status: '',
   settings: [
     {
-      settingKey: '',
-      settingValue: ''
+      setting_key: '',
+      setting_value: ''
     }
   ]
 };

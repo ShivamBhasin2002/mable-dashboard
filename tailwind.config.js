@@ -31,7 +31,8 @@ module.exports = {
         tableStrips: '#293A57',
         lineGraphStart: '#27CC95',
         failed: '#D90D19',
-        delayed: '#E6992E'
+        delayed: '#E6992E',
+        lightGray: '#C0C0C0'
       },
       height: {
         10: '10%',
