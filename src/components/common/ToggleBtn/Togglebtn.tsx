@@ -1,15 +1,7 @@
 import './Togglebtn.css';
 import { toggletypeProps } from 'utility/typeDefinitions/componentPropTypes';
 
-const Togglebtn = ({
-  value,
-  setState,
-  dataSaved,
-  on,
-  off,
-  name,
-  setdataSaved
-}: toggletypeProps) => {
+const Togglebtn = ({ value, setState, on, off, name }: toggletypeProps) => {
   const triggerToggle = () => {
     setState({
       settingKey: name,

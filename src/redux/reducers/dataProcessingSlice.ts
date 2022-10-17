@@ -1,24 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Toast } from '@chakra-ui/react';
-import { thunkOptions, userStateType } from 'utility/typeDefinitions/reduxTypes';
+
+import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataProcessingInitialState } from '../../utility/constants/initialStates';
-import { current } from '@reduxjs/toolkit';
 import { STATUS_TYPE } from 'utility/constants/general';
 
-export const fetchDataProcessSettings = createAsyncThunk<any, any>(
-  'admin/get-source-settings',
-  async ({ rejectWithValue }) => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_BFF_URL}/admin/source/57/settings`, {
-        headers: { 'x-access-token': '897erhtg97weh4tg78whenrgsearmguwsiaebhgjsrig' }
-      });
-      return res.data;
-    } catch (err) {
-      return rejectWithValue('Fetch Settings Failed');
-    }
+export const fetchDataProcessSettings = createAsyncThunk<
+  { setting_key: string; setting_value: string }[],
+  // eslint-disable-next-line
+  any,
+  thunkOptions
+>('admin/get-source-settings', async ({ rejectWithValue }) => {
+  try {
+    const res = await axios.get(`${process.env.REACT_APP_BFF_URL}/admin/source/57/settings`, {
+      headers: { 'x-access-token': '897erhtg97weh4tg78whenrgsearmguwsiaebhgjsrig' }
+    });
+    return res.data;
+  } catch (err) {
+    return rejectWithValue('Fetch Settings Failed');
   }
-);
+});
 
 export const updateDataProcessSettings = createAsyncThunk<
   {

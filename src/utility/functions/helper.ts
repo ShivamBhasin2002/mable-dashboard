@@ -11,6 +11,8 @@ export const showReload = (screen: screenType) => {
       return false;
     case screenType.privacyCockpit:
       return false;
+    case screenType.dataProcessing:
+      return false;
     default:
       return true;
   }
@@ -21,6 +23,8 @@ export const showDatePicker = (screen: screenType) => {
     case screenType.accountSettings:
       return false;
     case screenType.privacyCockpit:
+      return false;
+    case screenType.dataProcessing:
       return false;
     default:
       return true;

@@ -10,3 +10,7 @@ export const numberFormatter = (num: string | number) => {
   const formatter = Intl.NumberFormat('en', { notation: 'compact' });
   return formatter.format(num);
 };
+
+export const KeytoNameFormatter = (settingkey: string) => {
+  return settingkey.replaceAll('_', ' ');
+};

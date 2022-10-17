@@ -100,3 +100,25 @@ export type toggletypeProps = {
   name?: string;
   setdataSaved?: any;
 };
+
+export type InputBooltypeProps = {
+  description?: string;
+  setState: React.Dispatch<
+    React.SetStateAction<{
+      settingKey: string;
+      settingValue: string;
+    }>
+  >;
+  name: string;
+  value: boolean;
+  dataSaved: {
+    key: string;
+    status: string;
+  };
+  setdataSaved?: React.Dispatch<
+    React.SetStateAction<{
+      key: string;
+      status: string;
+    }>
+  >;
+};

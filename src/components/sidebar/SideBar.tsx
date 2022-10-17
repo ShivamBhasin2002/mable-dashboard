@@ -20,7 +20,7 @@ const SideBar = () => {
     Analytics: [{ title: 'Reports', icon: 'analytics' }],
     Settings: [
       { title: 'Account Settings', icon: 'settings' },
-      { title: 'Privacy Cockpit', icon: 'settings' },
+      // { title: 'Privacy Cockpit', icon: 'settings' },
       { title: 'Data Processing', icon: 'settings' }
     ]
   };
@@ -33,12 +33,12 @@ const SideBar = () => {
         <Icon icon="mableLogo" width={140} />
       </header>
 
-      <section className="flex-grow h-10 overflow-hidden h-70 ">
-        <div className="flex flex-col gap-[5px]  h-full justify-center">
+      <section className="flex-grow overflow-hidden h-70 overflow-y-scroll ">
+        <div className="flex flex-col   h-full justify-center py-5">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
             return (
               <div key={sidebarCategory}>
-                <div className="ml-[9px] text-[16px] text-light/[0.57] font-montserrat font-bold mb-[15px]">
+                <div className="ml-[9px] text-[.9em] text-light/[0.57] font-montserrat font-bold mb-[15px]">
                   {sidebarCategory}
                 </div>
                 {sidebarItems.map((item) => (
@@ -55,14 +55,14 @@ const SideBar = () => {
         </div>
       </section>
 
-      <section className="flex flex-col gap-[10px] h-20 items justify-center">
-        <div className="text-[16px] text-light/[0.57] font-montserrat font-bold">PROFILE</div>
+      <section className="flex flex-col gap-[10px] h-20 items justify-end overflow-hidden">
+        <div className="text-[.9em] text-light/[0.57] font-montserrat font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">
           <span className="w-[35px] h-[35px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">
             {firstName !== undefined ? firstName[0] : 'U'}
           </span>
           <span className="inline-flex flex-col justify-center">
-            <span className="text-[16px] text-light font-montserrat font-bold">
+            <span className="text-[.9em] text-light font-montserrat font-bold">
               {`${firstName || ''} ${lastName || ''}`}
             </span>
           </span>

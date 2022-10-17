@@ -1,28 +1,27 @@
+import { KeytoNameFormatter } from 'utility/functions/formattingFunctions';
+import { InputBooltypeProps } from 'utility/typeDefinitions/componentPropTypes';
 import Togglebtn from '../common/ToggleBtn/Togglebtn';
 export default function Inputboolcomp({
-  title,
   description,
   setState,
   name,
   value,
   dataSaved,
   setdataSaved
-}: any) {
+}: InputBooltypeProps) {
   const handelSave = () => {
-    console.log('starting');
-    console.log(dataSaved.key);
-    console.log(dataSaved.status);
-    console.log('ending');
     setState({
       settingKey: name,
       settingValue: `${!value}`
     });
   };
   return (
-    <div className="flex flex-row text-light w-100  rounded-md p-3 my-2">
+    <div className="flex flex-row text-light w-100  rounded-md p-2">
       <div className="content w-11/12  p-2 flex flex-col">
-        <div className="title text-[1.5em] font-[700]">{name.toUpperCase()}</div>
-        <div className="description  text-lightGray ">{description}</div>
+        <div className="title text-[1.5em] font-[700]">
+          {KeytoNameFormatter(name).toUpperCase()}
+        </div>
+        {description && <div className="description  text-lightGray ">{description}</div>}
         <div className="radiobtn my-1">
           <Togglebtn
             setdataSaved={setdataSaved}
