@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
@@ -51,43 +51,32 @@ export const updateDataProcessSettings = createAsyncThunk<
   }
 });
 
-export const userSlice = createSlice({
-  name: 'dataProcessing',
-  initialState: dataProcessingInitialState,
-  reducers: {
-    clearState: (state) => {
-      state.status = STATUS_TYPE.IDLE;
-      return state;
-    }
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchDataProcessSettings.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
-      .addCase(fetchDataProcessSettings.fulfilled, (state, { payload }) => {
-        state.status = STATUS_TYPE.SUCCESS;
-        state.settings = payload;
-      })
-      .addCase(fetchDataProcessSettings.rejected, (state) => {
-        state.status = STATUS_TYPE.ERROR;
-      })
-      .addCase(updateDataProcessSettings.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
-      .addCase(updateDataProcessSettings.fulfilled, (state, { payload }) => {
-        state.status = STATUS_TYPE.SUCCESS;
-        state.settings.forEach((elm, idx) => {
-          if (payload.settings_changed[0].settingKey === elm.setting_key) {
-            state.settings[idx].setting_value = payload.settings_changed[0].settingValue;
-          }
-        });
-      })
-      .addCase(updateDataProcessSettings.rejected, (state) => {
-        state.status = STATUS_TYPE.ERROR;
+export const dataProcessingReducer = createReducer(dataProcessingInitialState, (builder) => {
+  builder
+    .addCase(fetchDataProcessSettings.pending, (state) => {
+      state.status = STATUS_TYPE.FETCHING;
+    })
+    .addCase(fetchDataProcessSettings.fulfilled, (state, { payload }) => {
+      state.status = STATUS_TYPE.SUCCESS;
+      state.settings = payload;
+    })
+    .addCase(fetchDataProcessSettings.rejected, (state) => {
+      state.status = STATUS_TYPE.ERROR;
+    })
+    .addCase(updateDataProcessSettings.pending, (state) => {
+      state.status = STATUS_TYPE.FETCHING;
+    })
+    .addCase(updateDataProcessSettings.fulfilled, (state, { payload }) => {
+      state.status = STATUS_TYPE.SUCCESS;
+      state.settings.forEach((elm, idx) => {
+        if (payload.settings_changed[0].settingKey === elm.setting_key) {
+          state.settings[idx].setting_value = payload.settings_changed[0].settingValue;
+        }
       });
-  }
+    })
+    .addCase(updateDataProcessSettings.rejected, (state) => {
+      state.status = STATUS_TYPE.ERROR;
+    });
 });
 
-export const { clearState } = userSlice.actions;
-export default userSlice.reducer;
+export default dataProcessingReducer;
