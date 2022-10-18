@@ -20,6 +20,7 @@ import analyticsReducer from './reducers/analyticsSlice';
 import shopSlice from './reducers/shopSlice';
 import warningSlice from './reducers/warningSlice';
 import { accountRootReducer } from './reducers/updateAccountInfoSlice';
+import privacyCockpitSlice from './reducers/privacyCockpitSlice';
 
 export const store = configureStore({
   reducer: {
@@ -35,7 +36,8 @@ export const store = configureStore({
     analytics: analyticsReducer,
     shop: shopSlice,
     warnings: warningSlice,
-    accountSetting: accountRootReducer
+    accountSetting: accountRootReducer,
+    privacyCockpit: privacyCockpitSlice
   },
   middleware: [thunk as ThunkMiddleware]
 });

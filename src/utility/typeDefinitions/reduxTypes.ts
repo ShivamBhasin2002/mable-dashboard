@@ -222,4 +222,15 @@ export type privacyCockpitType = {
       label: string;
     }
   ];
+  privacySettings: {
+    hashDataInDashboard: boolean;
+    cookieConsent: string;
+    status: STATUS_TYPE;
+    previousSettings?: {
+      source_id: number;
+      setting_key: string;
+      setting_value: boolean;
+    }[];
+    errorMsg?: string;
+  };
 };

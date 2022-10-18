@@ -187,5 +187,12 @@ export const privacyCockpit: privacyCockpitType = {
       category: 'personalData',
       label: 'E-Mail'
     }
-  ]
+  ],
+  privacySettings: {
+    hashDataInDashboard: false,
+    cookieConsent: '',
+    status: STATUS_TYPE.IDLE,
+    previousSettings: undefined,
+    errorMsg: undefined
+  }
 };

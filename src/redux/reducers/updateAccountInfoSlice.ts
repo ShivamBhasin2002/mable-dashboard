@@ -116,21 +116,6 @@ export const updateUserNameReducer = createReducer(userNameUpdateInitialState, (
     });
 });
 
-// export const userStateUpdate = createSlice({
-//   name: 'userStateUpdate',
-//   initialState: userInitialState,
-//   reducers: {
-//     updateUserEmailState: (state, { payload }) => {
-//       state.email = payload;
-//       console.log("pdateUserEmailStat");
-//     },
-//     updateUserNameState: (state, { payload }) => {
-//       state.firstName = payload.nameFirst;
-//       state.lastName = payload.nameLast;
-//     }
-//   }
-// });
-
 export const updateEmailReducer = createReducer(emailUpdateInitialState, (builder) => {
   builder
     .addCase(updateEmail.pending, (state) => {
