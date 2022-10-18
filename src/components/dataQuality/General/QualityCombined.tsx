@@ -30,7 +30,7 @@ const QualityCombined = () => {
       },
       cutout: 32,
       rotation: 10 * Math.PI,
-      borderRadius: [20, 0],
+      borderRadius: [TOTAL_DATA_QUALITY_FACEBOOK === 100 ? 0 : 20, 0],
       value: TOTAL_DATA_QUALITY_FACEBOOK
     },
     doughnutPlugins = [

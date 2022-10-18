@@ -27,7 +27,7 @@ export type ComponentWrapperProps = {
   nextComponent?: React.ReactNode;
   underlined?: boolean;
   className?: string;
-  status?: STATUS_TYPE;
+  status?: STATUS_TYPE | (STATUS_TYPE | undefined)[];
 };
 
 export type TextFieldProps = {

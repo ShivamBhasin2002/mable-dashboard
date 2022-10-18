@@ -76,7 +76,7 @@ export const dataPerEventsInitialState: dataPerEventStateType = {
   event: 0,
   AttributionParameters: {},
   EventParameters: {},
-  eventSelected: eventSelectedType.purchase,
+  eventSelected: eventSelectedType.all,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
@@ -100,13 +100,13 @@ export const dataQualityInitialState: dataQualityStateType = {
 };
 
 export const eventsInitialState: eventsStateType = {
-  totalEventCount: 0,
   avgTimeDifference: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const eventsDataInitialState: eventsDataStateType = {
+  totalEventCount: 0,
   total_events: {
     purchases: 0,
     add_payment_info: 0,

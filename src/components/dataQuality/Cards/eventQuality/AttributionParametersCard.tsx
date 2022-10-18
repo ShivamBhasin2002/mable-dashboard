@@ -13,7 +13,7 @@ const AttributionParametersCard = () => {
       status={status}
     >
       <div className="flex flex-wrap justify-evenly gap-[10px]">
-        <div className="flex flex-col flex-grow gap-[15px]">
+        <table className="flex flex-col flex-grow gap-[15px]">
           <ParameterStat name={'User IP'} value={AttributionParameters?.total_count_user_id ?? 0} />
           <ParameterStat
             name={'User Agent'}
@@ -39,8 +39,8 @@ const AttributionParametersCard = () => {
             name={'Date Of Birth'}
             value={AttributionParameters?.total_count_customer_data_date_of_birth ?? 0}
           />
-        </div>
-        <div className="flex flex-col flex-grow gap-[15px]">
+        </table>
+        <table className="flex flex-col flex-grow gap-[15px]">
           <ParameterStat
             name={'State'}
             value={AttributionParameters?.total_count_location_state ?? 0}
@@ -65,7 +65,7 @@ const AttributionParametersCard = () => {
             name={'External IDs'}
             value={AttributionParameters?.total_count_external_ids ?? 0}
           />
-        </div>
+        </table>
       </div>
     </ComponentWrapper>
   );

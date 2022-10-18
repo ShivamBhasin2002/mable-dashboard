@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
-import { numberFormatter } from 'utility/functions/formattingFunctions';
+import { numberReducer } from 'utility/functions/formattingFunctions';
 import { getSelectedEventData } from 'utility/functions/mappingFunctions';
 import { createGradient } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
@@ -59,7 +59,7 @@ const EventsPerDayLineChart = () => {
                 },
                 stepSize: 500,
                 callback(this, tickValue: string | number) {
-                  return numberFormatter(tickValue);
+                  return numberReducer(tickValue);
                 }
               },
               grid: {
