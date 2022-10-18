@@ -12,7 +12,7 @@ import Layout from 'components/common/Layout';
 
 import colors from 'utility/colors';
 import AccountSettings from 'pages/settings/accountSettings';
-import PrivacyCockpit from 'pages/settings/privacyCockpit';
+
 import DataProcessingSettings from 'pages/settings/data_processing_settings';
 import { screenToURL } from 'utility/functions/mappingFunctions';
 
@@ -94,14 +94,7 @@ const App = () => {
             </Layout>
           }
         />
-        <Route
-          path="/settings/privacy_cockpit"
-          element={
-            <Layout>
-              <PrivacyCockpit />
-            </Layout>
-          }
-        />
+
         <Route
           path="/settings/data_processing"
           element={

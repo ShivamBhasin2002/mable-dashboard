@@ -28,8 +28,6 @@ export default function Inputboolcomp({
             dataSaved={dataSaved}
             value={value}
             name={name}
-            on={'ON'}
-            off={'OFF'}
             setState={setState}
           />
         </div>
