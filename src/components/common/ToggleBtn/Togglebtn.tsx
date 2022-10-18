@@ -4,7 +4,7 @@ import ToggleBtn from './TogglebtnStyle';
 const Togglebtn = ({ value, setState, name, activeColor, inactiveColor }: ToggletypeProps) => {
   const triggerToggle = () => {
     setState({
-      settingKey: name,
+      settingKey: name === undefined ? '' : name,
       settingValue: `${!value}`
     });
   };
