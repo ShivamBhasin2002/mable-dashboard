@@ -48,6 +48,7 @@ export enum byDate {
 }
 
 export enum eventSelectedType {
+  all = 'All',
   purchase = 'Purchase',
   add_payment_info = 'Add Payment Info',
   intitate_checkout = 'Intitate Checkout',
