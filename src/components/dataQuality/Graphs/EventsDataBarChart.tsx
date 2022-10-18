@@ -6,7 +6,7 @@ import { ComponentWrapper } from 'components/common';
 import { useSelector, useDispatch } from 'redux/store';
 import { eventsDataAsync } from 'redux/reducers/eventsDataSlice';
 
-import { numberFormatter } from 'utility/functions/formattingFunctions';
+import { numberReducer } from 'utility/functions/formattingFunctions';
 import { getEventDisplayName } from 'utility/functions/mappingFunctions';
 import { createGradient } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
@@ -41,7 +41,7 @@ const EventsDataBarChart = () => {
               anchor: 'end',
               align: 'top',
               offset: 2,
-              formatter: numberFormatter
+              formatter: numberReducer
             }
           }
         ]

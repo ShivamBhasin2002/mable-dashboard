@@ -14,11 +14,15 @@ const ComponentWrapper = ({
   className,
   status
 }: ComponentWrapperProps) => {
+  const checkStatus = (equalTo: STATUS_TYPE) => {
+    if (Array.isArray(status)) return status.includes(equalTo);
+    return status === equalTo;
+  };
   return (
     <article
       className={`lg:min-w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[40px] py-[30px] relative ${className}`}
     >
-      {status === STATUS_TYPE.FETCHING && (
+      {checkStatus(STATUS_TYPE.FETCHING) && (
         <div
           className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
         >
@@ -28,7 +32,7 @@ const ComponentWrapper = ({
           </span>
         </div>
       )}
-      {status === STATUS_TYPE.ERROR && (
+      {checkStatus(STATUS_TYPE.ERROR) && (
         <div
           className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
         >

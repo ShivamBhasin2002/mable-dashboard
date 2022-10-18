@@ -47,6 +47,9 @@ export const eventsDataReducer = createSlice({
       })
       .addCase(eventsDataAsync.fulfilled, (state, { payload }) => {
         state.total_events = payload?.total_events ?? eventsDataInitialState.total_events;
+        state.totalEventCount = Object.entries(state.total_events)
+          .map(([, count]) => count)
+          .reduce((partialSum, i) => partialSum + i, 0);
         state.byDate = payload?.by_date ?? eventsDataInitialState.byDate;
         state.status = STATUS_TYPE.SUCCESS;
       })

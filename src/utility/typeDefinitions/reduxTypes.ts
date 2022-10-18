@@ -107,7 +107,6 @@ export type dataQualityStateType = {
 
 export type eventsStateType = {
   avgTimeDifference: number;
-  totalEventCount: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
@@ -142,6 +141,7 @@ export type AnalyticsStateType = {
 };
 
 export type eventsDataStateType = {
+  totalEventCount: number;
   total_events: {
     purchases: number;
     add_payment_info: number;
