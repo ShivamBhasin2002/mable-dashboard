@@ -95,8 +95,8 @@ export type ToggletypeProps = {
   value: boolean;
   setState: React.Dispatch<
     React.SetStateAction<{
-      settingKey: string;
-      settingValue: string;
+      settingKey?: string;
+      settingValue?: string;
     }>
   >;
   dataSaved?: {

@@ -3,6 +3,7 @@ import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
 import { STATUS_TYPE } from 'utility/constants/general';
+import { snakeCaseToCategoryFormatter } from 'utility/functions/formattingFunctions';
 
 export const getPrivacySettings = createAsyncThunk<
   { source_id: number; setting_key: string; setting_value: boolean }[],
@@ -144,10 +145,34 @@ export const cookieConsentReducer = createReducer(
   }
 );
 
+export const parameterSettingReducer = createReducer(
+  privacyCockpit.paraMeterSettings,
+  (builder) => {
+    builder
+      .addCase(getPrivacySettings.pending, (state) => {
+        state.status = STATUS_TYPE.FETCHING;
+      })
+      .addCase(getPrivacySettings.fulfilled, (state, { payload }) => {
+        payload.map((data) => {
+          const category = snakeCaseToCategoryFormatter(data.setting_key);
+          if (category === ('persondata' || 'd' || 'd')) {
+            console.log(data);
+          }
+        });
+        console.log('hello');
+        state.status = STATUS_TYPE.SUCCESS;
+      })
+      .addCase(getPrivacySettings.rejected, (state, { error }) => {
+        state.status = STATUS_TYPE.ERROR;
+      });
+  }
+);
+
 export const privacyCockpitSlice = combineReducers({
   hashDataReducer,
   previousSettingReducer,
-  cookieConsentReducer
+  cookieConsentReducer,
+  parameterSettingReducer
 });
 
 export default privacyCockpitSlice;

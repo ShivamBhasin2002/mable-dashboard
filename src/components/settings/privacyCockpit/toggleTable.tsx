@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import ToggleBtn from 'components/common/ToggleBtn/Togglebtn';
-function toggle_table() {
-  const [UpdateValue, setUpdateValue] = useState({
+import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
+function toggleTable() {
+  const [UpdateValue, setUpdateValue] = useState<{
+    settingKey?: string;
+    settingValue?: string;
+  }>({
     settingKey: '',
     settingValue: ''
   });
@@ -47,4 +50,4 @@ function toggle_table() {
   );
 }
 
-export default toggle_table;
+export default toggleTable;

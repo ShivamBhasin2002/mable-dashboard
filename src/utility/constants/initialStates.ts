@@ -164,30 +164,34 @@ export const filterOptionInitialState: AnalyticsStateType = {
 };
 
 export const privacyCockpit: privacyCockpitType = {
-  data_collection_destinations: [
-    {
-      value: 'database',
-      label: 'Your Database',
-      available: true
-    },
-    {
-      value: 'tiktok',
-      label: 'Tik Tok',
-      available: false
-    }
-  ],
-  data_collection_settings: [
-    {
-      value: 'email',
-      category: 'personalData',
-      label: 'E-Mail'
-    },
-    {
-      value: 'email',
-      category: 'personalData',
-      label: 'E-Mail'
-    }
-  ],
+  paraMeterSettings: {
+    status: STATUS_TYPE.IDLE,
+    data_collection_destinations: [
+      {
+        value: 'database',
+        label: 'Your Database',
+        available: true
+      },
+      {
+        value: 'tiktok',
+        label: 'Tik Tok',
+        available: false
+      }
+    ],
+    data_collection_settings: [
+      {
+        value: 'email',
+        category: 'personalData',
+        label: 'E-Mail'
+      },
+      {
+        value: 'email',
+        category: 'personalData',
+        label: 'E-Mail'
+      }
+    ],
+    parsed_settings: undefined
+  },
   privacySettings: {
     status: STATUS_TYPE.IDLE,
     hashDataInDashboard: {
