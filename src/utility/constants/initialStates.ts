@@ -189,9 +189,17 @@ export const privacyCockpit: privacyCockpitType = {
     }
   ],
   privacySettings: {
-    hashDataInDashboard: false,
-    cookieConsent: '',
     status: STATUS_TYPE.IDLE,
+    hashDataInDashboard: {
+      status: STATUS_TYPE.IDLE,
+      hashDataCheckBox: false,
+      errorMsg: undefined
+    },
+    cookieConsent: {
+      status: STATUS_TYPE.IDLE,
+      cookieConsentUrl: '',
+      errorMsg: undefined
+    },
     previousSettings: undefined,
     errorMsg: undefined
   }

@@ -7,34 +7,74 @@ import { Spinner, useToast } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { useEffect, useState } from 'react';
-import { getPrivacySettings, postPrivacySettings } from 'redux/reducers/privacyCockpitSlice';
+import {
+  getPrivacySettings,
+  postConsentUrlPrivacySettings,
+  postDataHashPrivacySettings
+} from 'redux/reducers/privacyCockpitSlice';
 
 const PrivacySettings = () => {
-  const { hashDataInDashboard } = useSelector((state) => state.privacyCockpit.privacySettings);
-  const [checkBoxStatus, setCheckBoxStatus] = useState<boolean>(hashDataInDashboard);
-  const [cookieConsent, setCookieConsent] = useState<string>('');
-  const { status, errorMsg, previousSettings } = useSelector(
-    (state) => state.privacyCockpit.privacySettings
-  );
+  const {
+    hashDataCheckBox,
+    status: hashStatus,
+    errorMsg: hashErrorMsg
+  } = useSelector((state) => state.privacyCockpit.hashDataReducer);
+
+  const {
+    cookieConsentUrl,
+    status: cookieStatus,
+    errorMsg: cookieErrorMsg
+  } = useSelector((state) => state.privacyCockpit.cookieConsentReducer);
+
+  const [checkBoxStatus, setCheckBoxStatus] = useState<boolean>(hashDataCheckBox);
+  const [cookieConsent, setCookieConsent] = useState<string>(cookieConsentUrl);
+
   const toast = useToast();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getPrivacySettings());
   }, []);
 
   const handleSave = () => {
-    dispatch(postPrivacySettings({ checkBox: checkBoxStatus }));
+    if (cookieConsent != '') {
+      dispatch(postConsentUrlPrivacySettings({ url: cookieConsent }));
+    }
+    dispatch(postDataHashPrivacySettings({ checkBox: checkBoxStatus }));
   };
 
   useEffect(() => {
-    console.log(status, errorMsg, previousSettings);
-    if (status === STATUS_TYPE.ERROR) {
-      toast({ title: `${errorMsg}`, status: 'error', isClosable: true, position: 'top-right' });
+    if (hashStatus === STATUS_TYPE.ERROR) {
+      toast({
+        title: `${cookieErrorMsg}`,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
     }
-    if (status === STATUS_TYPE.SUCCESS) {
-      toast({ title: `Updated Data`, status: 'success', isClosable: true, position: 'top-right' });
+    if (hashStatus === STATUS_TYPE.SUCCESS) {
+      toast({
+        title: `Data Updated Succesfully`,
+        status: 'success',
+        isClosable: true,
+        position: 'top-right'
+      });
     }
-  }, [status]);
+  }, [hashStatus]);
+
+  useEffect(() => {
+    if (cookieStatus === STATUS_TYPE.ERROR) {
+      toast({ title: `${hashErrorMsg}`, status: 'error', isClosable: true, position: 'top-right' });
+    }
+    if (cookieStatus === STATUS_TYPE.SUCCESS) {
+      toast({
+        title: `Cookie Consent Updated successfully`,
+        status: 'success',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+  }, [cookieStatus]);
 
   return (
     <ComponentWrapper
@@ -78,7 +118,7 @@ const PrivacySettings = () => {
           handleSave();
         }}
       >
-        {status === STATUS_TYPE.FETCHING && <Spinner />} Save
+        {(hashStatus || cookieStatus) === STATUS_TYPE.FETCHING && <Spinner />} Save
       </Button>
     </ComponentWrapper>
   );
