@@ -1,38 +1,31 @@
-import './Togglebtn.css';
-import { toggletypeProps } from 'utility/typeDefinitions/componentPropTypes';
+import { ToggletypeProps } from 'utility/typeDefinitions/componentPropTypes';
+import ToggleBtn from './TogglebtnStyle';
 
-const Togglebtn = ({
-  value,
-  setState,
-  dataSaved,
-  on,
-  off,
-  name,
-  setdataSaved
-}: toggletypeProps) => {
+const Togglebtn = ({ value, setState, name, activeColor, inactiveColor }: ToggletypeProps) => {
   const triggerToggle = () => {
     setState({
-      name: name,
-      value: !value
+      settingKey: name === undefined ? '' : name,
+      settingValue: `${!value}`
     });
-    // setdataSaved({ ...dataSaved, [name]: false });
   };
   return (
-    <div
-      onClick={triggerToggle}
-      className={`wrg-toggle ${value ? 'wrg-toggle--checked' : 'wrg-toggle--uncheck'} mt-2`}
-    >
-      <div className="wrg-toggle-container">
-        <div className="wrg-toggle-check">
-          <span>{on}</span>
+    <ToggleBtn activeColor={activeColor} inactiveColor={inactiveColor}>
+      <div
+        onClick={triggerToggle}
+        className={`wrg-toggle ${value ? 'wrg-toggle--checked' : 'wrg-toggle--uncheck'} mt-2`}
+      >
+        <div className="wrg-toggle-container">
+          <div className="wrg-toggle-check">
+            <span>ON</span>
+          </div>
+          <div className="wrg-toggle-uncheck">
+            <span>OFF</span>
+          </div>
         </div>
-        <div className="wrg-toggle-uncheck">
-          <span>{off}</span>
-        </div>
+        <div className="wrg-toggle-circle"></div>
+        <input className="wrg-toggle-input" type="checkbox" aria-label="Toggle Button" />
       </div>
-      <div className="wrg-toggle-circle"></div>
-      <input className="wrg-toggle-input" type="checkbox" aria-label="Toggle Button" />
-    </div>
+    </ToggleBtn>
   );
 };
 

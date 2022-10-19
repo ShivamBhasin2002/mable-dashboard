@@ -91,12 +91,25 @@ export type SideBarItemProps = {
   isActive: boolean;
 };
 
-export type toggletypeProps = {
+export type ToggletypeProps = {
   value: boolean;
-  setState?: any;
-  dataSaved?: any;
-  on?: string;
-  off?: string;
+  setState: React.Dispatch<
+    React.SetStateAction<{
+      settingKey: string;
+      settingValue: string;
+    }>
+  >;
+  dataSaved?: {
+    key: string;
+    status: string;
+  };
+  activeColor?: string;
+  inactiveColor?: string;
   name?: string;
-  setdataSaved?: any;
+  setdataSaved?: React.Dispatch<
+    React.SetStateAction<{
+      key: string;
+      status: string;
+    }>
+  >;
 };

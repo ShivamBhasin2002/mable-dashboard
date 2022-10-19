@@ -1,8 +1,14 @@
+import { useState } from 'react';
 import ComponentWrapper from 'components/common/ComponentWrapper';
 import ToggleBtn from 'components/common/ToggleBtn/Togglebtn';
 import { Button, Divider } from '@chakra-ui/react';
 import ToggleTable from './toggle_table';
 function parameterSettings() {
+  const [UpdateValue, setUpdateValue] = useState({
+    settingKey: '',
+    settingValue: ''
+  });
+
   const data_collection_destinations: {
     value: string;
     label: string;
@@ -54,7 +60,7 @@ function parameterSettings() {
       <div className="flex justify-between items-center">
         <div className="active_all flex justify-end items-center">
           <p className="text-light mx-2 opacity-50">Active Everything </p>
-          <ToggleBtn value={false} on={'on'} off={'off'} />
+          <ToggleBtn value={false} setState={setUpdateValue} />
         </div>
         <div className="button">
           <Button className="w-[8rem] mt-5" type="submit" colorScheme="blue">
