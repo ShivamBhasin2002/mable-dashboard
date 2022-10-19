@@ -197,10 +197,16 @@ export const privacyCockpit: privacyCockpitType = {
     },
     cookieConsent: {
       status: STATUS_TYPE.IDLE,
-      cookieConsentUrl: '',
+      cookieConsentUrl: ' ',
       errorMsg: undefined
     },
-    previousSettings: undefined,
     errorMsg: undefined
-  }
+  },
+  previousSettings: [
+    {
+      source_id: 43,
+      setting_key: 'hash_database',
+      setting_value: ''
+    }
+  ]
 };

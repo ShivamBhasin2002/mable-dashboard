@@ -234,11 +234,11 @@ export type privacyCockpitType = {
       cookieConsentUrl: string;
       errorMsg?: string;
     };
-    previousSettings?: {
-      source_id: number;
-      setting_key: string;
-      setting_value: boolean;
-    }[];
     errorMsg?: string;
   };
+  previousSettings: {
+    source_id: number;
+    setting_key: string;
+    setting_value: string;
+  }[];
 };

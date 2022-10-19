@@ -8,7 +8,6 @@ import { Input } from '@chakra-ui/react';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { useEffect, useState } from 'react';
 import {
-  getPrivacySettings,
   postConsentUrlPrivacySettings,
   postDataHashPrivacySettings
 } from 'redux/reducers/privacyCockpitSlice';
@@ -32,10 +31,6 @@ const PrivacySettings = () => {
   const toast = useToast();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getPrivacySettings());
-  }, []);
-
   const handleSave = () => {
     if (cookieConsent != '') {
       dispatch(postConsentUrlPrivacySettings({ url: cookieConsent }));
@@ -44,7 +39,7 @@ const PrivacySettings = () => {
   };
 
   useEffect(() => {
-    if (hashStatus === STATUS_TYPE.ERROR) {
+    if ((hashStatus || cookieStatus) === STATUS_TYPE.ERROR) {
       toast({
         title: `${cookieErrorMsg}`,
         status: 'error',
@@ -52,29 +47,15 @@ const PrivacySettings = () => {
         position: 'top-right'
       });
     }
-    if (hashStatus === STATUS_TYPE.SUCCESS) {
+    if ((hashStatus || cookieStatus) === STATUS_TYPE.SUCCESS) {
       toast({
-        title: `Data Updated Succesfully`,
+        title: `Privacy Updated Succesfully`,
         status: 'success',
         isClosable: true,
         position: 'top-right'
       });
     }
-  }, [hashStatus]);
-
-  useEffect(() => {
-    if (cookieStatus === STATUS_TYPE.ERROR) {
-      toast({ title: `${hashErrorMsg}`, status: 'error', isClosable: true, position: 'top-right' });
-    }
-    if (cookieStatus === STATUS_TYPE.SUCCESS) {
-      toast({
-        title: `Cookie Consent Updated successfully`,
-        status: 'success',
-        isClosable: true,
-        position: 'top-right'
-      });
-    }
-  }, [cookieStatus]);
+  }, [hashStatus, cookieStatus]);
 
   return (
     <ComponentWrapper
@@ -103,7 +84,7 @@ const PrivacySettings = () => {
           <Input
             value={cookieConsent}
             variant="filled"
-            placeholder="Paste your link here"
+            placeholder={cookieConsentUrl}
             backgroundColor="blue.800"
             textColor="white"
             onChange={(e) => setCookieConsent(e.target.value)}
