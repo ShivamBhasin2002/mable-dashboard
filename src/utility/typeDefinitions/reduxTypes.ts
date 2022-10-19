@@ -223,9 +223,17 @@ export type privacyCockpitType = {
     }
   ];
   privacySettings: {
-    hashDataInDashboard: boolean;
-    cookieConsent: string;
     status: STATUS_TYPE;
+    hashDataInDashboard: {
+      status: STATUS_TYPE;
+      hashDataCheckBox: boolean;
+      errorMsg?: string;
+    };
+    cookieConsent: {
+      status: STATUS_TYPE;
+      cookieConsentUrl: string;
+      errorMsg?: string;
+    };
     previousSettings?: {
       source_id: number;
       setting_key: string;

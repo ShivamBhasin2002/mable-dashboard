@@ -1,11 +1,13 @@
 import { combineReducers, createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
+
 import {
   emailUpdateInitialState,
   passwordUpdateInitialState,
   userNameUpdateInitialState
 } from 'utility/constants/initialStates';
+
 import { STATUS_TYPE } from 'utility/constants/general';
 
 export const updateUsername = createAsyncThunk<
