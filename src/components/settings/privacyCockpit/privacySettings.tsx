@@ -11,51 +11,71 @@ import {
   postConsentUrlPrivacySettings,
   postDataHashPrivacySettings
 } from 'redux/reducers/privacyCockpitSlice';
-
 const PrivacySettings = () => {
-  const {
-    hashDataCheckBox,
-    status: hashStatus,
-    errorMsg: hashErrorMsg
-  } = useSelector((state) => state.privacyCockpit.hashDataReducer);
-
-  const {
-    cookieConsentUrl,
-    status: cookieStatus,
-    errorMsg: cookieErrorMsg
-  } = useSelector((state) => state.privacyCockpit.cookieConsentReducer);
-
-  const [checkBoxStatus, setCheckBoxStatus] = useState<boolean>(hashDataCheckBox);
+  const checkBoxValue = useSelector(
+    (state) => state.privacyCockpit.privacySettings.hashDataInDashboard.hashDataCheckBox
+  );
+  const cookieConsentUrl = useSelector(
+    (state) => state.privacyCockpit.privacySettings.cookieConsent.cookieConsentUrl
+  );
+  const { status: hashStatus } = useSelector(
+    (state) => state.privacyCockpit.privacySettings.hashDataInDashboard
+  );
+  const { status: cookieStatus } = useSelector(
+    (state) => state.privacyCockpit.privacySettings.cookieConsent
+  );
+  const [checkBoxStatus, setCheckBoxStatus] = useState<boolean>(checkBoxValue);
   const [cookieConsent, setCookieConsent] = useState<string>(cookieConsentUrl);
 
   const toast = useToast();
   const dispatch = useDispatch();
 
   const handleSave = () => {
-    if (cookieConsent != '') {
+    if (cookieConsent != '' && cookieConsent != cookieConsentUrl) {
       dispatch(postConsentUrlPrivacySettings({ url: cookieConsent }));
     }
-    dispatch(postDataHashPrivacySettings({ checkBox: checkBoxStatus }));
+    if (checkBoxStatus != checkBoxValue) {
+      dispatch(postDataHashPrivacySettings({ checkBox: checkBoxStatus }));
+    }
   };
 
   useEffect(() => {
-    if ((hashStatus || cookieStatus) === STATUS_TYPE.ERROR) {
+    if (hashStatus === STATUS_TYPE.ERROR) {
       toast({
-        title: `${cookieErrorMsg}`,
+        title: `Error while updating ! from hash`,
         status: 'error',
         isClosable: true,
         position: 'top-right'
       });
     }
-    if ((hashStatus || cookieStatus) === STATUS_TYPE.SUCCESS) {
+    if (hashStatus === STATUS_TYPE.SUCCESS) {
       toast({
-        title: `Privacy Updated Succesfully`,
+        title: `Privacy Updated Succesfully from hash`,
         status: 'success',
         isClosable: true,
         position: 'top-right'
       });
     }
-  }, [hashStatus, cookieStatus]);
+  }, [hashStatus]);
+
+  useEffect(() => {
+    if (cookieStatus === STATUS_TYPE.ERROR) {
+      toast({
+        title: `Error while updating ! from cookie`,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+    if (cookieStatus === STATUS_TYPE.SUCCESS) {
+      toast({
+        title: `Privacy Updated Succesfully from cookie`,
+        status: 'success',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+  }, [cookieStatus]);
 
   return (
     <ComponentWrapper
@@ -84,23 +104,39 @@ const PrivacySettings = () => {
           <Input
             value={cookieConsent}
             variant="filled"
-            placeholder={cookieConsentUrl}
+            placeholder={cookieConsent}
             backgroundColor="blue.800"
             textColor="white"
             onChange={(e) => setCookieConsent(e.target.value)}
           />
         </form>
       </div>
-      <Button
-        className="w-[8rem] mt-5"
-        type="submit"
-        colorScheme="blue"
-        onClick={() => {
-          handleSave();
-        }}
-      >
-        {(hashStatus || cookieStatus) === STATUS_TYPE.FETCHING && <Spinner />} Save
-      </Button>
+      {cookieConsentUrl != cookieConsent || checkBoxStatus != checkBoxValue ? (
+        <Button
+          className="w-[8rem] mt-5"
+          type="submit"
+          colorScheme="blue"
+          onClick={() => {
+            handleSave();
+          }}
+        >
+          Save
+          {hashStatus === STATUS_TYPE.FETCHING && <Spinner />}
+        </Button>
+      ) : (
+        <Button
+          disabled
+          className="w-[8rem] mt-5"
+          type="submit"
+          colorScheme="blue"
+          onClick={() => {
+            handleSave();
+          }}
+        >
+          Save
+          {hashStatus === STATUS_TYPE.FETCHING && <Spinner />}
+        </Button>
+      )}
     </ComponentWrapper>
   );
 };

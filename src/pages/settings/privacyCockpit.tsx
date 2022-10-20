@@ -2,7 +2,7 @@ import ParameterSettings from 'components/settings/privacyCockpit/parameterSetti
 import PrivacySettings from 'components/settings/privacyCockpit/privacySettings';
 import DeleteUserData from 'components/settings/privacyCockpit/deleteUserData';
 import { useEffect } from 'react';
-import { getPrivacySettings } from 'redux/reducers/privacyCockpitSlice';
+import { getPrivacySettings, updateSettings } from 'redux/reducers/privacyCockpitSlice';
 import { useDispatch, useSelector } from 'redux/store';
 
 function privacyCockpit() {
@@ -11,10 +11,9 @@ function privacyCockpit() {
     dispatch(getPrivacySettings());
   }, []);
 
-  const { status } = useSelector(
-    (state) => state.privacyCockpit.previousSettingReducer.privacySettings
-  );
+  const { status } = useSelector((state) => state.privacyCockpit.privacySettings);
   if (status === 'success') {
+    dispatch(updateSettings());
     return (
       <>
         <ParameterSettings />
@@ -22,8 +21,16 @@ function privacyCockpit() {
         <DeleteUserData />
       </>
     );
+  } else if (status === 'fetching') {
+    return <div>Loading...</div>;
   } else {
-    return <div>error</div>;
+    return (
+      <>
+        <ParameterSettings />
+        <PrivacySettings />
+        <DeleteUserData />
+      </>
+    );
   }
 }
 

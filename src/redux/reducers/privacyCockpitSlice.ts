@@ -1,4 +1,4 @@
-import { combineReducers, createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
@@ -18,7 +18,6 @@ export const getPrivacySettings = createAsyncThunk<
       }
     );
     if (data) {
-      console.log(data);
       return data;
     }
   } catch (error) {
@@ -33,7 +32,7 @@ export const postDataHashPrivacySettings = createAsyncThunk<
   boolean,
   { checkBox: boolean },
   thunkOptions
->('privacyCockpit/hasDashboard/post', async ({ checkBox }, { rejectWithValue, getState }) => {
+>('privacyCockpit/hashDashboard/post', async ({ checkBox }, { rejectWithValue, getState }) => {
   const state = getState();
   try {
     const { data } = await axios.post(
@@ -65,7 +64,7 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
   string,
   { url: string },
   thunkOptions
->('privacyCockpit/hasDashboard/post', async ({ url }, { rejectWithValue, getState }) => {
+>('privacyCockpit/consentDashboard/post', async ({ url }, { rejectWithValue, getState }) => {
   const state = getState();
   try {
     const { data } = await axios.post(
@@ -93,71 +92,58 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
   }
 });
 
-export const previousSettingReducer = createReducer(privacyCockpit, (builder) => {
-  builder
-    .addCase(getPrivacySettings.pending, (state) => {
-      state.privacySettings.status = STATUS_TYPE.FETCHING;
-    })
-    .addCase(getPrivacySettings.fulfilled, (state, { payload }) => {
-      state.privacySettings.status = STATUS_TYPE.SUCCESS;
-      state.previousSettings = payload;
+export const previousSettings = createSlice({
+  name: 'previousSettings',
+  initialState: privacyCockpit,
+  reducers: {
+    updateSettings(state) {
       const checkBox = state.previousSettings.filter(
         (item) => item.setting_key === 'hash_database'
       );
       state.privacySettings.hashDataInDashboard.hashDataCheckBox =
         checkBox[0].setting_value === 'true';
-
       const consentUrl = state.previousSettings.filter(
         (item) => item.setting_key === 'cookie_consent_url'
       );
       state.privacySettings.cookieConsent.cookieConsentUrl = consentUrl[0].setting_value;
-    })
-    .addCase(getPrivacySettings.rejected, (state, { error }) => {
-      state.privacySettings.status = STATUS_TYPE.ERROR;
-      state.privacySettings.errorMsg = error.message;
-    });
-});
-
-export const hashDataReducer = createReducer(
-  privacyCockpit.privacySettings.hashDataInDashboard,
-  (builder) => {
+    }
+  },
+  extraReducers: (builder) => {
     builder
+      .addCase(getPrivacySettings.pending, (state) => {
+        state.privacySettings.status = STATUS_TYPE.FETCHING;
+      })
+      .addCase(getPrivacySettings.fulfilled, (state, { payload }) => {
+        state.privacySettings.status = STATUS_TYPE.SUCCESS;
+        state.previousSettings = payload;
+      })
+      .addCase(getPrivacySettings.rejected, (state, { error }) => {
+        state.privacySettings.status = STATUS_TYPE.ERROR;
+        state.privacySettings.errorMsg = error.message;
+      })
       .addCase(postDataHashPrivacySettings.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
+        state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.FETCHING;
       })
       .addCase(postDataHashPrivacySettings.fulfilled, (state, { payload }) => {
-        state.status = STATUS_TYPE.SUCCESS;
-        state.hashDataCheckBox = payload;
+        state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.SUCCESS;
+        state.privacySettings.hashDataInDashboard.hashDataCheckBox = payload;
       })
       .addCase(postDataHashPrivacySettings.rejected, (state, { error }) => {
-        state.status = STATUS_TYPE.ERROR;
-        state.errorMsg = error.message;
-      });
-  }
-);
-
-export const cookieConsentReducer = createReducer(
-  privacyCockpit.privacySettings.cookieConsent,
-  (builder) => {
-    builder
+        state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.ERROR;
+        state.privacySettings.errorMsg = error.message;
+      })
       .addCase(postConsentUrlPrivacySettings.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
+        state.privacySettings.cookieConsent.status = STATUS_TYPE.FETCHING;
       })
       .addCase(postConsentUrlPrivacySettings.fulfilled, (state, { payload }) => {
-        state.status = STATUS_TYPE.SUCCESS;
-        state.cookieConsentUrl = payload;
+        state.privacySettings.cookieConsent.status = STATUS_TYPE.SUCCESS;
+        state.privacySettings.cookieConsent.cookieConsentUrl = payload;
       })
-      .addCase(postConsentUrlPrivacySettings.rejected, (state, { error }) => {
-        state.status = STATUS_TYPE.ERROR;
-        state.errorMsg = error.message;
+      .addCase(postConsentUrlPrivacySettings.rejected, (state) => {
+        state.privacySettings.cookieConsent.status = STATUS_TYPE.ERROR;
       });
   }
-);
-
-export const privacyCockpitSlice = combineReducers({
-  hashDataReducer,
-  previousSettingReducer,
-  cookieConsentReducer
 });
 
-export default privacyCockpitSlice;
+export const { updateSettings } = previousSettings.actions;
+export default previousSettings.reducer;
