@@ -223,11 +223,3 @@ export type privacyCockpitType = {
     }
   ];
 };
-
-// export type dataProcessingType = [
-//   {
-//     source_id: number;
-//     setting_key: string;
-//     setting_value: string;
-//   }
-// ]

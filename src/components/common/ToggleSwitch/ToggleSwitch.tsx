@@ -1,15 +1,15 @@
 import { ToggletypeProps } from 'utility/typeDefinitions/componentPropTypes';
-import ToggleBtn from './TogglebtnStyle';
+import ToggleSwitchWraper from './ToggleSwitchStyle';
 
-const Togglebtn = ({ value, setState, name, activeColor, inactiveColor }: ToggletypeProps) => {
+const ToggleSwitch = ({ value, setState, name, activeColor, inactiveColor }: ToggletypeProps) => {
   const triggerToggle = () => {
     setState({
-      settingKey: name === undefined ? '' : name,
+      settingKey: name,
       settingValue: `${!value}`
     });
   };
   return (
-    <ToggleBtn activeColor={activeColor} inactiveColor={inactiveColor}>
+    <ToggleSwitchWraper activeColor={activeColor} inactiveColor={inactiveColor}>
       <div
         onClick={triggerToggle}
         className={`wrg-toggle ${value ? 'wrg-toggle--checked' : 'wrg-toggle--uncheck'} mt-2`}
@@ -25,8 +25,8 @@ const Togglebtn = ({ value, setState, name, activeColor, inactiveColor }: Toggle
         <div className="wrg-toggle-circle"></div>
         <input className="wrg-toggle-input" type="checkbox" aria-label="Toggle Button" />
       </div>
-    </ToggleBtn>
+    </ToggleSwitchWraper>
   );
 };
 
-export default Togglebtn;
+export default ToggleSwitch;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ToggleBtn = styled.div<{ activeColor?: string; inactiveColor?: string }>`
+const ToggleSwitchWrapper = styled.div<{ activeColor?: string; inactiveColor?: string }>`
   .wrg-toggle {
     touch-action: pan-x;
     display: inline-block;
@@ -112,4 +112,4 @@ const ToggleBtn = styled.div<{ activeColor?: string; inactiveColor?: string }>`
   }
 `;
 
-export default ToggleBtn;
+export default ToggleSwitchWrapper;

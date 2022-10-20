@@ -1,13 +1,13 @@
 import { KeytoNameFormatter } from 'utility/functions/formattingFunctions';
 import { InputBooltypeProps } from 'utility/typeDefinitions/componentPropTypes';
-import Togglebtn from '../common/ToggleBtn/Togglebtn';
+import ToggleSwitch from 'components/common/ToggleSwitch/ToggleSwitch';
 export default function Inputboolcomp({
   description,
   setState,
   name,
   value,
   dataSaved,
-  setdataSaved
+  setDataSaved
 }: InputBooltypeProps) {
   const handelSave = () => {
     setState({
@@ -23,8 +23,8 @@ export default function Inputboolcomp({
         </div>
         {description && <div className="description  text-lightGray ">{description}</div>}
         <div className="radiobtn my-1">
-          <Togglebtn
-            setdataSaved={setdataSaved}
+          <ToggleSwitch
+            setdataSaved={setDataSaved}
             dataSaved={dataSaved}
             value={value}
             name={name}

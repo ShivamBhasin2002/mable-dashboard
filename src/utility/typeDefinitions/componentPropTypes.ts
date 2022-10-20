@@ -95,21 +95,21 @@ export type ToggletypeProps = {
   value: boolean;
   setState: React.Dispatch<
     React.SetStateAction<{
-      settingKey: string;
-      settingValue: string;
+      settingKey?: string | undefined;
+      settingValue?: string | undefined;
     }>
   >;
   dataSaved?: {
-    key: string;
-    status: string;
+    key?: string;
+    status?: string;
   };
   activeColor?: string;
   inactiveColor?: string;
   name?: string;
   setdataSaved?: React.Dispatch<
     React.SetStateAction<{
-      key: string;
-      status: string;
+      key?: string;
+      status?: string;
     }>
   >;
 };
@@ -118,20 +118,20 @@ export type InputBooltypeProps = {
   description?: string;
   setState: React.Dispatch<
     React.SetStateAction<{
-      settingKey: string;
-      settingValue: string;
+      settingKey?: string;
+      settingValue?: string;
     }>
   >;
   name: string;
   value: boolean;
   dataSaved: {
-    key: string;
-    status: string;
+    key?: string;
+    status?: string;
   };
-  setdataSaved?: React.Dispatch<
+  setDataSaved?: React.Dispatch<
     React.SetStateAction<{
-      key: string;
-      status: string;
+      key?: string;
+      status?: string;
     }>
   >;
 };

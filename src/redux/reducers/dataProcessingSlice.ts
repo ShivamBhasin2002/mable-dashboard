@@ -31,8 +31,8 @@ export const updateDataProcessSettings = createAsyncThunk<
   },
   {
     settings: {
-      settingKey: string;
-      settingValue: string;
+      settingKey?: string;
+      settingValue?: string;
     }[];
   },
   thunkOptions
