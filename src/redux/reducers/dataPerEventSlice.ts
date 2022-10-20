@@ -85,9 +85,8 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         )
         .filter((data: unknown | null) => data !== null);
       if (eventAttributionData && eventParamsData) return data;
-      rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );

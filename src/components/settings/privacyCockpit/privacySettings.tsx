@@ -8,9 +8,11 @@ import { Input } from '@chakra-ui/react';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { useEffect, useState } from 'react';
 import {
+  getPrivacySettings,
   postConsentUrlPrivacySettings,
   postDataHashPrivacySettings
 } from 'redux/reducers/privacyCockpitSlice';
+
 const PrivacySettings = () => {
   const checkBoxValue = useSelector(
     (state) => state.privacyCockpit.privacySettings.hashDataInDashboard.hashDataCheckBox
