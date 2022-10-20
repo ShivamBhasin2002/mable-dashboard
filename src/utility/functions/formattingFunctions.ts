@@ -21,3 +21,25 @@ export const snakeCaseToCategoryFormatter = (key: string) => {
   }
   return category?.toLowerCase();
 };
+
+export const snakeCaseToKeyValueExtractor = (key: string) => {
+  let extractedValueArray = [];
+  extractedValueArray = []; //added this for solving error like "use const instead of let "
+  let count = 0;
+  let j = 0;
+  for (let i = 0; i <= key.length; i++) {
+    if (key[i] === '_' && count === 0) {
+      extractedValueArray.push(key.slice(0, i).toLowerCase());
+      count++;
+      j = i;
+    } else if (key[i] === '_' && count === 1) {
+      extractedValueArray.push(key.slice(j + 1, i).toLowerCase());
+      count++;
+      j = i;
+    } else if (i == key.length) {
+      extractedValueArray.push(key.slice(j + 1, key.length).toLowerCase());
+    }
+  }
+
+  return extractedValueArray;
+};

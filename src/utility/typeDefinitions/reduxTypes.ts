@@ -233,7 +233,7 @@ export type privacyCockpitType = {
     previousSettings?: {
       source_id: number;
       setting_key: string;
-      setting_value: boolean;
+      setting_value: string;
     }[];
     errorMsg?: string;
   };

@@ -14,7 +14,7 @@ const DeleteUserData = () => {
     <ComponentWrapper
       title="Delete User Data"
       underlined={true}
-      className="mt-[30px] flex flex-col max-w-4xl"
+      className=" flex flex-col h-90 w-full"
       nextComponent={addEntry()}
     >
       <table className="w-full table-auto my-[10px]">

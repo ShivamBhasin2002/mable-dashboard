@@ -3,10 +3,13 @@ import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
 import { STATUS_TYPE } from 'utility/constants/general';
-import { snakeCaseToCategoryFormatter } from 'utility/functions/formattingFunctions';
+import {
+  snakeCaseToCategoryFormatter,
+  snakeCaseToKeyValueExtractor
+} from 'utility/functions/formattingFunctions';
 
 export const getPrivacySettings = createAsyncThunk<
-  { source_id: number; setting_key: string; setting_value: boolean }[],
+  { source_id: number; setting_key: string; setting_value: string }[],
   void,
   thunkOptions
 >('privacyCockpit/hasDashboard/fetch', async (temp, { rejectWithValue, getState }) => {
@@ -153,13 +156,21 @@ export const parameterSettingReducer = createReducer(
         state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(getPrivacySettings.fulfilled, (state, { payload }) => {
+        let obj;
+        state.parsed_settings = [];
         payload.map((data) => {
-          const category = snakeCaseToCategoryFormatter(data.setting_key);
-          if (category === ('persondata' || 'd' || 'd')) {
-            console.log(data);
+          const category = snakeCaseToKeyValueExtractor(data.setting_key)[0];
+          if (category === ('persondata' || 'location' || 'others')) {
+            obj = {
+              settingKey: data.setting_key,
+              category: category,
+              destination: snakeCaseToKeyValueExtractor(data.setting_key)[2],
+              label: snakeCaseToKeyValueExtractor(data.setting_key)[1],
+              settingValue: data.setting_value
+            };
+            state.parsed_settings?.push(obj);
           }
         });
-        console.log('hello');
         state.status = STATUS_TYPE.SUCCESS;
       })
       .addCase(getPrivacySettings.rejected, (state, { error }) => {

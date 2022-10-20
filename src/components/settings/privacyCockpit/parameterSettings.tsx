@@ -34,7 +34,7 @@ function parameterSettings() {
     }
   ];
   return (
-    <ComponentWrapper className="flex flex-col">
+    <ComponentWrapper className="flex flex-col h-90 w-full">
       <div className="header w-full grid grid-cols-12 gap-0  content-center">
         <div className="header_title text-[1.8em] font-[700] text-primary col-span-3  ">
           Parameter Settings

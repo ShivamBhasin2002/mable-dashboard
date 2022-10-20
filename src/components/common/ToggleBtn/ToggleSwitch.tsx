@@ -3,6 +3,7 @@ import ToggleSwitchWraper from './ToggleSwitchStyle';
 
 const ToggleSwitch = ({ value, setState, name, activeColor, inactiveColor }: ToggletypeProps) => {
   const triggerToggle = () => {
+    console.log(name);
     setState({
       settingKey: name,
       settingValue: `${!value}`

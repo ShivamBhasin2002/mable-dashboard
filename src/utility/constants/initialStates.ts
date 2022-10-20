@@ -169,7 +169,12 @@ export const privacyCockpit: privacyCockpitType = {
     data_collection_destinations: [
       {
         value: 'database',
-        label: 'Your Database',
+        label: 'Database',
+        available: true
+      },
+      {
+        value: 'facebook',
+        label: 'Facebook',
         available: true
       },
       {
@@ -185,12 +190,67 @@ export const privacyCockpit: privacyCockpitType = {
         label: 'E-Mail'
       },
       {
-        value: 'email',
+        value: 'firstname',
         category: 'personalData',
-        label: 'E-Mail'
+        label: 'Firstname'
+      },
+      {
+        value: 'lastname',
+        category: 'personalData',
+        label: 'Lastname'
+      },
+      {
+        value: 'birthdate',
+        category: 'personalData',
+        label: 'Birthdate'
+      },
+      {
+        value: 'phonenumber',
+        category: 'personalData',
+        label: 'Phonenumber'
+      },
+      {
+        value: 'city',
+        category: 'location',
+        label: 'City'
+      },
+      {
+        value: 'postalcode',
+        category: 'location',
+        label: 'Postalcode'
+      },
+      {
+        value: 'state',
+        category: 'location',
+        label: 'State'
+      },
+      {
+        value: 'country',
+        category: 'location',
+        label: 'Country'
+      },
+      {
+        value: 'useragent',
+        category: 'others',
+        label: 'User Agent'
+      },
+      {
+        value: 'ipaddress',
+        category: 'others',
+        label: 'Ip Address'
+      },
+      {
+        value: 'externeid',
+        category: 'others',
+        label: 'Externe Id'
+      },
+      {
+        value: 'klickid',
+        category: 'others',
+        label: 'Klick - Id'
       }
     ],
-    parsed_settings: undefined
+    parsed_settings: []
   },
   privacySettings: {
     status: STATUS_TYPE.IDLE,

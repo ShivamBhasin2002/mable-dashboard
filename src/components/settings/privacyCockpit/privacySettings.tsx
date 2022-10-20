@@ -80,7 +80,7 @@ const PrivacySettings = () => {
     <ComponentWrapper
       title="Privacy Settings"
       underlined={true}
-      className="mt-[30px] flex flex-col max-w-4xl"
+      className=" flex flex-col h-90 w-full"
     >
       <div className="flex gap-4">
         <div className=" text-light text-xl flex items-center gap-2">

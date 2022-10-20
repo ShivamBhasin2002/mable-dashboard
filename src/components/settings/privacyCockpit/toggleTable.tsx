@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { useSelector } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
 function toggleTable() {
+  const { data_collection_settings, parsed_settings } = useSelector(
+    (state) => state.privacyCockpit.parameterSettingReducer
+  );
   const [UpdateValue, setUpdateValue] = useState<{
     settingKey?: string;
     settingValue?: string;
@@ -8,44 +12,78 @@ function toggleTable() {
     settingKey: '',
     settingValue: ''
   });
-
+  console.log(parsed_settings);
+  const categories = ['personalData', 'location', 'others'];
   return (
     <div className="flex flex-col">
-      <div className="header">
-        <p className="text-primary opacity-70">Personal data </p>
-      </div>
-      <div className="dataTable flex text-light grid grid-cols-12 gap-0">
-        <div className="keyValue col-span-3 my-auto">Email</div>
-        <div className="toggle1   col-span-3 m-auto">
-          <ToggleBtn value={true} setState={setUpdateValue} />
-        </div>
-        <div className="toggle2  col-span-3 m-auto">
-          <ToggleBtn value={false} setState={setUpdateValue} />
-        </div>
-        <div className="toggle3  col-span-3 m-auto">
-          <ToggleBtn value={false} setState={setUpdateValue} />
-        </div>
-        <div className="keyValue col-span-3 my-auto">Vorname</div>
-        <div className="toggle1   col-span-3 m-auto">
-          <ToggleBtn value={false} setState={setUpdateValue} />
-        </div>
-        <div className="toggle2  col-span-3 m-auto">
-          <ToggleBtn value={true} setState={setUpdateValue} />
-        </div>
-        <div className="toggle3  col-span-3 m-auto">
-          <ToggleBtn value={false} setState={setUpdateValue} />
-        </div>
-        <div className="keyValue col-span-3 my-auto">Nachname</div>
-        <div className="toggle1   col-span-3 m-auto">
-          <ToggleBtn value={false} setState={setUpdateValue} />
-        </div>
-        <div className="toggle2  col-span-3 m-auto">
-          <ToggleBtn value={false} setState={setUpdateValue} />
-        </div>
-        <div className="toggle3  col-span-3 m-auto">
-          <ToggleBtn value={false} setState={setUpdateValue} />
-        </div>
-      </div>
+      {categories.map((category) => {
+        return (
+          <>
+            <div className="header">
+              <p className="text-primary opacity-70">{category} </p>
+            </div>
+            {data_collection_settings.map((data) => {
+              if (category === data.category)
+                return (
+                  <>
+                    <div className="dataTable flex text-light grid grid-cols-12 gap-0">
+                      <div className="keyValue col-span-3 my-auto">{data.label}</div>
+                      {parsed_settings?.map((parsedData, index) => {
+                        return (
+                          parsedData.label === data.value && (
+                            <>
+                              <div className="toggle1   col-span-3 m-auto">
+                                {parsedData.destination === 'database' && (
+                                  <ToggleBtn
+                                    value={parsedData.settingValue === 'true'}
+                                    setState={setUpdateValue}
+                                    name={
+                                      parsedData.category +
+                                      '_' +
+                                      parsedData.label +
+                                      '_' +
+                                      parsedData.destination
+                                    }
+                                  />
+                                )}
+                                {parsedData.destination === 'facebook' && (
+                                  <ToggleBtn
+                                    value={parsedData.settingValue === 'true'}
+                                    setState={setUpdateValue}
+                                    name={
+                                      parsedData.category +
+                                      '_' +
+                                      parsedData.label +
+                                      '_' +
+                                      parsedData.destination
+                                    }
+                                  />
+                                )}
+                                {parsedData.destination === 'tiktok' && (
+                                  <ToggleBtn
+                                    value={parsedData.settingValue === 'true'}
+                                    setState={setUpdateValue}
+                                    name={
+                                      parsedData.category +
+                                      '_' +
+                                      parsedData.label +
+                                      '_' +
+                                      parsedData.destination
+                                    }
+                                  />
+                                )}
+                              </div>
+                            </>
+                          )
+                        );
+                      })}
+                    </div>
+                  </>
+                );
+            })}
+          </>
+        );
+      })}
     </div>
   );
 }
