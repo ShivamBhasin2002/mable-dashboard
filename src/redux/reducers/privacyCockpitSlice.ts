@@ -97,6 +97,42 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
   }
 });
 
+export const postPerameterSettings = createAsyncThunk<
+  {
+    ok: boolean;
+    settings_changed: {
+      settingKey: string;
+      settingValue: string;
+    }[];
+  },
+  {
+    settings: {
+      settingKey?: string;
+      settingValue?: string;
+    }[];
+  },
+  thunkOptions
+>('privacyCockpit/perameterSettings/post', async (formData, { rejectWithValue, getState }) => {
+  const state = getState();
+  try {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
+      formData,
+      {
+        headers: { Authorization: `${state.user.token}` }
+      }
+    );
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
+  }
+});
+
 export const previousSettingReducer = createReducer(privacyCockpit.privacySettings, (builder) => {
   builder
     .addCase(getPrivacySettings.pending, (state) => {
@@ -156,24 +192,48 @@ export const parameterSettingReducer = createReducer(
         state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(getPrivacySettings.fulfilled, (state, { payload }) => {
-        let obj;
         state.parsed_settings = [];
         payload.map((data) => {
           const category = snakeCaseToKeyValueExtractor(data.setting_key)[0];
-          if (category === ('persondata' || 'location' || 'others')) {
-            obj = {
+          if (category === ('personalData' || 'location' || 'others')) {
+            const obj = {
               settingKey: data.setting_key,
               category: category,
               destination: snakeCaseToKeyValueExtractor(data.setting_key)[2],
               label: snakeCaseToKeyValueExtractor(data.setting_key)[1],
               settingValue: data.setting_value
             };
-            state.parsed_settings?.push(obj);
+            if (state.parsed_settings.length === 0) state.parsed_settings.push(obj);
+
+            if (state.parsed_settings) {
+              let noduplicate = true;
+              state.parsed_settings.map((item) => {
+                if (item.settingKey === obj.settingKey) noduplicate = false;
+              });
+              if (noduplicate) state.parsed_settings?.push(obj);
+            }
           }
         });
         state.status = STATUS_TYPE.SUCCESS;
       })
       .addCase(getPrivacySettings.rejected, (state, { error }) => {
+        state.status = STATUS_TYPE.ERROR;
+      })
+
+      .addCase(postPerameterSettings.pending, (state) => {
+        state.status = STATUS_TYPE.FETCHING;
+      })
+      .addCase(postPerameterSettings.fulfilled, (state, { payload }) => {
+        state.status = STATUS_TYPE.SUCCESS;
+        payload.settings_changed.map((data) => {
+          state.parsed_settings.map((savedData, idx) => {
+            if (savedData.settingKey === data.settingKey) {
+              state.parsed_settings[idx].settingValue = data.settingValue;
+            }
+          });
+        });
+      })
+      .addCase(postPerameterSettings.rejected, (state, { error }) => {
         state.status = STATUS_TYPE.ERROR;
       });
   }

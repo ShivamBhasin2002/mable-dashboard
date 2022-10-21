@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
+import { postPerameterSettings } from 'redux/reducers/privacyCockpitSlice';
+import { useDispatch } from 'redux/store';
 function toggleTable() {
+  const dispatch = useDispatch();
   const { data_collection_settings, parsed_settings } = useSelector(
     (state) => state.privacyCockpit.parameterSettingReducer
   );
@@ -12,7 +15,14 @@ function toggleTable() {
     settingKey: '',
     settingValue: ''
   });
-  console.log(parsed_settings);
+  useEffect(() => {
+    dispatch(
+      postPerameterSettings({
+        settings: [UpdateValue]
+      })
+    );
+  }, [UpdateValue]);
+
   const categories = ['personalData', 'location', 'others'];
   return (
     <div className="flex flex-col">
@@ -35,7 +45,7 @@ function toggleTable() {
                               <div className="toggle1   col-span-3 m-auto">
                                 {parsedData.destination === 'database' && (
                                   <ToggleBtn
-                                    value={parsedData.settingValue === 'true'}
+                                    value={parsedData.settingValue === 'true' || false}
                                     setState={setUpdateValue}
                                     name={
                                       parsedData.category +
@@ -48,7 +58,7 @@ function toggleTable() {
                                 )}
                                 {parsedData.destination === 'facebook' && (
                                   <ToggleBtn
-                                    value={parsedData.settingValue === 'true'}
+                                    value={parsedData?.settingValue === 'true' || false}
                                     setState={setUpdateValue}
                                     name={
                                       parsedData.category +
@@ -61,7 +71,7 @@ function toggleTable() {
                                 )}
                                 {parsedData.destination === 'tiktok' && (
                                   <ToggleBtn
-                                    value={parsedData.settingValue === 'true'}
+                                    value={parsedData?.settingValue === 'true' || false}
                                     setState={setUpdateValue}
                                     name={
                                       parsedData.category +

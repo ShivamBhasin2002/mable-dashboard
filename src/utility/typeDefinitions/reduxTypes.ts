@@ -210,7 +210,7 @@ export type privacyCockpitType = {
       category: string;
       label: string;
     }[];
-    parsed_settings?: {
+    parsed_settings: {
       settingKey: string;
       category: string;
       destination: string;

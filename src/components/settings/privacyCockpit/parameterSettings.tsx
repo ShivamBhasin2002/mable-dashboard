@@ -69,7 +69,7 @@ function parameterSettings() {
         <div className="active_all flex justify-end items-center">
           <p className="text-light mx-2 opacity-50">Active Everything </p>
           <ToggleBtn
-            value={true}
+            value={false}
             setState={setUpdateValue}
             activeColor="green"
             inactiveColor="gray"

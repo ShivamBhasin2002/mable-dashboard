@@ -29,15 +29,15 @@ export const snakeCaseToKeyValueExtractor = (key: string) => {
   let j = 0;
   for (let i = 0; i <= key.length; i++) {
     if (key[i] === '_' && count === 0) {
-      extractedValueArray.push(key.slice(0, i).toLowerCase());
+      extractedValueArray.push(key.slice(0, i));
       count++;
       j = i;
     } else if (key[i] === '_' && count === 1) {
-      extractedValueArray.push(key.slice(j + 1, i).toLowerCase());
+      extractedValueArray.push(key.slice(j + 1, i));
       count++;
       j = i;
     } else if (i == key.length) {
-      extractedValueArray.push(key.slice(j + 1, key.length).toLowerCase());
+      extractedValueArray.push(key.slice(j + 1, key.length));
     }
   }
 
