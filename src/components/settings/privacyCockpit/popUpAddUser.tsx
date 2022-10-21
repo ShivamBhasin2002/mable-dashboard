@@ -1,37 +1,48 @@
-import Popup from 'reactjs-popup';
-import { Button } from '@chakra-ui/react';
+import { Button, Checkbox } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
 import { Formik } from 'formik';
-import { useState } from 'react';
+import { Spinner } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
-import { CheckBox } from 'components/form';
+import colors from 'utility/colors';
 import { Input } from '@chakra-ui/react';
+import { Dispatch, SetStateAction } from 'react';
+import { postDeletedCustomer } from 'redux/reducers/privacyCockpitSlice';
+import { useDispatch, useSelector } from 'redux/store';
+import { STATUS_TYPE } from 'utility/constants/general';
 
-const PopupExample = () => {
-  const contentStyle = { width: '40%' };
-  const overlayStyle = { background: 'rgba(0,0,0,0.5)' };
+interface PopUpProps {
+  open: string;
+  setDisplay: Dispatch<SetStateAction<string>>;
+}
+
+const PopupExample = (props: PopUpProps) => {
   const [email, setEmail] = useState('');
+  const [futureTrack, setFutureTrack] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
+
   return (
-    <Popup
-      trigger={
-        <Button className="w-[8rem]" type="submit" colorScheme="blue">
-          + Add Entry
-        </Button>
-      }
-      modal
-      {...{ overlayStyle, contentStyle }}
+    <div
+      className={`${props.open} fixed left-0 top-0 w-full h-full overflow-auto bg-[rgba(0,0,0,0.7)] justify-center items-center`}
     >
-      <ComponentWrapper title="New User" underlined={true} className="">
+      <ComponentWrapper
+        title="New User"
+        underlined={true}
+        className="w-1/2"
+        nextComponent={<button onClick={() => props.setDisplay('hidden')}>Close</button>}
+      >
         <Formik
           initialValues={{
+            futureTrack: futureTrack,
             email: email || ''
           }}
           validationSchema={Yup.object({
             email: Yup.string().required('Please enter email')
           })}
           onSubmit={(values) => {
-            // dispatch(loginAsync(values));
-            console.log(values);
+            dispatch(postDeletedCustomer(values));
           }}
         >
           {(formik) => (
@@ -51,21 +62,33 @@ const PopupExample = () => {
 
               <div className="flex items-center gap-8">
                 <div className="text-light text-lg">Block for future tracking</div>
-                <CheckBox size="lg" colorScheme="blue" className="" name="rememberMe" />
+                <Checkbox
+                  isChecked={futureTrack}
+                  className=" text-light"
+                  size="lg"
+                  colorScheme="blue"
+                  _hover={{ background: colors.bgContainerFrom }}
+                  _active={{ background: colors.bgContainerFrom }}
+                  _focus={{ background: colors.bgContainerFrom }}
+                  onChange={() => setFutureTrack(!futureTrack)}
+                ></Checkbox>
               </div>
               <Button
-                className="w-[8rem] ml-auto"
                 type="submit"
+                className="w-[8rem] ml-auto"
                 colorScheme="blue"
-                onClick={() => close()}
+                onClick={() =>
+                  dispatch(postDeletedCustomer({ futureTrack: futureTrack, email: email }))
+                }
               >
+                {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Coinfirm
               </Button>
             </form>
           )}
         </Formik>
       </ComponentWrapper>
-    </Popup>
+    </div>
   );
 };
 

@@ -1,10 +1,31 @@
 import { ComponentWrapper } from 'components/common';
-import { useSelector } from 'redux/store';
+import { useDispatch, useSelector } from 'redux/store';
 import PopupExample from './popUpAddUser';
+import { Button } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { STATUS_TYPE } from 'utility/constants/general';
 
 const DeleteUserData = () => {
+  const [display, setDisplay] = useState('hidden');
+  const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
+
+  useEffect(() => {
+    if (status === STATUS_TYPE.SUCCESS) {
+      setDisplay('hidden');
+    }
+  });
+
   const addEntry = () => {
-    return <PopupExample />;
+    return (
+      <Button
+        className="w-[8rem] ml-auto"
+        type="submit"
+        colorScheme="blue"
+        onClick={() => setDisplay('flex')}
+      >
+        + Add User
+      </Button>
+    );
   };
   const deleteCustomer = useSelector((state) => state.privacyCockpit.deleteUserData.userData);
 
@@ -15,6 +36,7 @@ const DeleteUserData = () => {
       className="mt-[30px] flex flex-col max-w-4xl"
       nextComponent={addEntry()}
     >
+      <PopupExample open={display} setDisplay={setDisplay} />
       <table className="w-full table-auto my-[10px]">
         <thead>
           <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
