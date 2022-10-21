@@ -1,15 +1,13 @@
 import { ComponentWrapper } from 'components/common';
-import { Button } from '@chakra-ui/react';
-import { submitLink } from 'utility/functions/helper';
+import { useSelector } from 'redux/store';
+import PopupExample from './popUpAddUser';
 
 const DeleteUserData = () => {
   const addEntry = () => {
-    return (
-      <Button className="w-[8rem]" type="submit" colorScheme="blue" onClick={() => submitLink()}>
-        + Add Entry
-      </Button>
-    );
+    return <PopupExample />;
   };
+  const deleteCustomer = useSelector((state) => state.privacyCockpit.deleteUserData.userData);
+
   return (
     <ComponentWrapper
       title="Delete User Data"
@@ -24,15 +22,21 @@ const DeleteUserData = () => {
             <td className="text-primary rounded-tr-[10px]">Block for future tracking</td>
           </tr>
         </thead>
-        <tbody className="last-of:rounded-b-[10px]">
-          <tr
-            className={`text-light [&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] bg-tableStrips/[0.5]
-            `}
-          >
-            <td>sampleEmail.com</td>
-            <td>Yes</td>
-          </tr>
-        </tbody>
+        {deleteCustomer.map((item, key) => {
+          return (
+            <tbody key={key} className="last-of:rounded-b-[10px]">
+              <tr
+                className={`text-light [&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
+                  !(key & 1) && 'bg-tableStrips/[0.5]'
+                }
+          `}
+              >
+                <td>{item.email}</td>
+                <td>{item.data_collection_active ? `Yes` : `No`}</td>
+              </tr>
+            </tbody>
+          );
+        })}
       </table>
     </ComponentWrapper>
   );

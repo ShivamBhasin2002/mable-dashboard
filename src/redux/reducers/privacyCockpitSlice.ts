@@ -28,6 +28,38 @@ export const getPrivacySettings = createAsyncThunk<
   }
 });
 
+export const getDeletedCustomer = createAsyncThunk<
+  {
+    id: number;
+    source_id: number;
+    created_at: string;
+    updated_at: string;
+    email: string;
+    data_collection_active: boolean;
+    deleted_user_data: boolean;
+  }[],
+  void,
+  thunkOptions
+>('privacyCockpit/deleteCustomerData/fetch', async (temp, { rejectWithValue, getState }) => {
+  const state = getState();
+  try {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/data-collection/users`,
+      {
+        headers: { Authorization: `${state.user.token}` }
+      }
+    );
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
+  }
+});
+
 export const postDataHashPrivacySettings = createAsyncThunk<
   boolean,
   { checkBox: boolean },
@@ -92,8 +124,8 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
   }
 });
 
-export const previousSettings = createSlice({
-  name: 'previousSettings',
+export const privacyCockpitSetting = createSlice({
+  name: 'privacyCockpitSetting',
   initialState: privacyCockpit,
   reducers: {
     updateSettings(state) {
@@ -141,9 +173,19 @@ export const previousSettings = createSlice({
       })
       .addCase(postConsentUrlPrivacySettings.rejected, (state) => {
         state.privacySettings.cookieConsent.status = STATUS_TYPE.ERROR;
+      })
+      .addCase(getDeletedCustomer.pending, (state) => {
+        state.deleteUserData.status = STATUS_TYPE.FETCHING;
+      })
+      .addCase(getDeletedCustomer.fulfilled, (state, { payload }) => {
+        state.deleteUserData.status = STATUS_TYPE.SUCCESS;
+        state.deleteUserData.userData = payload;
+      })
+      .addCase(getDeletedCustomer.rejected, (state) => {
+        state.deleteUserData.status = STATUS_TYPE.ERROR;
       });
   }
 });
 
-export const { updateSettings } = previousSettings.actions;
-export default previousSettings.reducer;
+export const { updateSettings } = privacyCockpitSetting.actions;
+export default privacyCockpitSetting.reducer;

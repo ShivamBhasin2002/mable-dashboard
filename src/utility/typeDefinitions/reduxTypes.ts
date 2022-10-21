@@ -241,4 +241,16 @@ export type privacyCockpitType = {
     setting_key: string;
     setting_value: string;
   }[];
+  deleteUserData: {
+    status: STATUS_TYPE;
+    userData: {
+      id: number;
+      source_id: number;
+      created_at: string;
+      updated_at: string;
+      email: string;
+      data_collection_active: boolean;
+      deleted_user_data: boolean;
+    }[];
+  };
 };

@@ -1,14 +1,12 @@
 import { ComponentWrapper } from 'components/common';
 import { Button, Checkbox } from '@chakra-ui/react';
 import colors from 'utility/colors';
-import Icon from 'assets/icons';
 import { useDispatch, useSelector } from 'redux/store';
 import { Spinner, useToast } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { useEffect, useState } from 'react';
 import {
-  getPrivacySettings,
   postConsentUrlPrivacySettings,
   postDataHashPrivacySettings
 } from 'redux/reducers/privacyCockpitSlice';
@@ -87,7 +85,7 @@ const PrivacySettings = () => {
     >
       <div className="flex gap-4">
         <div className=" text-light text-xl flex items-center gap-2">
-          Hash data in your dashboard <Icon icon="info" width={40} />
+          Hash data in your dashboard
         </div>
         <Checkbox
           isChecked={checkBoxStatus}
