@@ -195,7 +195,7 @@ export const parameterSettingReducer = createReducer(
         state.parsed_settings = [];
         payload.map((data) => {
           const category = snakeCaseToKeyValueExtractor(data.setting_key)[0];
-          if (category === ('personalData' || 'location' || 'others')) {
+          if (category === 'personalData' || category === 'location' || category === 'others') {
             const obj = {
               settingKey: data.setting_key,
               category: category,

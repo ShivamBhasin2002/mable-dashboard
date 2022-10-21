@@ -3,7 +3,11 @@ import ComponentWrapper from 'components/common/ComponentWrapper';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
 import { Button, Divider } from '@chakra-ui/react';
 import ToggleTable from './toggleTable';
+import { useSelector } from 'redux/store';
 function parameterSettings() {
+  const { data_collection_destinations } = useSelector(
+    (state) => state.privacyCockpit.parameterSettingReducer
+  );
   const [UpdateValue, setUpdateValue] = useState<{
     settingKey?: string;
     settingValue?: string;
@@ -12,32 +16,11 @@ function parameterSettings() {
     settingValue: ''
   });
 
-  const data_collection_destinations: {
-    value: string;
-    label: string;
-    available: boolean;
-  }[] = [
-    {
-      value: 'database',
-      label: 'Database',
-      available: true
-    },
-    {
-      value: 'facebook',
-      label: 'Facebook',
-      available: true
-    },
-    {
-      value: 'tiktok',
-      label: 'Tik Tok',
-      available: false
-    }
-  ];
   return (
-    <ComponentWrapper className="flex flex-col h-90 w-full">
+    <ComponentWrapper className="flex flex-col  w-full">
       <div className="header w-full grid grid-cols-12 gap-0  content-center">
-        <div className="header_title text-[1.8em] font-[700] text-primary col-span-3  ">
-          Parameter Settings
+        <div className="header_title   col-span-3  m-auto">
+          <p className="text-[20px] font-[700] text-primary"> Parameter Settings</p>
         </div>
 
         {data_collection_destinations.map((item) => {
