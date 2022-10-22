@@ -2,7 +2,7 @@ import { IconType } from 'utility/typeDefinitions/componentPropTypes';
 
 import { RiBarChart2Line, RiLock2Fill } from 'react-icons/ri';
 import { MdMail } from 'react-icons/md';
-import { FiTarget, FiLogOut } from 'react-icons/fi';
+import { FiTarget } from 'react-icons/fi';
 import { FaRegCopyright } from 'react-icons/fa';
 import { AiOutlineBell, AiFillCaretDown, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { BsBarChartLine } from 'react-icons/bs';
@@ -27,6 +27,7 @@ import Delayed from 'assets/icons/Delayed';
 import Pending from 'assets/icons/Pending';
 import Tick from 'assets/icons/Tick';
 import Cross from 'assets/icons/Cross';
+import Logout from 'assets/icons/Logout';
 
 const Icon = ({ icon, color, className, ...props }: IconType) => {
   switch (icon) {
@@ -103,7 +104,7 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
       return <Analytics className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
     case 'logout':
-      return <FiLogOut className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+      return <Logout className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
     case 'dropdown':
       return (
@@ -147,6 +148,7 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
 
     case 'mableLogo':
       return <MableLogo className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
     case 'errorTriangular':
       return <BiError className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
   }
