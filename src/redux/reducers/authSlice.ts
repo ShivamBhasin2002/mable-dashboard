@@ -14,7 +14,7 @@ export const loginAsync = createAsyncThunk<
     rememberMe: boolean;
   },
   thunkOptions
->('user/login', async ({ email, password, rememberMe }, thunkApi) => {
+>('user/login', async ({ email, password, rememberMe }, { rejectWithValue }) => {
   try {
     const res = await axios.post(`${process.env.REACT_APP_BFF_URL}/auth/login`, {
       email: email,
@@ -23,7 +23,7 @@ export const loginAsync = createAsyncThunk<
     if (rememberMe) localStorage.setItem('token', res.data.token);
     return res.data;
   } catch (err) {
-    return thunkApi.rejectWithValue('Login Failed');
+    return rejectWithValue('Login Failed');
   }
 });
 

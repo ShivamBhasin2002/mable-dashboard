@@ -13,7 +13,7 @@ import {
   warningStateType,
   AccountUpdateType
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUS_TYPE, screenType, statusSelector } from './general';
+import { STATUS_TYPE, screenType, statusSelector, DatePickerPresets } from './general';
 import moment from 'moment';
 import { eventSelectedType } from './general';
 
@@ -51,10 +51,8 @@ export const shopInitialState: shopStateType = {
 };
 
 export const datesInitialState: datesStateType = {
-  dateRange: localStorage.getItem('dateRange')
-    ? JSON.parse(localStorage.getItem('dateRange') ?? '[]')?.map((date: any) => moment(date) ?? '') // eslint-disable-line
-    : [moment(), moment()],
-  datePreset: localStorage.getItem('datePreset') ?? undefined,
+  dateRange: [moment().subtract(14, 'days'), moment()],
+  datePreset: DatePickerPresets.prevFourteenDays,
   refresh: false
 };
 
@@ -94,7 +92,6 @@ export const dataQualityInitialState: dataQualityStateType = {
   FACEBOOK_SUCCESS_DELIVERED_ORDERS: 0,
   DATA_QUALITY_BY_DATE: [],
   ordersWithCorrectCV: 0,
-  avgDeliveryTime: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
@@ -114,7 +111,7 @@ export const eventsDataInitialState: eventsDataStateType = {
     add_to_cart: 0,
     page_view: 0
   },
-  eventSelected: eventSelectedType.purchase,
+  eventSelected: eventSelectedType.all,
   byDate: [],
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined

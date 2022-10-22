@@ -37,8 +37,8 @@ export type pageSpeedStateType = {
 };
 
 export type shopStateType = {
-  active?: { apiKey?: string; id?: number; name?: string };
-  shops: { apiKey?: string; id?: number; name?: string }[];
+  active?: { apiKey?: string; id?: number; displayName?: string };
+  shops: { apiKey?: string; id?: number; displayName?: string }[];
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
@@ -100,7 +100,6 @@ export type dataQualityStateType = {
   FACEBOOK_SUCCESS_DELIVERED_ORDERS: number;
   DATA_QUALITY_BY_DATE: { date: string; data_quality: number }[];
   ordersWithCorrectCV: number;
-  avgDeliveryTime: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };

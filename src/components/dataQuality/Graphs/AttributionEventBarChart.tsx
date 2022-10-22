@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
+import { totalAttributions } from 'utility/constants/general';
 import fonts from 'utility/fonts';
 import { AttributionEventBarChartProps } from 'utility/typeDefinitions/componentPropTypes';
 
@@ -19,6 +20,7 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
       },
       scales: {
         y: {
+          suggestedMax: totalAttributions,
           grid: {
             display: false,
             borderColor: `${colors.lines}20`,

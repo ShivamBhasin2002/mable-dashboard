@@ -16,29 +16,32 @@ export const updateUsername = createAsyncThunk<
     lastName: string | undefined;
   },
   thunkOptions
->('accountsetting/update/name', async ({ userId, firstName, lastName }, thunkApi) => {
-  try {
-    const { data } = await axios.put(
-      `${process.env.REACT_APP_BFF_URL}/auth/username/update`,
-      {
-        userId: userId,
-        firstName: firstName,
-        lastName: lastName
-      },
-      {
-        headers: { Authorization: `${thunkApi.getState().user.token}` }
+>(
+  'accountsetting/update/name',
+  async ({ userId, firstName, lastName }, { rejectWithValue, getState }) => {
+    try {
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_BFF_URL}/auth/username/update`,
+        {
+          userId: userId,
+          firstName: firstName,
+          lastName: lastName
+        },
+        {
+          headers: { Authorization: `${getState().user.token}` }
+        }
+      );
+      if (data) {
+        return data;
       }
-    );
-    if (data) {
-      return data;
+    } catch (error) {
+      let message;
+      if (error instanceof Error) message = error.message;
+      else message = String(message);
+      return rejectWithValue(message);
     }
-  } catch (error) {
-    let message;
-    if (error instanceof Error) message = error.message;
-    else message = String(message);
-    return thunkApi.rejectWithValue(message);
   }
-});
+);
 
 export const updateEmail = createAsyncThunk<
   { errorKey: string; message: string },
@@ -47,7 +50,7 @@ export const updateEmail = createAsyncThunk<
     email: string | undefined;
   },
   thunkOptions
->('accountsetting/update/email', async ({ userId, email }, thunkApi) => {
+>('accountsetting/update/email', async ({ userId, email }, { rejectWithValue, getState }) => {
   try {
     const { data } = await axios.put(
       `${process.env.REACT_APP_BFF_URL}/auth/email/update`,
@@ -56,7 +59,7 @@ export const updateEmail = createAsyncThunk<
         email: email
       },
       {
-        headers: { Authorization: `${thunkApi.getState().user.token}` }
+        headers: { Authorization: `${getState().user.token}` }
       }
     );
     if (data) {
@@ -66,7 +69,7 @@ export const updateEmail = createAsyncThunk<
     let message;
     if (error instanceof Error) message = error.message;
     else message = String(message);
-    return thunkApi.rejectWithValue(message);
+    return rejectWithValue(message);
   }
 });
 
@@ -77,29 +80,32 @@ export const updatePassword = createAsyncThunk<
     newPassword: string;
   },
   thunkOptions
->('accountsetting/password/update', async ({ password, newPassword }, thunkApi) => {
-  try {
-    const { data } = await axios.put(
-      `${process.env.REACT_APP_BFF_URL}/auth/password/update`,
-      {
-        password: password,
-        newPassword: newPassword
-      },
-      {
-        headers: { Authorization: `${thunkApi.getState().user.token}` }
+>(
+  'accountsetting/password/update',
+  async ({ password, newPassword }, { rejectWithValue, getState }) => {
+    try {
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_BFF_URL}/auth/password/update`,
+        {
+          password: password,
+          newPassword: newPassword
+        },
+        {
+          headers: { Authorization: `${getState().user.token}` }
+        }
+      );
+      if (data) {
+        return data;
       }
-    );
-    if (data) {
-      return data;
+    } catch (error) {
+      let message = '';
+      if (axios.isAxiosError(error) && error.response) {
+        message = error.message;
+      } else message = String(error);
+      return rejectWithValue(message);
     }
-  } catch (error) {
-    let message = '';
-    if (axios.isAxiosError(error) && error.response) {
-      message = error.message;
-    } else message = String(error);
-    return thunkApi.rejectWithValue(message);
   }
-});
+);
 
 export const updateUserNameReducer = createReducer(userNameUpdateInitialState, (builder) => {
   builder

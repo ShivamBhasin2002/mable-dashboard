@@ -10,7 +10,7 @@ const SideBarItem = ({ icon, title, clickHandle, isActive }: SideBarItemProps) =
       onClick={clickHandle}
     >
       <span className="mr-[15px] ml-[20px] my-auto text-2xl">
-        {<Icon icon={icon} width={24} height={24} active={isActive} />}
+        {<Icon icon={icon} width={24} height={24} isActive={isActive} />}
       </span>
       <span className="mt-[14px]">{title}</span>
     </div>

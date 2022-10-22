@@ -8,7 +8,7 @@ export type IconType = {
   width?: number;
   height?: number;
   className?: string;
-  active?: boolean;
+  isActive?: boolean;
 };
 
 export type CheckBoxProps = {

@@ -11,7 +11,7 @@ const WarningCenterCard = () => {
       title="Warning Center"
       width={600}
       underlined
-      className="flex-grow"
+      className="flex-grow min-h-[200px]"
       status={status}
     >
       {!script_tag_found && (
