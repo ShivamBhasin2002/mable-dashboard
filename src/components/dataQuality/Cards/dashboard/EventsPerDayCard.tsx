@@ -7,7 +7,7 @@ import { EventsPerDayLineChart } from 'components/dataQuality/Graphs';
 import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { eventsDataAsync, setEventSelected } from 'redux/reducers/eventsDataSlice';
+import { eventsDataAsync, setEventSelected } from 'redux/reducers/dataQuality/eventsDataSlice';
 
 const EventsPerDayCard = () => {
   const dispatch = useDispatch();

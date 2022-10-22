@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ComponentWrapper } from 'components/common';
-import { eventsAsync } from 'redux/reducers/eventSlice';
+import { eventsAsync } from 'redux/reducers/dataQuality/eventSlice';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { STATUS_TYPE } from 'utility/constants/general';

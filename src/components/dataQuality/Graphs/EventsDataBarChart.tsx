@@ -4,7 +4,7 @@ import { Bar } from 'react-chartjs-2';
 import { ComponentWrapper } from 'components/common';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { eventsDataAsync } from 'redux/reducers/eventsDataSlice';
+import { eventsDataAsync } from 'redux/reducers/dataQuality/eventsDataSlice';
 
 import { numberReducer } from 'utility/functions/formattingFunctions';
 import { getEventDisplayName } from 'utility/functions/mappingFunctions';

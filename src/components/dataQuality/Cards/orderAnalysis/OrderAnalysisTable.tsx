@@ -14,7 +14,7 @@ import {
 import { statusTypeColors } from 'utility/functions/colorSelector';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';
+import { orderAnalysisAsync } from 'redux/reducers/dataQuality/orderAnalysisSlice';
 import { getOrderAnalysisTableIcon } from 'utility/functions/mappingFunctions';
 
 const OrderAnalysisTable = () => {

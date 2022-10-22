@@ -2,7 +2,7 @@ import moment from 'moment';
 import { Loading } from 'components/common';
 import { useSelector, useDispatch } from 'redux/store';
 import { useEffect } from 'react';
-import { analyticsAsync } from 'redux/reducers/analyticsSlice';
+import { analyticsAsync } from 'redux/reducers/analytics/reportsSlice';
 import { filterType } from 'utility/constants/general';
 import { SelectedEventsType } from 'utility/typeDefinitions/reduxTypes';
 

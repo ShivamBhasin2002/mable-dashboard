@@ -6,7 +6,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { STATUS_TYPE } from 'utility/constants/general';
 import { TextField } from 'components/form';
-import { updateEmail } from 'redux/reducers/updateAccountInfoSlice';
+import { updateEmail } from 'redux/reducers/settings/updateAccountInfoSlice';
 import { useEffect, useState } from 'react';
 import { updateUserEmailState } from 'redux/reducers/authSlice';
 

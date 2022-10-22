@@ -6,7 +6,7 @@ import { DataQualityLineChart } from 'components/dataQuality/Graphs';
 import { screenType, STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
+import { dataQualityAsync } from 'redux/reducers/dataQuality/dataQualitySlice';
 
 const DataQualityCard = () => {
   const dispatch = useDispatch();

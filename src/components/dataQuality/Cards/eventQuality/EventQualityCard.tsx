@@ -9,7 +9,7 @@ import { SelectorMenu } from 'components/dataQuality/Common';
 import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataPerEventSlice';
+import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataQuality/dataPerEventSlice';
 
 const EventQualityCard = () => {
   const dispatch = useDispatch();

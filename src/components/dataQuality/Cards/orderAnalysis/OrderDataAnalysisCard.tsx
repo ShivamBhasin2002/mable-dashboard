@@ -8,7 +8,7 @@ import colors from 'utility/colors';
 import { STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
+import { dataQualityAsync } from 'redux/reducers/dataQuality/dataQualitySlice';
 import { dateTimeReducer, numberReducer } from 'utility/functions/formattingFunctions';
 
 const OrderDataAnalysisCard = () => {

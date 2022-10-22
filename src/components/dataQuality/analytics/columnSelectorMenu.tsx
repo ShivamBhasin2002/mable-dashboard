@@ -3,7 +3,7 @@ import colors from 'utility/colors';
 import Icon from 'assets/icons';
 import { Checkbox, Stack } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { setColumnSelected } from 'redux/reducers/analyticsSlice';
+import { setColumnSelected } from 'redux/reducers/analytics/reportsSlice';
 import { filterType } from 'utility/constants/general';
 import { useSelector } from 'redux/store';
 import { SelectedEventsType } from 'utility/typeDefinitions/reduxTypes';

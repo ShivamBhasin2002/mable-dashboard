@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
 import { STATUS_TYPE } from 'utility/constants/general';
-import { updateUsername } from 'redux/reducers/updateAccountInfoSlice';
+import { updateUsername } from 'redux/reducers/settings/updateAccountInfoSlice';
 import { useEffect, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 import { updateUserNameState } from 'redux/reducers/authSlice';

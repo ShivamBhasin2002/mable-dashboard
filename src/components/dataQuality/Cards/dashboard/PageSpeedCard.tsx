@@ -5,7 +5,7 @@ import { ComponentWrapper } from 'components/common';
 import { STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { pageSpeedAsync } from 'redux/reducers/pageSpeedSlice';
+import { pageSpeedAsync } from 'redux/reducers/dataQuality/pageSpeedSlice';
 
 const PageSpeedCard = () => {
   const dispatch = useDispatch();
