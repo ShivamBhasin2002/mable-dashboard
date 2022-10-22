@@ -2,7 +2,7 @@ import { Button, Checkbox } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
 import { Formik } from 'formik';
 import { Spinner } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as Yup from 'yup';
 import colors from 'utility/colors';
 import { Input } from '@chakra-ui/react';

@@ -1,8 +1,8 @@
 import ComponentWrapper from 'components/common/ComponentWrapper';
 import ToggleBtn from 'components/common/ToggleBtn/Togglebtn';
 import { Divider } from '@chakra-ui/react';
-import ToggleTable from './toggle_table';
-function parameterSettings() {
+import ToggleTable from './ToggleTable';
+function ParameterSettings() {
   const data_collection_destinations: {
     value: string;
     label: string;
@@ -58,4 +58,4 @@ function parameterSettings() {
   );
 }
 
-export default parameterSettings;
+export default ParameterSettings;

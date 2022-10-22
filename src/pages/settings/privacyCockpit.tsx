@@ -1,6 +1,8 @@
-import ParameterSettings from 'components/settings/privacyCockpit/parameterSettings';
-import PrivacySettings from 'components/settings/privacyCockpit/privacySettings';
-import DeleteUserData from 'components/settings/privacyCockpit/deleteUserData';
+import {
+  ParameterSettings,
+  PrivacySettings,
+  DeleteUserData
+} from 'components/settings/privacyCockpit';
 import { useEffect } from 'react';
 import { getPrivacySettings, updateSettings } from 'redux/reducers/privacyCockpitSlice';
 import { useDispatch, useSelector } from 'redux/store';

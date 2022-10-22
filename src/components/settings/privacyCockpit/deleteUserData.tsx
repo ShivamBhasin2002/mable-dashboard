@@ -1,9 +1,9 @@
 import { ComponentWrapper } from 'components/common';
-import { useDispatch, useSelector } from 'redux/store';
-import PopupExample from './popUpAddUser';
+import { useSelector } from 'redux/store';
 import { Button } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { STATUS_TYPE } from 'utility/constants/general';
+import PopupExample from './popUpAddUser';
 
 const DeleteUserData = () => {
   const [display, setDisplay] = useState('hidden');
