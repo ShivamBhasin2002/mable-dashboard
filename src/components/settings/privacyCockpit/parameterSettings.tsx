@@ -54,8 +54,9 @@ function parameterSettings() {
           <ToggleBtn
             value={false}
             setState={setUpdateValue}
+            name="updateAll"
             activeColor="green"
-            inactiveColor="gray"
+            inactiveColor="red"
           />
         </div>
         <div className="button">

@@ -23,20 +23,6 @@ function toggleTable() {
     );
   }, [UpdateValue]);
 
-  let SocialCount = 1;
-  const checkSocial = (value: number) => {
-    console.log(SocialCount);
-    if (SocialCount === value && value === 3) {
-      SocialCount = 1;
-      return true;
-    } else if (SocialCount === value) {
-      SocialCount++;
-      return true;
-    }
-
-    return false;
-  };
-
   const categories = ['personalData', 'location', 'others'];
   return (
     <div className="flex flex-col">
@@ -52,55 +38,63 @@ function toggleTable() {
                   <>
                     <div className="dataTable flex text-light grid grid-cols-12 gap-0">
                       <div className="keyValue col-span-3 my-auto">{data.label}</div>
-
-                      {parsed_settings?.map((parsedData, index) => {
-                        console.log(parsedData);
-
+                      {parsed_settings?.map((parsedData) => {
                         return (
-                          parsedData.label === data.value && (
-                            <>
-                              <div className="toggle1   col-span-3 m-auto">
-                                {parsedData.destination === 'database' && checkSocial(1) && (
-                                  <ToggleBtn
-                                    value={parsedData.settingValue === 'true'}
-                                    setState={setUpdateValue}
-                                    name={
-                                      parsedData.category +
-                                      '_' +
-                                      parsedData.label +
-                                      '_' +
-                                      parsedData.destination
-                                    }
-                                  />
-                                )}
-                                {parsedData.destination === 'facebook' && checkSocial(2) && (
-                                  <ToggleBtn
-                                    value={parsedData?.settingValue === 'true'}
-                                    setState={setUpdateValue}
-                                    name={
-                                      parsedData.category +
-                                      '_' +
-                                      parsedData.label +
-                                      '_' +
-                                      parsedData.destination
-                                    }
-                                  />
-                                )}
-                                {parsedData.destination === 'tiktok' && checkSocial(3) && (
-                                  <ToggleBtn
-                                    value={parsedData?.settingValue === 'true'}
-                                    setState={setUpdateValue}
-                                    name={
-                                      parsedData.category +
-                                      '_' +
-                                      parsedData.label +
-                                      '_' +
-                                      parsedData.destination
-                                    }
-                                  />
-                                )}
-                              </div>
-                            </>
+                          parsedData.label === data.value &&
+                          'database' === parsedData.destination && (
+                            <div className="toggle1   col-span-3 m-auto">
+                              <ToggleBtn
+                                value={parsedData.settingValue === 'true'}
+                                setState={setUpdateValue}
+                                name={
+                                  parsedData.category +
+                                  '_' +
+                                  parsedData.label +
+                                  '_' +
+                                  parsedData.destination
+                                }
+                              />
+                            </div>
+                          )
+                        );
+                      })}
+                      {parsed_settings?.map((parsedData) => {
+                        return (
+                          parsedData.label === data.value &&
+                          'facebook' === parsedData.destination && (
+                            <div className="toggle1   col-span-3 m-auto">
+                              <ToggleBtn
+                                value={parsedData.settingValue === 'true'}
+                                setState={setUpdateValue}
+                                name={
+                                  parsedData.category +
+                                  '_' +
+                                  parsedData.label +
+                                  '_' +
+                                  parsedData.destination
+                                }
+                              />
+                            </div>
+                          )
+                        );
+                      })}
+                      {parsed_settings?.map((parsedData) => {
+                        return (
+                          parsedData.label === data.value &&
+                          'tiktok' === parsedData.destination && (
+                            <div className="toggle1   col-span-3 m-auto">
+                              <ToggleBtn
+                                value={parsedData.settingValue === 'true'}
+                                setState={setUpdateValue}
+                                name={
+                                  parsedData.category +
+                                  '_' +
+                                  parsedData.label +
+                                  '_' +
+                                  parsedData.destination
+                                }
+                              />
+                            </div>
                           )
                         );
                       })}

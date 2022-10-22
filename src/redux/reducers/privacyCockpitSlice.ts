@@ -3,10 +3,7 @@ import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
 import { STATUS_TYPE } from 'utility/constants/general';
-import {
-  snakeCaseToCategoryFormatter,
-  snakeCaseToKeyValueExtractor
-} from 'utility/functions/formattingFunctions';
+import { snakeCaseToKeyValueExtractor } from 'utility/functions/formattingFunctions';
 
 export const getPrivacySettings = createAsyncThunk<
   { source_id: number; setting_key: string; setting_value: string }[],
@@ -201,7 +198,8 @@ export const parameterSettingReducer = createReducer(
               category: category,
               destination: snakeCaseToKeyValueExtractor(data.setting_key)[2],
               label: snakeCaseToKeyValueExtractor(data.setting_key)[1],
-              settingValue: data.setting_value
+              settingValue: data.setting_value,
+              sequance: snakeCaseToKeyValueExtractor(data.setting_key)[2]
             };
             if (state.parsed_settings.length === 0) state.parsed_settings.push(obj);
 
@@ -216,7 +214,7 @@ export const parameterSettingReducer = createReducer(
         });
         state.status = STATUS_TYPE.SUCCESS;
       })
-      .addCase(getPrivacySettings.rejected, (state, { error }) => {
+      .addCase(getPrivacySettings.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
       })
 
@@ -233,7 +231,7 @@ export const parameterSettingReducer = createReducer(
           });
         });
       })
-      .addCase(postPerameterSettings.rejected, (state, { error }) => {
+      .addCase(postPerameterSettings.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
       });
   }
