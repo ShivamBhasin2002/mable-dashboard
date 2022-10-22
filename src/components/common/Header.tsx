@@ -33,6 +33,22 @@ const DashboardHeader = () => {
   useEffect(() => {
     document.getElementById('startDateIdentifier')?.click();
   });
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const refreshBtn = document.querySelector('#refreshBtn');
+    const clickHandler = () => {
+      const refreshIcon = document.querySelector('#refreshIcon');
+      refreshIcon?.classList.add('animate-spin');
+      timeoutId = setTimeout(() => {
+        refreshIcon?.classList.remove('animate-spin');
+      }, 2000);
+    };
+    refreshBtn?.addEventListener('click', clickHandler);
+    return () => {
+      clearTimeout(timeoutId);
+      refreshBtn?.removeEventListener('click', clickHandler);
+    };
+  }, []);
 
   return (
     <header>
@@ -41,7 +57,7 @@ const DashboardHeader = () => {
           <MenuButton>
             <div className="p-[20px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[55px] w-min rounded-xl flex flex-row items-center justify-evenly text-light gap-3 whitespace-nowrap">
               <span className="h-[10px] w-[10px] bg-success rounded-full" />
-              {active?.name}
+              {active?.displayName}
               <Icon icon="dropdown" />
             </div>
           </MenuButton>
@@ -61,7 +77,7 @@ const DashboardHeader = () => {
                       dispatch(setShop(shop));
                     }}
                   >
-                    {shop.name}
+                    {shop.displayName}
                   </MenuItem>
                 ))}
             </MenuList>
@@ -75,12 +91,13 @@ const DashboardHeader = () => {
         <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
           {showReload(activeScreen) && (
             <span
+              id="refreshBtn"
               className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
               onClick={() => {
                 dispatch(refresh(false));
               }}
             >
-              <Icon icon="refresh" />
+              <Icon id="refreshIcon" icon="refresh" />
             </span>
           )}
 

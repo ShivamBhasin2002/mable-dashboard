@@ -9,10 +9,13 @@ const ParameterStat = ({ name, value }: ParameterStatProps) => {
       <td className="min-w-[108px]">{name}</td>
       <td className="flex gap-[20px] text-[20px] items-center justify-between flex-grow max-w-[230px]">
         <div className="h-[25px] w-[150px] border-[1px] border-[#667183] bg-secondary/[0.3] rounded-[5px]">
-          <div className={`h-full bg-success`} style={{ width: `${(value ?? 0) * 100}%` }}></div>
+          <div
+            className={`h-full bg-success transition-[width] ease-in-out duration-1000`}
+            style={{ width: `${(value ?? 0) * 100}%` }}
+          ></div>
         </div>
         <div>
-          <span className="font-semibold">{(value ?? 0) * 100}</span>
+          <span className="font-semibold">{Math.floor((value ?? 0) * 100)}</span>
           <span className="text-[16px]">%</span>
         </div>
       </td>

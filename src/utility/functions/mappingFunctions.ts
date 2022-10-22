@@ -68,6 +68,14 @@ export const getEventDisplayName = (event: string) => {
 // eslint-disable-next-line
 export const getSelectedEventData = (item: any, event: string) => {
   switch (event) {
+    case eventSelectedType.all:
+      return (
+        item.purchase +
+        item.add_payment_info +
+        item.intitate_checkout +
+        item.add_to_cart +
+        item.page_view
+      );
     case eventSelectedType.purchase:
       return item.purchase;
     case eventSelectedType.add_payment_info:

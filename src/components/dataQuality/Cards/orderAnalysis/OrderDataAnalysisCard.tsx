@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ComponentWrapper } from 'components/common';
 import { DataQualityLineChart } from 'components/dataQuality/Graphs';
@@ -9,32 +9,40 @@ import { STATUS_TYPE } from 'utility/constants/general';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
+import { dateTimeReducer, numberReducer } from 'utility/functions/formattingFunctions';
 
 const OrderDataAnalysisCard = () => {
   const dispatch = useDispatch();
   const {
     ordersWithCorrectCV,
-    avgDeliveryTime,
     TOTAL_SHOPIFY_ORDERS,
     TOTAL_DATA_QUALITY_FACEBOOK,
-    status
+    status: dataQualityStatus
   } = useSelector((state) => state.dataQuality);
+  const { avgTimeDifference, status: eventsStatus } = useSelector((state) => state.events);
   const refresh = useSelector((state) => state.dates.refresh);
+  const [displayTime, setDisplayTime] = useState({ value: 0, unit: 'ms' });
   useEffect(() => {
-    if (status !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
+    setDisplayTime(dateTimeReducer(avgTimeDifference));
+  }, [avgTimeDifference]);
+  useEffect(() => {
+    if (dataQualityStatus !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
   }, [refresh]);
   return (
-    <ComponentWrapper status={status}>
+    <ComponentWrapper status={[dataQualityStatus, eventsStatus]}>
       <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
         <QualityCombined />
         <div className="flex-grow">
           <DataQualityLineChart height={140} color={colors.lineGraphStart} />
         </div>
         <div className="flex flex-row gap-[20px]">
-          <Statistics value={TOTAL_SHOPIFY_ORDERS} message="Shopify Orders" />
-          <Statistics value={ordersWithCorrectCV} message="Orders with correct CV" />
-          <Statistics value={TOTAL_DATA_QUALITY_FACEBOOK} message="Received by FB" />
-          <Statistics value={avgDeliveryTime} message="AVG. Delivery Time" />
+          <Statistics value={numberReducer(TOTAL_SHOPIFY_ORDERS)} message="Shopify Orders" />
+          <Statistics value={numberReducer(ordersWithCorrectCV)} message="Orders with correct CV" />
+          <Statistics value={numberReducer(TOTAL_DATA_QUALITY_FACEBOOK)} message="Received by FB" />
+          <Statistics
+            value={`${displayTime.value}${displayTime.unit}`}
+            message="AVG. Delivery Time"
+          />
         </div>
       </div>
     </ComponentWrapper>

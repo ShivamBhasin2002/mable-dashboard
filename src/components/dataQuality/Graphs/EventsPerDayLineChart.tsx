@@ -57,7 +57,11 @@ const EventsPerDayLineChart = () => {
                 font: {
                   family: fonts.text
                 },
-                stepSize: 500,
+                stepSize: Math.floor(
+                  byDate
+                    .map((item) => getSelectedEventData(item, eventSelected))
+                    .reduce((a, b) => Math.max(a, b), 0) / 5
+                ),
                 callback(this, tickValue: string | number) {
                   return numberReducer(tickValue);
                 }

@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataPerEventsInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
 import { titleCaseToSnakeCaseFormatter } from 'utility/functions/formattingFunctions';
 import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 import moment from 'moment';
@@ -22,11 +22,13 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         event: 0,
         byDate: []
       };
+      const eventToFetch =
+        state.dataPerEvent.eventSelected === eventSelectedType.all
+          ? 'all'
+          : titleCaseToSnakeCaseFormatter(state.dataPerEvent.eventSelected);
       const { data: eventAttributionData } = await dashboardDataFetchCall(
         {
-          path: `/v2/attribution-params-quality/${titleCaseToSnakeCaseFormatter(
-            state.dataPerEvent.eventSelected
-          )}`,
+          path: `/v2/attribution-params-quality/${eventToFetch}`,
           token: state.user.token,
           params: {
             source_id: state.shop.active?.id,
@@ -38,9 +40,7 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
       );
       const { data: eventParamsData } = await dashboardDataFetchCall(
         {
-          path: `/v2/events-params-quality/${titleCaseToSnakeCaseFormatter(
-            state.dataPerEvent.eventSelected
-          )}`,
+          path: `/v2/events-params-quality/${eventToFetch}`,
           token: state.user.token,
           params: {
             source_id: state.shop.active?.id,
@@ -85,9 +85,9 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
         )
         .filter((data: unknown | null) => data !== null);
       if (eventAttributionData && eventParamsData) return data;
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );

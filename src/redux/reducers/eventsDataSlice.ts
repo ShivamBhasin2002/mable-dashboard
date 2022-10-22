@@ -26,9 +26,9 @@ export const eventsDataAsync = createAsyncThunk<any, void, thunkOptions>(
         !containsToday(state.dates.dateRange)
       );
       if (data) return data;
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );

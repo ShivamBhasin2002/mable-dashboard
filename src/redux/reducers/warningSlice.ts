@@ -21,9 +21,9 @@ export const warningAsync = createAsyncThunk<any, void, thunkOptions>(
         }
       });
       if (data) return data;
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );

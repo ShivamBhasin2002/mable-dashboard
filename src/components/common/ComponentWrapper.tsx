@@ -27,7 +27,7 @@ const ComponentWrapper = ({
           className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
         >
           <Spinner w={100} h={100} thickness="7px" color={colors.light} />
-          <span className="text-light flex items-center font-montserrat text-[22px] font-bold `">
+          <span className="text-light flex items-center font-montserrat text-[22px] font-bold text-center `">
             Loading
           </span>
         </div>
@@ -42,7 +42,7 @@ const ComponentWrapper = ({
             icon="errorTriangular"
             color={colors.light}
           />
-          <span className="text-light flex items-center font-montserrat text-[22px] font-bold `">
+          <span className="text-light flex items-center font-montserrat text-[22px] font-bold text-center `">
             Error While Fetching
           </span>
         </div>
