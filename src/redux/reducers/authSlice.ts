@@ -81,7 +81,6 @@ export const userSlice = createSlice({
     },
     updateUserEmailState: (state, { payload }) => {
       state.email = payload;
-      console.log('pdateUserEmailStat');
     },
     updateUserNameState: (state, { payload }) => {
       state.firstName = payload.nameFirst;

@@ -54,6 +54,7 @@ const EventsDataBarChart = () => {
       width={600}
       title="Funnel Analysis"
       className="flex flex-col justify-between flex-grow 2xl:flex-grow-0"
+      status={status}
     >
       <Bar
         className="flex-grow-0"

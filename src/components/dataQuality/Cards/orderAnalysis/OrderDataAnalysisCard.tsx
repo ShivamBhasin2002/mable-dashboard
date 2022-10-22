@@ -30,7 +30,7 @@ const OrderDataAnalysisCard = () => {
   }, [refresh]);
   return (
     <ComponentWrapper status={[dataQualityStatus, eventsStatus]}>
-      <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
+      <div className="flex flex-row flex-wrap xl:flex-nowrap gap-[40px] justify-evenly">
         <QualityCombined />
         <div className="flex-grow">
           <DataQualityLineChart height={140} color={colors.lineGraphStart} />

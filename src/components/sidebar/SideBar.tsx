@@ -13,7 +13,6 @@ const SideBar = () => {
   const { firstName, lastName } = useSelector((state) => state.user);
   const { activeScreen } = useSelector((state) => state.screen);
   const { width: screenWidth } = useWindowSize();
-  console.log(screenWidth);
   const sideBar = {
     'Data Quality': [
       { title: 'Dashboard', icon: 'dashboard' },

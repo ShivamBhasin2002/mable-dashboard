@@ -9,7 +9,8 @@ import {
   statusSelector,
   totalEvents,
   totalAttributions,
-  STATUS_TYPE
+  STATUS_TYPE,
+  noOrdersMessage
 } from 'utility/constants/general';
 import { statusTypeColors } from 'utility/functions/colorSelector';
 
@@ -54,7 +55,7 @@ const OrderAnalysisTable = () => {
             </tr>
           </thead>
           <tbody className="last-of:rounded-b-[10px]">
-            {tableData &&
+            {tableData && tableData.length !== 0 ? (
               tableData
                 .filter(
                   ({ status }) => statusSelected === statusSelector.all || status === statusSelected
@@ -93,7 +94,19 @@ const OrderAnalysisTable = () => {
                       )}
                     </td>
                   </tr>
-                ))}
+                ))
+            ) : (
+              <tr>
+                <td colSpan={9}>
+                  <div className="h-[150px] rounded-b-[10px] bg-tableStrips/50 flex items-center justify-center gap-6">
+                    <Icon icon="noOrders" className="text-6xl text-dark/25 inline-block" />
+                    <span className="font-montserrat font-bold text-4xl text-dark/25">
+                      {noOrdersMessage}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

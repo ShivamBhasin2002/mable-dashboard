@@ -24,7 +24,6 @@ const EmailChange = () => {
     if (status === STATUS_TYPE.SUCCESS) {
       toast({ title: `${message}`, status: 'success', isClosable: true, position: 'top-right' });
       dispatch(updateUserEmailState(emailId));
-      console.log('yahhaa');
     }
   }, [status]);
 

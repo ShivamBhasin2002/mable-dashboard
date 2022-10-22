@@ -76,7 +76,10 @@ const DataQualityLineChart = ({
             },
             x: {
               ticks: {
-                font: { family: fonts.text }
+                font: { family: fonts.text },
+                autoSkip: true,
+                maxTicksLimit: 10,
+                maxRotation: 0
               },
               grid: {
                 display: false,

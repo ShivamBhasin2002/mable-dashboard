@@ -70,3 +70,7 @@ export enum DatePickerPresets {
 export const totalEvents = 3;
 
 export const totalAttributions = 12;
+
+export const noWarningsMessage = 'No warnings yet';
+
+export const noOrdersMessage = 'No orders yet';

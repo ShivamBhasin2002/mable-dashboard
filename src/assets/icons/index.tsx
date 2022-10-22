@@ -7,7 +7,7 @@ import { FaRegCopyright } from 'react-icons/fa';
 import { AiOutlineBell, AiFillCaretDown, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { BsBarChartLine } from 'react-icons/bs';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
-import { TbReportMoney } from 'react-icons/tb';
+import { TbReportMoney, TbMoodSmile, TbPackageOff } from 'react-icons/tb';
 import { BiRefresh, BiError } from 'react-icons/bi';
 
 import Dashboard from 'assets/icons/DashboardIcon';
@@ -151,6 +151,12 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
 
     case 'errorTriangular':
       return <BiError className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'noWarnings':
+      return <TbMoodSmile className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'noOrders':
+      return <TbPackageOff className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
   }
   return null;
 };

@@ -37,7 +37,10 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
           ticks: {
             font: {
               family: fonts.text
-            }
+            },
+            autoSkip: true,
+            maxTicksLimit: 10,
+            maxRotation: 0
           },
           grid: {
             display: false,
