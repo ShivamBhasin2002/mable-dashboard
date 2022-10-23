@@ -11,3 +11,7 @@ export const avgLoadingTime = 'Avg Loading Time';
 export const mableScripts = 'Mable Script';
 
 export const pageShareSpeed = 'Page Share Speed';
+
+export const totalEvents = 'Total Events';
+
+export const avgDeliveryTime = 'AVG. Delivery Time';
