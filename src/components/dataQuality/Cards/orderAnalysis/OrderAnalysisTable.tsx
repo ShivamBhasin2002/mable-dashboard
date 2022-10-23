@@ -5,13 +5,9 @@ import moment from 'moment';
 import { ComponentWrapper } from 'components/common';
 import StatusSelectorMenu from 'components/dataQuality/General/StatusSelecterMenu';
 
-import {
-  statusSelector,
-  totalEvents,
-  totalAttributions,
-  STATUS_TYPE,
-  noOrdersMessage
-} from 'utility/constants/general';
+import { statusSelector, STATUS_TYPE } from 'utility/constants/enums';
+import { totalEvents, totalAttributions } from 'utility/constants/numbers';
+import { noOrdersMessage } from 'utility/constants/strings';
 import { statusTypeColors } from 'utility/functions/colorSelector';
 
 import { useSelector, useDispatch } from 'redux/store';

@@ -4,7 +4,7 @@ import { ComponentWrapper } from 'components/common';
 import { SelectorMenu } from 'components/dataQuality/Common';
 import { EventsPerDayLineChart } from 'components/dataQuality/Graphs';
 
-import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { eventsDataAsync, setEventSelected } from 'redux/reducers/dataQuality/eventsDataSlice';

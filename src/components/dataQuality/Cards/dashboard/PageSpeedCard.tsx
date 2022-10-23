@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { ComponentWrapper } from 'components/common';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { pageSpeedAsync } from 'redux/reducers/dataQuality/pageSpeedSlice';

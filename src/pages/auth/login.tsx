@@ -9,7 +9,7 @@ import { TextField, CheckBox } from 'components/form';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { loginAsync, clearState } from 'redux/reducers/authSlice';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 const Login = () => {
   const disable = true;

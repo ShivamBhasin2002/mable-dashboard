@@ -1,4 +1,4 @@
-import { totalEvents, totalAttributions } from 'utility/constants/general';
+import { totalEvents, totalAttributions } from 'utility/constants/numbers';
 
 import { useSelector } from 'redux/store';
 

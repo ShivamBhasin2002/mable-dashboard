@@ -2,7 +2,7 @@ import { ComponentWrapper } from 'components/common';
 import Icon from 'assets/icons';
 
 import { useSelector } from 'redux/store';
-import { noWarningsMessage } from 'utility/constants/general';
+import { noWarningsMessage } from 'utility/constants/strings';
 
 const WarningCenterCard = () => {
   const { active, status } = useSelector((state) => state.warnings);

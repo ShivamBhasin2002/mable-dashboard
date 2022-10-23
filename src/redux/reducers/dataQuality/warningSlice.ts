@@ -4,7 +4,7 @@ import axios from 'axios';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { warningInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 // eslint-disable-next-line
 export const warningAsync = createAsyncThunk<any, void, thunkOptions>(

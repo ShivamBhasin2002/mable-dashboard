@@ -3,7 +3,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
-import { dataEventLabels } from 'utility/constants/general';
+import { dataEventLabels } from 'utility/constants/enums';
 
 const DataPerEventDoughnutChart = () => {
   const data = useSelector((state) => state.dataPerEvent.dataContainedPerEventDoughnutChart);

@@ -21,7 +21,6 @@ const QualityCombined = () => {
       ]
     },
     doughnutOptions = {
-      maintainAspectRatio: false,
       elements: {
         arc: {
           borderWidth: 1,
@@ -67,7 +66,7 @@ const QualityCombined = () => {
       </div>
       <div className="flex flex-col">
         <span className="text-[14px] font-lato text-light font-bold">Quality Combined</span>
-        <span className="text-[26px] font-montserrat font-bold text-primary h-[34px]">
+        <span className="text-[26px] font-montserrat font-bold text-primary">
           {getMessage(TOTAL_DATA_QUALITY_FACEBOOK)}
         </span>
       </div>

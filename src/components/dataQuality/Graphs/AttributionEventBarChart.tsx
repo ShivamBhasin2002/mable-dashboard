@@ -3,7 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
-import { totalAttributions } from 'utility/constants/general';
+import { totalAttributions } from 'utility/constants/numbers';
 import fonts from 'utility/fonts';
 import { AttributionEventBarChartProps } from 'utility/typeDefinitions/componentPropTypes';
 

@@ -8,7 +8,7 @@ import {
 } from 'components/dataQuality/Graphs';
 import { SelectorMenu } from 'components/dataQuality/Common';
 import { ParameterMetrics } from 'components/dataQuality/General';
-import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataQuality/dataPerEventSlice';
@@ -23,8 +23,6 @@ const DataContainedPerEventCard = () => {
   return (
     <ComponentWrapper
       title="Data Contained Per Event"
-      width={560}
-      height={335}
       status={status}
       nextComponent={
         <div className="flex-grow px-4 flex justify-between gap-4">

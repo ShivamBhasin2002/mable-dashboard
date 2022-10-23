@@ -1,4 +1,4 @@
-import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/enums';
 
 export type IconType = {
   id?: string;
@@ -66,12 +66,6 @@ export type StatisticPropTypes = { value?: string | number; message?: string };
 export type AttributionEventBarChartProps = {
   width?: number;
   height?: number;
-};
-
-export type DataQualityLineChartProps = {
-  width?: number;
-  height?: number;
-  color?: string;
 };
 
 export type csv = {

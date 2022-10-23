@@ -6,7 +6,7 @@ import {
   passwordUpdateInitialState,
   userNameUpdateInitialState
 } from 'utility/constants/initialStates';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 export const updateUsername = createAsyncThunk<
   { message: string },

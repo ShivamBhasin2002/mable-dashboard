@@ -11,7 +11,7 @@ import { getEventDisplayName } from 'utility/functions/mappingFunctions';
 import { createGradient } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 const EventsDataBarChart = () => {
   const dispatch = useDispatch();

@@ -11,7 +11,7 @@ import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
 import { shopAsync } from 'redux/reducers/shopSlice';
 
 import { LayoutProps } from 'utility/typeDefinitions/componentPropTypes';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();

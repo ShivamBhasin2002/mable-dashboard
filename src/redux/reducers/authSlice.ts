@@ -4,7 +4,7 @@ import axios from 'axios';
 import { thunkOptions, userStateType } from 'utility/typeDefinitions/reduxTypes';
 import { userInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 export const loginAsync = createAsyncThunk<
   { token: string; email: string },

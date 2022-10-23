@@ -13,9 +13,9 @@ import {
   warningStateType,
   AccountUpdateType
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUS_TYPE, screenType, statusSelector, DatePickerPresets } from './general';
+import { STATUS_TYPE, screenType, statusSelector, DatePickerPresets } from './enums';
 import moment from 'moment';
-import { eventSelectedType } from './general';
+import { eventSelectedType } from './enums';
 
 export const userInitialState: userStateType = {
   email: undefined,

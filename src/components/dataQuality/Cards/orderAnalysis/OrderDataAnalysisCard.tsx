@@ -5,7 +5,7 @@ import { DataQualityLineChart } from 'components/dataQuality/Graphs';
 import { QualityCombined, Statistics } from 'components/dataQuality/General';
 
 import colors from 'utility/colors';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataQualityAsync } from 'redux/reducers/dataQuality/dataQualitySlice';
@@ -33,7 +33,7 @@ const OrderDataAnalysisCard = () => {
       <div className="flex flex-row flex-wrap xl:flex-nowrap gap-[40px] justify-evenly">
         <QualityCombined />
         <div className="flex-grow">
-          <DataQualityLineChart height={140} color={colors.lineGraphStart} />
+          <DataQualityLineChart color={colors.lineGraphStart} />
         </div>
         <div className="flex flex-row gap-[20px]">
           <Statistics value={numberReducer(TOTAL_SHOPIFY_ORDERS)} message="Shopify Orders" />

@@ -1,4 +1,5 @@
 import { useSelector } from 'redux/store';
+import { receivedByFacebook, shopifyOrders } from 'utility/constants/strings';
 import { numberReducer } from 'utility/functions/formattingFunctions';
 
 const OrderComposition = () => {
@@ -11,14 +12,14 @@ const OrderComposition = () => {
         <div className=" text-[28px] leading-[34px] font-lato text-center text-light">
           {numberReducer(FACEBOOK_SUCCESS_DELIVERED_ORDERS)}
         </div>
-        <div className="text-primary text-center text-[13px]">Received by FB</div>
+        <div className="text-primary text-center text-[13px]">{receivedByFacebook}</div>
       </span>
       <span className="w-[2px] h-[45%] bg-lines rotate-12" />
       <span>
         <div className=" text-[28px] leading-[34px] font-lato text-center text-light">
           {numberReducer(TOTAL_SHOPIFY_ORDERS)}
         </div>
-        <div className="text-primary text-center text-[13px]">Shopify Orders</div>
+        <div className="text-primary text-center text-[13px]">{shopifyOrders}</div>
       </span>
     </div>
   );

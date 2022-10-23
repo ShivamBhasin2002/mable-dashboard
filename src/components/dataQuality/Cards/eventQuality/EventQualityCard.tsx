@@ -6,7 +6,7 @@ import { AttributionEventBarChart } from 'components/dataQuality/Graphs';
 import { ParameterMetrics } from 'components/dataQuality/General';
 import { SelectorMenu } from 'components/dataQuality/Common';
 
-import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataQuality/dataPerEventSlice';
