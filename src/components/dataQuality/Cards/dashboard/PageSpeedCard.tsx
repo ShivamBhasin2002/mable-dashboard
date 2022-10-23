@@ -6,6 +6,7 @@ import { STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { pageSpeedAsync } from 'redux/reducers/dataQuality/pageSpeedSlice';
+import { avgLoadingTime, mableScripts, pageShareSpeed } from 'utility/constants/strings';
 
 const PageSpeedCard = () => {
   const dispatch = useDispatch();
@@ -27,21 +28,23 @@ const PageSpeedCard = () => {
             {avg_loading_time_page}
             <span className="text-[20px]">s</span>
           </div>
-          <div className="text-primary text-center text-[14px]">Avg Loading Time</div>
+          <div className="text-primary text-center text-[14px]">{avgLoadingTime}</div>
         </div>
         <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
             {avg_loading_time_mable_script}
             <span className="text-[20px]">s</span>
           </div>
-          <div className="text-primary text-center text-[14px]">Avg Loading Time Mable Script</div>
+          <div className="text-primary text-center text-[14px] ">
+            {avgLoadingTime} <br /> {mableScripts}
+          </div>
         </div>
         <div className="min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
             {avg_contribution_time_mable_script}
             <span className="text-[20px]">%</span>
           </div>
-          <div className="text-primary text-center text-[14px]">Page Speed Share</div>
+          <div className="text-primary text-center text-[14px]">{pageShareSpeed}</div>
         </div>
       </div>
     </ComponentWrapper>

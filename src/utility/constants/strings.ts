@@ -5,3 +5,9 @@ export const noOrdersMessage = 'No orders yet';
 export const receivedByFacebook = 'Received by FB';
 
 export const shopifyOrders = 'Shopify Orders';
+
+export const avgLoadingTime = 'Avg Loading Time';
+
+export const mableScripts = 'Mable Script';
+
+export const pageShareSpeed = 'Page Share Speed';
