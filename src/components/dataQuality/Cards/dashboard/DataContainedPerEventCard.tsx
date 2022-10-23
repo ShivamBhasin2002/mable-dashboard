@@ -36,11 +36,11 @@ const DataContainedPerEventCard = () => {
       }
     >
       <div className="flex flex-row flex-wrap justify-center gap-[20px]">
-        <div className="flex-grow">
+        <div className="flex-grow min-h-[200px]">
           <AttributionEventBarChart height={80} />
         </div>
-        <div className="flex flex-col w-[350]">
-          <div className="flex gap-[20px]">
+        <div className=" flex-grow xl:flex-grow-0 flex flex-row-reverse xl:flex-col w-[350] justify-evenly">
+          <div className="flex flex-col xl:flex-row xl:gap-[20px]">
             <div className="w-[170px] ">
               <DataPerEventDoughnutChart />
             </div>

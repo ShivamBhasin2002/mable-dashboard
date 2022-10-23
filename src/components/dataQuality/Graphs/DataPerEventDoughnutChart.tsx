@@ -35,7 +35,6 @@ const DataPerEventDoughnutChart = () => {
       ]
     },
     doughnutOptions = {
-      maintainAspectRatio: false,
       elements: {
         arc: {
           borderWidth: 1,
