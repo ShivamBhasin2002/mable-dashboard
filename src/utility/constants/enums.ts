@@ -25,8 +25,17 @@ export enum screenType {
   orderAnalysis = 'Order Analysis',
   eventQuality = 'Event Quality',
   analytics = 'Reports',
-  settings = 'Account Settings',
-  tutorial = 'Tutorial'
+  settings = 'Account Settings'
+}
+
+export enum routes {
+  login = '/auth/login',
+  register = '/auth/register',
+  dashboard = '/data_quality/dashboard',
+  orderAnalysis = '/data_quality/order_analysis',
+  eventQuality = '/data_quality/event_quality',
+  analytics = '/analytics/reports',
+  settings = '/settings'
 }
 
 export enum filterType {

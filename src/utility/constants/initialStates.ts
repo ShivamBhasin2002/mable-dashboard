@@ -13,7 +13,7 @@ import {
   warningStateType,
   AccountUpdateType
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUS_TYPE, screenType, statusSelector, DatePickerPresets } from './enums';
+import { STATUS_TYPE, statusSelector, DatePickerPresets, screenType } from './enums';
 import moment from 'moment';
 import { eventSelectedType } from './enums';
 

@@ -166,19 +166,21 @@ export type screenStateType = {
   activeScreen: screenType;
 };
 
+export type order = {
+  order_id: number | null;
+  created_at: Moment | null;
+  customer_name: string;
+  total_conversion_value: number | null;
+  destination_conversion_value: number | null;
+  status: string;
+  delivery_time_difference: number | null;
+  event_params_present: number | null;
+  attribution_params_present: number | null;
+};
+
 export type orderAnalysisStateType = {
   statusSelected: statusSelector;
-  tableData: {
-    order_id: number | null;
-    created_at: Moment | null;
-    customer_name: string;
-    total_conversion_value: number | null;
-    destination_conversion_value: number | null;
-    status: string;
-    delivery_time_difference: number | null;
-    event_params_present: number | null;
-    attribution_params_present: number | null;
-  }[];
+  tableData: order[];
   status: STATUS_TYPE;
   errorMsg: string | undefined;
 };

@@ -11,7 +11,7 @@ import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
 import { shopAsync } from 'redux/reducers/shopSlice';
 
 import { LayoutProps } from 'utility/typeDefinitions/componentPropTypes';
-import { STATUS_TYPE } from 'utility/constants/enums';
+import { routes, STATUS_TYPE } from 'utility/constants/enums';
 
 const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
@@ -30,7 +30,7 @@ const Layout = ({ children }: LayoutProps) => {
     if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
       toast({ title: 'Login Required', status: 'error', isClosable: true, position: 'top-right' });
-      navigator('/auth/login');
+      navigator(routes.login);
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(shopAsync());
@@ -52,16 +52,16 @@ const Layout = ({ children }: LayoutProps) => {
   }, [shopStatus, status]);
 
   return shopStatus === STATUS_TYPE.FETCHING || shopStatus === STATUS_TYPE.IDLE ? (
-    <Loading className="h-screen" />
+    <Loading className="h-screen w-screen" />
   ) : (
-    <div className="bg-background flex">
+    <div className="bg-background flex max-w-screen min-h-screen">
       <SideBar />
       <div className="flex-grow p-[30px]">
         <DashboardHeader />
         {status === 'success' ? (
           children
         ) : (
-          <div className="w-full h-min-screen">
+          <div className="w-full min-h-screen">
             <Loading message="Fetching Shops" className="h-screen" />
           </div>
         )}

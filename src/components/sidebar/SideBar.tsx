@@ -29,7 +29,7 @@ const SideBar = () => {
   return (
     <aside
       id="side-bar"
-      className="sticky top-0 -bottom-0 left-0 w-[70px] lg:w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] flex flex-col gap-[25px] lg:gap-[70px] pr-[5px] lg:px-[30px]"
+      className="sticky top-0 left-0 w-[70px] lg:w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] flex flex-col gap-[25px] lg:gap-[70px] pr-[5px] lg:px-[30px]"
     >
       <header className="flex justify-center">
         <Icon
