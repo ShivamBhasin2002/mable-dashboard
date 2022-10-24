@@ -14,7 +14,7 @@ const OrderDetails = ({ data, idx }: { idx: number; data: order }) => {
     );
     return (
       <tr
-        className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
+        className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:whitespace-nowrap [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
           !(idx & 1) && 'bg-tableStrips/[0.5]'
         }`}
       >

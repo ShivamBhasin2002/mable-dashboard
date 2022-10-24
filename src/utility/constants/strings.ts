@@ -19,3 +19,5 @@ export const avgDeliveryTimeLabel = 'AVG. Delivery Time';
 export const attributionParameterLabel = 'Attribution Parameters';
 
 export const eventParametersLabel = 'Event Parameters';
+
+export const defaultLocale = 'en-US';
