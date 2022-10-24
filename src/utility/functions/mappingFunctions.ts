@@ -112,15 +112,15 @@ export const updateEvents = (state: AnalyticsStateType, payload: string) => {
 export const screenToURL = (screen: screenType): string | undefined => {
   switch (screen) {
     case screenType.dashboard:
-      return 'data_quality/dashboard';
+      return '/data_quality/dashboard';
     case screenType.orderAnalysis:
-      return 'data_quality/order_analysis';
+      return '/data_quality/order_analysis';
     case screenType.eventQuality:
-      return 'data_quality/event_quality';
+      return '/data_quality/event_quality';
     case screenType.analytics:
-      return 'analytics/reports';
+      return '/analytics/reports';
     case screenType.settings:
-      return 'settings';
+      return '/settings';
   }
 };
 

@@ -4,7 +4,7 @@ import { SideBarItemProps } from 'utility/typeDefinitions/componentPropTypes';
 const SideBarItem = ({ icon, title, clickHandle, isActive }: SideBarItemProps) => {
   return (
     <div
-      className={`w-[65px] lg:w-[228px] flex flex-row ${
+      className={`w-[65px] lg:w-[218px] flex flex-row ${
         isActive ? 'text-light bg-primary/[0.1] font-bold ' : 'text-secondary font-medium'
       } h-[50px] rounded-r-[10px] lg:rounded-[10px] cursor-pointer text-[14px] font-montserrat justify-center lg:justify-start items-center lg:items-start`}
       onClick={clickHandle}
