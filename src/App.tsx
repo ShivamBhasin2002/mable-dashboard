@@ -64,14 +64,6 @@ const App = () => {
           }
         />
         <Route
-          path="/data_quality/order_analysis"
-          element={
-            <Layout>
-              <OrderAnalysis />
-            </Layout>
-          }
-        />
-        <Route
           path="/analytics/reports"
           element={
             <Layout>

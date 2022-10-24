@@ -1,9 +1,5 @@
 import { useEffect, useRef } from 'react';
 import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -13,20 +9,18 @@ import {
 import moment from 'moment';
 
 import Icon from 'assets/icons';
-import colors from 'utility/colors';
 
 import DatePicker from 'components/common/DatePicker';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { setShop } from 'redux/reducers/shopSlice';
 import { refresh } from 'redux/reducers/datesSlice';
 import { showDatePicker, showReload } from 'utility/functions/helper';
+import ShopPicker from './ShopPicker';
 
 const DashboardHeader = () => {
   const datePickerRef = useRef<any>(); //eslint-disable-line
   const dispatch = useDispatch();
   const { dateRange, datePreset } = useSelector((state) => state.dates);
-  const { active, shops } = useSelector((state) => state.shop);
   const { activeScreen } = useSelector((state) => state.screen);
   const { onClose, onOpen, isOpen } = useDisclosure();
   useOutsideClick({ ref: datePickerRef, handler: onClose });
@@ -53,46 +47,17 @@ const DashboardHeader = () => {
   return (
     <header>
       <div className="flex flex-row-reverse mb-3">
-        <Menu isLazy>
-          <MenuButton>
-            <div className="p-[20px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[55px] w-min rounded-xl flex flex-row items-center justify-evenly text-light gap-3 whitespace-nowrap">
-              <span className="h-[10px] w-[10px] bg-success rounded-full" />
-              {active?.displayName}
-              <Icon icon="dropdown" />
-            </div>
-          </MenuButton>
-          {shops && shops?.length > 1 && (
-            <MenuList background={colors.bgContainerTo} textColor={colors.light} border="none">
-              {shops
-                ?.filter((thisShop) => {
-                  if (thisShop.id !== active?.id) return thisShop;
-                })
-                .map((shop) => (
-                  <MenuItem
-                    key={shop.id}
-                    _hover={{ background: colors.bgContainerFrom }}
-                    _active={{ background: colors.bgContainerFrom }}
-                    _focus={{ background: colors.bgContainerFrom }}
-                    onClick={() => {
-                      dispatch(setShop(shop));
-                    }}
-                  >
-                    {shop.displayName}
-                  </MenuItem>
-                ))}
-            </MenuList>
-          )}
-        </Menu>
+        <ShopPicker />
       </div>
-      <div className="flex justify-between items-center h-[45px]">
-        <h1 className="text-bgPrimary-dark text-[42px] text-light font-montserrat font-bold relative top-[-16px]">
+      <div className="flex justify-between items-center h-[40px]">
+        <h1 className=" text-[20px] lg:text-[28px] text-light font-montserrat font-bold">
           {activeScreen}
         </h1>
         <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
           {showReload(activeScreen) && (
             <span
               id="refreshBtn"
-              className="text-primary w-[60px] h-[45px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
+              className="text-primary w-[60px] h-[40px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
               onClick={() => {
                 dispatch(refresh(false));
               }}
@@ -100,7 +65,6 @@ const DashboardHeader = () => {
               <Icon id="refreshIcon" icon="refresh" />
             </span>
           )}
-
           {showDatePicker(activeScreen) && (
             <Popover
               gutter={10}
@@ -112,7 +76,7 @@ const DashboardHeader = () => {
               onOpen={onOpen}
             >
               <PopoverTrigger>
-                <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-max px-[20px] rounded-[10px] flex flex-row gap-[10px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer whitespace-nowrap">
+                <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[40px] w-max px-[20px] rounded-[10px] flex flex-row gap-[10px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer whitespace-nowrap">
                   {datePreset && <span className="text-primary w-min">{datePreset}: </span>}
                   {dateRange[0] && moment(dateRange[0]).format('DD.MM.YY')} to{' '}
                   {dateRange[1] && moment(dateRange[1]).format('DD.MM.YY')}

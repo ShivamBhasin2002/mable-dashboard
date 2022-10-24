@@ -1,5 +1,5 @@
 import moment, { Moment } from 'moment';
-import { screenType } from 'utility/constants/general';
+import { screenType } from 'utility/constants/enums';
 
 export const containsToday = (dateRange: Moment[]): boolean => {
   return moment().isBetween(

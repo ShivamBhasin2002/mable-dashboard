@@ -8,10 +8,10 @@ import {
 } from 'components/dataQuality/Graphs';
 import { SelectorMenu } from 'components/dataQuality/Common';
 import { ParameterMetrics } from 'components/dataQuality/General';
-import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataPerEventSlice';
+import { dataPerEventAsync, setEventSelected } from 'redux/reducers/dataQuality/dataPerEventSlice';
 
 const DataContainedPerEventCard = () => {
   const dispatch = useDispatch();
@@ -23,8 +23,6 @@ const DataContainedPerEventCard = () => {
   return (
     <ComponentWrapper
       title="Data Contained Per Event"
-      width={560}
-      height={335}
       status={status}
       nextComponent={
         <div className="flex-grow px-4 flex justify-between gap-4">
@@ -38,11 +36,11 @@ const DataContainedPerEventCard = () => {
       }
     >
       <div className="flex flex-row flex-wrap justify-center gap-[20px]">
-        <div className="flex-grow">
+        <div className="flex-grow min-h-[200px]">
           <AttributionEventBarChart height={80} />
         </div>
-        <div className="flex flex-col w-[350]">
-          <div className="flex gap-[20px]">
+        <div className=" flex-grow xl:flex-grow-0 flex flex-row-reverse xl:flex-col w-[350] justify-evenly">
+          <div className="flex flex-col xl:flex-row xl:gap-[20px]">
             <div className="w-[170px] ">
               <DataPerEventDoughnutChart />
             </div>

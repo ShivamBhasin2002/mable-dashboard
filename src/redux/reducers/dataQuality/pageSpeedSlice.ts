@@ -3,7 +3,7 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { pageSpeedInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 import moment from 'moment';
 import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 

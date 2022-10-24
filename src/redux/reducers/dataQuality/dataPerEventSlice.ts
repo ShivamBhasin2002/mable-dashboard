@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataPerEventsInitialState } from 'utility/constants/initialStates';
 
-import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, STATUS_TYPE } from 'utility/constants/enums';
 import { titleCaseToSnakeCaseFormatter } from 'utility/functions/formattingFunctions';
 import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 import moment from 'moment';

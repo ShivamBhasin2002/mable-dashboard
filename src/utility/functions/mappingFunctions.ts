@@ -5,7 +5,7 @@ import {
   eventSelectedType,
   screenType,
   statusSelector
-} from 'utility/constants/general';
+} from 'utility/constants/enums';
 
 import { AnalyticsStateType } from 'utility/typeDefinitions/reduxTypes';
 

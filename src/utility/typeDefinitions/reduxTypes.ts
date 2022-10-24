@@ -6,7 +6,7 @@ import {
   screenType,
   eventSelectedType,
   statusSelector
-} from 'utility/constants/general';
+} from 'utility/constants/enums';
 
 export type thunkOptions = {
   dispatch: AppDispatch;

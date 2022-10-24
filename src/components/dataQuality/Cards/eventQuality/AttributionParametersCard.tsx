@@ -3,7 +3,7 @@ import { ComponentWrapper } from 'components/common';
 import { ParameterStat } from 'components/dataQuality/General';
 
 import { useSelector } from 'redux/store';
-import { eventSelectedType } from 'utility/constants/general';
+import { eventSelectedType } from 'utility/constants/enums';
 
 const AttributionParametersCard = () => {
   const { AttributionParameters, status, eventSelected } = useSelector(

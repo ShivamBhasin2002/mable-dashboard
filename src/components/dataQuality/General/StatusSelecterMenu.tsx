@@ -4,8 +4,8 @@ import colors from 'utility/colors';
 import Icon from 'assets/icons';
 
 import { useDispatch, useSelector } from 'redux/store';
-import { statusSelector } from 'utility/constants/general';
-import { setStatusSelected } from 'redux/reducers/orderAnalysisSlice';
+import { statusSelector } from 'utility/constants/enums';
+import { setStatusSelected } from 'redux/reducers/dataQuality/orderAnalysisSlice';
 
 const StatusSelectorMenu = () => {
   const dispatch = useDispatch();

@@ -5,30 +5,33 @@ import moment from 'moment';
 import { ComponentWrapper } from 'components/common';
 import StatusSelectorMenu from 'components/dataQuality/General/StatusSelecterMenu';
 
-import {
-  statusSelector,
-  totalEvents,
-  totalAttributions,
-  STATUS_TYPE
-} from 'utility/constants/general';
+import { statusSelector, STATUS_TYPE } from 'utility/constants/enums';
+import { totalEvents, totalAttributions } from 'utility/constants/numbers';
+import { noOrdersMessage } from 'utility/constants/strings';
 import { statusTypeColors } from 'utility/functions/colorSelector';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { orderAnalysisAsync } from 'redux/reducers/orderAnalysisSlice';
+import { orderAnalysisAsync } from 'redux/reducers/dataQuality/orderAnalysisSlice';
 import { getOrderAnalysisTableIcon } from 'utility/functions/mappingFunctions';
+import { useWindowSize } from 'utility/customHooks';
 
 const OrderAnalysisTable = () => {
   const dispatch = useDispatch();
   const { tableData, status, statusSelected } = useSelector((state) => state.orderAnalysis);
   const refresh = useSelector((state) => state.dates.refresh);
+  const { width: screenWidth } = useWindowSize();
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(orderAnalysisAsync());
   }, [refresh]);
   return (
-    <ComponentWrapper className="text-light flex-grow-0 min-h-[40px]" status={status}>
+    <ComponentWrapper
+      className="text-light min-h-[40px] !overflow-scroll hide_scrollbar"
+      width={screenWidth ? (screenWidth >= 1022 ? screenWidth - 340 : screenWidth - 360) : 340}
+      status={status}
+    >
       <StatusSelectorMenu />
-      <div className="overflow-hidden">
-        <table className="w-full table-auto my-[10px] overflow-scroll">
+      <div className="flex-grow">
+        <table className="table-auto my-[10px] w-full">
           <thead>
             <tr className="[&>*]:py-[20px] [&>*]:font-montserrat [&>*]:font-bold [&>*]:text-[20px]">
               <td>Shopify</td>
@@ -41,7 +44,7 @@ const OrderAnalysisTable = () => {
               <td></td>
               <td></td>
             </tr>
-            <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
+            <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]2xl:whitespace-nowrap">
               <td className="bg-primary rounded-tl-[10px]">Order</td>
               <td className="bg-primary">Date</td>
               <td className="bg-primary">Customer</td>
@@ -54,7 +57,7 @@ const OrderAnalysisTable = () => {
             </tr>
           </thead>
           <tbody className="last-of:rounded-b-[10px]">
-            {tableData &&
+            {tableData && tableData.length !== 0 ? (
               tableData
                 .filter(
                   ({ status }) => statusSelected === statusSelector.all || status === statusSelected
@@ -81,7 +84,7 @@ const OrderAnalysisTable = () => {
                     <td>
                       {data.status ? (
                         <span
-                          className={`px-[20px] py-[5px] w-max ${statusTypeColors(
+                          className={`px-[20px] py-[5px] ${statusTypeColors(
                             data.status
                           )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
                         >
@@ -93,7 +96,19 @@ const OrderAnalysisTable = () => {
                       )}
                     </td>
                   </tr>
-                ))}
+                ))
+            ) : (
+              <tr>
+                <td colSpan={9}>
+                  <div className="h-[150px] rounded-b-[10px] bg-tableStrips/50 flex items-center justify-center gap-6">
+                    <Icon icon="noOrders" className="text-6xl text-dark/25 inline-block" />
+                    <span className="font-montserrat font-bold text-4xl text-dark/25">
+                      {noOrdersMessage}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

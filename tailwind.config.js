@@ -3,6 +3,14 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    screens: {
+      sm: '638px',
+      md: '766px',
+      lg: '1022px',
+      xl: '1278px',
+      '2xl': '1534px',
+      hd: '1918px'
+    },
     extend: {
       fontFamily: {
         montserrat: 'Montserrat',

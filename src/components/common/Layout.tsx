@@ -11,7 +11,7 @@ import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
 import { shopAsync } from 'redux/reducers/shopSlice';
 
 import { LayoutProps } from 'utility/typeDefinitions/componentPropTypes';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
@@ -54,10 +54,8 @@ const Layout = ({ children }: LayoutProps) => {
   return shopStatus === STATUS_TYPE.FETCHING || shopStatus === STATUS_TYPE.IDLE ? (
     <Loading className="h-screen" />
   ) : (
-    <div className="bg-background flex justify-around">
-      <div className="">
-        <SideBar />
-      </div>
+    <div className="bg-background flex">
+      <SideBar />
       <div className="flex-grow p-[30px]">
         <DashboardHeader />
         {status === 'success' ? (
