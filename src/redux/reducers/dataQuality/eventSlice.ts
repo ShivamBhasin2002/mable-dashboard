@@ -40,6 +40,7 @@ export const eventsReducer = createReducer(eventsInitialState, (builder) => {
     })
     .addCase(eventsAsync.fulfilled, (state, { payload }) => {
       state.avgTimeDifference = payload?.avg_time_diff;
+      state.correctCvOrders = payload?.correct_cv_orders;
       state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(eventsAsync.rejected, (state) => {

@@ -99,13 +99,13 @@ export type dataQualityStateType = {
   TOTAL_SHOPIFY_ORDERS: number;
   FACEBOOK_SUCCESS_DELIVERED_ORDERS: number;
   DATA_QUALITY_BY_DATE: { date: string; data_quality: number }[];
-  ordersWithCorrectCV: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
 export type eventsStateType = {
   avgTimeDifference: number;
+  correctCvOrders: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
