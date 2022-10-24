@@ -33,7 +33,7 @@ const Register = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({
-        title: 'Registrations Successful. Please check your mail.',
+        title: 'Registrations Successful. Please check your email.',
         status: 'success',
         isClosable: true,
         position: 'top-right'

@@ -6,6 +6,7 @@ import { analyticsAsync } from 'redux/reducers/analytics/reportsSlice';
 import { filterType } from 'utility/constants/enums';
 import { SelectedEventsType } from 'utility/typeDefinitions/reduxTypes';
 import Icon from 'assets/icons';
+import { defaultLocale } from 'utility/constants/strings';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
@@ -61,19 +62,19 @@ const AnalyticsTable = () => {
                 {dateRange[0].format('YYYY-MM-DD')} to {dateRange[1].format('YYYY-MM-DD')}
               </td>
               {selectedEvents.PageView ? (
-                <td>{totalEvents.page_view.toLocaleString('en-US')}</td>
+                <td>{totalEvents.page_view.toLocaleString(defaultLocale)}</td>
               ) : null}
               {selectedEvents.AddToCart ? (
-                <td>{totalEvents.add_to_cart.toLocaleString('en-US')}</td>
+                <td>{totalEvents.add_to_cart.toLocaleString(defaultLocale)}</td>
               ) : null}
               {selectedEvents.InitiateCheckout ? (
-                <td>{totalEvents.intitate_checkout.toLocaleString('en-US')}</td>
+                <td>{totalEvents.intitate_checkout.toLocaleString(defaultLocale)}</td>
               ) : null}
               {selectedEvents.AddPaymentInfo ? (
-                <td>{totalEvents.add_payment_info.toLocaleString('en-US')}</td>
+                <td>{totalEvents.add_payment_info.toLocaleString(defaultLocale)}</td>
               ) : null}
               {selectedEvents.Purchase ? (
-                <td>{totalEvents.purchase.toLocaleString('en-US')}</td>
+                <td>{totalEvents.purchase.toLocaleString(defaultLocale)}</td>
               ) : null}
             </tr>
             {Object.values(byDate)
@@ -92,19 +93,19 @@ const AnalyticsTable = () => {
                       {item.date}
                     </td>
                     {analyticData.selected_events.PageView ? (
-                      <td>{item.page_view.toLocaleString('en-US')}</td>
+                      <td>{item.page_view.toLocaleString(defaultLocale)}</td>
                     ) : null}
                     {analyticData.selected_events.AddToCart ? (
-                      <td>{item.add_to_cart.toLocaleString('en-US')}</td>
+                      <td>{item.add_to_cart.toLocaleString(defaultLocale)}</td>
                     ) : null}
                     {analyticData.selected_events.InitiateCheckout ? (
-                      <td>{item.intitate_checkout.toLocaleString('en-US')}</td>
+                      <td>{item.intitate_checkout.toLocaleString(defaultLocale)}</td>
                     ) : null}
                     {analyticData.selected_events.AddPaymentInfo ? (
-                      <td>{item.add_payment_info.toLocaleString('en-US')}</td>
+                      <td>{item.add_payment_info.toLocaleString(defaultLocale)}</td>
                     ) : null}
                     {analyticData.selected_events.Purchase ? (
-                      <td>{item.purchase.toLocaleString('en-US')}</td>
+                      <td>{item.purchase.toLocaleString(defaultLocale)}</td>
                     ) : null}
                   </tr>
                 );
