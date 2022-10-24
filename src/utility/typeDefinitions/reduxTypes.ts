@@ -170,14 +170,14 @@ export type orderAnalysisStateType = {
   statusSelected: statusSelector;
   tableData: {
     order_id: number | null;
-    date: Moment | null;
-    customer: string;
-    total_value: number | null;
-    conversion_value: number | null;
+    created_at: Moment | null;
+    customer_name: string;
+    total_conversion_value: number | null;
+    destination_conversion_value: number | null;
     status: string;
-    delivery_time: number | null;
-    evt_params_present: number | null;
-    attr_params_present: number | null;
+    delivery_time_difference: number | null;
+    event_params_present: number | null;
+    attribution_params_present: number | null;
   }[];
   status: STATUS_TYPE;
   errorMsg: string | undefined;

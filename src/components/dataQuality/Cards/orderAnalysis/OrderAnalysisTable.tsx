@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'redux/store';
 import { orderAnalysisAsync } from 'redux/reducers/dataQuality/orderAnalysisSlice';
 import { getOrderAnalysisTableIcon } from 'utility/functions/mappingFunctions';
 import { useWindowSize } from 'utility/customHooks';
+import { dateTimeReducer } from 'utility/functions/formattingFunctions';
 
 const OrderAnalysisTable = () => {
   const dispatch = useDispatch();
@@ -62,41 +63,52 @@ const OrderAnalysisTable = () => {
                 .filter(
                   ({ status }) => statusSelected === statusSelector.all || status === statusSelected
                 )
-                .map((data, idx) => (
-                  <tr
-                    key={data.order_id}
-                    className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
-                      !(idx & 1) && 'bg-tableStrips/[0.5]'
-                    }`}
-                  >
-                    <td>{data.order_id ?? '-'}</td>
-                    <td>{data.date ? moment(data.date).format('hh.mm - DD.MM.YY') : '-'}</td>
-                    <td>{data.customer ?? '-'}</td>
-                    <td>{data.total_value ?? '-'}</td>
-                    <td>{data.conversion_value ?? '-'}</td>
-                    <td>
-                      {data.evt_params_present ?? 0}/{totalEvents}
-                    </td>
-                    <td>
-                      {data.attr_params_present ?? 0}/{totalAttributions}
-                    </td>
-                    <td>{data.delivery_time ? `${data.delivery_time}s` : '-'}</td>
-                    <td>
-                      {data.status ? (
-                        <span
-                          className={`px-[20px] py-[5px] ${statusTypeColors(
-                            data.status
-                          )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
-                        >
-                          <Icon icon={getOrderAnalysisTableIcon(data.status)} />
-                          {data.status}
-                        </span>
-                      ) : (
-                        '-'
-                      )}
-                    </td>
-                  </tr>
-                ))
+                .map((data, idx) => {
+                  const deliveryTimeDifference = dateTimeReducer(
+                    data.delivery_time_difference ?? ''
+                  );
+                  return (
+                    <tr
+                      key={data.order_id}
+                      className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
+                        !(idx & 1) && 'bg-tableStrips/[0.5]'
+                      }`}
+                    >
+                      <td>{data.order_id ?? '-'}</td>
+                      <td>
+                        {data.created_at ? moment(data.created_at).format('hh.mm - DD.MM.YY') : '-'}
+                      </td>
+                      <td>{data.customer_name ?? '-'}</td>
+                      <td>{data.total_conversion_value ?? '-'}</td>
+                      <td>{data.destination_conversion_value ?? '-'}</td>
+                      <td>
+                        {data.event_params_present ?? 0}/{totalEvents}
+                      </td>
+                      <td>
+                        {data.attribution_params_present ?? 0}/{totalAttributions}
+                      </td>
+                      <td>
+                        {data.delivery_time_difference
+                          ? `${deliveryTimeDifference.value}${deliveryTimeDifference.unit}`
+                          : '-'}
+                      </td>
+                      <td>
+                        {data.status ? (
+                          <span
+                            className={`px-[20px] py-[5px] ${statusTypeColors(
+                              data.status
+                            )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
+                          >
+                            <Icon icon={getOrderAnalysisTableIcon(data.status)} />
+                            {data.status}
+                          </span>
+                        ) : (
+                          '-'
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })
             ) : (
               <tr>
                 <td colSpan={9}>
