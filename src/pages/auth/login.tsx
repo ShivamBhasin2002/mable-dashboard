@@ -9,7 +9,7 @@ import { TextField, CheckBox } from 'components/form';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { loginAsync, clearState } from 'redux/reducers/authSlice';
-import { STATUS_TYPE } from 'utility/constants/enums';
+import { routes, STATUS_TYPE } from 'utility/constants/enums';
 
 const Login = () => {
   const disable = true;
@@ -34,7 +34,7 @@ const Login = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(clearState());
-      navigator('/data_quality/dashboard');
+      navigator(routes.dashboard);
     }
   }, [status]);
   return (
@@ -111,7 +111,7 @@ const Login = () => {
             {disable ? (
               <div className=" text-zinc-400">Register Now!</div>
             ) : (
-              <Link className="text-light" to="/auth/register">
+              <Link className="text-light" to={routes.register}>
                 Register Now!
               </Link>
             )}

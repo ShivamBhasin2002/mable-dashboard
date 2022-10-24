@@ -13,7 +13,7 @@ import {
   warningStateType,
   AccountUpdateType
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUS_TYPE, screenType, statusSelector, DatePickerPresets } from './enums';
+import { STATUS_TYPE, statusSelector, DatePickerPresets, screenType } from './enums';
 import moment from 'moment';
 import { eventSelectedType } from './enums';
 
@@ -91,13 +91,13 @@ export const dataQualityInitialState: dataQualityStateType = {
   TOTAL_SHOPIFY_ORDERS: 0,
   FACEBOOK_SUCCESS_DELIVERED_ORDERS: 0,
   DATA_QUALITY_BY_DATE: [],
-  ordersWithCorrectCV: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const eventsInitialState: eventsStateType = {
   avgTimeDifference: 0,
+  correctCvOrders: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };

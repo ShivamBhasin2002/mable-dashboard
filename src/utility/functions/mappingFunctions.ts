@@ -3,6 +3,7 @@ import moment from 'moment';
 import {
   DatePickerPresets as presets,
   eventSelectedType,
+  routes,
   screenType,
   statusSelector
 } from 'utility/constants/enums';
@@ -109,18 +110,33 @@ export const updateEvents = (state: AnalyticsStateType, payload: string) => {
   }
 };
 
-export const screenToURL = (screen: screenType): string | undefined => {
+export const screenToURL = (screen: screenType): routes | undefined => {
   switch (screen) {
     case screenType.dashboard:
-      return '/data_quality/dashboard';
+      return routes.dashboard;
     case screenType.orderAnalysis:
-      return '/data_quality/order_analysis';
+      return routes.orderAnalysis;
     case screenType.eventQuality:
-      return '/data_quality/event_quality';
+      return routes.eventQuality;
     case screenType.analytics:
-      return '/analytics/reports';
+      return routes.analytics;
     case screenType.settings:
-      return '/settings';
+      return routes.settings;
+  }
+};
+
+export const URLtoScreen = (screen: string): screenType | undefined => {
+  switch (screen) {
+    case routes.dashboard:
+      return screenType.dashboard;
+    case routes.orderAnalysis:
+      return screenType.orderAnalysis;
+    case routes.eventQuality:
+      return screenType.eventQuality;
+    case routes.analytics:
+      return screenType.analytics;
+    case routes.settings:
+      return screenType.settings;
   }
 };
 

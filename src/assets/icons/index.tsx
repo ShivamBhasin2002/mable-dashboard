@@ -4,7 +4,14 @@ import { RiBarChart2Line, RiLock2Fill } from 'react-icons/ri';
 import { MdMail } from 'react-icons/md';
 import { FiTarget } from 'react-icons/fi';
 import { FaRegCopyright } from 'react-icons/fa';
-import { AiOutlineBell, AiFillCaretDown, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import {
+  AiOutlineBell,
+  AiFillCaretDown,
+  AiFillEye,
+  AiFillEyeInvisible,
+  AiFillCaretLeft,
+  AiFillCaretRight
+} from 'react-icons/ai';
 import { BsBarChartLine } from 'react-icons/bs';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { TbReportMoney, TbMoodSmile, TbPackageOff } from 'react-icons/tb';
@@ -157,6 +164,16 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
 
     case 'noOrders':
       return <TbPackageOff className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'left':
+      return (
+        <AiFillCaretLeft className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
+
+    case 'right':
+      return (
+        <AiFillCaretRight className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
   }
   return null;
 };

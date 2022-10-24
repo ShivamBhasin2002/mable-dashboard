@@ -9,7 +9,7 @@ import { TextField, CheckBox } from 'components/form';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { registerAsync, clearState } from 'redux/reducers/authSlice';
-import { STATUS_TYPE } from 'utility/constants/enums';
+import { routes, STATUS_TYPE } from 'utility/constants/enums';
 
 const Register = () => {
   const toast = useToast();
@@ -33,13 +33,13 @@ const Register = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({
-        title: 'Registrations Successfull. Please check your mail.',
+        title: 'Registrations Successful. Please check your mail.',
         status: 'success',
         isClosable: true,
         position: 'top-right'
       });
       dispatch(clearState());
-      navigator('/auth/login');
+      navigator(routes.login);
     }
   }, [status]);
   return (

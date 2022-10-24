@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 import Login from 'pages/auth/login';
@@ -11,8 +11,15 @@ import Layout from 'components/common/Layout';
 
 import colors from 'utility/colors';
 import Settings from 'pages/settings/settings';
+import { useEffect } from 'react';
+import { setScreen } from 'redux/reducers/screenSlice';
+import { URLtoScreen } from 'utility/functions/mappingFunctions';
+import { useDispatch } from 'redux/store';
+import { routes } from 'utility/constants/enums';
 
 const App = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
   const theme = extendTheme({
     components: {
       Progress: {
@@ -24,13 +31,17 @@ const App = () => {
       }
     }
   });
+  useEffect(() => {
+    dispatch(setScreen(URLtoScreen(location.pathname)));
+  }, []);
+
   return (
     <ChakraProvider theme={theme}>
       <Routes>
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/register" element={<Register />} />
+        <Route path={routes.login} element={<Login />} />
+        <Route path={routes.register} element={<Register />} />
         <Route
-          path="/data_quality/dashboard"
+          path={routes.dashboard}
           element={
             <Layout>
               <Dashboard />
@@ -38,7 +49,7 @@ const App = () => {
           }
         />
         <Route
-          path="/data_quality/order_analysis"
+          path={routes.orderAnalysis}
           element={
             <Layout>
               <OrderAnalysis />
@@ -46,7 +57,7 @@ const App = () => {
           }
         />
         <Route
-          path="/data_quality/event_quality"
+          path={routes.eventQuality}
           element={
             <Layout>
               <EventQuality />
@@ -54,7 +65,7 @@ const App = () => {
           }
         />
         <Route
-          path="/analytics/reports"
+          path={routes.analytics}
           element={
             <Layout>
               <Analytics />
@@ -62,14 +73,14 @@ const App = () => {
           }
         />
         <Route
-          path="/settings"
+          path={routes.settings}
           element={
             <Layout>
               <Settings />
             </Layout>
           }
         />
-        <Route path="*" element={<Navigate to="/auth/login" />} />
+        <Route path="*" element={<Navigate to={routes.dashboard} />} />
       </Routes>
     </ChakraProvider>
   );

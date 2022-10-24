@@ -14,12 +14,15 @@ import { dateTimeReducer, numberReducer } from 'utility/functions/formattingFunc
 const OrderDataAnalysisCard = () => {
   const dispatch = useDispatch();
   const {
-    ordersWithCorrectCV,
     TOTAL_SHOPIFY_ORDERS,
-    TOTAL_DATA_QUALITY_FACEBOOK,
+    FACEBOOK_SUCCESS_DELIVERED_ORDERS,
     status: dataQualityStatus
   } = useSelector((state) => state.dataQuality);
-  const { avgTimeDifference, status: eventsStatus } = useSelector((state) => state.events);
+  const {
+    avgTimeDifference,
+    correctCvOrders,
+    status: eventsStatus
+  } = useSelector((state) => state.events);
   const refresh = useSelector((state) => state.dates.refresh);
   const [displayTime, setDisplayTime] = useState({ value: 0, unit: 'ms' });
   useEffect(() => {
@@ -37,8 +40,11 @@ const OrderDataAnalysisCard = () => {
         </div>
         <div className="flex flex-row gap-[20px]">
           <Statistics value={numberReducer(TOTAL_SHOPIFY_ORDERS)} message="Shopify Orders" />
-          <Statistics value={numberReducer(ordersWithCorrectCV)} message="Orders with correct CV" />
-          <Statistics value={numberReducer(TOTAL_DATA_QUALITY_FACEBOOK)} message="Received by FB" />
+          <Statistics value={numberReducer(correctCvOrders)} message="Orders with correct CV" />
+          <Statistics
+            value={numberReducer(FACEBOOK_SUCCESS_DELIVERED_ORDERS)}
+            message="Received by FB"
+          />
           <Statistics
             value={`${displayTime.value}${displayTime.unit}`}
             message="AVG. Delivery Time"
