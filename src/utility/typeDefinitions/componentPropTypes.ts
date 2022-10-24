@@ -106,6 +106,7 @@ export type ToggletypeProps = {
   activeColor?: string;
   inactiveColor?: string;
   name?: string;
+  disable?: boolean;
   setdataSaved?: React.Dispatch<
     React.SetStateAction<{
       key: string;

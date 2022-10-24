@@ -1,27 +1,59 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
-import { postPerameterSettings } from 'redux/reducers/privacyCockpitSlice';
+import { postParameterSettings } from 'redux/reducers/privacyCockpitSlice';
 import { useDispatch } from 'redux/store';
+import { Button, Divider } from '@chakra-ui/react';
+import { activeAllSettings } from 'utility/functions/defaultDataCollection';
+
 function toggleTable() {
   const dispatch = useDispatch();
-  const { data_collection_settings, parsed_settings } = useSelector(
+  const { data_collection_settings, parsed_settings, status } = useSelector(
     (state) => state.privacyCockpit.parameterSettingReducer
   );
-  const [UpdateValue, setUpdateValue] = useState<{
+  const [updateValue, setUpdateValue] = useState<{
     settingKey?: string;
     settingValue?: string;
   }>({
     settingKey: '',
     settingValue: ''
   });
-  useEffect(() => {
+
+  const handleSave = () => {
     dispatch(
-      postPerameterSettings({
-        settings: [UpdateValue]
+      postParameterSettings({
+        settings: [updateValue]
       })
     );
-  }, [UpdateValue]);
+  };
+  const handleActiveEverything = () => {
+    dispatch(
+      postParameterSettings({
+        settings: activeAllSettings
+      })
+    );
+  };
+
+  const [activeEverything, setActiveEverything] = useState<{
+    settingKey?: string;
+    settingValue?: string;
+  }>({
+    settingKey: '',
+    settingValue: 'false'
+  });
+  useEffect(() => {
+    if (activeEverything.settingValue === 'true') {
+      handleActiveEverything();
+    }
+  }, [activeEverything]);
+
+  useEffect(() => {
+    dispatch(
+      postParameterSettings({
+        settings: [updateValue]
+      })
+    );
+  }, [updateValue]);
 
   const categories = ['personalData', 'location', 'others'];
   return (
@@ -53,6 +85,8 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
+                                activeColor="green"
+                                inactiveColor="red"
                               />
                             </div>
                           )
@@ -73,6 +107,8 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
+                                activeColor="green"
+                                inactiveColor="red"
                               />
                             </div>
                           )
@@ -93,6 +129,7 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
+                                disable={true}
                               />
                             </div>
                           )
@@ -105,6 +142,50 @@ function toggleTable() {
           </>
         );
       })}
+      <Divider className="my-3" />
+      <div className="flex justify-between items-center">
+        <div className="active_all flex justify-end items-center">
+          <p className="text-light mx-2 opacity-50">Active Everything </p>
+          <ToggleBtn
+            value={activeEverything.settingValue === 'true'}
+            setState={setActiveEverything}
+            name="updateAll"
+            activeColor="green"
+            inactiveColor="red"
+          />
+        </div>
+        <div className="button">
+          {status === 'error' && (
+            <Button className="w-[8rem] mt-5" type="submit" colorScheme="blue" onClick={handleSave}>
+              Save
+            </Button>
+          )}
+          {status === 'fetching' && (
+            <Button
+              isLoading
+              loadingText="Saving"
+              spinnerPlacement="start"
+              className="w-[8rem] mt-5"
+              type="submit"
+              colorScheme="blue"
+              onClick={handleSave}
+            >
+              Save
+            </Button>
+          )}
+          {status === 'success' && (
+            <Button
+              className="w-[8rem] mt-5"
+              type="submit"
+              colorScheme="gray"
+              onClick={handleSave}
+              disabled
+            >
+              Save
+            </Button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

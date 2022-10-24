@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const ToggleSwitchWrapper = styled.div<{ activeColor?: string; inactiveColor?: string }>`
+const ToggleSwitchWrapper = styled.div<{
+  activeColor?: string;
+  inactiveColor?: string;
+  disable?: boolean;
+}>`
   .wrg-toggle {
     touch-action: pan-x;
     display: inline-block;
@@ -16,6 +20,7 @@ const ToggleSwitchWrapper = styled.div<{ activeColor?: string; inactiveColor?: s
     color: #fafafa;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
+    scale: ${({ disable }) => (disable ? '.95' : '1')};
   }
 
   .wrg-toggle-input {
@@ -100,10 +105,12 @@ const ToggleSwitchWrapper = styled.div<{ activeColor?: string; inactiveColor?: s
     opacity: 0;
   }
   .wrg-toggle--checked .wrg-toggle-container {
-    background-color: ${({ activeColor }) => (activeColor ? activeColor : '#4fb7dd')};
+    background-color: ${({ disable, activeColor }) =>
+      disable ? 'gray' : activeColor ? activeColor : '#4fb7dd'};
   }
   .wrg-toggle--uncheck .wrg-toggle-container {
-    background-color: ${({ inactiveColor }) => (inactiveColor ? inactiveColor : '#db2e26')};
+    background-color: ${({ disable, inactiveColor }) =>
+      disable ? 'gray' : inactiveColor ? inactiveColor : '#db2e26'};
   }
   .wrg-toggle--checked .wrg-toggle-circle {
     top: 50%;

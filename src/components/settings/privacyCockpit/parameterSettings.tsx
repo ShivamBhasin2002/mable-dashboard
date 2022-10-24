@@ -47,24 +47,6 @@ function parameterSettings() {
       <div className="toggleArea">
         <ToggleTable />
       </div>
-      <Divider className="my-3" />
-      <div className="flex justify-between items-center">
-        <div className="active_all flex justify-end items-center">
-          <p className="text-light mx-2 opacity-50">Active Everything </p>
-          <ToggleBtn
-            value={false}
-            setState={setUpdateValue}
-            name="updateAll"
-            activeColor="green"
-            inactiveColor="red"
-          />
-        </div>
-        <div className="button">
-          <Button className="w-[8rem] mt-5" type="submit" colorScheme="blue">
-            Save
-          </Button>
-        </div>
-      </div>
     </ComponentWrapper>
   );
 }

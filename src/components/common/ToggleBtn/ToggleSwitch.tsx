@@ -1,7 +1,14 @@
 import { ToggletypeProps } from 'utility/typeDefinitions/componentPropTypes';
 import ToggleSwitchWraper from './ToggleSwitchStyle';
 
-const ToggleSwitch = ({ value, setState, name, activeColor, inactiveColor }: ToggletypeProps) => {
+const ToggleSwitch = ({
+  value,
+  setState,
+  name,
+  activeColor,
+  inactiveColor,
+  disable
+}: ToggletypeProps) => {
   const triggerToggle = () => {
     console.log(name);
     setState({
@@ -10,9 +17,9 @@ const ToggleSwitch = ({ value, setState, name, activeColor, inactiveColor }: Tog
     });
   };
   return (
-    <ToggleSwitchWraper activeColor={activeColor} inactiveColor={inactiveColor}>
+    <ToggleSwitchWraper activeColor={activeColor} inactiveColor={inactiveColor} disable={disable}>
       <div
-        onClick={triggerToggle}
+        onClick={() => !disable && triggerToggle()}
         className={`wrg-toggle ${value ? 'wrg-toggle--checked' : 'wrg-toggle--uncheck'} mt-2`}
       >
         <div className="wrg-toggle-container">

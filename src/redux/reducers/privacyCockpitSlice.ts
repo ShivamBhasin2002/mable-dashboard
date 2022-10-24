@@ -94,7 +94,7 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
   }
 });
 
-export const postPerameterSettings = createAsyncThunk<
+export const postParameterSettings = createAsyncThunk<
   {
     ok: boolean;
     settings_changed: {
@@ -218,10 +218,10 @@ export const parameterSettingReducer = createReducer(
         state.status = STATUS_TYPE.ERROR;
       })
 
-      .addCase(postPerameterSettings.pending, (state) => {
+      .addCase(postParameterSettings.pending, (state) => {
         state.status = STATUS_TYPE.FETCHING;
       })
-      .addCase(postPerameterSettings.fulfilled, (state, { payload }) => {
+      .addCase(postParameterSettings.fulfilled, (state, { payload }) => {
         state.status = STATUS_TYPE.SUCCESS;
         payload.settings_changed.map((data) => {
           state.parsed_settings.map((savedData, idx) => {
@@ -231,7 +231,7 @@ export const parameterSettingReducer = createReducer(
           });
         });
       })
-      .addCase(postPerameterSettings.rejected, (state) => {
+      .addCase(postParameterSettings.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
       });
   }
