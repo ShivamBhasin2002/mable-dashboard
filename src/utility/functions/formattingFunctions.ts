@@ -17,5 +17,6 @@ export const dateTimeReducer = (numInMs: string | number) => {
   if (numInMs > 216000) return { value: Math.floor(numInMs / 216000), unit: 'hrs' };
   if (numInMs > 3600) return { value: Math.floor(numInMs / 3600), unit: 'min' };
   if (numInMs > 60) return { value: Math.floor(numInMs / 60), unit: 's' };
-  return { value: numInMs, unit: 'ms' };
+  if (numInMs >= 0) return { value: numInMs, unit: 'ms' };
+  return { value: 0, unit: 'ms' };
 };

@@ -47,7 +47,7 @@ export const orderAnalysis = createSlice({
         state.status = STATUS_TYPE.FETCHING;
       })
       .addCase(orderAnalysisAsync.fulfilled, (state, { payload }) => {
-        state.tableData = payload.table_orders ?? orderAnalysisInitialState.tableData;
+        state.tableData = payload ?? orderAnalysisInitialState.tableData;
         state.status = STATUS_TYPE.SUCCESS;
       })
       .addCase(orderAnalysisAsync.rejected, (state) => {

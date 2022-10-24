@@ -16,7 +16,7 @@ const Dashboard = () => {
           <div>
             <DataQualityCard />
           </div>
-          <div className="flex flex-row flex-wrap gap-[30px]">
+          <div className="flex flex-row flex-wrap xl:flex-nowrap gap-[30px]">
             <PageSpeedCard />
             <EventsCard />
           </div>

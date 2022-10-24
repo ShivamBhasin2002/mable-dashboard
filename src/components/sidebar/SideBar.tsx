@@ -5,7 +5,9 @@ import SideBarItem from './items/generalSidebarItemCard';
 import { useSelector, useDispatch } from 'redux/store';
 import { logout } from 'redux/reducers/authSlice';
 import { setScreen } from 'redux/reducers/screenSlice';
+import { screenToURL } from 'utility/functions/mappingFunctions';
 import { useWindowSize } from 'utility/customHooks';
+import { screenType } from 'utility/constants/enums';
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -13,19 +15,21 @@ const SideBar = () => {
   const { firstName, lastName } = useSelector((state) => state.user);
   const { activeScreen } = useSelector((state) => state.screen);
   const { width: screenWidth } = useWindowSize();
+  const navigator = useNavigate();
+
   const sideBar = {
     'Data Quality': [
-      { title: 'Dashboard', icon: 'dashboard' },
-      { title: 'Order Analysis', icon: 'orderAnalysis' },
-      { title: 'Event Quality', icon: 'eventQuality' }
+      { title: screenType.dashboard, icon: 'dashboard' },
+      { title: screenType.orderAnalysis, icon: 'orderAnalysis' },
+      { title: screenType.eventQuality, icon: 'eventQuality' }
     ],
-    Analytics: [{ title: 'Reports', icon: 'analytics' }],
-    Settings: [{ title: 'Account Settings', icon: 'settings' }]
+    Analytics: [{ title: screenType.analytics, icon: 'analytics' }],
+    Settings: [{ title: screenType.settings, icon: 'settings' }]
   };
   return (
     <aside
       id="side-bar"
-      className="sticky top-0 left-0 w-[70px] lg:w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] flex flex-col gap-[25px] lg:gap-[70px] pr-[5px] lg:px-[30px]"
+      className="sticky top-0 -bottom-0 left-0 w-[70px] lg:w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] flex flex-col gap-[25px] lg:gap-[70px] pr-[5px] lg:px-[30px]"
     >
       <header className="flex justify-center">
         <Icon
@@ -47,7 +51,11 @@ const SideBar = () => {
                     <SideBarItem
                       {...item}
                       key={item.icon}
-                      clickHandle={() => dispatch(setScreen(item.title))}
+                      clickHandle={() => {
+                        const path = screenToURL(item.title);
+                        if (activeScreen !== item.title && path) navigator(path);
+                        dispatch(setScreen(item.title));
+                      }}
                       isActive={activeScreen === item.title}
                     />
                   ))}

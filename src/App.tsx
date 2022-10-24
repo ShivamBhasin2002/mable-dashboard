@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 import Login from 'pages/auth/login';
@@ -12,17 +11,8 @@ import Layout from 'components/common/Layout';
 
 import colors from 'utility/colors';
 import Settings from 'pages/settings/settings';
-import { screenToURL } from 'utility/functions/mappingFunctions';
-
-import { useSelector } from 'redux/store';
 
 const App = () => {
-  const { activeScreen } = useSelector((state) => state.screen);
-  const navigator = useNavigate();
-  useEffect(() => {
-    const path = screenToURL(activeScreen);
-    if (path) navigator(path);
-  }, [activeScreen]);
   const theme = extendTheme({
     components: {
       Progress: {
