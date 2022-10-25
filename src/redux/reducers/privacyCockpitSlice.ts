@@ -50,6 +50,7 @@ export const getDeletedCustomer = createAsyncThunk<
       }
     );
     if (data) {
+      console.log(data);
       return data;
     }
   } catch (error) {
@@ -221,11 +222,10 @@ export const privacyCockpitSetting = createSlice({
       .addCase(postConsentUrlPrivacySettings.rejected, (state) => {
         state.privacySettings.cookieConsent.status = STATUS_TYPE.ERROR;
       })
-      .addCase(getDeletedCustomer.pending, (state) => {
-        state.deleteUserData.status = STATUS_TYPE.FETCHING;
-      })
+      // .addCase(getDeletedCustomer.pending, (state) => {
+      //   state.deleteUserData.status = STATUS_TYPE.FETCHING;
+      // })
       .addCase(getDeletedCustomer.fulfilled, (state, { payload }) => {
-        state.deleteUserData.status = STATUS_TYPE.SUCCESS;
         state.deleteUserData.userData = payload;
       })
       .addCase(getDeletedCustomer.rejected, (state) => {
@@ -236,7 +236,7 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(postDeletedCustomer.fulfilled, (state, { payload }) => {
         state.deleteUserData.status = STATUS_TYPE.SUCCESS;
-        state.deleteUserData.userData = payload.customer_created;
+        state.deleteUserData.userData.push(payload.customer_created[0]);
       })
       .addCase(postDeletedCustomer.rejected, (state) => {
         state.deleteUserData.status = STATUS_TYPE.ERROR;

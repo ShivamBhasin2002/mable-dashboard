@@ -4,13 +4,18 @@ import {
   DeleteUserData
 } from 'components/settings/privacyCockpit';
 import { useEffect } from 'react';
-import { getPrivacySettings, updateSettings } from 'redux/reducers/privacyCockpitSlice';
+import {
+  getDeletedCustomer,
+  getPrivacySettings,
+  updateSettings
+} from 'redux/reducers/privacyCockpitSlice';
 import { useDispatch, useSelector } from 'redux/store';
 
 function privacyCockpit() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPrivacySettings());
+    dispatch(getDeletedCustomer());
   }, []);
 
   const { status } = useSelector((state) => state.privacyCockpit.privacySettings);
