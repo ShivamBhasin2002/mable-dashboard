@@ -14,17 +14,19 @@ const OrderDetails = ({ data, idx }: { idx: number; data: order }) => {
     );
     return (
       <tr
-        className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:whitespace-nowrap [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
+        className={`[&>*]:font-montserrat flex w-full [&>*]:flex-1 [&>*]:text-[14px] [&>*]:whitespace-nowrap [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
           !(idx & 1) && 'bg-tableStrips/[0.5]'
         }`}
       >
         <td>{data.order_id ?? '-'}</td>
         <td>{data.created_at ? moment(data.created_at).format('HH:mm - DD.MM.YY') : '-'}</td>
-        <td>{data.customer_name ?? '-'}</td>
-        <td>{data.total_conversion_value ? <>{data.total_conversion_value} &euro;</> : '-'}</td>
+        <td className="truncate">{data.customer_name ?? '-'}</td>
+        <td>
+          {data.total_conversion_value ? <>{data.total_conversion_value.toFixed(2)} &euro;</> : '-'}
+        </td>
         <td>
           {data.destination_conversion_value ? (
-            <>{data.destination_conversion_value} &euro;</>
+            <>{data.destination_conversion_value.toFixed(2)} &euro;</>
           ) : (
             '-'
           )}

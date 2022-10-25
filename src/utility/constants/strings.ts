@@ -1,6 +1,9 @@
+import { statusSelector } from './enums';
+
 export const noWarningsMessage = 'No warnings yet';
 
-export const noOrdersMessage = 'No orders yet';
+export const noOrdersMessage = (status: statusSelector): string =>
+  `No ${status && status !== statusSelector.all ? `${status.toLocaleLowerCase()} ` : ''}orders yet`;
 
 export const receivedByFacebookLabel = 'Received by FB';
 
