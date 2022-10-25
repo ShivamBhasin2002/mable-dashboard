@@ -43,3 +43,14 @@ export const snakeCaseToKeyValueExtractor = (key: string) => {
 
   return extractedValueArray;
 };
+
+export const camelCaseToTitleCase = (str: string) => {
+  return str
+    .split('')
+    .map((e, index) => {
+      if (index === 0) return e.toUpperCase();
+      else if (e.charCodeAt(0) < 91) return ' ' + e.toUpperCase();
+      else return e;
+    })
+    .join('');
+};

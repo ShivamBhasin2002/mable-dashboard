@@ -166,6 +166,7 @@ export const filterOptionInitialState: AnalyticsStateType = {
 export const privacyCockpit: privacyCockpitType = {
   paraMeterSettings: {
     status: STATUS_TYPE.IDLE,
+    updateAll: 'false',
     data_collection_destinations: [
       {
         value: 'database',

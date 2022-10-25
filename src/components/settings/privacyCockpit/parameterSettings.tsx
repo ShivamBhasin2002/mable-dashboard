@@ -1,20 +1,12 @@
-import { useState } from 'react';
 import ComponentWrapper from 'components/common/ComponentWrapper';
-import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
-import { Button, Divider } from '@chakra-ui/react';
+import { Divider } from '@chakra-ui/react';
 import ToggleTable from './toggleTable';
 import { useSelector } from 'redux/store';
+
 function parameterSettings() {
   const { data_collection_destinations } = useSelector(
     (state) => state.privacyCockpit.parameterSettingReducer
   );
-  const [UpdateValue, setUpdateValue] = useState<{
-    settingKey?: string;
-    settingValue?: string;
-  }>({
-    settingKey: '',
-    settingValue: ''
-  });
 
   return (
     <ComponentWrapper className="flex flex-col  w-full">

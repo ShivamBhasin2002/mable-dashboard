@@ -3,10 +3,12 @@ import { useSelector } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
 import { postParameterSettings } from 'redux/reducers/privacyCockpitSlice';
 import { useDispatch } from 'redux/store';
-import { Button, Divider } from '@chakra-ui/react';
+import { Button, Divider, useToast } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';
+import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
 
 function toggleTable() {
+  const toast = useToast();
   const dispatch = useDispatch();
   const { data_collection_settings, parsed_settings, status } = useSelector(
     (state) => state.privacyCockpit.parameterSettingReducer
@@ -25,13 +27,50 @@ function toggleTable() {
         settings: [updateValue]
       })
     );
+    setActiveEverything({ ...activeEverything, settingValue: 'false' });
   };
+
+  useEffect(() => {
+    dispatch(
+      postParameterSettings({
+        settings: [updateValue]
+      })
+    );
+    setActiveEverything({ ...activeEverything, settingValue: 'false' });
+  }, [updateValue]);
+
+  useEffect(() => {
+    if (status === 'error') {
+      toast({
+        title: `Something Went Wrong, Try Again ! `,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+    if (status === 'success') {
+      toast({
+        title: `Data Updated Succesfully`,
+        status: 'success',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+  }, [status]);
+
   const handleActiveEverything = () => {
     dispatch(
       postParameterSettings({
         settings: activeAllSettings
       })
     );
+
+    toast({
+      title: `All Data Set to Active `,
+      status: 'success',
+      isClosable: true,
+      position: 'top-right'
+    });
   };
 
   const [activeEverything, setActiveEverything] = useState<{
@@ -47,14 +86,6 @@ function toggleTable() {
     }
   }, [activeEverything]);
 
-  useEffect(() => {
-    dispatch(
-      postParameterSettings({
-        settings: [updateValue]
-      })
-    );
-  }, [updateValue]);
-
   const categories = ['personalData', 'location', 'others'];
   return (
     <div className="flex flex-col">
@@ -62,7 +93,7 @@ function toggleTable() {
         return (
           <>
             <div className="header">
-              <p className="text-primary opacity-70">{category} </p>
+              <p className="text-primary opacity-70">{camelCaseToTitleCase(category)} </p>
             </div>
             {data_collection_settings.map((data) => {
               if (category === data.category)
@@ -85,8 +116,8 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
-                                activeColor="green"
-                                inactiveColor="red"
+                                activeColor="#0EBA12"
+                                inactiveColor="#D90D19"
                               />
                             </div>
                           )
@@ -107,8 +138,8 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
-                                activeColor="green"
-                                inactiveColor="red"
+                                activeColor="#0EBA12"
+                                inactiveColor="#D90D19"
                               />
                             </div>
                           )
@@ -150,8 +181,8 @@ function toggleTable() {
             value={activeEverything.settingValue === 'true'}
             setState={setActiveEverything}
             name="updateAll"
-            activeColor="green"
-            inactiveColor="red"
+            activeColor="#0EBA12"
+            inactiveColor="#D90D19"
           />
         </div>
         <div className="button">

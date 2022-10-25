@@ -20,7 +20,8 @@ const ToggleSwitchWrapper = styled.div<{
     color: #fafafa;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
-    scale: ${({ disable }) => (disable ? '.95' : '1')};
+    scale: ${({ disable }) => (disable ? '.90' : '1')};
+    opacity: ${({ disable }) => (disable ? '.5' : '1')};
   }
 
   .wrg-toggle-input {
@@ -105,12 +106,10 @@ const ToggleSwitchWrapper = styled.div<{
     opacity: 0;
   }
   .wrg-toggle--checked .wrg-toggle-container {
-    background-color: ${({ disable, activeColor }) =>
-      disable ? 'gray' : activeColor ? activeColor : '#4fb7dd'};
+    background-color: ${({ activeColor }) => (activeColor ? activeColor : '#4fb7dd')};
   }
   .wrg-toggle--uncheck .wrg-toggle-container {
-    background-color: ${({ disable, inactiveColor }) =>
-      disable ? 'gray' : inactiveColor ? inactiveColor : '#db2e26'};
+    background-color: ${({ inactiveColor }) => (inactiveColor ? inactiveColor : '#db2e26')};
   }
   .wrg-toggle--checked .wrg-toggle-circle {
     top: 50%;

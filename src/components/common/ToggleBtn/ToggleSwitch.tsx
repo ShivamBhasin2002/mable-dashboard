@@ -10,7 +10,6 @@ const ToggleSwitch = ({
   disable
 }: ToggletypeProps) => {
   const triggerToggle = () => {
-    console.log(name);
     setState({
       settingKey: name,
       settingValue: `${!value}`
