@@ -93,19 +93,23 @@ function toggleTable() {
         return (
           <>
             <div className="header">
-              <p className="text-primary opacity-70">{camelCaseToTitleCase(category)} </p>
+              <p className="text-primary opacity-70 text-[14px]">
+                {camelCaseToTitleCase(category)}{' '}
+              </p>
             </div>
             {data_collection_settings.map((data) => {
               if (category === data.category)
                 return (
                   <>
-                    <div className="dataTable flex text-light grid grid-cols-12 gap-0">
-                      <div className="keyValue col-span-3 my-auto">{data.label}</div>
+                    <div className="dataTable flex text-light grid grid-cols-9 gap-0">
+                      <div className="keyValue col-span-3 my-auto text-[18px] font-[600]">
+                        {data.label}
+                      </div>
                       {parsed_settings?.map((parsedData) => {
                         return (
                           parsedData.label === data.value &&
                           'database' === parsedData.destination && (
-                            <div className="toggle1   col-span-3 m-auto">
+                            <div className="toggle1   col-span-2 m-auto">
                               <ToggleBtn
                                 value={parsedData.settingValue === 'true'}
                                 setState={setUpdateValue}
@@ -127,7 +131,7 @@ function toggleTable() {
                         return (
                           parsedData.label === data.value &&
                           'facebook' === parsedData.destination && (
-                            <div className="toggle1   col-span-3 m-auto">
+                            <div className="toggle1   col-span-2 m-auto">
                               <ToggleBtn
                                 value={parsedData.settingValue === 'true'}
                                 setState={setUpdateValue}
@@ -149,7 +153,7 @@ function toggleTable() {
                         return (
                           parsedData.label === data.value &&
                           'tiktok' === parsedData.destination && (
-                            <div className="toggle1   col-span-3 m-auto">
+                            <div className="toggle1   col-span-2 m-auto">
                               <ToggleBtn
                                 value={parsedData.settingValue === 'true'}
                                 setState={setUpdateValue}
@@ -185,37 +189,44 @@ function toggleTable() {
             inactiveColor="#D90D19"
           />
         </div>
-        <div className="button">
-          {status === 'error' && (
-            <Button className="w-[8rem] mt-5" type="submit" colorScheme="blue" onClick={handleSave}>
-              Save
-            </Button>
-          )}
-          {status === 'fetching' && (
-            <Button
-              isLoading
-              loadingText="Saving"
-              spinnerPlacement="start"
-              className="w-[8rem] mt-5"
-              type="submit"
-              colorScheme="blue"
-              onClick={handleSave}
-            >
-              Save
-            </Button>
-          )}
-          {status === 'success' && (
-            <Button
-              className="w-[8rem] mt-5"
-              type="submit"
-              colorScheme="gray"
-              onClick={handleSave}
-              disabled
-            >
-              Save
-            </Button>
-          )}
-        </div>
+        {false && (
+          <div className="button">
+            {status === 'error' && (
+              <Button
+                className="w-[8rem] mt-5"
+                type="submit"
+                colorScheme="blue"
+                onClick={handleSave}
+              >
+                Save
+              </Button>
+            )}
+            {status === 'fetching' && (
+              <Button
+                isLoading
+                loadingText="Saving"
+                spinnerPlacement="start"
+                className="w-[8rem] mt-5"
+                type="submit"
+                colorScheme="blue"
+                onClick={handleSave}
+              >
+                Save
+              </Button>
+            )}
+            {status === 'success' && (
+              <Button
+                className="w-[8rem] mt-5"
+                type="submit"
+                colorScheme="gray"
+                onClick={handleSave}
+                disabled
+              >
+                Save
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

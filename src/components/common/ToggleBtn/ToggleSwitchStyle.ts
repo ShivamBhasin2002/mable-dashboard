@@ -60,7 +60,7 @@ const ToggleSwitchWrapper = styled.div<{
     align-items: center;
     display: flex;
     height: 10px;
-    font-size: 0.8em;
+    font-size: 10px;
     justify-content: center;
     position: relative;
     width: 10px;
@@ -70,7 +70,7 @@ const ToggleSwitchWrapper = styled.div<{
     align-items: center;
     display: flex;
     height: 10px;
-    font-size: 0.8em;
+    font-size: 10px;
     justify-content: center;
     position: relative;
     width: 10px;
