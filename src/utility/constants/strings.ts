@@ -24,3 +24,5 @@ export const attributionParameterLabel = 'Attribution Parameters';
 export const eventParametersLabel = 'Event Parameters';
 
 export const defaultLocale = 'en-US';
+
+export const mableAiLandingPage = 'https://www.mable.ai';
