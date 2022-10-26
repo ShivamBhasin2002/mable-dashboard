@@ -11,7 +11,7 @@ function toggleTable() {
   const toast = useToast();
   const dispatch = useDispatch();
   const { data_collection_settings, parsed_settings, status } = useSelector(
-    (state) => state.privacyCockpit.parameterSettingReducer
+    (state) => state.privacyCockpit.paraMeterSettings
   );
   const [updateValue, setUpdateValue] = useState<{
     settingKey?: string;

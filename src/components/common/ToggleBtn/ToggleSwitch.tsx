@@ -1,4 +1,4 @@
-import { ToggletypeProps } from 'utility/typeDefinitions/componentPropTypes';
+import { toggletypeProps } from 'utility/typeDefinitions/componentPropTypes';
 import ToggleSwitchWraper from './ToggleSwitchStyle';
 
 const ToggleSwitch = ({
@@ -8,7 +8,7 @@ const ToggleSwitch = ({
   activeColor,
   inactiveColor,
   disable
-}: ToggletypeProps) => {
+}: toggletypeProps) => {
   const triggerToggle = () => {
     setState({
       settingKey: name,
