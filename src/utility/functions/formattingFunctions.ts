@@ -11,12 +11,12 @@ export const numberReducer = (num: string | number, settings?: Record<string, un
   return formatter.format(num);
 };
 
-export const dateTimeReducer = (numInMs: string | number) => {
-  numInMs = typeof numInMs === 'string' ? parseInt(numInMs) : numInMs;
-  if (numInMs > 12960000) return { value: Math.floor(numInMs / 12960000), unit: 'days' };
-  if (numInMs > 216000) return { value: Math.floor(numInMs / 216000), unit: 'hrs' };
-  if (numInMs > 3600) return { value: Math.floor(numInMs / 3600), unit: 'min' };
-  if (numInMs > 60) return { value: Math.floor(numInMs / 60), unit: 's' };
-  if (numInMs >= 0) return { value: numInMs, unit: 'ms' };
-  return { value: 0, unit: 'ms' };
+export const dateTimeReducer = (numInS: string | number) => {
+  let output = { value: 0, unit: 'ms' };
+  numInS = typeof numInS === 'string' ? parseInt(numInS) : numInS;
+  if (numInS > 86400) output = { value: Math.round((numInS / 86400) * 100) / 100, unit: 'days' };
+  else if (numInS > 3600) output = { value: Math.round((numInS / 3600) * 100) / 100, unit: 'hrs' };
+  else if (numInS > 200) output = { value: Math.round((numInS / 60) * 100) / 100, unit: 'min' };
+  else if (numInS) output = { value: numInS, unit: 's' };
+  return output;
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ComponentWrapper } from 'components/common';
 import { eventsAsync } from 'redux/reducers/dataQuality/eventSlice';
 
@@ -11,14 +11,10 @@ const EventsCard = () => {
   const dispatch = useDispatch();
   const { avgTimeDifference, status: eventsStatus } = useSelector((state) => state.events);
   const { totalEventCount, status: eventsDataStatus } = useSelector((state) => state.eventsData);
-  const [displayTime, setDisplayTime] = useState({ value: 0, unit: 'ms' });
   const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
     if (eventsStatus !== STATUS_TYPE.FETCHING) dispatch(eventsAsync());
   }, [refresh]);
-  useEffect(() => {
-    setDisplayTime(dateTimeReducer(avgTimeDifference));
-  }, [avgTimeDifference]);
 
   return (
     <ComponentWrapper
@@ -35,8 +31,8 @@ const EventsCard = () => {
         </div>
         <div className="min-w-[125px] pl-6 flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px] ">
-            {displayTime.value}
-            <span className="text-[20px]">{displayTime.unit}</span>
+            {dateTimeReducer(avgTimeDifference).value}
+            <span className="text-[20px]">{dateTimeReducer(avgTimeDifference).unit}</span>
           </div>
           <div className="text-primary text-center text-[14px]">{avgDeliveryTimeLabel}</div>
         </div>

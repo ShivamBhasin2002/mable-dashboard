@@ -10,7 +10,7 @@ import Icon from 'assets/icons';
 const OrderDetails = ({ data, idx }: { idx: number; data: order }) => {
   {
     const deliveryTimeDifference = dateTimeReducer(
-      data.delivery_time_difference ? data.delivery_time_difference * 1000 : ''
+      data.delivery_time_difference ? data.delivery_time_difference : ''
     );
     return (
       <tr

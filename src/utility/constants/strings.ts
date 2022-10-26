@@ -9,11 +9,9 @@ export const receivedByFacebookLabel = 'Received by FB';
 
 export const shopifyOrdersLabel = 'Shopify Orders';
 
-export const avgLoadingTimeLabel = 'Avg Loading Time';
+export const loadingTimeLabel = (script: string) => `Loading Time: ${script}`;
 
-export const mableScriptsLabel = 'Mable Script';
-
-export const pageShareSpeedLabel = 'Page Share Speed';
+export const mableShareSpeedLabel = 'Mable Share';
 
 export const totalEventsLabel = 'Total Events';
 
