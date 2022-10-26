@@ -4,26 +4,57 @@ import Icon from 'assets/icons';
 import { ComponentWrapper } from 'components/common';
 import StatusSelectorMenu from 'components/dataQuality/General/StatusSelecterMenu';
 
-import { statusSelector, STATUS_TYPE } from 'utility/constants/enums';
+import { SORT_ORDER, statusSelector, STATUS_TYPE } from 'utility/constants/enums';
 import { noOrdersMessage } from 'utility/constants/strings';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { orderAnalysisAsync } from 'redux/reducers/dataQuality/orderAnalysisSlice';
 import { useWindowSize } from 'utility/customHooks';
 import OrderDetails from './OrderDetails';
+import { order } from 'utility/typeDefinitions/reduxTypes';
+import moment from 'moment';
 
 const OrderAnalysisTable = () => {
-  const dispatch = useDispatch();
   const { tableData, status, statusSelected } = useSelector((state) => state.orderAnalysis);
   const [page, setPage] = useState(1);
+  const [orders, setOrders] = useState<order[]>([]);
+  const [sortOrder, setSortOrder] = useState<SORT_ORDER>(SORT_ORDER.INCREASING);
   const refresh = useSelector((state) => state.dates.refresh);
   const { width: screenWidth } = useWindowSize();
+
+  const dispatch = useDispatch();
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(orderAnalysisAsync());
   }, [refresh]);
+  useEffect(() => {
+    setPage(1);
+  }, [statusSelected]);
+  useEffect(() => {
+    setOrders(
+      tableData
+        .filter(({ status }) => statusSelected === statusSelector.all || status === statusSelected)
+        .sort((order1, order2) =>
+          sortOrder === SORT_ORDER.INCREASING
+            ? moment(order1.created_at).diff(moment(order2.created_at))
+            : -1 * moment(order1.created_at).diff(moment(order2.created_at))
+        )
+    );
+  });
+
+  const changeSortOrder = () => {
+    switch (sortOrder) {
+      case SORT_ORDER.INCREASING:
+        setSortOrder(SORT_ORDER.DECREASING);
+        break;
+      case SORT_ORDER.DECREASING:
+        setSortOrder(SORT_ORDER.INCREASING);
+        break;
+    }
+  };
+
   return (
     <ComponentWrapper
-      className="text-light min-h-[40px] !overflow-scroll hide_scrollbar"
+      className="text-light min-h-[40px] !overflow-overlay hide_scrollbar"
       width={screenWidth ? (screenWidth >= 1022 ? screenWidth - 340 : screenWidth - 360) : 340}
       status={status}
     >
@@ -31,7 +62,7 @@ const OrderAnalysisTable = () => {
       <div className="flex-grow">
         <table className="table-auto my-[10px] w-full">
           <thead>
-            <tr className="[&>*]:py-[20px] [&>*]:font-montserrat [&>*]:font-bold [&>*]:text-[20px]">
+            <tr className="[&>*]:py-[20px] flex [&>*]:flex-1 [&>*]:font-montserrat [&>*]:font-bold [&>*]:text-[20px]">
               <td>Shopify</td>
               <td></td>
               <td></td>
@@ -42,9 +73,11 @@ const OrderAnalysisTable = () => {
               <td></td>
               <td></td>
             </tr>
-            <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]2xl:whitespace-nowrap">
+            <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]2xl:whitespace-nowrap flex [&>*]:flex-1">
               <td className="bg-primary rounded-tl-[10px]">Order</td>
-              <td className="bg-primary">Date</td>
+              <td className="bg-primary flex gap-6 items-center" onClick={changeSortOrder}>
+                Date <Icon icon={sortOrder} className="cursor-pointer" />
+              </td>
               <td className="bg-primary">Customer</td>
               <td className="bg-primary">Total</td>
               <td className="bg-primary/[0.8]">CV</td>
@@ -55,11 +88,8 @@ const OrderAnalysisTable = () => {
             </tr>
           </thead>
           <tbody className="last-of:rounded-b-[10px]">
-            {tableData && tableData.length !== 0 ? (
-              tableData
-                .filter(
-                  ({ status }) => statusSelected === statusSelector.all || status === statusSelected
-                )
+            {orders && orders.length !== 0 ? (
+              orders
                 .slice((page - 1) * 10, page * 10)
                 .map((data, idx) => <OrderDetails key={idx} idx={idx} data={data} />)
             ) : (
@@ -68,7 +98,7 @@ const OrderAnalysisTable = () => {
                   <div className="h-[150px] rounded-b-[10px] bg-tableStrips/50 flex items-center justify-center gap-6">
                     <Icon icon="noOrders" className="text-6xl text-dark/25 inline-block" />
                     <span className="font-montserrat font-bold text-4xl text-dark/25">
-                      {noOrdersMessage}
+                      {noOrdersMessage(statusSelected)}
                     </span>
                   </div>
                 </td>
@@ -77,7 +107,7 @@ const OrderAnalysisTable = () => {
           </tbody>
         </table>
       </div>
-      {tableData && tableData.length > 10 && (
+      {orders && orders.length > 10 && (
         <div className="flex justify-center items-center gap-4">
           <button
             className="w-[35px] h-[35px] rounded-[8px] bg-primary text-light disabled:text-dark flex items-center justify-center"
@@ -89,11 +119,11 @@ const OrderAnalysisTable = () => {
             <Icon icon="left" />
           </button>
           <div>
-            Page {page}/{Math.ceil(tableData.length / 10)}
+            Page {page}/{Math.ceil(orders.length / 10)}
           </div>
           <button
             className="w-[35px] h-[35px] rounded-[8px] bg-primary text-light disabled:text-dark flex items-center justify-center"
-            disabled={page === Math.ceil(tableData.length / 10)}
+            disabled={page === Math.ceil(orders.length / 10)}
             onClick={() => {
               setPage((currPage) => currPage + 1);
             }}

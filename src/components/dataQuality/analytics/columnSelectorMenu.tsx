@@ -15,7 +15,7 @@ const ColumnSelectorMenu = () => {
     <Menu gutter={0} isLazy>
       <MenuButton
         as={Button}
-        rightIcon={<Icon icon="dropdown" color="lines/[0.20]" />}
+        rightIcon={<Icon icon="dropdown" className="text-lines/[0.20]" />}
         background={colors.transparent}
         className="!border-lines/[0.20] !flex !justify-evenly"
         border="1px"

@@ -1,6 +1,9 @@
+import { statusSelector } from './enums';
+
 export const noWarningsMessage = 'No warnings yet';
 
-export const noOrdersMessage = 'No orders yet';
+export const noOrdersMessage = (status: statusSelector): string =>
+  `No ${status && status !== statusSelector.all ? `${status.toLocaleLowerCase()} ` : ''}orders yet`;
 
 export const receivedByFacebookLabel = 'Received by FB';
 
@@ -21,3 +24,5 @@ export const attributionParameterLabel = 'Attribution Parameters';
 export const eventParametersLabel = 'Event Parameters';
 
 export const defaultLocale = 'en-US';
+
+export const mableAiLandingPage = 'https://www.mable.ai';

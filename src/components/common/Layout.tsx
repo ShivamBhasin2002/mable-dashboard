@@ -41,7 +41,7 @@ const Layout = ({ children }: LayoutProps) => {
   const { status: shopStatus, errorMsg } = useSelector((state) => state.shop);
 
   useEffect(() => {
-    if (status === 'error') {
+    if (shopStatus === STATUS_TYPE.ERROR) {
       toast({
         title: errorMsg,
         status: 'error',

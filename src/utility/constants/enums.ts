@@ -75,3 +75,8 @@ export enum DatePickerPresets {
   currMonth = 'This Month',
   prevMonth = 'Last Month'
 }
+
+export enum SORT_ORDER {
+  INCREASING = 'increasing',
+  DECREASING = 'decreasing'
+}

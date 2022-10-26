@@ -25,17 +25,17 @@ const ComponentWrapper = ({
     >
       {checkStatus(STATUS_TYPE.FETCHING) && (
         <div
-          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
+          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
         >
-          <Spinner w={100} h={100} thickness="7px" color={colors.light} />
-          <span className="text-light flex items-center font-montserrat text-[22px] font-bold text-center `">
+          <Spinner w={50} h={50} thickness="7px" color={colors.lines} speed="2s" />
+          <span className="text-light/40 flex items-center font-montserrat text-[22px] font-bold text-center `">
             Loading
           </span>
         </div>
       )}
       {checkStatus(STATUS_TYPE.ERROR) && (
         <div
-          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
+          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
         >
           <Icon
             size="100px"
@@ -43,7 +43,7 @@ const ComponentWrapper = ({
             icon="errorTriangular"
             color={colors.light}
           />
-          <span className="text-light flex items-center font-montserrat text-[22px] font-bold text-center `">
+          <span className="text-light/40 flex items-center font-montserrat text-[22px] font-bold text-center `">
             Error While Fetching
           </span>
         </div>

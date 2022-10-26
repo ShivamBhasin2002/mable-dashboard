@@ -14,12 +14,13 @@ import Settings from 'pages/settings/settings';
 import { useEffect } from 'react';
 import { setScreen } from 'redux/reducers/screenSlice';
 import { URLtoScreen } from 'utility/functions/mappingFunctions';
-import { useDispatch } from 'redux/store';
+import { useDispatch, useSelector } from 'redux/store';
 import { routes } from 'utility/constants/enums';
 
 const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.user);
   const theme = extendTheme({
     components: {
       Progress: {
@@ -32,7 +33,7 @@ const App = () => {
     }
   });
   useEffect(() => {
-    dispatch(setScreen(URLtoScreen(location.pathname)));
+    if (token) dispatch(setScreen(URLtoScreen(location.pathname)));
   }, []);
 
   return (

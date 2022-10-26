@@ -5,9 +5,9 @@ export const titleCaseToSnakeCaseFormatter = (event: string) => {
     .join('');
 };
 
-export const numberReducer = (num: string | number) => {
+export const numberReducer = (num: string | number, settings?: Record<string, unknown>) => {
   num = typeof num === 'string' ? parseInt(num) : num;
-  const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+  const formatter = Intl.NumberFormat('en', { notation: 'compact', ...settings });
   return formatter.format(num);
 };
 

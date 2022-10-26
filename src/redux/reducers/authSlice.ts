@@ -70,10 +70,9 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: userInitialState,
   reducers: {
-    logout: (state) => {
+    logout: () => {
       localStorage.removeItem('token');
-      state = userInitialState;
-      return state;
+      window.location.reload();
     },
     clearState: (state) => {
       state.status = STATUS_TYPE.IDLE;

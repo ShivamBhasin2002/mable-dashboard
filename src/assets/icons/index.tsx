@@ -3,7 +3,7 @@ import { IconType } from 'utility/typeDefinitions/componentPropTypes';
 import { RiBarChart2Line, RiLock2Fill } from 'react-icons/ri';
 import { MdMail } from 'react-icons/md';
 import { FiTarget } from 'react-icons/fi';
-import { FaRegCopyright } from 'react-icons/fa';
+import { FaRegCopyright, FaSortDown, FaSortUp } from 'react-icons/fa';
 import {
   AiOutlineBell,
   AiFillCaretDown,
@@ -35,6 +35,7 @@ import Pending from 'assets/icons/Pending';
 import Tick from 'assets/icons/Tick';
 import Cross from 'assets/icons/Cross';
 import Logout from 'assets/icons/Logout';
+import { SORT_ORDER } from 'utility/constants/enums';
 
 const Icon = ({ icon, color, className, ...props }: IconType) => {
   switch (icon) {
@@ -174,6 +175,12 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
       return (
         <AiFillCaretRight className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
       );
+
+    case SORT_ORDER.INCREASING:
+      return <FaSortDown className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case SORT_ORDER.DECREASING:
+      return <FaSortUp className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
   }
   return null;
 };

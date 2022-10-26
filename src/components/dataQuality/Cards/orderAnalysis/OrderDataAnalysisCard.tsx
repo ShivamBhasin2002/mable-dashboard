@@ -10,6 +10,7 @@ import { STATUS_TYPE } from 'utility/constants/enums';
 import { useSelector, useDispatch } from 'redux/store';
 import { dataQualityAsync } from 'redux/reducers/dataQuality/dataQualitySlice';
 import { dateTimeReducer, numberReducer } from 'utility/functions/formattingFunctions';
+import { eventsAsync } from 'redux/reducers/dataQuality/eventSlice';
 
 const OrderDataAnalysisCard = () => {
   const dispatch = useDispatch();
@@ -30,12 +31,13 @@ const OrderDataAnalysisCard = () => {
   }, [avgTimeDifference]);
   useEffect(() => {
     if (dataQualityStatus !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
+    if (eventsStatus !== STATUS_TYPE.FETCHING) dispatch(eventsAsync());
   }, [refresh]);
   return (
     <ComponentWrapper status={[dataQualityStatus, eventsStatus]} className="!px-[20px] md:px-[4px]">
       <div className="flex flex-row flex-wrap 2xl:flex-nowrap gap-[40px] justify-evenly">
         <QualityCombined />
-        <div className="flex-grow xl:order-2 2xl:order-none">
+        <div className="xl:order-2 2xl:order-none w-[50%]">
           <DataQualityLineChart color={colors.lineGraphStart} />
         </div>
         <div className="flex flex-row gap-[20px]">

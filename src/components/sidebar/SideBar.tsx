@@ -8,6 +8,7 @@ import { setScreen } from 'redux/reducers/screenSlice';
 import { screenToURL } from 'utility/functions/mappingFunctions';
 import { useWindowSize } from 'utility/customHooks';
 import { screenType } from 'utility/constants/enums';
+import { mableAiLandingPage } from 'utility/constants/strings';
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -32,10 +33,12 @@ const SideBar = () => {
       className="sticky top-0 left-0 w-[70px] lg:w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] flex flex-col gap-[25px] lg:gap-[70px] pr-[5px] lg:px-[30px]"
     >
       <header className="flex justify-center">
-        <Icon
-          icon={(screenWidth ?? 0) >= 1024 ? 'mableLogo' : 'mableIcon'}
-          width={(screenWidth ?? 0) >= 1024 ? 140 : 27}
-        />
+        <a href={mableAiLandingPage}>
+          <Icon
+            icon={(screenWidth ?? 0) >= 1024 ? 'mableLogo' : 'mableIcon'}
+            width={(screenWidth ?? 0) >= 1024 ? 140 : 27}
+          />
+        </a>
       </header>
 
       <section className="flex-grow overflow-y-scroll hide_scrollbar">
