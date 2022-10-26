@@ -20,9 +20,11 @@ function privacyCockpit() {
   if (status === 'success') {
     dispatch(updateSettings());
     return (
-      <div className="flex flex-col xl:flex-row  gap-4 mt-[20px]">
-        <ParameterSettings />
-        <div className="flex flex-col gap-4 xl:w-1/2">
+      <div className="flex flex-col xl:flex-row gap-4 mt-[20px] ">
+        <div className="xl:w-60">
+          <ParameterSettings />
+        </div>
+        <div className="flex flex-col gap-4 xl:w-40">
           <PrivacySettings />
           <DeleteUserData />
         </div>
@@ -32,9 +34,11 @@ function privacyCockpit() {
     return <div>Loading...</div>;
   } else {
     return (
-      <div className="flex gap-4 mt-[20px]">
-        <ParameterSettings />
-        <div className="flex flex-col gap-4">
+      <div className="flex gap-4 mt-[20px] ">
+        <div className="w-60 ">
+          <ParameterSettings />
+        </div>
+        <div className="flex flex-col gap-4 w-40">
           <PrivacySettings />
           <DeleteUserData />
         </div>

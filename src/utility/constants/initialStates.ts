@@ -170,7 +170,7 @@ export const privacyCockpit: privacyCockpitType = {
     data_collection_destinations: [
       {
         value: 'database',
-        label: 'Database',
+        label: 'Your Database',
         available: true
       },
       {
@@ -188,17 +188,17 @@ export const privacyCockpit: privacyCockpitType = {
       {
         value: 'email',
         category: 'personalData',
-        label: 'E-Mail'
+        label: 'E-Mail Address'
       },
       {
         value: 'firstname',
         category: 'personalData',
-        label: 'Firstname'
+        label: 'First Name'
       },
       {
         value: 'lastname',
         category: 'personalData',
-        label: 'Lastname'
+        label: 'Last Name'
       },
       {
         value: 'birthdate',
@@ -208,7 +208,7 @@ export const privacyCockpit: privacyCockpitType = {
       {
         value: 'phonenumber',
         category: 'personalData',
-        label: 'Phonenumber'
+        label: 'Phone Number'
       },
       {
         value: 'city',
@@ -218,7 +218,7 @@ export const privacyCockpit: privacyCockpitType = {
       {
         value: 'postalcode',
         category: 'location',
-        label: 'Postalcode'
+        label: 'Postal Code'
       },
       {
         value: 'state',
@@ -238,17 +238,17 @@ export const privacyCockpit: privacyCockpitType = {
       {
         value: 'ipaddress',
         category: 'others',
-        label: 'Ip Address'
+        label: 'IP Address'
       },
       {
         value: 'externeid',
         category: 'others',
-        label: 'Externe Id'
+        label: 'External ID'
       },
       {
         value: 'klickid',
         category: 'others',
-        label: 'Klick - Id'
+        label: 'Click-Id'
       }
     ],
     parsed_settings: []
