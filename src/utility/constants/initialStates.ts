@@ -243,7 +243,7 @@ export const privacyCockpit: privacyCockpitType = {
       {
         value: 'externeid',
         category: 'others',
-        label: 'Externe ID'
+        label: 'External ID'
       },
       {
         value: 'klickid',
