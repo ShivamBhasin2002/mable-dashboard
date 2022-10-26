@@ -33,7 +33,7 @@ const SideBar = () => {
       </header>
 
       <section className="flex-grow h-10 overflow-hidden h-70 ">
-        <div className="flex flex-col gap-[5px]  h-full justify-center">
+        <div className="flex flex-col gap-[5px]  h-full ">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
             return (
               <div key={sidebarCategory}>

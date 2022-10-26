@@ -170,7 +170,7 @@ export const privacyCockpit: privacyCockpitType = {
     data_collection_destinations: [
       {
         value: 'database',
-        label: 'Database',
+        label: 'Your Database',
         available: true
       },
       {
@@ -243,7 +243,7 @@ export const privacyCockpit: privacyCockpitType = {
       {
         value: 'externeid',
         category: 'others',
-        label: 'Externe ID'
+        label: 'External ID'
       },
       {
         value: 'klickid',
