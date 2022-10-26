@@ -92,7 +92,7 @@ function toggleTable() {
       {categories.map((category) => {
         return (
           <>
-            <div className="header">
+            <div className="category-header mt-5">
               <p className="text-primary opacity-70 text-[14px]">
                 {camelCaseToTitleCase(category)}{' '}
               </p>

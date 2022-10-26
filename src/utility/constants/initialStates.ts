@@ -170,7 +170,7 @@ export const privacyCockpit: privacyCockpitType = {
     data_collection_destinations: [
       {
         value: 'database',
-        label: 'Database',
+        label: 'Your Database',
         available: true
       },
       {
