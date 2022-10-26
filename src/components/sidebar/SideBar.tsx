@@ -33,7 +33,7 @@ const SideBar = () => {
       </header>
 
       <section className="flex-grow h-10 overflow-hidden h-70 ">
-        <div className="flex flex-col gap-[5px] h-full">
+        <div className="flex flex-col gap-[5px]  h-full justify-center">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
             return (
               <div key={sidebarCategory}>
@@ -54,7 +54,7 @@ const SideBar = () => {
         </div>
       </section>
 
-      <section className="flex flex-col gap-[10px] h-20 items justify-end">
+      <section className="flex flex-col gap-[10px] h-20 items justify-center">
         <div className="text-[16px] text-light/[0.57] font-montserrat font-bold">PROFILE</div>
         <div className="flex flex-row gap-4 w-full items-center ">
           <span className="w-[35px] h-[35px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">

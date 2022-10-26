@@ -91,7 +91,7 @@ export type SideBarItemProps = {
   isActive: boolean;
 };
 
-export type ToggletypeProps = {
+export type toggletypeProps = {
   value: boolean;
   setState: React.Dispatch<
     React.SetStateAction<{
