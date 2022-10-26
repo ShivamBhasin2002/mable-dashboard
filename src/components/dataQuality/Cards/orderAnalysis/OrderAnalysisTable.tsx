@@ -54,7 +54,7 @@ const OrderAnalysisTable = () => {
 
   return (
     <ComponentWrapper
-      className="text-light min-h-[40px] !overflow-overlay hide_scrollbar"
+      className="text-light min-h-[40px] !overflow-scroll hide_scrollbar"
       width={screenWidth ? (screenWidth >= 1022 ? screenWidth - 340 : screenWidth - 360) : 340}
       status={status}
     >

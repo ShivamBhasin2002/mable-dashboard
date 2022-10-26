@@ -11,6 +11,7 @@ import {
   mableScriptsLabel,
   pageShareSpeedLabel
 } from 'utility/constants/strings';
+import { dateTimeReducer } from 'utility/functions/formattingFunctions';
 
 const PageSpeedCard = () => {
   const dispatch = useDispatch();
@@ -29,15 +30,19 @@ const PageSpeedCard = () => {
       <div className="flex flex-row justify-center pb-[10px]">
         <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {avg_loading_time_page}
-            <span className="text-[20px]">s</span>
+            {dateTimeReducer(avg_loading_time_page * 1000).value}
+            <span className="text-[20px]">
+              {dateTimeReducer(avg_loading_time_mable_script * 1000).unit}
+            </span>
           </div>
           <div className="text-primary text-center text-[14px]">{avgLoadingTimeLabel}</div>
         </div>
         <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {avg_loading_time_mable_script}
-            <span className="text-[20px]">s</span>
+            {dateTimeReducer(avg_loading_time_mable_script * 1000).value}
+            <span className="text-[20px]">
+              {dateTimeReducer(avg_loading_time_mable_script * 1000).unit}
+            </span>
           </div>
           <div className="text-primary text-center text-[14px] ">
             {avgLoadingTimeLabel} <br /> {mableScriptsLabel}
@@ -45,7 +50,7 @@ const PageSpeedCard = () => {
         </div>
         <div className="min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
-            {avg_contribution_time_mable_script}
+            {Math.round(avg_contribution_time_mable_script * 100) / 100}
             <span className="text-[20px]">%</span>
           </div>
           <div className="text-primary text-center text-[14px]">{pageShareSpeedLabel}</div>
