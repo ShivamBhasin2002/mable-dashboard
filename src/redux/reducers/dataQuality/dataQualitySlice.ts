@@ -4,7 +4,7 @@ import moment from 'moment';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataQualityInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 import { containsToday } from 'utility/functions/helper';
 
@@ -27,9 +27,9 @@ export const dataQualityAsync = createAsyncThunk<any, void, thunkOptions>(
         !containsToday(state.dates.dateRange)
       );
       if (data) return data;
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );

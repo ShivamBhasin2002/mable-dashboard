@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
-import { numberFormatter } from 'utility/functions/formattingFunctions';
+import { numberReducer } from 'utility/functions/formattingFunctions';
 import { getSelectedEventData } from 'utility/functions/mappingFunctions';
 import { createGradient } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
@@ -57,9 +57,13 @@ const EventsPerDayLineChart = () => {
                 font: {
                   family: fonts.text
                 },
-                stepSize: 500,
+                stepSize: Math.floor(
+                  byDate
+                    .map((item) => getSelectedEventData(item, eventSelected))
+                    .reduce((a, b) => Math.max(a, b), 0) / 5
+                ),
                 callback(this, tickValue: string | number) {
-                  return numberFormatter(tickValue);
+                  return numberReducer(tickValue);
                 }
               },
               grid: {
@@ -72,7 +76,10 @@ const EventsPerDayLineChart = () => {
               ticks: {
                 font: {
                   family: fonts.text
-                }
+                },
+                autoSkip: true,
+                maxTicksLimit: 10,
+                maxRotation: 0
               },
               grid: {
                 display: false,

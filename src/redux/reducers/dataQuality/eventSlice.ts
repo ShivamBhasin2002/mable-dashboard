@@ -3,18 +3,19 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { eventsInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 import { containsToday } from 'utility/functions/helper';
 
-export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
+// eslint-disable-next-line
+export const eventsAsync = createAsyncThunk<any, void, thunkOptions>(
   'events/fetch',
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
       const { data } = await dashboardDataFetchCall(
         {
-          path: '',
+          path: '/v2/avg-time-difference',
           token: state.user.token,
           params: {
             source_id: state.shop.active?.id,
@@ -24,12 +25,10 @@ export const eventsAsync = createAsyncThunk<null, void, thunkOptions>(
         },
         !containsToday(state.dates.dateRange)
       );
-      if (data) {
-        return data;
-      }
-      rejectWithValue('Data not found');
+      if (data) return data;
+      return rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );
@@ -39,7 +38,9 @@ export const eventsReducer = createReducer(eventsInitialState, (builder) => {
     .addCase(eventsAsync.pending, (state) => {
       state.status = STATUS_TYPE.FETCHING;
     })
-    .addCase(eventsAsync.fulfilled, (state) => {
+    .addCase(eventsAsync.fulfilled, (state, { payload }) => {
+      state.avgTimeDifference = payload?.avg_time_diff;
+      state.correctCvOrders = payload?.correct_cv_orders;
       state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(eventsAsync.rejected, (state) => {

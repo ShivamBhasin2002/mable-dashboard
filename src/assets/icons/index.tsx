@@ -2,12 +2,19 @@ import { IconType } from 'utility/typeDefinitions/componentPropTypes';
 
 import { RiBarChart2Line, RiLock2Fill } from 'react-icons/ri';
 import { MdMail } from 'react-icons/md';
-import { FiTarget, FiLogOut } from 'react-icons/fi';
-import { FaRegCopyright } from 'react-icons/fa';
-import { AiOutlineBell, AiFillCaretDown, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { FiTarget } from 'react-icons/fi';
+import { FaRegCopyright, FaSortDown, FaSortUp } from 'react-icons/fa';
+import {
+  AiOutlineBell,
+  AiFillCaretDown,
+  AiFillEye,
+  AiFillEyeInvisible,
+  AiFillCaretLeft,
+  AiFillCaretRight
+} from 'react-icons/ai';
 import { BsBarChartLine } from 'react-icons/bs';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
-import { TbReportMoney } from 'react-icons/tb';
+import { TbReportMoney, TbMoodSmile, TbPackageOff } from 'react-icons/tb';
 import { BiRefresh, BiError } from 'react-icons/bi';
 
 import Dashboard from 'assets/icons/DashboardIcon';
@@ -27,6 +34,9 @@ import Delayed from 'assets/icons/Delayed';
 import Pending from 'assets/icons/Pending';
 import Tick from 'assets/icons/Tick';
 import Cross from 'assets/icons/Cross';
+import Logout from 'assets/icons/Logout';
+import Sunglasses from 'assets/icons/Sunglasses';
+import { SORT_ORDER } from 'utility/constants/enums';
 
 const Icon = ({ icon, color, className, ...props }: IconType) => {
   switch (icon) {
@@ -103,7 +113,7 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
       return <Analytics className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
     case 'logout':
-      return <FiLogOut className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+      return <Logout className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
     case 'dropdown':
       return (
@@ -147,8 +157,33 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
 
     case 'mableLogo':
       return <MableLogo className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
     case 'errorTriangular':
       return <BiError className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'noWarnings':
+      return <TbMoodSmile className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'noOrders':
+      return <TbPackageOff className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case 'left':
+      return (
+        <AiFillCaretLeft className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
+
+    case 'right':
+      return (
+        <AiFillCaretRight className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
+    case 'sunglass':
+      return <Sunglasses className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case SORT_ORDER.INCREASING:
+      return <FaSortDown className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    case SORT_ORDER.DECREASING:
+      return <FaSortUp className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
   }
   return null;
 };

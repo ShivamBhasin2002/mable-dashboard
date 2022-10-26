@@ -3,7 +3,7 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { pageSpeedInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 import moment from 'moment';
 import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 
@@ -24,9 +24,9 @@ export const pageSpeedAsync = createAsyncThunk<any, void, thunkOptions>(
         true
       );
       if (data) return data;
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { warningInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 // eslint-disable-next-line
 export const warningAsync = createAsyncThunk<any, void, thunkOptions>(
@@ -21,9 +21,9 @@ export const warningAsync = createAsyncThunk<any, void, thunkOptions>(
         }
       });
       if (data) return data;
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );

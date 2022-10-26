@@ -6,7 +6,7 @@ import {
   getDeletedCustomer,
   getPrivacySettings,
   updateSettings
-} from 'redux/reducers/privacyCockpitSlice';
+} from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import { useDispatch, useSelector } from 'redux/store';
 
 function privacyCockpit() {

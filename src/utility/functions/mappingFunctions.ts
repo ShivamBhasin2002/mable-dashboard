@@ -3,9 +3,10 @@ import moment from 'moment';
 import {
   DatePickerPresets as presets,
   eventSelectedType,
+  routes,
   screenType,
   statusSelector
-} from 'utility/constants/general';
+} from 'utility/constants/enums';
 
 import { AnalyticsStateType } from 'utility/typeDefinitions/reduxTypes';
 
@@ -68,6 +69,14 @@ export const getEventDisplayName = (event: string) => {
 // eslint-disable-next-line
 export const getSelectedEventData = (item: any, event: string) => {
   switch (event) {
+    case eventSelectedType.all:
+      return (
+        item.purchase +
+        item.add_payment_info +
+        item.intitate_checkout +
+        item.add_to_cart +
+        item.page_view
+      );
     case eventSelectedType.purchase:
       return item.purchase;
     case eventSelectedType.add_payment_info:
@@ -101,20 +110,35 @@ export const updateEvents = (state: AnalyticsStateType, payload: string) => {
   }
 };
 
-export const screenToURL = (screen: screenType): string | undefined => {
+export const screenToURL = (screen: screenType): routes | undefined => {
   switch (screen) {
     case screenType.dashboard:
-      return 'data_quality/dashboard';
+      return routes.dashboard;
     case screenType.orderAnalysis:
-      return 'data_quality/order_analysis';
+      return routes.orderAnalysis;
     case screenType.eventQuality:
-      return 'data_quality/event_quality';
+      return routes.eventQuality;
     case screenType.analytics:
-      return 'analytics/reports';
-    case screenType.accountSettings:
-      return 'settings/account_settings';
+      return routes.analytics;
+    case screenType.settings:
+      return routes.settings;
     case screenType.privacyCockpit:
-      return 'settings/privacy_cockpit';
+      return routes.privacyCockpit;
+  }
+};
+
+export const URLtoScreen = (screen: string): screenType | undefined => {
+  switch (screen) {
+    case routes.dashboard:
+      return screenType.dashboard;
+    case routes.orderAnalysis:
+      return screenType.orderAnalysis;
+    case routes.eventQuality:
+      return screenType.eventQuality;
+    case routes.analytics:
+      return screenType.analytics;
+    case routes.settings:
+      return screenType.settings;
   }
 };
 

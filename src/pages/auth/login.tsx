@@ -9,9 +9,10 @@ import { TextField, CheckBox } from 'components/form';
 
 import { useDispatch, useSelector } from 'redux/store';
 import { loginAsync, clearState } from 'redux/reducers/authSlice';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { routes, STATUS_TYPE } from 'utility/constants/enums';
 
 const Login = () => {
+  const disable = true;
   const toast = useToast();
   const navigator = useNavigate();
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const Login = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(clearState());
-      navigator('/data_quality/dashboard');
+      navigator(routes.dashboard);
     }
   }, [status]);
   return (
@@ -105,11 +106,15 @@ const Login = () => {
           )}
         </Formik>
         <div className="flex justify-between text-secondary w-[400px] md:w-[600px] items-center">
-          <div>
-            Don&apos;t have an account?{' '}
-            <Link className="text-light" to="/auth/register">
-              Register Now!
-            </Link>
+          <div className="flex gap-1">
+            Don&apos;t have an account?
+            {disable ? (
+              <div className=" text-zinc-400">Register Now!</div>
+            ) : (
+              <Link className="text-light" to={routes.register}>
+                Register Now!
+              </Link>
+            )}
           </div>
           <div className="flex items-center">
             <Icon icon="copyright" size="0.8rem" />

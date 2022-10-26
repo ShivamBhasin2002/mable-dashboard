@@ -4,10 +4,10 @@ import { ComponentWrapper } from 'components/common';
 import { SelectorMenu } from 'components/dataQuality/Common';
 import { EventsPerDayLineChart } from 'components/dataQuality/Graphs';
 
-import { eventSelectedType, STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { eventsDataAsync, setEventSelected } from 'redux/reducers/eventsDataSlice';
+import { eventsDataAsync, setEventSelected } from 'redux/reducers/dataQuality/eventsDataSlice';
 
 const EventsPerDayCard = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,6 @@ const EventsPerDayCard = () => {
   return (
     <ComponentWrapper
       title="Events Per Day"
-      width={600}
       status={status}
       nextComponent={
         <SelectorMenu
@@ -27,7 +26,7 @@ const EventsPerDayCard = () => {
           onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
         />
       }
-      className="flex-grow 2xl:flex-grow-0"
+      className="flex-grow"
     >
       <EventsPerDayLineChart />
     </ComponentWrapper>

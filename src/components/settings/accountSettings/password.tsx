@@ -5,8 +5,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
-import { STATUS_TYPE } from 'utility/constants/general';
-import { updatePassword } from 'redux/reducers/updateAccountInfoSlice';
+import { STATUS_TYPE } from 'utility/constants/enums';
+import { updatePassword } from 'redux/reducers/settings/updateAccountInfoSlice';
 import { useEffect } from 'react';
 
 const PasswordChange = () => {

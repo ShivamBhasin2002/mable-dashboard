@@ -1,21 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
-import { eventsDataInitialState } from 'utility/constants/initialStates';
+import { orderAnalysisInitialState } from 'utility/constants/initialStates';
 
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 import { dashboardDataFetchCall } from 'utility/functions/apiCalls';
 import { containsToday } from 'utility/functions/helper';
 
 // eslint-disable-next-line
-export const eventsDataAsync = createAsyncThunk<any, void, thunkOptions>(
-  'eventsData/fetch',
+export const orderAnalysisAsync = createAsyncThunk<any, void, thunkOptions>(
+  'orderAnalysis/fetch',
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
       const { data } = await dashboardDataFetchCall(
         {
-          path: '/v2/events',
+          path: '/v2/order-analysis',
           token: state.user.token,
           params: {
             source_id: state.shop.active?.id,
@@ -26,35 +26,35 @@ export const eventsDataAsync = createAsyncThunk<any, void, thunkOptions>(
         !containsToday(state.dates.dateRange)
       );
       if (data) return data;
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     } catch (error) {
-      rejectWithValue('Data not found');
+      return rejectWithValue('Data not found');
     }
   }
 );
-export const eventsDataReducer = createSlice({
-  name: 'eventsData',
-  initialState: eventsDataInitialState,
+
+export const orderAnalysis = createSlice({
+  name: 'orderAnalysis',
+  initialState: orderAnalysisInitialState,
   reducers: {
-    setEventSelected: (state, { payload }) => {
-      state.eventSelected = payload;
+    setStatusSelected: (state, { payload }) => {
+      state.statusSelected = payload;
     }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(eventsDataAsync.pending, (state) => {
+      .addCase(orderAnalysisAsync.pending, (state) => {
         state.status = STATUS_TYPE.FETCHING;
       })
-      .addCase(eventsDataAsync.fulfilled, (state, { payload }) => {
-        state.total_events = payload?.total_events ?? eventsDataInitialState.total_events;
-        state.byDate = payload?.by_date ?? eventsDataInitialState.byDate;
+      .addCase(orderAnalysisAsync.fulfilled, (state, { payload }) => {
+        state.tableData = payload ?? orderAnalysisInitialState.tableData;
         state.status = STATUS_TYPE.SUCCESS;
       })
-      .addCase(eventsDataAsync.rejected, (state) => {
+      .addCase(orderAnalysisAsync.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
       });
   }
 });
 
-export const { setEventSelected } = eventsDataReducer.actions;
-export default eventsDataReducer.reducer;
+export const { setStatusSelected } = orderAnalysis.actions;
+export default orderAnalysis.reducer;

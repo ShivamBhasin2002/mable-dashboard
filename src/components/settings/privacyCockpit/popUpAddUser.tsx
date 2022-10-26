@@ -7,9 +7,9 @@ import * as Yup from 'yup';
 import colors from 'utility/colors';
 import { Input } from '@chakra-ui/react';
 import { Dispatch, SetStateAction } from 'react';
-import { postDeletedCustomer } from 'redux/reducers/privacyCockpitSlice';
+import { postDeletedCustomer } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import { useDispatch, useSelector } from 'redux/store';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 interface PopUpProps {
   open: string;

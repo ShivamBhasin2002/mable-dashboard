@@ -1,5 +1,5 @@
 import { useSelector } from 'redux/store';
-import { dataEventLabels } from 'utility/constants/general';
+import { dataEventLabels } from 'utility/constants/enums';
 
 const DataPerEventDoughnutChartLabels = () => {
   const data = useSelector((state) => state.dataPerEvent.dataContainedPerEventDoughnutChart);
