@@ -4,14 +4,17 @@ import { Button } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { STATUS_TYPE } from 'utility/constants/general';
 import PopupExample from './popUpAddUser';
+import { useToast } from '@chakra-ui/react';
 
 const DeleteUserData = () => {
   const [display, setDisplay] = useState('hidden');
   const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
+  const toast = useToast();
 
   useEffect(() => {
     if (status === STATUS_TYPE.SUCCESS) {
       setDisplay('hidden');
+      toast({ title: 'User Deleted', status: 'success', isClosable: true, position: 'top-right' });
     }
   });
 
@@ -33,7 +36,7 @@ const DeleteUserData = () => {
     <ComponentWrapper
       title="Delete User Data"
       underlined={true}
-      className="mt-[30px] flex flex-col max-w-4xl"
+      className="flex flex-col max-w-4xl h-fit"
       nextComponent={addEntry()}
     >
       <PopupExample open={display} setDisplay={setDisplay} />

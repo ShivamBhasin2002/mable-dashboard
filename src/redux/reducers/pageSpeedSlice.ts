@@ -24,8 +24,9 @@ export const pageSpeedAsync = createAsyncThunk<any, void, thunkOptions>(
         true
       );
       if (data) return data;
+      rejectWithValue('Data not found');
     } catch (error) {
-      return rejectWithValue('Data not found');
+      rejectWithValue('Data not found');
     }
   }
 );

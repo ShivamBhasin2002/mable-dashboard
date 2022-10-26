@@ -198,30 +198,27 @@ export type AccountUpdateType = {
 };
 
 export type privacyCockpitType = {
-  data_collection_destinations: [
-    {
+  paraMeterSettings: {
+    status: STATUS_TYPE;
+    updateAll: string;
+    data_collection_destinations: {
       value: string;
       label: string;
       available: boolean;
-    },
-    {
-      value: string;
-      label: string;
-      available: boolean;
-    }
-  ];
-  data_collection_settings: [
-    {
+    }[];
+    data_collection_settings: {
       value: string;
       category: string;
       label: string;
-    },
-    {
-      value: string;
+    }[];
+    parsed_settings: {
+      settingKey: string;
       category: string;
+      destination: string;
       label: string;
-    }
-  ];
+      settingValue: string;
+    }[];
+  };
   privacySettings: {
     status: STATUS_TYPE;
     hashDataInDashboard: {

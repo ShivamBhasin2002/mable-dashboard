@@ -164,30 +164,96 @@ export const filterOptionInitialState: AnalyticsStateType = {
 };
 
 export const privacyCockpit: privacyCockpitType = {
-  data_collection_destinations: [
-    {
-      value: 'database',
-      label: 'Your Database',
-      available: true
-    },
-    {
-      value: 'tiktok',
-      label: 'Tik Tok',
-      available: false
-    }
-  ],
-  data_collection_settings: [
-    {
-      value: 'email',
-      category: 'personalData',
-      label: 'E-Mail'
-    },
-    {
-      value: 'email',
-      category: 'personalData',
-      label: 'E-Mail'
-    }
-  ],
+  paraMeterSettings: {
+    status: STATUS_TYPE.IDLE,
+    updateAll: 'false',
+    data_collection_destinations: [
+      {
+        value: 'database',
+        label: 'Database',
+        available: true
+      },
+      {
+        value: 'facebook',
+        label: 'Facebook',
+        available: true
+      },
+      {
+        value: 'tiktok',
+        label: 'Tik Tok',
+        available: false
+      }
+    ],
+    data_collection_settings: [
+      {
+        value: 'email',
+        category: 'personalData',
+        label: 'E-Mail'
+      },
+      {
+        value: 'firstname',
+        category: 'personalData',
+        label: 'Firstname'
+      },
+      {
+        value: 'lastname',
+        category: 'personalData',
+        label: 'Lastname'
+      },
+      {
+        value: 'birthdate',
+        category: 'personalData',
+        label: 'Birthdate'
+      },
+      {
+        value: 'phonenumber',
+        category: 'personalData',
+        label: 'Phonenumber'
+      },
+      {
+        value: 'city',
+        category: 'location',
+        label: 'City'
+      },
+      {
+        value: 'postalcode',
+        category: 'location',
+        label: 'Postalcode'
+      },
+      {
+        value: 'state',
+        category: 'location',
+        label: 'State'
+      },
+      {
+        value: 'country',
+        category: 'location',
+        label: 'Country'
+      },
+      {
+        value: 'useragent',
+        category: 'others',
+        label: 'User Agent'
+      },
+      {
+        value: 'ipaddress',
+        category: 'others',
+        label: 'Ip Address'
+      },
+      {
+        value: 'externeid',
+        category: 'others',
+        label: 'Externe Id'
+      },
+      {
+        value: 'klickid',
+        category: 'others',
+        label: 'Klick - Id'
+      }
+    ],
+    parsed_settings: []
+  },
+
   privacySettings: {
     status: STATUS_TYPE.IDLE,
     hashDataInDashboard: {

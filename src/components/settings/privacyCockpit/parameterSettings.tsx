@@ -1,38 +1,18 @@
 import ComponentWrapper from 'components/common/ComponentWrapper';
-import ToggleBtn from 'components/common/ToggleBtn/Togglebtn';
 import { Divider } from '@chakra-ui/react';
+import { useSelector } from 'redux/store';
 import ToggleTable from './ToggleTable';
+
 function ParameterSettings() {
-  const data_collection_destinations: {
-    value: string;
-    label: string;
-    available: boolean;
-  }[] = [
-    {
-      value: 'database',
-      label: 'Database',
-      available: true
-    },
-    {
-      value: 'facebook',
-      label: 'Facebook',
-      available: true
-    },
-    {
-      value: 'tiktok',
-      label: 'Tik Tok',
-      available: false
-    }
-  ];
+  const { data_collection_destinations } = useSelector(
+    (state) => state.privacyCockpit.paraMeterSettings
+  );
+
   return (
-    <ComponentWrapper className="flex flex-col">
-      <div className="active_all flex justify-end items-center">
-        <p className="text-light mx-2">Active Everything </p>
-        <ToggleBtn value={false} on={'on'} off={'off'} />
-      </div>
-      <div className="header w-full grid grid-cols-12 gap-0  content-center">
-        <div className="header_title text-[2em] font-[700] text-primary col-span-3  ">
-          Parameter Settings
+    <ComponentWrapper className="flex flex-col w-1/2 h-fit">
+      <div className="header w-full grid grid-cols-9 gap-0  content-center">
+        <div className="header_title   col-span-3  m-right my-auto">
+          <p className="text-[24px] font-[700] text-primary"> Parameter Settings</p>
         </div>
 
         {data_collection_destinations.map((item) => {
@@ -41,11 +21,16 @@ function ParameterSettings() {
               key={item.value}
               className={
                 item.available
-                  ? `text-gray-300 text-[1.2em] col-span-3  m-auto`
-                  : `text-gray-500 text-[1.2em] col-span-3  m-auto `
+                  ? `text-gray-400 text-[1.1em] font-bold col-span-2  m-auto flex justify-start flex-col`
+                  : `text-gray-600 text-[1.1em] font-bold col-span-2  m-auto flex justify-start flex-col`
               }
             >
-              {item.label}
+              <p className="">{item.label}</p>
+              {!item.available && (
+                <span className="text-[.5em]  text-center text-primary opacity-70 rounded-2xl">
+                  Coming Soon
+                </span>
+              )}
             </p>
           );
         })}

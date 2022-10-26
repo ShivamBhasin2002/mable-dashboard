@@ -3,6 +3,7 @@ import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
 import { STATUS_TYPE } from 'utility/constants/general';
+import { snakeCaseToKeyValueExtractor } from 'utility/functions/formattingFunctions';
 
 export const getPrivacySettings = createAsyncThunk<
   { source_id: number; setting_key: string; setting_value: string }[],
@@ -172,6 +173,42 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
   }
 });
 
+export const postParameterSettings = createAsyncThunk<
+  {
+    ok: boolean;
+    settings_changed: {
+      settingKey: string;
+      settingValue: string;
+    }[];
+  },
+  {
+    settings: {
+      settingKey?: string;
+      settingValue?: string;
+    }[];
+  },
+  thunkOptions
+>('privacyCockpit/perameterSettings/post', async (formData, { rejectWithValue, getState }) => {
+  const state = getState();
+  try {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
+      formData,
+      {
+        headers: { Authorization: `${state.user.token}` }
+      }
+    );
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
+  }
+});
+
 export const privacyCockpitSetting = createSlice({
   name: 'privacyCockpitSetting',
   initialState: privacyCockpit,
@@ -192,10 +229,36 @@ export const privacyCockpitSetting = createSlice({
     builder
       .addCase(getPrivacySettings.pending, (state) => {
         state.privacySettings.status = STATUS_TYPE.FETCHING;
+        state.paraMeterSettings.status = STATUS_TYPE.FETCHING;
       })
       .addCase(getPrivacySettings.fulfilled, (state, { payload }) => {
         state.privacySettings.status = STATUS_TYPE.SUCCESS;
+        state.paraMeterSettings.status = STATUS_TYPE.SUCCESS;
         state.previousSettings = payload;
+        state.paraMeterSettings.parsed_settings = [];
+        payload.map((data) => {
+          const category = snakeCaseToKeyValueExtractor(data.setting_key)[0];
+          if (category === 'personalData' || category === 'location' || category === 'others') {
+            const obj = {
+              settingKey: data.setting_key,
+              category: category,
+              destination: snakeCaseToKeyValueExtractor(data.setting_key)[2],
+              label: snakeCaseToKeyValueExtractor(data.setting_key)[1],
+              settingValue: data.setting_value,
+              sequance: snakeCaseToKeyValueExtractor(data.setting_key)[2]
+            };
+            if (state.paraMeterSettings.parsed_settings.length === 0)
+              state.paraMeterSettings.parsed_settings.push(obj);
+
+            if (state.paraMeterSettings.parsed_settings) {
+              let noduplicate = true;
+              state.paraMeterSettings.parsed_settings.map((item) => {
+                if (item.settingKey === obj.settingKey) noduplicate = false;
+              });
+              if (noduplicate) state.paraMeterSettings.parsed_settings?.push(obj);
+            }
+          }
+        });
       })
       .addCase(getPrivacySettings.rejected, (state, { error }) => {
         state.privacySettings.status = STATUS_TYPE.ERROR;
@@ -222,9 +285,6 @@ export const privacyCockpitSetting = createSlice({
       .addCase(postConsentUrlPrivacySettings.rejected, (state) => {
         state.privacySettings.cookieConsent.status = STATUS_TYPE.ERROR;
       })
-      // .addCase(getDeletedCustomer.pending, (state) => {
-      //   state.deleteUserData.status = STATUS_TYPE.FETCHING;
-      // })
       .addCase(getDeletedCustomer.fulfilled, (state, { payload }) => {
         state.deleteUserData.userData = payload;
       })
@@ -240,6 +300,22 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(postDeletedCustomer.rejected, (state) => {
         state.deleteUserData.status = STATUS_TYPE.ERROR;
+      })
+      .addCase(postParameterSettings.pending, (state) => {
+        state.paraMeterSettings.status = STATUS_TYPE.FETCHING;
+      })
+      .addCase(postParameterSettings.fulfilled, (state, { payload }) => {
+        state.paraMeterSettings.status = STATUS_TYPE.SUCCESS;
+        payload.settings_changed.map((data) => {
+          state.paraMeterSettings.parsed_settings.map((savedData, idx) => {
+            if (savedData.settingKey === data.settingKey) {
+              state.paraMeterSettings.parsed_settings[idx].settingValue = data.settingValue;
+            }
+          });
+        });
+      })
+      .addCase(postParameterSettings.rejected, (state) => {
+        state.paraMeterSettings.status = STATUS_TYPE.ERROR;
       });
   }
 });

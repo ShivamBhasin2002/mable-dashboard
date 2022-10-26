@@ -19,8 +19,9 @@ export const shopAsync = createAsyncThunk<shopStateType | undefined, void, thunk
       );
       const res: shopStateType = { active: data[0] ?? undefined, shops: (data ?? []).slice(1) };
       if (data) return res;
+      rejectWithValue('Shops not found');
     } catch (error) {
-      return rejectWithValue('Data not found');
+      rejectWithValue('Shops not found');
     }
   }
 );

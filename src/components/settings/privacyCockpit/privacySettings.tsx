@@ -81,12 +81,10 @@ const PrivacySettings = () => {
     <ComponentWrapper
       title="Privacy Settings"
       underlined={true}
-      className="mt-[30px] flex flex-col max-w-4xl"
+      className="flex flex-col max-w-4xl h-fit"
     >
       <div className="flex gap-4">
-        <div className=" text-light text-xl flex items-center gap-2">
-          Hash data in your dashboard
-        </div>
+        <div className=" text-light flex items-center gap-2">Hash data in your dashboard</div>
         <Checkbox
           isChecked={checkBoxStatus}
           className=" text-light"
@@ -99,7 +97,7 @@ const PrivacySettings = () => {
         ></Checkbox>
       </div>
       <div className="flex gap-4 items-center mt-[40px]">
-        <div className=" text-light text-xl">Please link your cookie consent</div>
+        <div className=" text-light">Please link your cookie consent</div>
         <form className="w-[20rem]">
           <Input
             value={cookieConsent}

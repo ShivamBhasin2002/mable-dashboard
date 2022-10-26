@@ -1,8 +1,6 @@
-import {
-  ParameterSettings,
-  PrivacySettings,
-  DeleteUserData
-} from 'components/settings/privacyCockpit';
+import DeleteUserData from 'components/settings/privacyCockpit/deleteUserData';
+import ParameterSettings from 'components/settings/privacyCockpit/parameterSettings';
+import PrivacySettings from 'components/settings/privacyCockpit/privacySettings';
 import { useEffect } from 'react';
 import {
   getDeletedCustomer,
@@ -22,21 +20,25 @@ function privacyCockpit() {
   if (status === 'success') {
     dispatch(updateSettings());
     return (
-      <>
+      <div className="flex gap-4 mt-[20px]">
         <ParameterSettings />
-        <PrivacySettings />
-        <DeleteUserData />
-      </>
+        <div className="flex flex-col gap-4">
+          <PrivacySettings />
+          <DeleteUserData />
+        </div>
+      </div>
     );
   } else if (status === 'fetching') {
     return <div>Loading...</div>;
   } else {
     return (
-      <>
+      <div className="flex gap-4 mt-[20px]">
         <ParameterSettings />
-        <PrivacySettings />
-        <DeleteUserData />
-      </>
+        <div className="flex flex-col gap-4">
+          <PrivacySettings />
+          <DeleteUserData />
+        </div>
+      </div>
     );
   }
 }

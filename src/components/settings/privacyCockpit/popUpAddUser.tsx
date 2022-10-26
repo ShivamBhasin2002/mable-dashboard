@@ -93,9 +93,3 @@ const PopupExample = (props: PopUpProps) => {
 };
 
 export default PopupExample;
-
-{
-  /* <Button className="w-[8rem]" type="submit" colorScheme="blue" onClick={()=>console.log("Hello")}>
-        + Add Entry
-      </Button> */
-}
