@@ -20,9 +20,9 @@ function privacyCockpit() {
   if (status === 'success') {
     dispatch(updateSettings());
     return (
-      <div className="flex gap-4 mt-[20px]">
+      <div className="flex flex-col xl:flex-row  gap-4 mt-[20px]">
         <ParameterSettings />
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 xl:w-1/2">
           <PrivacySettings />
           <DeleteUserData />
         </div>
