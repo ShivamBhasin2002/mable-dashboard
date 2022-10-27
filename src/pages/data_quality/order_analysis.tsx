@@ -3,7 +3,7 @@ import OrderDataAnalysisCard from 'components/dataQuality/Cards/orderAnalysis/Or
 
 const OrderAnalysis = () => {
   return (
-    <div className="flex flex-col mt-[40px] gap-[40px]">
+    <div className="flex flex-col  gap-4">
       <OrderDataAnalysisCard />
       <OrderAnalysisTable />
     </div>

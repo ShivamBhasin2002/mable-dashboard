@@ -1,3 +1,4 @@
+import { ArrowFunction } from 'typescript';
 import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/enums';
 
 export type IconType = {
@@ -83,4 +84,11 @@ export type SideBarItemProps = {
   title: string;
   clickHandle: () => void;
   isActive: boolean;
+};
+
+export type PaginationProps = {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  array: unknown[];
+  itemsPerPage: number;
 };

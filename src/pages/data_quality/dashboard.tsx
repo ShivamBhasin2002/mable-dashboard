@@ -10,23 +10,19 @@ import { EventsDataBarChart } from 'components/dataQuality/Graphs';
 
 const Dashboard = () => {
   return (
-    <main className="flex-grow">
-      <section className="flex flex-row justify-evenly gap-[30px] flex-wrap hd:flex-nowrap mt-[40px]">
-        <div className="flex flex-col gap-[40px] flex-grow">
-          <div>
-            <DataQualityCard />
-          </div>
-          <div className="flex flex-row flex-wrap xl:flex-nowrap gap-[30px]">
+    <main>
+      <section className="flex flex-row justify-evenly gap-[30px] flex-wrap hd:flex-nowrap  h-full">
+        <div className="flex flex-col justify-between flex-grow [&>*]:flex-1 gap-5">
+          <DataQualityCard />
+          <div className="flex flex-row flex-wrap xl:flex-nowrap gap-[30px] !flex-grow-0">
             <PageSpeedCard />
             <EventsCard />
           </div>
           <DataContainedPerEventCard />
         </div>
-        <div className="flex flex-row flex-wrap hd:flex-col flex-grow hd:max-w-[600px] gap-[30px]">
-          <div className="flex flex-grow flex-wrap gap-[30px]">
-            <WarningCenterCard />
-            <EventsDataBarChart />
-          </div>
+        <div className="flex flex-row flex-wrap hd:flex-col flex-grow hd:max-w-[600px] justify-between gap-4">
+          <WarningCenterCard />
+          <EventsDataBarChart />
           <EventsPerDayCard />
         </div>
       </section>

@@ -19,10 +19,10 @@ const EventsCard = () => {
   return (
     <ComponentWrapper
       title="Events"
-      className="flex-grow lg:pb-[20px]"
+      className="flex-grow lg:pb-[20px] h-min"
       status={[eventsStatus, eventsDataStatus]}
     >
-      <div className="flex-grow flex flex-row justify-center">
+      <div className="flex-grow flex flex-row justify-center items-center h-full">
         <div className="border-r-2 border-lines/[0.15] min-w-[125px] pr-6 flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px] ">
             {numberReducer(totalEventCount)}

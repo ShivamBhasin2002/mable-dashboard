@@ -23,9 +23,9 @@ const PageSpeedCard = () => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(pageSpeedAsync());
   }, [refresh]);
   return (
-    <ComponentWrapper title="Page Speed" className="flex-grow lg:pb-[10px]" status={status}>
+    <ComponentWrapper title="Page Speed" className="flex-grow h-min" status={status}>
       <ScriptTagNotFoundCard />
-      <div className="flex flex-row justify-center pb-[10px]">
+      <div className="flex flex-row justify-center items-center pb-[10px] h-full">
         <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">
             {dateTimeReducer(avg_loading_time_mable_script).value}

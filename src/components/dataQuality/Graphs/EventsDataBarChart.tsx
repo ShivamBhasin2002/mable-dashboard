@@ -56,8 +56,8 @@ const EventsDataBarChart = () => {
     }
   }, [refresh, total_events]);
   return (
-    <ComponentWrapper title="Funnel Analysis" className="flex-grow" status={status}>
-      <div>
+    <ComponentWrapper title="Funnel Analysis" className="flex-grow-[0.5]" status={status}>
+      <div className="h-[90%]">
         <Bar
           ref={chart}
           data={chartData}

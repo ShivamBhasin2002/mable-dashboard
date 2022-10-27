@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 
 import { ComponentWrapper, ViewFullReport } from 'components/common';
-import {
-  DataPerEventDoughnutChart,
-  DataPerEventDoughnutChartLabels,
-  AttributionEventBarChart
-} from 'components/dataQuality/Graphs';
+import { AttributionEventBarChart } from 'components/dataQuality/Graphs';
 import { SelectorMenu } from 'components/dataQuality/Common';
 import { ParameterMetrics } from 'components/dataQuality/General';
 import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/enums';
@@ -35,19 +31,11 @@ const DataContainedPerEventCard = () => {
         </div>
       }
     >
-      <div className="flex flex-row flex-wrap justify-center gap-[20px]">
-        <div className="flex-grow min-h-[200px]">
+      <div className="flex flex-row flex-wrap hd:flex-nowrap justify-evenly gap-[20px] h-full">
+        <div className="flex-1 max-w-[80%]">
           <AttributionEventBarChart height={80} />
         </div>
-        <div className=" flex-grow xl:flex-grow-0 flex flex-row-reverse xl:flex-col w-[350] justify-evenly">
-          <div className="flex flex-col xl:flex-row xl:gap-[20px]">
-            <div className="w-[170px] ">
-              <DataPerEventDoughnutChart />
-            </div>
-            <DataPerEventDoughnutChartLabels />
-          </div>
-          <ParameterMetrics />
-        </div>
+        <ParameterMetrics flexDirection="col" />
       </div>
     </ComponentWrapper>
   );

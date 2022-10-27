@@ -14,7 +14,7 @@ const OrderDetails = ({ data, idx }: { idx: number; data: order }) => {
     );
     return (
       <tr
-        className={`[&>*]:font-montserrat flex w-full [&>*]:flex-1 [&>*]:text-[14px] [&>*]:whitespace-nowrap [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:truncate ${
+        className={`[&>*]:font-montserrat flex h-[40px] [&>*]:flex-1 [&>*]:text-[14px] [&>*]:whitespace-nowrap [&>*]:font-normal [&>*]:py-[10px] [&>*]:px-[20px] [&>*]:truncate ${
           !(idx & 1) && 'bg-tableStrips/[0.5]'
         }`}
       >
@@ -45,7 +45,7 @@ const OrderDetails = ({ data, idx }: { idx: number; data: order }) => {
         <td>
           {data.status ? (
             <span
-              className={`px-[20px] py-[5px] ${statusTypeColors(
+              className={`px-[20px]  ${statusTypeColors(
                 data.status
               )} rounded-[100px] flex gap-[10px] items-center justify-evenly font-montserrat`}
             >

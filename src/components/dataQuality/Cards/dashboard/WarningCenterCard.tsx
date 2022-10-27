@@ -10,11 +10,11 @@ const WarningCenterCard = () => {
     <ComponentWrapper
       title="Warning Center"
       underlined
-      className="flex-grow min-w-max min-h-[200px]"
+      className="flex-grow w-full h-[200px]"
       status={status}
     >
       {active.length === 0 && (
-        <div className="flex flex-col h-3/4 justify-center items-center">
+        <div className="flex flex-col h-full justify-center items-center">
           <Icon icon="noWarnings" className="text-[130px] text-dark/20" />
           <p className="text-4xl font-montserrat font-bold text-dark/20">{noWarningsMessage}</p>
         </div>

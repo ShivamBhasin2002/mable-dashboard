@@ -49,7 +49,7 @@ const DashboardHeader = () => {
       {/* <div className="flex flex-row-reverse mb-3">
         <ShopPicker />
       </div> */}
-      <div className="flex justify-between items-center h-[40px]">
+      <div className="flex justify-between items-center h-[40px] mb-[25px]">
         <h1 className=" text-[20px] lg:text-[28px] text-light font-montserrat font-bold">
           {activeScreen}
         </h1>
