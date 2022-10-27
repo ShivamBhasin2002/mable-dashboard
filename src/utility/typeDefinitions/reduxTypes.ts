@@ -6,7 +6,7 @@ import {
   screenType,
   eventSelectedType,
   statusSelector
-} from 'utility/constants/general';
+} from 'utility/constants/enums';
 
 export type thunkOptions = {
   dispatch: AppDispatch;
@@ -37,8 +37,8 @@ export type pageSpeedStateType = {
 };
 
 export type shopStateType = {
-  active?: { apiKey?: string; id?: number; name?: string };
-  shops: { apiKey?: string; id?: number; name?: string }[];
+  active?: { apiKey?: string; id?: number; displayName?: string };
+  shops: { apiKey?: string; id?: number; displayName?: string }[];
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
@@ -99,15 +99,13 @@ export type dataQualityStateType = {
   TOTAL_SHOPIFY_ORDERS: number;
   FACEBOOK_SUCCESS_DELIVERED_ORDERS: number;
   DATA_QUALITY_BY_DATE: { date: string; data_quality: number }[];
-  ordersWithCorrectCV: number;
-  avgDeliveryTime: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
 
 export type eventsStateType = {
   avgTimeDifference: number;
-  totalEventCount: number;
+  correctCvOrders: number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
@@ -142,6 +140,7 @@ export type AnalyticsStateType = {
 };
 
 export type eventsDataStateType = {
+  totalEventCount: number;
   total_events: {
     purchases: number;
     add_payment_info: number;
@@ -167,19 +166,21 @@ export type screenStateType = {
   activeScreen: screenType;
 };
 
+export type order = {
+  order_id: number | null;
+  created_at: Moment | null;
+  customer_name: string;
+  total_conversion_value: number | null;
+  destination_conversion_value: number | null;
+  status: string;
+  delivery_time_difference: number | null;
+  event_params_present: number | null;
+  attribution_params_present: number | null;
+};
+
 export type orderAnalysisStateType = {
   statusSelected: statusSelector;
-  tableData: {
-    order_id: number | null;
-    date: Moment | null;
-    customer: string;
-    total_value: number | null;
-    conversion_value: number | null;
-    status: string;
-    delivery_time: number | null;
-    evt_params_present: number | null;
-    attr_params_present: number | null;
-  }[];
+  tableData: order[];
   status: STATUS_TYPE;
   errorMsg: string | undefined;
 };

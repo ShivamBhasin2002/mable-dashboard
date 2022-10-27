@@ -1,7 +1,7 @@
 import { Spinner } from '@chakra-ui/react';
 import Icon from 'assets/icons';
 import colors from 'utility/colors';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 import { ComponentWrapperProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const ComponentWrapper = ({
@@ -14,23 +14,28 @@ const ComponentWrapper = ({
   className,
   status
 }: ComponentWrapperProps) => {
+  const checkStatus = (equalTo: STATUS_TYPE) => {
+    if (Array.isArray(status)) return status.includes(equalTo);
+    return status === equalTo;
+  };
   return (
     <article
-      className={`lg:min-w-[${width}px] h-[${height}px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[40px] py-[30px] relative ${className}`}
+      className={`bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[40px] py-[30px] relative ${className}`}
+      style={{ width: width ?? 'auto', height: height ?? 'auto' }}
     >
-      {status === STATUS_TYPE.FETCHING && (
+      {checkStatus(STATUS_TYPE.FETCHING) && (
         <div
-          className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
+          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
         >
-          <Spinner w={100} h={100} thickness="7px" color={colors.light} />
-          <span className="text-light flex items-center font-montserrat text-[22px] font-bold `">
+          <Spinner w={50} h={50} thickness="7px" color={colors.lines} speed="2s" />
+          <span className="text-light/40 flex items-center font-montserrat text-[22px] font-bold text-center `">
             Loading
           </span>
         </div>
       )}
-      {status === STATUS_TYPE.ERROR && (
+      {checkStatus(STATUS_TYPE.ERROR) && (
         <div
-          className={`lg:min-w-[${width}px] h-[${height}px] w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-evenly items-center `}
+          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
         >
           <Icon
             size="100px"
@@ -38,7 +43,7 @@ const ComponentWrapper = ({
             icon="errorTriangular"
             color={colors.light}
           />
-          <span className="text-light flex items-center font-montserrat text-[22px] font-bold `">
+          <span className="text-light/40 flex items-center font-montserrat text-[22px] font-bold text-center `">
             Error While Fetching
           </span>
         </div>
@@ -47,8 +52,8 @@ const ComponentWrapper = ({
         <div
           className={` text-primary ${
             title && 'mb-[20px]'
-          } flex items-center font-montserrat text-[22px] font-bold justify-between ${
-            underlined ? 'border-b-2 border-lines/[0.15] pb-2' : ''
+          } flex items-center font-montserrat text-[16px] lg:text-[22px] font-bold justify-between ${
+            underlined ? 'border-b-2 border-lines/[0.15]' : ''
           }`}
         >
           {title}

@@ -25,9 +25,20 @@ export enum screenType {
   orderAnalysis = 'Order Analysis',
   eventQuality = 'Event Quality',
   analytics = 'Reports',
-  accountSettings = 'Account Settings',
   privacyCockpit = 'Privacy Cockpit',
-  tutorial = 'Tutorial'
+  tutorial = 'Tutorial',
+  settings = 'Account Settings'
+}
+
+export enum routes {
+  login = '/auth/login',
+  register = '/auth/register',
+  dashboard = '/data_quality/dashboard',
+  orderAnalysis = '/data_quality/order_analysis',
+  eventQuality = '/data_quality/event_quality',
+  analytics = '/analytics/reports',
+  settings = '/settings/account_settings',
+  privacyCockpit = '/settings/privacy_cockpit'
 }
 
 export enum filterType {
@@ -47,6 +58,7 @@ export enum byDate {
 }
 
 export enum eventSelectedType {
+  all = 'All Events',
   purchase = 'Purchase',
   add_payment_info = 'Add Payment Info',
   intitate_checkout = 'Intitate Checkout',
@@ -67,6 +79,7 @@ export enum DatePickerPresets {
   prevMonth = 'Last Month'
 }
 
-export const totalEvents = 3;
-
-export const totalAttributions = 12;
+export enum SORT_ORDER {
+  INCREASING = 'increasing',
+  DECREASING = 'decreasing'
+}

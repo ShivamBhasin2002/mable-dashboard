@@ -14,9 +14,9 @@ import {
   AccountUpdateType,
   privacyCockpitType
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUS_TYPE, screenType, statusSelector } from './general';
+import { STATUS_TYPE, statusSelector, DatePickerPresets, screenType } from './enums';
 import moment from 'moment';
-import { eventSelectedType } from './general';
+import { eventSelectedType } from './enums';
 
 export const userInitialState: userStateType = {
   email: undefined,
@@ -52,10 +52,8 @@ export const shopInitialState: shopStateType = {
 };
 
 export const datesInitialState: datesStateType = {
-  dateRange: localStorage.getItem('dateRange')
-    ? JSON.parse(localStorage.getItem('dateRange') ?? '[]')?.map((date: any) => moment(date) ?? '') // eslint-disable-line
-    : [moment(), moment()],
-  datePreset: localStorage.getItem('datePreset') ?? undefined,
+  dateRange: [moment().subtract(14, 'days'), moment()],
+  datePreset: DatePickerPresets.prevFourteenDays,
   refresh: false
 };
 
@@ -77,7 +75,7 @@ export const dataPerEventsInitialState: dataPerEventStateType = {
   event: 0,
   AttributionParameters: {},
   EventParameters: {},
-  eventSelected: eventSelectedType.purchase,
+  eventSelected: eventSelectedType.all,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
@@ -94,20 +92,19 @@ export const dataQualityInitialState: dataQualityStateType = {
   TOTAL_SHOPIFY_ORDERS: 0,
   FACEBOOK_SUCCESS_DELIVERED_ORDERS: 0,
   DATA_QUALITY_BY_DATE: [],
-  ordersWithCorrectCV: 0,
-  avgDeliveryTime: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const eventsInitialState: eventsStateType = {
-  totalEventCount: 0,
   avgTimeDifference: 0,
+  correctCvOrders: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined
 };
 
 export const eventsDataInitialState: eventsDataStateType = {
+  totalEventCount: 0,
   total_events: {
     purchases: 0,
     add_payment_info: 0,
@@ -115,7 +112,7 @@ export const eventsDataInitialState: eventsDataStateType = {
     add_to_cart: 0,
     page_view: 0
   },
-  eventSelected: eventSelectedType.purchase,
+  eventSelected: eventSelectedType.all,
   byDate: [],
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined

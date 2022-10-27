@@ -1,4 +1,4 @@
-import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/general';
+import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/enums';
 
 export type IconType = {
   id?: string;
@@ -8,7 +8,7 @@ export type IconType = {
   width?: number;
   height?: number;
   className?: string;
-  active?: boolean;
+  isActive?: boolean;
 };
 
 export type CheckBoxProps = {
@@ -27,7 +27,7 @@ export type ComponentWrapperProps = {
   nextComponent?: React.ReactNode;
   underlined?: boolean;
   className?: string;
-  status?: STATUS_TYPE;
+  status?: STATUS_TYPE | (STATUS_TYPE | undefined)[];
 };
 
 export type TextFieldProps = {
@@ -66,12 +66,6 @@ export type StatisticPropTypes = { value?: string | number; message?: string };
 export type AttributionEventBarChartProps = {
   width?: number;
   height?: number;
-};
-
-export type DataQualityLineChartProps = {
-  width?: number;
-  height?: number;
-  color?: string;
 };
 
 export type csv = {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
-import { postParameterSettings } from 'redux/reducers/privacyCockpitSlice';
+import { postParameterSettings } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import { useDispatch } from 'redux/store';
 import { Button, Divider, useToast } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';

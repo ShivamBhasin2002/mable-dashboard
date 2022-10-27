@@ -4,12 +4,12 @@ import colors from 'utility/colors';
 import { useDispatch, useSelector } from 'redux/store';
 import { Spinner, useToast } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 import { useEffect, useState } from 'react';
 import {
   postConsentUrlPrivacySettings,
   postDataHashPrivacySettings
-} from 'redux/reducers/privacyCockpitSlice';
+} from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 
 const PrivacySettings = () => {
   const checkBoxValue = useSelector(

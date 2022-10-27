@@ -3,8 +3,8 @@ import colors from 'utility/colors';
 import Icon from 'assets/icons';
 import { Checkbox, Stack } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { setColumnSelected } from 'redux/reducers/analyticsSlice';
-import { filterType } from 'utility/constants/general';
+import { setColumnSelected } from 'redux/reducers/analytics/reportsSlice';
+import { filterType } from 'utility/constants/enums';
 import { useSelector } from 'redux/store';
 import { SelectedEventsType } from 'utility/typeDefinitions/reduxTypes';
 
@@ -15,7 +15,7 @@ const ColumnSelectorMenu = () => {
     <Menu gutter={0} isLazy>
       <MenuButton
         as={Button}
-        rightIcon={<Icon icon="dropdown" color="lines/[0.20]" />}
+        rightIcon={<Icon icon="dropdown" className="text-lines/[0.20]" />}
         background={colors.transparent}
         className="!border-lines/[0.20] !flex !justify-evenly"
         border="1px"

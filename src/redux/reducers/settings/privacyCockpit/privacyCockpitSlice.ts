@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 import { snakeCaseToKeyValueExtractor } from 'utility/functions/formattingFunctions';
 
 export const getPrivacySettings = createAsyncThunk<

@@ -1,40 +1,56 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ComponentWrapper } from 'components/common';
 import { DataQualityLineChart } from 'components/dataQuality/Graphs';
 import { QualityCombined, Statistics } from 'components/dataQuality/General';
 
 import colors from 'utility/colors';
-import { STATUS_TYPE } from 'utility/constants/general';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
-import { dataQualityAsync } from 'redux/reducers/dataQualitySlice';
+import { dataQualityAsync } from 'redux/reducers/dataQuality/dataQualitySlice';
+import { dateTimeReducer, numberReducer } from 'utility/functions/formattingFunctions';
+import { eventsAsync } from 'redux/reducers/dataQuality/eventSlice';
 
 const OrderDataAnalysisCard = () => {
   const dispatch = useDispatch();
   const {
-    ordersWithCorrectCV,
-    avgDeliveryTime,
     TOTAL_SHOPIFY_ORDERS,
-    TOTAL_DATA_QUALITY_FACEBOOK,
-    status
+    FACEBOOK_SUCCESS_DELIVERED_ORDERS,
+    status: dataQualityStatus
   } = useSelector((state) => state.dataQuality);
+  const {
+    avgTimeDifference,
+    correctCvOrders,
+    status: eventsStatus
+  } = useSelector((state) => state.events);
   const refresh = useSelector((state) => state.dates.refresh);
+  const [displayTime, setDisplayTime] = useState({ value: 0, unit: 'ms' });
   useEffect(() => {
-    if (status !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
+    setDisplayTime(dateTimeReducer(avgTimeDifference));
+  }, [avgTimeDifference]);
+  useEffect(() => {
+    if (dataQualityStatus !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
+    if (eventsStatus !== STATUS_TYPE.FETCHING) dispatch(eventsAsync());
   }, [refresh]);
   return (
-    <ComponentWrapper status={status}>
-      <div className="flex flex-row flex-wrap gap-[40px] justify-evenly">
+    <ComponentWrapper status={[dataQualityStatus, eventsStatus]} className="!px-[20px] md:px-[4px]">
+      <div className="flex flex-row flex-wrap 2xl:flex-nowrap gap-[40px] justify-evenly">
         <QualityCombined />
-        <div className="flex-grow">
-          <DataQualityLineChart height={140} color={colors.lineGraphStart} />
+        <div className="xl:order-2 2xl:order-none w-[50%]">
+          <DataQualityLineChart color={colors.lineGraphStart} />
         </div>
         <div className="flex flex-row gap-[20px]">
-          <Statistics value={TOTAL_SHOPIFY_ORDERS} message="Shopify Orders" />
-          <Statistics value={ordersWithCorrectCV} message="Orders with correct CV" />
-          <Statistics value={TOTAL_DATA_QUALITY_FACEBOOK} message="Received by FB" />
-          <Statistics value={avgDeliveryTime} message="AVG. Delivery Time" />
+          <Statistics value={numberReducer(TOTAL_SHOPIFY_ORDERS)} message="Shopify Orders" />
+          <Statistics value={numberReducer(correctCvOrders)} message="Orders with correct CV" />
+          <Statistics
+            value={numberReducer(FACEBOOK_SUCCESS_DELIVERED_ORDERS)}
+            message="Received by FB"
+          />
+          <Statistics
+            value={`${displayTime.value}${displayTime.unit}`}
+            message="AVG. Delivery Time"
+          />
         </div>
       </div>
     </ComponentWrapper>

@@ -1,6 +1,6 @@
 import { ChartArea } from 'chart.js';
 
-import { statusSelector } from 'utility/constants/general';
+import { statusSelector } from 'utility/constants/enums';
 
 import colors from 'utility/colors';
 
