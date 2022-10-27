@@ -19,7 +19,6 @@ export const fetchSettings = createAsyncThunk<
       }
     );
     if (data) {
-      console.log(data);
       return data;
     }
   } catch (error) {
@@ -52,7 +51,6 @@ export const getDeletedCustomer = createAsyncThunk<
       }
     );
     if (data) {
-      console.log(data);
       return data;
     }
   } catch (error) {
@@ -164,7 +162,6 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
       }
     );
     if (data) {
-      console.log('on post data return is-> ', data.settings_changed[0].settingValue);
       return data.settings_changed[0].settingValue;
     }
   } catch (error) {
@@ -201,7 +198,6 @@ export const postParameterSettings = createAsyncThunk<
       }
     );
     if (data) {
-      console.log(data);
       return data;
     }
   } catch (error) {
@@ -216,17 +212,10 @@ export const privacyCockpitSetting = createSlice({
   name: 'privacyCockpitSetting',
   initialState: privacyCockpit,
   reducers: {
-    // updateSettings(state) {
-    //   const checkBox = state.previousSettings.filter(
-    //     (item) => item.setting_key === 'hash_database'
-    //   );
-    //   state.privacySettings.hashDataInDashboard.hashDataCheckBox =
-    //     checkBox[0].setting_value === 'true';
-    //   const consentUrl = state.previousSettings.filter(
-    //     (item) => item.setting_key === 'cookie_consent_url'
-    //   );
-    //   state.privacySettings.cookieConsent.cookieConsentUrl = consentUrl[0].setting_value;
-    // }
+    clearDeleteUserState: (state) => {
+      state.deleteUserData.status = STATUS_TYPE.IDLE;
+      return state;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -279,15 +268,6 @@ export const privacyCockpitSetting = createSlice({
       .addCase(postDataHashPrivacySettings.fulfilled, (state, { payload }) => {
         state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.SUCCESS;
         state.privacySettings.hashDataInDashboard.hashDataCheckBox = payload === 'true';
-        console.log('payload type-> ', typeof payload);
-        console.log(
-          'hashDataCheckBox type-> ',
-          typeof state.privacySettings.hashDataInDashboard.hashDataCheckBox
-        );
-        console.log(
-          'hashDataCheckBox value-> ',
-          state.privacySettings.hashDataInDashboard.hashDataCheckBox
-        );
       })
       .addCase(postDataHashPrivacySettings.rejected, (state) => {
         state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.ERROR;
@@ -313,7 +293,14 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(postDeletedCustomer.fulfilled, (state, { payload }) => {
         state.deleteUserData.status = STATUS_TYPE.SUCCESS;
+        console.log('payload', payload);
+        console.log('length before append', state.deleteUserData.userData.length);
         state.deleteUserData.userData.push(payload.customer_created[0]);
+        console.log(
+          'length after append',
+          state.deleteUserData.userData.length,
+          state.deleteUserData.userData[state.deleteUserData.userData.length - 1]
+        );
       })
       .addCase(postDeletedCustomer.rejected, (state) => {
         state.deleteUserData.status = STATUS_TYPE.ERROR;
@@ -337,5 +324,5 @@ export const privacyCockpitSetting = createSlice({
   }
 });
 
-// export const { updateSettings } = privacyCockpitSetting.actions;
+export const { clearDeleteUserState } = privacyCockpitSetting.actions;
 export default privacyCockpitSetting.reducer;

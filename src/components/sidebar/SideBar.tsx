@@ -59,7 +59,6 @@ const SideBar = () => {
                       key={item.icon}
                       clickHandle={() => {
                         const path = screenToURL(item.title);
-                        console.log(path);
                         if (activeScreen !== item.title && path) navigator(path);
                         dispatch(setScreen(item.title));
                       }}

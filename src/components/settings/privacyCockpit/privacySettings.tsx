@@ -40,8 +40,6 @@ const PrivacySettings = () => {
     const isValid = await cookieConsentSchema.isValid({ url: cookieConsent });
     if (isValid) {
       dispatch(postConsentUrlPrivacySettings({ url: cookieConsent }));
-    } else {
-      console.log('enter correct url');
     }
   };
 
@@ -137,7 +135,7 @@ const PrivacySettings = () => {
       </div>
       <Button
         disabled={disable}
-        className="w-[8rem] mt-5"
+        className="w-[8rem] mt-5 ml-auto"
         type="submit"
         colorScheme="blue"
         onClick={() => {
