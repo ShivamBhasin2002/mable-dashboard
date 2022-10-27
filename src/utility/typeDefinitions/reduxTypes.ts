@@ -201,7 +201,6 @@ export type AccountUpdateType = {
 export type privacyCockpitType = {
   paraMeterSettings: {
     status: STATUS_TYPE;
-    updateAll: string;
     data_collection_destinations: {
       value: string;
       label: string;

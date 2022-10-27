@@ -12,7 +12,7 @@ function ParameterSettings() {
     <ComponentWrapper className="flex flex-col w-full h-fit">
       <div className="header w-full grid grid-cols-9 gap-0  content-center">
         <div className="header_title   col-span-3  m-right my-auto">
-          <p className="text-[24px] font-[700] text-primary"> Parameter Settings</p>
+          <p className="text-[24px] font-[700] text-light"> Parameter Settings</p>
         </div>
 
         {data_collection_destinations.map((item) => {

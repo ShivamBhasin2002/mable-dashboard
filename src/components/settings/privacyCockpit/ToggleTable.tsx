@@ -3,9 +3,10 @@ import { useSelector } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
 import { postParameterSettings } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import { useDispatch } from 'redux/store';
-import { Button, Divider, useToast } from '@chakra-ui/react';
+import {  Divider, useToast } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';
 import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
+import { STATUS_TYPE } from 'utility/constants/enums';
 
 function toggleTable() {
   const toast = useToast();
@@ -21,14 +22,7 @@ function toggleTable() {
     settingValue: ''
   });
 
-  const handleSave = () => {
-    dispatch(
-      postParameterSettings({
-        settings: [updateValue]
-      })
-    );
-    setActiveEverything({ ...activeEverything, settingValue: 'false' });
-  };
+
 
   useEffect(() => {
     dispatch(
@@ -40,7 +34,7 @@ function toggleTable() {
   }, [updateValue]);
 
   useEffect(() => {
-    if (status === 'error') {
+    if (status === STATUS_TYPE.ERROR) {
       toast({
         title: `Something Went Wrong, Try Again ! `,
         status: 'error',
@@ -48,7 +42,7 @@ function toggleTable() {
         position: 'top-right'
       });
     }
-    if (status === 'success') {
+    if (status === STATUS_TYPE.SUCCESS) {
       toast({
         title: `Data Updated Succesfully`,
         status: 'success',
@@ -189,44 +183,6 @@ function toggleTable() {
             inactiveColor="#D90D19"
           />
         </div>
-        {false && (
-          <div className="button">
-            {status === 'error' && (
-              <Button
-                className="w-[8rem] mt-5"
-                type="submit"
-                colorScheme="blue"
-                onClick={handleSave}
-              >
-                Save
-              </Button>
-            )}
-            {status === 'fetching' && (
-              <Button
-                isLoading
-                loadingText="Saving"
-                spinnerPlacement="start"
-                className="w-[8rem] mt-5"
-                type="submit"
-                colorScheme="blue"
-                onClick={handleSave}
-              >
-                Save
-              </Button>
-            )}
-            {status === 'success' && (
-              <Button
-                className="w-[8rem] mt-5"
-                type="submit"
-                colorScheme="gray"
-                onClick={handleSave}
-                disabled
-              >
-                Save
-              </Button>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
