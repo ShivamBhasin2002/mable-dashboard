@@ -250,28 +250,20 @@ export const privacyCockpit: privacyCockpitType = {
     ],
     parsed_settings: []
   },
-
   privacySettings: {
-    status: STATUS_TYPE.IDLE,
     hashDataInDashboard: {
       status: STATUS_TYPE.IDLE,
-      hashDataCheckBox: false,
-      errorMsg: undefined
+      hashDataCheckBox: false
     },
     cookieConsent: {
       status: STATUS_TYPE.IDLE,
-      cookieConsentUrl: ' ',
-      errorMsg: undefined
-    },
-    errorMsg: undefined
-  },
-  previousSettings: [
-    {
-      source_id: 43,
-      setting_key: 'hash_database',
-      setting_value: ''
+      cookieConsentUrl: ' '
     }
-  ],
+  },
+  previousSettings: {
+    status: STATUS_TYPE.IDLE,
+    fetchedSettings: [{ source_id: 43, setting_key: '', setting_value: '' }]
+  },
   deleteUserData: {
     status: STATUS_TYPE.IDLE,
     userData: [
