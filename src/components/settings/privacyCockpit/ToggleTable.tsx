@@ -173,7 +173,7 @@ function toggleTable() {
       <Divider className="my-3" />
       <div className="flex justify-between items-center">
         <div className="active_all flex justify-end items-center">
-          <p className="text-light text-[18px] mx-2 opacity-50">Active All </p>
+          <p className="text-light text-[18px] mx-2 opacity-50">Activate All </p>
           <ToggleBtn
             value={activeEverything.settingValue === 'true'}
             setState={setActiveEverything}
