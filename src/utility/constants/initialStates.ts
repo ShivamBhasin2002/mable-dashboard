@@ -244,7 +244,7 @@ export const privacyCockpit: privacyCockpitType = {
       {
         value: 'klickid',
         category: 'others',
-        label: 'Click-Id'
+        label: 'Click-ID'
       }
     ],
     parsed_settings: []

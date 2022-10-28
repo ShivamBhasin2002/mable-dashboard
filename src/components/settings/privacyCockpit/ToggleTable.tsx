@@ -3,7 +3,7 @@ import { useSelector } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
 import { postParameterSettings } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import { useDispatch } from 'redux/store';
-import {  Divider, useToast } from '@chakra-ui/react';
+import { Divider, useToast } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';
 import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
 import { STATUS_TYPE } from 'utility/constants/enums';
@@ -11,9 +11,8 @@ import { STATUS_TYPE } from 'utility/constants/enums';
 function toggleTable() {
   const toast = useToast();
   const dispatch = useDispatch();
-  const { data_collection_settings, parsed_settings, status } = useSelector(
-    (state) => state.privacyCockpit.paraMeterSettings
-  );
+  const { data_collection_destinations, data_collection_settings, parsed_settings, status } =
+    useSelector((state) => state.privacyCockpit.paraMeterSettings);
   const [updateValue, setUpdateValue] = useState<{
     settingKey?: string;
     settingValue?: string;
@@ -21,8 +20,6 @@ function toggleTable() {
     settingKey: '',
     settingValue: ''
   });
-
-
 
   useEffect(() => {
     dispatch(
@@ -116,6 +113,7 @@ function toggleTable() {
                                 }
                                 activeColor="#0EBA12"
                                 inactiveColor="#D90D19"
+                                disable={!data_collection_destinations[0].available}
                               />
                             </div>
                           )
@@ -138,6 +136,7 @@ function toggleTable() {
                                 }
                                 activeColor="#0EBA12"
                                 inactiveColor="#D90D19"
+                                disable={!data_collection_destinations[1].available}
                               />
                             </div>
                           )
@@ -158,7 +157,7 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
-                                disable={true}
+                                disable={!data_collection_destinations[2].available}
                               />
                             </div>
                           )
@@ -174,7 +173,7 @@ function toggleTable() {
       <Divider className="my-3" />
       <div className="flex justify-between items-center">
         <div className="active_all flex justify-end items-center">
-          <p className="text-light text-[18px] mx-2 opacity-50">Active Everything </p>
+          <p className="text-light text-[18px] mx-2 opacity-50">Active All </p>
           <ToggleBtn
             value={activeEverything.settingValue === 'true'}
             setState={setActiveEverything}
