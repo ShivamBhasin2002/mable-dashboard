@@ -97,7 +97,6 @@ export const postDeletedCustomer = createAsyncThunk<
         }
       );
       if (data) {
-        console.log({ data });
         return data;
       }
     } catch (error) {
@@ -294,14 +293,7 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(postDeletedCustomer.fulfilled, (state, { payload }) => {
         state.deleteUserData.status = STATUS_TYPE.SUCCESS;
-        console.log('payload', payload);
-        console.log('length before append', state.deleteUserData.userData.length);
         state.deleteUserData.userData.push(payload.customer_created[0]);
-        console.log(
-          'length after append',
-          state.deleteUserData.userData.length,
-          state.deleteUserData.userData[state.deleteUserData.userData.length - 1]
-        );
       })
       .addCase(postDeletedCustomer.rejected, (state) => {
         state.deleteUserData.status = STATUS_TYPE.ERROR;

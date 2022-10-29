@@ -40,7 +40,6 @@ function toggleTable() {
   }, [updateValue]);
 
   useEffect(() => {
-    console.log(status);
     if (status === 'error') {
       toast({
         title: `Something Went Wrong, Try Again ! `,

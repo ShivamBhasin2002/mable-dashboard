@@ -17,7 +17,6 @@ const DeleteUserData = () => {
   const toast = useToast();
 
   useEffect(() => {
-    console.log('deleteUserData Status->', status);
     if (status === STATUS_TYPE.SUCCESS || status === STATUS_TYPE.ERROR) {
       setDisplay('hidden');
       toast({
