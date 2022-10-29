@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { analyticsAsync } from 'redux/reducers/analytics/reportsSlice';
 import { filterType } from 'utility/constants/enums';
 import { SelectedEventsType } from 'utility/typeDefinitions/reduxTypes';
-import Icon from 'assets/icons';
 import { defaultLocale } from 'utility/constants/strings';
+import Pagination from '../General/Pagination';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,7 @@ const AnalyticsTable = () => {
   const byDate = analyticData.analyticReport.by_date;
   const selectedEvents = analyticData.selected_events;
   const [page, setPage] = useState(1);
+  const reportsPerPage = 9;
 
   useEffect(() => {
     if (analyticData.status !== 'fetching') {
@@ -78,12 +79,12 @@ const AnalyticsTable = () => {
               ) : null}
             </tr>
             {Object.values(byDate)
-              .slice((page - 1) * 10, page * 10)
+              .slice((page - 1) * reportsPerPage, page * reportsPerPage)
               .map((item, i) => {
                 return (
                   <tr
                     key={i}
-                    className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
+                    className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[10px] [&>*]:px-[20px] ${
                       !(i & 1) && 'bg-tableStrips/[0.5]'
                     }`}
                   >
@@ -112,31 +113,7 @@ const AnalyticsTable = () => {
               })}
           </tbody>
         </table>
-        {byDate.length > 10 && (
-          <div className="flex justify-center items-center gap-4">
-            <button
-              className="w-[35px] h-[35px] rounded-[8px] bg-primary text-light disabled:text-dark flex items-center justify-center"
-              disabled={page === 1}
-              onClick={() => {
-                setPage((currPage) => currPage - 1);
-              }}
-            >
-              <Icon icon="left" />
-            </button>
-            <div>
-              Page {page}/{Math.ceil(byDate.length / 10)}
-            </div>
-            <button
-              className="w-[35px] h-[35px] rounded-[8px] bg-primary text-light disabled:text-dark flex items-center justify-center"
-              disabled={page === Math.ceil(byDate.length / 10)}
-              onClick={() => {
-                setPage((currPage) => currPage + 1);
-              }}
-            >
-              <Icon icon="right" />
-            </button>
-          </div>
-        )}
+        <Pagination page={page} setPage={setPage} array={byDate} itemsPerPage={reportsPerPage} />
       </>
     );
   } else {

@@ -54,12 +54,12 @@ const Layout = ({ children }: LayoutProps) => {
   return shopStatus === STATUS_TYPE.FETCHING || shopStatus === STATUS_TYPE.IDLE ? (
     <Loading className="h-screen w-screen" />
   ) : (
-    <div className="bg-background flex max-w-screen min-h-screen">
+    <div className="bg-background flex max-w-screen min-h-screen hd:h-screen">
       <SideBar />
-      <div className="flex-grow p-[30px]">
+      <div className="flex-grow p-[30px] flex flex-col">
         <DashboardHeader />
         {status === 'success' ? (
-          children
+          <div className="flex-grow h-max">{children}</div>
         ) : (
           <div className="w-full min-h-screen">
             <Loading message="Fetching Shops" className="h-screen" />

@@ -84,3 +84,10 @@ export type SideBarItemProps = {
   clickHandle: () => void;
   isActive: boolean;
 };
+
+export type PaginationProps = {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  array: unknown[];
+  itemsPerPage: number;
+};

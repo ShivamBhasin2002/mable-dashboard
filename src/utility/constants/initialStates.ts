@@ -51,8 +51,13 @@ export const shopInitialState: shopStateType = {
 };
 
 export const datesInitialState: datesStateType = {
-  dateRange: [moment().subtract(14, 'days'), moment()],
-  datePreset: DatePickerPresets.prevFourteenDays,
+  dateRange: localStorage.getItem('dateRange')
+    ? JSON.parse(localStorage.getItem('dateRange') ?? '[]')?.map((date: any) => moment(date) ?? '') // eslint-disable-line
+    : [moment().subtract(14, 'days'), moment()],
+  datePreset:
+    localStorage.getItem('datePreset') ?? localStorage.getItem('dateRange')
+      ? undefined
+      : DatePickerPresets.prevFourteenDays,
   refresh: false
 };
 
