@@ -33,7 +33,7 @@ const PopupExample = (props: PopUpProps) => {
       dispatch(postDeletedCustomer({ futureTrack: props.futureTrack, email: props.email }));
     } else {
       toast({
-        title: `Error `,
+        title: `Enter correct email`,
         status: STATUS_TYPE.ERROR,
         isClosable: true,
         position: 'top-right'
