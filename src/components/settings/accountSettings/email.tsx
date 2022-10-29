@@ -28,7 +28,10 @@ const EmailChange = () => {
   }, [status]);
 
   return (
-    <ComponentWrapper className="w-[33rem] text-light h-fit" title="Contact Information">
+    <ComponentWrapper
+      className="w-[33rem] text-light h-fit xl:mt-[20px]"
+      title="Contact Information"
+    >
       <Formik
         initialValues={{
           userId: userId,
