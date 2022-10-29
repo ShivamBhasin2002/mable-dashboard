@@ -134,10 +134,10 @@ export const filterOptionInitialState: AnalyticsStateType = {
   status: 'success',
   selected_events: {
     PageView: true,
-    AddToCart: false,
-    InitiateCheckout: false,
-    AddPaymentInfo: false,
-    Purchase: false
+    AddToCart: true,
+    InitiateCheckout: true,
+    AddPaymentInfo: true,
+    Purchase: true
   },
   analyticReport: {
     total_events: {

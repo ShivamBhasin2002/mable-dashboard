@@ -1,4 +1,4 @@
-import { Button, Checkbox } from '@chakra-ui/react';
+import { Button, Checkbox, useToast } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
 import { Spinner } from '@chakra-ui/react';
 import colors from 'utility/colors';
@@ -7,6 +7,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { postDeletedCustomer } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import { useDispatch, useSelector } from 'redux/store';
 import { STATUS_TYPE } from 'utility/constants/enums';
+import * as yup from 'yup';
 
 interface PopUpProps {
   open: string;
@@ -18,8 +19,27 @@ interface PopUpProps {
 }
 
 const PopupExample = (props: PopUpProps) => {
+  const toast = useToast();
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
+
+  const emailSchema = yup.object().shape({
+    email: yup.string().email()
+  });
+
+  const handleSave = async () => {
+    const isValid = await emailSchema.isValid({ email: props.email });
+    if (isValid) {
+      dispatch(postDeletedCustomer({ futureTrack: props.futureTrack, email: props.email }));
+    } else {
+      toast({
+        title: `Error `,
+        status: STATUS_TYPE.ERROR,
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+  };
 
   return (
     <div
@@ -59,13 +79,7 @@ const PopupExample = (props: PopUpProps) => {
             ></Checkbox>
           </div>
 
-          <Button
-            className="w-[8rem] ml-auto"
-            colorScheme="blue"
-            onClick={() =>
-              dispatch(postDeletedCustomer({ futureTrack: props.futureTrack, email: props.email }))
-            }
-          >
+          <Button className="w-[8rem] ml-auto" colorScheme="blue" onClick={() => handleSave()}>
             {status === STATUS_TYPE.FETCHING && <Spinner />}
             Coinfirm
           </Button>

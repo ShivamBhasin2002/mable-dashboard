@@ -13,7 +13,7 @@ const Analytics = () => {
   const CsvExport = () => {
     return (
       <Button
-        className="w-[8rem]"
+        className="w-[8rem] mb-2"
         type="submit"
         colorScheme="blue"
         onClick={() => {

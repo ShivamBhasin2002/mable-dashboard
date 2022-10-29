@@ -36,7 +36,7 @@ const NameChange = () => {
     lastName: lastName
   };
   return (
-    <ComponentWrapper title="Name" className="w-[33rem] mt-[20px] text-light h-fit">
+    <ComponentWrapper title="Name" className="w-[33rem] text-light h-fit">
       <div className="font-light opacity-60">
         Changing your name below will update your name on your profile
       </div>

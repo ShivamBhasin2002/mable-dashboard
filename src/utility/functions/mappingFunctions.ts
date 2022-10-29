@@ -139,6 +139,8 @@ export const URLtoScreen = (screen: string): screenType | undefined => {
       return screenType.analytics;
     case routes.settings:
       return screenType.settings;
+    case routes.privacyCockpit:
+      return screenType.privacyCockpit;
   }
 };
 

@@ -80,8 +80,8 @@ const DeleteUserData = () => {
                   }
                 `}
                 >
-                  <td>{item.email}</td>
-                  <td>{item.data_collection_active ? `Yes` : `No`}</td>
+                  <td width="1/2">{item.email}</td>
+                  <td width="1/2">{item.data_collection_active ? `Yes` : `No`}</td>
                 </tr>
               );
             })}

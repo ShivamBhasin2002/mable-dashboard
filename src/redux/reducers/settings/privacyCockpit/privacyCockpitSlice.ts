@@ -97,6 +97,7 @@ export const postDeletedCustomer = createAsyncThunk<
         }
       );
       if (data) {
+        console.log({ data });
         return data;
       }
     } catch (error) {
