@@ -10,7 +10,7 @@ const Analytics = () => {
   const csvExporter = new ExportToCsv(options);
 
   return (
-    <ComponentWrapper className="text-light mt-[40px]">
+    <ComponentWrapper className="text-light ">
       <div className=" flex flex-row justify-between align-middle">
         <ColumnSelectorMenu />
         <button

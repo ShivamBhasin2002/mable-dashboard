@@ -71,9 +71,6 @@ const SideBar = () => {
       </section>
 
       <section className="flex flex-col gap-[20px]">
-        <div className="text-[16px] text-light/[0.57] font-montserrat font-bold hidden lg:inline-block">
-          PROFILE
-        </div>
         <div className="flex flex-row gap-4 w-full items-center justify-center lg:justify-start">
           <span className="w-[30px] h-[30px] lg:w-[35px] lg:h-[35px] text-[14px] lg:text-[18px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">
             {firstName !== undefined ? firstName[0] : 'U'}

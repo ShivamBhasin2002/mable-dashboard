@@ -21,6 +21,11 @@ const QualityCombined = () => {
       ]
     },
     doughnutOptions = {
+      plugins: {
+        tooltip: {
+          enabled: false
+        }
+      },
       elements: {
         arc: {
           borderWidth: 1,
