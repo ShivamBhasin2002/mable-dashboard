@@ -59,7 +59,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div className="flex-grow p-[30px] flex flex-col">
         <DashboardHeader />
         {status === 'success' ? (
-          <div className="flex-grow h-max">{children}</div>
+          <main className="flex-grow h-max">{children}</main>
         ) : (
           <div className="w-full min-h-screen">
             <Loading message="Fetching Shops" className="h-screen" />

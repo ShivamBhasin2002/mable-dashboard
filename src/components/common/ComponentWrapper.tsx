@@ -20,7 +20,7 @@ const ComponentWrapper = ({
   };
   return (
     <article
-      className={`bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[20px] py-[15px] relative ${className}`}
+      className={`bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[20px] py-[15px] ${className}`}
       style={{ width: width ?? 'auto', height: height ?? 'auto' }}
     >
       {checkStatus(STATUS_TYPE.FETCHING) && (
@@ -49,17 +49,19 @@ const ComponentWrapper = ({
         </div>
       )}
       <>
-        <div
-          className={` text-light ${
-            title && 'mb-[10px]'
-          } flex items-center font-montserrat text-[16px] lg:text-[22px] font-bold justify-between ${
-            underlined ? 'border-b-2 border-lines/[0.15]' : ''
-          }`}
-        >
-          {title}
-          {nextComponent}
-        </div>
-        <div className=" h-[calc(100%-45px)]">{children}</div>
+        {(title || nextComponent) && (
+          <div
+            className={` text-light ${
+              title && 'mb-[10px]'
+            } flex items-center font-montserrat text-[16px] lg:text-[22px] font-bold justify-between ${
+              underlined ? 'border-b-2 border-lines/[0.15]' : ''
+            }`}
+          >
+            {title}
+            {nextComponent}
+          </div>
+        )}
+        <div className={title || nextComponent ? 'h-[calc(100%-45px)]' : 'h-full'}>{children}</div>
       </>
     </article>
   );
