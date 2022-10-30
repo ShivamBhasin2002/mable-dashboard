@@ -6,7 +6,7 @@ import { CheckBoxProps } from 'utility/typeDefinitions/componentPropTypes';
 const CheckBox = ({ message, ...props }: CheckBoxProps) => {
   const [field, meta] = useField({ ...props });
   return (
-    <FormControl className="!w-max" isInvalid={meta.error && meta.touched ? true : false}>
+    <FormControl className="!w-max" isInvalid={!!(meta.error && meta.touched)}>
       <Checkbox {...props} {...field}>
         {message}
       </Checkbox>

@@ -17,8 +17,12 @@ const TextField = ({ label, icon, type, ...props }: TextFieldProps) => {
   const [field, meta] = useField({ type, ...props });
   const [show, setShow] = useState(false);
   const handleClick = () => setShow((prevState) => !prevState);
+  const getType = (givenType: string, showOrHide: boolean) => {
+    if (givenType === 'password') return showOrHide ? 'text' : 'password';
+    return givenType;
+  };
   return (
-    <FormControl isInvalid={meta.error && meta.touched ? true : false}>
+    <FormControl isInvalid={!!(meta.error && meta.touched)}>
       {label && <FormLabel>{label}</FormLabel>}
       <InputGroup>
         {icon && (
@@ -31,7 +35,7 @@ const TextField = ({ label, icon, type, ...props }: TextFieldProps) => {
           pl={icon ? '3rem' : '20px'}
           pr={type === 'password' ? '4.5rem' : '20px'}
           size="lg"
-          type={type === 'password' ? (show ? 'text' : 'password') : type}
+          type={getType(type, show)}
           autoComplete="off"
           {...field}
           {...props}

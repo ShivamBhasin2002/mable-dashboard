@@ -1,4 +1,4 @@
-import { statusSelector } from './enums';
+import { statusSelector } from 'utility/constants/enums';
 
 export const noWarningsMessage = 'No warnings yet';
 

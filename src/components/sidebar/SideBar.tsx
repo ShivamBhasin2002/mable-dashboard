@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import Icon from 'assets/icons';
-import SideBarItem from './items/generalSidebarItemCard';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { logout } from 'redux/reducers/authSlice';
@@ -9,6 +8,7 @@ import { screenToURL } from 'utility/functions/mappingFunctions';
 import { useWindowSize } from 'utility/customHooks';
 import { screenType } from 'utility/constants/enums';
 import { mableAiLandingPage } from 'utility/constants/strings';
+import SideBarItem from './items/generalSidebarItemCard';
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -43,30 +43,28 @@ const SideBar = () => {
 
       <section className="flex-grow overflow-y-scroll hide_scrollbar">
         <div className="flex flex-col gap-[10px lg:gap-[27px]">
-          {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => {
-            return (
-              <div key={sidebarCategory}>
-                <div className="text-[11px] lg:text-[14px] text-primary font-montserrat font-bold mb-[10px] text-center lg:text-start">
-                  {sidebarCategory}
-                </div>
-                <div className="flex flex-col gap-[5px]">
-                  {sidebarItems.map((item) => (
-                    <SideBarItem
-                      {...item}
-                      key={item.icon}
-                      clickHandle={() => {
-                        const path = screenToURL(item.title);
-                        if (activeScreen !== item.title && path) navigator(path);
-                        dispatch(setScreen(item.title));
-                      }}
-                      isActive={activeScreen === item.title}
-                    />
-                  ))}
-                </div>
-                <hr className="ml-[5px] mt-[27px] lg:ml-0 border-secondary/25 hidden lg:block" />
+          {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => (
+            <div key={sidebarCategory}>
+              <div className="text-[11px] lg:text-[14px] text-primary font-montserrat font-bold mb-[10px] text-center lg:text-start">
+                {sidebarCategory}
               </div>
-            );
-          })}
+              <div className="flex flex-col gap-[5px]">
+                {sidebarItems.map((item) => (
+                  <SideBarItem
+                    {...item}
+                    key={item.icon}
+                    clickHandle={() => {
+                      const path = screenToURL(item.title);
+                      if (activeScreen !== item.title && path) navigator(path);
+                      dispatch(setScreen(item.title));
+                    }}
+                    isActive={activeScreen === item.title}
+                  />
+                ))}
+              </div>
+              <hr className="ml-[5px] mt-[27px] lg:ml-0 border-secondary/25 hidden lg:block" />
+            </div>
+          ))}
         </div>
       </section>
 

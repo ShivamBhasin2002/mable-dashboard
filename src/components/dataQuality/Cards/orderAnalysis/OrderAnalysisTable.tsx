@@ -10,10 +10,10 @@ import { noOrdersMessage } from 'utility/constants/strings';
 import { useSelector, useDispatch } from 'redux/store';
 import { orderAnalysisAsync } from 'redux/reducers/dataQuality/orderAnalysisSlice';
 import { useWindowSize } from 'utility/customHooks';
-import OrderDetails from './OrderDetails';
 import { order } from 'utility/typeDefinitions/reduxTypes';
 import moment from 'moment';
 import Pagination from 'components/dataQuality/General/Pagination';
+import OrderDetails from './OrderDetails';
 
 const OrderAnalysisTable = () => {
   const { tableData, status, statusSelected } = useSelector((state) => state.orderAnalysis);
@@ -51,12 +51,15 @@ const OrderAnalysisTable = () => {
       case SORT_ORDER.DECREASING:
         setSortOrder(SORT_ORDER.INCREASING);
         break;
+      default:
+        setSortOrder(SORT_ORDER.DECREASING);
     }
   };
 
   return (
     <ComponentWrapper
       className="text-light min-h-[40px] !overflow-scroll hide_scrollbar"
+      // eslint-disable-next-line no-nested-ternary
       width={screenWidth ? (screenWidth >= 1022 ? screenWidth - 340 : screenWidth - 360) : 340}
       status={status}
     >

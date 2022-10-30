@@ -27,7 +27,8 @@ const AnalyticsTable = () => {
 
   if (analyticData.status === 'fetching') {
     return <Loading message="Fetching Analytic Report" />;
-  } else if (analyticData.status === 'error') {
+  }
+  if (analyticData.status === 'error') {
     return (
       <div className="mt-[20px] text-error text-4xl">
         oops ! some error occurred
@@ -36,22 +37,21 @@ const AnalyticsTable = () => {
         </div>
       </div>
     );
-  } else if (analyticData.status === 'success') {
+  }
+  if (analyticData.status === 'success') {
     return (
       <>
         <table className="w-full table-auto my-[10px]">
           <thead>
             <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
               <td className="bg-primary rounded-tl-[10px]">Day</td>
-              {Object.entries(filterType).map((item, i) => {
-                if (selectedEvents[item[0] as keyof SelectedEventsType]) {
-                  return (
-                    <td key={i} className="bg-primary">
-                      {item[1]}
-                    </td>
-                  );
-                }
-              })}
+              {Object.entries(filterType).map((item, i) =>
+                selectedEvents[item[0] as keyof SelectedEventsType] ? (
+                  <td key={i} className="bg-primary">
+                    {item[1]}
+                  </td>
+                ) : null
+              )}
             </tr>
           </thead>
           <tbody className="last-of:rounded-b-[10px]">
@@ -80,45 +80,42 @@ const AnalyticsTable = () => {
             </tr>
             {Object.values(byDate)
               .slice((page - 1) * reportsPerPage, page * reportsPerPage)
-              .map((item, i) => {
-                return (
-                  <tr
-                    key={i}
-                    className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[10px] [&>*]:px-[20px] ${
-                      !(i & 1) && 'bg-tableStrips/[0.5]'
-                    }`}
-                  >
-                    <td>
-                      <span className="opacity-50 text-xs">{moment(item.date).format('dddd')}</span>
-                      <br />
-                      {item.date}
-                    </td>
-                    {analyticData.selected_events.PageView ? (
-                      <td>{item.page_view.toLocaleString(defaultLocale)}</td>
-                    ) : null}
-                    {analyticData.selected_events.AddToCart ? (
-                      <td>{item.add_to_cart.toLocaleString(defaultLocale)}</td>
-                    ) : null}
-                    {analyticData.selected_events.InitiateCheckout ? (
-                      <td>{item.intitate_checkout.toLocaleString(defaultLocale)}</td>
-                    ) : null}
-                    {analyticData.selected_events.AddPaymentInfo ? (
-                      <td>{item.add_payment_info.toLocaleString(defaultLocale)}</td>
-                    ) : null}
-                    {analyticData.selected_events.Purchase ? (
-                      <td>{item.purchase.toLocaleString(defaultLocale)}</td>
-                    ) : null}
-                  </tr>
-                );
-              })}
+              .map((item, i) => (
+                <tr
+                  key={i}
+                  className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[10px] [&>*]:px-[20px] ${
+                    !(i & 1) && 'bg-tableStrips/[0.5]'
+                  }`}
+                >
+                  <td>
+                    <span className="opacity-50 text-xs">{moment(item.date).format('dddd')}</span>
+                    <br />
+                    {item.date}
+                  </td>
+                  {analyticData.selected_events.PageView ? (
+                    <td>{item.page_view.toLocaleString(defaultLocale)}</td>
+                  ) : null}
+                  {analyticData.selected_events.AddToCart ? (
+                    <td>{item.add_to_cart.toLocaleString(defaultLocale)}</td>
+                  ) : null}
+                  {analyticData.selected_events.InitiateCheckout ? (
+                    <td>{item.intitate_checkout.toLocaleString(defaultLocale)}</td>
+                  ) : null}
+                  {analyticData.selected_events.AddPaymentInfo ? (
+                    <td>{item.add_payment_info.toLocaleString(defaultLocale)}</td>
+                  ) : null}
+                  {analyticData.selected_events.Purchase ? (
+                    <td>{item.purchase.toLocaleString(defaultLocale)}</td>
+                  ) : null}
+                </tr>
+              ))}
           </tbody>
         </table>
         <Pagination page={page} setPage={setPage} array={byDate} itemsPerPage={reportsPerPage} />
       </>
     );
-  } else {
-    return <div>Idle</div>;
   }
+  return <div>Idle</div>;
 };
 
 export default AnalyticsTable;

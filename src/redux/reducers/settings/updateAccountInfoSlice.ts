@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { combineReducers, createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
@@ -23,9 +24,9 @@ export const updateUsername = createAsyncThunk<
       const { data } = await axios.put(
         `${process.env.REACT_APP_BFF_URL}/auth/username/update`,
         {
-          userId: userId,
-          firstName: firstName,
-          lastName: lastName
+          userId,
+          firstName,
+          lastName
         },
         {
           headers: { Authorization: `${getState().user.token}` }
@@ -54,10 +55,7 @@ export const updateEmail = createAsyncThunk<
   try {
     const { data } = await axios.put(
       `${process.env.REACT_APP_BFF_URL}/auth/email/update`,
-      {
-        userId: userId,
-        email: email
-      },
+      { userId, email },
       {
         headers: { Authorization: `${getState().user.token}` }
       }
@@ -86,10 +84,7 @@ export const updatePassword = createAsyncThunk<
     try {
       const { data } = await axios.put(
         `${process.env.REACT_APP_BFF_URL}/auth/password/update`,
-        {
-          password: password,
-          newPassword: newPassword
-        },
+        { password, newPassword },
         {
           headers: { Authorization: `${getState().user.token}` }
         }

@@ -188,7 +188,9 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
 
     case SORT_ORDER.DECREASING:
       return <FaSortUp className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    default:
+      return null;
   }
-  return null;
 };
 export default Icon;

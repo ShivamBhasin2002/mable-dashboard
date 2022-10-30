@@ -37,16 +37,15 @@ export const pageSpeedReducer = createReducer(pageSpeedInitialState, (builder) =
       state.status = STATUS_TYPE.FETCHING;
     })
     .addCase(pageSpeedAsync.fulfilled, (state, { payload }) => {
-      state.avg_loading_time_page =
-        payload.avg_loading_time_page ?? pageSpeedInitialState.avg_loading_time_page;
-      state.avg_loading_time_mable_script =
-        payload.avg_loading_time_mable_script ??
-        pageSpeedInitialState.avg_loading_time_mable_script;
-      state.avg_contribution_time_mable_script =
-        (payload.avg_contribution_time_mable_script ??
-          pageSpeedInitialState.avg_contribution_time_mable_script) * 100;
-      state.script_tag_found = payload.script_tag_found;
-      state.script_tag_last_found = moment().diff(moment(payload.script_tag_last_found), 'h');
+      state.avgLoadingTimePage =
+        payload.avgLoadingTimePage ?? pageSpeedInitialState.avgLoadingTimePage;
+      state.avgLoadingTimeMableScript =
+        payload.avgLoadingTimeMableScript ?? pageSpeedInitialState.avgLoadingTimeMableScript;
+      state.avgContributionTimeMableScript =
+        (payload.avgContributionTimeMableScript ??
+          pageSpeedInitialState.avgContributionTimeMableScript) * 100;
+      state.scriptTagNotFound = payload.scriptTagNotFound;
+      state.scriptTagLastFound = moment().diff(moment(payload.scriptTagLastFound), 'h');
       state.status = STATUS_TYPE.SUCCESS;
     })
     .addCase(pageSpeedAsync.rejected, (state, { payload }) => {

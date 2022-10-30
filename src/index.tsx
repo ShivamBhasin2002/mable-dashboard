@@ -2,11 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'assets/styles/index.css';
 import 'assets/styles/utility.css';
-import App from './App';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-
-import { store } from './redux/store';
 
 import {
   Chart as ChartJS,
@@ -21,6 +18,9 @@ import {
   ArcElement
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { store } from './redux/store';
+import App from './App';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,

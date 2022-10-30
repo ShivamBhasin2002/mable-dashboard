@@ -10,16 +10,16 @@ import type {} from 'redux-thunk/extend-redux';
 import userSlice from 'redux/reducers/authSlice';
 import datesSlice from 'redux/reducers/datesSlice';
 import screenSlice from 'redux/reducers/screenSlice';
-import dataQualityReducer from './reducers/dataQuality/dataQualitySlice';
-import pageSpeedReducer from './reducers/dataQuality/pageSpeedSlice';
-import eventsReducer from './reducers/dataQuality/eventSlice';
-import funnelAnalysisReducer from './reducers/dataQuality/eventsDataSlice';
-import dataPerEventSlice from './reducers/dataQuality/dataPerEventSlice';
-import orderAnalysisSlice from './reducers/dataQuality/orderAnalysisSlice';
-import analyticsReducer from './reducers/analytics/reportsSlice';
-import shopSlice from './reducers/shopSlice';
-import warningSlice from './reducers/dataQuality/warningSlice';
-import { accountRootReducer } from './reducers/settings/updateAccountInfoSlice';
+import dataQualityReducer from 'redux/reducers/dataQuality/dataQualitySlice';
+import pageSpeedReducer from 'redux/reducers/dataQuality/pageSpeedSlice';
+import eventsReducer from 'redux/reducers/dataQuality/eventSlice';
+import funnelAnalysisReducer from 'redux/reducers/dataQuality/eventsDataSlice';
+import dataPerEventSlice from 'redux/reducers/dataQuality/dataPerEventSlice';
+import orderAnalysisSlice from 'redux/reducers/dataQuality/orderAnalysisSlice';
+import analyticsReducer from 'redux/reducers/analytics/reportsSlice';
+import shopSlice from 'redux/reducers/shopSlice';
+import warningSlice from 'redux/reducers/dataQuality/warningSlice';
+import { accountRootReducer } from 'redux/reducers/settings/updateAccountInfoSlice';
 
 export const store = configureStore({
   reducer: {
@@ -40,7 +40,7 @@ export const store = configureStore({
   middleware: [thunk as ThunkMiddleware]
 });
 
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
+export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 export const useDispatch: () => AppDispatch = useReduxDispatch;
