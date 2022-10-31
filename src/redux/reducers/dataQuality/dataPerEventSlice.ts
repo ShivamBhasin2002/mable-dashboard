@@ -67,23 +67,23 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
           (
             {
               date,
-              attribution_params_quality
+              attribution_params_quality: attributionParamsQuality
             }: { date: string; attribution_params_quality: number },
             idx: number
           ) => {
             if (
-              attribution_params_quality === 0 &&
+              attributionParamsQuality === 0 &&
               eventParamsData.grouped_events_percentage[idx].events_quality === 0
             )
               return null;
             return {
               date: moment(date).format('D. MMM'),
-              attribution_params_quality,
-              events_quality: eventParamsData.grouped_events_percentage[idx].events_quality
+              attributionParamsQuality,
+              eventsQuality: eventParamsData.grouped_events_percentage[idx].events_quality
             };
           }
         )
-        .filter((data: unknown | null) => data !== null);
+        .filter((editedData: unknown | null) => editedData !== null);
       if (eventAttributionData && eventParamsData) return data;
       return rejectWithValue('Data not found');
     } catch (error) {
@@ -105,9 +105,11 @@ export const dataPerEvent = createSlice({
       .addCase(dataPerEventAsync.pending, (state) => {
         state.status = STATUS_TYPE.FETCHING;
       })
-      .addCase(dataPerEventAsync.fulfilled, (state, { payload }) => {
-        return { ...state, ...payload, status: STATUS_TYPE.SUCCESS };
-      })
+      .addCase(dataPerEventAsync.fulfilled, (state, { payload }) => ({
+        ...state,
+        ...payload,
+        status: STATUS_TYPE.SUCCESS
+      }))
       .addCase(dataPerEventAsync.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
       });

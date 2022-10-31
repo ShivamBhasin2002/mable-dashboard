@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'redux/store';
+import { useSelector, useDispatch } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
 import { postParameterSettings } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
-import { useDispatch } from 'redux/store';
 import { Button, Divider, useToast } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';
 import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
@@ -10,15 +9,25 @@ import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
 function toggleTable() {
   const toast = useToast();
   const dispatch = useDispatch();
-  const { data_collection_settings, parsed_settings, status } = useSelector(
-    (state) => state.privacyCockpit.paraMeterSettings
-  );
+  const {
+    data_collection_settings: dataCollectionSettings,
+    parsed_settings: parsedSettings,
+    status
+  } = useSelector((state) => state.privacyCockpit.paraMeterSettings);
   const [updateValue, setUpdateValue] = useState<{
     settingKey?: string;
     settingValue?: string;
   }>({
     settingKey: '',
     settingValue: ''
+  });
+
+  const [activeEverything, setActiveEverything] = useState<{
+    settingKey?: string;
+    settingValue?: string;
+  }>({
+    settingKey: '',
+    settingValue: 'false'
   });
 
   const handleSave = () => {
@@ -73,13 +82,6 @@ function toggleTable() {
     });
   };
 
-  const [activeEverything, setActiveEverything] = useState<{
-    settingKey?: string;
-    settingValue?: string;
-  }>({
-    settingKey: '',
-    settingValue: 'false'
-  });
   useEffect(() => {
     if (activeEverything.settingValue === 'true') {
       handleActiveEverything();
@@ -89,94 +91,89 @@ function toggleTable() {
   const categories = ['personalData', 'location', 'others'];
   return (
     <div className="flex flex-col">
-      {categories.map((category) => {
-        return (
-          <>
-            <div className="category-header mt-5">
-              <p className="text-primary opacity-70 text-[14px]">
-                {camelCaseToTitleCase(category)}{' '}
-              </p>
-            </div>
-            {data_collection_settings.map((data) => {
-              if (category === data.category)
-                return (
-                  <>
-                    <div className="dataTable flex text-[#FFFFFF] grid grid-cols-9 gap-0">
-                      <div className="keyValue col-span-3 my-auto text-[18px] font-[600]">
-                        {data.label}
-                      </div>
-                      {parsed_settings?.map((parsedData) => {
-                        return (
-                          parsedData.label === data.value &&
-                          'database' === parsedData.destination && (
-                            <div className="toggle1   col-span-2 m-auto">
-                              <ToggleBtn
-                                value={parsedData.settingValue === 'true'}
-                                setState={setUpdateValue}
-                                name={
-                                  parsedData.category +
-                                  '_' +
-                                  parsedData.label +
-                                  '_' +
-                                  parsedData.destination
-                                }
-                                activeColor="#0EBA12"
-                                inactiveColor="#D90D19"
-                              />
-                            </div>
-                          )
-                        );
-                      })}
-                      {parsed_settings?.map((parsedData) => {
-                        return (
-                          parsedData.label === data.value &&
-                          'facebook' === parsedData.destination && (
-                            <div className="toggle1   col-span-2 m-auto">
-                              <ToggleBtn
-                                value={parsedData.settingValue === 'true'}
-                                setState={setUpdateValue}
-                                name={
-                                  parsedData.category +
-                                  '_' +
-                                  parsedData.label +
-                                  '_' +
-                                  parsedData.destination
-                                }
-                                activeColor="#0EBA12"
-                                inactiveColor="#D90D19"
-                              />
-                            </div>
-                          )
-                        );
-                      })}
-                      {parsed_settings?.map((parsedData) => {
-                        return (
-                          parsedData.label === data.value &&
-                          'tiktok' === parsedData.destination && (
-                            <div className="toggle1   col-span-2 m-auto">
-                              <ToggleBtn
-                                value={parsedData.settingValue === 'true'}
-                                setState={setUpdateValue}
-                                name={
-                                  parsedData.category +
-                                  '_' +
-                                  parsedData.label +
-                                  '_' +
-                                  parsedData.destination
-                                }
-                                disable={true}
-                              />
-                            </div>
-                          )
-                        );
-                      })}
+      {categories.map((category) => (
+        <>
+          <div className="category-header mt-5">
+            <p className="text-primary opacity-70 text-[14px]">{camelCaseToTitleCase(category)} </p>
+          </div>
+          {dataCollectionSettings.map((data) => {
+            if (category === data.category) {
+              return (
+                <>
+                  <div className="dataTable text-[#FFFFFF] grid grid-cols-9 gap-0">
+                    <div className="keyValue col-span-3 my-auto text-[18px] font-[600]">
+                      {data.label}
                     </div>
-                  </>
-                );
-            })}
-          </>
-        );
-      })}
+                    {parsedSettings?.map(
+                      (parsedData) =>
+                        parsedData.label === data.value &&
+                        parsedData.destination === 'database' && (
+                          <div className="toggle1   col-span-2 m-auto">
+                            <ToggleBtn
+                              value={parsedData.settingValue === 'true'}
+                              setState={setUpdateValue}
+                              name={`
+                                ${parsedData.category}
+                              _
+                                ${parsedData.label}
+                                _
+                                ${parsedData.destination}
+                              `}
+                              activeColor="#0EBA12"
+                              inactiveColor="#D90D19"
+                            />
+                          </div>
+                        )
+                    )}
+                    {parsedSettings?.map(
+                      (parsedData) =>
+                        parsedData.label === data.value &&
+                        parsedData.destination === 'facebook' && (
+                          <div className="toggle1   col-span-2 m-auto">
+                            <ToggleBtn
+                              value={parsedData.settingValue === 'true'}
+                              setState={setUpdateValue}
+                              name={`
+                                ${parsedData.category}
+                              _
+                                ${parsedData.label}
+                                _
+                                ${parsedData.destination}
+                              `}
+                              activeColor="#0EBA12"
+                              inactiveColor="#D90D19"
+                            />
+                          </div>
+                        )
+                    )}
+                    {parsedSettings?.map(
+                      (parsedData) =>
+                        parsedData.label === data.value &&
+                        parsedData.destination === 'tiktok' && (
+                          <div className="toggle1   col-span-2 m-auto">
+                            <ToggleBtn
+                              value={parsedData.settingValue === 'true'}
+                              setState={setUpdateValue}
+                              name={`
+                              ${parsedData.category}
+                            _
+                              ${parsedData.label}
+                              _
+                              ${parsedData.destination}
+                            `}
+                              disable={true}
+                            />
+                          </div>
+                        )
+                    )}
+                  </div>
+                </>
+              );
+            }
+            return null;
+          })}
+        </>
+      ))}
       <Divider className="my-3" />
       <div className="flex justify-between items-center">
         <div className="active_all flex justify-end items-center">

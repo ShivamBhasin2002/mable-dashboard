@@ -21,12 +21,12 @@ const DataQualityCard = () => {
       nextComponent={<ViewFullReport screen={screenType.orderAnalysis} />}
       status={status}
     >
-      <div className="flex flex-row justify-evenly flex-wrap lg:flex-nowrap gap-8">
+      <div className="flex flex-row justify-evenly items-center h-full flex-wrap lg:flex-nowrap gap-8">
         <div className="flex-grow flex flex-row lg:flex-col gap-4 justify-evenly items-center">
           <QualityCombined />
           <OrderComposition />
         </div>
-        <div className="flex-grow relative">
+        <div className="flex-grow h-full">
           <DataQualityLineChart />
         </div>
       </div>

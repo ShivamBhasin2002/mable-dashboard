@@ -10,67 +10,67 @@ import { AttributionEventBarChartProps } from 'utility/typeDefinitions/component
 const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartProps) => {
   const { byDate } = useSelector((state) => state.dataPerEvent);
   const barOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      barPercentage: 0.7,
-      elements: {
-        bar: {
-          borderRadius: 5
-        }
-      },
-      scales: {
-        y: {
-          suggestedMax: totalAttributions,
-          grid: {
-            display: false,
-            borderColor: `${colors.lines}20`,
-            borderWidth: 3
-          },
-          ticks: {
-            stepSize: 4,
-            font: {
-              family: fonts.text
-            }
-          }
-        },
-        x: {
-          ticks: {
-            font: {
-              family: fonts.text
-            },
-            autoSkip: true,
-            maxTicksLimit: 10,
-            maxRotation: 0
-          },
-          grid: {
-            display: false,
-            borderColor: `${colors.lines}20`,
-            borderWidth: 3
-          }
-        }
+    responsive: true,
+    maintainAspectRatio: false,
+    barPercentage: 0.7,
+    elements: {
+      bar: {
+        borderRadius: 5
       }
     },
-    barData = {
-      labels: byDate.map((data) => data.date),
-      datasets: [
-        {
-          label: 'Attribution Parameters',
-          data: byDate.map((data) => data.attribution_params_quality),
-          backgroundColor: colors.purple,
-          datalabels: {
-            display: false
-          }
+    scales: {
+      y: {
+        suggestedMax: totalAttributions,
+        grid: {
+          display: false,
+          borderColor: `${colors.lines}20`,
+          borderWidth: 3
         },
-        {
-          label: 'Event Parameters',
-          data: byDate.map((data) => data.events_quality),
-          backgroundColor: colors.lightPurple,
-          datalabels: {
-            display: false
+        ticks: {
+          stepSize: 4,
+          font: {
+            family: fonts.text
           }
         }
-      ]
-    };
+      },
+      x: {
+        ticks: {
+          font: {
+            family: fonts.text
+          },
+          autoSkip: true,
+          maxTicksLimit: 10,
+          maxRotation: 0
+        },
+        grid: {
+          display: false,
+          borderColor: `${colors.lines}20`,
+          borderWidth: 3
+        }
+      }
+    }
+  };
+  const barData = {
+    labels: byDate.map((data) => data.date),
+    datasets: [
+      {
+        label: 'Attribution Parameters',
+        data: byDate.map((data) => data.attributionParamsQuality),
+        backgroundColor: colors.purple,
+        datalabels: {
+          display: false
+        }
+      },
+      {
+        label: 'Event Parameters',
+        data: byDate.map((data) => data.eventsQuality),
+        backgroundColor: colors.lightPurple,
+        datalabels: {
+          display: false
+        }
+      }
+    ]
+  };
   return <Bar data={barData} width={width} height={height} options={barOptions} />;
 };
 

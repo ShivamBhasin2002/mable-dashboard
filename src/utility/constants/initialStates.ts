@@ -14,9 +14,15 @@ import {
   AccountUpdateType,
   privacyCockpitType
 } from 'utility/typeDefinitions/reduxTypes';
-import { STATUS_TYPE, statusSelector, DatePickerPresets, screenType } from './enums';
 import moment from 'moment';
-import { eventSelectedType } from './enums';
+
+import {
+  STATUS_TYPE,
+  statusSelector,
+  DatePickerPresets,
+  screenType,
+  eventSelectedType
+} from 'utility/constants/enums';
 
 export const userInitialState: userStateType = {
   email: undefined,
@@ -52,8 +58,13 @@ export const shopInitialState: shopStateType = {
 };
 
 export const datesInitialState: datesStateType = {
-  dateRange: [moment().subtract(14, 'days'), moment()],
-  datePreset: DatePickerPresets.prevFourteenDays,
+  dateRange: localStorage.getItem('dateRange')
+    ? JSON.parse(localStorage.getItem('dateRange') ?? '[]')?.map((date: any) => moment(date) ?? '') // eslint-disable-line
+    : [moment().subtract(14, 'days'), moment()],
+  datePreset:
+    localStorage.getItem('datePreset') ?? localStorage.getItem('dateRange')
+      ? undefined
+      : DatePickerPresets.prevFourteenDays,
   refresh: false
 };
 
@@ -121,13 +132,13 @@ export const eventsDataInitialState: eventsDataStateType = {
 export const screenInitialState: screenStateType = { activeScreen: screenType.dashboard };
 
 export const pageSpeedInitialState: pageSpeedStateType = {
-  avg_loading_time_page: 0,
-  avg_loading_time_mable_script: 0,
-  avg_contribution_time_mable_script: 0,
+  avgLoadingTimePage: 0,
+  avgLoadingTimeMableScript: 0,
+  avgContributionTimeMableScript: 0,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined,
-  script_tag_found: true,
-  script_tag_last_found: undefined
+  scriptTagNotFound: true,
+  scriptTagLastFound: undefined
 };
 
 export const filterOptionInitialState: AnalyticsStateType = {

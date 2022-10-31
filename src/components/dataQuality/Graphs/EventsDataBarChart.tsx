@@ -16,7 +16,7 @@ import { useWindowSize } from 'utility/customHooks';
 
 const EventsDataBarChart = () => {
   const dispatch = useDispatch();
-  const { total_events, status } = useSelector((state) => state.eventsData);
+  const { total_events: totalEvents, status } = useSelector((state) => state.eventsData);
   const refresh = useSelector((state) => state.dates.refresh);
   const chart = useRef<any>(null); //eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); //eslint-disable-line
@@ -27,7 +27,7 @@ const EventsDataBarChart = () => {
   useEffect(() => {
     if (chart.current) {
       const chartData = {
-        labels: Object.keys(total_events).map((event) =>
+        labels: Object.keys(totalEvents).map((event) =>
           (screenWidth ?? 0) >= 1280 && (screenWidth ?? 0) <= 1440
             ? getEventDisplayName(event)?.split(' ')
             : getEventDisplayName(event)
@@ -35,7 +35,7 @@ const EventsDataBarChart = () => {
         datasets: [
           {
             label: 'Events',
-            data: Object.values(total_events),
+            data: Object.values(totalEvents),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
               { stop: 0, color: colors.dark },
               { stop: 1, color: colors.primary }
@@ -54,10 +54,14 @@ const EventsDataBarChart = () => {
       };
       setChartData(chartData);
     }
-  }, [refresh, total_events]);
+  }, [refresh, totalEvents]);
   return (
-    <ComponentWrapper title="Funnel Analysis" className="flex-grow" status={status}>
-      <div>
+    <ComponentWrapper
+      title="Funnel Analysis"
+      className="min-h-[250px] flex-grow-[0.5]"
+      status={status}
+    >
+      <div className="h-[90%]">
         <Bar
           ref={chart}
           data={chartData}

@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'airbnb-base',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier'
@@ -20,6 +21,12 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    'import/no-unresolved': 'off',
+    'no-param-reassign': [2, { props: false }],
+    'no-shadow': 'off',
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'no-bitwise': 'off'
   }
 };

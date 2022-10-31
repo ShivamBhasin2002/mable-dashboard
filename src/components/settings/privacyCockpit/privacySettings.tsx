@@ -1,9 +1,7 @@
 import { ComponentWrapper } from 'components/common';
-import { Button, Checkbox } from '@chakra-ui/react';
+import { Button, Checkbox, Input, Spinner, useToast } from '@chakra-ui/react';
 import colors from 'utility/colors';
 import { useDispatch, useSelector } from 'redux/store';
-import { Spinner, useToast } from '@chakra-ui/react';
-import { Input } from '@chakra-ui/react';
 import { STATUS_TYPE } from 'utility/constants/enums';
 import { useEffect, useState } from 'react';
 import * as yup from 'yup';
@@ -48,10 +46,10 @@ const PrivacySettings = () => {
   };
 
   const handleSave = () => {
-    if (cookieConsent != cookieConsentUrl && cookieConsent != '') {
+    if (cookieConsent !== cookieConsentUrl && cookieConsent !== '') {
       handleCookie();
     }
-    if (checkBoxStatus != hashDataCheckBox) {
+    if (checkBoxStatus !== hashDataCheckBox) {
       handleCheckBox();
     }
     setDisable(true);

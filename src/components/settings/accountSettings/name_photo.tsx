@@ -1,15 +1,13 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Spinner, useToast } from '@chakra-ui/react';
 // import Icon from 'assets/icons';
 import { ComponentWrapper } from 'components/common';
 import { useDispatch, useSelector } from 'redux/store';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
 import { STATUS_TYPE } from 'utility/constants/enums';
 import { updateUsername } from 'redux/reducers/settings/updateAccountInfoSlice';
 import { useEffect, useState } from 'react';
-import { useToast } from '@chakra-ui/react';
 import { updateUserNameState } from 'redux/reducers/authSlice';
 
 const NameChange = () => {
@@ -31,9 +29,9 @@ const NameChange = () => {
 
   const { firstName, lastName, userId } = useSelector((state) => state.user);
   const UsernameOringinal = {
-    userId: userId,
-    firstName: firstName,
-    lastName: lastName
+    userId,
+    firstName,
+    lastName
   };
   return (
     <ComponentWrapper title="Name" className="w-[33rem] text-light h-fit mt-[20px]">
@@ -49,7 +47,7 @@ const NameChange = () => {
 
       <Formik
         initialValues={{
-          userId: userId,
+          userId,
           firstName: '',
           lastName: ''
         }}

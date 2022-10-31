@@ -16,11 +16,12 @@ const Register = () => {
   const { status, errorMsg } = useSelector((state) => state.user);
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       dispatch(clearState());
-    };
-  }, []);
+    },
+    []
+  );
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
       toast({

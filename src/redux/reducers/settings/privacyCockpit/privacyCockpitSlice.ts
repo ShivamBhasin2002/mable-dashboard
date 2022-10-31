@@ -27,6 +27,8 @@ export const fetchSettings = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+
+  return null;
 });
 
 export const getDeletedCustomer = createAsyncThunk<
@@ -59,6 +61,8 @@ export const getDeletedCustomer = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+
+  return null;
 });
 
 export const postDeletedCustomer = createAsyncThunk<
@@ -72,7 +76,7 @@ export const postDeletedCustomer = createAsyncThunk<
       email: string;
       data_collection_active: boolean;
       deleted_user_data: boolean;
-    }[];
+    }[][];
   },
   { futureTrack: boolean; email: string },
   thunkOptions
@@ -105,6 +109,8 @@ export const postDeletedCustomer = createAsyncThunk<
       else message = String(message);
       return rejectWithValue(message);
     }
+
+    return null;
   }
 );
 
@@ -138,6 +144,7 @@ export const postDataHashPrivacySettings = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const postConsentUrlPrivacySettings = createAsyncThunk<
@@ -170,6 +177,7 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const postParameterSettings = createAsyncThunk<
@@ -206,6 +214,7 @@ export const postParameterSettings = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const privacyCockpitSetting = createSlice({
@@ -225,16 +234,16 @@ export const privacyCockpitSetting = createSlice({
       .addCase(fetchSettings.fulfilled, (state, { payload }) => {
         state.paraMeterSettings.parsed_settings = [];
 
-        payload.map((data) => {
-          const category = snakeCaseToKeyValueExtractor(data.setting_key)[0];
+        payload.map(({ setting_key: settingKey, setting_value: settingValue }) => {
+          const category = snakeCaseToKeyValueExtractor(settingKey)[0];
           if (category === 'personalData' || category === 'location' || category === 'others') {
             const obj = {
-              settingKey: data.setting_key,
-              category: category,
-              destination: snakeCaseToKeyValueExtractor(data.setting_key)[2],
-              label: snakeCaseToKeyValueExtractor(data.setting_key)[1],
-              settingValue: data.setting_value,
-              sequance: snakeCaseToKeyValueExtractor(data.setting_key)[2]
+              settingKey,
+              category,
+              destination: snakeCaseToKeyValueExtractor(settingKey)[2],
+              label: snakeCaseToKeyValueExtractor(settingKey)[1],
+              settingValue,
+              sequance: snakeCaseToKeyValueExtractor(settingKey)[2]
             };
             if (state.paraMeterSettings.parsed_settings.length === 0)
               state.paraMeterSettings.parsed_settings.push(obj);
@@ -243,19 +252,21 @@ export const privacyCockpitSetting = createSlice({
               let noduplicate = true;
               state.paraMeterSettings.parsed_settings.map((item) => {
                 if (item.settingKey === obj.settingKey) noduplicate = false;
+                return null;
               });
               if (noduplicate) state.paraMeterSettings.parsed_settings?.push(obj);
             }
           }
+
+          return null;
         });
         state.privacySettings.hashDataInDashboard.hashDataCheckBox =
-          payload.filter((item) => {
-            return item.setting_key === 'hash_database';
-          })[0].setting_value == 'true';
+          payload.filter((item) => item.setting_key === 'hash_database')[0].setting_value ===
+          'true';
 
-        state.privacySettings.cookieConsent.cookieConsentUrl = payload.filter((item) => {
-          return item.setting_key === 'cookie_consent_url';
-        })[0].setting_value;
+        state.privacySettings.cookieConsent.cookieConsentUrl = payload.filter(
+          (item) => item.setting_key === 'cookie_consent_url'
+        )[0].setting_value;
 
         state.previousSettings.status = STATUS_TYPE.SUCCESS;
       })
@@ -293,7 +304,7 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(postDeletedCustomer.fulfilled, (state, { payload }) => {
         state.deleteUserData.status = STATUS_TYPE.SUCCESS;
-        state.deleteUserData.userData.push(payload.customer_created[0]);
+        state.deleteUserData.userData.push(payload.customer_created[0][0]);
       })
       .addCase(postDeletedCustomer.rejected, (state) => {
         state.deleteUserData.status = STATUS_TYPE.ERROR;
@@ -308,7 +319,9 @@ export const privacyCockpitSetting = createSlice({
             if (savedData.settingKey === data.settingKey) {
               state.paraMeterSettings.parsed_settings[idx].settingValue = data.settingValue;
             }
+            return null;
           });
+          return null;
         });
       })
       .addCase(postParameterSettings.rejected, (state) => {
