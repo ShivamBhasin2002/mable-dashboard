@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
-import { STATUS_TYPE } from 'utility/constants/enums';
+import { perameterSettingsCategoryType, STATUS_TYPE } from 'utility/constants/enums';
 import { snakeCaseToKeyValueExtractor } from 'utility/functions/formattingFunctions';
 
 export const getPrivacySettings = createAsyncThunk<
@@ -238,7 +238,11 @@ export const privacyCockpitSetting = createSlice({
         state.paraMeterSettings.parsed_settings = [];
         payload.map((data) => {
           const category = snakeCaseToKeyValueExtractor(data.setting_key)[0];
-          if (category === 'personalData' || category === 'location' || category === 'others') {
+          if (
+            category === perameterSettingsCategoryType.PERSONAL ||
+            category === perameterSettingsCategoryType.LOCATION ||
+            category === perameterSettingsCategoryType.OTHERS
+          ) {
             const obj = {
               settingKey: data.setting_key,
               category: category,

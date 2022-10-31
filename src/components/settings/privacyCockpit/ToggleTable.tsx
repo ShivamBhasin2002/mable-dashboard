@@ -7,6 +7,7 @@ import { Divider, useToast } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';
 import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
 import { STATUS_TYPE } from 'utility/constants/enums';
+import { toggleColorCode } from 'utility/constants/extraConstants';
 
 function toggleTable() {
   const toast = useToast();
@@ -27,10 +28,31 @@ function toggleTable() {
         settings: [updateValue]
       })
     );
+    if (status === STATUS_TYPE.ERROR) {
+      toast({
+        title: `Something Went Wrong, Try Again ! `,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+    if (status === STATUS_TYPE.SUCCESS && updateValue.settingKey !== '') {
+      toast({
+        title: `Data Updated Succesfully`,
+        status: 'success',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
     setActiveEverything({ ...activeEverything, settingValue: 'false' });
   }, [updateValue]);
 
-  useEffect(() => {
+  const handleActiveEverything = () => {
+    dispatch(
+      postParameterSettings({
+        settings: activeAllSettings
+      })
+    );
     if (status === STATUS_TYPE.ERROR) {
       toast({
         title: `Something Went Wrong, Try Again ! `,
@@ -41,27 +63,12 @@ function toggleTable() {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({
-        title: `Data Updated Succesfully`,
+        title: `All Data Set to Active `,
         status: 'success',
         isClosable: true,
         position: 'top-right'
       });
     }
-  }, [status]);
-
-  const handleActiveEverything = () => {
-    dispatch(
-      postParameterSettings({
-        settings: activeAllSettings
-      })
-    );
-
-    toast({
-      title: `All Data Set to Active `,
-      status: 'success',
-      isClosable: true,
-      position: 'top-right'
-    });
   };
 
   const [activeEverything, setActiveEverything] = useState<{
@@ -111,8 +118,8 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
-                                activeColor="#0EBA12"
-                                inactiveColor="#D90D19"
+                                activeColor={toggleColorCode.active}
+                                inactiveColor={toggleColorCode.inactive}
                                 disable={!data_collection_destinations[0].available}
                               />
                             </div>
@@ -134,8 +141,8 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
-                                activeColor="#0EBA12"
-                                inactiveColor="#D90D19"
+                                activeColor={toggleColorCode.active}
+                                inactiveColor={toggleColorCode.inactive}
                                 disable={!data_collection_destinations[1].available}
                               />
                             </div>
@@ -157,6 +164,8 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
+                                activeColor={toggleColorCode.active}
+                                inactiveColor={toggleColorCode.inactive}
                                 disable={!data_collection_destinations[2].available}
                               />
                             </div>
