@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import moment, { Moment } from 'moment';
 import { screenType } from 'utility/constants/enums';
 
@@ -25,3 +26,14 @@ export const showDatePicker = (screen: screenType) => {
       return true;
   }
 };
+
+
+export const showToast =()=>{
+  const toast = useToast()
+  toast({
+    title: `Data Updated Successfully`,
+    status: 'success',
+    isClosable: true,
+    position: 'top-right'
+  });
+}

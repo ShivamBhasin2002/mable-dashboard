@@ -5,7 +5,7 @@ import { postParameterSettings } from 'redux/reducers/settings/privacyCockpit/pr
 import { Divider, useToast } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';
 import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
-import { STATUS_TYPE } from 'utility/constants/enums';
+import { perameterSettingsSocialType, STATUS_TYPE } from 'utility/constants/enums';
 import { toggleColorCode } from 'utility/constants/extraConstants';
 
 function toggleTable() {
@@ -107,7 +107,7 @@ function toggleTable() {
                     {parsedSettings?.map(
                       (parsedData) =>
                         parsedData.label === data.value &&
-                        parsedData.destination === 'database' && (
+                        parsedData.destination === perameterSettingsSocialType.DATABASE && (
                           <div className="toggle1   col-span-2 m-auto">
                             <ToggleBtn
                               value={parsedData.settingValue === 'true'}
@@ -123,7 +123,7 @@ function toggleTable() {
                     {parsedSettings?.map(
                       (parsedData) =>
                         parsedData.label === data.value &&
-                        parsedData.destination === 'facebook' && (
+                        parsedData.destination === perameterSettingsSocialType.FACEBOOK && (
                           <div className="toggle1   col-span-2 m-auto">
                             <ToggleBtn
                               value={parsedData.settingValue === 'true'}
@@ -139,7 +139,7 @@ function toggleTable() {
                     {parsedSettings?.map(
                       (parsedData) =>
                         parsedData.label === data.value &&
-                        parsedData.destination === 'tiktok' && (
+                        parsedData.destination === perameterSettingsSocialType.TIKTOK && (
                           <div className="toggle1   col-span-2 m-auto">
                             <ToggleBtn
                               value={parsedData.settingValue === 'true'}

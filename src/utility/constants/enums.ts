@@ -89,3 +89,8 @@ export enum perameterSettingsCategoryType {
   LOCATION = 'location',
   OTHERS = 'others'
 }
+export enum perameterSettingsSocialType {
+  DATABASE = 'database',
+  FACEBOOK = 'facebook',
+  TIKTOK = 'tiktok'
+}
