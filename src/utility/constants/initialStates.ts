@@ -163,7 +163,6 @@ export const filterOptionInitialState: AnalyticsStateType = {
 export const privacyCockpit: privacyCockpitType = {
   paraMeterSettings: {
     status: STATUS_TYPE.IDLE,
-    updateAll: 'false',
     data_collection_destinations: [
       {
         value: 'database',
@@ -198,9 +197,9 @@ export const privacyCockpit: privacyCockpitType = {
         label: 'Last Name'
       },
       {
-        value: 'birthdate',
+        value: 'dateofbirth',
         category: 'personalData',
-        label: 'Birthdate'
+        label: 'Date of Birth'
       },
       {
         value: 'phonenumber',
@@ -238,14 +237,14 @@ export const privacyCockpit: privacyCockpitType = {
         label: 'IP Address'
       },
       {
-        value: 'externeid',
+        value: 'externalid',
         category: 'others',
         label: 'External ID'
       },
       {
-        value: 'klickid',
+        value: 'clickid',
         category: 'others',
-        label: 'Click-Id'
+        label: 'Click-ID'
       }
     ],
     parsed_settings: []

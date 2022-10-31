@@ -83,3 +83,9 @@ export enum SORT_ORDER {
   INCREASING = 'increasing',
   DECREASING = 'decreasing'
 }
+
+export enum perameterSettingsCategoryType {
+  PERSONAL = 'personalData',
+  LOCATION = 'location',
+  OTHERS = 'others'
+}

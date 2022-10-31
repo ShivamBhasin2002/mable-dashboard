@@ -3,16 +3,17 @@ import { useSelector } from 'redux/store';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
 import { postParameterSettings } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import { useDispatch } from 'redux/store';
-import { Button, Divider, useToast } from '@chakra-ui/react';
+import { Divider, useToast } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';
 import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
+import { STATUS_TYPE } from 'utility/constants/enums';
+import { toggleColorCode } from 'utility/constants/extraConstants';
 
 function toggleTable() {
   const toast = useToast();
   const dispatch = useDispatch();
-  const { data_collection_settings, parsed_settings, status } = useSelector(
-    (state) => state.privacyCockpit.paraMeterSettings
-  );
+  const { data_collection_destinations, data_collection_settings, parsed_settings, status } =
+    useSelector((state) => state.privacyCockpit.paraMeterSettings);
   const [updateValue, setUpdateValue] = useState<{
     settingKey?: string;
     settingValue?: string;
@@ -21,26 +22,13 @@ function toggleTable() {
     settingValue: ''
   });
 
-  const handleSave = () => {
-    dispatch(
-      postParameterSettings({
-        settings: [updateValue]
-      })
-    );
-    setActiveEverything({ ...activeEverything, settingValue: 'false' });
-  };
-
   useEffect(() => {
     dispatch(
       postParameterSettings({
         settings: [updateValue]
       })
     );
-    setActiveEverything({ ...activeEverything, settingValue: 'false' });
-  }, [updateValue]);
-
-  useEffect(() => {
-    if (status === 'error') {
+    if (status === STATUS_TYPE.ERROR) {
       toast({
         title: `Something Went Wrong, Try Again ! `,
         status: 'error',
@@ -48,7 +36,7 @@ function toggleTable() {
         position: 'top-right'
       });
     }
-    if (status === 'success') {
+    if (status === STATUS_TYPE.SUCCESS && updateValue.settingKey !== '') {
       toast({
         title: `Data Updated Succesfully`,
         status: 'success',
@@ -56,7 +44,8 @@ function toggleTable() {
         position: 'top-right'
       });
     }
-  }, [status]);
+    setActiveEverything({ ...activeEverything, settingValue: 'false' });
+  }, [updateValue]);
 
   const handleActiveEverything = () => {
     dispatch(
@@ -64,13 +53,22 @@ function toggleTable() {
         settings: activeAllSettings
       })
     );
-
-    toast({
-      title: `All Data Set to Active `,
-      status: 'success',
-      isClosable: true,
-      position: 'top-right'
-    });
+    if (status === STATUS_TYPE.ERROR) {
+      toast({
+        title: `Something Went Wrong, Try Again ! `,
+        status: 'error',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+    if (status === STATUS_TYPE.SUCCESS) {
+      toast({
+        title: `All Data Set to Active `,
+        status: 'success',
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
   };
 
   const [activeEverything, setActiveEverything] = useState<{
@@ -120,8 +118,9 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
-                                activeColor="#0EBA12"
-                                inactiveColor="#D90D19"
+                                activeColor={toggleColorCode.active}
+                                inactiveColor={toggleColorCode.inactive}
+                                disable={!data_collection_destinations[0].available}
                               />
                             </div>
                           )
@@ -142,8 +141,9 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
-                                activeColor="#0EBA12"
-                                inactiveColor="#D90D19"
+                                activeColor={toggleColorCode.active}
+                                inactiveColor={toggleColorCode.inactive}
+                                disable={!data_collection_destinations[1].available}
                               />
                             </div>
                           )
@@ -164,7 +164,9 @@ function toggleTable() {
                                   '_' +
                                   parsedData.destination
                                 }
-                                disable={true}
+                                activeColor={toggleColorCode.active}
+                                inactiveColor={toggleColorCode.inactive}
+                                disable={!data_collection_destinations[2].available}
                               />
                             </div>
                           )
@@ -180,7 +182,7 @@ function toggleTable() {
       <Divider className="my-3" />
       <div className="flex justify-between items-center">
         <div className="active_all flex justify-end items-center">
-          <p className="text-light text-[18px] mx-2 opacity-50">Active Everything </p>
+          <p className="text-light text-[18px] mx-2 opacity-50">Activate All </p>
           <ToggleBtn
             value={activeEverything.settingValue === 'true'}
             setState={setActiveEverything}
@@ -189,44 +191,6 @@ function toggleTable() {
             inactiveColor="#D90D19"
           />
         </div>
-        {false && (
-          <div className="button">
-            {status === 'error' && (
-              <Button
-                className="w-[8rem] mt-5"
-                type="submit"
-                colorScheme="blue"
-                onClick={handleSave}
-              >
-                Save
-              </Button>
-            )}
-            {status === 'fetching' && (
-              <Button
-                isLoading
-                loadingText="Saving"
-                spinnerPlacement="start"
-                className="w-[8rem] mt-5"
-                type="submit"
-                colorScheme="blue"
-                onClick={handleSave}
-              >
-                Save
-              </Button>
-            )}
-            {status === 'success' && (
-              <Button
-                className="w-[8rem] mt-5"
-                type="submit"
-                colorScheme="gray"
-                onClick={handleSave}
-                disabled
-              >
-                Save
-              </Button>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
