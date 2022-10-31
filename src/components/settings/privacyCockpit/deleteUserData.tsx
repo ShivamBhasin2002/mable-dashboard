@@ -80,22 +80,6 @@ const DeleteUserData = () => {
               </tr>
             ))}
         </tbody>
-
-        {/* {deleteCustomer.map((item, key) => {
-          return (
-            <tbody key={key} className="last-of:rounded-b-[10px]">
-              <tr
-                className={`text-light [&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
-                  !(key & 1) && 'bg-tableStrips/[0.5]'
-                }
-          `}
-              >
-                <td>{item.email}</td>
-                <td>{item.data_collection_active ? `Yes` : `No`}</td>
-              </tr>
-            </tbody>
-          );
-        })} */}
       </table>
       {deleteCustomer.length > 5 && (
         <div className="flex justify-center items-center gap-4">

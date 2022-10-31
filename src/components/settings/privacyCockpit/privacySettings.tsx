@@ -26,11 +26,6 @@ const PrivacySettings = () => {
   const [cookieConsent, setCookieConsent] = useState<string>(cookieConsentUrl);
   const [disable, setDisable] = useState<boolean>(true);
 
-  // useEffect(() => {
-  //   setCheckBoxStatus(hashDataCheckBox);
-  //   setCookieConsent(cookieConsentUrl);
-  // }, [cookieConsentUrl, hashDataCheckBox]);
-
   const toast = useToast();
   const dispatch = useDispatch();
 

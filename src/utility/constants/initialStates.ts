@@ -277,16 +277,6 @@ export const privacyCockpit: privacyCockpitType = {
   },
   deleteUserData: {
     status: STATUS_TYPE.IDLE,
-    userData: [
-      {
-        id: 1,
-        source_id: 57,
-        created_at: '2022-10-19T12:30:32.144Z',
-        updated_at: '2022-10-19T14:41:22.267Z',
-        email: 'asd0@åsd.as',
-        data_collection_active: false,
-        deleted_user_data: true
-      }
-    ]
+    userData: []
   }
 };
