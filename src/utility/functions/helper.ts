@@ -27,13 +27,12 @@ export const showDatePicker = (screen: screenType) => {
   }
 };
 
-
-export const showToast =()=>{
-  const toast = useToast()
+export const showToast = () => {
+  const toast = useToast();
   toast({
     title: `Data Updated Successfully`,
     status: 'success',
     isClosable: true,
     position: 'top-right'
   });
-}
+};

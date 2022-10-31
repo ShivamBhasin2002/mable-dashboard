@@ -4,6 +4,7 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import axios from 'axios';
 import { perameterSettingsCategoryType, STATUS_TYPE } from 'utility/constants/enums';
 import { snakeCaseToKeyValueExtractor } from 'utility/functions/formattingFunctions';
+import { getSettings, postSettings } from 'utility/functions/bffServices';
 
 export const fetchSettings = createAsyncThunk<
   { source_id: number; setting_key: string; setting_value: string }[],
@@ -12,15 +13,8 @@ export const fetchSettings = createAsyncThunk<
 >('privacyCockpit/settings/fetch', async (temp, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
-      {
-        headers: { Authorization: `${state.user.token}` }
-      }
-    );
-    if (data) {
-      return data;
-    }
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return getSettings(state.user.token, apiUrl);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
@@ -121,23 +115,14 @@ export const postDataHashPrivacySettings = createAsyncThunk<
 >('privacyCockpit/hashDashboard/post', async ({ checkBox }, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
+    const settings = [
       {
-        settings: [
-          {
-            settingKey: 'hash_database',
-            settingValue: `${checkBox}`
-          }
-        ]
-      },
-      {
-        headers: { Authorization: `${state.user.token}` }
+        settingKey: 'hash_database',
+        settingValue: `${checkBox}`
       }
-    );
-    if (data) {
-      return data.settings_changed[0].settingValue;
-    }
+    ];
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return postSettings(state.user.token, apiUrl, settings);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
