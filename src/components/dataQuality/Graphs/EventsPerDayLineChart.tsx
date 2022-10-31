@@ -92,12 +92,13 @@ const EventsPerDayLineChart = () => {
         plugins={[
           {
             id: 'lines',
-            afterDraw(chart) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-shadow
+            afterDraw: (chart: any) => {
               if (chart.tooltip?.getActiveElements().length) {
-                const x = chart.tooltip.getActiveElements()[0].element.x;
-                const y = chart.tooltip.getActiveElements()[0].element.y;
+                const { x } = chart.tooltip.getActiveElements()[0].element;
+                const { y } = chart.tooltip.getActiveElements()[0].element;
                 const yAxis = chart.scales.y;
-                const ctx = chart.ctx;
+                const { ctx } = chart;
                 ctx.save();
                 ctx.beginPath();
                 ctx.setLineDash([10, 15]);

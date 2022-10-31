@@ -36,6 +36,8 @@ import Tick from 'assets/icons/Tick';
 import Cross from 'assets/icons/Cross';
 import Logout from 'assets/icons/Logout';
 import Sunglasses from 'assets/icons/Sunglasses';
+import ScriptTagNotFound from 'assets/icons/ScriptTagNotFoundIcon';
+
 import { SORT_ORDER } from 'utility/constants/enums';
 
 const Icon = ({ icon, color, className, ...props }: IconType) => {
@@ -179,12 +181,19 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
     case 'sunglass':
       return <Sunglasses className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
+    case 'scriptTagNotFound':
+      return (
+        <ScriptTagNotFound className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
+      );
+
     case SORT_ORDER.INCREASING:
       return <FaSortDown className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
     case SORT_ORDER.DECREASING:
       return <FaSortUp className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
+
+    default:
+      return null;
   }
-  return null;
 };
 export default Icon;

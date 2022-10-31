@@ -1,9 +1,8 @@
-import { Button, useToast } from '@chakra-ui/react';
+import { Button, useToast, Spinner } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
 import { useDispatch, useSelector } from 'redux/store';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
 import { STATUS_TYPE } from 'utility/constants/enums';
 import { updatePassword } from 'redux/reducers/settings/updateAccountInfoSlice';
@@ -22,7 +21,7 @@ const PasswordChange = () => {
     }
   }, [status]);
   return (
-    <ComponentWrapper className="h-fit w-[33rem] mt-[20px] text-light" title="Password">
+    <ComponentWrapper className="h-fit w-[33rem] text-light xl:mt-[20px]" title="Change Password">
       <Formik
         initialValues={{
           password: '',

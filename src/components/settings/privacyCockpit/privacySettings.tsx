@@ -1,57 +1,68 @@
 import { ComponentWrapper } from 'components/common';
-import { Button, Checkbox } from '@chakra-ui/react';
+import { Button, Checkbox, Input, Spinner, useToast } from '@chakra-ui/react';
 import colors from 'utility/colors';
 import { useDispatch, useSelector } from 'redux/store';
-import { Spinner, useToast } from '@chakra-ui/react';
-import { Input } from '@chakra-ui/react';
 import { STATUS_TYPE } from 'utility/constants/enums';
 import { useEffect, useState } from 'react';
+import * as yup from 'yup';
 import {
   postConsentUrlPrivacySettings,
   postDataHashPrivacySettings
 } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 
 const PrivacySettings = () => {
-  const checkBoxValue = useSelector(
-    (state) => state.privacyCockpit.privacySettings.hashDataInDashboard.hashDataCheckBox
-  );
-  const cookieConsentUrl = useSelector(
-    (state) => state.privacyCockpit.privacySettings.cookieConsent.cookieConsentUrl
-  );
-  const { status: hashStatus } = useSelector(
+  const cookieConsentSchema = yup.object().shape({
+    url: yup.string()
+  });
+
+  const { status: hashStatus, hashDataCheckBox } = useSelector(
     (state) => state.privacyCockpit.privacySettings.hashDataInDashboard
   );
-  const { status: cookieStatus } = useSelector(
+  const { status: cookieStatus, cookieConsentUrl } = useSelector(
     (state) => state.privacyCockpit.privacySettings.cookieConsent
   );
-  const [checkBoxStatus, setCheckBoxStatus] = useState<boolean>(checkBoxValue);
+
+  const [checkBoxStatus, setCheckBoxStatus] = useState<boolean>(hashDataCheckBox);
   const [cookieConsent, setCookieConsent] = useState<string>(cookieConsentUrl);
+  const [disable, setDisable] = useState<boolean>(true);
 
   const toast = useToast();
   const dispatch = useDispatch();
 
-  const handleSave = () => {
-    if (cookieConsent != '' && cookieConsent != cookieConsentUrl) {
+  const handleCookie = async () => {
+    const isValid = await cookieConsentSchema.isValid({ url: cookieConsent });
+    if (isValid) {
       dispatch(postConsentUrlPrivacySettings({ url: cookieConsent }));
     }
-    if (checkBoxStatus != checkBoxValue) {
-      dispatch(postDataHashPrivacySettings({ checkBox: checkBoxStatus }));
+  };
+
+  const handleCheckBox = () => {
+    dispatch(postDataHashPrivacySettings({ checkBox: checkBoxStatus }));
+  };
+
+  const handleSave = () => {
+    if (cookieConsent !== cookieConsentUrl && cookieConsent !== '') {
+      handleCookie();
     }
+    if (checkBoxStatus !== hashDataCheckBox) {
+      handleCheckBox();
+    }
+    setDisable(true);
   };
 
   useEffect(() => {
     if (hashStatus === STATUS_TYPE.ERROR) {
       toast({
         title: `Error while updating ! from hash`,
-        status: 'error',
+        status: STATUS_TYPE.ERROR,
         isClosable: true,
         position: 'top-right'
       });
     }
     if (hashStatus === STATUS_TYPE.SUCCESS) {
       toast({
-        title: `Privacy Updated Succesfully from hash`,
-        status: 'success',
+        title: `Data Hashed in Dashboard`,
+        status: STATUS_TYPE.SUCCESS,
         isClosable: true,
         position: 'top-right'
       });
@@ -62,15 +73,15 @@ const PrivacySettings = () => {
     if (cookieStatus === STATUS_TYPE.ERROR) {
       toast({
         title: `Error while updating ! from cookie`,
-        status: 'error',
+        status: STATUS_TYPE.ERROR,
         isClosable: true,
         position: 'top-right'
       });
     }
     if (cookieStatus === STATUS_TYPE.SUCCESS) {
       toast({
-        title: `Privacy Updated Succesfully from cookie`,
-        status: 'success',
+        title: `Cookie Consent Linked`,
+        status: STATUS_TYPE.SUCCESS,
         isClosable: true,
         position: 'top-right'
       });
@@ -93,7 +104,10 @@ const PrivacySettings = () => {
           _hover={{ background: colors.bgContainerFrom }}
           _active={{ background: colors.bgContainerFrom }}
           _focus={{ background: colors.bgContainerFrom }}
-          onChange={() => setCheckBoxStatus(!checkBoxStatus)}
+          onChange={() => {
+            setCheckBoxStatus(!checkBoxStatus);
+            setDisable(false);
+          }}
         ></Checkbox>
       </div>
       <div className="flex gap-4 items-center mt-[40px]">
@@ -102,39 +116,28 @@ const PrivacySettings = () => {
           <Input
             value={cookieConsent}
             variant="filled"
-            placeholder={cookieConsent}
+            placeholder={cookieConsentUrl}
             backgroundColor="blue.800"
             textColor="white"
-            onChange={(e) => setCookieConsent(e.target.value)}
+            onChange={(e) => {
+              setCookieConsent(e.target.value);
+              setDisable(false);
+            }}
           />
         </form>
       </div>
-      {cookieConsentUrl != cookieConsent || checkBoxStatus != checkBoxValue ? (
-        <Button
-          className="w-[8rem] mt-5"
-          type="submit"
-          colorScheme="blue"
-          onClick={() => {
-            handleSave();
-          }}
-        >
-          Save
-          {hashStatus === STATUS_TYPE.FETCHING && <Spinner />}
-        </Button>
-      ) : (
-        <Button
-          disabled
-          className="w-[8rem] mt-5"
-          type="submit"
-          colorScheme="blue"
-          onClick={() => {
-            handleSave();
-          }}
-        >
-          Save
-          {hashStatus === STATUS_TYPE.FETCHING && <Spinner />}
-        </Button>
-      )}
+      <Button
+        disabled={disable}
+        className="w-[8rem] mt-5 ml-auto"
+        type="submit"
+        colorScheme="blue"
+        onClick={() => {
+          handleSave();
+        }}
+      >
+        Save
+        {(hashStatus || cookieStatus) === STATUS_TYPE.FETCHING && <Spinner />}
+      </Button>
     </ComponentWrapper>
   );
 };

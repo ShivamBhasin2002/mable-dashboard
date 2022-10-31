@@ -7,17 +7,17 @@ import colors from 'utility/colors';
 export const createGradient = (
   ctx: CanvasRenderingContext2D,
   area: ChartArea,
-  colors: { stop: number; color: string }[]
+  gradientColors: { stop: number; color: string }[]
 ) => {
   const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-  colors.forEach((color) => gradient.addColorStop(color.stop, color.color));
+  gradientColors.forEach((color) => gradient.addColorStop(color.stop, color.color));
   return gradient;
 };
 
 export const getColor = (value: number) => {
   if (value >= 90) return colors.success;
-  else if (value >= 80) return colors.average;
-  else return colors.error;
+  if (value >= 80) return colors.average;
+  return colors.error;
 };
 
 export const statusTypeColors = (status: string) => {
@@ -30,5 +30,7 @@ export const statusTypeColors = (status: string) => {
       return 'bg-purple';
     case statusSelector.success:
       return 'bg-success';
+    default:
+      return '';
   }
 };

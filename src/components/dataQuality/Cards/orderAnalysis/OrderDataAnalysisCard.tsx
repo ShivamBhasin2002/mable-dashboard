@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { ComponentWrapper } from 'components/common';
 import { DataQualityLineChart } from 'components/dataQuality/Graphs';
@@ -25,10 +25,7 @@ const OrderDataAnalysisCard = () => {
     status: eventsStatus
   } = useSelector((state) => state.events);
   const refresh = useSelector((state) => state.dates.refresh);
-  const [displayTime, setDisplayTime] = useState({ value: 0, unit: 'ms' });
-  useEffect(() => {
-    setDisplayTime(dateTimeReducer(avgTimeDifference));
-  }, [avgTimeDifference]);
+
   useEffect(() => {
     if (dataQualityStatus !== STATUS_TYPE.FETCHING) dispatch(dataQualityAsync());
     if (eventsStatus !== STATUS_TYPE.FETCHING) dispatch(eventsAsync());
@@ -48,7 +45,9 @@ const OrderDataAnalysisCard = () => {
             message="Received by FB"
           />
           <Statistics
-            value={`${displayTime.value}${displayTime.unit}`}
+            value={`${dateTimeReducer(avgTimeDifference).value}${
+              dateTimeReducer(avgTimeDifference).unit
+            }`}
             message="AVG. Delivery Time"
           />
         </div>

@@ -13,8 +13,8 @@ import { AnalyticsStateType } from 'utility/typeDefinitions/reduxTypes';
 export const getMessage = (value: number) => {
   if (value >= 95) return 'Excellent';
   if (value >= 90) return 'Great';
-  else if (value >= 80) return 'Decent';
-  else return 'Poor';
+  if (value >= 80) return 'Decent';
+  return 'Poor';
 };
 
 export const presetsToDateRange = (preset: string) => {
@@ -45,8 +45,9 @@ export const presetsToDateRange = (preset: string) => {
         moment().subtract(1, 'month').startOf('month'),
         moment().subtract(1, 'month').endOf('month')
       ];
+    default:
+      return [];
   }
-  return [];
 };
 
 export const getEventDisplayName = (event: string) => {
@@ -63,6 +64,8 @@ export const getEventDisplayName = (event: string) => {
       return eventSelectedType.add_to_cart;
     case 'page_view':
       return eventSelectedType.page_view;
+    default:
+      return '';
   }
 };
 
@@ -87,26 +90,25 @@ export const getSelectedEventData = (item: any, event: string) => {
       return item.add_to_cart;
     case eventSelectedType.page_view:
       return item.page_view;
+    default:
+      return '';
   }
 };
 
 export const updateEvents = (state: AnalyticsStateType, payload: string) => {
   switch (payload) {
     case 'AddPaymentInfo':
-      state.selected_events.AddPaymentInfo = !state.selected_events.AddPaymentInfo;
-      break;
+      return !state.selected_events.AddPaymentInfo;
     case 'AddToCart':
-      state.selected_events.AddToCart = !state.selected_events.AddToCart;
-      break;
+      return !state.selected_events.AddToCart;
     case 'InitiateCheckout':
-      state.selected_events.InitiateCheckout = !state.selected_events.InitiateCheckout;
-      break;
+      return !state.selected_events.InitiateCheckout;
     case 'PageView':
-      state.selected_events.PageView = !state.selected_events.PageView;
-      break;
+      return !state.selected_events.PageView;
     case 'Purchase':
-      state.selected_events.Purchase = !state.selected_events.Purchase;
-      break;
+      return !state.selected_events.Purchase;
+    default:
+      return false;
   }
 };
 
@@ -124,6 +126,8 @@ export const screenToURL = (screen: screenType): routes | undefined => {
       return routes.settings;
     case screenType.privacyCockpit:
       return routes.privacyCockpit;
+    default:
+      return undefined;
   }
 };
 
@@ -139,6 +143,10 @@ export const URLtoScreen = (screen: string): screenType | undefined => {
       return screenType.analytics;
     case routes.settings:
       return screenType.settings;
+    case routes.privacyCockpit:
+      return screenType.privacyCockpit;
+    default:
+      return undefined;
   }
 };
 
@@ -152,5 +160,7 @@ export const getOrderAnalysisTableIcon = (status: statusSelector | string) => {
       return 'cross';
     case statusSelector.delayed:
       return 'delayed';
+    default:
+      return '';
   }
 };

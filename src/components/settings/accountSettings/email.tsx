@@ -1,5 +1,4 @@
-import { Spinner, useToast } from '@chakra-ui/react';
-import { Button } from '@chakra-ui/react';
+import { Spinner, useToast, Button } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
 import { useDispatch, useSelector } from 'redux/store';
 import { Formik } from 'formik';
@@ -13,7 +12,7 @@ import { updateUserEmailState } from 'redux/reducers/authSlice';
 const EmailChange = () => {
   const { userId, email } = useSelector((state) => state.user);
   const [emailId, setEmailId] = useState<string>('');
-  const emailOriginal = { userId: userId, email: email };
+  const emailOriginal = { userId, email };
   const dispatch = useDispatch();
   const toast = useToast();
   const { status, message } = useSelector((state) => state.accountSetting.updateEmailReducer);
@@ -28,10 +27,13 @@ const EmailChange = () => {
   }, [status]);
 
   return (
-    <ComponentWrapper className="w-[33rem] text-light h-fit" title="Contact Info">
+    <ComponentWrapper
+      className="w-[33rem] text-light h-fit xl:mt-[20px]"
+      title="Contact Information"
+    >
       <Formik
         initialValues={{
-          userId: userId,
+          userId,
           email: ''
         }}
         validationSchema={Yup.object({
@@ -49,7 +51,7 @@ const EmailChange = () => {
               icon="email"
               type="email"
               name="email"
-              placeholder={`${email ? email : `Email`}`}
+              placeholder={`${email || `Email`}`}
             />
             <div className="mt-[30px]">
               <Button type="submit" colorScheme="linkedin" variant="solid">

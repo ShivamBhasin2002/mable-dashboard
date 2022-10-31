@@ -5,11 +5,11 @@ import axios from 'axios';
 import { perameterSettingsCategoryType, STATUS_TYPE } from 'utility/constants/enums';
 import { snakeCaseToKeyValueExtractor } from 'utility/functions/formattingFunctions';
 
-export const getPrivacySettings = createAsyncThunk<
+export const fetchSettings = createAsyncThunk<
   { source_id: number; setting_key: string; setting_value: string }[],
   void,
   thunkOptions
->('privacyCockpit/hasDashboard/fetch', async (temp, { rejectWithValue, getState }) => {
+>('privacyCockpit/settings/fetch', async (temp, { rejectWithValue, getState }) => {
   const state = getState();
   try {
     const { data } = await axios.get(
@@ -27,6 +27,8 @@ export const getPrivacySettings = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+
+  return null;
 });
 
 export const getDeletedCustomer = createAsyncThunk<
@@ -51,7 +53,6 @@ export const getDeletedCustomer = createAsyncThunk<
       }
     );
     if (data) {
-      console.log(data);
       return data;
     }
   } catch (error) {
@@ -60,6 +61,8 @@ export const getDeletedCustomer = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+
+  return null;
 });
 
 export const postDeletedCustomer = createAsyncThunk<
@@ -73,7 +76,7 @@ export const postDeletedCustomer = createAsyncThunk<
       email: string;
       data_collection_active: boolean;
       deleted_user_data: boolean;
-    }[];
+    }[][];
   },
   { futureTrack: boolean; email: string },
   thunkOptions
@@ -106,11 +109,13 @@ export const postDeletedCustomer = createAsyncThunk<
       else message = String(message);
       return rejectWithValue(message);
     }
+
+    return null;
   }
 );
 
 export const postDataHashPrivacySettings = createAsyncThunk<
-  boolean,
+  string,
   { checkBox: boolean },
   thunkOptions
 >('privacyCockpit/hashDashboard/post', async ({ checkBox }, { rejectWithValue, getState }) => {
@@ -131,7 +136,7 @@ export const postDataHashPrivacySettings = createAsyncThunk<
       }
     );
     if (data) {
-      return data.ok;
+      return data.settings_changed[0].settingValue;
     }
   } catch (error) {
     let message;
@@ -139,6 +144,7 @@ export const postDataHashPrivacySettings = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const postConsentUrlPrivacySettings = createAsyncThunk<
@@ -163,7 +169,7 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
       }
     );
     if (data) {
-      return data.settings_created[0].settingValue;
+      return data.settings_changed[0].settingValue;
     }
   } catch (error) {
     let message;
@@ -171,6 +177,7 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const postParameterSettings = createAsyncThunk<
@@ -207,77 +214,74 @@ export const postParameterSettings = createAsyncThunk<
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const privacyCockpitSetting = createSlice({
   name: 'privacyCockpitSetting',
   initialState: privacyCockpit,
   reducers: {
-    updateSettings(state) {
-      const checkBox = state.previousSettings.filter(
-        (item) => item.setting_key === 'hash_database'
-      );
-      state.privacySettings.hashDataInDashboard.hashDataCheckBox =
-        checkBox[0].setting_value === 'true';
-      const consentUrl = state.previousSettings.filter(
-        (item) => item.setting_key === 'cookie_consent_url'
-      );
-      state.privacySettings.cookieConsent.cookieConsentUrl = consentUrl[0].setting_value;
+    clearDeleteUserState: (state) => {
+      state.deleteUserData.status = STATUS_TYPE.IDLE;
+      return state;
     }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getPrivacySettings.pending, (state) => {
-        state.privacySettings.status = STATUS_TYPE.FETCHING;
-        state.paraMeterSettings.status = STATUS_TYPE.FETCHING;
+      .addCase(fetchSettings.pending, (state) => {
+        state.previousSettings.status = STATUS_TYPE.FETCHING;
       })
-      .addCase(getPrivacySettings.fulfilled, (state, { payload }) => {
-        state.privacySettings.status = STATUS_TYPE.SUCCESS;
-        state.paraMeterSettings.status = STATUS_TYPE.SUCCESS;
-        state.previousSettings = payload;
+      .addCase(fetchSettings.fulfilled, (state, { payload }) => {
         state.paraMeterSettings.parsed_settings = [];
-        payload.map((data) => {
-          const category = snakeCaseToKeyValueExtractor(data.setting_key)[0];
+        payload.forEach(({ setting_key: settingKey, setting_value: settingValue }) => {
+          const category = snakeCaseToKeyValueExtractor(settingKey)[0];
           if (
             category === perameterSettingsCategoryType.PERSONAL ||
             category === perameterSettingsCategoryType.LOCATION ||
             category === perameterSettingsCategoryType.OTHERS
           ) {
             const obj = {
-              settingKey: data.setting_key,
-              category: category,
-              destination: snakeCaseToKeyValueExtractor(data.setting_key)[2],
-              label: snakeCaseToKeyValueExtractor(data.setting_key)[1],
-              settingValue: data.setting_value,
-              sequance: snakeCaseToKeyValueExtractor(data.setting_key)[2]
+              settingKey,
+              category,
+              destination: snakeCaseToKeyValueExtractor(settingKey)[2],
+              label: snakeCaseToKeyValueExtractor(settingKey)[1],
+              settingValue,
+              sequance: snakeCaseToKeyValueExtractor(settingKey)[2]
             };
             if (state.paraMeterSettings.parsed_settings.length === 0)
               state.paraMeterSettings.parsed_settings.push(obj);
 
             if (state.paraMeterSettings.parsed_settings) {
               let noduplicate = true;
-              state.paraMeterSettings.parsed_settings.map((item) => {
+              state.paraMeterSettings.parsed_settings.forEach((item) => {
                 if (item.settingKey === obj.settingKey) noduplicate = false;
               });
               if (noduplicate) state.paraMeterSettings.parsed_settings?.push(obj);
             }
           }
         });
+        state.privacySettings.hashDataInDashboard.hashDataCheckBox =
+          payload.filter((item) => item.setting_key === 'hash_database')[0].setting_value ===
+          'true';
+
+        state.privacySettings.cookieConsent.cookieConsentUrl = payload.filter(
+          (item) => item.setting_key === 'cookie_consent_url'
+        )[0].setting_value;
+
+        state.previousSettings.status = STATUS_TYPE.SUCCESS;
       })
-      .addCase(getPrivacySettings.rejected, (state, { error }) => {
-        state.privacySettings.status = STATUS_TYPE.ERROR;
-        state.privacySettings.errorMsg = error.message;
+      .addCase(fetchSettings.rejected, (state) => {
+        state.previousSettings.status = STATUS_TYPE.ERROR;
       })
       .addCase(postDataHashPrivacySettings.pending, (state) => {
         state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.FETCHING;
       })
       .addCase(postDataHashPrivacySettings.fulfilled, (state, { payload }) => {
         state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.SUCCESS;
-        state.privacySettings.hashDataInDashboard.hashDataCheckBox = payload;
+        state.privacySettings.hashDataInDashboard.hashDataCheckBox = payload === 'true';
       })
-      .addCase(postDataHashPrivacySettings.rejected, (state, { error }) => {
+      .addCase(postDataHashPrivacySettings.rejected, (state) => {
         state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.ERROR;
-        state.privacySettings.errorMsg = error.message;
       })
       .addCase(postConsentUrlPrivacySettings.pending, (state) => {
         state.privacySettings.cookieConsent.status = STATUS_TYPE.FETCHING;
@@ -300,7 +304,7 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(postDeletedCustomer.fulfilled, (state, { payload }) => {
         state.deleteUserData.status = STATUS_TYPE.SUCCESS;
-        state.deleteUserData.userData.push(payload.customer_created[0]);
+        state.deleteUserData.userData.push(payload.customer_created[0][0]);
       })
       .addCase(postDeletedCustomer.rejected, (state) => {
         state.deleteUserData.status = STATUS_TYPE.ERROR;
@@ -315,7 +319,9 @@ export const privacyCockpitSetting = createSlice({
             if (savedData.settingKey === data.settingKey) {
               state.paraMeterSettings.parsed_settings[idx].settingValue = data.settingValue;
             }
+            return null;
           });
+          return null;
         });
       })
       .addCase(postParameterSettings.rejected, (state) => {
@@ -324,5 +330,5 @@ export const privacyCockpitSetting = createSlice({
   }
 });
 
-export const { updateSettings } = privacyCockpitSetting.actions;
+export const { clearDeleteUserState } = privacyCockpitSetting.actions;
 export default privacyCockpitSetting.reducer;

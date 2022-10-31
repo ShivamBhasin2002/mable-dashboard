@@ -15,7 +15,7 @@ import DatePicker from 'components/common/DatePicker';
 import { useSelector, useDispatch } from 'redux/store';
 import { refresh } from 'redux/reducers/datesSlice';
 import { showDatePicker, showReload } from 'utility/functions/helper';
-import ShopPicker from './ShopPicker';
+// import ShopPicker from './ShopPicker';
 
 const DashboardHeader = () => {
   const datePickerRef = useRef<any>(); //eslint-disable-line
@@ -46,10 +46,10 @@ const DashboardHeader = () => {
 
   return (
     <header>
-      <div className="flex flex-row-reverse mb-3">
+      {/* <div className="flex flex-row-reverse mb-3">
         <ShopPicker />
-      </div>
-      <div className="flex justify-between items-center h-[40px]">
+      </div> */}
+      <div className="flex justify-between items-center h-[40px] mb-[25px]">
         <h1 className=" text-[20px] lg:text-[28px] text-light font-montserrat font-bold">
           {activeScreen}
         </h1>

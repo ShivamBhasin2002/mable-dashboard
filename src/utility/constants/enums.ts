@@ -27,7 +27,7 @@ export enum screenType {
   analytics = 'Reports',
   privacyCockpit = 'Privacy Cockpit',
   tutorial = 'Tutorial',
-  settings = 'Account Settings'
+  settings = 'Account'
 }
 
 export enum routes {
