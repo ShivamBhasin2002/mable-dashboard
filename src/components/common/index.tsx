@@ -1,7 +1,9 @@
 import ComponentWrapper from './ComponentWrapper';
 import Layout from './Layout';
 import Loading from './Loading';
-import SideBar from '../sidebar/SideBar';
-import ViewFullReport from '../dataQuality/Common/ViewFullReport';
+import Error from './Error';
+import DatePicker from './DatePicker';
+import ShopPicker from './ShopPicker';
+import Header from './Header';
 
-export { ComponentWrapper, Layout, Loading, SideBar, ViewFullReport };
+export { ComponentWrapper, Layout, Loading, Error, Header, DatePicker, ShopPicker };

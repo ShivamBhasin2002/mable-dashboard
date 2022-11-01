@@ -18,19 +18,27 @@ import OrderDetails from './OrderDetails';
 const OrderAnalysisTable = () => {
   const { tableData, status, statusSelected } = useSelector((state) => state.orderAnalysis);
   const [page, setPage] = useState(1);
-  const ordersPerPage = 9;
+  const [ordersPerPage, setOrdersPerPage] = useState(0);
   const [orders, setOrders] = useState<order[]>([]);
   const [sortOrder, setSortOrder] = useState<SORT_ORDER>(SORT_ORDER.INCREASING);
   const refresh = useSelector((state) => state.dates.refresh);
   const { width: screenWidth } = useWindowSize();
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(orderAnalysisAsync());
   }, [refresh]);
+
+  useEffect(() => {
+    const height = document.getElementById('orderAnalysisTable')?.clientHeight;
+    if (height) setOrdersPerPage(Math.floor((height - 240) / 40));
+  }, [tableData]);
+
   useEffect(() => {
     setPage(1);
   }, [statusSelected]);
+
   useEffect(() => {
     setOrders(
       tableData
@@ -41,7 +49,7 @@ const OrderAnalysisTable = () => {
             : -1 * moment(order1.created_at).diff(moment(order2.created_at))
         )
     );
-  });
+  }, [status, sortOrder, tableData]);
 
   const changeSortOrder = () => {
     switch (sortOrder) {
@@ -58,7 +66,8 @@ const OrderAnalysisTable = () => {
 
   return (
     <ComponentWrapper
-      className="text-light min-h-[40px] !overflow-scroll hide_scrollbar"
+      id="orderAnalysisTable"
+      className="text-light min-h-[40px] !overflow-scroll hide_scrollbar flex-grow"
       // eslint-disable-next-line no-nested-ternary
       width={screenWidth ? (screenWidth >= 1022 ? screenWidth - 340 : screenWidth - 360) : 340}
       status={status}

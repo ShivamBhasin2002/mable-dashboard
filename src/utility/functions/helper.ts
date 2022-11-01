@@ -27,6 +27,8 @@ export const showDatePicker = (screen: screenType) => {
   }
 };
 
+export const reloadScreen = () => window.location.reload();
+
 export const showToast = () => {
   const toast = useToast();
   toast({

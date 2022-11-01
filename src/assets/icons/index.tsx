@@ -181,7 +181,7 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
     case 'sunglass':
       return <Sunglasses className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
-    case 'scriptTagNotFound':
+    case 'errorModal':
       return (
         <ScriptTagNotFound className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
       );

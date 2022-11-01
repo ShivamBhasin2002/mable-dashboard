@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import { ComponentWrapper, ViewFullReport } from 'components/common';
+import { ComponentWrapper } from 'components/common';
 import { AttributionEventBarChart } from 'components/dataQuality/Graphs';
-import { SelectorMenu } from 'components/dataQuality/Common';
+import { SelectorMenu, ViewFullReport } from 'components/dataQuality/Common';
 import { ParameterMetrics } from 'components/dataQuality/General';
 import { eventSelectedType, screenType, STATUS_TYPE } from 'utility/constants/enums';
 
