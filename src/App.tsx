@@ -10,7 +10,8 @@ import Analytics from 'pages/data_quality/analytics_report';
 import Layout from 'components/common/Layout';
 
 import colors from 'utility/colors';
-import Settings from 'pages/settings/settings';
+import AccountSettings from 'pages/settings/accountSettings';
+import PrivacyCockpit from 'pages/settings/privacyCockpit';
 import { useEffect } from 'react';
 import { setScreen } from 'redux/reducers/screenSlice';
 import { URLtoScreen } from 'utility/functions/mappingFunctions';
@@ -77,7 +78,15 @@ const App = () => {
           path={routes.settings}
           element={
             <Layout>
-              <Settings />
+              <AccountSettings />
+            </Layout>
+          }
+        />
+        <Route
+          path={routes.privacyCockpit}
+          element={
+            <Layout>
+              <PrivacyCockpit />
             </Layout>
           }
         />

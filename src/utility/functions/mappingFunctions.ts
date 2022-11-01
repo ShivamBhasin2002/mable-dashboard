@@ -124,6 +124,8 @@ export const screenToURL = (screen: screenType): routes | undefined => {
       return routes.analytics;
     case screenType.settings:
       return routes.settings;
+    case screenType.privacyCockpit:
+      return routes.privacyCockpit;
     default:
       return undefined;
   }
@@ -141,6 +143,8 @@ export const URLtoScreen = (screen: string): screenType | undefined => {
       return screenType.analytics;
     case routes.settings:
       return screenType.settings;
+    case routes.privacyCockpit:
+      return screenType.privacyCockpit;
     default:
       return undefined;
   }

@@ -197,3 +197,52 @@ export type AccountUpdateType = {
   status: string;
   message: string | undefined;
 };
+
+export type privacyCockpitType = {
+  paraMeterSettings: {
+    status: STATUS_TYPE;
+    data_collection_destinations: {
+      value: string;
+      label: string;
+      available: boolean;
+    }[];
+    data_collection_settings: {
+      value: string;
+      category: string;
+      label: string;
+    }[];
+    parsed_settings: {
+      settingKey: string;
+      category: string;
+      destination: string;
+      label: string;
+      settingValue: string;
+    }[];
+  };
+  privacySettings: {
+    hashDataInDashboard: {
+      status: STATUS_TYPE;
+      hashDataCheckBox: boolean;
+    };
+    cookieConsent: {
+      status: STATUS_TYPE;
+      cookieConsentUrl: string;
+    };
+  };
+  previousSettings: {
+    status: STATUS_TYPE;
+    fetchedSettings: { source_id: number; setting_key: string; setting_value: string }[];
+  };
+  deleteUserData: {
+    status: STATUS_TYPE;
+    userData: {
+      id: number;
+      source_id: number;
+      created_at: string;
+      updated_at: string;
+      email: string;
+      data_collection_active: boolean;
+      deleted_user_data: boolean;
+    }[];
+  };
+};

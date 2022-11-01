@@ -25,7 +25,10 @@ const SideBar = () => {
       { title: screenType.eventQuality, icon: 'eventQuality' }
     ],
     Analytics: [{ title: screenType.analytics, icon: 'analytics' }],
-    Settings: [{ title: screenType.settings, icon: 'settings' }]
+    Settings: [
+      { title: screenType.settings, icon: 'settings' },
+      { title: screenType.privacyCockpit, icon: 'sunglass' }
+    ]
   };
   return (
     <aside

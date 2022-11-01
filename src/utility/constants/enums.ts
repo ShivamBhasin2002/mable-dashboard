@@ -25,6 +25,8 @@ export enum screenType {
   orderAnalysis = 'Order Analysis',
   eventQuality = 'Event Quality',
   analytics = 'Reports',
+  privacyCockpit = 'Privacy Cockpit',
+  tutorial = 'Tutorial',
   settings = 'Account'
 }
 
@@ -35,7 +37,8 @@ export enum routes {
   orderAnalysis = '/data_quality/order_analysis',
   eventQuality = '/data_quality/event_quality',
   analytics = '/analytics/reports',
-  settings = '/settings'
+  settings = '/settings/account_settings',
+  privacyCockpit = '/settings/privacy_cockpit'
 }
 
 export enum filterType {
@@ -79,4 +82,15 @@ export enum DatePickerPresets {
 export enum SORT_ORDER {
   INCREASING = 'increasing',
   DECREASING = 'decreasing'
+}
+
+export enum perameterSettingsCategoryType {
+  PERSONAL = 'personalData',
+  LOCATION = 'location',
+  OTHERS = 'others'
+}
+export enum perameterSettingsSocialType {
+  DATABASE = 'database',
+  FACEBOOK = 'facebook',
+  TIKTOK = 'tiktok'
 }
