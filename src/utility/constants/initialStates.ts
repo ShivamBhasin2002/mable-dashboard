@@ -22,7 +22,8 @@ import {
   statusSelector,
   DatePickerPresets,
   screenType,
-  eventSelectedType
+  eventSelectedType,
+  tierRange
 } from 'utility/constants/enums';
 
 export const userInitialState: userStateType = {
@@ -281,8 +282,11 @@ export const privacyCockpit: privacyCockpitType = {
   }
 };
 
-
 export const eventUsageState: eventUsage = {
-  current_month: 0,
-  previous_month: 0
-}
+  monthEvents: { current_month: 2739, previous_month: 256346 },
+  selectedTier: {
+    tier: 'tierOne',
+    range: tierRange.tierOne
+  },
+  status: STATUS_TYPE.IDLE
+};
