@@ -14,8 +14,8 @@ export const postSettings = async (
   userToken?: string,
   apiUrl?: string,
   body?: {
-    settingKey: string;
-    settingValue: string;
+    settingKey?: string;
+    settingValue?: string;
   }[]
 ) => {
   const { data } = await axios.post(
@@ -28,7 +28,7 @@ export const postSettings = async (
     }
   );
   if (data) {
-    return data.settings_changed[0].settingValue;
+    return data;
   }
   return null;
 };

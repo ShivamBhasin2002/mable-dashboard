@@ -122,7 +122,10 @@ export const postDataHashPrivacySettings = createAsyncThunk<
       }
     ];
     const apiUrl = `user/source/${state.shop.active?.id}/settings`;
-    return postSettings(state.user.token, apiUrl, settings);
+
+    return postSettings(state.user.token, apiUrl, settings).then(
+      (item) => item.settings_changed[0].settingValue
+    );
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
@@ -174,16 +177,8 @@ export const postParameterSettings = createAsyncThunk<
 >('privacyCockpit/perameterSettings/post', async (formData, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
-      formData,
-      {
-        headers: { Authorization: `${state.user.token}` }
-      }
-    );
-    if (data) {
-      return data;
-    }
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return await postSettings(state.user.token, apiUrl, formData.settings);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
