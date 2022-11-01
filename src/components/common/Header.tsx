@@ -17,7 +17,7 @@ import { refresh } from 'redux/reducers/datesSlice';
 import { showDatePicker, showReload } from 'utility/functions/helper';
 // import ShopPicker from './ShopPicker';
 
-const DashboardHeader = () => {
+const Header = () => {
   const datePickerRef = useRef<any>(); //eslint-disable-line
   const dispatch = useDispatch();
   const { dateRange, datePreset } = useSelector((state) => state.dates);
@@ -94,4 +94,4 @@ const DashboardHeader = () => {
   );
 };
 
-export default DashboardHeader;
+export default Header;

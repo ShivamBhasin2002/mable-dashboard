@@ -1,26 +1,48 @@
 import { useEffect } from 'react';
 
-import { ComponentWrapper } from 'components/common';
+import { ComponentWrapper, Error } from 'components/common';
 
 import { STATUS_TYPE } from 'utility/constants/enums';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { pageSpeedAsync } from 'redux/reducers/dataQuality/pageSpeedSlice';
-import { loadingTimeLabel, mableShareSpeedLabel } from 'utility/constants/strings';
+import {
+  loadingTimeLabel,
+  mableShareSpeedLabel,
+  scriptTagNotFoundPopupBody,
+  scriptTagNotFoundPopupHeader,
+  supportEmail
+} from 'utility/constants/strings';
 import { dateTimeReducer } from 'utility/functions/formattingFunctions';
-import ScriptTagNotFoundCard from 'components/dataQuality/Cards/dashboard/ScriptTagNotFoundCard';
 
 const PageSpeedCard = () => {
   const dispatch = useDispatch();
-  const { avgLoadingTimePage, avgLoadingTimeMableScript, avgContributionTimeMableScript, status } =
-    useSelector((state) => state.pageSpeed);
+  const {
+    avgLoadingTimePage,
+    avgLoadingTimeMableScript,
+    avgContributionTimeMableScript,
+    status,
+    scriptTagNotFound
+  } = useSelector((state) => state.pageSpeed);
   const refresh = useSelector((state) => state.dates.refresh);
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(pageSpeedAsync());
   }, [refresh]);
   return (
     <ComponentWrapper title="Page Speed" className="flex-grow h-min" status={status}>
-      <ScriptTagNotFoundCard />
+      {!scriptTagNotFound && (
+        <Error
+          header={scriptTagNotFoundPopupHeader}
+          body={
+            <>
+              {scriptTagNotFoundPopupBody}{' '}
+              <a className="text-primary outline-none" href={`mailto:${supportEmail}`}>
+                {supportEmail}
+              </a>
+            </>
+          }
+        />
+      )}
       <div className="flex flex-row justify-center items-center pb-[10px] h-full">
         <div className="border-r-2 border-lines/[0.15] min-w-[160px] flex-grow">
           <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px]">

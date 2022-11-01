@@ -12,7 +12,8 @@ const ComponentWrapper = ({
   nextComponent,
   underlined = false,
   className,
-  status
+  status,
+  id
 }: ComponentWrapperProps) => {
   const checkStatus = (equalTo: STATUS_TYPE) => {
     if (Array.isArray(status)) return status.includes(equalTo);
@@ -20,14 +21,15 @@ const ComponentWrapper = ({
   };
   return (
     <article
-      className={`bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[20px] py-[15px] ${className}`}
+      id={id}
+      className={`bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[30px] px-[20px] py-[15px] relative ${className}`}
       style={{ width: width ?? 'auto', height: height ?? 'auto' }}
     >
       {checkStatus(STATUS_TYPE.FETCHING) && (
         <div
           className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[30px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
         >
-          <Spinner w={50} h={50} thickness="7px" color={colors.lines} speed="2s" />
+          <Spinner w={50} h={50} thickness="7px" color={colors.lines} />
           <span className="text-light/40 flex items-center font-montserrat text-[22px] font-bold text-center `">
             Loading
           </span>

@@ -28,6 +28,7 @@ export type ComponentWrapperProps = {
   underlined?: boolean;
   className?: string;
   status?: STATUS_TYPE | (STATUS_TYPE | undefined)[];
+  id?: string;
 };
 
 export type TextFieldProps = {
@@ -113,4 +114,14 @@ export type PaginationProps = {
   setPage: React.Dispatch<React.SetStateAction<number>>;
   array: unknown[];
   itemsPerPage: number;
+};
+
+export type ErrorProps = {
+  header: React.ReactNode | string;
+  body?: React.ReactNode | string;
+  icon?: string;
+  footerText?: string;
+  handleClick?: () => void;
+  closable?: boolean;
+  reload?: boolean;
 };

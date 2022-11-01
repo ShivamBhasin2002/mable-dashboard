@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
 import SideBar from 'components/sidebar/SideBar';
-import DashboardHeader from 'components/common/Header';
-import Loading from 'components/common/Loading';
+import { Loading, Header, Error } from 'components/common/';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { isAuthenticatedAsync, clearState } from 'redux/reducers/authSlice';
@@ -12,6 +11,7 @@ import { shopAsync } from 'redux/reducers/shopSlice';
 
 import { LayoutProps } from 'utility/typeDefinitions/componentPropTypes';
 import { routes, STATUS_TYPE } from 'utility/constants/enums';
+import { shopNotFoundErrorMessage } from 'utility/constants/strings';
 
 const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
@@ -51,14 +51,21 @@ const Layout = ({ children }: LayoutProps) => {
     }
   }, [shopStatus, status]);
 
-  return shopStatus === STATUS_TYPE.FETCHING || shopStatus === STATUS_TYPE.IDLE ? (
-    <Loading className="h-screen w-screen" />
-  ) : (
+  if (
+    status === STATUS_TYPE.FETCHING ||
+    status === STATUS_TYPE.IDLE ||
+    shopStatus === STATUS_TYPE.IDLE ||
+    shopStatus === STATUS_TYPE.FETCHING
+  )
+    return <Loading className="h-screen w-screen" />;
+
+  return (
     <div className="bg-background flex max-w-screen min-h-screen hd:h-screen">
+      {shopStatus === STATUS_TYPE.ERROR && <Error header={shopNotFoundErrorMessage} />}
       <SideBar />
       <div className="flex-grow p-[30px] flex flex-col">
-        <DashboardHeader />
-        {status === 'success' ? (
+        <Header />
+        {status === STATUS_TYPE.SUCCESS ? (
           <main className="flex-grow h-max">{children}</main>
         ) : (
           <div className="w-full min-h-screen">
