@@ -85,6 +85,29 @@ export type SideBarItemProps = {
   isActive: boolean;
 };
 
+export type toggletypeProps = {
+  value: boolean;
+  setState: React.Dispatch<
+    React.SetStateAction<{
+      settingKey?: string;
+      settingValue?: string;
+    }>
+  >;
+  dataSaved?: {
+    key: string;
+    status: string;
+  };
+  activeColor?: string;
+  inactiveColor?: string;
+  name?: string;
+  disable?: boolean;
+  setdataSaved?: React.Dispatch<
+    React.SetStateAction<{
+      key: string;
+      status: string;
+    }>
+  >;
+};
 export type PaginationProps = {
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;

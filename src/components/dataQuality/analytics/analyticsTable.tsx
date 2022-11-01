@@ -10,7 +10,6 @@ import Pagination from '../General/Pagination';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
-
   const analyticData = useSelector((state) => state.analytics);
   const { dateRange, datePreset } = useSelector((state) => state.dates);
   const totalEvents = analyticData.analyticReport.total_events;

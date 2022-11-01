@@ -11,7 +11,8 @@ import {
   AnalyticsStateType,
   shopStateType,
   warningStateType,
-  AccountUpdateType
+  AccountUpdateType,
+  privacyCockpitType
 } from 'utility/typeDefinitions/reduxTypes';
 import moment from 'moment';
 
@@ -144,10 +145,10 @@ export const filterOptionInitialState: AnalyticsStateType = {
   status: 'success',
   selected_events: {
     PageView: true,
-    AddToCart: false,
-    InitiateCheckout: false,
-    AddPaymentInfo: false,
-    Purchase: false
+    AddToCart: true,
+    InitiateCheckout: true,
+    AddPaymentInfo: true,
+    Purchase: true
   },
   analyticReport: {
     total_events: {
@@ -167,5 +168,114 @@ export const filterOptionInitialState: AnalyticsStateType = {
         page_view: 7461
       }
     ]
+  }
+};
+
+export const privacyCockpit: privacyCockpitType = {
+  paraMeterSettings: {
+    status: STATUS_TYPE.IDLE,
+    data_collection_destinations: [
+      {
+        value: 'database',
+        label: 'Your Database',
+        available: true
+      },
+      {
+        value: 'facebook',
+        label: 'Facebook',
+        available: true
+      },
+      {
+        value: 'tiktok',
+        label: 'Tik Tok',
+        available: false
+      }
+    ],
+    data_collection_settings: [
+      {
+        value: 'email',
+        category: 'personalData',
+        label: 'E-Mail Address'
+      },
+      {
+        value: 'firstname',
+        category: 'personalData',
+        label: 'First Name'
+      },
+      {
+        value: 'lastname',
+        category: 'personalData',
+        label: 'Last Name'
+      },
+      {
+        value: 'dateofbirth',
+        category: 'personalData',
+        label: 'Date of Birth'
+      },
+      {
+        value: 'phonenumber',
+        category: 'personalData',
+        label: 'Phone Number'
+      },
+      {
+        value: 'city',
+        category: 'location',
+        label: 'City'
+      },
+      {
+        value: 'postalcode',
+        category: 'location',
+        label: 'Postal Code'
+      },
+      {
+        value: 'state',
+        category: 'location',
+        label: 'State'
+      },
+      {
+        value: 'country',
+        category: 'location',
+        label: 'Country'
+      },
+      {
+        value: 'useragent',
+        category: 'others',
+        label: 'User Agent'
+      },
+      {
+        value: 'ipaddress',
+        category: 'others',
+        label: 'IP Address'
+      },
+      {
+        value: 'externalid',
+        category: 'others',
+        label: 'External ID'
+      },
+      {
+        value: 'clickid',
+        category: 'others',
+        label: 'Click-ID'
+      }
+    ],
+    parsed_settings: []
+  },
+  privacySettings: {
+    hashDataInDashboard: {
+      status: STATUS_TYPE.IDLE,
+      hashDataCheckBox: false
+    },
+    cookieConsent: {
+      status: STATUS_TYPE.IDLE,
+      cookieConsentUrl: ' '
+    }
+  },
+  previousSettings: {
+    status: STATUS_TYPE.IDLE,
+    fetchedSettings: [{ source_id: 43, setting_key: '', setting_value: '' }]
+  },
+  deleteUserData: {
+    status: STATUS_TYPE.IDLE,
+    userData: []
   }
 };

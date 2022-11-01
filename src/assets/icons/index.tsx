@@ -35,6 +35,7 @@ import Pending from 'assets/icons/Pending';
 import Tick from 'assets/icons/Tick';
 import Cross from 'assets/icons/Cross';
 import Logout from 'assets/icons/Logout';
+import Sunglasses from 'assets/icons/Sunglasses';
 import ScriptTagNotFound from 'assets/icons/ScriptTagNotFoundIcon';
 
 import { SORT_ORDER } from 'utility/constants/enums';
@@ -177,6 +178,8 @@ const Icon = ({ icon, color, className, ...props }: IconType) => {
       return (
         <AiFillCaretRight className={`${color ? `text-${color}` : ''} ${className}`} {...props} />
       );
+    case 'sunglass':
+      return <Sunglasses className={`${color ? `text-${color}` : ''} ${className}`} {...props} />;
 
     case 'scriptTagNotFound':
       return (
