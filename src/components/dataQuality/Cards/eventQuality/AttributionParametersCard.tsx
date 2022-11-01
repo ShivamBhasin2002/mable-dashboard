@@ -19,7 +19,7 @@ const AttributionParametersCard = () => {
     >
       <div className="flex flex-wrap justify-evenly gap-[10px]">
         <table className="flex-grow">
-          <tbody className="flex flex-col flex-grow gap-[15px]">
+          <tbody className="flex flex-col flex-grow gap-[10px]">
             <ParameterStat
               name={'User IP'}
               value={AttributionParameters?.total_count_user_id ?? 0}
@@ -51,7 +51,7 @@ const AttributionParametersCard = () => {
           </tbody>
         </table>
         <table className="flex-grow">
-          <tbody className="flex flex-col flex-grow gap-[15px]">
+          <tbody className="flex flex-col flex-grow gap-[10px]">
             <ParameterStat
               name={'State'}
               value={AttributionParameters?.total_count_location_state ?? 0}

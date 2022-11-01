@@ -1,8 +1,6 @@
-import { Button, Checkbox, useToast } from '@chakra-ui/react';
+import { Button, Checkbox, useToast, Input, Spinner } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
-import { Spinner } from '@chakra-ui/react';
 import colors from 'utility/colors';
-import { Input } from '@chakra-ui/react';
 import { Dispatch, SetStateAction } from 'react';
 import { postDeletedCustomer } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import { useDispatch, useSelector } from 'redux/store';
@@ -33,7 +31,7 @@ const PopupExample = (props: PopUpProps) => {
       dispatch(postDeletedCustomer({ futureTrack: props.futureTrack, email: props.email }));
     } else {
       toast({
-        title: `Enter correct email`,
+        title: `Enter valid mail Id`,
         status: STATUS_TYPE.ERROR,
         isClosable: true,
         position: 'top-right'

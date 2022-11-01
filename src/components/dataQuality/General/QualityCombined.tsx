@@ -9,49 +9,54 @@ import colors from 'utility/colors';
 const QualityCombined = () => {
   const { TOTAL_DATA_QUALITY_FACEBOOK } = useSelector((state) => state.dataQuality);
   const doughnutData = {
-      datasets: [
-        {
-          data: [TOTAL_DATA_QUALITY_FACEBOOK, 100 - TOTAL_DATA_QUALITY_FACEBOOK],
-          backgroundColor: [getColor(TOTAL_DATA_QUALITY_FACEBOOK), `${colors.lines}40`],
-          borderColor: colors.transparent,
-          datalabels: {
-            display: false
-          }
-        }
-      ]
-    },
-    doughnutOptions = {
-      elements: {
-        arc: {
-          borderWidth: 1,
-          borderColor: 'white'
-        }
-      },
-      cutout: 32,
-      rotation: 10 * Math.PI,
-      borderRadius: [TOTAL_DATA_QUALITY_FACEBOOK === 100 ? 0 : 20, 0],
-      value: TOTAL_DATA_QUALITY_FACEBOOK
-    },
-    doughnutPlugins = [
+    datasets: [
       {
-        id: 'doughnut',
-        // eslint-disable-next-line
-        beforeDraw(chart: any) {
-          const width = chart.width,
-            height = chart.height,
-            ctx = chart.ctx;
-          ctx.restore();
-          ctx.font = '22px lato';
-          ctx.textBaseline = 'middle';
-          ctx.fillStyle = getColor(chart.config.options.value);
-          const text = `${chart.config.options.value}%`,
-            textX = Math.round((width - ctx.measureText(text).width) / 2),
-            textY = height / 2;
-          ctx.fillText(text, textX, textY);
-          ctx.save();
+        data: [TOTAL_DATA_QUALITY_FACEBOOK, 100 - TOTAL_DATA_QUALITY_FACEBOOK],
+        backgroundColor: [getColor(TOTAL_DATA_QUALITY_FACEBOOK), `${colors.lines}40`],
+        borderColor: colors.transparent,
+        datalabels: {
+          display: false
         }
       }
-    ];
+    ]
+  };
+  const doughnutOptions = {
+    plugins: {
+      tooltip: {
+        enabled: false
+      }
+    },
+    elements: {
+      arc: {
+        borderWidth: 1,
+        borderColor: 'white'
+      }
+    },
+    cutout: 32,
+    rotation: 10 * Math.PI,
+    borderRadius: [TOTAL_DATA_QUALITY_FACEBOOK === 100 ? 0 : 20, 0],
+    value: TOTAL_DATA_QUALITY_FACEBOOK
+  };
+  const doughnutPlugins = [
+    {
+      id: 'doughnut',
+      // eslint-disable-next-line
+      beforeDraw(chart: any) {
+        const { width } = chart;
+        const { height } = chart;
+        const { ctx } = chart;
+        ctx.restore();
+        ctx.font = '22px lato';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = getColor(chart.config.options.value);
+        const text = `${chart.config.options.value}%`;
+        const textX = Math.round((width - ctx.measureText(text).width) / 2);
+        const textY = height / 2;
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+      }
+    }
+  ];
 
   return (
     <div className="flex flex-row gap-4 items-center text-primary">

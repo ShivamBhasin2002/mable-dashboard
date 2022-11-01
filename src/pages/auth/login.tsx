@@ -17,11 +17,12 @@ const Login = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const { status, errorMsg, email } = useSelector((state) => state.user);
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       dispatch(clearState());
-    };
-  }, []);
+    },
+    []
+  );
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
       toast({

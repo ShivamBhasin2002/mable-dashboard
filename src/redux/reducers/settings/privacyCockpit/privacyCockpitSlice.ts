@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
-import axios from 'axios';
-import { STATUS_TYPE } from 'utility/constants/enums';
+import { perameterSettingsCategoryType, STATUS_TYPE } from 'utility/constants/enums';
 import { snakeCaseToKeyValueExtractor } from 'utility/functions/formattingFunctions';
+import { getSettings, postSettings } from 'utility/functions/bffServices';
 
 export const fetchSettings = createAsyncThunk<
   { source_id: number; setting_key: string; setting_value: string }[],
@@ -12,21 +12,16 @@ export const fetchSettings = createAsyncThunk<
 >('privacyCockpit/settings/fetch', async (temp, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
-      {
-        headers: { Authorization: `${state.user.token}` }
-      }
-    );
-    if (data) {
-      return data;
-    }
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return getSettings(state.user.token, apiUrl);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
     else message = String(message);
     return rejectWithValue(message);
   }
+
+  return null;
 });
 
 export const getDeletedCustomer = createAsyncThunk<
@@ -44,21 +39,16 @@ export const getDeletedCustomer = createAsyncThunk<
 >('privacyCockpit/deleteCustomerData/fetch', async (temp, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/data-collection/users`,
-      {
-        headers: { Authorization: `${state.user.token}` }
-      }
-    );
-    if (data) {
-      return data;
-    }
+    const apiUrl = `user/source/${state.shop.active?.id}/data-collection/users`;
+    return getSettings(state.user.token, apiUrl);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
     else message = String(message);
     return rejectWithValue(message);
   }
+
+  return null;
 });
 
 export const postDeletedCustomer = createAsyncThunk<
@@ -72,7 +62,7 @@ export const postDeletedCustomer = createAsyncThunk<
       email: string;
       data_collection_active: boolean;
       deleted_user_data: boolean;
-    }[];
+    }[][];
   },
   { futureTrack: boolean; email: string },
   thunkOptions
@@ -81,30 +71,25 @@ export const postDeletedCustomer = createAsyncThunk<
   async ({ futureTrack, email }, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/data-collection/users`,
-        {
-          data: [
-            {
-              email: `${email}`,
-              data_collection_active: futureTrack,
-              deleted_user_data: true
-            }
-          ]
-        },
-        {
-          headers: { Authorization: `${state.user.token}` }
-        }
-      );
-      if (data) {
-        return data;
-      }
+      const apiUrl = `user/source/${state.shop.active?.id}/data-collection/users`;
+      const body = {
+        data: [
+          {
+            email: `${email}`,
+            data_collection_active: futureTrack,
+            deleted_user_data: true
+          }
+        ]
+      };
+      return postSettings(state.user.token, apiUrl, body);
     } catch (error) {
       let message;
       if (error instanceof Error) message = error.message;
       else message = String(message);
       return rejectWithValue(message);
     }
+
+    return null;
   }
 );
 
@@ -115,29 +100,25 @@ export const postDataHashPrivacySettings = createAsyncThunk<
 >('privacyCockpit/hashDashboard/post', async ({ checkBox }, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
-      {
-        settings: [
-          {
-            settingKey: 'hash_database',
-            settingValue: `${checkBox}`
-          }
-        ]
-      },
-      {
-        headers: { Authorization: `${state.user.token}` }
-      }
+    const body = {
+      settings: [
+        {
+          settingKey: 'hash_database',
+          settingValue: `${checkBox}`
+        }
+      ]
+    };
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return postSettings(state.user.token, apiUrl, body).then(
+      (item) => item.settings_changed[0].settingValue
     );
-    if (data) {
-      return data.settings_changed[0].settingValue;
-    }
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const postConsentUrlPrivacySettings = createAsyncThunk<
@@ -147,29 +128,23 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
 >('privacyCockpit/consentDashboard/post', async ({ url }, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
-      {
-        settings: [
-          {
-            settingKey: 'cookie_consent_url',
-            settingValue: `${url}`
-          }
-        ]
-      },
-      {
-        headers: { Authorization: `${state.user.token}` }
-      }
-    );
-    if (data) {
-      return data.settings_changed[0].settingValue;
-    }
+    const body = {
+      settings: [
+        {
+          settingKey: 'cookie_consent_url',
+          settingValue: `${url}`
+        }
+      ]
+    };
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return postSettings(state.user.token, apiUrl, body);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const postParameterSettings = createAsyncThunk<
@@ -190,22 +165,15 @@ export const postParameterSettings = createAsyncThunk<
 >('privacyCockpit/perameterSettings/post', async (formData, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
-      formData,
-      {
-        headers: { Authorization: `${state.user.token}` }
-      }
-    );
-    if (data) {
-      return data;
-    }
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return await postSettings(state.user.token, apiUrl, formData);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
     else message = String(message);
     return rejectWithValue(message);
   }
+  return null;
 });
 
 export const privacyCockpitSetting = createSlice({
@@ -224,24 +192,27 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(fetchSettings.fulfilled, (state, { payload }) => {
         state.paraMeterSettings.parsed_settings = [];
-
-        payload.map((data) => {
-          const category = snakeCaseToKeyValueExtractor(data.setting_key)[0];
-          if (category === 'personalData' || category === 'location' || category === 'others') {
+        payload.forEach(({ setting_key: settingKey, setting_value: settingValue }) => {
+          const category = snakeCaseToKeyValueExtractor(settingKey)[0];
+          if (
+            category === perameterSettingsCategoryType.PERSONAL ||
+            category === perameterSettingsCategoryType.LOCATION ||
+            category === perameterSettingsCategoryType.OTHERS
+          ) {
             const obj = {
-              settingKey: data.setting_key,
-              category: category,
-              destination: snakeCaseToKeyValueExtractor(data.setting_key)[2],
-              label: snakeCaseToKeyValueExtractor(data.setting_key)[1],
-              settingValue: data.setting_value,
-              sequance: snakeCaseToKeyValueExtractor(data.setting_key)[2]
+              settingKey,
+              category,
+              destination: snakeCaseToKeyValueExtractor(settingKey)[2],
+              label: snakeCaseToKeyValueExtractor(settingKey)[1],
+              settingValue,
+              sequance: snakeCaseToKeyValueExtractor(settingKey)[2]
             };
             if (state.paraMeterSettings.parsed_settings.length === 0)
               state.paraMeterSettings.parsed_settings.push(obj);
 
             if (state.paraMeterSettings.parsed_settings) {
               let noduplicate = true;
-              state.paraMeterSettings.parsed_settings.map((item) => {
+              state.paraMeterSettings.parsed_settings.forEach((item) => {
                 if (item.settingKey === obj.settingKey) noduplicate = false;
               });
               if (noduplicate) state.paraMeterSettings.parsed_settings?.push(obj);
@@ -249,13 +220,12 @@ export const privacyCockpitSetting = createSlice({
           }
         });
         state.privacySettings.hashDataInDashboard.hashDataCheckBox =
-          payload.filter((item) => {
-            return item.setting_key === 'hash_database';
-          })[0].setting_value == 'true';
+          payload.filter((item) => item.setting_key === 'hash_database')[0].setting_value ===
+          'true';
 
-        state.privacySettings.cookieConsent.cookieConsentUrl = payload.filter((item) => {
-          return item.setting_key === 'cookie_consent_url';
-        })[0].setting_value;
+        state.privacySettings.cookieConsent.cookieConsentUrl = payload.filter(
+          (item) => item.setting_key === 'cookie_consent_url'
+        )[0].setting_value;
 
         state.previousSettings.status = STATUS_TYPE.SUCCESS;
       })
@@ -293,7 +263,7 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(postDeletedCustomer.fulfilled, (state, { payload }) => {
         state.deleteUserData.status = STATUS_TYPE.SUCCESS;
-        state.deleteUserData.userData.push(payload.customer_created[0]);
+        state.deleteUserData.userData.push(payload.customer_created[0][0]);
       })
       .addCase(postDeletedCustomer.rejected, (state) => {
         state.deleteUserData.status = STATUS_TYPE.ERROR;
@@ -308,7 +278,9 @@ export const privacyCockpitSetting = createSlice({
             if (savedData.settingKey === data.settingKey) {
               state.paraMeterSettings.parsed_settings[idx].settingValue = data.settingValue;
             }
+            return null;
           });
+          return null;
         });
       })
       .addCase(postParameterSettings.rejected, (state) => {

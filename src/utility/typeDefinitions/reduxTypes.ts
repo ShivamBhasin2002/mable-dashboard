@@ -27,11 +27,11 @@ export type userStateType = {
 };
 
 export type pageSpeedStateType = {
-  avg_loading_time_page: number;
-  avg_loading_time_mable_script: number;
-  avg_contribution_time_mable_script: number;
-  script_tag_found: boolean;
-  script_tag_last_found?: string | number;
+  avgLoadingTimePage: number;
+  avgLoadingTimeMableScript: number;
+  avgContributionTimeMableScript: number;
+  scriptTagNotFound: boolean;
+  scriptTagLastFound?: string | number;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };
@@ -58,8 +58,8 @@ export type warningStateType = {
 export type dataPerEventStateType = {
   byDate: {
     date: string;
-    attribution_params_quality?: number;
-    events_quality?: number;
+    attributionParamsQuality?: number;
+    eventsQuality?: number;
   }[];
   dataContainedPerEventDoughnutChart: {
     backend: number;
@@ -201,7 +201,6 @@ export type AccountUpdateType = {
 export type privacyCockpitType = {
   paraMeterSettings: {
     status: STATUS_TYPE;
-    updateAll: string;
     data_collection_destinations: {
       value: string;
       label: string;
@@ -247,3 +246,8 @@ export type privacyCockpitType = {
     }[];
   };
 };
+
+export type eventUsage = {
+  current_month: number;
+  previous_month: number;
+}

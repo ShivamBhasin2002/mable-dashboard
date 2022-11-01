@@ -20,7 +20,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
             data: DATA_QUALITY_BY_DATE.map((data) => data.data_quality * 100),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
               { color: colors.transparent, stop: 0.1 },
-              { color: color, stop: 1 }
+              { color, stop: 1 }
             ]),
             borderColor: colors.success,
             borderWidth: 3,
@@ -95,10 +95,10 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
           id: 'lines',
           afterDraw(chart) {
             if (chart.tooltip?.getActiveElements().length) {
-              const x = chart.tooltip.getActiveElements()[0].element.x;
-              const y = chart.tooltip.getActiveElements()[0].element.y;
+              const { x } = chart.tooltip.getActiveElements()[0].element;
+              const { y } = chart.tooltip.getActiveElements()[0].element;
               const yAxis = chart.scales.y;
-              const ctx = chart.ctx;
+              const { ctx } = chart;
               ctx.save();
               ctx.beginPath();
               ctx.setLineDash([10, 15]);

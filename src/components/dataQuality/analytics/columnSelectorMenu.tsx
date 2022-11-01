@@ -1,7 +1,6 @@
-import { Button, Menu, MenuButton, MenuList } from '@chakra-ui/react';
+import { Button, Menu, MenuButton, MenuList, Checkbox, Stack } from '@chakra-ui/react';
 import colors from 'utility/colors';
 import Icon from 'assets/icons';
-import { Checkbox, Stack } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { setColumnSelected } from 'redux/reducers/analytics/reportsSlice';
 import { filterType } from 'utility/constants/enums';

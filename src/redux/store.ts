@@ -42,7 +42,7 @@ export const store = configureStore({
   middleware: [thunk as ThunkMiddleware]
 });
 
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
+export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 export const useDispatch: () => AppDispatch = useReduxDispatch;

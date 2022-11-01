@@ -1,15 +1,13 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Spinner, useToast } from '@chakra-ui/react';
 // import Icon from 'assets/icons';
 import { ComponentWrapper } from 'components/common';
 import { useDispatch, useSelector } from 'redux/store';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Spinner } from '@chakra-ui/react';
 import { TextField } from 'components/form';
 import { STATUS_TYPE } from 'utility/constants/enums';
 import { updateUsername } from 'redux/reducers/settings/updateAccountInfoSlice';
 import { useEffect, useState } from 'react';
-import { useToast } from '@chakra-ui/react';
 import { updateUserNameState } from 'redux/reducers/authSlice';
 
 const NameChange = () => {
@@ -31,25 +29,19 @@ const NameChange = () => {
 
   const { firstName, lastName, userId } = useSelector((state) => state.user);
   const UsernameOringinal = {
-    userId: userId,
-    firstName: firstName,
-    lastName: lastName
+    userId,
+    firstName,
+    lastName
   };
   return (
     <ComponentWrapper title="Name" className="w-[33rem] text-light h-fit mt-[20px]">
       <div className="font-light opacity-60">
         Changing your name below will update your name on your profile
       </div>
-      {/* <div className="mt-[40px] flex flex-row justify-start">
-        <div className="h-[100px] w-[100px] rounded-full border-2 border-lightBlue"></div>
-        <div className="ml-[30px] h-[100px] w-[100px] rounded-full border-2 border-lightBlue flex flex-row justify-center items-center">
-          <Icon icon="dashboard" width={24} height={24} />
-        </div>
-      </div> */}
 
       <Formik
         initialValues={{
-          userId: userId,
+          userId,
           firstName: '',
           lastName: ''
         }}

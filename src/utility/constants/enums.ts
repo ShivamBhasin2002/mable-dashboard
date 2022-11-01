@@ -27,7 +27,7 @@ export enum screenType {
   analytics = 'Reports',
   privacyCockpit = 'Privacy Cockpit',
   tutorial = 'Tutorial',
-  settings = 'Account Settings'
+  settings = 'Account'
 }
 
 export enum routes {
@@ -82,4 +82,15 @@ export enum DatePickerPresets {
 export enum SORT_ORDER {
   INCREASING = 'increasing',
   DECREASING = 'decreasing'
+}
+
+export enum perameterSettingsCategoryType {
+  PERSONAL = 'personalData',
+  LOCATION = 'location',
+  OTHERS = 'others'
+}
+export enum perameterSettingsSocialType {
+  DATABASE = 'database',
+  FACEBOOK = 'facebook',
+  TIKTOK = 'tiktok'
 }

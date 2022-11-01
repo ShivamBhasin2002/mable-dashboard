@@ -1,12 +1,11 @@
 import { ComponentWrapper } from 'components/common';
 import { useSelector } from 'redux/store';
-import { Button } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { STATUS_TYPE } from 'utility/constants/enums';
-import PopupExample from './popUpAddUser';
-import { useToast } from '@chakra-ui/react';
+import { useToast, Button } from '@chakra-ui/react';
 import { clearDeleteUserState } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import Icon from 'assets/icons';
+import PopupExample from './popUpAddUser';
 
 const DeleteUserData = () => {
   const [display, setDisplay] = useState('hidden');
@@ -21,7 +20,7 @@ const DeleteUserData = () => {
       setDisplay('hidden');
       toast({
         title: status === STATUS_TYPE.SUCCESS ? `User Deleted` : `Oops Some error occured`,
-        status: status,
+        status,
         isClosable: true,
         position: 'top-right'
       });
@@ -31,18 +30,16 @@ const DeleteUserData = () => {
     }
   }, [status]);
 
-  const addEntry = () => {
-    return (
-      <Button
-        className="ml-auto mb-2"
-        type="submit"
-        colorScheme="blue"
-        onClick={() => setDisplay('flex')}
-      >
-        Request Deletion
-      </Button>
-    );
-  };
+  const addEntry = () => (
+    <Button
+      className="ml-auto mb-2"
+      type="submit"
+      colorScheme="blue"
+      onClick={() => setDisplay('flex')}
+    >
+      Request Deletion
+    </Button>
+  );
   const deleteCustomer = useSelector((state) => state.privacyCockpit.deleteUserData.userData);
 
   return (
@@ -69,38 +66,22 @@ const DeleteUserData = () => {
         </thead>
         <tbody className="last-of:rounded-b-[10px]">
           {Object.values(deleteCustomer)
+            .slice(0)
+            .reverse()
             .slice((page - 1) * 5, page * 5)
-            .map((item, i) => {
-              return (
-                <tr
-                  key={i}
-                  className={`text-light [&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
-                    !(i & 1) && 'bg-tableStrips/[0.5]'
-                  }
-                `}
-                >
-                  <td width="1/2">{item.email}</td>
-                  <td width="1/2">{item.data_collection_active ? `Yes` : `No`}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-
-        {/* {deleteCustomer.map((item, key) => {
-          return (
-            <tbody key={key} className="last-of:rounded-b-[10px]">
+            .map((item, i) => (
               <tr
+                key={i}
                 className={`text-light [&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
-                  !(key & 1) && 'bg-tableStrips/[0.5]'
+                  !(i & 1) && 'bg-tableStrips/[0.5]'
                 }
-          `}
+                `}
               >
-                <td>{item.email}</td>
-                <td>{item.data_collection_active ? `Yes` : `No`}</td>
+                <td width="1/2">{item.email}</td>
+                <td width="1/2">{item.data_collection_active ? `Yes` : `No`}</td>
               </tr>
-            </tbody>
-          );
-        })} */}
+            ))}
+        </tbody>
       </table>
       {deleteCustomer.length > 5 && (
         <div className="flex justify-center items-center gap-4">

@@ -23,9 +23,7 @@ const ShopPicker = () => {
       {shops && shops?.length > 1 && (
         <MenuList background={colors.bgContainerTo} textColor={colors.light} border="none">
           {shops
-            ?.filter((thisShop) => {
-              if (thisShop.id !== active?.id) return thisShop;
-            })
+            ?.filter((thisShop) => thisShop.id !== active?.id)
             .map((shop) => (
               <MenuItem
                 key={shop.id}

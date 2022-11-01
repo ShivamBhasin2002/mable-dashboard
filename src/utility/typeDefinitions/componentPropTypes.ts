@@ -108,3 +108,9 @@ export type toggletypeProps = {
     }>
   >;
 };
+export type PaginationProps = {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  array: unknown[];
+  itemsPerPage: number;
+};

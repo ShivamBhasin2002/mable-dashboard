@@ -106,10 +106,10 @@ const ToggleSwitchWrapper = styled.div<{
     opacity: 0;
   }
   .wrg-toggle--checked .wrg-toggle-container {
-    background-color: ${({ activeColor }) => (activeColor ? activeColor : '#4fb7dd')};
+    background-color: ${({ activeColor }) => activeColor || '#4fb7dd'};
   }
   .wrg-toggle--uncheck .wrg-toggle-container {
-    background-color: ${({ inactiveColor }) => (inactiveColor ? inactiveColor : '#db2e26')};
+    background-color: ${({ inactiveColor }) => inactiveColor || '#db2e26'};
   }
   .wrg-toggle--checked .wrg-toggle-circle {
     top: 50%;

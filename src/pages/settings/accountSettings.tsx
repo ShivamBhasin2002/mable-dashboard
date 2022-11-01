@@ -3,17 +3,15 @@ import EventUsage from 'components/settings/accountSettings/eventUsage';
 import NameChange from 'components/settings/accountSettings/name_photo';
 import PasswordChange from 'components/settings/accountSettings/password';
 
-const Settings = () => {
-  return (
-    <>
-      <div className="flex flex-row flex-wrap gap-5">
-        <NameChange />
-        <PasswordChange />
-        <EmailChange />
-      </div>
-      <EventUsage />
-    </>
-  );
-};
+const Settings = () => (
+  <>
+    <div className="flex flex-row flex-wrap gap-5">
+      <NameChange />
+      <PasswordChange />
+      <EmailChange />
+    </div>
+    <EventUsage />
+  </>
+);
 
 export default Settings;

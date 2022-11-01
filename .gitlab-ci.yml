@@ -27,8 +27,16 @@ cache:
     - .npm
 
 stages:
+  - tests
   - build
   - docker-image
+
+test:
+  stage: tests
+  image: node:16-bullseye-slim
+  script:
+    - npm ci -f
+    - npm run lint
 
 build:development:
   image: node:16.16.0-bullseye

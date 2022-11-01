@@ -12,7 +12,7 @@ export const activeAllSettings = [
     settingValue: 'true'
   },
   {
-    settingKey: 'personalData_birthdate_facebook',
+    settingKey: 'personalData_dateofbirth_facebook',
     settingValue: 'true'
   },
   {
@@ -56,7 +56,7 @@ export const activeAllSettings = [
     settingValue: 'true'
   },
   {
-    settingKey: 'others_externeid_facebook',
+    settingKey: 'others_externalid_facebook',
     settingValue: 'true'
   },
   {
@@ -64,7 +64,7 @@ export const activeAllSettings = [
     settingValue: 'true'
   },
   {
-    settingKey: 'others_externeid_database',
+    settingKey: 'others_externalid_database',
     settingValue: 'true'
   },
   {
@@ -140,7 +140,7 @@ export const activeAllSettings = [
     settingValue: 'true'
   },
   {
-    settingKey: 'personalData_birthdate_database',
+    settingKey: 'personalData_dateofbirth_database',
     settingValue: 'true'
   },
   {
@@ -160,7 +160,7 @@ export const activeAllSettings = [
     settingValue: 'false'
   },
   {
-    settingKey: 'personalData_birthdate_tiktok',
+    settingKey: 'personalData_dateofbirth_tiktok',
     settingValue: 'false'
   },
   {
@@ -188,7 +188,7 @@ export const activeAllSettings = [
     settingValue: 'false'
   },
   {
-    settingKey: 'others_klickid_facebook',
+    settingKey: 'others_clickid_facebook',
     settingValue: 'true'
   },
   {
@@ -200,15 +200,15 @@ export const activeAllSettings = [
     settingValue: 'false'
   },
   {
-    settingKey: 'others_externeid_tiktok',
+    settingKey: 'others_externalid_tiktok',
     settingValue: 'false'
   },
   {
-    settingKey: 'others_klickid_database',
+    settingKey: 'others_clickid_database',
     settingValue: 'true'
   },
   {
-    settingKey: 'others_klickid_tiktok',
+    settingKey: 'others_clickid_tiktok',
     settingValue: 'false'
   }
 ];

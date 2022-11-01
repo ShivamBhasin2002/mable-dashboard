@@ -10,9 +10,9 @@ const SVGComponent = ({ isActive, ...props }: IconType) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     {...props}
   >
-    <rect width="256" height="256" fill="url(#pattern0)" />
+    <rect width="256" height="256" fill="url(#sunglassesPattern)" />
     <defs>
-      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+      <pattern id="sunglassesPattern" patternContentUnits="objectBoundingBox" width="1" height="1">
         <use xlinkHref="#image0_1367_1893" transform="scale(0.00390625)" />
       </pattern>
       <image

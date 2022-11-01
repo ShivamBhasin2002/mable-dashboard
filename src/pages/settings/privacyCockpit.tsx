@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
 import { Loading } from 'components/common';
 import DeleteUserData from 'components/settings/privacyCockpit/deleteUserData';
 import ParameterSettings from 'components/settings/privacyCockpit/parameterSettings';
 import PrivacySettings from 'components/settings/privacyCockpit/privacySettings';
-import { useEffect } from 'react';
+
 import {
   getDeletedCustomer,
   fetchSettings
@@ -20,9 +21,10 @@ function privacyCockpit() {
 
   const { status } = useSelector((state) => state.privacyCockpit.previousSettings);
 
-  if (status == STATUS_TYPE.FETCHING) {
+  if (status === STATUS_TYPE.FETCHING) {
     return <Loading message="Fetching Saved Settings" />;
-  } else if (status == STATUS_TYPE.SUCCESS) {
+  }
+  if (status === STATUS_TYPE.SUCCESS) {
     return (
       <div className="flex flex-col xl:flex-row gap-4 mt-[20px] ">
         <div className="xl:w-60">
@@ -34,11 +36,11 @@ function privacyCockpit() {
         </div>
       </div>
     );
-  } else if (status == STATUS_TYPE.IDLE) {
-    return <div>Idle</div>;
-  } else {
-    return <div>Some error occured !</div>;
   }
+  if (status === STATUS_TYPE.IDLE) {
+    return <div>Idle</div>;
+  }
+  return <div>Some error occured !</div>;
 }
 
 export default privacyCockpit;
