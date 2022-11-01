@@ -1,5 +1,6 @@
 import { ComponentWrapper } from 'components/common';
-import { Button, Checkbox, Input, Spinner, useToast } from '@chakra-ui/react';
+import { Button, Checkbox, Input, Spinner } from '@chakra-ui/react';
+import { useShowToast } from 'utility/customHooks';
 import colors from 'utility/colors';
 import { useDispatch, useSelector } from 'redux/store';
 import { STATUS_TYPE } from 'utility/constants/enums';
@@ -22,7 +23,7 @@ const PrivacySettings = () => {
   const [cookieConsent, setCookieConsent] = useState<string>(cookieConsentUrl);
   const [disable, setDisable] = useState<boolean>(true);
 
-  const toast = useToast();
+  const toast = useShowToast();
   const dispatch = useDispatch();
 
   const handleCookie = async () => {
@@ -32,9 +33,7 @@ const PrivacySettings = () => {
     } else {
       toast({
         title: `Enter valid URL`,
-        status: STATUS_TYPE.ERROR,
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.ERROR
       });
       setCookieConsent(cookieConsentUrl);
     }
@@ -58,17 +57,13 @@ const PrivacySettings = () => {
     if (hashStatus === STATUS_TYPE.ERROR) {
       toast({
         title: `Error while updating ! from hash`,
-        status: STATUS_TYPE.ERROR,
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.ERROR
       });
     }
     if (hashStatus === STATUS_TYPE.SUCCESS) {
       toast({
         title: `Data Hashed in Dashboard`,
-        status: STATUS_TYPE.SUCCESS,
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.SUCCESS
       });
     }
   }, [hashStatus]);
@@ -77,17 +72,13 @@ const PrivacySettings = () => {
     if (cookieStatus === STATUS_TYPE.ERROR) {
       toast({
         title: `Error while updating ! from cookie`,
-        status: STATUS_TYPE.ERROR,
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.ERROR
       });
     }
     if (cookieStatus === STATUS_TYPE.SUCCESS) {
       toast({
         title: `Cookie Consent Linked`,
-        status: STATUS_TYPE.SUCCESS,
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.SUCCESS
       });
     }
   }, [cookieStatus]);

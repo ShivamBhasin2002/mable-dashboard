@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'redux/store';
+import { useShowToast } from 'utility/customHooks';
 import ToggleBtn from 'components/common/ToggleBtn/ToggleSwitch';
 import { postParameterSettings } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
-import { Divider, useToast } from '@chakra-ui/react';
+import { Divider } from '@chakra-ui/react';
 import { activeAllSettings } from 'utility/functions/defaultDataCollection';
 import { camelCaseToTitleCase } from 'utility/functions/formattingFunctions';
 import { perameterSettingsSocialType, STATUS_TYPE } from 'utility/constants/enums';
 import { toggleColorCode } from 'utility/constants/extraConstants';
 
 function toggleTable() {
-  const toast = useToast();
+  const toast = useShowToast();
+
   const dispatch = useDispatch();
   const {
     data_collection_settings: dataCollectionSettings,
@@ -42,17 +44,13 @@ function toggleTable() {
     if (status === STATUS_TYPE.ERROR) {
       toast({
         title: `Something Went Wrong, Try Again ! `,
-        status: 'error',
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.ERROR
       });
     }
     if (status === STATUS_TYPE.SUCCESS && updateValue.settingKey !== '') {
       toast({
         title: `Data Updated Successfully`,
-        status: 'success',
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.SUCCESS
       });
     }
     setActiveEverything({ ...activeEverything, settingValue: 'false' });
@@ -67,17 +65,13 @@ function toggleTable() {
     if (status === STATUS_TYPE.ERROR) {
       toast({
         title: `Something Went Wrong, Try Again ! `,
-        status: 'error',
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.ERROR
       });
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({
         title: `All Data Set to Active `,
-        status: 'success',
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.SUCCESS
       });
     }
   };

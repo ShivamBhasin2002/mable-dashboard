@@ -1,8 +1,9 @@
 import { ComponentWrapper } from 'components/common';
 import { useSelector } from 'redux/store';
 import { useEffect, useState } from 'react';
+import { useShowToast } from 'utility/customHooks';
 import { STATUS_TYPE } from 'utility/constants/enums';
-import { useToast, Button } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { clearDeleteUserState } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
 import Icon from 'assets/icons';
 import PopupExample from './popUpAddUser';
@@ -13,16 +14,14 @@ const DeleteUserData = () => {
   const [futureTrack, setFutureTrack] = useState<boolean>(false);
   const [page, setPage] = useState(1);
   const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
-  const toast = useToast();
+  const toast = useShowToast();
 
   useEffect(() => {
     if (status === STATUS_TYPE.SUCCESS || status === STATUS_TYPE.ERROR) {
       setDisplay('hidden');
       toast({
         title: status === STATUS_TYPE.SUCCESS ? `User Deleted` : `Oops Some error occured`,
-        status,
-        isClosable: true,
-        position: 'top-right'
+        status
       });
       clearDeleteUserState();
       setEmail('');
