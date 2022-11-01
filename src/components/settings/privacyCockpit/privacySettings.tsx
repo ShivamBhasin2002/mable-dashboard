@@ -4,17 +4,13 @@ import colors from 'utility/colors';
 import { useDispatch, useSelector } from 'redux/store';
 import { STATUS_TYPE } from 'utility/constants/enums';
 import { useEffect, useState } from 'react';
-import * as yup from 'yup';
 import {
   postConsentUrlPrivacySettings,
   postDataHashPrivacySettings
 } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
+import { isValidUrl } from 'utility/functions/helper';
 
 const PrivacySettings = () => {
-  const cookieConsentSchema = yup.object().shape({
-    url: yup.string()
-  });
-
   const { status: hashStatus, hashDataCheckBox } = useSelector(
     (state) => state.privacyCockpit.privacySettings.hashDataInDashboard
   );
@@ -30,9 +26,17 @@ const PrivacySettings = () => {
   const dispatch = useDispatch();
 
   const handleCookie = async () => {
-    const isValid = await cookieConsentSchema.isValid({ url: cookieConsent });
+    const isValid = isValidUrl(cookieConsent);
     if (isValid) {
       dispatch(postConsentUrlPrivacySettings({ url: cookieConsent }));
+    } else {
+      toast({
+        title: `Enter valid URL`,
+        status: STATUS_TYPE.ERROR,
+        isClosable: true,
+        position: 'top-right'
+      });
+      setCookieConsent(cookieConsentUrl);
     }
   };
 
