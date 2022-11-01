@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { privacyCockpit } from 'utility/constants/initialStates';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
-import axios from 'axios';
 import { perameterSettingsCategoryType, STATUS_TYPE } from 'utility/constants/enums';
 import { snakeCaseToKeyValueExtractor } from 'utility/functions/formattingFunctions';
 import { getSettings, postSettings } from 'utility/functions/bffServices';
@@ -40,15 +39,8 @@ export const getDeletedCustomer = createAsyncThunk<
 >('privacyCockpit/deleteCustomerData/fetch', async (temp, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/data-collection/users`,
-      {
-        headers: { Authorization: `${state.user.token}` }
-      }
-    );
-    if (data) {
-      return data;
-    }
+    const apiUrl = `user/source/${state.shop.active?.id}/data-collection/users`;
+    return getSettings(state.user.token, apiUrl);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
@@ -79,24 +71,17 @@ export const postDeletedCustomer = createAsyncThunk<
   async ({ futureTrack, email }, { rejectWithValue, getState }) => {
     const state = getState();
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/data-collection/users`,
-        {
-          data: [
-            {
-              email: `${email}`,
-              data_collection_active: futureTrack,
-              deleted_user_data: true
-            }
-          ]
-        },
-        {
-          headers: { Authorization: `${state.user.token}` }
-        }
-      );
-      if (data) {
-        return data;
-      }
+      const apiUrl = `user/source/${state.shop.active?.id}/data-collection/users`;
+      const body = {
+        data: [
+          {
+            email: `${email}`,
+            data_collection_active: futureTrack,
+            deleted_user_data: true
+          }
+        ]
+      };
+      return postSettings(state.user.token, apiUrl, body);
     } catch (error) {
       let message;
       if (error instanceof Error) message = error.message;
@@ -115,15 +100,16 @@ export const postDataHashPrivacySettings = createAsyncThunk<
 >('privacyCockpit/hashDashboard/post', async ({ checkBox }, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const settings = [
-      {
-        settingKey: 'hash_database',
-        settingValue: `${checkBox}`
-      }
-    ];
+    const body = {
+      settings: [
+        {
+          settingKey: 'hash_database',
+          settingValue: `${checkBox}`
+        }
+      ]
+    };
     const apiUrl = `user/source/${state.shop.active?.id}/settings`;
-
-    return postSettings(state.user.token, apiUrl, settings).then(
+    return postSettings(state.user.token, apiUrl, body).then(
       (item) => item.settings_changed[0].settingValue
     );
   } catch (error) {
@@ -142,14 +128,16 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
 >('privacyCockpit/consentDashboard/post', async ({ url }, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const settings = [
-      {
-        settingKey: 'cookie_consent_url',
-        settingValue: `${url}`
-      }
-    ];
+    const body = {
+      settings: [
+        {
+          settingKey: 'cookie_consent_url',
+          settingValue: `${url}`
+        }
+      ]
+    };
     const apiUrl = `user/source/${state.shop.active?.id}/settings`;
-    return postSettings(state.user.token, apiUrl, settings);
+    return postSettings(state.user.token, apiUrl, body);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
@@ -178,7 +166,7 @@ export const postParameterSettings = createAsyncThunk<
   const state = getState();
   try {
     const apiUrl = `user/source/${state.shop.active?.id}/settings`;
-    return await postSettings(state.user.token, apiUrl, formData.settings);
+    return await postSettings(state.user.token, apiUrl, formData);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;

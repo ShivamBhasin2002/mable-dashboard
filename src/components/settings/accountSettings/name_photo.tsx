@@ -38,12 +38,6 @@ const NameChange = () => {
       <div className="font-light opacity-60">
         Changing your name below will update your name on your profile
       </div>
-      {/* <div className="mt-[40px] flex flex-row justify-start">
-        <div className="h-[100px] w-[100px] rounded-full border-2 border-lightBlue"></div>
-        <div className="ml-[30px] h-[100px] w-[100px] rounded-full border-2 border-lightBlue flex flex-row justify-center items-center">
-          <Icon icon="dashboard" width={24} height={24} />
-        </div>
-      </div> */}
 
       <Formik
         initialValues={{
