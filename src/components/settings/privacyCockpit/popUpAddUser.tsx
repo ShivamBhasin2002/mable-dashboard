@@ -1,5 +1,6 @@
-import { Button, Checkbox, useToast, Input, Spinner } from '@chakra-ui/react';
+import { Button, Checkbox, Input, Spinner } from '@chakra-ui/react';
 import { ComponentWrapper } from 'components/common';
+import { useShowToast } from 'utility/customHooks';
 import colors from 'utility/colors';
 import { Dispatch, SetStateAction } from 'react';
 import { postDeletedCustomer } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
@@ -17,7 +18,7 @@ interface PopUpProps {
 }
 
 const PopupExample = (props: PopUpProps) => {
-  const toast = useToast();
+  const toast = useShowToast();
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
 
@@ -32,9 +33,7 @@ const PopupExample = (props: PopUpProps) => {
     } else {
       toast({
         title: `Enter valid mail Id`,
-        status: STATUS_TYPE.ERROR,
-        isClosable: true,
-        position: 'top-right'
+        status: STATUS_TYPE.ERROR
       });
     }
   };
