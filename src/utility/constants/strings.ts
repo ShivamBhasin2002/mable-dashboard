@@ -31,3 +31,7 @@ export const scriptTagNotFoundPopupBody =
   'The script tag is required to ensure the full functionality of the tracking. If you have any questions or need help, please contact our support at';
 
 export const supportEmail = 'support@mable.ai';
+
+export const defaultErrorModalCloseButtonText = 'Dismiss';
+
+export const shopNotFoundErrorMessage = 'No Shops Found';
