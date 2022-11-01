@@ -66,6 +66,8 @@ const DeleteUserData = () => {
         </thead>
         <tbody className="last-of:rounded-b-[10px]">
           {Object.values(deleteCustomer)
+            .slice(0)
+            .reverse()
             .slice((page - 1) * 5, page * 5)
             .map((item, i) => (
               <tr

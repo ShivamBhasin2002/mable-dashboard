@@ -139,23 +139,14 @@ export const postConsentUrlPrivacySettings = createAsyncThunk<
 >('privacyCockpit/consentDashboard/post', async ({ url }, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BFF_URL}/user/source/${state.shop.active?.id}/settings`,
+    const settings = [
       {
-        settings: [
-          {
-            settingKey: 'cookie_consent_url',
-            settingValue: `${url}`
-          }
-        ]
-      },
-      {
-        headers: { Authorization: `${state.user.token}` }
+        settingKey: 'cookie_consent_url',
+        settingValue: `${url}`
       }
-    );
-    if (data) {
-      return data.settings_changed[0].settingValue;
-    }
+    ];
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return postSettings(state.user.token, apiUrl, settings);
   } catch (error) {
     let message;
     if (error instanceof Error) message = error.message;
