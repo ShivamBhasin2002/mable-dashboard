@@ -29,6 +29,7 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
+      toast({ title: 'Login Required', status: 'error', isClosable: true, position: 'top-right' });
       navigator(routes.login);
     }
     if (status === STATUS_TYPE.SUCCESS) {
