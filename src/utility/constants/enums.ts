@@ -94,3 +94,19 @@ export enum perameterSettingsSocialType {
   FACEBOOK = 'facebook',
   TIKTOK = 'tiktok'
 }
+
+export enum tiers {
+  tierOne = 'Tier 1',
+  tierTwo = 'Tier 2',
+  tierThree = 'Tier 3',
+  tierFour = 'Tier 4',
+  tierFive = 'Tier 5'
+}
+
+export enum tierRange {
+  tierOne = 50000,
+  tierTwo = 150000,
+  tierThree = 500000,
+  tierFour = 5000000,
+  tierFive = 10000000
+}
