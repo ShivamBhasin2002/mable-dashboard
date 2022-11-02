@@ -17,7 +17,7 @@ export const loginAsync = createAsyncThunk<
   thunkOptions
 >('user/login', async ({ email, password, rememberMe }, { rejectWithValue }) => {
   try {
-    const res = await axios.post(`${import.meta.env.VITE_BFF_URL}/auth/login`, {
+    const res = await axios.post(`${process.env.REACT_APP_BFF_URL}/auth/login`, {
       email,
       password
     });
@@ -39,7 +39,7 @@ export const registerAsync = createAsyncThunk<
   thunkOptions
 >('user/register', async (formData, { rejectWithValue }) => {
   try {
-    const res = await axios.post(`${import.meta.env.VITE_BFF_URL}/auth/register`, formData);
+    const res = await axios.post(`${process.env.REACT_APP_BFF_URL}/auth/register`, formData);
     if (res.data.userId) return { userId: res.data.userId, email: formData.email };
     return rejectWithValue('Registration Failed');
   } catch (err) {
@@ -54,7 +54,7 @@ export const isAuthenticatedAsync = createAsyncThunk<
 >('user/authenticate', async (token, { rejectWithValue }) => {
   try {
     if (token) {
-      const res = await axios.get(`${import.meta.env.VITE_BFF_URL}/auth/me`, {
+      const res = await axios.get(`${process.env.REACT_APP_BFF_URL}/auth/me`, {
         headers: {
           Authorization: token
         }
