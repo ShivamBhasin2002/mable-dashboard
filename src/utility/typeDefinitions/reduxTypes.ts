@@ -246,12 +246,3 @@ export type privacyCockpitType = {
     }[];
   };
 };
-
-export type eventUsage = {
-  monthEvents: { current_month: number; previous_month: number };
-  selectedTier: {
-    tier: string;
-    range: number;
-  };
-  status: STATUS_TYPE;
-};
