@@ -12,7 +12,8 @@ import {
   shopStateType,
   warningStateType,
   AccountUpdateType,
-  privacyCockpitType
+  privacyCockpitType,
+  eventUsage
 } from 'utility/typeDefinitions/reduxTypes';
 import moment from 'moment';
 
@@ -21,7 +22,9 @@ import {
   statusSelector,
   DatePickerPresets,
   screenType,
-  eventSelectedType
+  eventSelectedType,
+  tierRanges,
+  tiers
 } from 'utility/constants/enums';
 
 export const userInitialState: userStateType = {
@@ -278,4 +281,13 @@ export const privacyCockpit: privacyCockpitType = {
     status: STATUS_TYPE.IDLE,
     userData: []
   }
+};
+
+export const eventUsageState: eventUsage = {
+  monthEvents: { current_month: 2739, previous_month: 256346 },
+  selectedTier: {
+    tier: tiers.tierOne,
+    range: tierRanges.tierOne
+  },
+  status: STATUS_TYPE.IDLE
 };

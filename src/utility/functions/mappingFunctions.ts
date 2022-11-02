@@ -5,7 +5,9 @@ import {
   eventSelectedType,
   routes,
   screenType,
-  statusSelector
+  statusSelector,
+  tierRanges,
+  tiers
 } from 'utility/constants/enums';
 
 import { AnalyticsStateType } from 'utility/typeDefinitions/reduxTypes';
@@ -162,5 +164,22 @@ export const getOrderAnalysisTableIcon = (status: statusSelector | string) => {
       return 'delayed';
     default:
       return '';
+  }
+};
+
+export const tierRange = (payload: string) => {
+  switch (payload) {
+    case tiers.tierOne:
+      return tierRanges.tierOne;
+    case tiers.tierTwo:
+      return tierRanges.tierTwo;
+    case tiers.tierThree:
+      return tierRanges.tierThree;
+    case tiers.tierFour:
+      return tierRanges.tierFour;
+    case tiers.tierFive:
+      return tierRanges.tierFive;
+    default:
+      return 50000;
   }
 };
