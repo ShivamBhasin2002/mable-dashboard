@@ -30,7 +30,7 @@ export const analyticsAsync = createAsyncThunk<
 >('analytics/fetch', async (temp, { rejectWithValue, getState }) => {
   const state = getState();
   try {
-    const { data } = await axios.get(`${process.env.REACT_APP_MA_URL}/v2/events`, {
+    const { data } = await axios.get(`${import.meta.env.VITE_MA_URL}/v2/events`, {
       headers: { Authorization: `Token ${state.user.token}` },
       params: {
         start_date: `${state.dates.dateRange[0].format('YYYY-MM-DDThh:mm:ss.000')}Z`,
