@@ -164,3 +164,20 @@ export const getOrderAnalysisTableIcon = (status: statusSelector | string) => {
       return '';
   }
 };
+
+export const tierRange = (payload: string) => {
+  switch (payload) {
+    case 'tierOne':
+      return 50000;
+    case 'tierTwo':
+      return 150000;
+    case 'tierThree':
+      return 500000;
+    case 'tierFour':
+      return 5000000;
+    case 'tierFive':
+      return 10000000;
+    default:
+      return 50000;
+  }
+};

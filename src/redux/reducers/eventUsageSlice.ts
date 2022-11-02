@@ -3,6 +3,7 @@ import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { getEvents } from 'utility/functions/monitorServices';
 import { eventUsageState } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/enums';
+import { tierRange } from 'utility/functions/mappingFunctions';
 
 export const fetchEventUsage = createAsyncThunk<
   {
@@ -32,25 +33,7 @@ export const eventUsageData = createSlice({
   reducers: {
     TierRange: (state, { payload }) => {
       state.selectedTier.tier = payload;
-      switch (payload) {
-        case 'tierOne':
-          state.selectedTier.range = 50000;
-          break;
-        case 'tierTwo':
-          state.selectedTier.range = 150000;
-          break;
-        case 'tierThree':
-          state.selectedTier.range = 500000;
-          break;
-        case 'tierFour':
-          state.selectedTier.range = 5000000;
-          break;
-        case 'tierFive':
-          state.selectedTier.range = 10000000;
-          break;
-        default:
-          state.selectedTier.range = 50000;
-      }
+      state.selectedTier.range = tierRange(payload);
     }
   },
   extraReducers: (builder) => {
