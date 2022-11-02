@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
-import { getEvents } from 'utility/functions/monitorServices';
+import { getEvents } from 'utility/functions/monitorApiService';
 import { eventUsageState } from 'utility/constants/initialStates';
 import { STATUS_TYPE } from 'utility/constants/enums';
 import { tierRange } from 'utility/functions/mappingFunctions';

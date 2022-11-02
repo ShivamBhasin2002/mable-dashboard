@@ -51,3 +51,8 @@ export const isValidUrl = (urlString: string) => {
   ); // validate fragment locator
   return !!urlPattern.test(urlString);
 };
+
+export const daysInThisMonth = () => {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+};

@@ -6,14 +6,10 @@ import { tiers } from 'utility/constants/enums';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'redux/store';
 import { TierRange } from 'redux/reducers/eventUsageSlice';
+import { daysInThisMonth } from 'utility/functions/helper';
 
 const EventUsage = () => {
-  function daysInThisMonth() {
-    const now = new Date();
-    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-  }
-
-  const [selectedTier, setTier] = useState('Tier 1');
+  const [selectedTier, setTier] = useState(tiers.tierOne);
   const dispatch = useDispatch();
   const { range } = useSelector((state) => state.eventUsage.selectedTier);
   const todayDate = new Date();
@@ -66,6 +62,7 @@ const EventUsage = () => {
       </MenuList>
     </Menu>
   );
+
   return (
     <ComponentWrapper
       title="Event Usage"
@@ -132,7 +129,7 @@ const EventUsage = () => {
             Estimated event this month
           </div>
           <div className="text-lg">
-            {(currentMonth / todayDate.getDate()) * daysInThisMonth() - todayDate.getDate()}/{range}
+            {estimatedEvent}/{range}
           </div>
         </div>
       </div>

@@ -5,7 +5,9 @@ import {
   eventSelectedType,
   routes,
   screenType,
-  statusSelector
+  statusSelector,
+  tierRanges,
+  tiers
 } from 'utility/constants/enums';
 
 import { AnalyticsStateType } from 'utility/typeDefinitions/reduxTypes';
@@ -167,16 +169,16 @@ export const getOrderAnalysisTableIcon = (status: statusSelector | string) => {
 
 export const tierRange = (payload: string) => {
   switch (payload) {
-    case 'tierOne':
-      return 50000;
-    case 'tierTwo':
-      return 150000;
-    case 'tierThree':
-      return 500000;
-    case 'tierFour':
-      return 5000000;
-    case 'tierFive':
-      return 10000000;
+    case tiers.tierOne:
+      return tierRanges.tierOne;
+    case tiers.tierTwo:
+      return tierRanges.tierTwo;
+    case tiers.tierThree:
+      return tierRanges.tierThree;
+    case tiers.tierFour:
+      return tierRanges.tierFour;
+    case tiers.tierFive:
+      return tierRanges.tierFive;
     default:
       return 50000;
   }

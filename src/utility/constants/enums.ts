@@ -103,7 +103,7 @@ export enum tiers {
   tierFive = 'Tier 5'
 }
 
-export enum tierRange {
+export enum tierRanges {
   tierOne = 50000,
   tierTwo = 150000,
   tierThree = 500000,
