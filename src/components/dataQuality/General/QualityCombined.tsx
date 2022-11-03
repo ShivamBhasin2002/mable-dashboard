@@ -41,7 +41,7 @@ const QualityCombined = () => {
     {
       id: 'doughnut',
       // eslint-disable-next-line
-      beforeDraw(chart: any) {
+      beforeDraw: (chart: any) => {
         const { width } = chart;
         const { height } = chart;
         const { ctx } = chart;

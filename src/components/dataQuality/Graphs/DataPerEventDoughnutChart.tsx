@@ -1,3 +1,4 @@
+import { BubbleDataPoint, Chart, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 import { useSelector } from 'redux/store';
@@ -48,8 +49,13 @@ const DataPerEventDoughnutChart = () => {
   const doughnutPlugins = [
     {
       id: 'doughnut',
-      // eslint-disable-next-line
-      beforeDraw(chart: any) {
+      beforeDraw(
+        chart: Chart<
+          keyof ChartTypeRegistry,
+          (number | ScatterDataPoint | BubbleDataPoint)[],
+          unknown
+        >
+      ) {
         const { width } = chart;
         const { height } = chart;
         const { ctx } = chart;

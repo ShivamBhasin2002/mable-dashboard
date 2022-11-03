@@ -55,12 +55,14 @@ export type warningStateType = {
   errorMsg?: string;
 };
 
+export type dataPerEventByDateType = {
+  date: string;
+  attributionParamsQuality?: number;
+  eventsQuality?: number;
+};
+
 export type dataPerEventStateType = {
-  byDate: {
-    date: string;
-    attributionParamsQuality?: number;
-    eventsQuality?: number;
-  }[];
+  byDate: dataPerEventByDateType[];
   dataContainedPerEventDoughnutChart: {
     backend: number;
     frontend: number;

@@ -5,6 +5,7 @@ import { createGradient } from 'utility/functions/colorSelector';
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
+import { BubbleDataPoint, Chart, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
 
 const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?: string }) => {
   const { DATA_QUALITY_BY_DATE } = useSelector((state) => state.dataQuality);
@@ -12,7 +13,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
   const [chartData, setChartData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
     if (chart.current) {
-      const chartData = {
+      const chartDataToBeSet = {
         labels: DATA_QUALITY_BY_DATE.map((data) => data.date),
         datasets: [
           {
@@ -32,7 +33,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
           }
         ]
       };
-      setChartData(chartData);
+      setChartData(chartDataToBeSet);
     }
   }, [DATA_QUALITY_BY_DATE]);
   return (
@@ -93,7 +94,13 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
       plugins={[
         {
           id: 'lines',
-          afterDraw(chart) {
+          afterDraw(
+            chart: Chart<
+              keyof ChartTypeRegistry,
+              (number | ScatterDataPoint | BubbleDataPoint)[],
+              unknown
+            >
+          ) {
             if (chart.tooltip?.getActiveElements().length) {
               const { x } = chart.tooltip.getActiveElements()[0].element;
               const { y } = chart.tooltip.getActiveElements()[0].element;

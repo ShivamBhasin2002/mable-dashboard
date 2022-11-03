@@ -1,11 +1,5 @@
 import { useEffect, useRef } from 'react';
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  useDisclosure,
-  useOutsideClick
-} from '@chakra-ui/react';
+import { Popover, PopoverTrigger, PopoverContent, useDisclosure } from '@chakra-ui/react';
 import moment from 'moment';
 
 import Icon from 'assets/icons';
@@ -18,12 +12,11 @@ import { showDatePicker, showReload } from 'utility/functions/helper';
 // import ShopPicker from './ShopPicker';
 
 const Header = () => {
-  const datePickerRef = useRef<any>(); //eslint-disable-line
+  const datePickerRef = useRef<HTMLDivElement>(); //eslint-disable-line
   const dispatch = useDispatch();
   const { dateRange, datePreset } = useSelector((state) => state.dates);
   const { activeScreen } = useSelector((state) => state.screen);
   const { onClose, onOpen, isOpen } = useDisclosure();
-  useOutsideClick({ ref: datePickerRef, handler: onClose });
   useEffect(() => {
     document.getElementById('startDateIdentifier')?.click();
   });
@@ -68,11 +61,9 @@ const Header = () => {
           {showDatePicker(activeScreen) && (
             <Popover
               gutter={10}
-              autoFocus={false}
               placement="bottom-end"
               onClose={onClose}
               isOpen={isOpen}
-              closeOnBlur={false}
               onOpen={onOpen}
             >
               <PopoverTrigger>
@@ -83,7 +74,7 @@ const Header = () => {
                   <Icon icon="dropdown" />
                 </span>
               </PopoverTrigger>
-              <PopoverContent bg="transparent" border="none" w={1000} ref={datePickerRef}>
+              <PopoverContent bg="transparent" border="none" w={1000}>
                 <DatePicker close={onClose} isOpen={isOpen} />
               </PopoverContent>
             </Popover>

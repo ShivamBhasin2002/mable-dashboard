@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { thunkOptions } from 'utility/typeDefinitions/reduxTypes';
+import { dataPerEventByDateType, thunkOptions } from 'utility/typeDefinitions/reduxTypes';
 import { dataPerEventsInitialState } from 'utility/constants/initialStates';
 
 import { eventSelectedType, STATUS_TYPE } from 'utility/constants/enums';
@@ -70,7 +70,7 @@ export const dataPerEventAsync = createAsyncThunk<any, void, thunkOptions>(
               attribution_params_quality: attributionParamsQuality
             }: { date: string; attribution_params_quality: number },
             idx: number
-          ) => {
+          ): dataPerEventByDateType | null => {
             if (
               attributionParamsQuality === 0 &&
               eventParamsData.grouped_events_percentage[idx].events_quality === 0

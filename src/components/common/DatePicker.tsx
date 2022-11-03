@@ -18,7 +18,6 @@ import { datePickerProps } from 'utility/typeDefinitions/componentPropTypes';
 const DatePicker = ({ close, isOpen }: datePickerProps) => {
   const dispatch = useDispatch();
   const { dateRange, datePreset } = useSelector((state) => state.dates);
-  const [focusedInput, setFocusedInput] = useState<any>('startDate'); //eslint-disable-line
   const [selectedDateRange, setSelectedDateRange] = useState<(Moment | undefined)[]>(dateRange);
   const [selectedPreset, setSelectedPreset] = useState<string | undefined>(datePreset);
   useEffect(() => {
