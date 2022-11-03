@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment, { Moment } from 'moment';
-import { DateRangePicker } from 'react-dates';
-import 'react-dates/initialize';
+
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 import 'assets/styles/datePicker.css';
+import { DateRange } from 'react-date-range';
 
 import { ComponentWrapper } from 'components/common';
 
@@ -17,7 +19,7 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
   const dispatch = useDispatch();
   const { dateRange, datePreset } = useSelector((state) => state.dates);
   const [focusedInput, setFocusedInput] = useState<any>('startDate'); //eslint-disable-line
-  const [selectedDateRange, setSelectedDateRange] = useState<(Moment | null)[]>(dateRange);
+  const [selectedDateRange, setSelectedDateRange] = useState<(Moment | undefined)[]>(dateRange);
   const [selectedPreset, setSelectedPreset] = useState<string | undefined>(datePreset);
   useEffect(() => {
     if (!isOpen) {
@@ -26,33 +28,40 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
     }
   }, [close, isOpen]);
   return (
-    <ComponentWrapper
-      width={1000}
-      className="!rounded-[10px] shadow-xl shadow-background !h-[530px]"
-    >
-      <div className="flex flex-row justify-between h-full">
-        <div className="flex-grow flex flex-col justify-between">
-          <DateRangePicker
-            maxDate={moment()}
-            startDate={selectedDateRange[0]}
-            endDate={selectedDateRange[1]}
-            startDateId="startDateIdentifier"
-            endDateId="endDateIdentifier"
-            onDatesChange={({ startDate, endDate }) => {
-              setSelectedDateRange([startDate, endDate]);
-              setSelectedPreset(undefined);
+    <ComponentWrapper width={1000} className="!rounded-[10px] shadow-xl shadow-background">
+      <div className="flex flex-row justify-between h-full gap-4">
+        <div className="flex-grow flex flex-col justify-between gap-4">
+          <h5 className="flex [&>*]:flex-1 font-lato font-bold text-primary mb-[4px] ">
+            <div>Start Date</div>
+            <div>End Date</div>
+          </h5>
+          <DateRange
+            onChange={(ranges) => {
+              const { selection } = ranges;
+              const selected = [];
+              if (selection.startDate) selected.push(moment(selection.startDate));
+              if (selection.endDate) selected.push(moment(selection.endDate));
+              setSelectedDateRange(selected);
             }}
-            focusedInput={focusedInput}
-            onFocusChange={(focusedInput) => {
-              if (!focusedInput) return;
-              setFocusedInput(focusedInput);
-            }}
-            displayFormat="DD.MM.YY"
-            isOutsideRange={() => false}
-            keepOpenOnDateSelect
-            keepFocusOnInput
+            dateDisplayFormat="dd.mm.yyyy"
+            editableDateInputs={true}
+            endDatePlaceholder="End Date"
+            weekStartsOn={0}
+            fixedHeight={true}
+            showPreview={true}
+            maxDate={moment().add(1, 'days').toDate()}
+            moveRangeOnFirstSelection={false}
+            months={2}
+            ranges={[
+              {
+                startDate: moment(selectedDateRange[0]).toDate(),
+                endDate: moment(selectedDateRange[1]).toDate(),
+                key: 'selection'
+              }
+            ]}
+            direction="horizontal"
           />
-          <div className="flex justify-end gap-4 px-[45px]">
+          <div className="flex justify-end gap-4">
             <button
               className="px-[56px] py-[13px] rounded-[8px] font-lato text-[16px] font-bold bg-secondary text-light"
               onClick={() => {
