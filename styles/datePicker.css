@@ -1,0 +1,125 @@
+.rdrCalendarWrapper {
+  background: transparent;
+  width: 676px;
+}
+
+.rdrDateDisplayWrapper {
+  background: transparent;
+}
+
+.rdrDateDisplay {
+  margin: 0;
+  height: 2.7rem;
+}
+
+.rdrDateInput {
+  border-radius: 5px;
+  height: 100%;
+  background: transparent;
+}
+
+.rdrDateInput > input {
+  height: 100%;
+  font-size: 1rem;
+  font-family: lato;
+  text-align: left;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.rdrDateDisplayItem {
+  border: 1px #667183 solid;
+}
+
+.rdrDateDisplayItemActive {
+  border: 1px #4fb7dd solid;
+}
+
+.rdrMonths {
+  background-image: linear-gradient(to top right, #1d2940, #1c2b43);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+}
+
+.rdrMonthName {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: lato;
+  text-align: center;
+  color: #ffffff;
+}
+
+.rdrWeekDay {
+  color: #4fb7dd;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: lato;
+}
+
+.rdrDay .rdrDayNumber span {
+  color: #7f8ca0;
+  font-size: 14px;
+  font-family: lato;
+  font-weight: 600;
+}
+
+.rdrDayPassive .rdrDayNumber span {
+  color: #7f8ca060;
+}
+
+.rdrStartEdge {
+  border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+}
+
+.rdrEndEdge {
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
+
+.rdrInRange,
+.rdrDayInPreview {
+  background-color: #7f8ca020 !important;
+}
+
+.rdrDayStartPreview {
+  border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+}
+
+.rdrDayEndPreview {
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
+
+.rdrDayDisabled {
+  display: none;
+}
+
+.rdrMonthAndYearPickers span select {
+  color: #ffffff;
+}
+
+.rdrMonthAndYearWrapper {
+  padding: 0 30px !important;
+}
+
+.rdrNextPrevButton {
+  background: transparent;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rdrNextPrevButton:hover {
+  background: #4fb7dd;
+}
+
+.rdrPprevButton i {
+  border-width: 8px 12px 8px 8px !important;
+}
+
+.rdrNextButton i {
+  border-width: 8px 8px 8px 12px !important;
+}
