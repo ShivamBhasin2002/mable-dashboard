@@ -33,7 +33,7 @@ const DataContainedPerEventCard = () => {
     >
       <div className="flex flex-row flex-wrap hd:flex-nowrap justify-evenly gap-[20px] h-full">
         <div className="flex-1 max-w-[80%]">
-          <AttributionEventBarChart height={80} />
+          <AttributionEventBarChart height={50} />
         </div>
         <ParameterMetrics flexDirection="col" />
       </div>

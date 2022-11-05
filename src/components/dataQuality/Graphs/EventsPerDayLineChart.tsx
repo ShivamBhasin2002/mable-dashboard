@@ -113,7 +113,7 @@ const EventsPerDayLineChart = () => {
           }
         ]}
         data={charData}
-        height={216}
+        height={170}
         ref={chart}
       />
     </div>

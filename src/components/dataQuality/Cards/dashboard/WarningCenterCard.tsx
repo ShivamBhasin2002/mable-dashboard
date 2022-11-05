@@ -15,8 +15,10 @@ const WarningCenterCard = () => {
     >
       {active.length === 0 && (
         <div className="flex flex-col h-full justify-center items-center">
-          <Icon icon="noWarnings" className="text-[130px] text-dark/20" />
-          <p className="text-4xl font-montserrat font-bold text-dark/20">{noWarningsMessage}</p>
+          <Icon icon="noWarnings" className="text-[5rem] text-dark/20" />
+          <p className="text-[1.5rem] font-montserrat font-bold text-dark/20">
+            {noWarningsMessage}
+          </p>
         </div>
       )}
       {active.map(({ type, message, time }, index) => (

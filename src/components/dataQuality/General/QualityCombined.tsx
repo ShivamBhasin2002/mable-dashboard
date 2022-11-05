@@ -32,7 +32,7 @@ const QualityCombined = () => {
         borderColor: 'white'
       }
     },
-    cutout: 32,
+    cutout: 22,
     rotation: 10 * Math.PI,
     borderRadius: [TOTAL_DATA_QUALITY_FACEBOOK === 100 ? 0 : 20, 0],
     value: TOTAL_DATA_QUALITY_FACEBOOK
@@ -46,7 +46,7 @@ const QualityCombined = () => {
         const { height } = chart;
         const { ctx } = chart;
         ctx.restore();
-        ctx.font = '22px lato';
+        ctx.font = '17px lato';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = getColor(chart.config.options.value);
         const text = `${chart.config.options.value}%`;
@@ -59,19 +59,19 @@ const QualityCombined = () => {
   ];
 
   return (
-    <div className="flex flex-row gap-4 items-center text-primary">
+    <div className="flex w-full gap-2 justify-start text-primary">
       <div>
         <Doughnut
           id="doughnut"
-          width={84}
+          width={63}
           data={doughnutData}
           plugins={doughnutPlugins}
           options={doughnutOptions}
         />
       </div>
       <div className="flex flex-col">
-        <span className="text-[14px] font-lato text-light font-bold">Quality Combined</span>
-        <span className="text-[26px] font-montserrat font-bold text-primary">
+        <span className="text-[.9rem] font-lato text-light font-bold">Quality Combined</span>
+        <span className="text-[1.4rem] font-montserrat font-bold text-primary">
           {getMessage(TOTAL_DATA_QUALITY_FACEBOOK)}
         </span>
       </div>

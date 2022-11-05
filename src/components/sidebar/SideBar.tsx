@@ -33,7 +33,7 @@ const SideBar = () => {
   return (
     <aside
       id="side-bar"
-      className="sticky top-0 left-0 w-[70px] lg:w-[280px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] flex flex-col gap-[25px] lg:gap-[70px] pr-[5px] lg:px-[30px]"
+      className="sticky top-0 left-0 w-[70px] lg:w-[200px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] flex flex-col gap-[25px] lg:gap-[70px] pr-[5px] lg:px-[25px]"
     >
       <header className="flex justify-center">
         <a href={mableAiLandingPage}>
@@ -45,10 +45,10 @@ const SideBar = () => {
       </header>
 
       <section className="flex-grow overflow-y-scroll hide_scrollbar">
-        <div className="flex flex-col gap-[10px lg:gap-[27px]">
+        <div className="flex flex-col gap-[10px] lg:gap-[27px]">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => (
             <div key={sidebarCategory}>
-              <div className="text-[11px] lg:text-[14px] text-primary font-montserrat font-bold mb-[10px] text-center lg:text-start">
+              <div className="hidden xl:inline-block text-[.7rem] xl:text-[.9rem] text-primary font-montserrat font-bold mb-[10px] text-center lg:text-start">
                 {sidebarCategory}
               </div>
               <div className="flex flex-col gap-[5px]">

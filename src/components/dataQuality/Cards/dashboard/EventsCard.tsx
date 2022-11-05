@@ -21,20 +21,21 @@ const EventsCard = () => {
       title="Events"
       className="flex-grow lg:pb-[20px] h-min"
       status={[eventsStatus, eventsDataStatus]}
+      height={114}
     >
       <div className="flex-grow flex flex-row justify-center items-center h-full">
-        <div className="border-r-2 border-lines/[0.15] min-w-[125px] pr-6 flex-grow">
-          <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px] ">
+        <div className="border-r-2 border-lines/[0.15]  pr-6 flex-grow">
+          <div className=" text-[1.3rem]  font-lato text-center text-light  ">
             {numberReducer(totalEventCount)}
           </div>
-          <div className="text-primary text-center text-[14px]">{totalEventsLabel}</div>
+          <div className="text-primary text-center text-[0.8rem]">{totalEventsLabel}</div>
         </div>
-        <div className="min-w-[125px] pl-6 flex-grow">
-          <div className=" text-[35px] h-[42px] font-lato text-center text-light mb-[8px] ">
+        <div className=" pl-6 flex-grow">
+          <div className=" text-[1.3rem]  font-lato text-center text-light  ">
             {dateTimeReducer(avgTimeDifference).value}
-            <span className="text-[20px]">{dateTimeReducer(avgTimeDifference).unit}</span>
+            <span className="text-[1rem]">{dateTimeReducer(avgTimeDifference).unit}</span>
           </div>
-          <div className="text-primary text-center text-[14px]">{avgDeliveryTimeLabel}</div>
+          <div className="text-primary text-center text-[0.8rem]">{avgDeliveryTimeLabel}</div>
         </div>
       </div>
     </ComponentWrapper>

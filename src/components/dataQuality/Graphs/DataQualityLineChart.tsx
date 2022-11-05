@@ -42,7 +42,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
         layout: {
           padding: {
             right: -3,
-            bottom: -7
+            bottom: -3
           }
         },
         hover: {
