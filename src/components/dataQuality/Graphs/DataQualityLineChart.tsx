@@ -50,7 +50,6 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
           mode: 'index'
         },
         maintainAspectRatio: false,
-        responsive: true,
         elements: {
           point: {
             radius: 0

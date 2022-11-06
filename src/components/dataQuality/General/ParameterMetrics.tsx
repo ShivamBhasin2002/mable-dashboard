@@ -9,7 +9,7 @@ const ParameterMetrics = ({ flexDirection }: { flexDirection: 'row' | 'col' }) =
     <div
       className={`flex ${
         flexDirection === 'col' ? 'flex-col' : 'flex-row'
-      } justify-evenly gap-[10px]`}
+      } justify-center gap-[10px]`}
     >
       <div className="p-[1rem] flex flex-col items-center justify-evenly bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom rounded-[16px] drop-shadow-xl">
         <div className="flex flex-row gap-[5px] items-baseline">

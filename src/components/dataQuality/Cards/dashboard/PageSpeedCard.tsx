@@ -31,10 +31,9 @@ const PageSpeedCard = () => {
   return (
     <ComponentWrapper
       title="Page Speed"
-      className="flex-grow h-min"
+      className="flex-grow-[0.5] h-min-[114px] h-max-[300px]"
       status={status}
-      height={114}
-      width={336}
+      width={376}
     >
       {!scriptTagNotFound && (
         <Error

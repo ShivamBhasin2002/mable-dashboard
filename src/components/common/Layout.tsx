@@ -62,7 +62,7 @@ const Layout = ({ children }: LayoutProps) => {
     <div className="bg-background flex max-w-screen min-h-screen hd:h-screen">
       {shopStatus === STATUS_TYPE.ERROR && <Error header={shopNotFoundErrorMessage} />}
       <SideBar />
-      <div className="flex-grow py-[2.3rem] px-3 flex flex-col">
+      <div className="flex-grow py-[1rem] px-3 flex flex-col">
         <Header />
         {status === STATUS_TYPE.SUCCESS ? (
           <main className="flex-grow h-max">{children}</main>

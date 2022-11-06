@@ -19,6 +19,7 @@ const DataContainedPerEventCard = () => {
   return (
     <ComponentWrapper
       title="Data Contained Per Event"
+      className="min-h-[236px] flex-grow-[0.5]"
       status={status}
       nextComponent={
         <div className="flex-grow px-4 flex justify-between gap-4">
