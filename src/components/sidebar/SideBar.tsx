@@ -33,22 +33,22 @@ const SideBar = () => {
   return (
     <aside
       id="side-bar"
-      className="sticky top-0 left-0 w-[70px] lg:w-[200px] h-screen bg-background border-r-2 border-lines/[0.15] py-[40px] flex flex-col gap-[25px] lg:gap-[70px] pr-[5px] lg:px-[25px]"
+      className="sticky top-0 left-0 w-[70px] lg:w-[200px] h-screen bg-background border-r-2 border-lines/[0.15] py-[20px] flex flex-col gap-[25px] lg:gap-[20px] pr-[5px] lg:px-[25px]"
     >
       <header className="flex justify-center">
         <a href={mableAiLandingPage}>
           <Icon
             icon={(screenWidth ?? 0) >= 1024 ? 'mableLogo' : 'mableIcon'}
-            width={(screenWidth ?? 0) >= 1024 ? 140 : 27}
+            width={(screenWidth ?? 0) >= 1024 ? 93 : 27}
           />
         </a>
       </header>
 
       <section className="flex-grow overflow-y-scroll hide_scrollbar">
-        <div className="flex flex-col gap-[10px] lg:gap-[27px]">
-          {Object.entries(sideBar).map(([sidebarCategory, sidebarItems]) => (
+        <div className="flex flex-col gap-[10px] lg:gap-2">
+          {Object.entries(sideBar).map(([sidebarCategory, sidebarItems], index) => (
             <div key={sidebarCategory}>
-              <div className="hidden xl:inline-block text-[.7rem] xl:text-[.9rem] text-primary font-montserrat font-bold mb-[10px] text-center lg:text-start">
+              <div className="hidden xl:inline-block text-[.7rem] xl:text-[.8rem] text-primary font-montserrat font-bold mb-2 text-center lg:text-start">
                 {sidebarCategory}
               </div>
               <div className="flex flex-col gap-[5px]">
@@ -65,19 +65,21 @@ const SideBar = () => {
                   />
                 ))}
               </div>
-              <hr className="ml-[5px] mt-[27px] lg:ml-0 border-secondary/25 hidden lg:block" />
+              {index !== Object.entries(sideBar).length - 1 && (
+                <hr className="ml-[5px] lg:ml-0 border-secondary/25 hidden lg:block" />
+              )}
             </div>
           ))}
         </div>
       </section>
 
-      <section className="flex flex-col gap-[20px]">
-        <div className="flex flex-row gap-4 w-full items-center justify-center lg:justify-start">
-          <span className="w-[30px] h-[30px] lg:w-[35px] lg:h-[35px] text-[14px] lg:text-[18px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">
+      <section className="flex flex-col gap-[10px]">
+        <div className="flex flex-row  w-full items-center justify-between lg:justify-between">
+          <span className="h-[1.7rem] w-[1.7rem] text-[.8rem] lg:text-[.8rem] text-light bg-primary/50 font-extrabold rounded-full inline-flex justify-center items-center p-2">
             {firstName !== undefined ? firstName[0] : 'U'}
           </span>
           <span className="flex-col justify-center hidden lg:inline-flex">
-            <span className="text-[16px] text-light font-montserrat font-bold">
+            <span className="text-[.7rem] text-light font-montserrat font-bold">
               {`${firstName || ''} ${lastName || ''}`}
             </span>
           </span>
@@ -92,10 +94,10 @@ const SideBar = () => {
             navigate('/');
           }}
         >
-          <span className="mr-[10px] ml-[15px] lg:ml-0 text-2xl rounded-full hover:bg-secondary/20 p-2">
+          <span className="mr-[10px] ml-[15px] lg:ml-0 text-[.7rem] rounded-full hover:bg-secondary/20 p-2">
             <Icon icon="logout" />
           </span>
-          <span className="hidden lg:inline-block font-montserrat text-[18px] ">Log Out</span>
+          <span className="hidden lg:inline-block font-montserrat text-[.7rem] ">Log Out</span>
         </div>
       </section>
     </aside>
