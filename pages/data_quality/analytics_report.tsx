@@ -2,12 +2,12 @@ import AnalyticsTable from "@components/dataQuality/analytics/analyticsTable";
 import ColumnSelectorMenu from "@components/dataQuality/analytics/columnSelectorMenu";
 import { ComponentWrapper } from "@components/common";
 import { ExportToCsv } from "export-to-csv";
-import { generateCSV } from "@components/dataQuality/analytics/csvExport";
+import { GenerateCSV } from "@components/dataQuality/analytics/csvExport";
 import { useToast, Button } from "@chakra-ui/react";
 import { useSelector } from "@redux/store";
 
 const Analytics = () => {
-  const { options, csvData } = generateCSV();
+  const { options, csvData } = GenerateCSV();
   const csvExporter = new ExportToCsv(options);
   const { status } = useSelector((state) => state.analytics);
   const toast = useToast();
