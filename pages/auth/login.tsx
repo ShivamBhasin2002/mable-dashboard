@@ -1,20 +1,20 @@
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Spinner, useToast } from "@chakra-ui/react";
-
 import Icon from "@assets/icons";
 import { TextField, CheckBox } from "@components/form";
-
+import type { NextPage } from 'next';
 import { useDispatch, useSelector } from "@redux/store";
 import { loginAsync, clearState } from "@redux/reducers/authSlice";
 import { routes, STATUS_TYPE } from "@utility/constants/enums";
 
-const Login = () => {
+const Login: NextPage = () => {
   const disable = true;
   const toast = useToast();
-  const navigator = useNavigate();
+  const router = useRouter();
   const dispatch = useDispatch();
   const { status, errorMsg, email } = useSelector((state) => state.user);
   useEffect(
@@ -35,7 +35,7 @@ const Login = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(clearState());
-      navigator(routes.dashboard);
+      router.push(routes.dashboard);
     }
   }, [status]);
   return (
@@ -94,7 +94,7 @@ const Login = () => {
                   name="rememberMe"
                   message="Remember me"
                 />
-                <Link className="font-lato text-primary" to="/">
+                <Link className="font-lato text-primary" href="/">
                   Forgot Password?
                 </Link>
               </div>
@@ -114,7 +114,7 @@ const Login = () => {
             {disable ? (
               <div className=" text-zinc-400">Register Now!</div>
             ) : (
-              <Link className="text-light" to={routes.register}>
+              <Link className="text-light" href={routes.register}>
                 Register Now!
               </Link>
             )}

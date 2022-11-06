@@ -21,7 +21,7 @@ export type userStateType = {
   lastName?: string;
   iat?: number;
   exp?: number;
-  token?: string;
+  token?: string | null;
   status?: STATUS_TYPE;
   errorMsg?: string;
 };

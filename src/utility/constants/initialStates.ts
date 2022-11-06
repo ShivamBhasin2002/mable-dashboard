@@ -34,7 +34,7 @@ export const userInitialState: userStateType = {
   lastName: undefined,
   iat: undefined,
   exp: undefined,
-  token: localStorage.getItem("token") || undefined,
+  token: (typeof window !== 'undefined')?localStorage.getItem('key'):undefined,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined,
 };
@@ -61,13 +61,14 @@ export const shopInitialState: shopStateType = {
 };
 
 export const datesInitialState: datesStateType = {
-  dateRange: localStorage.getItem("dateRange")
+  
+  dateRange: ((typeof window !== 'undefined')?localStorage.getItem('dateRange'):undefined)
     ? JSON.parse(localStorage.getItem("dateRange") ?? "[]")?.map(
         (date: any) => moment(date) ?? ""
       ) // eslint-disable-line
     : [moment().subtract(14, "days"), moment()],
   datePreset:
-    localStorage.getItem("datePreset") ?? localStorage.getItem("dateRange")
+    ((typeof window !== 'undefined')?localStorage.getItem('datePreset'):undefined) ?? ((typeof window !== 'undefined')?localStorage.getItem('dateRange'):undefined)
       ? undefined
       : DatePickerPresets.prevFourteenDays,
   refresh: false,

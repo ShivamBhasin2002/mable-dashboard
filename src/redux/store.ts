@@ -4,6 +4,7 @@ import {
   useSelector as useReduxSelector,
   TypedUseSelectorHook
 } from 'react-redux';
+import { createWrapper } from "next-redux-wrapper";
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import type {} from 'redux-thunk/extend-redux';
 
@@ -44,7 +45,11 @@ export const store = configureStore({
   middleware: [thunk as ThunkMiddleware]
 });
 
+
+
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 export const useDispatch: () => AppDispatch = useReduxDispatch;
+const makeStore = () => store;
+export const wrapper = createWrapper(makeStore);
