@@ -27,10 +27,10 @@ const ComponentWrapper = ({
     >
       {checkStatus(STATUS_TYPE.FETCHING) && (
         <div
-          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[10px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
+          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[10px]  backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
         >
-          <Spinner w={50} h={50} thickness="7px" color={colors.lines} />
-          <span className="text-light/40 flex items-center font-montserrat text-[22px] font-bold text-center `">
+          <Spinner size="xl" thickness="5px" color={colors.lines} />
+          <span className="text-light/40 flex items-center font-montserrat text-[.8rem] font-bold text-center `">
             Loading
           </span>
         </div>

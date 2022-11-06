@@ -4,9 +4,9 @@ import colors from 'utility/colors';
 import { LoadingProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const Loading = ({ message = 'Loading', className }: LoadingProps) => (
-  <div className={`flex flex-col items-center justify-center gap-4 w-[90%] ${className}`}>
+  <div className={`flex flex-col items-center justify-center gap-4 w-full ${className}`}>
     <div>
-      <Spinner color={colors.light} size="xl" />
+      <Spinner color={colors.light} speed="0.40s" size="xl" />
     </div>
     <div className="text-3xl font-montserrat font-bold text-light">{message}</div>
   </div>

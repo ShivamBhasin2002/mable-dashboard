@@ -65,7 +65,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div className="flex-grow py-[1rem] px-3 flex flex-col">
         <Header />
         {status === STATUS_TYPE.SUCCESS ? (
-          <main className="flex-grow h-max">{children}</main>
+          <main className="flex-grow h-max overflow-hidden">{children}</main>
         ) : (
           <div className="w-full min-h-screen">
             <Loading message="Fetching Shops" className="h-screen" />
