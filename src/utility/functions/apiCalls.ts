@@ -14,7 +14,7 @@ const memoizedGetCall = () => {
   ) => {
     if (memoize && cache[JSON.stringify(args)]) return cache[JSON.stringify(args)];
     const { params, token, path } = args;
-    const result = await axios.get(`${process.env.NEXT_APP_MA_URL}${path}`, {
+    const result = await axios.get(`${process.env.NEXT_PUBLIC_MA_URL}${path}`, {
       headers: { Authorization: `Token ${token}` },
       params,
       paramsSerializer: (paramsPassed) =>

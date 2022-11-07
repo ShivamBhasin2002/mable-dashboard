@@ -12,7 +12,7 @@ export const shopAsync = createAsyncThunk<shopStateType | undefined, void, thunk
     const state = getState();
     try {
       const { data } = await axios.get(
-        `${process.env.NEXT_APP_MA_URL}/v2/get-all-shop-by-source-id`,
+        `${process.env.NEXT_PUBLIC_MA_URL}/v2/get-all-shop-by-source-id`,
         {
           headers: { Authorization: `Token ${state.user.token}` }
         }

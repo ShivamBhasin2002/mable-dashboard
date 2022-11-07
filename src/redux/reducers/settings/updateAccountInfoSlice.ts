@@ -23,7 +23,7 @@ export const updateUsername = createAsyncThunk<
   async ({ userId, firstName, lastName }, { rejectWithValue, getState }) => {
     try {
       const { data } = await axios.put(
-        `${process.env.NEXT_APP_BFF_URL}/auth/username/update`,
+        `${process.env.NEXT_PUBLIC_BFF_URL}/auth/username/update`,
         {
           userId,
           firstName,
@@ -55,7 +55,7 @@ export const updateEmail = createAsyncThunk<
 >('accountsetting/update/email', async ({ userId, email }, { rejectWithValue, getState }) => {
   try {
     const { data } = await axios.put(
-      `${process.env.NEXT_APP_BFF_URL}/auth/email/update`,
+      `${process.env.NEXT_PUBLIC_BFF_URL}/auth/email/update`,
       { userId, email },
       {
         headers: { Authorization: `${getState().user.token}` }
@@ -84,7 +84,7 @@ export const updatePassword = createAsyncThunk<
   async ({ password, newPassword }, { rejectWithValue, getState }) => {
     try {
       const { data } = await axios.put(
-        `${process.env.NEXT_APP_BFF_URL}/auth/password/update`,
+        `${process.env.NEXT_PUBLIC_BFF_URL}/auth/password/update`,
         { password, newPassword },
         {
           headers: { Authorization: `${getState().user.token}` }
