@@ -10,7 +10,7 @@ const WarningCenterCard = () => {
     <ComponentWrapper
       title="Warning Center"
       underlined
-      className="flex-grow-[.5] w-full h-[200px]"
+      className="flex-grow-[1] w-full min-h-[179px]"
       status={status}
     >
       {active.length === 0 && (
