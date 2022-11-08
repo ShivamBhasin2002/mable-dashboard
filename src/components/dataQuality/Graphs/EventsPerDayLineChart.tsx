@@ -37,86 +37,83 @@ const EventsPerDayLineChart = () => {
     });
   }, [status, eventSelected]);
   return (
-    <div>
-      <Line
-        options={{
-          hover: {
-            intersect: false,
-            mode: 'nearest'
-          },
-          maintainAspectRatio: false,
-          elements: {
-            point: {
-              radius: 0
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                font: {
-                  family: fonts.text
-                },
-                stepSize: Math.floor(
-                  byDate
-                    .map((item) => getSelectedEventData(item, eventSelected))
-                    .reduce((a, b) => Math.max(a, b), 0) / 5
-                ),
-                callback(this, tickValue: string | number) {
-                  return numberReducer(tickValue);
-                }
+    <Line
+      options={{
+        hover: {
+          intersect: false,
+          mode: 'nearest'
+        },
+        maintainAspectRatio: false,
+        elements: {
+          point: {
+            radius: 0
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              font: {
+                family: fonts.text
               },
-              grid: {
-                display: false,
-                borderColor: `${colors.lines}20`,
-                borderWidth: 3
+              stepSize: Math.floor(
+                byDate
+                  .map((item) => getSelectedEventData(item, eventSelected))
+                  .reduce((a, b) => Math.max(a, b), 0) / 5
+              ),
+              callback(this, tickValue: string | number) {
+                return numberReducer(tickValue);
               }
             },
-            x: {
-              ticks: {
-                font: {
-                  family: fonts.text
-                },
-                autoSkip: true,
-                maxTicksLimit: 10,
-                maxRotation: 0
+            grid: {
+              display: false,
+              borderColor: `${colors.lines}20`,
+              borderWidth: 2
+            }
+          },
+          x: {
+            ticks: {
+              font: {
+                family: fonts.text
               },
-              grid: {
-                display: false,
-                borderColor: `${colors.lines}20`,
-                borderWidth: 3
-              }
+              autoSkip: true,
+              maxTicksLimit: 10,
+              maxRotation: 0
+            },
+            grid: {
+              display: false,
+              borderColor: `${colors.lines}20`,
+              borderWidth: 3
             }
           }
-        }}
-        plugins={[
-          {
-            id: 'lines',
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-shadow
-            afterDraw: (chart: any) => {
-              if (chart.tooltip?.getActiveElements().length) {
-                const { x } = chart.tooltip.getActiveElements()[0].element;
-                const { y } = chart.tooltip.getActiveElements()[0].element;
-                const yAxis = chart.scales.y;
-                const { ctx } = chart;
-                ctx.save();
-                ctx.beginPath();
-                ctx.setLineDash([10, 15]);
-                ctx.moveTo(x, y);
-                ctx.lineTo(x, yAxis.bottom);
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = `${colors.lines}40`;
-                ctx.stroke();
-                ctx.restore();
-              }
+        }
+      }}
+      plugins={[
+        {
+          id: 'lines',
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-shadow
+          afterDraw: (chart: any) => {
+            if (chart.tooltip?.getActiveElements().length) {
+              const { x } = chart.tooltip.getActiveElements()[0].element;
+              const { y } = chart.tooltip.getActiveElements()[0].element;
+              const yAxis = chart.scales.y;
+              const { ctx } = chart;
+              ctx.save();
+              ctx.beginPath();
+              ctx.setLineDash([10, 15]);
+              ctx.moveTo(x, y);
+              ctx.lineTo(x, yAxis.bottom);
+              ctx.lineWidth = 2;
+              ctx.strokeStyle = `${colors.lines}40`;
+              ctx.stroke();
+              ctx.restore();
             }
           }
-        ]}
-        data={charData}
-        height={170}
-        ref={chart}
-      />
-    </div>
+        }
+      ]}
+      data={charData}
+      ref={chart}
+    />
   );
 };
 

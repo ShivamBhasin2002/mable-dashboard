@@ -59,11 +59,11 @@ const QualityCombined = () => {
   ];
 
   return (
-    <div className="flex w-full gap-2 justify-start text-primary">
-      <div>
+    <div className="flex w-full gap-2 justify-start items-center text-primary  flex-grow-[1]">
+      <div className="flex-wrap-[1] ">
         <Doughnut
           id="doughnut"
-          width={63}
+          width={70}
           data={doughnutData}
           plugins={doughnutPlugins}
           options={doughnutOptions}

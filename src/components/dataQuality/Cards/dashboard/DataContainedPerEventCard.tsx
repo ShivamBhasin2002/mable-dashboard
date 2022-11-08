@@ -34,7 +34,7 @@ const DataContainedPerEventCard = () => {
       }
     >
       <div className="flex flex-row  justify-evenly gap-[20px] h-full">
-        <div className="min-w-[300px] flex-grow-[0.5]">
+        <div className="min-w-[300px] h-[100%] flex-grow-[1]">
           <AttributionEventBarChart height={50} />
         </div>
         <ParameterMetrics flexDirection="col" />

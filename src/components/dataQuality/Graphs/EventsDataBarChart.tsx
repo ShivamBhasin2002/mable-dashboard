@@ -61,7 +61,7 @@ const EventsDataBarChart = () => {
       className="min-h-[153px] max-h-[230px] flex-grow-[1]"
       status={status}
     >
-      <div className="h-[90%]">
+      <div className="h-[100%]">
         <Bar
           ref={chart}
           data={chartData}
