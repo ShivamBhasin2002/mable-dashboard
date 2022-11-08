@@ -34,7 +34,7 @@ export const userInitialState: userStateType = {
   lastName: undefined,
   iat: undefined,
   exp: undefined,
-  token: (typeof window !== 'undefined')?localStorage.getItem('key'):undefined,
+  token: undefined,
   status: STATUS_TYPE.IDLE,
   errorMsg: undefined,
 };

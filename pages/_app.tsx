@@ -33,7 +33,7 @@ ChartJS.register(
   ArcElement
 );
 
-function MyApp({ Component, ...rest }: AppProps) {
+const MyApp = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const { pageProps } = props;
   return (

@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-export const getEvents = async (userToken?: string, apiUrl?: string, params?: object) => {
+export const getEvents = async (
+  userToken?: string | undefined | null | undefined | null,
+  apiUrl?: string,
+  params?: object
+) => {
   const config = {
     headers: { Authorization: `${userToken}` },
     params

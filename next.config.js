@@ -1,16 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/data_quality/dashboard',
-        permanent: true
-      }
-    ];
-  }
+  swcMinify: true
 };
 
 module.exports = nextConfig;

@@ -1,82 +1,78 @@
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { Spinner, useToast } from "@chakra-ui/react";
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link'
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { Spinner, useToast } from '@chakra-ui/react';
 
-import Icon from "@assets/icons";
-import { TextField, CheckBox } from "@components/form";
+import Icon from '@assets/icons';
+import { TextField, CheckBox } from '@components/form';
 
-import { useDispatch, useSelector } from "@redux/store";
-import { registerAsync, clearState } from "@redux/reducers/authSlice";
-import { routes, STATUS_TYPE } from "@utility/constants/enums";
+import { useDispatch, useSelector } from '@redux/store';
+import { registerAsync, clearState } from '@redux/reducers/authSlice';
+import { routes, STATUS_TYPE } from '@utility/constants/enums';
 
 const Register = () => {
   const toast = useToast();
   const { status, errorMsg } = useSelector((state) => state.user);
-  const navigator = useNavigate();
+  const router = useRouter();
   const dispatch = useDispatch();
-  useEffect(
-    () => () => {
-      dispatch(clearState());
-    },
-    []
-  );
+  useEffect(() => {
+    dispatch(clearState());
+  }, []);
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
       toast({
         title: errorMsg,
-        status: "error",
+        status: 'error',
         isClosable: true,
-        position: "top-right",
+        position: 'top-right'
       });
       dispatch(clearState());
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({
-        title: "Registrations Successful. Please check your email.",
-        status: "success",
+        title: 'Registrations Successful. Please check your email.',
+        status: 'success',
         isClosable: true,
-        position: "top-right",
+        position: 'top-right'
       });
       dispatch(clearState());
-      navigator(routes.login);
+      router.push(routes.login);
     }
   }, [status]);
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">
         <header>
-          <div className="text-center font-montserrat font-bold text-[60px]">
-            Register
-          </div>
+          <div className="text-center font-montserrat font-bold text-[60px]">Register</div>
           <div className="text-center font-lato text-2xl">
             Bring your analytics to the next level!
           </div>
         </header>
         <Formik
           initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            acceptTermsAndConditions: false,
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            acceptTermsAndConditions: false
           }}
           validationSchema={Yup.object({
-            firstName: Yup.string().required("Please enter first name"),
-            lastName: Yup.string().required("Please enter last name"),
-            email: Yup.string().required("Please enter email"),
+            firstName: Yup.string().required('Please enter first name'),
+            lastName: Yup.string().required('Please enter last name'),
+            email: Yup.string().required('Please enter email'),
             password: Yup.string()
-              .required("Please enter password")
-              .min(8, "Password should be at least 8 characters"),
+              .required('Please enter password')
+              .min(8, 'Password should be at least 8 characters'),
             confirmPassword: Yup.string()
-              .required("Please re-enter password")
-              .oneOf([Yup.ref("password")], "Your passwords do not match"),
+              .required('Please re-enter password')
+              .oneOf([Yup.ref('password')], 'Your passwords do not match'),
             acceptTermsAndConditions: Yup.boolean().oneOf(
               [true],
-              "Accept Terms and conditions is required"
-            ),
+              'Accept Terms and conditions is required'
+            )
           })}
           onSubmit={(values) => {
             dispatch(
@@ -84,7 +80,7 @@ const Register = () => {
                 email: values.email,
                 password: values.password,
                 firstName: values.firstName,
-                lastName: values.lastName,
+                lastName: values.lastName
               })
             );
           }}
@@ -139,8 +135,8 @@ const Register = () => {
         </Formik>
         <div className="flex justify-between text-secondary w-[400px] md:w-[600px] items-center">
           <div>
-            Already have an account?{" "}
-            <Link className="text-light" to="/auth/login">
+            Already have an account?{' '}
+            <Link className="text-light" href="/auth/login">
               Login Now!
             </Link>
           </div>

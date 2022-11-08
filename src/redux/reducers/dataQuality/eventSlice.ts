@@ -1,34 +1,34 @@
-import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
-import { thunkOptions } from "@utility/typeDefinitions/reduxTypes";
-import { eventsInitialState } from "@utility/constants/initialStates";
+import { thunkOptions } from '@utility/typeDefinitions/reduxTypes';
+import { eventsInitialState } from '@utility/constants/initialStates';
 
-import { STATUS_TYPE } from "@utility/constants/enums";
-import { dashboardDataFetchCall } from "@utility/functions/apiCalls";
-import { containsToday } from "@utility/functions/helper";
+import { STATUS_TYPE } from '@utility/constants/enums';
+import { dashboardDataFetchCall } from '@utility/functions/apiCalls';
+import { containsToday } from '@utility/functions/helper';
 
 // eslint-disable-next-line
 export const eventsAsync = createAsyncThunk<any, void, thunkOptions>(
-  "events/fetch",
+  'events/fetch',
   async (_temp, { rejectWithValue, getState }) => {
     const state = getState();
     try {
       const { data } = await dashboardDataFetchCall(
         {
-          path: "/v2/avg-time-difference",
-          token: state.user.token,
+          path: '/v2/avg-time-difference',
+          token: state.user.token ?? '',
           params: {
             source_id: state.shop.active?.id,
             start_date: state.dates.dateRange[0],
-            end_date: state.dates.dateRange[state.dates.dateRange.length - 1],
-          },
+            end_date: state.dates.dateRange[state.dates.dateRange.length - 1]
+          }
         },
         !containsToday(state.dates.dateRange)
       );
       if (data) return data;
-      return rejectWithValue("Data not found");
+      return rejectWithValue('Data not found');
     } catch (error) {
-      return rejectWithValue("Data not found");
+      return rejectWithValue('Data not found');
     }
   }
 );

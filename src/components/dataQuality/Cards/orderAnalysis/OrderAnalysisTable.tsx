@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useEffect, useState } from "react";
 import Icon from "@assets/icons";
 
@@ -77,7 +78,6 @@ const OrderAnalysisTable = () => {
     <ComponentWrapper
       id="orderAnalysisTable"
       className="text-light min-h-[40px] !overflow-scroll hide_scrollbar flex-grow"
-      // eslint-disable-next-line no-nested-ternary
       width={
         screenWidth
           ? screenWidth >= 1022

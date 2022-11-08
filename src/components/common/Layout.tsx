@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { useToast } from "@chakra-ui/react";
 
 import SideBar from "@components/sidebar/SideBar";
@@ -16,7 +16,7 @@ import { shopNotFoundErrorMessage } from "@utility/constants/strings";
 const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
   const dispatch = useDispatch();
-  const navigator = useNavigate();
+  const router = useRouter();
 
   // destructuring the parameters of user state required from the global state
   const { status, token } = useSelector((state) => state.user);
@@ -29,7 +29,7 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
-      navigator(routes.login);
+      router.push(routes.login);
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(shopAsync());
