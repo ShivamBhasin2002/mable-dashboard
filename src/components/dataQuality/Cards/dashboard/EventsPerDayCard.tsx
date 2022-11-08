@@ -20,7 +20,7 @@ const EventsPerDayCard = () => {
     <ComponentWrapper
       title="Events Per Day"
       status={status}
-      className="min-h-[222px] flex-grow-[1]"
+      className="min-h-[222px]  max-h-[400px] flex-grow-[1] flex-shrink-[1]"
       height={220}
       nextComponent={
         <SelectorMenu
