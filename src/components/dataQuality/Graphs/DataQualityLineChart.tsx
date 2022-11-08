@@ -119,6 +119,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
         }
       ]}
       ref={chart}
+      height={170}
       data={chartData}
     />
   );

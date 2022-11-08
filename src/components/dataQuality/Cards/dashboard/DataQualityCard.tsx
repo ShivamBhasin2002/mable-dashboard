@@ -29,7 +29,7 @@ const DataQualityCard = () => {
           <QualityCombined />
           <OrderComposition />
         </div>
-        <div className="min-h-[200px] flex-grow-[0.5]">
+        <div className="min-w-[300px] flex-grow-[0.5]">
           <DataQualityLineChart />
         </div>
       </div>
