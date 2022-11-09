@@ -32,7 +32,7 @@ const Login: NextPage = () => {
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(clearState());
-      router.push(routes.dashboard);
+      router.push(routes.dashboard, undefined, { shallow: true });
     }
   }, [status]);
   return (

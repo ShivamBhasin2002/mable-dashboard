@@ -34,7 +34,7 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
-      router.push(routes.login);
+      router.push(routes.login, undefined, { shallow: true });
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(shopAsync());

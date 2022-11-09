@@ -57,7 +57,7 @@ const SideBar = () => {
                     key={item.icon}
                     clickHandle={() => {
                       const path = screenToURL(item.title);
-                      if (activeScreen !== item.title && path) router.push(path);
+                      if (activeScreen !== item.title && path) router.push(path, undefined, { shallow: true });
                       dispatch(setScreen(item.title));
                     }}
                     isActive={activeScreen === item.title}
@@ -88,7 +88,7 @@ const SideBar = () => {
           className="flex text-[14px] text-secondary font-montserrat font-bold items-center cursor-pointer"
           onClick={() => {
             dispatch(logout());
-            router.push("/");
+            router.push("/", undefined, { shallow: true });
           }}
         >
           <span className="mr-[10px] ml-[15px] lg:ml-0 text-2xl rounded-full hover:bg-secondary/20 p-2">
