@@ -1,10 +1,10 @@
 .rdrCalendarWrapper {
-  background: transparent;
+  background: transparent !important;
   width: 676px;
 }
 
 .rdrDateDisplayWrapper {
-  background: transparent;
+  background: transparent !important;
 }
 
 .rdrDateDisplay {

@@ -1,5 +1,7 @@
-import '@styles/global.css';
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 import '@styles/datePicker.css';
+import '@styles/global.css';
 import '@styles/utility.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
@@ -43,6 +45,6 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
       </ChakraProvider>
     </Provider>
   );
-}
+};
 
 export default MyApp;

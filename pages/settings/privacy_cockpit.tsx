@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Loading } from "@components/common";
+import { Layout, Loading } from "@components/common";
 import DeleteUserData from "@components/settings/privacyCockpit/deleteUserData";
 import ParameterSettings from "@components/settings/privacyCockpit/parameterSettings";
 import PrivacySettings from "@components/settings/privacyCockpit/privacySettings";
@@ -29,15 +29,17 @@ function PrivacyCockpit() {
   }
   if (status === STATUS_TYPE.SUCCESS) {
     return (
-      <div className="flex flex-col xl:flex-row gap-4 mt-[20px] ">
-        <div className="xl:w-60">
-          <ParameterSettings />
+      <Layout>
+        <div className="flex flex-col xl:flex-row gap-4 mt-[20px] ">
+          <div className="xl:w-60">
+            <ParameterSettings />
+          </div>
+          <div className="flex flex-col gap-4 xl:w-40">
+            <PrivacySettings />
+            <DeleteUserData />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 xl:w-40">
-          <PrivacySettings />
-          <DeleteUserData />
-        </div>
-      </div>
+      </Layout>
     );
   }
   if (status === STATUS_TYPE.IDLE) {

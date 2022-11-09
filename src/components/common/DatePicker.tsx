@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import moment, { Moment } from 'moment';
 
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange } from 'react-date-range';
 
 import { ComponentWrapper } from '@components/common';

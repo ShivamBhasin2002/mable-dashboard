@@ -3,7 +3,7 @@ import { Loading } from "@components/common";
 import { useSelector, useDispatch } from "@redux/store";
 import { useEffect, useState } from "react";
 import { analyticsAsync } from "@redux/reducers/analytics/reportsSlice";
-import { filterType } from "@utility/constants/enums";
+import { filterType, STATUS_TYPE } from "@utility/constants/enums";
 import { SelectedEventsType } from "@utility/typeDefinitions/reduxTypes";
 import { defaultLocale } from "@utility/constants/strings";
 import Pagination from "../General/Pagination";
@@ -19,12 +19,12 @@ const AnalyticsTable = () => {
   const reportsPerPage = 9;
 
   useEffect(() => {
-    if (analyticData.status !== "fetching") {
+    if (analyticData.status !== STATUS_TYPE.FETCHING) {
       dispatch(analyticsAsync());
     }
   }, [datePreset, dateRange, dispatch]);
 
-  if (analyticData.status === "fetching") {
+  if (analyticData.status === STATUS_TYPE.FETCHING) {
     return <Loading message="Fetching Analytic Report" />;
   }
   if (analyticData.status === "error") {
@@ -37,7 +37,7 @@ const AnalyticsTable = () => {
       </div>
     );
   }
-  if (analyticData.status === "success") {
+  if (analyticData.status === STATUS_TYPE.SUCCESS) {
     return (
       <>
         <table className="w-full table-auto my-[10px]">

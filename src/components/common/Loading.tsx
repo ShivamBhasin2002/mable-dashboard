@@ -5,7 +5,7 @@ import { LoadingProps } from "@utility/typeDefinitions/componentPropTypes";
 
 const Loading = ({ message = "Loading", className }: LoadingProps) => (
   <div
-    className={`flex flex-col items-center justify-center gap-4 w-[90%] ${className}`}
+    className={`flex flex-col items-center justify-center gap-4 w-full h-full ${className}`}
   >
     <div>
       <Spinner color={colors.light} size="xl" />

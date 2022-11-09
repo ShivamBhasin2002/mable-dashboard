@@ -12,6 +12,8 @@ import { shopAsync } from '@redux/reducers/shopSlice';
 import { LayoutProps } from '@utility/typeDefinitions/componentPropTypes';
 import { routes, STATUS_TYPE } from '@utility/constants/enums';
 import { shopNotFoundErrorMessage } from '@utility/constants/strings';
+import { setScreen } from '@redux/reducers/screenSlice';
+import { URLtoScreen } from '@utility/functions/mappingFunctions';
 
 const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
@@ -26,6 +28,7 @@ const Layout = ({ children }: LayoutProps) => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) dispatch(setToken(storedToken));
     dispatch(isAuthenticatedAsync(storedToken ?? token));
+    dispatch(setScreen(URLtoScreen(router.pathname)));
   }, []);
 
   useEffect(() => {
@@ -58,7 +61,13 @@ const Layout = ({ children }: LayoutProps) => {
     shopStatus === STATUS_TYPE.IDLE ||
     shopStatus === STATUS_TYPE.FETCHING
   )
-    return <Loading className="h-screen w-screen" />;
+    return (
+      <div className="bg-background flex max-w-screen h-screen ">
+        {shopStatus === STATUS_TYPE.ERROR && <Error header={shopNotFoundErrorMessage} />}
+        <SideBar />
+        <Loading />
+      </div>
+    );
 
   return (
     <div className="bg-background flex max-w-screen min-h-screen hd:h-screen">
