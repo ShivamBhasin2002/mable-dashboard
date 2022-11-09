@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { Layout, Loading } from "@components/common";
-import DeleteUserData from "@components/settings/privacyCockpit/deleteUserData";
-import ParameterSettings from "@components/settings/privacyCockpit/parameterSettings";
-import PrivacySettings from "@components/settings/privacyCockpit/privacySettings";
+import { Layout, Loading } from '@components/common';
+import DeleteUserData from '@components/settings/privacyCockpit/deleteUserData';
+import ParameterSettings from '@components/settings/privacyCockpit/parameterSettings';
+import PrivacySettings from '@components/settings/privacyCockpit/privacySettings';
 
 import {
   getDeletedCustomer,
-  fetchSettings,
-} from "@redux/reducers/settings/privacyCockpit/privacyCockpitSlice";
-import { useDispatch, useSelector } from "@redux/store";
-import { STATUS_TYPE } from "@utility/constants/enums";
+  fetchSettings
+} from '@redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
+import { useDispatch, useSelector } from '@redux/store';
+import { STATUS_TYPE } from '@utility/constants/enums';
 
 function PrivacyCockpit() {
   const dispatch = useDispatch();
@@ -20,26 +20,22 @@ function PrivacyCockpit() {
     dispatch(getDeletedCustomer());
   }, []);
 
-  const { status } = useSelector(
-    (state) => state.privacyCockpit.previousSettings
-  );
+  const { status } = useSelector((state) => state.privacyCockpit.previousSettings);
 
   if (status === STATUS_TYPE.FETCHING) {
     return <Loading message="Fetching Saved Settings" />;
   }
   if (status === STATUS_TYPE.SUCCESS) {
     return (
-      <Layout>
-        <div className="flex flex-col xl:flex-row gap-4 mt-[20px] ">
-          <div className="xl:w-60">
-            <ParameterSettings />
-          </div>
-          <div className="flex flex-col gap-4 xl:w-40">
-            <PrivacySettings />
-            <DeleteUserData />
-          </div>
+      <div className="flex flex-col xl:flex-row gap-4 mt-[20px] ">
+        <div className="xl:w-60">
+          <ParameterSettings />
         </div>
-      </Layout>
+        <div className="flex flex-col gap-4 xl:w-40">
+          <PrivacySettings />
+          <DeleteUserData />
+        </div>
+      </div>
     );
   }
   if (status === STATUS_TYPE.IDLE) {

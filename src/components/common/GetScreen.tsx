@@ -1,5 +1,10 @@
 import { GETSCREEN } from '@utility/constants/enums';
+import Analytics from 'pages/analytics/reports';
 import Dashboard from 'pages/data_quality/dashboard';
+import EventQuality from 'pages/data_quality/event_quality';
+import OrderAnalysis from 'pages/data_quality/order_analysis';
+import Settings from 'pages/settings/account_settings';
+import PrivacyCockpit from 'pages/settings/privacy_cockpit';
 
 const GetScreen = (props: { screen: string | string[] | undefined }) => {
   switch (props.screen) {
@@ -9,23 +14,23 @@ const GetScreen = (props: { screen: string | string[] | undefined }) => {
       );
     case GETSCREEN.eventQuality:
       return (
-          <div className="">Event Quality</div>
+          <EventQuality />
       );
     case GETSCREEN.orderAnalysis:
       return (
-          <div className="">Order Analysis</div>
+          <OrderAnalysis />
       );
     case GETSCREEN.analytics:
       return (
-          <div className="">Reports</div>
+          <Analytics />
       );
     case GETSCREEN.settings:
       return (
-          <div className="">Settings</div>
+          <Settings />
       );
     case GETSCREEN.privacyCockpit:
       return (
-          <div className="">Privacy Cockpit</div>
+          <PrivacyCockpit />
       );
     default:
       return null;

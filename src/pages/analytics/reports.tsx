@@ -39,7 +39,6 @@ const Analytics = () => {
   };
 
   return (
-    <Layout>
       <ComponentWrapper className="text-light ">
         <div className=" flex flex-row justify-between align-middle">
           <ColumnSelectorMenu />
@@ -54,8 +53,6 @@ const Analytics = () => {
         </div>
         <AnalyticsTable />
       </ComponentWrapper>
-    </Layout>
-    
   );
 };
 

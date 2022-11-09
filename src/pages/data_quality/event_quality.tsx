@@ -6,7 +6,6 @@ import {
 } from "@components/dataQuality/Cards/eventQuality";
 
 const EventQuality = () => (
-  <Layout>
     <div className="flex flex-col h-full  justify-evenly gap-4">
       <EventQualityCard />
       <div className="flex gap-[40px] flex-wrap">
@@ -14,7 +13,6 @@ const EventQuality = () => (
         <EventParametersCard />
       </div>
     </div>
-  </Layout>
 );
 
 export default EventQuality;
