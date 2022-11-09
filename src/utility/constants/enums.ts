@@ -30,6 +30,16 @@ export enum screenType {
   settings = 'Account'
 }
 
+export enum GETSCREEN {
+  dashboard = 'dashboard',
+  orderAnalysis = 'order_analysis',
+  eventQuality = 'event_quality',
+  analytics = 'reports',
+  privacyCockpit = 'privacy_cockpit',
+  tutorial = 'tutorial',
+  settings = 'account_settings'
+}
+
 export enum routes {
   login = '/auth/login',
   register = '/auth/register',

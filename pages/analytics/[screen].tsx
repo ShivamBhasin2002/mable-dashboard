@@ -1,21 +1,16 @@
 import { Layout } from '@components/common';
+import GetScreen from '@components/common/GetScreen';
 import { useRouter } from 'next/router';
-import Analytics from 'pages/analytics/reports';
 
 const Screen = () => {
   const router = useRouter();
   const { screen } = router.query;
 
-  switch (screen) {
-    case 'report':
-      return (
-        <Layout>
-          <Analytics />
-        </Layout>
-      );
-    default:
-      return null;
-  }
+  return (
+    <Layout>
+      <GetScreen screen={screen} />
+    </Layout>
+  );
 };
 
 export default Screen;
