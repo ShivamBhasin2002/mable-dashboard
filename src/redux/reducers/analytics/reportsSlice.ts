@@ -59,9 +59,10 @@ export const Analytics = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(analyticsAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
+      .addCase(analyticsAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
       .addCase(analyticsAsync.fulfilled, (state, { payload }) => {
         state.status = STATUS_TYPE.SUCCESS;
         state.analyticReport.total_events = payload.total_events;

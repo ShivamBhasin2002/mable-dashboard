@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { thunkOptions } from "@utility/typeDefinitions/reduxTypes";
-import { getEvents } from "@utility/functions/monitorApiService";
-import { eventUsageState } from "@utility/constants/initialStates";
-import { STATUS_TYPE } from "@utility/constants/enums";
-import { tierRange } from "@utility/functions/mappingFunctions";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { thunkOptions } from '@utility/typeDefinitions/reduxTypes';
+import { getEvents } from '@utility/functions/monitorApiService';
+import { eventUsageState } from '@utility/constants/initialStates';
+import { STATUS_TYPE } from '@utility/constants/enums';
+import { tierRange } from '@utility/functions/mappingFunctions';
 
 export const fetchEventUsage = createAsyncThunk<
   {
@@ -12,7 +12,7 @@ export const fetchEventUsage = createAsyncThunk<
   },
   void,
   thunkOptions
->("eventUsage/fetch", async (temp, { rejectWithValue, getState }) => {
+>('eventUsage/fetch', async (temp, { rejectWithValue, getState }) => {
   const state = getState();
   try {
     const apiUrl = `v2/get-event-usage`;
@@ -28,19 +28,20 @@ export const fetchEventUsage = createAsyncThunk<
 });
 
 export const eventUsageData = createSlice({
-  name: "eventUsageData",
+  name: 'eventUsageData',
   initialState: eventUsageState,
   reducers: {
     TierRange: (state, { payload }) => {
       state.selectedTier.tier = payload;
       state.selectedTier.range = tierRange(payload);
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchEventUsage.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
+      .addCase(fetchEventUsage.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
       .addCase(fetchEventUsage.fulfilled, (state, { payload }) => {
         state.status = STATUS_TYPE.SUCCESS;
         state.monthEvents = payload;
@@ -48,7 +49,7 @@ export const eventUsageData = createSlice({
       .addCase(fetchEventUsage.rejected, (state) => {
         state.status = STATUS_TYPE.ERROR;
       });
-  },
+  }
 });
 
 export const { TierRange } = eventUsageData.actions;

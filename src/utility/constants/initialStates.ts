@@ -15,7 +15,7 @@ import {
   privacyCockpitType,
   eventUsage,
 } from "@utility/typeDefinitions/reduxTypes";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
 import {
   STATUS_TYPE,
@@ -64,7 +64,7 @@ export const datesInitialState: datesStateType = {
   
   dateRange: ((typeof window !== 'undefined')?localStorage.getItem('dateRange'):undefined)
     ? JSON.parse(localStorage.getItem("dateRange") ?? "[]")?.map(
-        (date: any) => moment(date) ?? ""
+        (date: Moment) => moment(date) ?? ""
       ) // eslint-disable-line
     : [moment().subtract(14, "days"), moment()],
   datePreset:

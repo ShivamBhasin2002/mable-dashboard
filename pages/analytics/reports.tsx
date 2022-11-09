@@ -1,6 +1,6 @@
 import AnalyticsTable from "@components/dataQuality/analytics/analyticsTable";
 import ColumnSelectorMenu from "@components/dataQuality/analytics/columnSelectorMenu";
-import { ComponentWrapper } from "@components/common";
+import { ComponentWrapper, Layout } from "@components/common";
 import { ExportToCsv } from "export-to-csv";
 import { GenerateCSV } from "@components/dataQuality/analytics/csvExport";
 import { useToast, Button } from "@chakra-ui/react";
@@ -39,21 +39,23 @@ const Analytics = () => {
   };
 
   return (
-    <ComponentWrapper className="text-light ">
-      <div className=" flex flex-row justify-between align-middle">
-        <ColumnSelectorMenu />
-        <button
-          onClick={() => {
-            // csvExporter.generateCsv(csvData);
-            CsvExport();
-          }}
-          className=" !border-lines/[0.20] border-2 h-[30px] px-2 rounded-md font-medium"
-        >
-          Export Csv
-        </button>
-      </div>
-      <AnalyticsTable />
-    </ComponentWrapper>
+    <Layout>
+      <ComponentWrapper className="text-light ">
+        <div className=" flex flex-row justify-between align-middle">
+          <ColumnSelectorMenu />
+          <button
+            onClick={() => {
+              CsvExport();
+            }}
+            className=" !border-lines/[0.20] border-2 h-[30px] px-2 rounded-md font-medium"
+          >
+            Export Csv
+          </button>
+        </div>
+        <AnalyticsTable />
+      </ComponentWrapper>
+    </Layout>
+    
   );
 };
 

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import Icon from "@assets/icons";
 
 import { useSelector, useDispatch } from "@redux/store";
@@ -11,12 +11,11 @@ import { mableAiLandingPage } from "@utility/constants/strings";
 import SideBarItem from "./items/generalSidebarItemCard";
 
 const SideBar = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const dispatch = useDispatch();
   const { firstName, lastName } = useSelector((state) => state.user);
   const { activeScreen } = useSelector((state) => state.screen);
   const { width: screenWidth } = useWindowSize();
-  const navigator = useNavigate();
 
   const sideBar = {
     "Data Quality": [
@@ -58,7 +57,7 @@ const SideBar = () => {
                     key={item.icon}
                     clickHandle={() => {
                       const path = screenToURL(item.title);
-                      if (activeScreen !== item.title && path) navigator(path);
+                      if (activeScreen !== item.title && path) router.push(path);
                       dispatch(setScreen(item.title));
                     }}
                     isActive={activeScreen === item.title}
@@ -89,7 +88,7 @@ const SideBar = () => {
           className="flex text-[14px] text-secondary font-montserrat font-bold items-center cursor-pointer"
           onClick={() => {
             dispatch(logout());
-            navigate("/");
+            router.push("/");
           }}
         >
           <span className="mr-[10px] ml-[15px] lg:ml-0 text-2xl rounded-full hover:bg-secondary/20 p-2">

@@ -102,9 +102,10 @@ export const dataPerEvent = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(dataPerEventAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
+      .addCase(dataPerEventAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
       .addCase(dataPerEventAsync.fulfilled, (state, { payload }) => ({
         ...state,
         ...payload,

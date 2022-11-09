@@ -43,9 +43,10 @@ export const orderAnalysis = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(orderAnalysisAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
+      .addCase(orderAnalysisAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
       .addCase(orderAnalysisAsync.fulfilled, (state, { payload }) => {
         state.tableData = payload ?? orderAnalysisInitialState.tableData;
         state.status = STATUS_TYPE.SUCCESS;

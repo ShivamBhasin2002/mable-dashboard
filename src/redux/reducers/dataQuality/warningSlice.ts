@@ -38,9 +38,10 @@ export const warningSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(warningAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
+      .addCase(warningAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
       .addCase(warningAsync.fulfilled, (state) => {
         state.status = STATUS_TYPE.SUCCESS;
       })

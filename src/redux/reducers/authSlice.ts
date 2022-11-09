@@ -75,61 +75,85 @@ export const userSlice = createSlice({
       localStorage.removeItem('token');
       reloadScreen();
     },
-    clearState: (state) => {
-      state.status = STATUS_TYPE.IDLE;
-      return state;
-    },
-    updateUserEmailState: (state, { payload }) => {
-      state.email = payload;
-    },
-    updateUserNameState: (state, { payload }) => {
-      state.firstName = payload.nameFirst;
-      state.lastName = payload.nameLast;
-    }
+
+    clearState: (state) => ({...state, status: STATUS_TYPE.IDLE }),
+
+    updateUserEmailState: (state, { payload }: { payload: string }) => ({
+      ...state,
+      email: payload
+    }),
+
+    updateUserNameState: (
+      state,
+      { payload }: { payload: { nameFirst: string; nameLast: string } }
+    ) => ({ ...state, ...payload }),
+
+    setToken: (state, { payload }: { payload: string }) => ({
+      ...state,
+      token: payload
+    })
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
-      .addCase(registerAsync.fulfilled, (state, { payload }) => {
-        state.status = STATUS_TYPE.SUCCESS;
-        state.userId = payload.userId;
-        state.email = payload.email;
-      })
-      .addCase(registerAsync.rejected, (state, { payload }) => {
-        state.status = STATUS_TYPE.ERROR;
-        state.errorMsg = payload;
-      })
-      .addCase(loginAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
-      .addCase(loginAsync.fulfilled, (state, { payload }) => {
-        state.status = STATUS_TYPE.SUCCESS;
-        state.token = payload.token;
-        state.email = payload.email;
-      })
-      .addCase(loginAsync.rejected, (state, { payload }) => {
-        state.status = STATUS_TYPE.ERROR;
-        state.errorMsg = payload;
-      })
-      .addCase(isAuthenticatedAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
-      .addCase(isAuthenticatedAsync.fulfilled, (state, { payload }) => {
-        state.status = STATUS_TYPE.SUCCESS;
-        state.userId = payload.userId;
-        state.firstName = payload.firstName;
-        state.lastName = payload.lastName;
-        state.iat = payload.iat;
-        state.exp = payload.exp;
-      })
-      .addCase(isAuthenticatedAsync.rejected, (state, { payload }) => {
-        state.status = STATUS_TYPE.ERROR;
-        state.errorMsg = payload;
-      });
+
+      .addCase(registerAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
+
+      .addCase(registerAsync.fulfilled, (state, { payload }) => ({
+        ...state,
+        status: STATUS_TYPE.SUCCESS,
+        userId: payload.userId,
+        email: payload.email
+      }))
+
+      .addCase(registerAsync.rejected, (state, { payload }) => ({
+        ...state,
+        status: STATUS_TYPE.ERROR,
+        errorMsg: payload
+      }))
+
+      .addCase(loginAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
+
+      .addCase(loginAsync.fulfilled, (state, { payload }) => ({
+        ...state,
+        status: STATUS_TYPE.SUCCESS,
+        token: payload.token,
+        email: payload.email
+      }))
+
+      .addCase(loginAsync.rejected, (state, { payload }) => ({
+        ...state,
+        status: STATUS_TYPE.ERROR,
+        errorMsg: payload
+      }))
+
+      .addCase(isAuthenticatedAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
+
+      .addCase(isAuthenticatedAsync.fulfilled, (state, { payload }) => ({
+        ...state,
+        status: STATUS_TYPE.SUCCESS,
+        userId: payload.userId,
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        iat: payload.iat,
+        exp: payload.exp
+      }))
+
+      .addCase(isAuthenticatedAsync.rejected, (state, { payload }) => ({
+        ...state,
+        status: STATUS_TYPE.ERROR,
+        errorMsg: payload
+      }));
   }
 });
 
-export const { logout, clearState, updateUserEmailState, updateUserNameState } = userSlice.actions;
+export const { logout, clearState, updateUserEmailState, updateUserNameState, setToken } = userSlice.actions;
 export default userSlice.reducer;

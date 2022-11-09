@@ -42,9 +42,10 @@ export const eventsDataReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(eventsDataAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
+      .addCase(eventsDataAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
       .addCase(eventsDataAsync.fulfilled, (state, { payload }) => {
         state.total_events = payload?.total_events ?? eventsDataInitialState.total_events;
         state.totalEventCount = Object.entries(state.total_events)

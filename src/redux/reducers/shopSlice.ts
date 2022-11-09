@@ -39,9 +39,10 @@ export const shopReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(shopAsync.pending, (state) => {
-        state.status = STATUS_TYPE.FETCHING;
-      })
+      .addCase(shopAsync.pending, (state) => ({
+        ...state,
+        status: STATUS_TYPE.FETCHING
+      }))
       .addCase(shopAsync.fulfilled, (state, { payload }) => {
         state.shops = payload?.shops || [];
         state.active = payload?.active;

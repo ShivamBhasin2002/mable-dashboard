@@ -1,17 +1,17 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { useToast } from "@chakra-ui/react";
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useToast } from '@chakra-ui/react';
 
-import SideBar from "@components/sidebar/SideBar";
-import { Loading, Header, Error } from "@components/common/";
+import SideBar from '@components/sidebar/SideBar';
+import { Loading, Header, Error } from '@components/common/';
 
-import { useSelector, useDispatch } from "@redux/store";
-import { isAuthenticatedAsync, clearState } from "@redux/reducers/authSlice";
-import { shopAsync } from "@redux/reducers/shopSlice";
+import { useSelector, useDispatch } from '@redux/store';
+import { isAuthenticatedAsync, clearState, setToken } from '@redux/reducers/authSlice';
+import { shopAsync } from '@redux/reducers/shopSlice';
 
-import { LayoutProps } from "@utility/typeDefinitions/componentPropTypes";
-import { routes, STATUS_TYPE } from "@utility/constants/enums";
-import { shopNotFoundErrorMessage } from "@utility/constants/strings";
+import { LayoutProps } from '@utility/typeDefinitions/componentPropTypes';
+import { routes, STATUS_TYPE } from '@utility/constants/enums';
+import { shopNotFoundErrorMessage } from '@utility/constants/strings';
 
 const Layout = ({ children }: LayoutProps) => {
   const toast = useToast();
@@ -23,7 +23,9 @@ const Layout = ({ children }: LayoutProps) => {
 
   // dispatching authenticate me with the token stored in local storage
   useEffect(() => {
-    dispatch(isAuthenticatedAsync(token));
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) dispatch(setToken(storedToken));
+    dispatch(isAuthenticatedAsync(storedToken ?? token));
   }, []);
 
   useEffect(() => {
@@ -43,9 +45,9 @@ const Layout = ({ children }: LayoutProps) => {
     if (shopStatus === STATUS_TYPE.ERROR) {
       toast({
         title: errorMsg,
-        status: "error",
+        status: 'error',
         isClosable: true,
-        position: "top-right",
+        position: 'top-right'
       });
     }
   }, [shopStatus, status]);
@@ -60,9 +62,7 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="bg-background flex max-w-screen min-h-screen hd:h-screen">
-      {shopStatus === STATUS_TYPE.ERROR && (
-        <Error header={shopNotFoundErrorMessage} />
-      )}
+      {shopStatus === STATUS_TYPE.ERROR && <Error header={shopNotFoundErrorMessage} />}
       <SideBar />
       <div className="flex-grow p-[30px] flex flex-col">
         <Header />
