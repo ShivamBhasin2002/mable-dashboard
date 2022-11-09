@@ -5,8 +5,31 @@ import { useSelector } from 'redux/store';
 import { getMessage } from 'utility/functions/mappingFunctions';
 import { getColor } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
+import { useEffect, useState } from 'react';
 
 const QualityCombined = () => {
+  function getWindowSize() {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
+  }
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(windowSize);
+  }, [windowSize]);
+
   const { TOTAL_DATA_QUALITY_FACEBOOK } = useSelector((state) => state.dataQuality);
   const doughnutData = {
     datasets: [
@@ -32,7 +55,7 @@ const QualityCombined = () => {
         borderColor: 'white'
       }
     },
-    cutout: 22,
+    cutout: windowSize.innerWidth / 53,
     rotation: 10 * Math.PI,
     borderRadius: [TOTAL_DATA_QUALITY_FACEBOOK === 100 ? 0 : 20, 0],
     value: TOTAL_DATA_QUALITY_FACEBOOK
@@ -63,7 +86,7 @@ const QualityCombined = () => {
       <div className="flex-wrap-[1] ">
         <Doughnut
           id="doughnut"
-          width={70}
+          width={windowSize.innerWidth / 18}
           data={doughnutData}
           plugins={doughnutPlugins}
           options={doughnutOptions}

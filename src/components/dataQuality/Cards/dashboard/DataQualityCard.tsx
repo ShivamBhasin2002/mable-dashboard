@@ -25,11 +25,11 @@ const DataQualityCard = () => {
       className="overflow-hidden min-h-[220px] max-h-[400px] flex-grow-[1] flex-shrink-[1]"
     >
       <div className="flex flex-row justify-evenly items-center h-full flex-wrap lg:flex-nowrap gap-2 flex-grow">
-        <div className="flex-grow flex flex-row lg:flex-col gap-2 justify-around items-center lg:h-full ">
+        <div className="flex-grow flex flex-row lg:flex-col gap-2 justify-around items-center lg:h-full">
           <QualityCombined />
           <OrderComposition />
         </div>
-        <div className="relative min-w-[300px]  h-[90%] flex-grow-[1] ">
+        <div className="relative min-w-[300px]  h-[90%] flex-grow-[1] mt-[3rem]">
           <DataQualityLineChart />
         </div>
       </div>
