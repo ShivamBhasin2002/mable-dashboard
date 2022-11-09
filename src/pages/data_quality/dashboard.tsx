@@ -1,4 +1,3 @@
-import { Layout } from "@components/common";
 import {
   DataQualityCard,
   WarningCenterCard,
@@ -10,7 +9,6 @@ import {
 import { EventsDataBarChart } from "@components/dataQuality/Graphs";
 
 const Dashboard = () => (
-  <Layout>
     <section className="flex flex-row justify-evenly gap-[30px] flex-wrap hd:flex-nowrap h-full">
       <div className="flex flex-col justify-between flex-grow [&>*]:flex-1 gap-5">
         <DataQualityCard />
@@ -26,7 +24,6 @@ const Dashboard = () => (
         <EventsPerDayCard />
       </div>
     </section>
-  </Layout>
 );
 
 export default Dashboard;
