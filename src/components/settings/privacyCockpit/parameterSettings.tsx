@@ -9,7 +9,7 @@ function ParameterSettings() {
   );
 
   return (
-    <ComponentWrapper className="flex flex-col w-full">
+    <ComponentWrapper className="flex flex-col w-full h-full flex-grow">
       <div className="header w-full grid grid-cols-9 gap-0  content-center">
         <div className="header_title   col-span-3  m-right my-auto">
           <p className="text-[1.3rem] font-[700] text-light"> Parameter Settings</p>

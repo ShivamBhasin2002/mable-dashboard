@@ -84,11 +84,7 @@ const PrivacySettings = () => {
   }, [cookieStatus]);
 
   return (
-    <ComponentWrapper
-      title="Privacy Settings"
-      underlined={true}
-      className="flex flex-col max-w-4xl h-fit"
-    >
+    <ComponentWrapper title="Privacy Settings" underlined={true} className="flex flex-col ">
       <div className="flex gap-4">
         <div className=" text-light flex items-center gap-2">Hash data in your dashboard</div>
         <Checkbox

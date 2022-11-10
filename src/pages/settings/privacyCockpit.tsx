@@ -26,11 +26,11 @@ function privacyCockpit() {
   }
   if (status === STATUS_TYPE.SUCCESS) {
     return (
-      <div className="flex flex-col xl:flex-row gap-4  ">
-        <div className="xl:w-60">
+      <div className="flex flex-col xl:flex-row  w-full justify-between gap-2 ">
+        <div className="xl:w-60 ">
           <ParameterSettings />
         </div>
-        <div className="flex flex-col gap-4 xl:w-40">
+        <div className="flex flex-col gap-2 xl:w-40 ">
           <PrivacySettings />
           <DeleteUserData />
         </div>

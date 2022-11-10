@@ -33,7 +33,7 @@ const SideBar = () => {
   return (
     <aside
       id="side-bar"
-      className="sticky top-0 left-0 w-[70px] lg:w-[200px] h-screen bg-background border-r-2 border-lines/[0.15] py-[20px] flex flex-col gap-[25px] lg:gap-[20px] pr-[5px] lg:px-[25px]"
+      className="sticky flex-shrink-0  top-0 left-0  w-[70px] lg:w-[200px] transition-all duration-500 ease-in-out h-screen bg-background border-r-2 border-lines/[0.15] py-[20px] flex flex-col gap-[25px] lg:gap-[20px] justify-center overflow-hidden"
     >
       <header className="flex justify-center">
         <a href={mableAiLandingPage}>
@@ -44,7 +44,7 @@ const SideBar = () => {
         </a>
       </header>
 
-      <section className="flex-grow overflow-y-scroll hide_scrollbar">
+      <section className="flex-grow overflow-y-scroll hide_scrollbar m-auto">
         <div className="flex flex-col gap-[10px] lg:gap-2">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems], index) => (
             <div key={sidebarCategory}>
@@ -73,7 +73,7 @@ const SideBar = () => {
         </div>
       </section>
 
-      <section className="flex flex-col gap-[10px]">
+      <section className="flex flex-col gap-[10px] px-5">
         <div className="flex flex-row  w-full items-center justify-between lg:justify-between">
           <span className="h-[1.7rem] w-[1.7rem] text-[.8rem] lg:text-[.8rem] text-light bg-primary/50 font-extrabold rounded-full inline-flex justify-center items-center p-2">
             {firstName !== undefined ? firstName[0] : 'U'}

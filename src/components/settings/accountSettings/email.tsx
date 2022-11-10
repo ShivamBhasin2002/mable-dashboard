@@ -28,7 +28,7 @@ const EmailChange = () => {
 
   return (
     <ComponentWrapper
-      className="w-[33rem] text-light h-fit xl:mt-[20px]"
+      className=" flex-grow-[1] text-light h-fit xl:mt-[20px]"
       title="Contact Information"
     >
       <Formik

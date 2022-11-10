@@ -5,7 +5,7 @@ import PasswordChange from 'components/settings/accountSettings/password';
 
 const Settings = () => (
   <>
-    <div className="flex flex-row flex-wrap gap-5">
+    <div className="flex flex-row flex-wrap gap-2">
       <NameChange />
       <PasswordChange />
       <EmailChange />

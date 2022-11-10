@@ -78,8 +78,8 @@ const ToggleSwitchWrapper = styled.div<{
   }
 
   .wrg-toggle-container {
-    width: 49px;
-    height: 22px;
+    width: 47px;
+    height: 21px;
     padding: 5px;
     border-radius: 30px;
     transition: all 0.2s ease;

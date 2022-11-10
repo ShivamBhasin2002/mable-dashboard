@@ -45,7 +45,7 @@ const DeleteUserData = () => {
     <ComponentWrapper
       title="Delete User Data"
       underlined={true}
-      className="flex flex-col max-w-4xl h-fit"
+      className="flex flex-col overflow-hidden"
       nextComponent={addEntry()}
     >
       <PopupExample
