@@ -31,13 +31,17 @@ const OrderDataAnalysisCard = () => {
     if (eventsStatus !== STATUS_TYPE.FETCHING) dispatch(eventsAsync());
   }, [refresh]);
   return (
-    <ComponentWrapper status={[dataQualityStatus, eventsStatus]} className="!px-[20px] md:px-[4px]">
-      <div className="flex flex-row flex-wrap 2xl:flex-nowrap gap-[40px] justify-evenly">
+    <ComponentWrapper
+      title="Data Quality"
+      status={[dataQualityStatus, eventsStatus]}
+      className=" overflow-hidden"
+    >
+      <div className="flex flex-row gap-2 items-center">
         <QualityCombined />
-        <div className="xl:order-2 2xl:order-none w-[50%]">
+        <div className="min-w-[300px] h-[100px] flex-grow-[1] ">
           <DataQualityLineChart color={colors.lineGraphStart} />
         </div>
-        <div className="flex flex-row gap-[20px]">
+        <div className="flex flex-row gap-[5px]">
           <Statistics value={numberReducer(TOTAL_SHOPIFY_ORDERS)} message="Shopify Orders" />
           <Statistics value={numberReducer(correctCvOrders)} message="Orders with correct CV" />
           <Statistics

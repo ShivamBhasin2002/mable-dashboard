@@ -67,9 +67,8 @@ const OrderAnalysisTable = () => {
   return (
     <ComponentWrapper
       id="orderAnalysisTable"
-      className="text-light min-h-[40px] !overflow-scroll hide_scrollbar flex-grow"
+      className="text-light min-h-[40px] !overflow-scroll hide_scrollbar flex-grow w-[100]"
       // eslint-disable-next-line no-nested-ternary
-      width={screenWidth ? (screenWidth >= 1022 ? screenWidth - 340 : screenWidth - 360) : 340}
       status={status}
     >
       <StatusSelectorMenu />

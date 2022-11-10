@@ -15,7 +15,7 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
     barPercentage: 0.7,
     elements: {
       bar: {
-        borderRadius: 5
+        borderRadius: 0
       }
     },
     scales: {
@@ -24,7 +24,7 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
         grid: {
           display: false,
           borderColor: `${colors.lines}20`,
-          borderWidth: 3
+          borderWidth: 2
         },
         ticks: {
           stepSize: 4,
@@ -45,7 +45,7 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
         grid: {
           display: false,
           borderColor: `${colors.lines}20`,
-          borderWidth: 3
+          borderWidth: 2
         }
       }
     }
@@ -57,6 +57,8 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
         label: 'Attribution Parameters',
         data: byDate.map((data) => data.attributionParamsQuality),
         backgroundColor: colors.purple,
+        borderRadius: 20,
+        borderSkipped: false,
         datalabels: {
           display: false
         }
@@ -65,6 +67,8 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
         label: 'Event Parameters',
         data: byDate.map((data) => data.eventsQuality),
         backgroundColor: colors.lightPurple,
+        borderRadius: 20,
+        borderSkipped: false,
         datalabels: {
           display: false
         }

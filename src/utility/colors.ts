@@ -13,6 +13,8 @@ const colors = {
   darkBlue: '#185BC6A0',
   lightBlue: '#1FB6AA',
   purple: '#8412a7',
+  purpleOpaque: '#3C225F',
+  lightPurpleOpaque: '#4F3F6F',
   lightPurple: '#c578e2',
   dataQualityChartArea: 'rgba(13, 206, 28, 0.3)',
   eventsPerDayLineColor: '#54B7DB',
