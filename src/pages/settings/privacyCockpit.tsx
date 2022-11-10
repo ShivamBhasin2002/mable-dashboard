@@ -26,7 +26,7 @@ function privacyCockpit() {
   }
   if (status === STATUS_TYPE.SUCCESS) {
     return (
-      <div className="flex flex-col xl:flex-row gap-4 mt-[20px] ">
+      <div className="flex flex-col xl:flex-row gap-4  ">
         <div className="xl:w-60">
           <ParameterSettings />
         </div>

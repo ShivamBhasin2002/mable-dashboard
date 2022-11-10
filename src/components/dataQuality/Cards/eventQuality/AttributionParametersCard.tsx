@@ -14,7 +14,7 @@ const AttributionParametersCard = () => {
       title={`Attribution Parameters  ${
         eventSelected === eventSelectedType.all ? '' : `for ${eventSelected}`
       }`}
-      className="flex-grow-[2] h-min"
+      className="flex-grow-[2] w-[60%]"
       status={status}
     >
       <div className="flex flex-wrap justify-evenly gap-[10px]">

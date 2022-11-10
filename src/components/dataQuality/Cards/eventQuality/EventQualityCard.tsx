@@ -31,7 +31,7 @@ const EventQualityCard = () => {
     >
       <div className="flex items-center justify-evenly mr-8 mt-5 flex-wrap gap-[40px]">
         <ParameterMetrics flexDirection="row" />
-        <div className="flex-grow">
+        <div className="w-[300px] h-[100px] flex-grow-[1]">
           <AttributionEventBarChart />
         </div>
       </div>

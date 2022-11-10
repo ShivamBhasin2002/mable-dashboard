@@ -87,7 +87,7 @@ function toggleTable() {
     <div className="flex flex-col">
       {categories.map((category) => (
         <>
-          <div className="category-header mt-5">
+          <div className="category-header">
             <p className="text-primary opacity-70 text-[14px]">{camelCaseToTitleCase(category)} </p>
           </div>
           {dataCollectionSettings.map((data) => {
@@ -95,7 +95,7 @@ function toggleTable() {
               return (
                 <>
                   <div className="dataTable  text-[#FFFFFF] grid grid-cols-9 gap-0">
-                    <div className="keyValue col-span-3 my-auto text-[18px] font-[600]">
+                    <div className="keyValue col-span-3 my-auto text-[.9rem] font-[600]">
                       {data.label}
                     </div>
                     {parsedSettings?.map(
@@ -153,7 +153,7 @@ function toggleTable() {
           })}
         </>
       ))}
-      <Divider className="my-3" />
+      <Divider className="my-1" />
       <div className="flex justify-between items-center">
         <div className="active_all flex justify-end items-center">
           <p className="text-light text-[18px] mx-2 opacity-50">Activate All </p>

@@ -9,10 +9,10 @@ function ParameterSettings() {
   );
 
   return (
-    <ComponentWrapper className="flex flex-col w-full h-fit">
+    <ComponentWrapper className="flex flex-col w-full">
       <div className="header w-full grid grid-cols-9 gap-0  content-center">
         <div className="header_title   col-span-3  m-right my-auto">
-          <p className="text-[24px] font-[700] text-light"> Parameter Settings</p>
+          <p className="text-[1.3rem] font-[700] text-light"> Parameter Settings</p>
         </div>
 
         {dataCollectionDestinations.map((item) => (
@@ -20,20 +20,20 @@ function ParameterSettings() {
             key={item.value}
             className={
               item.available
-                ? `text-gray-400 text-[1.1em] font-bold col-span-2  m-auto flex justify-start flex-col`
-                : `text-gray-600 text-[1.1em] font-bold col-span-2  m-auto flex justify-start flex-col`
+                ? `text-gray-400 text-[.9rem] font-bold col-span-2  m-auto flex justify-start flex-col`
+                : `text-gray-600 text-[.9rem] font-bold col-span-2  m-auto flex justify-start flex-col`
             }
           >
             <p className="">{item.label}</p>
             {!item.available && (
-              <span className="text-[.5em]  text-center text-primary opacity-70 rounded-2xl">
+              <span className="text-[.5rem]  text-center text-primary opacity-70 rounded-2xl">
                 Coming Soon
               </span>
             )}
           </p>
         ))}
       </div>
-      <Divider className="my-3" />
+      <Divider className="my-2" />
       <div className="toggleArea">
         <ToggleTable />
       </div>
