@@ -28,7 +28,7 @@ const Layout = ({ children }: LayoutProps) => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) dispatch(setToken(storedToken));
     dispatch(isAuthenticatedAsync(storedToken ?? token));
-    dispatch(setScreen(URLtoScreen(router.pathname)));
+    dispatch(setScreen(URLtoScreen(router.asPath)));
   }, []);
 
   useEffect(() => {
