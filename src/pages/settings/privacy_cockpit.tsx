@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { Layout, Loading } from '@components/common';
+import { Loading } from '@components/common';
 import DeleteUserData from '@components/settings/privacyCockpit/deleteUserData';
 import ParameterSettings from '@components/settings/privacyCockpit/parameterSettings';
 import PrivacySettings from '@components/settings/privacyCockpit/privacySettings';
