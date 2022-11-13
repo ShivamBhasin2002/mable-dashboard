@@ -10,6 +10,7 @@ import type { NextPage } from 'next';
 import { useDispatch, useSelector } from '@redux/store';
 import { loginAsync, clearState } from '@redux/reducers/authSlice';
 import { routes, STATUS_TYPE } from '@utility/constants/enums';
+import Head from 'next/head';
 
 const Login: NextPage = () => {
   const disable = true;
@@ -37,6 +38,11 @@ const Login: NextPage = () => {
   }, [status]);
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
+      <Head>
+        <title>Login | Mable Ai</title>
+        <meta name="description" content="Mable is a new kind of tracking tool that, with the help of a unique & innovative architecture, allows you to reliably track 100% of the conversions in your store again." />
+        <link rel="icon" href="/mable.svg" />
+      </Head>
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">
         <header>
           <div className="text-center font-montserrat font-bold text-[60px]">Login</div>

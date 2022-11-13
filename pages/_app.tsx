@@ -21,6 +21,7 @@ import {
   ArcElement
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import Head from 'next/head';
 
 ChartJS.register(
   CategoryScale,
@@ -41,6 +42,9 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
   return (
     <Provider store={store}>
       <ChakraProvider>
+      <Head>
+        <link rel="shortcut icon" href="/mable.svg" />
+      </Head>
         <Component {...pageProps} />
       </ChakraProvider>
     </Provider>

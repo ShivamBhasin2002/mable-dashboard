@@ -11,6 +11,7 @@ import { useEffect, useMemo } from 'react';
 import { shopAsync } from '@redux/reducers/shopSlice';
 import SideBar from '@components/sidebar/SideBar';
 import { shopNotFoundErrorMessage } from '@utility/constants/strings';
+import Head from 'next/head';
 
 const Screen = () => {
   const router = useRouter();
@@ -56,6 +57,12 @@ const Screen = () => {
 
   return (
     <div className="bg-background flex max-w-screen h-screen">
+       <Head>
+        <title>{screen} | Mable Ai</title>
+        <meta name="description" content="Mable is a new kind of tracking tool that, with the help of a unique & innovative architecture, allows you to reliably track 100% of the conversions in your store again." />
+        <link rel="icon" href="/mable.svg" />
+      </Head>
+
       {shopStatus === STATUS_TYPE.ERROR && <Error header={shopNotFoundErrorMessage} />}
       <SideBar />
       {status === STATUS_TYPE.FETCHING ||
