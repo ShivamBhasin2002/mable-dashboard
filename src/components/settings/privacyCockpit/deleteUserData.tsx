@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useShowToast } from 'utility/customHooks';
 import { STATUS_TYPE } from 'utility/constants/enums';
 import { Button } from '@chakra-ui/react';
+import Pagination from 'components/dataQuality/General/Pagination';
 import { clearDeleteUserState } from 'redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
-import Icon from 'assets/icons';
 import PopupExample from './popUpAddUser';
 
 const DeleteUserData = () => {
@@ -13,8 +13,14 @@ const DeleteUserData = () => {
   const [email, setEmail] = useState('');
   const [futureTrack, setFutureTrack] = useState<boolean>(false);
   const [page, setPage] = useState(1);
+  const [ordersPerPage, setOrdersPerPage] = useState(0);
   const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
   const toast = useShowToast();
+
+  useEffect(() => {
+    const height = document.getElementById('deleteUserDataTable')?.clientHeight;
+    if (height) setOrdersPerPage(Math.floor((height - 240) / 40));
+  }, []);
 
   useEffect(() => {
     if (status === STATUS_TYPE.SUCCESS || status === STATUS_TYPE.ERROR) {
@@ -45,7 +51,8 @@ const DeleteUserData = () => {
     <ComponentWrapper
       title="Delete User Data"
       underlined={true}
-      className="flex flex-col overflow-hidden"
+      id="deleteUserDataTable"
+      className="flex flex-col overflow-hidden relative"
       nextComponent={addEntry()}
       height="100%"
     >
@@ -68,7 +75,7 @@ const DeleteUserData = () => {
           {Object.values(deleteCustomer)
             .slice(0)
             .reverse()
-            .slice((page - 1) * 5, page * 5)
+            .slice((page - 1) * ordersPerPage, page * ordersPerPage)
             .map((item, i) => (
               <tr
                 key={i}
@@ -83,31 +90,14 @@ const DeleteUserData = () => {
             ))}
         </tbody>
       </table>
-      {deleteCustomer.length > 5 && (
-        <div className="flex justify-center items-center gap-4">
-          <button
-            className="w-[35px] h-[35px] rounded-[8px] bg-primary text-light disabled:text-dark flex items-center justify-center"
-            disabled={page === 1}
-            onClick={() => {
-              setPage((currPage) => currPage - 1);
-            }}
-          >
-            <Icon icon="left" />
-          </button>
-          <div className=" text-light">
-            Page {page}/{Math.ceil(deleteCustomer.length / 5)}
-          </div>
-          <button
-            className="w-[35px] h-[35px] rounded-[8px] bg-primary text-light disabled:text-dark flex items-center justify-center"
-            disabled={page === Math.ceil(deleteCustomer.length / 5)}
-            onClick={() => {
-              setPage((currPage) => currPage + 1);
-            }}
-          >
-            <Icon icon="right" />
-          </button>
-        </div>
-      )}
+      <div className="absolute bottom-0 left-0 w-full py-2">
+        <Pagination
+          page={page}
+          setPage={setPage}
+          array={deleteCustomer}
+          itemsPerPage={ordersPerPage}
+        />
+      </div>
     </ComponentWrapper>
   );
 };
