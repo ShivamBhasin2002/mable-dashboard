@@ -20,8 +20,8 @@ export type CheckBoxProps = {
 };
 
 export type ComponentWrapperProps = {
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   children?: React.ReactNode;
   title?: string;
   nextComponent?: React.ReactNode;

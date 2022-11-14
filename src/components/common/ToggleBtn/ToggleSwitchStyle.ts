@@ -64,7 +64,7 @@ const ToggleSwitchWrapper = styled.div<{
     justify-content: center;
     position: relative;
     width: 10px;
-    left: 3px;
+    left: 0px;
   }
   .wrg-toggle-uncheck span {
     align-items: center;
@@ -74,7 +74,7 @@ const ToggleSwitchWrapper = styled.div<{
     justify-content: center;
     position: relative;
     width: 10px;
-    left: -3px;
+    left: 0px;
   }
 
   .wrg-toggle-container {

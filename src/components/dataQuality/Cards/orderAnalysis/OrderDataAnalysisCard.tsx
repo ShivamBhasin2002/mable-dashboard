@@ -35,10 +35,13 @@ const OrderDataAnalysisCard = () => {
       title="Data Quality"
       status={[dataQualityStatus, eventsStatus]}
       className=" overflow-hidden"
+      width="100%"
     >
-      <div className="flex flex-row gap-2 items-center">
-        <QualityCombined />
-        <div className="min-w-[300px] h-[100px] flex-grow-[1] ">
+      <div className="flex flex-row gap-2 items-center justify-between w-full flex-grow-[1]">
+        <div className="min-w-[230px] max-w-[400px] flex-grow-[1]">
+          <QualityCombined />
+        </div>
+        <div className="min-w-[200px] w-100 h-[150px] flex-grow-[1]  ">
           <DataQualityLineChart color={colors.lineGraphStart} />
         </div>
         <div className="flex flex-row gap-[5px]">

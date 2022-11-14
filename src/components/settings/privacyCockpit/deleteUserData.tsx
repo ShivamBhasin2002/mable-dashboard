@@ -47,6 +47,7 @@ const DeleteUserData = () => {
       underlined={true}
       className="flex flex-col overflow-hidden"
       nextComponent={addEntry()}
+      height="100%"
     >
       <PopupExample
         open={display}

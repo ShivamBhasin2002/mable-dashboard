@@ -84,7 +84,7 @@ function toggleTable() {
 
   const categories = ['personalData', 'location', 'others'];
   return (
-    <div className="flex flex-col min-h-[200px] justify-between">
+    <div className="flex flex-col h-100 w-full ">
       {categories.map((category) => (
         <>
           <div className="category-header mt-1 ">
@@ -94,15 +94,15 @@ function toggleTable() {
             if (category === data.category)
               return (
                 <>
-                  <div className="dataTable  text-[#FFFFFF] grid grid-cols-9 gap-0">
-                    <div className="keyValue col-span-3 my-auto text-[.9rem] font-[600]">
+                  <div className="dataTable  text-[#FFFFFF] grid grid-cols-9 gap-0 flex-grow-[1]  ">
+                    <div className="keyValue col-span-3 my-auto text-[.9rem] font-[600] ">
                       {data.label}
                     </div>
                     {parsedSettings?.map(
                       (parsedData) =>
                         parsedData.label === data.value &&
                         parsedData.destination === perameterSettingsSocialType.DATABASE && (
-                          <div className="toggle1   col-span-2 m-auto">
+                          <div className="toggle1   col-span-2 m-auto ">
                             <ToggleBtn
                               value={parsedData.settingValue === 'true'}
                               setState={setUpdateValue}

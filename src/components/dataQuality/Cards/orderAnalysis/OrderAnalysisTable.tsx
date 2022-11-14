@@ -82,7 +82,7 @@ const OrderAnalysisTable = () => {
             <td>Tracking</td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>Facebook</td>
             <td></td>
           </tr>
           <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]2xl:whitespace-nowrap flex [&>*]:flex-1">

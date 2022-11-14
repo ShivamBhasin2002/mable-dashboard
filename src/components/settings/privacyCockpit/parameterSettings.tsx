@@ -9,7 +9,10 @@ function ParameterSettings() {
   );
 
   return (
-    <ComponentWrapper className="flex flex-col w-full h-full flex-grow">
+    <ComponentWrapper
+      className="flex flex-col w-full h-full justify-start flex-grow-[1]"
+      height="100%"
+    >
       <div className="header w-full grid grid-cols-9 gap-0  content-center">
         <div className="header_title   col-span-3  m-right my-auto">
           <p className="text-[1.3rem] font-[700] text-light"> Parameter Settings</p>
@@ -34,7 +37,7 @@ function ParameterSettings() {
         ))}
       </div>
       <Divider className="my-2" />
-      <div className="toggleArea">
+      <div className="toggleArea flex  h-90 w-full flex-grow-[1]">
         <ToggleTable />
       </div>
     </ComponentWrapper>
