@@ -1,6 +1,6 @@
 import AnalyticsTable from "@components/dataQuality/analytics/analyticsTable";
 import ColumnSelectorMenu from "@components/dataQuality/analytics/columnSelectorMenu";
-import { ComponentWrapper, Layout } from "@components/common";
+import { ComponentWrapper} from "@components/common";
 import { ExportToCsv } from "export-to-csv";
 import { GenerateCSV } from "@components/dataQuality/analytics/csvExport";
 import { useToast, Button } from "@chakra-ui/react";

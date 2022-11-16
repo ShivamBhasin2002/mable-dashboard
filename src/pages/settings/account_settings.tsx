@@ -1,4 +1,3 @@
-import { Layout } from '@components/common';
 import EmailChange from '@components/settings/accountSettings/email';
 import EventUsage from '@components/settings/accountSettings/eventUsage';
 import NameChange from '@components/settings/accountSettings/name_photo';
