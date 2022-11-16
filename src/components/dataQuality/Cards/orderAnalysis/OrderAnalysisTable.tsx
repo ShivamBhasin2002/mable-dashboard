@@ -9,7 +9,6 @@ import { noOrdersMessage } from 'utility/constants/strings';
 
 import { useSelector, useDispatch } from 'redux/store';
 import { orderAnalysisAsync } from 'redux/reducers/dataQuality/orderAnalysisSlice';
-import { useWindowSize } from 'utility/customHooks';
 import { order } from 'utility/typeDefinitions/reduxTypes';
 import moment from 'moment';
 import Pagination from 'components/dataQuality/General/Pagination';
@@ -22,7 +21,6 @@ const OrderAnalysisTable = () => {
   const [orders, setOrders] = useState<order[]>([]);
   const [sortOrder, setSortOrder] = useState<SORT_ORDER>(SORT_ORDER.INCREASING);
   const refresh = useSelector((state) => state.dates.refresh);
-  const { width: screenWidth } = useWindowSize();
 
   const dispatch = useDispatch();
 
@@ -32,7 +30,7 @@ const OrderAnalysisTable = () => {
 
   useEffect(() => {
     const height = document.getElementById('orderAnalysisTable')?.clientHeight;
-    if (height) setOrdersPerPage(Math.floor((height - 240) / 40));
+    if (height) setOrdersPerPage(Math.floor((height - 240) / 30));
   }, [tableData]);
 
   useEffect(() => {
@@ -67,14 +65,14 @@ const OrderAnalysisTable = () => {
   return (
     <ComponentWrapper
       id="orderAnalysisTable"
-      className="text-light min-h-[40px] !overflow-scroll hide_scrollbar flex-grow w-[100]"
+      className="text-light min-h-[427px] !overflow-scroll hide_scrollbar flex-grow w-[100]"
       // eslint-disable-next-line no-nested-ternary
       status={status}
     >
       <StatusSelectorMenu />
-      <table className="table-auto mt-[5px] w-full">
+      <table className="table-auto  w-full">
         <thead>
-          <tr className="[&>*]:py-[20px] flex [&>*]:flex-1 [&>*]:font-montserrat [&>*]:font-bold [&>*]:text-[20px]">
+          <tr className="[&>*]:py-1 flex [&>*]:flex-1 [&>*]:font-montserrat [&>*]:font-bold [&>*]:text-[20px]">
             <td>Shopify</td>
             <td></td>
             <td></td>
@@ -85,7 +83,7 @@ const OrderAnalysisTable = () => {
             <td>Facebook</td>
             <td></td>
           </tr>
-          <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]2xl:whitespace-nowrap flex [&>*]:flex-1">
+          <tr className="[&>*]:font-montserrat [&>*]:text-[.8rem] text-center [&>*]:font-extrabold [&>*]:py-[12px]  [&>*]2xl:whitespace-nowrap flex [&>*]:flex-1">
             <td className="bg-primary rounded-tl-[10px]">Order</td>
             <td className="bg-primary flex gap-6 items-center" onClick={changeSortOrder}>
               Date <Icon icon={sortOrder} className="cursor-pointer" />

@@ -119,9 +119,9 @@ const PrivacySettings = () => {
       </div>
       <Button
         disabled={disable}
-        className="w-[8rem] mt-5 ml-auto"
+        className="w-[8rem] mt-5 ml-auto bg-primary"
         type="submit"
-        colorScheme="blue"
+        variant="outline"
         onClick={() => {
           handleSave();
         }}

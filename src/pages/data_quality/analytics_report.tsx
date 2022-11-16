@@ -39,7 +39,7 @@ const Analytics = () => {
   };
 
   return (
-    <ComponentWrapper className="text-light ">
+    <ComponentWrapper className="text-light " height="100%">
       <div className=" flex flex-row justify-between align-middle">
         <ColumnSelectorMenu />
         <button

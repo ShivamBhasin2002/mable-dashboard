@@ -37,9 +37,9 @@ const DeleteUserData = () => {
 
   const addEntry = () => (
     <Button
-      className="ml-auto mb-2"
+      className="ml-auto mb-2 bg-primary"
       type="submit"
-      colorScheme="blue"
+      variant="outline"
       onClick={() => setDisplay('flex')}
     >
       Request Deletion
@@ -90,7 +90,7 @@ const DeleteUserData = () => {
             ))}
         </tbody>
       </table>
-      <div className="absolute bottom-0 left-0 w-full py-2">
+      <div className="absolute bottom-0 left-0 w-full py-2 text-white">
         <Pagination
           page={page}
           setPage={setPage}

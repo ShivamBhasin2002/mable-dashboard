@@ -40,10 +40,10 @@ const AnalyticsTable = () => {
   if (analyticData.status === 'success') {
     return (
       <>
-        <table className="w-full table-auto my-[10px]">
+        <table className="w-full table-auto my-[10px] h-80">
           <thead>
-            <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
-              <td className="bg-primary rounded-tl-[10px]">Day</td>
+            <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-2 [&>*]:px-[20px] [&>*]:whitespace-nowrap">
+              <td className="bg-primary rounded-tl-[10px] ">Day</td>
               {Object.entries(filterType).map((item, i) =>
                 selectedEvents[item[0] as keyof SelectedEventsType] ? (
                   <td key={i} className="bg-primary">
@@ -55,7 +55,7 @@ const AnalyticsTable = () => {
           </thead>
           <tbody className="last-of:rounded-b-[10px]">
             <tr
-              className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px]
+              className={`[&>*]:font-montserrat [&>*]:text-[.8rem] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px]
                 }`}
             >
               <td>
@@ -82,7 +82,7 @@ const AnalyticsTable = () => {
               .map((item, i) => (
                 <tr
                   key={i}
-                  className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[10px] [&>*]:px-[20px] ${
+                  className={`[&>*]:font-montserrat [&>*]:text-[.8rem] [&>*]:font-normal [&>*]:py-1 [&>*]:px-[20px] ${
                     !(i & 1) && 'bg-tableStrips/[0.5]'
                   }`}
                 >

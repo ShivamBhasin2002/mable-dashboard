@@ -3,7 +3,7 @@ import { PaginationProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const Pagination = ({ page, setPage, array, itemsPerPage }: PaginationProps) =>
   array && array.length > itemsPerPage ? (
-    <div className="flex justify-center items-center gap-4 mt-[30px]">
+    <div className="flex justify-center items-center gap-4 mt-[30px] text-light">
       <button
         className="w-[35px] h-[35px] rounded-[8px] bg-primary text-light disabled:text-light/20 disabled:bg-light/10 flex items-center justify-center"
         disabled={page === 1}

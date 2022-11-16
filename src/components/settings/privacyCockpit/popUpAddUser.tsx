@@ -76,7 +76,11 @@ const PopupExample = (props: PopUpProps) => {
             ></Checkbox>
           </div>
 
-          <Button className="w-[8rem] ml-auto" colorScheme="blue" onClick={() => handleSave()}>
+          <Button
+            className="w-[8rem] ml-auto bg-primary"
+            variant="outline"
+            onClick={() => handleSave()}
+          >
             {status === STATUS_TYPE.FETCHING && <Spinner />}
             Coinfirm
           </Button>

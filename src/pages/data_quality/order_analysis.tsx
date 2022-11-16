@@ -2,7 +2,7 @@ import OrderAnalysisTable from 'components/dataQuality/Cards/orderAnalysis/Order
 import OrderDataAnalysisCard from 'components/dataQuality/Cards/orderAnalysis/OrderDataAnalysisCard';
 
 const OrderAnalysis = () => (
-  <div className="flex flex-col h-full gap-4 w-full">
+  <div className="flex flex-col h-full gap-2 w-full">
     <OrderDataAnalysisCard />
     <OrderAnalysisTable />
   </div>

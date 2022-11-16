@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-
+import { BubbleDataPoint, Chart, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
@@ -8,14 +9,87 @@ import fonts from 'utility/fonts';
 import { AttributionEventBarChartProps } from 'utility/typeDefinitions/componentPropTypes';
 
 const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartProps) => {
+  const [barBagColor, setBarBagColor] = useState(colors.purple);
+  const [barSmBagColor, setBarSmBagColor] = useState(colors.lightPurple);
+
+  const onHover = (color: string) => {
+    setBarBagColor(colors.purpleOpaque);
+    setBarSmBagColor(colors.lightPurpleOpaque);
+
+    return color;
+  };
+
   const { byDate } = useSelector((state) => state.dataPerEvent);
+  const barPlugins = [
+    {
+      id: 'bar',
+      afterEvent(
+        chart: Chart<
+          keyof ChartTypeRegistry,
+          (number | ScatterDataPoint | BubbleDataPoint)[],
+          unknown
+        >,
+        args: {
+          event: {
+            type:
+              | 'resize'
+              | 'click'
+              | 'contextmenu'
+              | 'dblclick'
+              | 'keydown'
+              | 'keypress'
+              | 'keyup'
+              | 'mousedown'
+              | 'mouseenter'
+              | 'mousemove'
+              | 'mouseout'
+              | 'mouseup';
+          };
+        }
+      ) {
+        // const event = args.event;
+        if (args.event.type === 'mouseout') {
+          setBarBagColor(colors.purple);
+          setBarSmBagColor(colors.lightPurple);
+        }
+      }
+    },
+    {
+      id: 'lines',
+      afterDraw(
+        chart: Chart<
+          keyof ChartTypeRegistry,
+          (number | ScatterDataPoint | BubbleDataPoint)[],
+          unknown
+        >
+      ) {
+        if (chart.tooltip?.getActiveElements().length) {
+          const { x } = chart.tooltip.getActiveElements()[0].element;
+          const { y } = chart.tooltip.getActiveElements()[0].element;
+          const yAxis = chart.scales.y;
+          const { ctx } = chart;
+          ctx.save();
+          ctx.beginPath();
+          ctx.setLineDash([10, 15]);
+          ctx.moveTo(x, y);
+          ctx.lineTo(x, yAxis.top);
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = `${colors.lines}40`;
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+    }
+  ];
+
   const barOptions = {
     responsive: true,
     maintainAspectRatio: false,
     barPercentage: 0.7,
+
     elements: {
       bar: {
-        borderRadius: 0
+        borderRadius: 5
       }
     },
     scales: {
@@ -56,9 +130,11 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
       {
         label: 'Attribution Parameters',
         data: byDate.map((data) => data.attributionParamsQuality),
-        backgroundColor: colors.purple,
-        borderRadius: 20,
+        backgroundColor: barBagColor,
+        hoverBackgroundColor: () => onHover(colors.purple),
+        borderRadius: 5,
         borderSkipped: false,
+
         datalabels: {
           display: false
         }
@@ -66,8 +142,9 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
       {
         label: 'Event Parameters',
         data: byDate.map((data) => data.eventsQuality),
-        backgroundColor: colors.lightPurple,
-        borderRadius: 20,
+        backgroundColor: barSmBagColor,
+        hoverBackgroundColor: () => onHover(colors.lightPurple),
+        borderRadius: 5,
         borderSkipped: false,
         datalabels: {
           display: false
@@ -75,7 +152,9 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
       }
     ]
   };
-  return <Bar data={barData} width={width} height={height} options={barOptions} />;
+  return (
+    <Bar data={barData} width={width} height={height} plugins={barPlugins} options={barOptions} />
+  );
 };
 
 export default AttributionEventBarChart;
