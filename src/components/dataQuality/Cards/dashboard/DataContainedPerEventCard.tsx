@@ -19,8 +19,7 @@ const DataContainedPerEventCard = () => {
   return (
     <ComponentWrapper
       title="Data Contained Per Event"
-      className="min-h-[220px] flex-grow-[1] flex-shrink-[1] max-h-[400px]"
-      height={220}
+      className="h-inherit w-full flex-grow-[1] flex-shrink-[1] max-h-[400px]"
       status={status}
       nextComponent={
         <div className="flex-grow px-4 flex justify-between gap-4">
@@ -34,7 +33,7 @@ const DataContainedPerEventCard = () => {
       }
     >
       <div className="flex flex-row  justify-evenly gap-[20px] h-full">
-        <div className="min-w-[300px] h-[100%] flex-grow-[1]">
+        <div className="w-[300px] h-[100%] flex-grow-[1]">
           <AttributionEventBarChart height={50} />
         </div>
         <ParameterMetrics flexDirection="col" />

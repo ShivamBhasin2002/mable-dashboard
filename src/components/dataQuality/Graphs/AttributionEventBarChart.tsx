@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { BubbleDataPoint, Chart, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
+import { BubbleDataPoint, Chart, Tooltip, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
