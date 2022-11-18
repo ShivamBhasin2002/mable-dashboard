@@ -12,17 +12,21 @@ import { loginAsync, clearState } from '@redux/reducers/authSlice';
 import { routes, STATUS_TYPE } from '@utility/constants/enums';
 import Head from 'next/head';
 
-const Login: NextPage = () => {
+const Login: NextPage = () =>
+{
   const disable = true;
   const toast = useToast();
   const router = useRouter();
   const dispatch = useDispatch();
   const { status, errorMsg, email } = useSelector((state) => state.user);
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(clearState());
   }, []);
-  useEffect(() => {
-    if (status === STATUS_TYPE.ERROR) {
+  useEffect(() =>
+  {
+    if (status === STATUS_TYPE.ERROR)
+    {
       toast({
         title: errorMsg,
         status: 'error',
@@ -31,10 +35,12 @@ const Login: NextPage = () => {
       });
       dispatch(clearState());
     }
-    if (status === STATUS_TYPE.SUCCESS) {
+    if (status === STATUS_TYPE.SUCCESS)
+    {
       dispatch(clearState());
-      router.push(routes.dashboard, undefined, { shallow: true });
+      router.push(routes.dashboard, undefined, { shallow: false });
     }
+    dispatch(clearState());
   }, [status]);
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
@@ -64,7 +70,8 @@ const Login: NextPage = () => {
             confirmPassword: Yup.string(),
             rememberMe: Yup.boolean()
           })}
-          onSubmit={(values) => {
+          onSubmit={(values) =>
+          {
             dispatch(loginAsync(values));
           }}
         >

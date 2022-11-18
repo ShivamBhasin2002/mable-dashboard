@@ -5,7 +5,6 @@ import { thunkOptions, userStateType } from '@utility/typeDefinitions/reduxTypes
 import { userInitialState } from '@utility/constants/initialStates';
 
 import { STATUS_TYPE } from '@utility/constants/enums';
-import { reloadScreen } from '@utility/functions/helper';
 
 export const loginAsync = createAsyncThunk<
   { token: string; email: string },
@@ -72,11 +71,13 @@ export const userSlice = createSlice({
   initialState: userInitialState,
   reducers: {
     logout: () => {
-      localStorage.removeItem('token');
-      reloadScreen();
+      localStorage.clear();
+
+      // localStorage.removeItem('token');
+      // reloadScreen();
     },
 
-    clearState: (state) => ({...state, status: STATUS_TYPE.IDLE }),
+    clearState: (state) => ({ ...state, status: STATUS_TYPE.IDLE }),
 
     updateUserEmailState: (state, { payload }: { payload: string }) => ({
       ...state,
@@ -155,5 +156,6 @@ export const userSlice = createSlice({
   }
 });
 
-export const { logout, clearState, updateUserEmailState, updateUserNameState, setToken } = userSlice.actions;
+export const { logout, clearState, updateUserEmailState, updateUserNameState, setToken } =
+  userSlice.actions;
 export default userSlice.reducer;

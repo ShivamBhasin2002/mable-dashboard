@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import Icon from "@assets/icons";
 
 import { useSelector, useDispatch } from "@redux/store";
-import { logout } from "@redux/reducers/authSlice";
+import { logout, clearState } from "@redux/reducers/authSlice";
 import { setScreen } from "@redux/reducers/screenSlice";
 import { screenToURL } from "@utility/functions/mappingFunctions";
 import { useWindowSize } from "@utility/customHooks";
@@ -10,7 +10,8 @@ import { screenType } from "@utility/constants/enums";
 import { mableAiLandingPage } from "@utility/constants/strings";
 import SideBarItem from "./items/generalSidebarItemCard";
 
-const SideBar = () => {
+const SideBar = () =>
+{
   const router = useRouter();
   const dispatch = useDispatch();
   const { firstName, lastName } = useSelector((state) => state.user);
@@ -55,7 +56,8 @@ const SideBar = () => {
                   <SideBarItem
                     {...item}
                     key={item.icon}
-                    clickHandle={() => {
+                    clickHandle={() =>
+                    {
                       const path = screenToURL(item.title);
                       if (activeScreen !== item.title && path) router.push(path, undefined, { shallow: true });
                       dispatch(setScreen(item.title));
@@ -86,9 +88,12 @@ const SideBar = () => {
         </div>
         <div
           className="flex text-[14px] text-secondary font-montserrat font-bold items-center cursor-pointer"
-          onClick={() => {
-            dispatch(logout());
-            router.push("/", undefined, { shallow: true });
+          onClick={() =>
+          {
+            dispatch(clearState());
+            dispatch(logout())
+            router.push("/", undefined, { shallow: false })
+
           }}
         >
           <span className="mr-[10px] ml-[15px] lg:ml-0 text-2xl rounded-full hover:bg-secondary/20 p-2">
