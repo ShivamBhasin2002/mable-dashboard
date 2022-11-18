@@ -7,7 +7,7 @@ const OrderComposition = () => {
     (state) => state.dataQuality
   );
   return (
-    <div className="h-[90px] w-[230px] flex justify-between items-center bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom p-2 rounded-[16px] drop-shadow-xl">
+    <div className="h-[90px] w-[230px] flex justify-between items-center bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom p-2 rounded-[16px] drop-shadow-xl ">
       <span>
         <div className=" text-[1.3rem] leading-[34px] font-lato text-center text-light">
           {numberReducer(FACEBOOK_SUCCESS_DELIVERED_ORDERS)}

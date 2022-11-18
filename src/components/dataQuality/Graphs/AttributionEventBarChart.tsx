@@ -1,12 +1,27 @@
 import { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { BubbleDataPoint, Chart, Tooltip, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
+import {
+  BubbleDataPoint,
+  Chart,
+  Tooltip,
+  ChartTypeRegistry,
+  ScatterDataPoint,
+  TooltipPositionerFunction,
+  ChartType
+} from 'chart.js';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
 import { totalAttributions } from 'utility/constants/numbers';
 import fonts from 'utility/fonts';
 import { AttributionEventBarChartProps } from 'utility/typeDefinitions/componentPropTypes';
+
+declare module 'chart.js' {
+  // Extend tooltip positioner map
+  interface TooltipPositionerMap {
+    customPos: TooltipPositionerFunction<ChartType>;
+  }
+}
 
 const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartProps) => {
   const [barBagColor, setBarBagColor] = useState(colors.purple);
@@ -20,6 +35,17 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
   };
 
   const { byDate } = useSelector((state) => state.dataPerEvent);
+  console.log(Tooltip);
+  Tooltip.positioners.customPos = function (elements, position) {
+    if (!elements.length) {
+      return false;
+    }
+    return {
+      x: position.x,
+      y: position.y - 30
+    };
+  };
+
   const barPlugins = [
     {
       id: 'bar',
@@ -82,11 +108,16 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
     }
   ];
 
-  const barOptions = {
+  const barOptions: any = {
     responsive: true,
     maintainAspectRatio: false,
     barPercentage: 0.7,
-
+    plugins: {
+      tooltip: {
+        yAlign: 'bottom',
+        position: 'customPos'
+      }
+    },
     elements: {
       bar: {
         borderRadius: 5
@@ -134,7 +165,6 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
         hoverBackgroundColor: () => onHover(colors.purple),
         borderRadius: 5,
         borderSkipped: false,
-
         datalabels: {
           display: false
         }
@@ -152,6 +182,7 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
       }
     ]
   };
+
   return (
     <Bar data={barData} width={width} height={height} plugins={barPlugins} options={barOptions} />
   );
