@@ -58,7 +58,7 @@ const Screen = () => {
   return (
     <div className="bg-background flex max-w-screen h-screen">
        <Head>
-        <title>{screen} | Mable Ai</title>
+        <title>{`${screen} | Mable Ai`}</title>
         <meta name="description" content="Mable is a new kind of tracking tool that, with the help of a unique & innovative architecture, allows you to reliably track 100% of the conversions in your store again." />
         <link rel="icon" href="/mable.svg" />
       </Head>
@@ -74,7 +74,7 @@ const Screen = () => {
         <div className="flex-grow p-[30px] flex flex-col">
           <Header />
           {status === STATUS_TYPE.SUCCESS ? (
-            <main className="flex-grow h-max">
+            <main className="flex-grow overflow-y-scroll">
               <GetScreen screen={screen} />
             </main>
           ) : (
