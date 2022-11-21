@@ -31,7 +31,7 @@ const Screen = () => {
   useMemo(() => {
     if (status === STATUS_TYPE.ERROR) {
       dispatch(clearState());
-      router.push(routes.login, undefined, { shallow: true });
+      router.push('/', undefined, { shallow: true });
     }
     if (status === STATUS_TYPE.SUCCESS) {
       dispatch(shopAsync());

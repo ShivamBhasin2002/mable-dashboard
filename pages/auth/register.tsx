@@ -39,7 +39,7 @@ const Register = () => {
         position: 'top-right'
       });
       dispatch(clearState());
-      router.push(routes.login, undefined, { shallow: true });
+      router.push('/', undefined, { shallow: true });
     }
   }, [status]);
   return (
