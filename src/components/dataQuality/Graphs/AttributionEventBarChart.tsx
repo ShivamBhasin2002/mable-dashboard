@@ -35,7 +35,6 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
   };
 
   const { byDate } = useSelector((state) => state.dataPerEvent);
-  console.log(Tooltip);
   Tooltip.positioners.customPos = function (elements, position) {
     if (!elements.length) {
       return false;

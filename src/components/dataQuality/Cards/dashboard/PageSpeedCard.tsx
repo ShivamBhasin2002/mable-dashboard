@@ -52,21 +52,23 @@ const PageSpeedCard = () => {
         <div className="border-r-2 border-lines/[0.15]  flex-grow  mx-[-5px]">
           <div className=" text-[1.2rem]  font-lato text-center text-light ">
             {dateTimeReducer(avgLoadingTimeMableScript).value}
-            <span className="text-[1rem]">{dateTimeReducer(avgLoadingTimeMableScript).unit}</span>
+            <span className="text-[1.25rem]">
+              {dateTimeReducer(avgLoadingTimeMableScript).unit}
+            </span>
           </div>
           <div className="text-primary text-center text-[0.8rem]">{loadingTimeLabel('Mable')}</div>
         </div>
         <div className="border-r-2 border-lines/[0.15]  flex-grow">
           <div className=" text-[1.2rem]  font-lato text-center text-light ">
             {dateTimeReducer(avgLoadingTimePage).value}
-            <span className="text-[1rem]">{dateTimeReducer(avgLoadingTimePage).unit}</span>
+            <span className="text-[1.25rem]">{dateTimeReducer(avgLoadingTimePage).unit}</span>
           </div>
           <div className="text-primary text-center text-[0.8rem] ">{loadingTimeLabel('Page')}</div>
         </div>
         <div className=" flex-grow">
           <div className=" text-[1.2rem]  font-lato text-center text-light ">
             {Math.round(avgContributionTimeMableScript * 100) / 100}
-            <span className="text-[1rem]">%</span>
+            <span className="text-[1.25rem]">%</span>
           </div>
           <div className="text-primary text-center text-[0.6rem]">{mableShareSpeedLabel}</div>
         </div>
