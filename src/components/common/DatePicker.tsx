@@ -28,7 +28,7 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
   }, [close, isOpen]);
   return (
     <ComponentWrapper width={1000} className="!rounded-[10px] shadow-xl shadow-background">
-      <div className="flex flex-row justify-between h-full gap-4">
+      <div className="flex flex-col lg:flex-row justify-between h-full gap-4">
         <div className="flex-grow flex flex-col justify-between gap-4">
           <h5 className="flex [&>*]:flex-1 font-lato font-bold text-primary mb-[4px] ">
             <div>Start Date</div>
@@ -60,7 +60,7 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
             ]}
             direction="horizontal"
           />
-          <div className="flex justify-end gap-4">
+          <div className="flex justify-start lg:justify-end gap-4">
             <button
               className="px-[56px] py-[13px] rounded-[8px] font-lato text-[16px] font-bold bg-secondary text-light"
               onClick={() => {

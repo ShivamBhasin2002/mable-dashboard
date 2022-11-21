@@ -20,7 +20,7 @@ const EventsPerDayCard = () => {
     <ComponentWrapper
       title="Events Per Day"
       status={status}
-      className="h-inherit w-full flex-grow-[1] flex-shrink-[1] max-h-[400px]"
+      className="overflow-hidden flex-grow-[1] flex-shrink-[1] "
       nextComponent={
         <SelectorMenu
           active={eventSelected}
@@ -28,7 +28,7 @@ const EventsPerDayCard = () => {
         />
       }
     >
-      <div className=" h-[100%] flex-grow-[1]">
+      <div className="w-inherit min-w-[12.5rem] h-full flex-grow-[1]">
         <EventsPerDayLineChart />
       </div>
     </ComponentWrapper>
