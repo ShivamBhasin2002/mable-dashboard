@@ -42,7 +42,7 @@ const OrderDataAnalysisCard = () => {
         <div className="min-w-[200px] max-w-[300px] flex-grow-[1] ">
           <QualityCombined />
         </div>
-        <div className="min-w-[200px] max-w-[500px] h-[120px] flex-grow-[2] ">
+        <div className="min-w-[200px] h-[120px] flex-grow-[1] ">
           <DataQualityLineChart color={colors.lineGraphStart} />
         </div>
         <div className="flex flex-row gap-[5px]">
