@@ -19,7 +19,7 @@ const EventsCard = () => {
   return (
     <ComponentWrapper
       title="Events"
-      className="flex-grow-[0.5] lg:pb-[20px] h-min-[114px]  h-max-[300px]"
+      className="flex-grow-[1] lg:pb-[20px] h-min-[114px]  h-max-[126px]"
       status={[eventsStatus, eventsDataStatus]}
     >
       <div className="flex-grow flex flex-row justify-center items-center h-full ">

@@ -85,7 +85,10 @@ const OrderAnalysisTable = () => {
           </tr>
           <tr className="[&>*]:font-montserrat [&>*]:text-[.8rem] text-center [&>*]:font-extrabold [&>*]:py-[12px]  [&>*]2xl:whitespace-nowrap flex [&>*]:flex-1">
             <td className="bg-primary rounded-tl-[10px]">Order</td>
-            <td className="bg-primary flex gap-6 items-center" onClick={changeSortOrder}>
+            <td
+              className="bg-primary flex gap-6 items-center justify-center"
+              onClick={changeSortOrder}
+            >
               Date <Icon icon={sortOrder} className="cursor-pointer" />
             </td>
             <td className="bg-primary">Customer</td>
@@ -107,7 +110,7 @@ const OrderAnalysisTable = () => {
               <td colSpan={9}>
                 <div className="h-[150px] rounded-b-[10px] bg-tableStrips/50 flex items-center justify-center gap-6">
                   <Icon icon="noOrders" className="text-6xl text-dark/25 inline-block" />
-                  <span className="font-montserrat font-bold text-4xl text-dark/25">
+                  <span className="font-montserrat font-bold text-4xl text-dark/25 text-center">
                     {noOrdersMessage(statusSelected)}
                   </span>
                 </div>

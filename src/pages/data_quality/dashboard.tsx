@@ -13,7 +13,7 @@ const Dashboard = () => (
     <div className="flex w-full gap-3 justify-between flex-col lg:flex-row flex-grow-[1] ">
       <div className="flex flex-col justify-between gap-3 w-full lg:w-60 min-w-[6.25rem] flex-grow-[1] flex-shrink-[1]">
         <DataQualityCard />
-        <div className="flex flex-row flex-wrap xl:flex-nowrap gap-2 !flex-grow-0">
+        <div className="flex flex-col lg:flex-row flex-wrap xl:flex-nowrap gap-2 flex-grow-[.3]">
           <PageSpeedCard />
           <EventsCard />
         </div>

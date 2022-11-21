@@ -13,14 +13,14 @@ const OrderDetails = ({ data, idx }: { idx: number; data: order }) => {
   );
   return (
     <tr
-      className={`[&>*]:font-montserrat flex h-[40px] [&>*]:flex-1 [&>*]:text-[14px] [&>*]:whitespace-nowrap [&>*]:font-normal [&>*]:py-[10px] [&>*]:px-[20px] [&>*]:truncate ${
+      className={`[&>*]:font-montserrat  text-center flex h-[40px] [&>*]:flex-1 [&>*]:text-[14px] [&>*]:whitespace-nowrap [&>*]:font-normal [&>*]:py-[10px] [&>*]:px-[20px] [&>*]:truncate ${
         !(idx & 1) && 'bg-tableStrips/[0.5]'
       }`}
     >
       <td>{data.order_id ?? '-'}</td>
       <td>{data.created_at ? moment(data.created_at).format('HH:mm - DD.MM.YY') : '-'}</td>
-      <td>{data.customer_name ?? '-'}</td>
-      <td>
+      <td className="text-left">{data.customer_name ?? '-'}</td>
+      <td className="w-auto">
         {data.total_conversion_value ? <>{data.total_conversion_value.toFixed(2)} &euro;</> : '-'}
       </td>
       <td>
@@ -34,7 +34,7 @@ const OrderDetails = ({ data, idx }: { idx: number; data: order }) => {
         {data.event_params_present ?? 0}/{totalEvents}
       </td>
       <td>
-        {data.attribution_params_present ?? 0}/{totalAttributions}
+        {data.attribution_params_present ?? 0}({totalAttributions})
       </td>
       <td>
         {data.delivery_time_difference

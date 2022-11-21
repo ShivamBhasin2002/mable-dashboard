@@ -31,7 +31,7 @@ const PageSpeedCard = () => {
   return (
     <ComponentWrapper
       title="Page Speed"
-      className="flex-grow-[0.5] h-min-[114px] h-max-[300px]"
+      className="flex-grow-[1] h-min-[114px] h-max-[126px]"
       status={status}
       width={376}
     >
@@ -48,7 +48,7 @@ const PageSpeedCard = () => {
           }
         />
       )}
-      <div className="flex flex-row justify-center items-center">
+      <div className="flex flex-row justify-center items-center h-full">
         <div className="border-r-2 border-lines/[0.15]  flex-grow  mx-[-5px]">
           <div className=" text-[1.2rem]  font-lato text-center text-light ">
             {dateTimeReducer(avgLoadingTimeMableScript).value}
