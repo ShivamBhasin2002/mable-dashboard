@@ -83,7 +83,7 @@ const QualityCombined = () => {
 
   return (
     <div className="flex gap-2 justify-start items-center text-primary  flex-grow-[1] flex-shrink-[2.5] h-[150px] ">
-      <div className="flex-grow-[1] max-w-[2rem] lg:max-w-[5rem] 2xl:max-w-[6rem] hd:max-w-[7rem]">
+      <div className="flex-grow-[1] max-w-[4rem] lg:max-w-[5rem] 2xl:max-w-[6rem] hd:max-w-[7rem]">
         <Doughnut
           id="doughnut"
           data={doughnutData}
