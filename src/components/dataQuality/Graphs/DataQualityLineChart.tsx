@@ -59,7 +59,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
         scales: {
           y: {
             position: 'right',
-            suggestedMax: 125,
+            suggestedMax: 100,
             suggestedMin: 0,
             beginAtZero: true,
             ticks: {

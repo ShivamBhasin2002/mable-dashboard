@@ -33,7 +33,6 @@ const PageSpeedCard = () => {
       title="Page Speed"
       className="flex-grow-[1] h-min-[114px] h-max-[126px]"
       status={status}
-      width={376}
     >
       {!scriptTagNotFound && (
         <Error
