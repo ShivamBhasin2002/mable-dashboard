@@ -1,25 +1,28 @@
-import { ComponentWrapper } from "@components/common";
-import { Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
-import colors from "@utility/colors";
-import Icon from "@assets/icons";
-import { tiers } from "@utility/constants/enums";
-import { useState } from "react";
-import { useDispatch, useSelector } from "@redux/store";
-import { TierRange } from "@redux/reducers/eventUsageSlice";
-import { daysInThisMonth } from "@utility/functions/helper";
+import { ComponentWrapper } from '@components/common';
+import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import colors from '@utility/colors';
+import Icon from '@assets/icons';
+import { tiers } from '@utility/constants/enums';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from '@redux/store';
+import { TierRange } from '@redux/reducers/eventUsageSlice';
+import { daysInThisMonth } from '@utility/functions/helper';
 
 const EventUsage = () => {
   const [selectedTier, setTier] = useState(tiers.tierOne);
   const dispatch = useDispatch();
   const { range } = useSelector((state) => state.eventUsage.selectedTier);
   const todayDate = new Date();
-  const { current_month: currentMonth } = useSelector(
-    (state) => state.eventUsage.monthEvents
-  );
+
+  // useEffect(() => {
+  //   console.log(range);
+  // }, [range]);
+
+  console.log(Object.entries(tiers));
+  const { current_month: currentMonth } = useSelector((state) => state.eventUsage.monthEvents);
 
   const estimatedEvent =
-    (currentMonth / todayDate.getDate()) * daysInThisMonth() -
-    todayDate.getDate();
+    (currentMonth / todayDate.getDate()) * daysInThisMonth() - todayDate.getDate();
 
   const dropdown = () => (
     <Menu gutter={0} isLazy>
@@ -34,11 +37,11 @@ const EventUsage = () => {
         fontSize="15px"
         textAlign="left"
         outline="none"
-        _hover={{ backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: 'transparent' }}
         _active={{
-          backgroundColor: "transparent",
+          backgroundColor: 'transparent',
           borderBottomRadius: 0,
-          borderBottom: 0,
+          borderBottom: 0
         }}
       >
         {selectedTier}
@@ -60,7 +63,7 @@ const EventUsage = () => {
             key={item[0]}
             onClick={() => {
               setTier(item[1]);
-              dispatch(TierRange(item[0]));
+              dispatch(TierRange(item[1]));
             }}
           >
             {item[1]}
@@ -91,13 +94,13 @@ const EventUsage = () => {
             <div
               className={`h-full bg-primary transition-[width] ease-in-out duration-1000 rounded-full`}
               style={{
-                width: `${(currentMonth / range) * 100}%`,
+                width: `${(currentMonth / range) * 100}%`
               }}
             ></div>
             <div
               className={`h-full bg-green-800 transition-[width] ease-in-out duration-1000 rounded-full absolute top-0`}
               style={{
-                width: `${(estimatedEvent / range) * 100}%`,
+                width: `${(estimatedEvent / range) * 100}%`
               }}
             ></div>
           </>
@@ -106,13 +109,13 @@ const EventUsage = () => {
             <div
               className={`h-full bg-green-800 transition-[width] ease-in-out duration-1000 rounded-full`}
               style={{
-                width: `${(estimatedEvent / range) * 100}%`,
+                width: `${(estimatedEvent / range) * 100}%`
               }}
             ></div>
             <div
               className={`h-full bg-primary transition-[width] ease-in-out duration-1000 rounded-full absolute top-0`}
               style={{
-                width: `${(currentMonth / range) * 100}%`,
+                width: `${(currentMonth / range) * 100}%`
               }}
             ></div>
           </>
