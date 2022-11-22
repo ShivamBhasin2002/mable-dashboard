@@ -92,8 +92,7 @@ const SideBar = () =>
           {
             dispatch(clearState());
             dispatch(logout())
-            router.push("/", undefined, { shallow: false })
-
+            router.push("/auth/login", undefined, { shallow: true });
           }}
         >
           <span className="mr-[10px] ml-[15px] lg:ml-0 text-2xl rounded-full hover:bg-secondary/20 p-2">

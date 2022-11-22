@@ -25,6 +25,7 @@ const Login: NextPage = () =>
   }, []);
   useEffect(() =>
   {
+    console.log("status,-> spinner ",status);
     if (status === STATUS_TYPE.ERROR)
     {
       toast({

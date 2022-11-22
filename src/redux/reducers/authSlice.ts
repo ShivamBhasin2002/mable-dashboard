@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import { useRouter } from "next/router";
 import { thunkOptions, userStateType } from '@utility/typeDefinitions/reduxTypes';
 import { userInitialState } from '@utility/constants/initialStates';
 
 import { STATUS_TYPE } from '@utility/constants/enums';
+// import { reloadScreen } from '@utility/functions/helper';
 
 export const loginAsync = createAsyncThunk<
   { token: string; email: string },
@@ -72,9 +73,6 @@ export const userSlice = createSlice({
   reducers: {
     logout: () => {
       localStorage.clear();
-
-      // localStorage.removeItem('token');
-      // reloadScreen();
     },
 
     clearState: (state) => ({ ...state, status: STATUS_TYPE.IDLE }),
