@@ -85,9 +85,9 @@ function toggleTable() {
   const categories = ['personalData', 'location', 'others'];
   return (
     <div className="flex flex-col h-100 w-full ">
-      {categories.map((category) => (
+      {categories.map((category, catIdx) => (
         <>
-          <div className="category-header mt-1 ">
+          <div className={`${catIdx === 0 ? 'category-header mt-0' : 'category-header mt-2'}`}>
             <p className="text-primary opacity-70 text-[14px]">{camelCaseToTitleCase(category)} </p>
           </div>
           {dataCollectionSettings.map((data) => {
