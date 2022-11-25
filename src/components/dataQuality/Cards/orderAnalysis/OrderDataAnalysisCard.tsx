@@ -38,11 +38,11 @@ const OrderDataAnalysisCard = () => {
       width="100%"
       height={160}
     >
-      <div className="flex flex-row  items-center justify-evenly w-full flex-grow-[1] h-full">
-        <div className="min-w-[200px] max-w-[300px] flex-grow-[1] ">
+      <div className="flex flex-row  items-center justify-evenly w-full flex-grow-[1] h-full gap-8">
+        <div className="min-w-[12.5rem] max-w-[18.75rem] flex-grow-[1] ">
           <QualityCombined />
         </div>
-        <div className="min-w-[200px] h-[120px] flex-grow-[1] ">
+        <div className="min-w-[6.25rem]  h-[7.5rem] flex-grow-[1] ">
           <DataQualityLineChart color={colors.lineGraphStart} />
         </div>
         <div className="flex flex-row gap-[5px]">

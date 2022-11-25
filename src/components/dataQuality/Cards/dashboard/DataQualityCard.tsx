@@ -22,7 +22,7 @@ const DataQualityCard = () => {
       nextComponent={<ViewFullReport screen={screenType.orderAnalysis} />}
       status={status}
       height={220}
-      className="overflow-hidden min-h-[220px] max-h-[300px] flex-grow-[1] flex-shrink-[1]"
+      className="overflow-hidden min-h-[220px] max-h-[700px] flex-grow-[1] flex-shrink-[1]"
     >
       <div className="flex flex-col lg:flex-row justify-start items-center h-full gap-2 flex-grow">
         <div className="flex flex-row  lg:flex-col gap-2 justify-around items-center  lg:h-full w-full lg:w-auto lg:items-start">

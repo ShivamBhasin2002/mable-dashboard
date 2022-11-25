@@ -30,7 +30,7 @@ const OrderAnalysisTable = () => {
 
   useEffect(() => {
     const height = document.getElementById('orderAnalysisTable')?.clientHeight;
-    if (height) setOrdersPerPage(Math.floor((height - 240) / 30));
+    if (height) setOrdersPerPage(Math.floor((height - 230) / 35));
   }, [tableData]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const OrderAnalysisTable = () => {
   return (
     <ComponentWrapper
       id="orderAnalysisTable"
-      className="text-light min-h-[427px] !overflow-scroll hide_scrollbar flex-grow w-[100]"
+      className="text-light min-h-[350px] !overflow-scroll hide_scrollbar flex-grow w-[100] flex flex-col justify-between"
       // eslint-disable-next-line no-nested-ternary
       status={status}
     >

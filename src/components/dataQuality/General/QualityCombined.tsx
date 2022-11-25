@@ -26,10 +26,6 @@ const QualityCombined = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(windowSize);
-  }, [windowSize]);
-
   const { TOTAL_DATA_QUALITY_FACEBOOK } = useSelector((state) => state.dataQuality);
   const doughnutData = {
     datasets: [
@@ -55,7 +51,7 @@ const QualityCombined = () => {
         borderColor: 'white'
       }
     },
-    cutout: windowSize.innerWidth / 53,
+    cutout: '75%',
     rotation: 10 * Math.PI,
     borderRadius: [TOTAL_DATA_QUALITY_FACEBOOK === 100 ? 0 : 20, 0],
     value: TOTAL_DATA_QUALITY_FACEBOOK
@@ -82,8 +78,8 @@ const QualityCombined = () => {
   ];
 
   return (
-    <div className="flex gap-2 justify-start items-center text-primary  flex-grow-[1] flex-shrink-[2.5] h-[150px] ">
-      <div className="flex-grow-[1] max-w-[4rem] lg:max-w-[5rem] 2xl:max-w-[6rem] hd:max-w-[7rem]">
+    <div className="flex gap-2 justify-start items-center text-primary  flex-grow-[1] flex-shrink-[2.5] h-inherit ">
+      <div className="flex-grow-[1] max-w-[4rem] lg:max-w-[5rem] 2xl:max-w-[6rem] hd:max-w-[6rem] mt-2">
         <Doughnut
           id="doughnut"
           data={doughnutData}

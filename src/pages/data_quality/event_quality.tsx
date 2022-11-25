@@ -7,7 +7,7 @@ import {
 const EventQuality = () => (
   <div className="flex flex-col h-full  justify-evenly gap-2">
     <EventQualityCard />
-    <div className="flex gap-2 flex-wrap h-full">
+    <div className="flex gap-2 h-full">
       <AttributionParametersCard />
       <EventParametersCard />
     </div>
