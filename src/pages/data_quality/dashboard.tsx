@@ -23,7 +23,7 @@ const Dashboard = () => (
         <EventsDataBarChart />
       </div>
     </div>
-    <div className="flex flex-col lg:flex-row gap-3  min-h-[13.75rem]  flex-grow-[1] h-[13.75rem] max-h-[400px]">
+    <div className="flex flex-col lg:flex-row gap-3  min-h-[13.75rem]  flex-grow-[1] flex-shrink-[1] max-h-[300px] ">
       <div className="flex w-100 lg:w-60  h-full flex-grow-[1]">
         <DataContainedPerEventCard />
       </div>

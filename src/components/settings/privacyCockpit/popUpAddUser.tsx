@@ -77,8 +77,9 @@ const PopupExample = (props: PopUpProps) => {
           </div>
 
           <Button
-            className="w-[8rem] ml-auto bg-primary"
-            variant="outline"
+            className="w-[8rem] ml-auto"
+            variant="solid"
+            bg="#4FB7DD"
             onClick={() => handleSave()}
           >
             {status === STATUS_TYPE.FETCHING && <Spinner />}

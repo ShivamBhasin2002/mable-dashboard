@@ -17,7 +17,7 @@ const AttributionParametersCard = () => {
       className="flex-grow-[2] w-[60%]"
       status={status}
     >
-      <div className="flex flex-wrap justify-between gap-[15px] m-auto ">
+      <div className="flex   flex-wrap justify-between gap-1 h-full w-full">
         <ParameterStat name={'User IP'} value={AttributionParameters?.total_count_user_id ?? 0} />
         <ParameterStat
           name={'User Agent'}
@@ -43,7 +43,6 @@ const AttributionParametersCard = () => {
           name={'Date Of Birth'}
           value={AttributionParameters?.total_count_customer_data_date_of_birth ?? 0}
         />
-
         <ParameterStat
           name={'State'}
           value={AttributionParameters?.total_count_location_state ?? 0}
