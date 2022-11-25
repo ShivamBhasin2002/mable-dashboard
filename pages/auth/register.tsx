@@ -10,7 +10,7 @@ import { TextField, CheckBox } from '@components/form';
 
 import { useDispatch, useSelector } from '@redux/store';
 import { registerAsync, clearState } from '@redux/reducers/authSlice';
-import { routes, STATUS_TYPE } from '@utility/constants/enums';
+import { STATUS_TYPE } from '@utility/constants/enums';
 import Head from 'next/head';
 
 const Register = () => {

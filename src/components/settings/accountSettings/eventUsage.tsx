@@ -3,7 +3,7 @@ import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import colors from '@utility/colors';
 import Icon from '@assets/icons';
 import { tiers } from '@utility/constants/enums';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from '@redux/store';
 import { TierRange } from '@redux/reducers/eventUsageSlice';
 import { daysInThisMonth } from '@utility/functions/helper';
@@ -14,11 +14,6 @@ const EventUsage = () => {
   const { range } = useSelector((state) => state.eventUsage.selectedTier);
   const todayDate = new Date();
 
-  // useEffect(() => {
-  //   console.log(range);
-  // }, [range]);
-
-  console.log(Object.entries(tiers));
   const { current_month: currentMonth } = useSelector((state) => state.eventUsage.monthEvents);
 
   const estimatedEvent =

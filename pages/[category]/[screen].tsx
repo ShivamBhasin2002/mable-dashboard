@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useToast } from '@chakra-ui/react';
 
 import { GetScreen, Error, Loading, Header } from '@components/common';
-import { routes, screenType, STATUS_TYPE } from '@utility/constants/enums';
+import { screenType, STATUS_TYPE } from '@utility/constants/enums';
 import { URLtoScreen } from '@utility/functions/mappingFunctions';
 import { useDispatch, useSelector } from '@redux/store';
 import { clearState, isAuthenticatedAsync, setToken } from '@redux/reducers/authSlice';

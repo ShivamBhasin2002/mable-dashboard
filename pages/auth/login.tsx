@@ -22,7 +22,6 @@ const Login: NextPage = () => {
     dispatch(clearState());
   }, []);
   useEffect(() => {
-    console.log('status,-> spinner ', status);
     if (status === STATUS_TYPE.ERROR) {
       toast({
         title: errorMsg,
