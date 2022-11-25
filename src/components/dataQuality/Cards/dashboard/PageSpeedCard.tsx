@@ -29,11 +29,7 @@ const PageSpeedCard = () => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(pageSpeedAsync());
   }, [refresh]);
   return (
-    <ComponentWrapper
-      title="Page Speed"
-      className="flex-grow-[1] h-min-[114px] h-max-[126px]"
-      status={status}
-    >
+    <ComponentWrapper title="Page Speed" className="flex-grow-[1] h-[114px]" status={status}>
       {!scriptTagNotFound && (
         <Error
           header={scriptTagNotFoundPopupHeader}

@@ -36,8 +36,8 @@ function ParameterSettings() {
           </p>
         ))}
       </div>
-      <Divider className="my-2" />
-      <div className="toggleArea flex  h-90 w-full flex-grow-[1]">
+      <Divider className="my-1" />
+      <div className="toggleArea flex  h-[95%] w-full flex-grow-[1]">
         <ToggleTable />
       </div>
     </ComponentWrapper>

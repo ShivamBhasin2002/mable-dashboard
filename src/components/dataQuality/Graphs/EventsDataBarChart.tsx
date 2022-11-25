@@ -58,7 +58,8 @@ const EventsDataBarChart = () => {
   return (
     <ComponentWrapper
       title="Funnel Analysis"
-      className="min-h-[175px] h-[200px] max-h-[300px] flex-grow-[1]"
+      height={100}
+      className="min-h-[175px]  flex-grow-[1]"
       status={status}
     >
       <div className="h-[100%]">

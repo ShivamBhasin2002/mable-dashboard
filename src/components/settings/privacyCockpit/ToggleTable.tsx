@@ -84,7 +84,7 @@ function toggleTable() {
 
   const categories = ['personalData', 'location', 'others'];
   return (
-    <div className="flex flex-col h-100 w-full ">
+    <div className="flex flex-col h-full w-full ">
       {categories.map((category, catIdx) => (
         <>
           <div className={`${catIdx === 0 ? 'category-header mt-0' : 'category-header mt-2'}`}>
@@ -153,8 +153,8 @@ function toggleTable() {
           })}
         </>
       ))}
-      <Divider className="my-1" />
-      <div className="flex justify-between items-center">
+      <Divider className="my-2" />
+      <div className="flex justify-between items-center  my-auto">
         <div className="active_all flex justify-end items-center">
           <p className="text-light text-[18px] mx-2 opacity-50">Activate All </p>
           <ToggleBtn
