@@ -1,34 +1,28 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { privacyCockpit } from "@utility/constants/initialStates";
-import { thunkOptions } from "@utility/typeDefinitions/reduxTypes";
-import {
-  perameterSettingsCategoryType,
-  STATUS_TYPE,
-} from "@utility/constants/enums";
-import { snakeCaseToKeyValueExtractor } from "@utility/functions/formattingFunctions";
-import { getSettings, postSettings } from "@utility/functions/bffServices";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { privacyCockpit } from '@utility/constants/initialStates';
+import { thunkOptions } from '@utility/typeDefinitions/reduxTypes';
+import { perameterSettingsCategoryType, STATUS_TYPE } from '@utility/constants/enums';
+import { snakeCaseToKeyValueExtractor } from '@utility/functions/formattingFunctions';
+import { getSettings, postSettings } from '@utility/functions/bffServices';
 
 export const fetchSettings = createAsyncThunk<
   { source_id: number; setting_key: string; setting_value: string }[],
   void,
   thunkOptions
->(
-  "privacyCockpit/settings/fetch",
-  async (temp, { rejectWithValue, getState }) => {
-    const state = getState();
-    try {
-      const apiUrl = `user/source/${state.shop.active?.id}/settings`;
-      return getSettings(state.user.token, apiUrl);
-    } catch (error) {
-      let message;
-      if (error instanceof Error) message = error.message;
-      else message = String(message);
-      return rejectWithValue(message);
-    }
-
-    return null;
+>('privacyCockpit/settings/fetch', async (temp, { rejectWithValue, getState }) => {
+  const state = getState();
+  try {
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return getSettings(state.user.token, apiUrl);
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
   }
-);
+
+  return null;
+});
 
 export const getDeletedCustomer = createAsyncThunk<
   {
@@ -42,23 +36,20 @@ export const getDeletedCustomer = createAsyncThunk<
   }[],
   void,
   thunkOptions
->(
-  "privacyCockpit/deleteCustomerData/fetch",
-  async (temp, { rejectWithValue, getState }) => {
-    const state = getState();
-    try {
-      const apiUrl = `user/source/${state.shop.active?.id}/data-collection/users`;
-      return getSettings(state.user.token, apiUrl);
-    } catch (error) {
-      let message;
-      if (error instanceof Error) message = error.message;
-      else message = String(message);
-      return rejectWithValue(message);
-    }
-
-    return null;
+>('privacyCockpit/deleteCustomerData/fetch', async (temp, { rejectWithValue, getState }) => {
+  const state = getState();
+  try {
+    const apiUrl = `user/source/${state.shop.active?.id}/data-collection/users`;
+    return getSettings(state.user.token, apiUrl);
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
   }
-);
+
+  return null;
+});
 
 export const postDeletedCustomer = createAsyncThunk<
   {
@@ -76,7 +67,7 @@ export const postDeletedCustomer = createAsyncThunk<
   { futureTrack: boolean; email: string },
   thunkOptions
 >(
-  "privacyCockpit/deleteCustomerData/post",
+  'privacyCockpit/deleteCustomerData/post',
   async ({ futureTrack, email }, { rejectWithValue, getState }) => {
     const state = getState();
     try {
@@ -86,9 +77,9 @@ export const postDeletedCustomer = createAsyncThunk<
           {
             email: `${email}`,
             data_collection_active: futureTrack,
-            deleted_user_data: true,
-          },
-        ],
+            deleted_user_data: true
+          }
+        ]
       };
       return postSettings(state.user.token, apiUrl, body);
     } catch (error) {
@@ -106,61 +97,55 @@ export const postDataHashPrivacySettings = createAsyncThunk<
   string,
   { checkBox: boolean },
   thunkOptions
->(
-  "privacyCockpit/hashDashboard/post",
-  async ({ checkBox }, { rejectWithValue, getState }) => {
-    const state = getState();
-    try {
-      const body = {
-        settings: [
-          {
-            settingKey: "hash_database",
-            settingValue: `${checkBox}`,
-          },
-        ],
-      };
-      const apiUrl = `user/source/${state.shop.active?.id}/settings`;
-      return postSettings(state.user.token, apiUrl, body).then(
-        (item) => item.settings_changed[0].settingValue
-      );
-    } catch (error) {
-      let message;
-      if (error instanceof Error) message = error.message;
-      else message = String(message);
-      return rejectWithValue(message);
-    }
-    return null;
+>('privacyCockpit/hashDashboard/post', async ({ checkBox }, { rejectWithValue, getState }) => {
+  const state = getState();
+  try {
+    const body = {
+      settings: [
+        {
+          settingKey: 'hash_database',
+          settingValue: `${checkBox}`
+        }
+      ]
+    };
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return postSettings(state.user.token, apiUrl, body).then(
+      (item) => item.settings_changed[0].settingValue
+    );
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
   }
-);
+  return null;
+});
 
 export const postConsentUrlPrivacySettings = createAsyncThunk<
   string,
   { url: string },
   thunkOptions
->(
-  "privacyCockpit/consentDashboard/post",
-  async ({ url }, { rejectWithValue, getState }) => {
-    const state = getState();
-    try {
-      const body = {
-        settings: [
-          {
-            settingKey: "cookie_consent_url",
-            settingValue: `${url}`,
-          },
-        ],
-      };
-      const apiUrl = `user/source/${state.shop.active?.id}/settings`;
-      return postSettings(state.user.token, apiUrl, body);
-    } catch (error) {
-      let message;
-      if (error instanceof Error) message = error.message;
-      else message = String(message);
-      return rejectWithValue(message);
-    }
-    return null;
+>('privacyCockpit/consentDashboard/post', async ({ url }, { rejectWithValue, getState }) => {
+  const state = getState();
+  try {
+    const body = {
+      settings: [
+        {
+          settingKey: 'cookie_consent_url',
+          settingValue: `${url}`
+        }
+      ]
+    };
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return postSettings(state.user.token, apiUrl, body);
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
   }
-);
+  return null;
+});
 
 export const postParameterSettings = createAsyncThunk<
   {
@@ -177,31 +162,28 @@ export const postParameterSettings = createAsyncThunk<
     }[];
   },
   thunkOptions
->(
-  "privacyCockpit/perameterSettings/post",
-  async (formData, { rejectWithValue, getState }) => {
-    const state = getState();
-    try {
-      const apiUrl = `user/source/${state.shop.active?.id}/settings`;
-      return await postSettings(state.user.token, apiUrl, formData);
-    } catch (error) {
-      let message;
-      if (error instanceof Error) message = error.message;
-      else message = String(message);
-      return rejectWithValue(message);
-    }
-    return null;
+>('privacyCockpit/perameterSettings/post', async (formData, { rejectWithValue, getState }) => {
+  const state = getState();
+  try {
+    const apiUrl = `user/source/${state.shop.active?.id}/settings`;
+    return await postSettings(state.user.token, apiUrl, formData);
+  } catch (error) {
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(message);
+    return rejectWithValue(message);
   }
-);
+  return null;
+});
 
 export const privacyCockpitSetting = createSlice({
-  name: "privacyCockpitSetting",
+  name: 'privacyCockpitSetting',
   initialState: privacyCockpit,
   reducers: {
     clearDeleteUserState: (state) => {
       state.deleteUserData.status = STATUS_TYPE.IDLE;
       return state;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -210,42 +192,39 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(fetchSettings.fulfilled, (state, { payload }) => {
         state.paraMeterSettings.parsed_settings = [];
-        payload.forEach(
-          ({ setting_key: settingKey, setting_value: settingValue }) => {
-            const category = snakeCaseToKeyValueExtractor(settingKey)[0];
-            if (
-              category === perameterSettingsCategoryType.PERSONAL ||
-              category === perameterSettingsCategoryType.LOCATION ||
-              category === perameterSettingsCategoryType.OTHERS
-            ) {
-              const obj = {
-                settingKey,
-                category,
-                destination: snakeCaseToKeyValueExtractor(settingKey)[2],
-                label: snakeCaseToKeyValueExtractor(settingKey)[1],
-                settingValue,
-                sequance: snakeCaseToKeyValueExtractor(settingKey)[2],
-              };
-              if (state.paraMeterSettings.parsed_settings.length === 0)
-                state.paraMeterSettings.parsed_settings.push(obj);
+        payload.forEach(({ setting_key: settingKey, setting_value: settingValue }) => {
+          const category = snakeCaseToKeyValueExtractor(settingKey)[0];
+          if (
+            category === perameterSettingsCategoryType.PERSONAL ||
+            category === perameterSettingsCategoryType.LOCATION ||
+            category === perameterSettingsCategoryType.OTHERS
+          ) {
+            const obj = {
+              settingKey,
+              category,
+              destination: snakeCaseToKeyValueExtractor(settingKey)[2],
+              label: snakeCaseToKeyValueExtractor(settingKey)[1],
+              settingValue,
+              sequance: snakeCaseToKeyValueExtractor(settingKey)[2]
+            };
+            if (state.paraMeterSettings.parsed_settings.length === 0)
+              state.paraMeterSettings.parsed_settings.push(obj);
 
-              if (state.paraMeterSettings.parsed_settings) {
-                let noduplicate = true;
-                state.paraMeterSettings.parsed_settings.forEach((item) => {
-                  if (item.settingKey === obj.settingKey) noduplicate = false;
-                });
-                if (noduplicate)
-                  state.paraMeterSettings.parsed_settings?.push(obj);
-              }
+            if (state.paraMeterSettings.parsed_settings) {
+              let noduplicate = true;
+              state.paraMeterSettings.parsed_settings.forEach((item) => {
+                if (item.settingKey === obj.settingKey) noduplicate = false;
+              });
+              if (noduplicate) state.paraMeterSettings.parsed_settings?.push(obj);
             }
           }
-        );
+        });
         state.privacySettings.hashDataInDashboard.hashDataCheckBox =
-          payload.filter((item) => item.setting_key === "hash_database")[0]
-            .setting_value === "true";
+          payload.filter((item) => item.setting_key === 'hash_database')[0].setting_value ===
+          'true';
 
         state.privacySettings.cookieConsent.cookieConsentUrl = payload.filter(
-          (item) => item.setting_key === "cookie_consent_url"
+          (item) => item.setting_key === 'cookie_consent_url'
         )[0].setting_value;
 
         state.previousSettings.status = STATUS_TYPE.SUCCESS;
@@ -258,8 +237,7 @@ export const privacyCockpitSetting = createSlice({
       })
       .addCase(postDataHashPrivacySettings.fulfilled, (state, { payload }) => {
         state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.SUCCESS;
-        state.privacySettings.hashDataInDashboard.hashDataCheckBox =
-          payload === "true";
+        state.privacySettings.hashDataInDashboard.hashDataCheckBox = payload === 'true';
       })
       .addCase(postDataHashPrivacySettings.rejected, (state) => {
         state.privacySettings.hashDataInDashboard.status = STATUS_TYPE.ERROR;
@@ -267,13 +245,10 @@ export const privacyCockpitSetting = createSlice({
       .addCase(postConsentUrlPrivacySettings.pending, (state) => {
         state.privacySettings.cookieConsent.status = STATUS_TYPE.FETCHING;
       })
-      .addCase(
-        postConsentUrlPrivacySettings.fulfilled,
-        (state, { payload }) => {
-          state.privacySettings.cookieConsent.status = STATUS_TYPE.SUCCESS;
-          state.privacySettings.cookieConsent.cookieConsentUrl = payload;
-        }
-      )
+      .addCase(postConsentUrlPrivacySettings.fulfilled, (state, { payload }) => {
+        state.privacySettings.cookieConsent.status = STATUS_TYPE.SUCCESS;
+        state.privacySettings.cookieConsent.cookieConsentUrl = payload;
+      })
       .addCase(postConsentUrlPrivacySettings.rejected, (state) => {
         state.privacySettings.cookieConsent.status = STATUS_TYPE.ERROR;
       })
@@ -301,8 +276,7 @@ export const privacyCockpitSetting = createSlice({
         payload.settings_changed.map((data) => {
           state.paraMeterSettings.parsed_settings.map((savedData, idx) => {
             if (savedData.settingKey === data.settingKey) {
-              state.paraMeterSettings.parsed_settings[idx].settingValue =
-                data.settingValue;
+              state.paraMeterSettings.parsed_settings[idx].settingValue = data.settingValue;
             }
             return null;
           });
@@ -312,7 +286,7 @@ export const privacyCockpitSetting = createSlice({
       .addCase(postParameterSettings.rejected, (state) => {
         state.paraMeterSettings.status = STATUS_TYPE.ERROR;
       });
-  },
+  }
 });
 
 export const { clearDeleteUserState } = privacyCockpitSetting.actions;

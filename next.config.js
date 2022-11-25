@@ -7,11 +7,10 @@ const nextConfig = {
       {
         source: '/',
         destination: '/data_quality/dashboard',
-        permanent: true,
+        permanent: true
       }
     ];
   }
-
 };
 
 module.exports = nextConfig;

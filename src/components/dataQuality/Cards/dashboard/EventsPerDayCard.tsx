@@ -1,16 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { ComponentWrapper } from "@components/common";
-import { SelectorMenu } from "@components/dataQuality/Common";
-import { EventsPerDayLineChart } from "@components/dataQuality/Graphs";
+import { ComponentWrapper } from '@components/common';
+import { SelectorMenu } from '@components/dataQuality/Common';
+import { EventsPerDayLineChart } from '@components/dataQuality/Graphs';
 
-import { eventSelectedType, STATUS_TYPE } from "@utility/constants/enums";
+import { eventSelectedType, STATUS_TYPE } from '@utility/constants/enums';
 
-import { useSelector, useDispatch } from "@redux/store";
-import {
-  eventsDataAsync,
-  setEventSelected,
-} from "@redux/reducers/dataQuality/eventsDataSlice";
+import { useSelector, useDispatch } from '@redux/store';
+import { eventsDataAsync, setEventSelected } from '@redux/reducers/dataQuality/eventsDataSlice';
 
 const EventsPerDayCard = () => {
   const dispatch = useDispatch();
@@ -26,9 +23,7 @@ const EventsPerDayCard = () => {
       nextComponent={
         <SelectorMenu
           active={eventSelected}
-          onChange={(item: eventSelectedType) =>
-            dispatch(setEventSelected(item))
-          }
+          onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
         />
       }
     >

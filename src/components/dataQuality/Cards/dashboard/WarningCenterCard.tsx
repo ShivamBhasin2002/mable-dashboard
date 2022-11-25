@@ -1,8 +1,8 @@
-import { ComponentWrapper } from "@components/common";
-import Icon from "@assets/icons";
+import { ComponentWrapper } from '@components/common';
+import Icon from '@assets/icons';
 
-import { useSelector } from "@redux/store";
-import { noWarningsMessage } from "@utility/constants/strings";
+import { useSelector } from '@redux/store';
+import { noWarningsMessage } from '@utility/constants/strings';
 
 const WarningCenterCard = () => {
   const { active, status } = useSelector((state) => state.warnings);
@@ -16,9 +16,7 @@ const WarningCenterCard = () => {
       {active.length === 0 && (
         <div className="flex flex-col h-full justify-center items-center">
           <Icon icon="noWarnings" className="text-[130px] text-dark/20" />
-          <p className="text-4xl font-montserrat font-bold text-dark/20">
-            {noWarningsMessage}
-          </p>
+          <p className="text-4xl font-montserrat font-bold text-dark/20">{noWarningsMessage}</p>
         </div>
       )}
       {active.map(({ type, message, time }, index) => (
@@ -38,9 +36,7 @@ const WarningCenterCard = () => {
               {message}
             </span>
           </span>
-          <span className="text-[12px] leading-[19px] font-montserrat font-bold">
-            {time}
-          </span>
+          <span className="text-[12px] leading-[19px] font-montserrat font-bold">{time}</span>
         </div>
       ))}
     </ComponentWrapper>

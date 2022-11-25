@@ -1,21 +1,14 @@
-import { totalEvents, totalAttributions } from "@utility/constants/numbers";
+import { totalEvents, totalAttributions } from '@utility/constants/numbers';
 
-import { useSelector } from "@redux/store";
-import {
-  attributionParameterLabel,
-  eventParametersLabel,
-} from "@utility/constants/strings";
+import { useSelector } from '@redux/store';
+import { attributionParameterLabel, eventParametersLabel } from '@utility/constants/strings';
 
-const ParameterMetrics = ({
-  flexDirection,
-}: {
-  flexDirection: "row" | "col";
-}) => {
+const ParameterMetrics = ({ flexDirection }: { flexDirection: 'row' | 'col' }) => {
   const { attribution, event } = useSelector((state) => state.dataPerEvent);
   return (
     <div
       className={`flex ${
-        flexDirection === "col" ? "flex-col" : "flex-row"
+        flexDirection === 'col' ? 'flex-col' : 'flex-row'
       } justify-evenly gap-[10px]`}
     >
       <div className="p-[20px] w-[165px] h-[105px] flex flex-col items-center justify-evenly bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom rounded-[16px] drop-shadow-xl">
@@ -24,9 +17,7 @@ const ParameterMetrics = ({
           <div className=" text-[30px] leading-[34px] font-lato text-center text-light">
             {attribution}
           </div>
-          <span className="text-[14px] text-light/[.41]">
-            / {totalAttributions}
-          </span>
+          <span className="text-[14px] text-light/[.41]">/ {totalAttributions}</span>
         </div>
         <div className="text-primary text-center text-[13px] whitespace-nowrap">
           {attributionParameterLabel}

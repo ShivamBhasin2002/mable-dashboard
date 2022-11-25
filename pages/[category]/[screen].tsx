@@ -57,9 +57,12 @@ const Screen = () => {
 
   return (
     <div className="bg-background flex max-w-screen h-screen">
-       <Head>
+      <Head>
         <title>{`${screen} | Mable Ai`}</title>
-        <meta name="description" content="Mable is a new kind of tracking tool that, with the help of a unique & innovative architecture, allows you to reliably track 100% of the conversions in your store again." />
+        <meta
+          name="description"
+          content="Mable is a new kind of tracking tool that, with the help of a unique & innovative architecture, allows you to reliably track 100% of the conversions in your store again."
+        />
         <link rel="icon" href="/mable.svg" />
       </Head>
 

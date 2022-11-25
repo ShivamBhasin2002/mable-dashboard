@@ -1,18 +1,15 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { ComponentWrapper } from "@components/common";
+import { ComponentWrapper } from '@components/common';
 
-import { AttributionEventBarChart } from "@components/dataQuality/Graphs";
-import { ParameterMetrics } from "@components/dataQuality/General";
-import { SelectorMenu } from "@components/dataQuality/Common";
+import { AttributionEventBarChart } from '@components/dataQuality/Graphs';
+import { ParameterMetrics } from '@components/dataQuality/General';
+import { SelectorMenu } from '@components/dataQuality/Common';
 
-import { eventSelectedType, STATUS_TYPE } from "@utility/constants/enums";
+import { eventSelectedType, STATUS_TYPE } from '@utility/constants/enums';
 
-import { useSelector, useDispatch } from "@redux/store";
-import {
-  dataPerEventAsync,
-  setEventSelected,
-} from "@redux/reducers/dataQuality/dataPerEventSlice";
+import { useSelector, useDispatch } from '@redux/store';
+import { dataPerEventAsync, setEventSelected } from '@redux/reducers/dataQuality/dataPerEventSlice';
 
 const EventQualityCard = () => {
   const dispatch = useDispatch();
@@ -28,9 +25,7 @@ const EventQualityCard = () => {
       nextComponent={
         <SelectorMenu
           active={eventSelected}
-          onChange={(item: eventSelectedType) =>
-            dispatch(setEventSelected(item))
-          }
+          onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
         />
       }
     >

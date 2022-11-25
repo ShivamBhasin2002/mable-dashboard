@@ -1,4 +1,4 @@
-import { IconType } from "@utility/typeDefinitions/componentPropTypes";
+import { IconType } from '@utility/typeDefinitions/componentPropTypes';
 
 const SvgComponent = (props: IconType) => (
   <svg
@@ -29,7 +29,7 @@ const SvgComponent = (props: IconType) => (
       fontWeight={700}
     >
       <tspan x={0} y={0}>
-        {"!"}
+        {'!'}
       </tspan>
     </text>
   </svg>

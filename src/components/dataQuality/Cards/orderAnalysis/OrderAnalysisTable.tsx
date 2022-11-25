@@ -1,29 +1,23 @@
 /* eslint-disable no-nested-ternary */
-import { useEffect, useState } from "react";
-import Icon from "@assets/icons";
+import { useEffect, useState } from 'react';
+import Icon from '@assets/icons';
 
-import { ComponentWrapper } from "@components/common";
-import StatusSelectorMenu from "@components/dataQuality/General/StatusSelecterMenu";
+import { ComponentWrapper } from '@components/common';
+import StatusSelectorMenu from '@components/dataQuality/General/StatusSelecterMenu';
 
-import {
-  SORT_ORDER,
-  statusSelector,
-  STATUS_TYPE,
-} from "@utility/constants/enums";
-import { noOrdersMessage } from "@utility/constants/strings";
+import { SORT_ORDER, statusSelector, STATUS_TYPE } from '@utility/constants/enums';
+import { noOrdersMessage } from '@utility/constants/strings';
 
-import { useSelector, useDispatch } from "@redux/store";
-import { orderAnalysisAsync } from "@redux/reducers/dataQuality/orderAnalysisSlice";
-import { useWindowSize } from "@utility/customHooks";
-import { order } from "@utility/typeDefinitions/reduxTypes";
-import moment from "moment";
-import Pagination from "@components/dataQuality/General/Pagination";
-import OrderDetails from "./OrderDetails";
+import { useSelector, useDispatch } from '@redux/store';
+import { orderAnalysisAsync } from '@redux/reducers/dataQuality/orderAnalysisSlice';
+import { useWindowSize } from '@utility/customHooks';
+import { order } from '@utility/typeDefinitions/reduxTypes';
+import moment from 'moment';
+import Pagination from '@components/dataQuality/General/Pagination';
+import OrderDetails from './OrderDetails';
 
 const OrderAnalysisTable = () => {
-  const { tableData, status, statusSelected } = useSelector(
-    (state) => state.orderAnalysis
-  );
+  const { tableData, status, statusSelected } = useSelector((state) => state.orderAnalysis);
   const [page, setPage] = useState(1);
   const [ordersPerPage, setOrdersPerPage] = useState(0);
   const [orders, setOrders] = useState<order[]>([]);
@@ -38,7 +32,7 @@ const OrderAnalysisTable = () => {
   }, [refresh]);
 
   useEffect(() => {
-    const height = document.getElementById("orderAnalysisTable")?.clientHeight;
+    const height = document.getElementById('orderAnalysisTable')?.clientHeight;
     if (height) setOrdersPerPage(Math.floor((height - 240) / 40));
   }, [tableData]);
 
@@ -49,10 +43,7 @@ const OrderAnalysisTable = () => {
   useEffect(() => {
     setOrders(
       tableData
-        .filter(
-          ({ status }) =>
-            statusSelected === statusSelector.all || status === statusSelected
-        )
+        .filter(({ status }) => statusSelected === statusSelector.all || status === statusSelected)
         .sort((order1, order2) =>
           sortOrder === SORT_ORDER.INCREASING
             ? moment(order1.created_at).diff(moment(order2.created_at))
@@ -78,13 +69,7 @@ const OrderAnalysisTable = () => {
     <ComponentWrapper
       id="orderAnalysisTable"
       className="text-light min-h-[40px] !overflow-scroll hide_scrollbar flex-grow"
-      width={
-        screenWidth
-          ? screenWidth >= 1022
-            ? screenWidth - 340
-            : screenWidth - 360
-          : 340
-      }
+      width={screenWidth ? (screenWidth >= 1022 ? screenWidth - 340 : screenWidth - 360) : 340}
       status={status}
     >
       <StatusSelectorMenu />
@@ -103,10 +88,7 @@ const OrderAnalysisTable = () => {
           </tr>
           <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]2xl:whitespace-nowrap flex [&>*]:flex-1">
             <td className="bg-primary rounded-tl-[10px]">Order</td>
-            <td
-              className="bg-primary flex gap-6 items-center"
-              onClick={changeSortOrder}
-            >
+            <td className="bg-primary flex gap-6 items-center" onClick={changeSortOrder}>
               Date <Icon icon={sortOrder} className="cursor-pointer" />
             </td>
             <td className="bg-primary">Customer</td>
@@ -122,17 +104,12 @@ const OrderAnalysisTable = () => {
           {orders && orders.length !== 0 ? (
             orders
               .slice((page - 1) * ordersPerPage, page * ordersPerPage)
-              .map((data, idx) => (
-                <OrderDetails key={idx} idx={idx} data={data} />
-              ))
+              .map((data, idx) => <OrderDetails key={idx} idx={idx} data={data} />)
           ) : (
             <tr>
               <td colSpan={9}>
                 <div className="h-[150px] rounded-b-[10px] bg-tableStrips/50 flex items-center justify-center gap-6">
-                  <Icon
-                    icon="noOrders"
-                    className="text-6xl text-dark/25 inline-block"
-                  />
+                  <Icon icon="noOrders" className="text-6xl text-dark/25 inline-block" />
                   <span className="font-montserrat font-bold text-4xl text-dark/25">
                     {noOrdersMessage(statusSelected)}
                   </span>
@@ -142,12 +119,7 @@ const OrderAnalysisTable = () => {
           )}
         </tbody>
       </table>
-      <Pagination
-        page={page}
-        setPage={setPage}
-        array={orders}
-        itemsPerPage={ordersPerPage}
-      />
+      <Pagination page={page} setPage={setPage} array={orders} itemsPerPage={ordersPerPage} />
     </ComponentWrapper>
   );
 };

@@ -1,12 +1,12 @@
-import { Moment } from "moment";
-import { AppDispatch, RootState } from "@redux/store";
+import { Moment } from 'moment';
+import { AppDispatch, RootState } from '@redux/store';
 
 import {
   STATUS_TYPE,
   screenType,
   eventSelectedType,
-  statusSelector,
-} from "@utility/constants/enums";
+  statusSelector
+} from '@utility/constants/enums';
 
 export type thunkOptions = {
   dispatch: AppDispatch;
@@ -51,7 +51,7 @@ export type datesStateType = {
 
 export type warningStateType = {
   active: {
-    type: "info" | "warning" | "error";
+    type: 'info' | 'warning' | 'error';
     message: string;
     time: string;
   }[];

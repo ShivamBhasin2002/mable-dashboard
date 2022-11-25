@@ -1,9 +1,9 @@
-import Icon from "@assets/icons";
+import Icon from '@assets/icons';
 
-import { ViewFullReportProps } from "@utility/typeDefinitions/componentPropTypes";
+import { ViewFullReportProps } from '@utility/typeDefinitions/componentPropTypes';
 
-import { useSelector, useDispatch } from "@redux/store";
-import { setScreen } from "@redux/reducers/screenSlice";
+import { useSelector, useDispatch } from '@redux/store';
+import { setScreen } from '@redux/reducers/screenSlice';
 
 const ViewFullReport = ({ screen }: ViewFullReportProps) => {
   const dispatch = useDispatch();

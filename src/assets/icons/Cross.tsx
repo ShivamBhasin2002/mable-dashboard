@@ -1,4 +1,4 @@
-import { IconType } from "@utility/typeDefinitions/componentPropTypes";
+import { IconType } from '@utility/typeDefinitions/componentPropTypes';
 
 const SVGComponent = (props: IconType) => (
   <svg
@@ -12,12 +12,7 @@ const SVGComponent = (props: IconType) => (
   >
     <rect y={0.5} width={12} height={12} fill="url(#cross)" />
     <defs>
-      <pattern
-        id="cross"
-        patternContentUnits="objectBoundingBox"
-        width={1}
-        height={1}
-      >
+      <pattern id="cross" patternContentUnits="objectBoundingBox" width={1} height={1}>
         <use xlinkHref="#image0_198_232" transform="scale(0.0078125)" />
       </pattern>
       <image

@@ -1,12 +1,12 @@
-import moment from "moment";
-import { Loading } from "@components/common";
-import { useSelector, useDispatch } from "@redux/store";
-import { useEffect, useState } from "react";
-import { analyticsAsync } from "@redux/reducers/analytics/reportsSlice";
-import { filterType, STATUS_TYPE } from "@utility/constants/enums";
-import { SelectedEventsType } from "@utility/typeDefinitions/reduxTypes";
-import { defaultLocale } from "@utility/constants/strings";
-import Pagination from "../General/Pagination";
+import moment from 'moment';
+import { Loading } from '@components/common';
+import { useSelector, useDispatch } from '@redux/store';
+import { useEffect, useState } from 'react';
+import { analyticsAsync } from '@redux/reducers/analytics/reportsSlice';
+import { filterType, STATUS_TYPE } from '@utility/constants/enums';
+import { SelectedEventsType } from '@utility/typeDefinitions/reduxTypes';
+import { defaultLocale } from '@utility/constants/strings';
+import Pagination from '../General/Pagination';
 
 const AnalyticsTable = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const AnalyticsTable = () => {
   if (analyticData.status === STATUS_TYPE.FETCHING) {
     return <Loading message="Fetching Analytic Report" />;
   }
-  if (analyticData.status === "error") {
+  if (analyticData.status === 'error') {
     return (
       <div className="mt-[20px] text-error text-4xl">
         oops ! some error occurred
@@ -59,8 +59,7 @@ const AnalyticsTable = () => {
                 }`}
             >
               <td>
-                {dateRange[0].format("YYYY-MM-DD")} to{" "}
-                {dateRange[1].format("YYYY-MM-DD")}
+                {dateRange[0].format('YYYY-MM-DD')} to {dateRange[1].format('YYYY-MM-DD')}
               </td>
               {selectedEvents.PageView ? (
                 <td>{totalEvents.page_view.toLocaleString(defaultLocale)}</td>
@@ -69,14 +68,10 @@ const AnalyticsTable = () => {
                 <td>{totalEvents.add_to_cart.toLocaleString(defaultLocale)}</td>
               ) : null}
               {selectedEvents.InitiateCheckout ? (
-                <td>
-                  {totalEvents.intitate_checkout.toLocaleString(defaultLocale)}
-                </td>
+                <td>{totalEvents.intitate_checkout.toLocaleString(defaultLocale)}</td>
               ) : null}
               {selectedEvents.AddPaymentInfo ? (
-                <td>
-                  {totalEvents.add_payment_info.toLocaleString(defaultLocale)}
-                </td>
+                <td>{totalEvents.add_payment_info.toLocaleString(defaultLocale)}</td>
               ) : null}
               {selectedEvents.Purchase ? (
                 <td>{totalEvents.purchase.toLocaleString(defaultLocale)}</td>
@@ -88,13 +83,11 @@ const AnalyticsTable = () => {
                 <tr
                   key={i}
                   className={`[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[10px] [&>*]:px-[20px] ${
-                    !(i & 1) && "bg-tableStrips/[0.5]"
+                    !(i & 1) && 'bg-tableStrips/[0.5]'
                   }`}
                 >
                   <td>
-                    <span className="opacity-50 text-xs">
-                      {moment(item.date).format("dddd")}
-                    </span>
+                    <span className="opacity-50 text-xs">{moment(item.date).format('dddd')}</span>
                     <br />
                     {item.date}
                   </td>
@@ -105,14 +98,10 @@ const AnalyticsTable = () => {
                     <td>{item.add_to_cart.toLocaleString(defaultLocale)}</td>
                   ) : null}
                   {analyticData.selected_events.InitiateCheckout ? (
-                    <td>
-                      {item.intitate_checkout.toLocaleString(defaultLocale)}
-                    </td>
+                    <td>{item.intitate_checkout.toLocaleString(defaultLocale)}</td>
                   ) : null}
                   {analyticData.selected_events.AddPaymentInfo ? (
-                    <td>
-                      {item.add_payment_info.toLocaleString(defaultLocale)}
-                    </td>
+                    <td>{item.add_payment_info.toLocaleString(defaultLocale)}</td>
                   ) : null}
                   {analyticData.selected_events.Purchase ? (
                     <td>{item.purchase.toLocaleString(defaultLocale)}</td>
@@ -121,12 +110,7 @@ const AnalyticsTable = () => {
               ))}
           </tbody>
         </table>
-        <Pagination
-          page={page}
-          setPage={setPage}
-          array={byDate}
-          itemsPerPage={reportsPerPage}
-        />
+        <Pagination page={page} setPage={setPage} array={byDate} itemsPerPage={reportsPerPage} />
       </>
     );
   }

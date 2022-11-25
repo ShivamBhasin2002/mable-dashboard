@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link'
+import Link from 'next/link';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Spinner, useToast } from '@chakra-ui/react';
@@ -46,7 +46,10 @@ const Register = () => {
     <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
       <Head>
         <title>Register | Mable Ai</title>
-        <meta name="description" content="Mable is a new kind of tracking tool that, with the help of a unique & innovative architecture, allows you to reliably track 100% of the conversions in your store again." />
+        <meta
+          name="description"
+          content="Mable is a new kind of tracking tool that, with the help of a unique & innovative architecture, allows you to reliably track 100% of the conversions in your store again."
+        />
         <link rel="icon" href="/mable.svg" />
       </Head>
       <main className="flex flex-col justify-center items-center text-light gap-[50px]">

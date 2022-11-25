@@ -1,9 +1,9 @@
-import { Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
-import colors from "@utility/colors";
-import Icon from "@assets/icons";
-import { eventSelectedType } from "@utility/constants/enums";
-import { SelectorMenuProps } from "@utility/typeDefinitions/componentPropTypes";
+import colors from '@utility/colors';
+import Icon from '@assets/icons';
+import { eventSelectedType } from '@utility/constants/enums';
+import { SelectorMenuProps } from '@utility/typeDefinitions/componentPropTypes';
 
 const SelectorMenu = ({ active, onChange }: SelectorMenuProps) => (
   <Menu gutter={0} isLazy>
@@ -18,11 +18,11 @@ const SelectorMenu = ({ active, onChange }: SelectorMenuProps) => (
       fontSize="14px"
       textAlign="left"
       outline="none"
-      _hover={{ backgroundColor: "transparent" }}
+      _hover={{ backgroundColor: 'transparent' }}
       _active={{
-        backgroundColor: "transparent",
+        backgroundColor: 'transparent',
         borderBottomRadius: 0,
-        borderBottom: 0,
+        borderBottom: 0
       }}
     >
       {active}

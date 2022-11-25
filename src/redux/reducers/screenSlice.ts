@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { screenInitialState } from "@utility/constants/initialStates";
+import { screenInitialState } from '@utility/constants/initialStates';
 
 export const screenSlice = createSlice({
-  name: "screen",
+  name: 'screen',
   initialState: screenInitialState,
   reducers: {
     setScreen: (state, { payload }) => {
       state.activeScreen = payload;
-    },
-  },
+    }
+  }
 });
 
 export const { setScreen } = screenSlice.actions;

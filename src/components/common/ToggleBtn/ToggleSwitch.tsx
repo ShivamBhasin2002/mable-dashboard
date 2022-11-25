@@ -1,5 +1,5 @@
-import { toggletypeProps } from "@utility/typeDefinitions/componentPropTypes";
-import ToggleSwitchWraper from "./ToggleSwitchStyle";
+import { toggletypeProps } from '@utility/typeDefinitions/componentPropTypes';
+import ToggleSwitchWraper from './ToggleSwitchStyle';
 
 const ToggleSwitch = ({
   value,
@@ -7,25 +7,19 @@ const ToggleSwitch = ({
   name,
   activeColor,
   inactiveColor,
-  disable,
+  disable
 }: toggletypeProps) => {
   const triggerToggle = () => {
     setState({
       settingKey: name,
-      settingValue: `${!value}`,
+      settingValue: `${!value}`
     });
   };
   return (
-    <ToggleSwitchWraper
-      activeColor={activeColor}
-      inactiveColor={inactiveColor}
-      disable={disable}
-    >
+    <ToggleSwitchWraper activeColor={activeColor} inactiveColor={inactiveColor} disable={disable}>
       <div
         onClick={() => !disable && triggerToggle()}
-        className={`wrg-toggle ${
-          value ? "wrg-toggle--checked" : "wrg-toggle--uncheck"
-        } mt-2`}
+        className={`wrg-toggle ${value ? 'wrg-toggle--checked' : 'wrg-toggle--uncheck'} mt-2`}
       >
         <div className="wrg-toggle-container">
           <div className="wrg-toggle-check">
@@ -36,11 +30,7 @@ const ToggleSwitch = ({
           </div>
         </div>
         <div className="wrg-toggle-circle"></div>
-        <input
-          className="wrg-toggle-input"
-          type="checkbox"
-          aria-label="Toggle Button"
-        />
+        <input className="wrg-toggle-input" type="checkbox" aria-label="Toggle Button" />
       </div>
     </ToggleSwitchWraper>
   );

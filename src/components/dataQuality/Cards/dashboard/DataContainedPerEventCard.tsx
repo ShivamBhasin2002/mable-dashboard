@@ -1,20 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { ComponentWrapper } from "@components/common";
-import { AttributionEventBarChart } from "@components/dataQuality/Graphs";
-import { SelectorMenu, ViewFullReport } from "@components/dataQuality/Common";
-import { ParameterMetrics } from "@components/dataQuality/General";
-import {
-  eventSelectedType,
-  screenType,
-  STATUS_TYPE,
-} from "@utility/constants/enums";
+import { ComponentWrapper } from '@components/common';
+import { AttributionEventBarChart } from '@components/dataQuality/Graphs';
+import { SelectorMenu, ViewFullReport } from '@components/dataQuality/Common';
+import { ParameterMetrics } from '@components/dataQuality/General';
+import { eventSelectedType, screenType, STATUS_TYPE } from '@utility/constants/enums';
 
-import { useSelector, useDispatch } from "@redux/store";
-import {
-  dataPerEventAsync,
-  setEventSelected,
-} from "@redux/reducers/dataQuality/dataPerEventSlice";
+import { useSelector, useDispatch } from '@redux/store';
+import { dataPerEventAsync, setEventSelected } from '@redux/reducers/dataQuality/dataPerEventSlice';
 
 const DataContainedPerEventCard = () => {
   const dispatch = useDispatch();
@@ -31,9 +24,7 @@ const DataContainedPerEventCard = () => {
         <div className="flex-grow px-4 flex justify-between gap-4">
           <SelectorMenu
             active={eventSelected}
-            onChange={(item: eventSelectedType) =>
-              dispatch(setEventSelected(item))
-            }
+            onChange={(item: eventSelectedType) => dispatch(setEventSelected(item))}
           />
 
           <ViewFullReport screen={screenType.eventQuality} />

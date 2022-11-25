@@ -1,38 +1,36 @@
-import { Spinner, useToast, Button } from "@chakra-ui/react";
-import { ComponentWrapper } from "@components/common";
-import { useDispatch, useSelector } from "@redux/store";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { STATUS_TYPE } from "@utility/constants/enums";
-import { TextField } from "@components/form";
-import { updateEmail } from "@redux/reducers/settings/updateAccountInfoSlice";
-import { useEffect, useState } from "react";
-import { updateUserEmailState } from "@redux/reducers/authSlice";
+import { Spinner, useToast, Button } from '@chakra-ui/react';
+import { ComponentWrapper } from '@components/common';
+import { useDispatch, useSelector } from '@redux/store';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { STATUS_TYPE } from '@utility/constants/enums';
+import { TextField } from '@components/form';
+import { updateEmail } from '@redux/reducers/settings/updateAccountInfoSlice';
+import { useEffect, useState } from 'react';
+import { updateUserEmailState } from '@redux/reducers/authSlice';
 
 const EmailChange = () => {
   const { userId, email } = useSelector((state) => state.user);
-  const [emailId, setEmailId] = useState<string>("");
+  const [emailId, setEmailId] = useState<string>('');
   const emailOriginal = { userId, email };
   const dispatch = useDispatch();
   const toast = useToast();
-  const { status, message } = useSelector(
-    (state) => state.accountSetting.updateEmailReducer
-  );
+  const { status, message } = useSelector((state) => state.accountSetting.updateEmailReducer);
   useEffect(() => {
     if (status === STATUS_TYPE.ERROR) {
       toast({
         title: `${message}`,
-        status: "error",
+        status: 'error',
         isClosable: true,
-        position: "top-right",
+        position: 'top-right'
       });
     }
     if (status === STATUS_TYPE.SUCCESS) {
       toast({
         title: `${message}`,
-        status: "success",
+        status: 'success',
         isClosable: true,
-        position: "top-right",
+        position: 'top-right'
       });
       dispatch(updateUserEmailState(emailId));
     }
@@ -46,10 +44,10 @@ const EmailChange = () => {
       <Formik
         initialValues={{
           userId,
-          email: "",
+          email: ''
         }}
         validationSchema={Yup.object({
-          email: Yup.string(),
+          email: Yup.string()
         })}
         onSubmit={(values) => {
           setEmailId(values.email);

@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from 'moment';
 
 import {
   DatePickerPresets as presets,
@@ -7,16 +7,16 @@ import {
   screenType,
   statusSelector,
   tierRanges,
-  tiers,
-} from "@utility/constants/enums";
+  tiers
+} from '@utility/constants/enums';
 
-import { AnalyticsStateType } from "@utility/typeDefinitions/reduxTypes";
+import { AnalyticsStateType } from '@utility/typeDefinitions/reduxTypes';
 
 export const getMessage = (value: number) => {
-  if (value >= 95) return "Excellent";
-  if (value >= 90) return "Great";
-  if (value >= 80) return "Decent";
-  return "Poor";
+  if (value >= 95) return 'Excellent';
+  if (value >= 90) return 'Great';
+  if (value >= 80) return 'Decent';
+  return 'Poor';
 };
 
 export const presetsToDateRange = (preset: string) => {
@@ -26,26 +26,26 @@ export const presetsToDateRange = (preset: string) => {
     case presets.today:
       return [moment(), moment()];
     case presets.yesterday:
-      return [moment().subtract(1, "day"), moment().subtract(1, "day")];
+      return [moment().subtract(1, 'day'), moment().subtract(1, 'day')];
     case presets.prevSevenDays:
-      return [moment().subtract(7, "days"), moment()];
+      return [moment().subtract(7, 'days'), moment()];
     case presets.prevFourteenDays:
-      return [moment().subtract(14, "days"), moment()];
+      return [moment().subtract(14, 'days'), moment()];
     case presets.prevThirtyDays:
-      return [moment().subtract(30, "days"), moment()];
+      return [moment().subtract(30, 'days'), moment()];
     case presets.currWeek:
-      return [moment().startOf("week"), moment()];
+      return [moment().startOf('week'), moment()];
     case presets.prevWeek:
       return [
-        moment().subtract(1, "week").startOf("week"),
-        moment().subtract(1, "week").endOf("week"),
+        moment().subtract(1, 'week').startOf('week'),
+        moment().subtract(1, 'week').endOf('week')
       ];
     case presets.currMonth:
-      return [moment().startOf("month"), moment()];
+      return [moment().startOf('month'), moment()];
     case presets.prevMonth:
       return [
-        moment().subtract(1, "month").startOf("month"),
-        moment().subtract(1, "month").endOf("month"),
+        moment().subtract(1, 'month').startOf('month'),
+        moment().subtract(1, 'month').endOf('month')
       ];
     default:
       return [];
@@ -54,20 +54,20 @@ export const presetsToDateRange = (preset: string) => {
 
 export const getEventDisplayName = (event: string) => {
   switch (event) {
-    case "purchases":
+    case 'purchases':
       return eventSelectedType.purchase;
-    case "purchase":
+    case 'purchase':
       return eventSelectedType.purchase;
-    case "add_payment_info":
+    case 'add_payment_info':
       return eventSelectedType.add_payment_info;
-    case "intitate_checkout":
+    case 'intitate_checkout':
       return eventSelectedType.intitate_checkout;
-    case "add_to_cart":
+    case 'add_to_cart':
       return eventSelectedType.add_to_cart;
-    case "page_view":
+    case 'page_view':
       return eventSelectedType.page_view;
     default:
-      return "";
+      return '';
   }
 };
 
@@ -93,21 +93,21 @@ export const getSelectedEventData = (item: any, event: string) => {
     case eventSelectedType.page_view:
       return item.page_view;
     default:
-      return "";
+      return '';
   }
 };
 
 export const updateEvents = (state: AnalyticsStateType, payload: string) => {
   switch (payload) {
-    case "AddPaymentInfo":
+    case 'AddPaymentInfo':
       return !state.selected_events.AddPaymentInfo;
-    case "AddToCart":
+    case 'AddToCart':
       return !state.selected_events.AddToCart;
-    case "InitiateCheckout":
+    case 'InitiateCheckout':
       return !state.selected_events.InitiateCheckout;
-    case "PageView":
+    case 'PageView':
       return !state.selected_events.PageView;
-    case "Purchase":
+    case 'Purchase':
       return !state.selected_events.Purchase;
     default:
       return false;
@@ -155,15 +155,15 @@ export const URLtoScreen = (screen: string): screenType | undefined => {
 export const getOrderAnalysisTableIcon = (status: statusSelector | string) => {
   switch (status) {
     case statusSelector.pending:
-      return "pending";
+      return 'pending';
     case statusSelector.success:
-      return "tick";
+      return 'tick';
     case statusSelector.failed:
-      return "cross";
+      return 'cross';
     case statusSelector.delayed:
-      return "delayed";
+      return 'delayed';
     default:
-      return "";
+      return '';
   }
 };
 

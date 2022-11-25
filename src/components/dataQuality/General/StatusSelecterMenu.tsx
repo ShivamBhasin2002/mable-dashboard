@@ -1,11 +1,11 @@
-import { Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
-import colors from "@utility/colors";
-import Icon from "@assets/icons";
+import colors from '@utility/colors';
+import Icon from '@assets/icons';
 
-import { useDispatch, useSelector } from "@redux/store";
-import { statusSelector } from "@utility/constants/enums";
-import { setStatusSelected } from "@redux/reducers/dataQuality/orderAnalysisSlice";
+import { useDispatch, useSelector } from '@redux/store';
+import { statusSelector } from '@utility/constants/enums';
+import { setStatusSelected } from '@redux/reducers/dataQuality/orderAnalysisSlice';
 
 const StatusSelectorMenu = () => {
   const dispatch = useDispatch();
@@ -23,11 +23,11 @@ const StatusSelectorMenu = () => {
         fontSize="14px"
         textAlign="left"
         outline="none"
-        _hover={{ backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: 'transparent' }}
         _active={{
-          backgroundColor: "transparent",
+          backgroundColor: 'transparent',
           borderBottomRadius: 0,
-          borderBottom: 0,
+          borderBottom: 0
         }}
       >
         <span>Status:</span> <span>{statusSelected}</span>

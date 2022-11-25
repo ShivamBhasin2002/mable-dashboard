@@ -1,15 +1,15 @@
-import { ComponentWrapper } from "@components/common";
-import { Button, Checkbox, Input, Spinner } from "@chakra-ui/react";
-import { useShowToast } from "@utility/customHooks";
-import colors from "@utility/colors";
-import { useDispatch, useSelector } from "@redux/store";
-import { STATUS_TYPE } from "@utility/constants/enums";
-import { useEffect, useState } from "react";
+import { ComponentWrapper } from '@components/common';
+import { Button, Checkbox, Input, Spinner } from '@chakra-ui/react';
+import { useShowToast } from '@utility/customHooks';
+import colors from '@utility/colors';
+import { useDispatch, useSelector } from '@redux/store';
+import { STATUS_TYPE } from '@utility/constants/enums';
+import { useEffect, useState } from 'react';
 import {
   postConsentUrlPrivacySettings,
-  postDataHashPrivacySettings,
-} from "@redux/reducers/settings/privacyCockpit/privacyCockpitSlice";
-import { isValidUrl } from "@utility/functions/helper";
+  postDataHashPrivacySettings
+} from '@redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
+import { isValidUrl } from '@utility/functions/helper';
 
 const PrivacySettings = () => {
   const { status: hashStatus, hashDataCheckBox } = useSelector(
@@ -19,8 +19,7 @@ const PrivacySettings = () => {
     (state) => state.privacyCockpit.privacySettings.cookieConsent
   );
 
-  const [checkBoxStatus, setCheckBoxStatus] =
-    useState<boolean>(hashDataCheckBox);
+  const [checkBoxStatus, setCheckBoxStatus] = useState<boolean>(hashDataCheckBox);
   const [cookieConsent, setCookieConsent] = useState<string>(cookieConsentUrl);
   const [disable, setDisable] = useState<boolean>(true);
 
@@ -34,7 +33,7 @@ const PrivacySettings = () => {
     } else {
       toast({
         title: `Enter valid URL`,
-        status: STATUS_TYPE.ERROR,
+        status: STATUS_TYPE.ERROR
       });
       setCookieConsent(cookieConsentUrl);
     }
@@ -45,7 +44,7 @@ const PrivacySettings = () => {
   };
 
   const handleSave = () => {
-    if (cookieConsent !== cookieConsentUrl && cookieConsent !== "") {
+    if (cookieConsent !== cookieConsentUrl && cookieConsent !== '') {
       handleCookie();
     }
     if (checkBoxStatus !== hashDataCheckBox) {
@@ -58,13 +57,13 @@ const PrivacySettings = () => {
     if (hashStatus === STATUS_TYPE.ERROR) {
       toast({
         title: `Error while updating ! from hash`,
-        status: STATUS_TYPE.ERROR,
+        status: STATUS_TYPE.ERROR
       });
     }
     if (hashStatus === STATUS_TYPE.SUCCESS) {
       toast({
         title: `Data Hashed in Dashboard`,
-        status: STATUS_TYPE.SUCCESS,
+        status: STATUS_TYPE.SUCCESS
       });
     }
   }, [hashStatus]);
@@ -73,13 +72,13 @@ const PrivacySettings = () => {
     if (cookieStatus === STATUS_TYPE.ERROR) {
       toast({
         title: `Error while updating ! from cookie`,
-        status: STATUS_TYPE.ERROR,
+        status: STATUS_TYPE.ERROR
       });
     }
     if (cookieStatus === STATUS_TYPE.SUCCESS) {
       toast({
         title: `Cookie Consent Linked`,
-        status: STATUS_TYPE.SUCCESS,
+        status: STATUS_TYPE.SUCCESS
       });
     }
   }, [cookieStatus]);
@@ -91,9 +90,7 @@ const PrivacySettings = () => {
       className="flex flex-col max-w-4xl h-fit"
     >
       <div className="flex gap-4">
-        <div className=" text-light flex items-center gap-2">
-          Hash data in your dashboard
-        </div>
+        <div className=" text-light flex items-center gap-2">Hash data in your dashboard</div>
         <Checkbox
           isChecked={checkBoxStatus}
           className=" text-light"

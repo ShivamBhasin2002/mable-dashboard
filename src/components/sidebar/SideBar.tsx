@@ -1,17 +1,16 @@
-import { useRouter } from "next/router";
-import Icon from "@assets/icons";
+import { useRouter } from 'next/router';
+import Icon from '@assets/icons';
 
-import { useSelector, useDispatch } from "@redux/store";
-import { logout, clearState } from "@redux/reducers/authSlice";
-import { setScreen } from "@redux/reducers/screenSlice";
-import { screenToURL } from "@utility/functions/mappingFunctions";
-import { useWindowSize } from "@utility/customHooks";
-import { screenType } from "@utility/constants/enums";
-import { mableAiLandingPage } from "@utility/constants/strings";
-import SideBarItem from "./items/generalSidebarItemCard";
+import { useSelector, useDispatch } from '@redux/store';
+import { logout, clearState } from '@redux/reducers/authSlice';
+import { setScreen } from '@redux/reducers/screenSlice';
+import { screenToURL } from '@utility/functions/mappingFunctions';
+import { useWindowSize } from '@utility/customHooks';
+import { screenType } from '@utility/constants/enums';
+import { mableAiLandingPage } from '@utility/constants/strings';
+import SideBarItem from './items/generalSidebarItemCard';
 
-const SideBar = () =>
-{
+const SideBar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { firstName, lastName } = useSelector((state) => state.user);
@@ -19,16 +18,16 @@ const SideBar = () =>
   const { width: screenWidth } = useWindowSize();
 
   const sideBar = {
-    "Data Quality": [
-      { title: screenType.dashboard, icon: "dashboard" },
-      { title: screenType.orderAnalysis, icon: "orderAnalysis" },
-      { title: screenType.eventQuality, icon: "eventQuality" },
+    'Data Quality': [
+      { title: screenType.dashboard, icon: 'dashboard' },
+      { title: screenType.orderAnalysis, icon: 'orderAnalysis' },
+      { title: screenType.eventQuality, icon: 'eventQuality' }
     ],
-    Analytics: [{ title: screenType.analytics, icon: "analytics" }],
+    Analytics: [{ title: screenType.analytics, icon: 'analytics' }],
     Settings: [
-      { title: screenType.settings, icon: "settings" },
-      { title: screenType.privacyCockpit, icon: "sunglass" },
-    ],
+      { title: screenType.settings, icon: 'settings' },
+      { title: screenType.privacyCockpit, icon: 'sunglass' }
+    ]
   };
   return (
     <aside
@@ -38,7 +37,7 @@ const SideBar = () =>
       <header className="flex justify-center">
         <a href={mableAiLandingPage}>
           <Icon
-            icon={(screenWidth ?? 0) >= 1024 ? "mableLogo" : "mableIcon"}
+            icon={(screenWidth ?? 0) >= 1024 ? 'mableLogo' : 'mableIcon'}
             width={(screenWidth ?? 0) >= 1024 ? 140 : 27}
           />
         </a>
@@ -56,10 +55,10 @@ const SideBar = () =>
                   <SideBarItem
                     {...item}
                     key={item.icon}
-                    clickHandle={() =>
-                    {
+                    clickHandle={() => {
                       const path = screenToURL(item.title);
-                      if (activeScreen !== item.title && path) router.push(path, undefined, { shallow: true });
+                      if (activeScreen !== item.title && path)
+                        router.push(path, undefined, { shallow: true });
                       dispatch(setScreen(item.title));
                     }}
                     isActive={activeScreen === item.title}
@@ -75,11 +74,11 @@ const SideBar = () =>
       <section className="flex flex-col gap-[20px]">
         <div className="flex flex-row gap-4 w-full items-center justify-center lg:justify-start">
           <span className="w-[30px] h-[30px] lg:w-[35px] lg:h-[35px] text-[14px] lg:text-[18px] text-light bg-primary font-extrabold rounded-full inline-flex justify-center items-center">
-            {firstName !== undefined ? firstName[0] : "U"}
+            {firstName !== undefined ? firstName[0] : 'U'}
           </span>
           <span className="flex-col justify-center hidden lg:inline-flex">
             <span className="text-[16px] text-light font-montserrat font-bold">
-              {`${firstName || ""} ${lastName || ""}`}
+              {`${firstName || ''} ${lastName || ''}`}
             </span>
           </span>
           <span className="text-md text-secondary hidden lg:inline-block">
@@ -88,19 +87,16 @@ const SideBar = () =>
         </div>
         <div
           className="flex text-[14px] text-secondary font-montserrat font-bold items-center cursor-pointer"
-          onClick={() =>
-          {
+          onClick={() => {
             dispatch(clearState());
-            dispatch(logout())
-            router.push("/auth/login", undefined, { shallow: true });
+            dispatch(logout());
+            router.push('/auth/login', undefined, { shallow: true });
           }}
         >
           <span className="mr-[10px] ml-[15px] lg:ml-0 text-2xl rounded-full hover:bg-secondary/20 p-2">
             <Icon icon="logout" />
           </span>
-          <span className="hidden lg:inline-block font-montserrat text-[18px] ">
-            Log Out
-          </span>
+          <span className="hidden lg:inline-block font-montserrat text-[18px] ">Log Out</span>
         </div>
       </section>
     </aside>

@@ -1,4 +1,4 @@
-import { IconType } from "@utility/typeDefinitions/componentPropTypes";
+import { IconType } from '@utility/typeDefinitions/componentPropTypes';
 
 const SVGComponent = (props: IconType) => (
   <svg
@@ -12,12 +12,7 @@ const SVGComponent = (props: IconType) => (
   >
     <rect width={18} height={18} fill="url(#delayed)" />
     <defs>
-      <pattern
-        id="delayed"
-        patternContentUnits="objectBoundingBox"
-        width={1}
-        height={1}
-      >
+      <pattern id="delayed" patternContentUnits="objectBoundingBox" width={1} height={1}>
         <use xlinkHref="#image0_199_240" transform="scale(0.0078125)" />
       </pattern>
       <image

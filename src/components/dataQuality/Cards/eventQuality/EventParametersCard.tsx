@@ -1,18 +1,16 @@
-import { ComponentWrapper } from "@components/common";
+import { ComponentWrapper } from '@components/common';
 
-import { ParameterStat } from "@components/dataQuality/General";
+import { ParameterStat } from '@components/dataQuality/General';
 
-import { useSelector } from "@redux/store";
-import { eventSelectedType } from "@utility/constants/enums";
+import { useSelector } from '@redux/store';
+import { eventSelectedType } from '@utility/constants/enums';
 
 const EventParametersCard = () => {
-  const { EventParameters, status, eventSelected } = useSelector(
-    (state) => state.dataPerEvent
-  );
+  const { EventParameters, status, eventSelected } = useSelector((state) => state.dataPerEvent);
   return (
     <ComponentWrapper
       title={`Attribution Parameters  ${
-        eventSelected === eventSelectedType.all ? "" : `for ${eventSelected}`
+        eventSelected === eventSelectedType.all ? '' : `for ${eventSelected}`
       }`}
       className="flex-grow-[1]"
       status={status}
@@ -20,15 +18,15 @@ const EventParametersCard = () => {
       <table className="flex">
         <tbody className="flex flex-col flex-grow gap-[10px]">
           <ParameterStat
-            name={"Total Amount"}
+            name={'Total Amount'}
             value={EventParameters?.total_count_shopping_data_total_amount ?? 0}
           />
           <ParameterStat
-            name={"Currency"}
+            name={'Currency'}
             value={EventParameters?.total_count_shopping_data_currency ?? 0}
           />
           <ParameterStat
-            name={"Order ID"}
+            name={'Order ID'}
             value={EventParameters?.total_count_custom_data_order_id ?? 0}
           />
         </tbody>

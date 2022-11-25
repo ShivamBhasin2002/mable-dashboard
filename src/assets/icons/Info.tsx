@@ -1,4 +1,4 @@
-import { IconType } from "@utility/typeDefinitions/componentPropTypes";
+import { IconType } from '@utility/typeDefinitions/componentPropTypes';
 
 const SvgComponent = (props: IconType) => (
   <svg
@@ -8,11 +8,7 @@ const SvgComponent = (props: IconType) => (
     height={24}
     {...props}
   >
-    <g
-      id="Group_1009"
-      data-name="Group 1009"
-      transform="translate(-2.137 -3.097)"
-    >
+    <g id="Group_1009" data-name="Group 1009" transform="translate(-2.137 -3.097)">
       <g id="Path_1297" data-name="Path 1297" fill="none">
         <path
           d="M10.388,4.621a3,3,0,0,1,5.223,0l7.858,13.9A3,3,0,0,1,20.858,23H5.142A3,3,0,0,1,2.53,18.524Z"
@@ -34,7 +30,7 @@ const SvgComponent = (props: IconType) => (
         fontWeight={700}
       >
         <tspan x={0} y={0}>
-          {"!"}
+          {'!'}
         </tspan>
       </text>
     </g>

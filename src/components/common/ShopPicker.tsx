@@ -1,11 +1,11 @@
-import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 
-import Icon from "@assets/icons";
+import Icon from '@assets/icons';
 
-import colors from "@utility/colors";
+import colors from '@utility/colors';
 
-import { useSelector, useDispatch } from "@redux/store";
-import { setShop } from "@redux/reducers/shopSlice";
+import { useSelector, useDispatch } from '@redux/store';
+import { setShop } from '@redux/reducers/shopSlice';
 
 const ShopPicker = () => {
   const dispatch = useDispatch();
@@ -21,11 +21,7 @@ const ShopPicker = () => {
         </div>
       </MenuButton>
       {shops && shops?.length > 1 && (
-        <MenuList
-          background={colors.bgContainerTo}
-          textColor={colors.light}
-          border="none"
-        >
+        <MenuList background={colors.bgContainerTo} textColor={colors.light} border="none">
           {shops
             ?.filter((thisShop) => thisShop.id !== active?.id)
             .map((shop) => (

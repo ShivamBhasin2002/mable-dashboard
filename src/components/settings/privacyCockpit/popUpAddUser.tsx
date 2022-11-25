@@ -1,12 +1,12 @@
-import { Button, Checkbox, Input, Spinner } from "@chakra-ui/react";
-import { ComponentWrapper } from "@components/common";
-import { useShowToast } from "@utility/customHooks";
-import colors from "@utility/colors";
-import { Dispatch, SetStateAction } from "react";
-import { postDeletedCustomer } from "@redux/reducers/settings/privacyCockpit/privacyCockpitSlice";
-import { useDispatch, useSelector } from "@redux/store";
-import { STATUS_TYPE } from "@utility/constants/enums";
-import * as yup from "yup";
+import { Button, Checkbox, Input, Spinner } from '@chakra-ui/react';
+import { ComponentWrapper } from '@components/common';
+import { useShowToast } from '@utility/customHooks';
+import colors from '@utility/colors';
+import { Dispatch, SetStateAction } from 'react';
+import { postDeletedCustomer } from '@redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
+import { useDispatch, useSelector } from '@redux/store';
+import { STATUS_TYPE } from '@utility/constants/enums';
+import * as yup from 'yup';
 
 interface PopUpProps {
   open: string;
@@ -20,12 +20,10 @@ interface PopUpProps {
 const PopupExample = (props: PopUpProps) => {
   const toast = useShowToast();
   const dispatch = useDispatch();
-  const { status } = useSelector(
-    (state) => state.privacyCockpit.deleteUserData
-  );
+  const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
 
   const emailSchema = yup.object().shape({
-    email: yup.string().email(),
+    email: yup.string().email()
   });
 
   const handleSave = async () => {
@@ -34,13 +32,13 @@ const PopupExample = (props: PopUpProps) => {
       dispatch(
         postDeletedCustomer({
           futureTrack: props.futureTrack,
-          email: props.email,
+          email: props.email
         })
       );
     } else {
       toast({
         title: `Enter valid mail Id`,
-        status: STATUS_TYPE.ERROR,
+        status: STATUS_TYPE.ERROR
       });
     }
   };
@@ -53,9 +51,7 @@ const PopupExample = (props: PopUpProps) => {
         title="New User"
         underlined={true}
         className="w-1/2"
-        nextComponent={
-          <button onClick={() => props.setDisplay("hidden")}>Close</button>
-        }
+        nextComponent={<button onClick={() => props.setDisplay('hidden')}>Close</button>}
       >
         <form className="flex flex-col gap-6">
           <div className="text-light text-lg flex items-center gap-8">
@@ -85,11 +81,7 @@ const PopupExample = (props: PopUpProps) => {
             ></Checkbox>
           </div>
 
-          <Button
-            className="w-[8rem] ml-auto"
-            colorScheme="blue"
-            onClick={() => handleSave()}
-          >
+          <Button className="w-[8rem] ml-auto" colorScheme="blue" onClick={() => handleSave()}>
             {status === STATUS_TYPE.FETCHING && <Spinner />}
             Coinfirm
           </Button>

@@ -1,19 +1,14 @@
-import { useEffect, useRef } from "react";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  useDisclosure,
-} from "@chakra-ui/react";
-import moment from "moment";
+import { useEffect, useRef } from 'react';
+import { Popover, PopoverTrigger, PopoverContent, useDisclosure } from '@chakra-ui/react';
+import moment from 'moment';
 
-import Icon from "@assets/icons";
+import Icon from '@assets/icons';
 
-import DatePicker from "@components/common/DatePicker";
+import DatePicker from '@components/common/DatePicker';
 
-import { useSelector, useDispatch } from "@redux/store";
-import { refresh } from "@redux/reducers/datesSlice";
-import { showDatePicker, showReload } from "@utility/functions/helper";
+import { useSelector, useDispatch } from '@redux/store';
+import { refresh } from '@redux/reducers/datesSlice';
+import { showDatePicker, showReload } from '@utility/functions/helper';
 // import ShopPicker from './ShopPicker';
 
 const Header = () => {
@@ -23,22 +18,22 @@ const Header = () => {
   const { activeScreen } = useSelector((state) => state.screen);
   const { onClose, onOpen, isOpen } = useDisclosure();
   useEffect(() => {
-    document.getElementById("startDateIdentifier")?.click();
+    document.getElementById('startDateIdentifier')?.click();
   });
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
-    const refreshBtn = document.querySelector("#refreshBtn");
+    const refreshBtn = document.querySelector('#refreshBtn');
     const clickHandler = () => {
-      const refreshIcon = document.querySelector("#refreshIcon");
-      refreshIcon?.classList.add("animate-spin");
+      const refreshIcon = document.querySelector('#refreshIcon');
+      refreshIcon?.classList.add('animate-spin');
       timeoutId = setTimeout(() => {
-        refreshIcon?.classList.remove("animate-spin");
+        refreshIcon?.classList.remove('animate-spin');
       }, 2000);
     };
-    refreshBtn?.addEventListener("click", clickHandler);
+    refreshBtn?.addEventListener('click', clickHandler);
     return () => {
       clearTimeout(timeoutId);
-      refreshBtn?.removeEventListener("click", clickHandler);
+      refreshBtn?.removeEventListener('click', clickHandler);
     };
   }, []);
 
@@ -73,11 +68,9 @@ const Header = () => {
             >
               <PopoverTrigger>
                 <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[40px] w-max px-[20px] rounded-[10px] flex flex-row gap-[10px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer whitespace-nowrap">
-                  {datePreset && (
-                    <span className="text-primary w-min">{datePreset}: </span>
-                  )}
-                  {dateRange[0] && moment(dateRange[0]).format("DD.MM.YY")} to{" "}
-                  {dateRange[1] && moment(dateRange[1]).format("DD.MM.YY")}
+                  {datePreset && <span className="text-primary w-min">{datePreset}: </span>}
+                  {dateRange[0] && moment(dateRange[0]).format('DD.MM.YY')} to{' '}
+                  {dateRange[1] && moment(dateRange[1]).format('DD.MM.YY')}
                   <Icon icon="dropdown" />
                 </span>
               </PopoverTrigger>

@@ -1,24 +1,15 @@
-import {
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  Checkbox,
-  Stack,
-} from "@chakra-ui/react";
-import colors from "@utility/colors";
-import Icon from "@assets/icons";
-import { useDispatch } from "react-redux";
-import { setColumnSelected } from "@redux/reducers/analytics/reportsSlice";
-import { filterType } from "@utility/constants/enums";
-import { useSelector } from "@redux/store";
-import { SelectedEventsType } from "@utility/typeDefinitions/reduxTypes";
+import { Button, Menu, MenuButton, MenuList, Checkbox, Stack } from '@chakra-ui/react';
+import colors from '@utility/colors';
+import Icon from '@assets/icons';
+import { useDispatch } from 'react-redux';
+import { setColumnSelected } from '@redux/reducers/analytics/reportsSlice';
+import { filterType } from '@utility/constants/enums';
+import { useSelector } from '@redux/store';
+import { SelectedEventsType } from '@utility/typeDefinitions/reduxTypes';
 
 const ColumnSelectorMenu = () => {
   const dispatch = useDispatch();
-  const selectedEvents = useSelector(
-    (state) => state.analytics
-  ).selected_events;
+  const selectedEvents = useSelector((state) => state.analytics).selected_events;
   return (
     <Menu gutter={0} isLazy>
       <MenuButton
@@ -32,11 +23,11 @@ const ColumnSelectorMenu = () => {
         fontSize="14px"
         textAlign="left"
         outline="none"
-        _hover={{ backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: 'transparent' }}
         _active={{
-          backgroundColor: "transparent",
+          backgroundColor: 'transparent',
           borderBottomRadius: 0,
-          borderBottom: 0,
+          borderBottom: 0
         }}
       >
         Columns
@@ -49,7 +40,7 @@ const ColumnSelectorMenu = () => {
         borderTopRadius={0}
         borderColor={`${colors.lines}20`}
       >
-        <Stack spacing={[1]} direction={["column"]}>
+        <Stack spacing={[1]} direction={['column']}>
           {Object.entries(filterType).map((item) => (
             <Checkbox
               isChecked={selectedEvents[item[0] as keyof SelectedEventsType]}

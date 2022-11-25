@@ -1,45 +1,39 @@
-import { useState, useEffect, useRef } from "react";
-import { Line } from "react-chartjs-2";
-import moment from "moment";
+import { useState, useEffect, useRef } from 'react';
+import { Line } from 'react-chartjs-2';
+import moment from 'moment';
 
-import { numberReducer } from "@utility/functions/formattingFunctions";
-import { getSelectedEventData } from "@utility/functions/mappingFunctions";
-import { createGradient } from "@utility/functions/colorSelector";
-import colors from "@utility/colors";
-import fonts from "@utility/fonts";
+import { numberReducer } from '@utility/functions/formattingFunctions';
+import { getSelectedEventData } from '@utility/functions/mappingFunctions';
+import { createGradient } from '@utility/functions/colorSelector';
+import colors from '@utility/colors';
+import fonts from '@utility/fonts';
 
-import { useSelector } from "@redux/store";
+import { useSelector } from '@redux/store';
 
 const EventsPerDayLineChart = () => {
-  const { byDate, status, eventSelected } = useSelector(
-    (state) => state.eventsData
-  );
+  const { byDate, status, eventSelected } = useSelector((state) => state.eventsData);
   const chart = useRef<any>(null); // eslint-disable-line
   const [charData, setCharData] = useState<any>({ datasets: [] }); // eslint-disable-line
   useEffect(() => {
     setCharData({
-      labels: byDate.map((item) => moment(item.date).format("D. MMM")),
+      labels: byDate.map((item) => moment(item.date).format('D. MMM')),
       datasets: [
         {
-          label: "Events",
-          backgroundColor: createGradient(
-            chart.current.ctx,
-            chart.current.chartArea,
-            [
-              { stop: 0.2, color: colors.transparent },
-              { stop: 1, color: colors.eventsPerDayLineArea },
-            ]
-          ),
+          label: 'Events',
+          backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
+            { stop: 0.2, color: colors.transparent },
+            { stop: 1, color: colors.eventsPerDayLineArea }
+          ]),
           borderColor: colors.eventsPerDayLineColor,
           borderWidth: 1,
           lineTension: 0.4,
           fill: true,
           data: byDate.map((item) => getSelectedEventData(item, eventSelected)),
           datalabels: {
-            display: false,
-          },
-        },
-      ],
+            display: false
+          }
+        }
+      ]
     });
   }, [status, eventSelected]);
   return (
@@ -48,20 +42,20 @@ const EventsPerDayLineChart = () => {
         options={{
           hover: {
             intersect: false,
-            mode: "nearest",
+            mode: 'nearest'
           },
           maintainAspectRatio: false,
           elements: {
             point: {
-              radius: 0,
-            },
+              radius: 0
+            }
           },
           scales: {
             y: {
               beginAtZero: true,
               ticks: {
                 font: {
-                  family: fonts.text,
+                  family: fonts.text
                 },
                 stepSize: Math.floor(
                   byDate
@@ -70,34 +64,34 @@ const EventsPerDayLineChart = () => {
                 ),
                 callback(this, tickValue: string | number) {
                   return numberReducer(tickValue);
-                },
+                }
               },
               grid: {
                 display: false,
                 borderColor: `${colors.lines}20`,
-                borderWidth: 3,
-              },
+                borderWidth: 3
+              }
             },
             x: {
               ticks: {
                 font: {
-                  family: fonts.text,
+                  family: fonts.text
                 },
                 autoSkip: true,
                 maxTicksLimit: 10,
-                maxRotation: 0,
+                maxRotation: 0
               },
               grid: {
                 display: false,
                 borderColor: `${colors.lines}20`,
-                borderWidth: 3,
-              },
-            },
-          },
+                borderWidth: 3
+              }
+            }
+          }
         }}
         plugins={[
           {
-            id: "lines",
+            id: 'lines',
             // eslint-disable-next-line
             afterDraw: (chart: any) => {
               if (chart.tooltip?.getActiveElements().length) {
@@ -115,8 +109,8 @@ const EventsPerDayLineChart = () => {
                 ctx.stroke();
                 ctx.restore();
               }
-            },
-          },
+            }
+          }
         ]}
         data={charData}
         height={216}

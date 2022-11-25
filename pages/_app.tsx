@@ -42,9 +42,9 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
   return (
     <Provider store={store}>
       <ChakraProvider>
-      <Head>
-        <link rel="shortcut icon" href="/mable.svg" />
-      </Head>
+        <Head>
+          <link rel="shortcut icon" href="/mable.svg" />
+        </Head>
         <Component {...pageProps} />
       </ChakraProvider>
     </Provider>

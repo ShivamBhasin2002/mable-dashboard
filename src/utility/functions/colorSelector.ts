@@ -1,8 +1,8 @@
-import { ChartArea } from "chart.js";
+import { ChartArea } from 'chart.js';
 
-import { statusSelector } from "@utility/constants/enums";
+import { statusSelector } from '@utility/constants/enums';
 
-import colors from "@utility/colors";
+import colors from '@utility/colors';
 
 export const createGradient = (
   ctx: CanvasRenderingContext2D,
@@ -10,9 +10,7 @@ export const createGradient = (
   gradientColors: { stop: number; color: string }[]
 ) => {
   const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-  gradientColors.forEach((color) =>
-    gradient.addColorStop(color.stop, color.color)
-  );
+  gradientColors.forEach((color) => gradient.addColorStop(color.stop, color.color));
   return gradient;
 };
 
@@ -25,14 +23,14 @@ export const getColor = (value: number) => {
 export const statusTypeColors = (status: string) => {
   switch (status) {
     case statusSelector.failed:
-      return "bg-failed";
+      return 'bg-failed';
     case statusSelector.delayed:
-      return "bg-delayed";
+      return 'bg-delayed';
     case statusSelector.pending:
-      return "bg-purple";
+      return 'bg-purple';
     case statusSelector.success:
-      return "bg-success";
+      return 'bg-success';
     default:
-      return "";
+      return '';
   }
 };

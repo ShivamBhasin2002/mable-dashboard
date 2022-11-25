@@ -1,5 +1,5 @@
-import Icon from "@assets/icons";
-import { PaginationProps } from "@utility/typeDefinitions/componentPropTypes";
+import Icon from '@assets/icons';
+import { PaginationProps } from '@utility/typeDefinitions/componentPropTypes';
 
 const Pagination = ({ page, setPage, array, itemsPerPage }: PaginationProps) =>
   array && array.length > itemsPerPage ? (

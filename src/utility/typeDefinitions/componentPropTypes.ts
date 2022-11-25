@@ -1,8 +1,4 @@
-import {
-  eventSelectedType,
-  screenType,
-  STATUS_TYPE,
-} from "@utility/constants/enums";
+import { eventSelectedType, screenType, STATUS_TYPE } from '@utility/constants/enums';
 
 export type IconType = {
   id?: string;

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 import { thunkOptions, userStateType } from '@utility/typeDefinitions/reduxTypes';
 import { userInitialState } from '@utility/constants/initialStates';
 

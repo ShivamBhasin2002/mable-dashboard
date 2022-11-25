@@ -1,16 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { ComponentWrapper } from "@components/common";
-import { ViewFullReport } from "@components/dataQuality/Common";
-import {
-  QualityCombined,
-  OrderComposition,
-} from "@components/dataQuality/General";
-import { DataQualityLineChart } from "@components/dataQuality/Graphs";
-import { screenType, STATUS_TYPE } from "@utility/constants/enums";
+import { ComponentWrapper } from '@components/common';
+import { ViewFullReport } from '@components/dataQuality/Common';
+import { QualityCombined, OrderComposition } from '@components/dataQuality/General';
+import { DataQualityLineChart } from '@components/dataQuality/Graphs';
+import { screenType, STATUS_TYPE } from '@utility/constants/enums';
 
-import { useSelector, useDispatch } from "@redux/store";
-import { dataQualityAsync } from "@redux/reducers/dataQuality/dataQualitySlice";
+import { useSelector, useDispatch } from '@redux/store';
+import { dataQualityAsync } from '@redux/reducers/dataQuality/dataQualitySlice';
 
 const DataQualityCard = () => {
   const dispatch = useDispatch();

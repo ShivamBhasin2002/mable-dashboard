@@ -1,20 +1,18 @@
-import ComponentWrapper from "@components/common/ComponentWrapper";
-import { Divider } from "@chakra-ui/react";
-import { useSelector } from "@redux/store";
-import ToggleTable from "./ToggleTable";
+import ComponentWrapper from '@components/common/ComponentWrapper';
+import { Divider } from '@chakra-ui/react';
+import { useSelector } from '@redux/store';
+import ToggleTable from './ToggleTable';
 
 function ParameterSettings() {
-  const { data_collection_destinations: dataCollectionDestinations } =
-    useSelector((state) => state.privacyCockpit.paraMeterSettings);
+  const { data_collection_destinations: dataCollectionDestinations } = useSelector(
+    (state) => state.privacyCockpit.paraMeterSettings
+  );
 
   return (
     <ComponentWrapper className="flex flex-col w-full h-fit">
       <div className="header w-full grid grid-cols-9 gap-0  content-center">
         <div className="header_title   col-span-3  m-right my-auto">
-          <p className="text-[24px] font-[700] text-light">
-            {" "}
-            Parameter Settings
-          </p>
+          <p className="text-[24px] font-[700] text-light"> Parameter Settings</p>
         </div>
 
         {dataCollectionDestinations.map((item) => (

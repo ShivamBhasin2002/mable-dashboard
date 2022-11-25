@@ -1,35 +1,30 @@
-import { ComponentWrapper } from "@components/common";
-import { useSelector } from "@redux/store";
-import { useEffect, useState } from "react";
-import { useShowToast } from "@utility/customHooks";
-import { STATUS_TYPE } from "@utility/constants/enums";
-import { Button } from "@chakra-ui/react";
-import { clearDeleteUserState } from "@redux/reducers/settings/privacyCockpit/privacyCockpitSlice";
-import Icon from "@assets/icons";
-import PopupExample from "./popUpAddUser";
+import { ComponentWrapper } from '@components/common';
+import { useSelector } from '@redux/store';
+import { useEffect, useState } from 'react';
+import { useShowToast } from '@utility/customHooks';
+import { STATUS_TYPE } from '@utility/constants/enums';
+import { Button } from '@chakra-ui/react';
+import { clearDeleteUserState } from '@redux/reducers/settings/privacyCockpit/privacyCockpitSlice';
+import Icon from '@assets/icons';
+import PopupExample from './popUpAddUser';
 
 const DeleteUserData = () => {
-  const [display, setDisplay] = useState("hidden");
-  const [email, setEmail] = useState("");
+  const [display, setDisplay] = useState('hidden');
+  const [email, setEmail] = useState('');
   const [futureTrack, setFutureTrack] = useState<boolean>(false);
   const [page, setPage] = useState(1);
-  const { status } = useSelector(
-    (state) => state.privacyCockpit.deleteUserData
-  );
+  const { status } = useSelector((state) => state.privacyCockpit.deleteUserData);
   const toast = useShowToast();
 
   useEffect(() => {
     if (status === STATUS_TYPE.SUCCESS || status === STATUS_TYPE.ERROR) {
-      setDisplay("hidden");
+      setDisplay('hidden');
       toast({
-        title:
-          status === STATUS_TYPE.SUCCESS
-            ? `User Deleted`
-            : `Oops Some error occured`,
-        status,
+        title: status === STATUS_TYPE.SUCCESS ? `User Deleted` : `Oops Some error occured`,
+        status
       });
       clearDeleteUserState();
-      setEmail("");
+      setEmail('');
       setFutureTrack(false);
     }
   }, [status]);
@@ -39,14 +34,12 @@ const DeleteUserData = () => {
       className="ml-auto mb-2"
       type="submit"
       colorScheme="blue"
-      onClick={() => setDisplay("flex")}
+      onClick={() => setDisplay('flex')}
     >
       Request Deletion
     </Button>
   );
-  const deleteCustomer = useSelector(
-    (state) => state.privacyCockpit.deleteUserData.userData
-  );
+  const deleteCustomer = useSelector((state) => state.privacyCockpit.deleteUserData.userData);
 
   return (
     <ComponentWrapper
@@ -67,9 +60,7 @@ const DeleteUserData = () => {
         <thead>
           <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
             <td className="text-primary rounded-tl-[10px]">E-mail Address</td>
-            <td className="text-primary rounded-tr-[10px]">
-              Block for future tracking
-            </td>
+            <td className="text-primary rounded-tr-[10px]">Block for future tracking</td>
           </tr>
         </thead>
         <tbody className="last-of:rounded-b-[10px]">
@@ -80,14 +71,12 @@ const DeleteUserData = () => {
               <tr
                 key={i}
                 className={`text-light [&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
-                  !(i & 1) && "bg-tableStrips/[0.5]"
+                  !(i & 1) && 'bg-tableStrips/[0.5]'
                 }
                 `}
               >
                 <td width="1/2">{item.email}</td>
-                <td width="1/2">
-                  {item.data_collection_active ? `Yes` : `No`}
-                </td>
+                <td width="1/2">{item.data_collection_active ? `Yes` : `No`}</td>
               </tr>
             ))}
         </tbody>

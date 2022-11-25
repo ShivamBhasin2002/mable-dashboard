@@ -6,7 +6,7 @@ import OrderAnalysis from 'pages/data_quality/order_analysis';
 import Settings from 'pages/settings/account_settings';
 import PrivacyCockpit from 'pages/settings/privacy_cockpit';
 
-const GetScreen = ({screen}: { screen: screenType }) => {
+const GetScreen = ({ screen }: { screen: screenType }) => {
   switch (screen) {
     case screenType.dashboard:
       return <Dashboard />;
