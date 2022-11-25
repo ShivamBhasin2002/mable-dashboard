@@ -5,27 +5,8 @@ import { useSelector } from 'redux/store';
 import { getMessage } from 'utility/functions/mappingFunctions';
 import { getColor } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
-import { useEffect, useState } from 'react';
 
 const QualityCombined = () => {
-  function getWindowSize() {
-    const { innerWidth, innerHeight } = window;
-    return { innerWidth, innerHeight };
-  }
-  const [windowSize, setWindowSize] = useState(getWindowSize());
-
-  useEffect(() => {
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
-    }
-
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
-
   const { TOTAL_DATA_QUALITY_FACEBOOK } = useSelector((state) => state.dataQuality);
   const doughnutData = {
     datasets: [

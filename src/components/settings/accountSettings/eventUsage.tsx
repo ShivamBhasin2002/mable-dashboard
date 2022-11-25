@@ -113,23 +113,26 @@ const EventUsage = () => {
       </div>
 
       <div className=" flex justify-between">
-        <div className="flex flex-col items-end">
-          <div className="flex mr-10 text-gray-400">
+        <div className="flex flex-row items-end ">
+          <div className="flex  h-full pl-1 pt-1">
             <div className="w-5 h-5 bg-primary rounded-full mr-2"></div>
-            Current Month
           </div>
-          <div className="text-lg">
-            {currentMonth}/{range}
+          <div className="flex justify-start flex-col">
+            <div className="flex mr-10 text-gray-400">Current Month</div>
+            <div className="text-lg">
+              {currentMonth}/{range}
+            </div>
           </div>
         </div>
-
-        <div className="flex flex-col items-end">
-          <div className="flex mr-10 text-gray-400">
-            <div className="w-5 h-5 bg-green-800 rounded-full mr-2"></div>
-            Estimated event this month
+        <div className="flex flex-row items-end ">
+          <div className="flex  h-full pl-1 pt-1">
+            <div className="w-5 h-5 bg-primary rounded-full mr-2"></div>
           </div>
-          <div className="text-lg">
-            {estimatedEvent}/{range}
+          <div className="flex justify-start flex-col">
+            <div className="flex mr-10 text-gray-400"> Estimated event this month</div>
+            <div className="text-lg">
+              {estimatedEvent.toPrecision(6)}/{range}
+            </div>
           </div>
         </div>
       </div>
