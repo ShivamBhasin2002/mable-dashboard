@@ -88,7 +88,9 @@ function toggleTable() {
       {categories.map((category, catIdx) => (
         <>
           <div className={`${catIdx === 0 ? 'category-header mt-0' : 'category-header mt-2'}`}>
-            <p className="text-primary opacity-70 text-[.875rem]">{camelCaseToTitleCase(category)} </p>
+            <p className="text-primary opacity-70 text-[.875rem]">
+              {camelCaseToTitleCase(category)}{' '}
+            </p>
           </div>
           {dataCollectionSettings.map((data) => {
             if (category === data.category)

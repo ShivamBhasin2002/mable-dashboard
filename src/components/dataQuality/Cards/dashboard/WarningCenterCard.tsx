@@ -44,7 +44,9 @@ const WarningCenterCard = () => {
                 {message}
               </span>
             </span>
-            <span className="text-[.75rem] leading-[1.1875rem] font-montserrat font-bold">{time}</span>
+            <span className="text-[.75rem] leading-[1.1875rem] font-montserrat font-bold">
+              {time}
+            </span>
           </div>
         ))}
       </div>

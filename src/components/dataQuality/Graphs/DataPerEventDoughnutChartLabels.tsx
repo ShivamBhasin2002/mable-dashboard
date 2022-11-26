@@ -19,7 +19,9 @@ const DataPerEventDoughnutChartLabels = () => {
           className="flex flex-row gap-[.625rem] items-center"
           key={`statsOfDataContainedPerEvent${i}`}
         >
-          <span className={`${stats.color} ${stats.border} w-[.6875rem] h-[.6875rem] rounded-full`} />
+          <span
+            className={`${stats.color} ${stats.border} w-[.6875rem] h-[.6875rem] rounded-full`}
+          />
           <span className="text-primary text-sm">{stats.name}</span>
           <span className="text-light ml-auto">{stats.value}%</span>
         </div>

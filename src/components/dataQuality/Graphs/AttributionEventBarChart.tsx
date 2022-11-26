@@ -35,7 +35,7 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
   };
 
   const { byDate } = useSelector((state) => state.dataPerEvent);
-  Tooltip.positioners.customPos = function (elements, position) {
+  Tooltip.positioners.customPos = (elements, position) => {
     if (!elements.length) {
       return false;
     }
@@ -107,7 +107,53 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
     }
   ];
 
-  const barOptions: any = {
+  const barOptions: {
+    responsive: boolean;
+    maintainAspectRatio: boolean;
+    barPercentage: number;
+    plugins: {
+      tooltip: {
+        yAlign: 'bottom' | 'top' | 'center';
+        position: 'customPos' | 'average' | 'nearest';
+      };
+    };
+    elements: {
+      bar: {
+        borderRadius: number;
+      };
+    };
+    scales: {
+      y: {
+        suggestedMax: number;
+        grid: {
+          display: boolean;
+          borderColor: string;
+          borderWidth: number;
+        };
+        ticks: {
+          stepSize: number;
+          font: {
+            family: string;
+          };
+        };
+      };
+      x: {
+        ticks: {
+          font: {
+            family: string;
+          };
+          autoSkip: boolean;
+          maxTicksLimit: number;
+          maxRotation: number;
+        };
+        grid: {
+          display: boolean;
+          borderColor: string;
+          borderWidth: number;
+        };
+      };
+    };
+  } = {
     responsive: true,
     maintainAspectRatio: false,
     barPercentage: 0.7,
