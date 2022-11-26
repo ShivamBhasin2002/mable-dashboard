@@ -10,7 +10,7 @@ const ViewFullReport = ({ screen }: ViewFullReportProps) => {
   const { activeScreen } = useSelector((state) => state.screen);
   return (
     <div
-      className="text-[13px] flex items-center gap-[10px] cursor-pointer text-lines whitespace-nowrap"
+      className="text-[.8125rem] flex items-center gap-[.625rem] cursor-pointer text-lines whitespace-nowrap"
       onClick={() => {
         if (activeScreen !== screen) dispatch(setScreen(screen));
       }}

@@ -65,14 +65,14 @@ const DeleteUserData = () => {
         futureTrack={futureTrack}
         setFutureTrack={setFutureTrack}
       />
-      <table className="w-full table-auto my-[10px]">
+      <table className="w-full table-auto my-[.625rem]">
         <thead>
-          <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-[12px] [&>*]:px-[20px] [&>*]:whitespace-nowrap">
-            <td className="text-primary rounded-tl-[10px]">E-mail Address</td>
-            <td className="text-primary rounded-tr-[10px]">Block for future tracking</td>
+          <tr className="[&>*]:font-montserrat [&>*]:text-[.875rem] [&>*]:font-extrabold [&>*]:py-[.75rem] [&>*]:px-[1.25rem] [&>*]:whitespace-nowrap">
+            <td className="text-primary rounded-tl-[.625rem]">E-mail Address</td>
+            <td className="text-primary rounded-tr-[.625rem]">Block for future tracking</td>
           </tr>
         </thead>
-        <tbody className="last-of:rounded-b-[10px]">
+        <tbody className="last-of:rounded-b-[.625rem]">
           {Object.values(deleteCustomer)
             .slice(0)
             .reverse()
@@ -80,7 +80,7 @@ const DeleteUserData = () => {
             .map((item, i) => (
               <tr
                 key={i}
-                className={`text-light [&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px] ${
+                className={`text-light [&>*]:font-montserrat [&>*]:text-[.875rem] [&>*]:font-normal [&>*]:py-[.75rem] [&>*]:px-[1.25rem] ${
                   !(i & 1) && 'bg-tableStrips/[0.5]'
                 }
                 `}

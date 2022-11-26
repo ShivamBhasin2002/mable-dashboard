@@ -16,7 +16,7 @@ const EventParametersCard = () => {
       status={status}
     >
       <table className="flex">
-        <tbody className="flex flex-col flex-grow gap-[10px]">
+        <tbody className="flex flex-col flex-grow gap-[.625rem]">
           <ParameterStat
             name={'Total Amount'}
             value={EventParameters?.total_count_shopping_data_total_amount ?? 0}

@@ -47,7 +47,7 @@ const Analytics = () => {
             // csvExporter.generateCsv(csvData);
             CsvExport();
           }}
-          className=" !border-lines/[0.20] border-2 h-[30px] px-2 rounded-md font-medium"
+          className=" !border-lines/[0.20] border-2 h-[1.875rem] px-2 rounded-md font-medium"
         >
           Export Csv
         </button>

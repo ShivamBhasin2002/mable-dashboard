@@ -26,7 +26,7 @@ const TextField = ({ label, icon, type, ...props }: TextFieldProps) => {
       {label && <FormLabel>{label}</FormLabel>}
       <InputGroup>
         {icon && (
-          <InputLeftElement className="!py-[23px] !ml-[5px]" pointerEvents="none">
+          <InputLeftElement className="!py-[1.4375rem] !ml-[.3125rem]" pointerEvents="none">
             <Icon icon={icon} size="2rem" />
           </InputLeftElement>
         )}
@@ -44,7 +44,7 @@ const TextField = ({ label, icon, type, ...props }: TextFieldProps) => {
           <InputRightElement width="4.5rem">
             <button
               type="button"
-              className="h-full flex justify-center items-center mt-[8px] hover:text-primary"
+              className="h-full flex justify-center items-center mt-[.5rem] hover:text-primary"
               onClick={handleClick}
             >
               {show ? (

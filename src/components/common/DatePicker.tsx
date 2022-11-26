@@ -27,10 +27,10 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
     }
   }, [close, isOpen]);
   return (
-    <ComponentWrapper width={1000} className="!rounded-[10px] shadow-xl shadow-background">
+    <ComponentWrapper width={1000} className="!rounded-[.625rem] shadow-xl shadow-background">
       <div className="flex flex-col lg:flex-row justify-between h-full gap-4">
         <div className="flex-grow flex flex-col justify-between gap-4">
-          <h5 className="flex [&>*]:flex-1 font-lato font-bold text-primary mb-[4px] ">
+          <h5 className="flex [&>*]:flex-1 font-lato font-bold text-primary mb-[.25rem] ">
             <div>Start Date</div>
             <div>End Date</div>
           </h5>
@@ -62,7 +62,7 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
           />
           <div className="flex justify-start lg:justify-end gap-4">
             <button
-              className="px-[56px] py-[13px] rounded-[8px] font-lato text-[16px] font-bold bg-secondary text-light"
+              className="px-[3.5rem] py-[.8125rem] rounded-[.5rem] font-lato text-[1rem] font-bold bg-secondary text-light"
               onClick={() => {
                 close();
                 setSelectedDateRange(dateRange);
@@ -72,7 +72,7 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
               Cancel
             </button>
             <button
-              className="px-[56px] py-[13px] rounded-[8px] font-lato text-[16px] font-bold bg-primary text-light"
+              className="px-[3.5rem] py-[.8125rem] rounded-[.5rem] font-lato text-[1rem] font-bold bg-primary text-light"
               onClick={() => {
                 if (datePreset !== selectedPreset) dispatch(setPreset(selectedPreset));
                 if (dateRange !== selectedDateRange) dispatch(setDates(selectedDateRange));
@@ -84,8 +84,8 @@ const DatePicker = ({ close, isOpen }: datePickerProps) => {
             </button>
           </div>
         </div>
-        <div className="flex flex-col pl-[50px] pr-[120px] border-l-[1px] border-lines/[0.2] gap-[20px] text-[16px] leading-[19px]">
-          <h5 className="font-lato font-bold text-primary mb-[4px] ">Presets</h5>
+        <div className="flex flex-col pl-[3.125rem] pr-[7.5rem] border-l-[.0625rem] border-lines/[0.2] gap-[1.25rem] text-[1rem] leading-[1.1875rem]">
+          <h5 className="font-lato font-bold text-primary mb-[.25rem] ">Presets</h5>
           {Object.values(DatePickerPresets).map((preset, i) => (
             <div
               key={`${i}${preset}`}

@@ -101,7 +101,7 @@ const PrivacySettings = () => {
           }}
         ></Checkbox>
       </div>
-      <div className="flex gap-4 items-center mt-[40px]">
+      <div className="flex gap-4 items-center mt-[2.5rem]">
         <div className=" text-light">Please link your cookie consent</div>
         <form className="w-[20rem]">
           <Input

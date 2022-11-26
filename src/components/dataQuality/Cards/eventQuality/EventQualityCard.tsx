@@ -22,7 +22,7 @@ const EventQualityCard = () => {
     <ComponentWrapper
       title="Data Contained per Event"
       status={status}
-      className="overflow-hidden min-h-[168px]"
+      className="overflow-hidden min-h-[10.5rem]"
       height={168}
       nextComponent={
         <SelectorMenu
@@ -33,7 +33,7 @@ const EventQualityCard = () => {
     >
       <div className="flex items-center justify-evenly mr-8 flex-wrap gap-5  h-100 flex-grow-[.5] ">
         <ParameterMetrics flexDirection="row" />
-        <div className="w-60 h-[110px] flex-grow-[1]">
+        <div className="w-60 h-[6.875rem] flex-grow-[1]">
           <AttributionEventBarChart />
         </div>
       </div>

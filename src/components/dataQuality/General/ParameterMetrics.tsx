@@ -9,12 +9,12 @@ const ParameterMetrics = ({ flexDirection }: { flexDirection: 'row' | 'col' }) =
     <div
       className={`flex ${
         flexDirection === 'col' ? 'flex-col' : 'flex-row'
-      } justify-center gap-[10px]`}
+      } justify-center gap-[.625rem]`}
     >
-      <div className="p-[1rem] w-[129px] flex flex-col items-center justify-evenly bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom rounded-[16px] drop-shadow-xl">
-        <div className="flex flex-row gap-[5px] items-baseline">
-          <span className="bg-purple w-[11px] h-[11px] rounded-full" />
-          <div className=" text-[1.3rem] leading-[34px] font-lato text-center text-light">
+      <div className="p-[1rem] w-[8.0625rem] flex flex-col items-center justify-evenly bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom rounded-[1rem] drop-shadow-xl">
+        <div className="flex flex-row gap-[.3125rem] items-baseline">
+          <span className="bg-purple w-[.6875rem] h-[.6875rem] rounded-full" />
+          <div className=" text-[1.3rem] leading-[2.125rem] font-lato text-center text-light">
             {attribution}
           </div>
           <span className="text-[.8rem] text-light/[.41]">/ {totalAttributions}</span>
@@ -23,10 +23,10 @@ const ParameterMetrics = ({ flexDirection }: { flexDirection: 'row' | 'col' }) =
           {attributionParameterLabel}
         </div>
       </div>
-      <div className="p-[1rem] w-[129px] flex flex-col items-center justify-evenly bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom rounded-[16px] drop-shadow-xl">
-        <div className="flex flex-row gap-[5px] items-baseline">
-          <span className="bg-lightPurple w-[11px] h-[11px] rounded-full" />
-          <div className=" text-[1.3rem] leading-[34px] font-lato text-center text-light">
+      <div className="p-[1rem] w-[8.0625rem] flex flex-col items-center justify-evenly bg-gradient-to-tr from-[#1D2E4B] to-bgContainerFrom rounded-[1rem] drop-shadow-xl">
+        <div className="flex flex-row gap-[.3125rem] items-baseline">
+          <span className="bg-lightPurple w-[.6875rem] h-[.6875rem] rounded-full" />
+          <div className=" text-[1.3rem] leading-[2.125rem] font-lato text-center text-light">
             {event}
           </div>
           <span className="text-[.8rem] text-light/[.41]">/ {totalEvents}</span>

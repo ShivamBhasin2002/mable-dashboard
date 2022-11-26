@@ -36,7 +36,7 @@ const NameChange = () => {
   return (
     <ComponentWrapper
       title="Name"
-      className="w-full lg:w-[33rem] flex-grow md:flex-grow-[.5] text-light h-fit mt-[20px]"
+      className="w-full lg:w-[33rem] flex-grow md:flex-grow-[.5] text-light h-fit mt-[1.25rem]"
     >
       <div className="font-light opacity-60">
         Changing your name below will update your name on your profile
@@ -67,7 +67,7 @@ const NameChange = () => {
               placeholder={`${firstName}`}
             />
             <TextField label="Last Name" type="text" name="lastName" placeholder={`${lastName}`} />
-            <div className="mt-[10px]">
+            <div className="mt-[.625rem]">
               <Button type="submit" colorScheme="linkedin" variant="solid">
                 {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Save

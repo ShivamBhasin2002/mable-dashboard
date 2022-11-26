@@ -66,7 +66,7 @@ const EventUsage = () => {
   return (
     <ComponentWrapper
       title="Event Usage"
-      className="text-light h-fit mt-[20px] flex flex-col"
+      className="text-light h-fit mt-[1.25rem] flex flex-col"
       nextComponent={dropdown()}
     >
       <div className="flex justify-end mb-6 mt-6">

@@ -42,15 +42,15 @@ const Header = () => {
       {/* <div className="flex flex-row-reverse mb-3">
         <ShopPicker />
       </div> */}
-      <div className="flex justify-between items-center h-[40px] mb-[25px]">
-        <h1 className=" text-[20px] lg:text-[28px] text-light font-montserrat font-bold">
+      <div className="flex justify-between items-center h-[2.5rem] mb-[1.5625rem]">
+        <h1 className=" text-[1.25rem] lg:text-[1.75rem] text-light font-montserrat font-bold">
           {activeScreen}
         </h1>
-        <span className="flex flex-row text-bgPrimary-dark gap-[15px]">
+        <span className="flex flex-row text-bgPrimary-dark gap-[.9375rem]">
           {showReload(activeScreen) && (
             <span
               id="refreshBtn"
-              className="text-primary w-[60px] h-[40px] rounded-[10px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
+              className="text-primary w-[3.75rem] h-[2.5rem] rounded-[.625rem] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo flex justify-center items-center text-3xl cursor-pointer"
               onClick={() => {
                 dispatch(refresh(false));
               }}
@@ -67,7 +67,7 @@ const Header = () => {
               onOpen={onOpen}
             >
               <PopoverTrigger>
-                <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[40px] w-max px-[20px] rounded-[10px] flex flex-row gap-[10px] justify-evenly items-center text-[16px] font-lato text-light cursor-pointer whitespace-nowrap">
+                <span className="bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[2.5rem] w-max px-[1.25rem] rounded-[.625rem] flex flex-row gap-[.625rem] justify-evenly items-center text-[1rem] font-lato text-light cursor-pointer whitespace-nowrap">
                   {datePreset && <span className="text-primary w-min">{datePreset}: </span>}
                   {dateRange[0] && moment(dateRange[0]).format('DD.MM.YY')} to{' '}
                   {dateRange[1] && moment(dateRange[1]).format('DD.MM.YY')}

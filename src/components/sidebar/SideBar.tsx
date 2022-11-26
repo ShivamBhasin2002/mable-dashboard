@@ -33,7 +33,7 @@ const SideBar = () => {
   return (
     <aside
       id="side-bar"
-      className="sticky flex-shrink-0  top-0 left-0  w-[70px] lg:w-[200px] transition-all duration-500 ease-in-out h-screen bg-background border-r-2 border-lines/[0.15] py-[20px] flex flex-col gap-[25px] lg:gap-[20px] justify-center overflow-hidden"
+      className="sticky flex-shrink-0  top-0 left-0  w-[4.375rem] lg:w-[12.5rem] transition-all duration-500 ease-in-out h-screen bg-background border-r-2 border-lines/[0.15] py-[1.25rem] flex flex-col gap-[1.5625rem] lg:gap-[1.25rem] justify-center overflow-hidden"
     >
       <header className="flex justify-center">
         <a href={mableAiLandingPage}>
@@ -45,13 +45,13 @@ const SideBar = () => {
       </header>
 
       <section className="flex-grow overflow-y-scroll hide_scrollbar m-auto">
-        <div className="flex flex-col gap-[10px] lg:gap-2">
+        <div className="flex flex-col gap-[.625rem] lg:gap-2">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems], index) => (
             <div key={sidebarCategory}>
               <div className="hidden xl:inline-block text-[.7rem] xl:text-[.8rem] text-primary font-montserrat font-bold mb-2 text-center lg:text-start">
                 {sidebarCategory}
               </div>
-              <div className="flex flex-col gap-[5px]">
+              <div className="flex flex-col gap-[.3125rem]">
                 {sidebarItems.map((item) => (
                   <SideBarItem
                     {...item}
@@ -66,14 +66,14 @@ const SideBar = () => {
                 ))}
               </div>
               {index !== Object.entries(sideBar).length - 1 && (
-                <hr className="ml-[5px] lg:ml-0 border-secondary/25 hidden lg:block" />
+                <hr className="ml-[.3125rem] lg:ml-0 border-secondary/25 hidden lg:block" />
               )}
             </div>
           ))}
         </div>
       </section>
 
-      <section className="flex flex-col gap-[10px] px-5">
+      <section className="flex flex-col gap-[.625rem] px-5">
         <div className="flex flex-row  w-full items-center justify-between lg:justify-between">
           <span className="h-[1.7rem] w-[1.7rem] text-[.8rem] lg:text-[.8rem] text-light bg-primary/50 font-extrabold rounded-full inline-flex justify-center items-center p-2">
             {firstName !== undefined ? firstName[0] : 'U'}
@@ -88,13 +88,13 @@ const SideBar = () => {
           </span>
         </div>
         <div
-          className="flex text-[14px] text-secondary font-montserrat font-bold items-center cursor-pointer"
+          className="flex text-[.875rem] text-secondary font-montserrat font-bold items-center cursor-pointer"
           onClick={() => {
             dispatch(logout());
             navigate('/');
           }}
         >
-          <span className="mr-[10px] ml-[15px] lg:ml-0 text-[.7rem] rounded-full hover:bg-secondary/20 p-2">
+          <span className="mr-[.625rem] ml-[.9375rem] lg:ml-0 text-[.7rem] rounded-full hover:bg-secondary/20 p-2">
             <Icon icon="logout" />
           </span>
           <span className="hidden lg:inline-block font-montserrat text-[.7rem] ">Log Out</span>

@@ -14,8 +14,8 @@ const ShopPicker = () => {
   return (
     <Menu isLazy>
       <MenuButton>
-        <div className="px-[20px] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[45px] w-min rounded-xl flex flex-row items-center justify-evenly text-light gap-3 whitespace-nowrap">
-          <span className="h-[10px] w-[10px] bg-success rounded-full" />
+        <div className="px-[1.25rem] bg-gradient-to-r from-bgContainerFrom to-bgContainerTo h-[2.8125rem] w-min rounded-xl flex flex-row items-center justify-evenly text-light gap-3 whitespace-nowrap">
+          <span className="h-[.625rem] w-[.625rem] bg-success rounded-full" />
           {active?.displayName}
           <Icon icon="dropdown" />
         </div>

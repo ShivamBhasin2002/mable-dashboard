@@ -22,7 +22,7 @@ const PasswordChange = () => {
   }, [status]);
   return (
     <ComponentWrapper
-      className="h-fit w-[33rem] flex-grow-[.5] text-light xl:mt-[20px]"
+      className="h-fit w-[33rem] flex-grow-[.5] text-light xl:mt-[1.25rem]"
       title="Change Password"
     >
       <Formik
@@ -42,7 +42,7 @@ const PasswordChange = () => {
           <form className=" mt-5 flex flex-col gap-6" onSubmit={formik.handleSubmit}>
             <TextField label="Current Password" type="password" name="password" />
             <TextField label="New Password" type="password" name="newPassword" />
-            <div className="mt-[30px] flex gap-2">
+            <div className="mt-[1.875rem] flex gap-2">
               <Button type="submit" colorScheme="linkedin" variant="solid">
                 {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Save

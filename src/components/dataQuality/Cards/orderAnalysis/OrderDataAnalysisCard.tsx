@@ -34,7 +34,7 @@ const OrderDataAnalysisCard = () => {
     <ComponentWrapper
       title="Data Quality"
       status={[dataQualityStatus, eventsStatus]}
-      className=" overflow-hidden min-h-[142px]"
+      className=" overflow-hidden min-h-[8.875rem]"
       width="100%"
       height={160}
     >
@@ -45,7 +45,7 @@ const OrderDataAnalysisCard = () => {
         <div className="min-w-[6.25rem]  h-[7.5rem] flex-grow-[1] ">
           <DataQualityLineChart color={colors.lineGraphStart} />
         </div>
-        <div className="flex flex-row gap-[5px]">
+        <div className="flex flex-row gap-[.3125rem]">
           <Statistics value={numberReducer(TOTAL_SHOPIFY_ORDERS)} message="Shopify Orders" />
           <Statistics value={numberReducer(correctCvOrders)} message="Orders with correct CV" />
           <Statistics

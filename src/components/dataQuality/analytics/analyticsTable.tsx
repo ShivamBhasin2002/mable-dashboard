@@ -29,9 +29,9 @@ const AnalyticsTable = () => {
   }
   if (analyticData.status === 'error') {
     return (
-      <div className="mt-[20px] text-error text-4xl">
+      <div className="mt-[1.25rem] text-error text-4xl">
         oops ! some error occurred
-        <div className="mt-[20px] text-error text-xl p-4 rounded-md bg-background">
+        <div className="mt-[1.25rem] text-error text-xl p-4 rounded-md bg-background">
           {analyticData.error}
         </div>
       </div>
@@ -40,10 +40,10 @@ const AnalyticsTable = () => {
   if (analyticData.status === 'success') {
     return (
       <>
-        <table className="w-full table-auto my-[10px] h-80">
+        <table className="w-full table-auto my-[.625rem] h-80">
           <thead>
-            <tr className="[&>*]:font-montserrat [&>*]:text-[14px] [&>*]:font-extrabold [&>*]:py-2 [&>*]:px-[20px] [&>*]:whitespace-nowrap">
-              <td className="bg-primary rounded-tl-[10px] ">Day</td>
+            <tr className="[&>*]:font-montserrat [&>*]:text-[.875rem] [&>*]:font-extrabold [&>*]:py-2 [&>*]:px-[1.25rem] [&>*]:whitespace-nowrap">
+              <td className="bg-primary rounded-tl-[.625rem] ">Day</td>
               {Object.entries(filterType).map((item, i) =>
                 selectedEvents[item[0] as keyof SelectedEventsType] ? (
                   <td key={i} className="bg-primary">
@@ -53,9 +53,9 @@ const AnalyticsTable = () => {
               )}
             </tr>
           </thead>
-          <tbody className="last-of:rounded-b-[10px]">
+          <tbody className="last-of:rounded-b-[.625rem]">
             <tr
-              className={`[&>*]:font-montserrat [&>*]:text-[.8rem] [&>*]:font-normal [&>*]:py-[12px] [&>*]:px-[20px]
+              className={`[&>*]:font-montserrat [&>*]:text-[.8rem] [&>*]:font-normal [&>*]:py-[.75rem] [&>*]:px-[1.25rem]
                 }`}
             >
               <td>
@@ -82,7 +82,7 @@ const AnalyticsTable = () => {
               .map((item, i) => (
                 <tr
                   key={i}
-                  className={`[&>*]:font-montserrat [&>*]:text-[.8rem] [&>*]:font-normal [&>*]:py-1 [&>*]:px-[20px] ${
+                  className={`[&>*]:font-montserrat [&>*]:text-[.8rem] [&>*]:font-normal [&>*]:py-1 [&>*]:px-[1.25rem] ${
                     !(i & 1) && 'bg-tableStrips/[0.5]'
                   }`}
                 >

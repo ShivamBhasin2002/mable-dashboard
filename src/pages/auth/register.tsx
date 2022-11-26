@@ -45,9 +45,9 @@ const Register = () => {
   }, [status]);
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r to-bgContainerTo from-bgContainerFrom justify-evenly items-center">
-      <main className="flex flex-col justify-center items-center text-light gap-[50px]">
+      <main className="flex flex-col justify-center items-center text-light gap-[3.125rem]">
         <header>
-          <div className="text-center font-montserrat font-bold text-[60px]">Register</div>
+          <div className="text-center font-montserrat font-bold text-[3.75rem]">Register</div>
           <div className="text-center font-lato text-2xl">
             Bring your analytics to the next level!
           </div>
@@ -89,10 +89,10 @@ const Register = () => {
         >
           {(formik) => (
             <form
-              className="w-[400px] md:w-[600px] flex flex-col gap-6"
+              className="w-[25rem] md:w-[37.5rem] flex flex-col gap-6"
               onSubmit={formik.handleSubmit}
             >
-              <div className="flex gap-[20px]">
+              <div className="flex gap-[1.25rem]">
                 <TextField label="First Name" type="text" name="firstName" />
                 <TextField label="Last Name" type="text" name="lastName" />
               </div>
@@ -135,7 +135,7 @@ const Register = () => {
             </form>
           )}
         </Formik>
-        <div className="flex justify-between text-secondary w-[400px] md:w-[600px] items-center">
+        <div className="flex justify-between text-secondary w-[25rem] md:w-[37.5rem] items-center">
           <div>
             Already have an account?{' '}
             <Link className="text-light" to="/auth/login">

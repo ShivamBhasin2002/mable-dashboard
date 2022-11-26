@@ -11,7 +11,7 @@ const WarningCenterCard = () => {
       title="Warning Center"
       underlined
       height={100}
-      className="flex-grow-[1] w-full min-h-[179px] max-h-[200px] overflow-hidden"
+      className="flex-grow-[1] w-full min-h-[11.1875rem] max-h-[12.5rem] overflow-hidden"
       status={status}
     >
       {active.length === 0 && (
@@ -25,26 +25,26 @@ const WarningCenterCard = () => {
       <div
         className={`${
           active.length === 0 ? 'overflow-y-hidden' : 'overflow-y-scroll'
-        } min-h-[100px] flex-grow-[1] h-[150px]`}
+        } min-h-[6.25rem] flex-grow-[1] h-[9.375rem]`}
       >
         {active.map(({ type, message, time }, index) => (
           <div
             key={index}
-            className="flex flex-row items-center p-[10px] bg-primary/[0.15] mb-2 rounded-[5px] gap-2 text-light"
+            className="flex flex-row items-center p-[.625rem] bg-primary/[0.15] mb-2 rounded-[.3125rem] gap-2 text-light"
           >
-            <span className="px-[5px] flex items-center">
+            <span className="px-[.3125rem] flex items-center">
               <Icon icon={type} size="xl" />
             </span>
             <span className="flex flex-col  flex-grow">
-              <span className="text-[12px] leading-[15px] font-montserrat">
+              <span className="text-[.75rem] leading-[.9375rem] font-montserrat">
                 {type.charAt(0).toLocaleUpperCase()}
                 {type.slice(1)}
               </span>
-              <span className="text-[16px] leading-[19px] font-montserrat font-semibold whitespace-nowrap">
+              <span className="text-[1rem] leading-[1.1875rem] font-montserrat font-semibold whitespace-nowrap">
                 {message}
               </span>
             </span>
-            <span className="text-[12px] leading-[19px] font-montserrat font-bold">{time}</span>
+            <span className="text-[.75rem] leading-[1.1875rem] font-montserrat font-bold">{time}</span>
           </div>
         ))}
       </div>

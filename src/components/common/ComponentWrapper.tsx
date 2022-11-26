@@ -22,12 +22,12 @@ const ComponentWrapper = ({
   return (
     <article
       id={id}
-      className={`bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[10px] px-[20px] py-[15px] relative ${className}`}
+      className={`bg-gradient-to-r from-bgContainerFrom to-bgContainerTo rounded-[.625rem] px-[1.25rem] py-[.9375rem] relative ${className}`}
       style={{ width: width ?? 'auto', height: height ?? 'auto' }}
     >
       {checkStatus(STATUS_TYPE.FETCHING) && (
         <div
-          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[10px]  backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
+          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[.625rem]  backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
         >
           <Spinner size="xl" thickness="5px" color={colors.lines} />
           <span className="text-light/40 flex items-center font-montserrat text-[.8rem] font-bold text-center `">
@@ -37,7 +37,7 @@ const ComponentWrapper = ({
       )}
       {checkStatus(STATUS_TYPE.ERROR) && (
         <div
-          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[10px] px-[40px] py-[30px] backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
+          className={`w-full h-full z-[2] bg-black/20 absolute top-0 left-0 rounded-[.625rem] px-[2.5rem] py-[1.875rem] backdrop-blur-sm flex flex-col justify-center gap-2 items-center `}
         >
           <Icon
             size="100px"
@@ -45,7 +45,7 @@ const ComponentWrapper = ({
             icon="errorTriangular"
             color={colors.light}
           />
-          <span className="text-light/40 flex items-center font-montserrat text-[22px] font-bold text-center `">
+          <span className="text-light/40 flex items-center font-montserrat text-[1.375rem] font-bold text-center `">
             Error While Fetching
           </span>
         </div>
@@ -54,7 +54,7 @@ const ComponentWrapper = ({
         {(title || nextComponent) && (
           <div
             className={` text-light ${
-              title && 'mb-[10px]'
+              title && 'mb-[.625rem]'
             } flex items-center font-montserrat text-[.8rem] lg:text-[1.1rem] font-bold justify-between ${
               underlined ? 'border-b-2 border-lines/[0.15]' : ''
             }`}

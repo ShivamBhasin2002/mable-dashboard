@@ -28,7 +28,7 @@ const EmailChange = () => {
 
   return (
     <ComponentWrapper
-      className=" flex-grow-[1] text-light h-fit xl:mt-[20px]"
+      className=" flex-grow-[1] text-light h-fit xl:mt-[1.25rem]"
       title="Contact Information"
     >
       <Formik
@@ -53,7 +53,7 @@ const EmailChange = () => {
               name="email"
               placeholder={`${email || `Email`}`}
             />
-            <div className="mt-[30px]">
+            <div className="mt-[1.875rem]">
               <Button type="submit" colorScheme="linkedin" variant="solid">
                 {status === STATUS_TYPE.FETCHING && <Spinner />}
                 Save
@@ -70,18 +70,6 @@ const EmailChange = () => {
           </form>
         )}
       </Formik>
-      {/* <div className="mt-[30px]">
-        <Text mb="8px">E-mail</Text>
-        <Input placeholder= size="md" />
-      </div> */}
-      {/* <div className="mt-[30px]">
-        <Button colorScheme="linkedin" variant="solid">
-          Save
-        </Button>
-        <Button colorScheme="linkedin" variant="outline" className="ml-6">
-          Cancel
-        </Button>
-      </div> */}
     </ComponentWrapper>
   );
 };

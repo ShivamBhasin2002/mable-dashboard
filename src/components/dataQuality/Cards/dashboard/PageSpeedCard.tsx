@@ -29,7 +29,7 @@ const PageSpeedCard = () => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(pageSpeedAsync());
   }, [refresh]);
   return (
-    <ComponentWrapper title="Page Speed" className="flex-grow-[1] h-[114px]" status={status}>
+    <ComponentWrapper title="Page Speed" className="flex-grow-[1] h-[7.125rem]" status={status}>
       {!scriptTagNotFound && (
         <Error
           header={scriptTagNotFoundPopupHeader}
@@ -44,7 +44,7 @@ const PageSpeedCard = () => {
         />
       )}
       <div className="flex flex-row justify-center items-center h-full">
-        <div className="border-r-2 border-lines/[0.15]  flex-grow  mx-[-5px]">
+        <div className="border-r-2 border-lines/[0.15]  flex-grow  mx-[-0.3125rem]">
           <div className=" text-[1.2rem]  font-lato text-center text-light ">
             {dateTimeReducer(avgLoadingTimeMableScript).value}
             <span className="text-[1.25rem]">
