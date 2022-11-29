@@ -87,7 +87,7 @@ function toggleTable() {
     <div className="flex flex-col h-full w-full ">
       {categories.map((category, catIdx) => (
         <>
-          <div className={`${catIdx === 0 ? 'category-header mt-0' : 'category-header mt-2'}`}>
+          <div className={`${catIdx === 0 ? 'category-header mt-4' : 'category-header mt-5'}`}>
             <p className="text-primary opacity-70 text-[.875rem]">
               {camelCaseToTitleCase(category)}{' '}
             </p>
