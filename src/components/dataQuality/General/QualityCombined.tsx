@@ -46,7 +46,7 @@ const QualityCombined = () => {
         const { height } = chart;
         const { ctx } = chart;
         ctx.restore();
-        ctx.font = '17px lato';
+        ctx.font = '21px lato';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = getColor(chart.config.options.value);
         const text = `${chart.config.options.value}%`;
