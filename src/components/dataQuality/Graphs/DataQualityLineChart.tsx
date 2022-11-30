@@ -27,6 +27,9 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
             borderWidth: 3,
             lineTension: 0.5,
             fill: true,
+            pointRadius: 0.001,
+            pointHoverRadius: 6,
+            pointHoverBackgroundColor: colors.success,
             datalabels: {
               display: false
             }
