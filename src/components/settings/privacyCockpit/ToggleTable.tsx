@@ -87,8 +87,10 @@ function toggleTable() {
     <div className="flex flex-col h-full w-full ">
       {categories.map((category, catIdx) => (
         <>
-          <div className={`${catIdx === 0 ? 'category-header mt-4' : 'category-header mt-5'}`}>
-            <p className="text-primary opacity-70 text-[.875rem]">
+          <div
+            className={`${catIdx === 0 ? 'category-header mt-4' : 'category-header mt-4 hd:mt-8'}`}
+          >
+            <p className="text-primary opacity-70 text-[.75rem] hd:text-[.875rem]">
               {camelCaseToTitleCase(category)}{' '}
             </p>
           </div>
@@ -97,7 +99,7 @@ function toggleTable() {
               return (
                 <>
                   <div className="dataTable  text-[#FFFFFF] grid grid-cols-9 gap-0 flex-grow-[1]  ">
-                    <div className="keyValue col-span-3 my-auto text-[.9rem] font-[600] ">
+                    <div className="keyValue col-span-3 my-auto text-[.8125rem] hd:text-[1.125rem] font-[600] ">
                       {data.label}
                     </div>
                     {parsedSettings?.map(
@@ -158,7 +160,7 @@ function toggleTable() {
       <Divider className="my-2" />
       <div className="flex justify-between items-center  my-auto">
         <div className="active_all flex justify-end items-center">
-          <p className="text-light text-[1.125rem] mx-2 opacity-50">Activate All </p>
+          <p className="text-light text-[1.125rem] mr-3 opacity-50">Activate All </p>
           <ToggleBtn
             value={activeEverything.settingValue === 'true'}
             setState={setActiveEverything}
