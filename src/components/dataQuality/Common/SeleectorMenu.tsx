@@ -30,6 +30,7 @@ const SelectorMenu = ({ active, onChange }: SelectorMenuProps) => (
       borderTop={0}
       borderTopRadius={0}
       borderColor={`${colors.lines}20`}
+      className="z-[1000] absolute"
     >
       {Object.values(eventSelectedType).map(
         (item) =>
