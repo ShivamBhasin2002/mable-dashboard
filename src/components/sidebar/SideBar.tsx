@@ -45,7 +45,7 @@ const SideBar = () => {
       </header>
 
       <section className="flex-grow overflow-y-scroll hide_scrollbar m-auto">
-        <div className="flex flex-col gap-[.625rem] lg:gap-2">
+        <div className="flex flex-col lg:gap-2">
           {Object.entries(sideBar).map(([sidebarCategory, sidebarItems], index) => (
             <div key={sidebarCategory}>
               <div className="hidden xl:inline-block text-[.7rem] xl:text-[.8rem] text-primary font-montserrat font-bold mb-2 text-center lg:text-start">
@@ -66,7 +66,7 @@ const SideBar = () => {
                 ))}
               </div>
               {index !== Object.entries(sideBar).length - 1 && (
-                <hr className="ml-[.3125rem] lg:ml-0 border-secondary/25 hidden lg:block" />
+                <hr className="ml-[.3125rem] my-[.625rem] lg:ml-0 border-secondary/25 hidden lg:block" />
               )}
             </div>
           ))}
