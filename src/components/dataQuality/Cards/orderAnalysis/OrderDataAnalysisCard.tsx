@@ -34,11 +34,11 @@ const OrderDataAnalysisCard = () => {
     <ComponentWrapper
       title="Data Quality"
       status={[dataQualityStatus, eventsStatus]}
-      className=" overflow-hidden min-h-[8.875rem]"
+      className="overflow-hidden min-h-[8.875rem] pt-[10px]"
       width="100%"
       height={160}
     >
-      <div className="flex flex-row  items-center justify-evenly w-full flex-grow-[1] h-full gap-8">
+      <div className="flex flex-row items-center justify-evenly w-full flex-grow-[1] h-full gap-8 pb-[10px]">
         <div className="min-w-[12.5rem] max-w-[18.75rem] flex-grow-[1] ">
           <QualityCombined />
         </div>

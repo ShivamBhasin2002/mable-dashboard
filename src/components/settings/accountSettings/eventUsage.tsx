@@ -53,7 +53,7 @@ const EventUsage = () => {
             key={item[0]}
             onClick={() => {
               setTier(item[1]);
-              dispatch(TierRange(item[0]));
+              dispatch(TierRange(item[1]));
             }}
           >
             {item[1]}

@@ -46,8 +46,11 @@ const EmailChange = () => {
       >
         {(formik) => (
           <form className="" onSubmit={formik.handleSubmit}>
+            <div className="my-5 font-bold">
+              Current E-mail : <span className="text-primary font-medium">{email}</span>
+            </div>
             <TextField
-              label="Email"
+              label="Add new e-mail"
               icon="email"
               type="email"
               name="email"
