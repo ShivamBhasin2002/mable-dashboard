@@ -9,10 +9,11 @@ const EventParametersCard = () => {
   const { EventParameters, status, eventSelected } = useSelector((state) => state.dataPerEvent);
   return (
     <ComponentWrapper
-      title={`Attribution Parameters  ${
+      title={`Event Parameters  ${
         eventSelected === eventSelectedType.all ? '' : `for ${eventSelected}`
       }`}
       className="flex-grow-[1]"
+      height="100%"
       status={status}
     >
       <table className="flex">

@@ -14,10 +14,11 @@ const AttributionParametersCard = () => {
       title={`Attribution Parameters  ${
         eventSelected === eventSelectedType.all ? '' : `for ${eventSelected}`
       }`}
-      className="flex-grow-[2] w-[60%]"
+      className="flex-grow-[2]"
+      height="100%"
       status={status}
     >
-      <div className="grid grid-cols-2 gap-2 hd:gap-4 h-full w-full relative">
+      <div className="grid grid-cols-2 gap-y-2 gap-x-7 hd:gap-y-4 hd:gap-x-7 h-full w-full relative">
         <ParameterStat name={'User IP'} value={AttributionParameters?.total_count_user_id ?? 0} />
         <ParameterStat
           name={'User Agent'}
