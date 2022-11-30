@@ -69,7 +69,6 @@ const OrderAnalysisTable = () => {
       // eslint-disable-next-line no-nested-ternary
       status={status}
     >
-      <StatusSelectorMenu />
       <table className="table-auto  w-full">
         <thead>
           <tr className="[&>*]:py-1 flex [&>*]:flex-1 [&>*]:font-montserrat [&>*]:font-bold [&>*]:text-[1.25rem]">
@@ -119,6 +118,7 @@ const OrderAnalysisTable = () => {
           )}
         </tbody>
       </table>
+      <StatusSelectorMenu />
       <Pagination page={page} setPage={setPage} array={orders} itemsPerPage={ordersPerPage} />
     </ComponentWrapper>
   );
