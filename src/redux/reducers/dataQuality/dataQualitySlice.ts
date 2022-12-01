@@ -50,10 +50,12 @@ export const dataQualityReducer = createReducer(dataQualityInitialState, (builde
       state.TOTAL_SHOPIFY_ORDERS =
         payload.total_shopify_orders ?? dataQualityInitialState.TOTAL_SHOPIFY_ORDERS;
       state.DATA_QUALITY_BY_DATE = payload.bydate
-        ? payload.bydate.map((element: { date: string; data_quality: number }) => ({
-            ...element,
-            date: moment(element.date).format('D. MMM')
-          }))
+        ? payload.bydate.map(
+            ({ date, data_quality: dataQuality }: { date: string; data_quality: number }) => ({
+              data_quality: dataQuality * 100,
+              date: moment(date).format('D. MMM')
+            })
+          )
         : dataQualityInitialState.DATA_QUALITY_BY_DATE;
       state.status = STATUS_TYPE.SUCCESS;
     })

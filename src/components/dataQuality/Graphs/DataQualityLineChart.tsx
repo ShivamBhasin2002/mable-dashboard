@@ -1,11 +1,11 @@
 import { useRef, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import { BubbleDataPoint, Chart, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
 
 import { createGradient } from 'utility/functions/colorSelector';
 import { useSelector } from 'redux/store';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
-import { BubbleDataPoint, Chart, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
 
 const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?: string }) => {
   const { DATA_QUALITY_BY_DATE } = useSelector((state) => state.dataQuality);
@@ -18,7 +18,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
         datasets: [
           {
             label: 'Data Quality',
-            data: DATA_QUALITY_BY_DATE.map((data) => data.data_quality * 100),
+            data: DATA_QUALITY_BY_DATE.map((data) => data.data_quality),
             backgroundColor: createGradient(chart.current.ctx, chart.current.chartArea, [
               { color: colors.transparent, stop: 0.1 },
               { color, stop: 1 }
@@ -42,11 +42,35 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
   return (
     <Line
       options={{
+        plugins: {
+          tooltip: {
+            usePointStyle: true,
+            cornerRadius: 2,
+            backgroundColor: colors.background,
+            bodyFont: {
+              family: 'lato',
+              size: 6
+            },
+            yAlign: 'bottom',
+            position: 'average',
+            callbacks: {
+              title: () => '',
+              label(tooltipItem) {
+                return `${tooltipItem.formattedValue}%`;
+              },
+              labelColor: () => ({
+                backgroundColor: colors.success,
+                borderColor: colors.success
+              }),
+              labelPointStyle: () => ({ pointStyle: 'circle', rotation: 0 })
+            }
+          }
+        },
         layout: {
           padding: {
             right: -3,
             bottom: -3,
-            top: -5
+            top: 25
           }
         },
         hover: {
@@ -67,7 +91,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
             beginAtZero: true,
             ticks: {
               font: { family: fonts.text, weight: 'bold' },
-              stepSize: 25,
+              stepSize: 20,
               autoSkip: true,
               callback(this, tickValue) {
                 return `${tickValue}%`;
