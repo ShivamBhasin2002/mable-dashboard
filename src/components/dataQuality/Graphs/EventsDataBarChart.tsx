@@ -12,7 +12,6 @@ import { createGradient } from 'utility/functions/colorSelector';
 import colors from 'utility/colors';
 import fonts from 'utility/fonts';
 import { STATUS_TYPE } from 'utility/constants/enums';
-import { useWindowSize } from 'utility/customHooks';
 
 const EventsDataBarChart = () => {
   const dispatch = useDispatch();
@@ -20,18 +19,13 @@ const EventsDataBarChart = () => {
   const refresh = useSelector((state) => state.dates.refresh);
   const chart = useRef<any>(null); //eslint-disable-line
   const [chartData, setChartData] = useState<any>({ datasets: [] }); //eslint-disable-line
-  const { width: screenWidth } = useWindowSize();
   useEffect(() => {
     if (status !== STATUS_TYPE.FETCHING) dispatch(eventsDataAsync());
   }, [refresh]);
   useEffect(() => {
     if (chart.current) {
       const chartData = {
-        labels: Object.keys(totalEvents).map((event) =>
-          (screenWidth ?? 0) >= 1280 && (screenWidth ?? 0) <= 1440
-            ? getEventDisplayName(event)?.split(' ')
-            : getEventDisplayName(event)
-        ),
+        labels: Object.keys(totalEvents).map((event) => getEventDisplayName(event)),
         datasets: [
           {
             label: 'Events',

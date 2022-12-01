@@ -39,6 +39,30 @@ const EventsPerDayLineChart = () => {
   return (
     <Line
       options={{
+        plugins: {
+          tooltip: {
+            usePointStyle: true,
+            cornerRadius: 2,
+            backgroundColor: colors.background,
+            bodyFont: {
+              family: 'lato',
+              size: 10
+            },
+            yAlign: 'bottom',
+            position: 'average',
+            callbacks: {
+              title: () => '',
+              label(tooltipItem) {
+                return tooltipItem.formattedValue;
+              },
+              labelColor: (tooltipItem) => ({
+                backgroundColor: `${tooltipItem.dataset.backgroundColor}`,
+                borderColor: `${tooltipItem.dataset.backgroundColor}`
+              }),
+              labelPointStyle: () => ({ pointStyle: 'circle', rotation: 0 })
+            }
+          }
+        },
         hover: {
           intersect: false,
           mode: 'nearest'

@@ -49,7 +49,7 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
             backgroundColor: colors.background,
             bodyFont: {
               family: 'lato',
-              size: 6
+              size: 10
             },
             yAlign: 'bottom',
             position: 'average',
@@ -58,9 +58,9 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
               label(tooltipItem) {
                 return `${tooltipItem.formattedValue}%`;
               },
-              labelColor: () => ({
-                backgroundColor: colors.success,
-                borderColor: colors.success
+              labelColor: (tooltipItem) => ({
+                backgroundColor: `${tooltipItem.dataset.backgroundColor}`,
+                borderColor: `${tooltipItem.dataset.backgroundColor}`
               }),
               labelPointStyle: () => ({ pointStyle: 'circle', rotation: 0 })
             }

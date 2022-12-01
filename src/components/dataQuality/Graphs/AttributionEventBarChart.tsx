@@ -1,14 +1,6 @@
 import { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import {
-  BubbleDataPoint,
-  Chart,
-  Tooltip,
-  ChartTypeRegistry,
-  ScatterDataPoint,
-  TooltipPositionerFunction,
-  ChartType
-} from 'chart.js';
+import { BubbleDataPoint, Chart, Tooltip, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
@@ -78,128 +70,9 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
           setBarSmBagColor(colors.lightPurple);
         }
       }
-    },
-    {
-      id: 'lines',
-      afterDraw(
-        chart: Chart<
-          keyof ChartTypeRegistry,
-          (number | ScatterDataPoint | BubbleDataPoint)[],
-          unknown
-        >
-      ) {
-        if (chart.tooltip?.getActiveElements().length) {
-          const { x } = chart.tooltip.getActiveElements()[0].element;
-          const { y } = chart.tooltip.getActiveElements()[0].element;
-          const yAxis = chart.scales.y;
-          const { ctx } = chart;
-          ctx.save();
-          ctx.beginPath();
-          ctx.setLineDash([10, 15]);
-          ctx.moveTo(x, y);
-          ctx.lineTo(x, yAxis.top);
-          ctx.lineWidth = 2;
-          ctx.strokeStyle = `${colors.lines}40`;
-          ctx.stroke();
-          ctx.restore();
-        }
-      }
     }
   ];
 
-  const barOptions: {
-    responsive: boolean;
-    maintainAspectRatio: boolean;
-    barPercentage: number;
-    plugins: {
-      tooltip: {
-        yAlign: 'bottom' | 'top' | 'center';
-        position: 'customPos' | 'average' | 'nearest';
-      };
-    };
-    elements: {
-      bar: {
-        borderRadius: number;
-      };
-    };
-    scales: {
-      y: {
-        suggestedMax: number;
-        grid: {
-          display: boolean;
-          borderColor: string;
-          borderWidth: number;
-        };
-        ticks: {
-          stepSize: number;
-          font: {
-            family: string;
-          };
-        };
-      };
-      x: {
-        ticks: {
-          font: {
-            family: string;
-          };
-          autoSkip: boolean;
-          maxTicksLimit: number;
-          maxRotation: number;
-        };
-        grid: {
-          display: boolean;
-          borderColor: string;
-          borderWidth: number;
-        };
-      };
-    };
-  } = {
-    responsive: true,
-    maintainAspectRatio: false,
-    barPercentage: 0.7,
-    plugins: {
-      tooltip: {
-        yAlign: 'bottom',
-        position: 'customPos'
-      }
-    },
-    elements: {
-      bar: {
-        borderRadius: 5
-      }
-    },
-    scales: {
-      y: {
-        suggestedMax: totalAttributions,
-        grid: {
-          display: false,
-          borderColor: `${colors.lines}20`,
-          borderWidth: 2
-        },
-        ticks: {
-          stepSize: 4,
-          font: {
-            family: fonts.text
-          }
-        }
-      },
-      x: {
-        ticks: {
-          font: {
-            family: fonts.text
-          },
-          autoSkip: true,
-          maxTicksLimit: 10,
-          maxRotation: 0
-        },
-        grid: {
-          display: false,
-          borderColor: `${colors.lines}20`,
-          borderWidth: 2
-        }
-      }
-    }
-  };
   const barData = {
     labels: byDate.map((data) => data.date),
     datasets: [
@@ -207,7 +80,6 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
         label: 'Attribution Parameters',
         data: byDate.map((data) => data.attributionParamsQuality),
         backgroundColor: barBagColor,
-        hoverBackgroundColor: () => onHover(colors.purple),
         borderRadius: 5,
         borderSkipped: false,
         datalabels: {
@@ -218,7 +90,6 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
         label: 'Event Parameters',
         data: byDate.map((data) => data.eventsQuality),
         backgroundColor: barSmBagColor,
-        hoverBackgroundColor: () => onHover(colors.lightPurple),
         borderRadius: 5,
         borderSkipped: false,
         datalabels: {
@@ -229,7 +100,76 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
   };
 
   return (
-    <Bar data={barData} width={width} height={height} plugins={barPlugins} options={barOptions} />
+    <Bar
+      data={barData}
+      width={width}
+      height={height}
+      plugins={barPlugins}
+      options={{
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          tooltip: {
+            usePointStyle: true,
+            cornerRadius: 2,
+            backgroundColor: colors.background,
+            bodyFont: {
+              family: 'lato',
+              size: 10
+            },
+            yAlign: 'bottom',
+            position: 'average',
+            callbacks: {
+              title: () => '',
+              label(tooltipItem) {
+                return tooltipItem.formattedValue;
+              },
+              labelColor: (tooltipItem) => ({
+                backgroundColor: `${tooltipItem.dataset.backgroundColor}`,
+                borderColor: `${tooltipItem.dataset.backgroundColor}`
+              }),
+              labelPointStyle: () => ({ pointStyle: 'circle', rotation: 0 })
+            }
+          }
+        },
+        elements: {
+          bar: {
+            borderRadius: 5
+          }
+        },
+        scales: {
+          y: {
+            suggestedMax: totalAttributions,
+            grid: {
+              display: false,
+              borderColor: `${colors.lines}20`,
+              borderWidth: 2
+            },
+            ticks: {
+              stepSize: 4,
+              font: {
+                family: fonts.text
+              }
+            }
+          },
+          x: {
+            ticks: {
+              font: {
+                family: fonts.text
+              },
+              autoSkip: true,
+              maxTicksLimit: 10,
+              maxRotation: 0
+            },
+            grid: {
+              display: false,
+              borderColor: `${colors.lines}20`,
+              borderWidth: 2
+            }
+          }
+        }
+      }}
+    />
   );
 };
 

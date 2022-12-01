@@ -45,14 +45,14 @@ export enum filterType {
   PageView = 'Page View',
   AddToCart = 'Add To Cart',
   InitiateCheckout = 'InitiateCheckout',
-  AddPaymentInfo = 'Add Payment Info',
+  AddPaymentInfo = 'Add Payment',
   Purchase = 'Purchase'
 }
 
 export enum byDate {
   total_count_page_view = 'PageView',
   total_count_add_to_cart = 'AddToCart',
-  total_count_intitate_checkout = 'InitiateCheckout',
+  total_count_initiate_checkout = 'Init. Checkout',
   total_count_add_payment_info = 'AddPaymentInfo',
   total_count_purchase = 'Purchase'
 }
@@ -60,8 +60,8 @@ export enum byDate {
 export enum eventSelectedType {
   all = 'All Events',
   purchase = 'Purchase',
-  add_payment_info = 'Add Payment Info',
-  intitate_checkout = 'Intitate Checkout',
+  add_payment_info = 'Add Payment',
+  intitate_checkout = 'Init. Checkout',
   add_to_cart = 'Add to Cart',
   page_view = 'Page View'
 }
