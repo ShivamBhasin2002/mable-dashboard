@@ -98,7 +98,8 @@ const EventsDataBarChart = () => {
                   autoSkip: false
                 }
               }
-            }
+            },
+            plugins: { tooltip: { enabled: false } }
           }}
         />
       </div>
