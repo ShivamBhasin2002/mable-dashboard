@@ -21,7 +21,7 @@ const ToggleSwitch = ({
         onClick={() => !disable && triggerToggle()}
         className={`wrg-toggle ${
           value ? 'wrg-toggle--checked' : 'wrg-toggle--uncheck'
-        } mt-2 hd:scale-[1.3]`}
+        } mt-2 hd:scale-[1.1]`}
       >
         <div className="wrg-toggle-container">
           <div className="wrg-toggle-check">
