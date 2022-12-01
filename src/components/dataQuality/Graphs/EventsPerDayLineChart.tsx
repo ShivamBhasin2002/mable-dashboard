@@ -55,9 +55,9 @@ const EventsPerDayLineChart = () => {
               label(tooltipItem) {
                 return tooltipItem.formattedValue;
               },
-              labelColor: (tooltipItem) => ({
-                backgroundColor: `${tooltipItem.dataset.backgroundColor}`,
-                borderColor: `${tooltipItem.dataset.backgroundColor}`
+              labelColor: () => ({
+                backgroundColor: colors.eventsPerDayLineColor,
+                borderColor: colors.eventsPerDayLineColor
               }),
               labelPointStyle: () => ({ pointStyle: 'circle', rotation: 0 })
             }

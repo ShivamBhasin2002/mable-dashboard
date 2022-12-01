@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { BubbleDataPoint, Chart, Tooltip, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
+import { Tooltip } from 'chart.js';
 import { useSelector } from 'redux/store';
 
 import colors from 'utility/colors';
@@ -16,16 +15,6 @@ declare module 'chart.js' {
 }
 
 const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartProps) => {
-  const [barBagColor, setBarBagColor] = useState(colors.purple);
-  const [barSmBagColor, setBarSmBagColor] = useState(colors.lightPurple);
-
-  const onHover = (color: string) => {
-    setBarBagColor(colors.purpleOpaque);
-    setBarSmBagColor(colors.lightPurpleOpaque);
-
-    return color;
-  };
-
   const { byDate } = useSelector((state) => state.dataPerEvent);
   Tooltip.positioners.customPos = (elements, position) => {
     if (!elements.length) {
@@ -37,49 +26,14 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
     };
   };
 
-  const barPlugins = [
-    {
-      id: 'bar',
-      afterEvent(
-        chart: Chart<
-          keyof ChartTypeRegistry,
-          (number | ScatterDataPoint | BubbleDataPoint)[],
-          unknown
-        >,
-        args: {
-          event: {
-            type:
-              | 'resize'
-              | 'click'
-              | 'contextmenu'
-              | 'dblclick'
-              | 'keydown'
-              | 'keypress'
-              | 'keyup'
-              | 'mousedown'
-              | 'mouseenter'
-              | 'mousemove'
-              | 'mouseout'
-              | 'mouseup';
-          };
-        }
-      ) {
-        // const event = args.event;
-        if (args.event.type === 'mouseout') {
-          setBarBagColor(colors.purple);
-          setBarSmBagColor(colors.lightPurple);
-        }
-      }
-    }
-  ];
-
   const barData = {
     labels: byDate.map((data) => data.date),
     datasets: [
       {
         label: 'Attribution Parameters',
         data: byDate.map((data) => data.attributionParamsQuality),
-        backgroundColor: barBagColor,
+        backgroundColor: colors.purple,
+        hoverBackgroundColor: colors.purpleOpaque,
         borderRadius: 5,
         borderSkipped: false,
         datalabels: {
@@ -89,7 +43,8 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
       {
         label: 'Event Parameters',
         data: byDate.map((data) => data.eventsQuality),
-        backgroundColor: barSmBagColor,
+        hoverBackgroundColor: colors.lightPurpleOpaque,
+        backgroundColor: colors.lightPurple,
         borderRadius: 5,
         borderSkipped: false,
         datalabels: {
@@ -104,7 +59,6 @@ const AttributionEventBarChart = ({ width, height }: AttributionEventBarChartPro
       data={barData}
       width={width}
       height={height}
-      plugins={barPlugins}
       options={{
         responsive: true,
         maintainAspectRatio: false,

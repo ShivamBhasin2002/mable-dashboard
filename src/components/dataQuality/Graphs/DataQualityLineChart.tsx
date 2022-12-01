@@ -58,9 +58,9 @@ const DataQualityLineChart = ({ color = colors.dataQualityChartArea }: { color?:
               label(tooltipItem) {
                 return `${tooltipItem.formattedValue}%`;
               },
-              labelColor: (tooltipItem) => ({
-                backgroundColor: `${tooltipItem.dataset.backgroundColor}`,
-                borderColor: `${tooltipItem.dataset.backgroundColor}`
+              labelColor: () => ({
+                backgroundColor: colors.success,
+                borderColor: colors.success
               }),
               labelPointStyle: () => ({ pointStyle: 'circle', rotation: 0 })
             }
